@@ -13,212 +13,212 @@ function e(){var e=document.querySelectorAll("div.gTable-stats > table"),n=docum
 },{}],"LGIG":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.shipsByTypes=exports.shipsData=void 0;var e={Transport:{maxLevel:6,Name:"Transport",TID:"TID_SHIP_TRANSPORT",TID_Description:"TID_SHIP_TRANSPORT_DESCR",Model:["Transport_lv1","Transport_lv2","Transport_lv3","Transport_lv4","Transport_lv5","Transport_lv6"],NewModuleSlots:["Trade","Trade","Support!Trade","Trade","Trade","Trade"],BuildCost:["250","1000","8000","20000","50000","60000"],DesignUpgradeCost:["0","10000","60000","300000","1000000","7000000"],DesignUpgradeTime:["0","28800","86400","259200","604800","864000"],JobCapacity:["1","2","3","4","5","8"],Speed:576,FuelUsePer5000Distance:[1.8,2.4,6,8,10,11],JumpFuelCosts:["15","25","50","75","100","120"],WhiteStarScore:["1","500","1000","1500","2000","2200"]},Miner:{maxLevel:6,Name:"Miner",TID:"TID_SHIP_MINER",TID_Description:"TID_SHIP_MINER_DESCR",Model:["Miner_lv1","Miner_lv2","Miner_lv3","Miner_lv4","Miner_lv5","Miner_lv6"],NewModuleSlots:["Mining","Mining","Support","Mining","Mining","Mining"],BuildCost:["500","1000","10000","30000","60000","100000"],DesignUpgradeCost:["0","5000","50000","250000","800000","6000000"],DesignUpgradeTime:["0","14400","86400","259200","604800","864000"],NumSectorsToMine:["1","2","3","4","5","6"],HydrogenCapacity:["50","250","600","1200","2000","2500"],MiningPeriod:["1000","800","500","250","100","75"],Speed:432,JumpFuelCosts:["5","10","15","20","25","40"],WhiteStarScore:["1","500","1000","2000","4000","8000"]},Battleship:{maxLevel:6,Name:"Battleship",TID:"TID_SHIP_BATTLESHIP",TID_Description:"TID_SHIP_BATTLESHIP_DESCR",Model:["Battleship_lv1","Battleship_lv2","Battleship_lv3","Battleship_lv4","Battleship_lv5","Battleship_lv6"],NewModuleSlots:["Weapon!Shield","Support","Support","Support","Support","Support"],BuildCost:["750","1500","20000","60000","120000","150000"],DesignUpgradeCost:["0","10000","80000","400000","1500000","8000000"],DesignUpgradeTime:["0","28800","86400","259200","604800","864000"],HP:["4200","5000","6000","7500","9000","9500"],HealRate:[5,4,3.25,2.5,2.5,2.63],Speed:600,FuelUsePer5000Distance:[2.8,4.2,12,24,40,44],JumpFuelCosts:["20","50","80","120","200","240"],WhiteStarScore:["1","500","2000","4000","7000","8000"],BSScore:["1","10000","25000","40000","50000","60000"],BSPenaltyPerSec:["500","1000","2000","4000","6000","7000"]},CerberusSentinel:{maxLevel:1,Name:"CerberusSentinel",TID:"TID_SHIP_CERB_FIGHTER",TID_Description:"TID_SHIP_CERB_FIGHTER_DESCR",Model:"Fighter_Cerberus2_lv1",HP:"750",Speed:300,InfluencePoints:"10",Battery:6},CerberusGuardian:{maxLevel:1,Name:"CerberusGuardian",TID:"TID_SHIP_CERB_SECTOR_GUARDIAN",TID_Description:"TID_SHIP_CERB_SECTOR_GUARDIAN_DESCR",Model:"Fighter_Cerberus1_lv1",HP:"7000",Speed:330,InfluencePoints:"20",GuardianBattery:1},CerberusColossus:{maxLevel:1,Name:"CerberusColossus",TID:"TID_SHIP_CERB_COLOSSUS",TID_Description:"TID_SHIP_CERB_COLOSSUS_DESCR",Model:"Battleship_Cerberus_lv1",HP:"40000",Speed:360,InfluencePoints:"150",ColossusLaser:1,Salvage:12,PassiveShield:10},CerberusInterceptor:{maxLevel:1,Name:"CerberusInterceptor",TID:"TID_SHIP_CERB_INTERCEPTOR",TID_Description:"TID_SHIP_CERB_INTERCEPTOR_DESCR",Model:"Fighter_Cerberus3_lv1",HP:"8000",Speed:660,InfluencePoints:"40",InterceptorMBattery:1},CerberusDestroyer:{maxLevel:1,Name:"CerberusDestroyer",TID:"TID_SHIP_CERB_DESTROYER",TID_Description:"TID_SHIP_CERB_DESTROYER_DESCR",Model:"Cerberus_Destroyer_lv1",HP:"10000",Speed:360,DockedObjectDestroyTime:"180",InfluencePoints:"80",DestroyerVengeance:1},CerberusPhoenix:{maxLevel:1,Name:"CerberusPhoenix",TID:"TID_SHIP_CERB_PHOENIX",TID_Description:"TID_SHIP_CERB_PHOENIX_DESCR",Model:"Fighter_Cerberus4_lv1",HP:"45000",Speed:270,InfluencePoints:"180",OnDestroySpawnCount:"3",DualLaser:5,PhoenixShield:1},AlphaDrone:{maxLevel:12,Name:"AlphaDrone",TID:"TID_SHIP_ALPHA_DRONE",TID_Description:"TID_SHIP_ALPHA_DRONE_DESCR",Model:["AlphaDrone_lv1","AlphaDrone_lv2","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3","AlphaDrone_lv3"],HP:["400","1200","2500","3500","4500","5500","6500","7500","8500","10000","12000","14000"],InitialModule:"Battery",InitialModuleLevels:"2",Speed:1050},ShipmentDrone:{maxLevel:1,Name:"ShipmentDrone",TID:"TID_SHIP_SHIPMENT_DRONE",TID_Description:"TID_SHIP_SHIPMENT_DRONE_DESCR",Model:"ShipmentDrone_lv1",Speed:1320,MaxPerStarSystem:"8"},TutBattleship:{maxLevel:1,Name:"TutBattleship",TID:"TID_SHIP_BATTLESHIP",TID_Description:"TID_SHIP_BATTLESHIP_DESCR",Model:"Battleship_lv3",NewModuleSlots:"Weapon",BuildCost:"0",DesignUpgradeCost:"0",DesignUpgradeTime:"0",HP:"6000",InitialModule:"WeakBattery",InitialModuleLevels:"0",HydrogenCapacity:"0",Speed:600,FuelUsePer5000Distance:0,JumpFuelCosts:"0",ShipAIHandler:"9",AIUpdateIntervalSeconds:"4",WhiteStarScore:"0"},MiningDrone:{maxLevel:10,Name:"MiningDrone",TID:"TID_SHIP_MINING_DRONE",TID_Description:"TID_SHIP_MINING_DRONE_DESCR",Model:["MiningDrone_lv1","MiningDrone_lv2","MiningDrone_lv3","MiningDrone_lv4","MiningDrone_lv5","MiningDrone_lv6","MiningDrone_lv7","MiningDrone_lv8","MiningDrone_lv9","MiningDrone_lv10"],HydrogenCapacity:["140","160","180","200","220","250","280","310","350","400"],Speed:1200,MaxPerStarSystem:"50"},CerberusBomber:{maxLevel:1,Name:"CerberusBomber",TID:"TID_SHIP_CERBERUS_BOMBER",TID_Description:"TID_SHIP_CERBERUS_BOMBER_DESCR",Model:"Fighter_Cerberus5_lv1",HP:"48000",MiningPeriod:"80",Speed:240,InfluencePoints:"200",BomberLauncher:1},BlueStarBot:{maxLevel:5,Name:"BlueStarBot",TID:"TID_SHIP_BATTLESHIP",TID_Description:"TID_SHIP_BATTLESHIP_DESCR",Model:["Battleship_lv1","Battleship_lv2","Battleship_lv3","Battleship_lv4","Battleship_lv5"],NewModuleSlots:["Weapon!Shield","Support","Support","Support","Support"],HP:["4200","5000","6000","7500","9000"],InitialModule:"WeakBattery",InitialModuleLevels:"0",HydrogenCapacity:"0",Speed:600,ShipAIHandler:"12",AIUpdateIntervalSeconds:"5",BSPenaltyPerSec:["500","1000","1500","3000","5000"]},CerberusStorm:{maxLevel:1,Name:"CerberusStorm",TID:"TID_SHIP_STORM",TID_Description:"TID_SHIP_STORM_DESCR",Model:"Fighter_Cerberus6_lv1",HP:"40000",Speed:36,InfluencePoints:"150",DartBarrage:1},CerberusGhosts:{maxLevel:1,Name:"CerberusGhosts",TID:"TID_SHIP_CERB_GHOSTS",TID_Description:"TID_SHIP_CERB_GHOSTS_DESCR",Model:"Cerberus_Swarm_lv1",HP:"200",Speed:900,InfluencePoints:"0",Battery:3},CorpFlagship:{maxLevel:15,Name:"CorpFlagship",TID:"TID_CORP_FLAGSHIP",TID_Description:"TID_CORP_FLAGSHIP_DESCR",Model:["Corp_Flagship_lv1","Corp_Flagship_lv2","Corp_Flagship_lv3","Corp_Flagship_lv4","Corp_Flagship_lv5","Corp_Flagship_lv5","Corp_Flagship_lv6","Corp_Flagship_lv6","Corp_Flagship_lv7","Corp_Flagship_lv7","Corp_Flagship_lv8","Corp_Flagship_lv8","Corp_Flagship_lv9","Corp_Flagship_lv9","Corp_Flagship_lv10"],DesignUpgradeCost:["200000","600000","2000000","5000000","20000000","40000000","60000000","80000000","100000000","140000000","180000000","220000000","260000000","300000000","350000000"],HP:["5000","5500","6050","6650","7300","8000","8800","9700","10700","11800","13000","14200","15600","17500","20000"],Speed:480,FuelUsePer5000Distance:20,JumpFuelCosts:"1000",WhiteStarScore:["5000","10000","15000","20000","30000","40000","50000","60000","70000","80000","90000","100000","110000","120000","130000"],Battery:[1,2,3,4,5,6,7,8,9,10,10,11,11,12,12],Immolation:[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],Recoil:[0,0,1,1,1,1,1,1,1,1,1,1,1,1,1],Stealth:[0,0,0,12,12,12,12,12,12,12,12,12,12,12,12],EMPRocket:[0,0,0,0,0,1,2,3,4,5,6,7,8,8,8]}};exports.shipsData=e;var r={player:["Transport","Miner","Battleship","CorpFlagship"],cerberus:["CerberusSentinel","CerberusGuardian","CerberusInterceptor","CerberusColossus","CerberusDestroyer","CerberusBomber","CerberusPhoenix","CerberusStorm","CerberusGhosts"],drones:["ShipmentDrone","MiningDrone","AlphaDrone"]};exports.shipsByTypes=r;
 },{}],"jpcQ":[function(require,module,exports) {
-module.exports="/Mod_AlphaDrone_Icon.bcde1fda.png";
+module.exports="Mod_AlphaDrone_Icon.bcde1fda.png";
 },{}],"gSDe":[function(require,module,exports) {
-module.exports="/Mod_AlphaRocket_Icon.496a31b6.png";
+module.exports="Mod_AlphaRocket_Icon.496a31b6.png";
 },{}],"JIQv":[function(require,module,exports) {
-module.exports="/Mod_AreaShieldRed_Icon.8bb42bf7.png";
+module.exports="Mod_AreaShieldRed_Icon.8bb42bf7.png";
 },{}],"cHt0":[function(require,module,exports) {
-module.exports="/Mod_AreaShield_Icon.5c4bc741.png";
+module.exports="Mod_AreaShield_Icon.5c4bc741.png";
 },{}],"rBks":[function(require,module,exports) {
-module.exports="/Mod_Barrage_Icon.b6e31140.png";
+module.exports="Mod_Barrage_Icon.b6e31140.png";
 },{}],"pW8K":[function(require,module,exports) {
-module.exports="/Mod_Barrier_Icon.60fad7aa.png";
+module.exports="Mod_Barrier_Icon.60fad7aa.png";
 },{}],"AeGo":[function(require,module,exports) {
-module.exports="/Mod_Battery_Icon.339a368a.png";
+module.exports="Mod_Battery_Icon.339a368a.png";
 },{}],"ophZ":[function(require,module,exports) {
-module.exports="/Mod_BlastShield_Icon.1ea3cfd5.png";
+module.exports="Mod_BlastShield_Icon.1ea3cfd5.png";
 },{}],"f6cA":[function(require,module,exports) {
-module.exports="/Mod_BomberRocket_Icon.d005f8cd.png";
+module.exports="Mod_BomberRocket_Icon.d005f8cd.png";
 },{}],"H7Po":[function(require,module,exports) {
-module.exports="/Mod_Bond_Icon.ebf7fb5b.png";
+module.exports="Mod_Bond_Icon.ebf7fb5b.png";
 },{}],"nzvd":[function(require,module,exports) {
-module.exports="/Mod_Crunch_Icon.21d9ce62.png";
+module.exports="Mod_Crunch_Icon.21d9ce62.png";
 },{}],"QSL0":[function(require,module,exports) {
-module.exports="/Mod_DartBarrage_Icon.c3782528.png";
+module.exports="Mod_DartBarrage_Icon.c3782528.png";
 },{}],"uiwW":[function(require,module,exports) {
-module.exports="/Mod_DartLauncher_Icon.932612a2.png";
+module.exports="Mod_DartLauncher_Icon.932612a2.png";
 },{}],"nbUK":[function(require,module,exports) {
-module.exports="/Mod_DeltaRocket_Icon.958f4e78.png";
+module.exports="Mod_DeltaRocket_Icon.958f4e78.png";
 },{}],"PZAm":[function(require,module,exports) {
-module.exports="/Mod_Destiny_Icon.9a54ae82.png";
+module.exports="Mod_Destiny_Icon.9a54ae82.png";
 },{}],"oXlf":[function(require,module,exports) {
-module.exports="/Mod_Dispatch_Icon.9f3e8084.png";
+module.exports="Mod_Dispatch_Icon.9f3e8084.png";
 },{}],"gFMb":[function(require,module,exports) {
-module.exports="/Mod_DualLaser_Icon.c64ef0cb.png";
+module.exports="Mod_DualLaser_Icon.c64ef0cb.png";
 },{}],"xwQg":[function(require,module,exports) {
-module.exports="/Mod_EMPRocket_Icon.ff51e41b.png";
+module.exports="Mod_EMPRocket_Icon.ff51e41b.png";
 },{}],"wfOO":[function(require,module,exports) {
-module.exports="/Mod_EMP_Icon.cb1e5226.png";
+module.exports="Mod_EMP_Icon.cb1e5226.png";
 },{}],"x3nf":[function(require,module,exports) {
-module.exports="/Mod_Enrich_Icon.60d03d3c.png";
+module.exports="Mod_Enrich_Icon.60d03d3c.png";
 },{}],"YqX6":[function(require,module,exports) {
-module.exports="/Mod_Entrust_Icon.a1eec7b1.png";
+module.exports="Mod_Entrust_Icon.a1eec7b1.png";
 },{}],"sMit":[function(require,module,exports) {
-module.exports="/Mod_Fortify_Icon.7146a7b5.png";
+module.exports="Mod_Fortify_Icon.7146a7b5.png";
 },{}],"LKJL":[function(require,module,exports) {
-module.exports="/Mod_Genesis_Icon.4a21a4f8.png";
+module.exports="Mod_Genesis_Icon.4a21a4f8.png";
 },{}],"OKzW":[function(require,module,exports) {
-module.exports="/Mod_HydroRocket_Icon.c5b14425.png";
+module.exports="Mod_HydroRocket_Icon.c5b14425.png";
 },{}],"BJMi":[function(require,module,exports) {
-module.exports="/Mod_Immolation_Icon.dc888a42.png";
+module.exports="Mod_Immolation_Icon.dc888a42.png";
 },{}],"LiwC":[function(require,module,exports) {
-module.exports="/Mod_Impulse_Icon.be8d5079.png";
+module.exports="Mod_Impulse_Icon.be8d5079.png";
 },{}],"yR1R":[function(require,module,exports) {
-module.exports="/Mod_Laser_Icon.ad387d65.png";
+module.exports="Mod_Laser_Icon.ad387d65.png";
 },{}],"VbOZ":[function(require,module,exports) {
-module.exports="/Mod_Leap_Icon.965970f8.png";
+module.exports="Mod_Leap_Icon.965970f8.png";
 },{}],"k63s":[function(require,module,exports) {
-module.exports="/Mod_MassBattery_Icon.7ece6d75.png";
+module.exports="Mod_MassBattery_Icon.7ece6d75.png";
 },{}],"SITB":[function(require,module,exports) {
-module.exports="/Mod_MassMining_Icon.e9e8019f.png";
+module.exports="Mod_MassMining_Icon.e9e8019f.png";
 },{}],"fDZu":[function(require,module,exports) {
-module.exports="/Mod_MineralStorage_Icon.1ce4033d.png";
+module.exports="Mod_MineralStorage_Icon.1ce4033d.png";
 },{}],"nJoD":[function(require,module,exports) {
-module.exports="/Mod_MiningBoost_Icon.2af80bc4.png";
+module.exports="Mod_MiningBoost_Icon.2af80bc4.png";
 },{}],"im1A":[function(require,module,exports) {
-module.exports="/Mod_MiningUnity_Icon.6fef3305.png";
+module.exports="Mod_MiningUnity_Icon.6fef3305.png";
 },{}],"ZXBB":[function(require,module,exports) {
-module.exports="/Mod_Mining_Autopilot_Icon.aebe0065.png";
+module.exports="Mod_Mining_Autopilot_Icon.aebe0065.png";
 },{}],"BuxI":[function(require,module,exports) {
-module.exports="/Mod_Mining_Drone_Icon.432071ca.png";
+module.exports="Mod_Mining_Drone_Icon.432071ca.png";
 },{}],"bqlb":[function(require,module,exports) {
-module.exports="/Mod_MirrorShield_Icon.ca8b52bc.png";
+module.exports="Mod_MirrorShield_Icon.ca8b52bc.png";
 },{}],"Duvc":[function(require,module,exports) {
-module.exports="/Mod_Offload_Icon.86b2fc57.png";
+module.exports="Mod_Offload_Icon.86b2fc57.png";
 },{}],"NrsI":[function(require,module,exports) {
-module.exports="/Mod_OmegaRocket_Icon.dd4599ee.png";
+module.exports="Mod_OmegaRocket_Icon.dd4599ee.png";
 },{}],"HqRR":[function(require,module,exports) {
-module.exports="/Mod_PassiveShield_Icon.09b42e7c.png";
+module.exports="Mod_PassiveShield_Icon.09b42e7c.png";
 },{}],"skLA":[function(require,module,exports) {
-module.exports="/Mod_Recall_Icon.f8b19ebb.png";
+module.exports="Mod_Recall_Icon.f8b19ebb.png";
 },{}],"tTJK":[function(require,module,exports) {
-module.exports="/Mod_Recoil_Icon.72a909c1.png";
+module.exports="Mod_Recoil_Icon.72a909c1.png";
 },{}],"RvK5":[function(require,module,exports) {
-module.exports="/Mod_RedStarExtender_Icon.5c2f9566.png";
+module.exports="Mod_RedStarExtender_Icon.5c2f9566.png";
 },{}],"Bl8P":[function(require,module,exports) {
-module.exports="/Mod_Repair_Icon.ebd6ba44.png";
+module.exports="Mod_Repair_Icon.ebd6ba44.png";
 },{}],"nL4K":[function(require,module,exports) {
-module.exports="/Mod_Rush_Icon.32a29815.png";
+module.exports="Mod_Rush_Icon.32a29815.png";
 },{}],"PLwA":[function(require,module,exports) {
-module.exports="/Mod_Salvage_Icon.ab8619e1.png";
+module.exports="Mod_Salvage_Icon.ab8619e1.png";
 },{}],"aPRu":[function(require,module,exports) {
-module.exports="/Mod_Sanctuary_Icon.7a176e96.png";
+module.exports="Mod_Sanctuary_Icon.7a176e96.png";
 },{}],"LaTc":[function(require,module,exports) {
-module.exports="/Mod_ShieldsStrong_Icon.d935c89a.png";
+module.exports="Mod_ShieldsStrong_Icon.d935c89a.png";
 },{}],"nBnK":[function(require,module,exports) {
-module.exports="/Mod_ShieldsWeak_Icon.d1e70b87.png";
+module.exports="Mod_ShieldsWeak_Icon.d1e70b87.png";
 },{}],"FMwc":[function(require,module,exports) {
-module.exports="/Mod_Shields_Icon.d2635ddf.png";
+module.exports="Mod_Shields_Icon.d2635ddf.png";
 },{}],"yPwR":[function(require,module,exports) {
-module.exports="/Mod_ShipmentBeam_Icon.328e5e72.png";
+module.exports="Mod_ShipmentBeam_Icon.328e5e72.png";
 },{}],"JIrm":[function(require,module,exports) {
-module.exports="/Mod_ShipmentBonus_Icon.b48168e1.png";
+module.exports="Mod_ShipmentBonus_Icon.b48168e1.png";
 },{}],"Es1U":[function(require,module,exports) {
-module.exports="/Mod_ShipmentComputer_Icon.0140209e.png";
+module.exports="Mod_ShipmentComputer_Icon.0140209e.png";
 },{}],"pBGD":[function(require,module,exports) {
-module.exports="/Mod_Stealth_Icon.b550ebfc.png";
+module.exports="Mod_Stealth_Icon.b550ebfc.png";
 },{}],"Ncx6":[function(require,module,exports) {
-module.exports="/Mod_Suppress_Icon.b1c61f59.png";
+module.exports="Mod_Suppress_Icon.b1c61f59.png";
 },{}],"M5Zt":[function(require,module,exports) {
-module.exports="/Mod_Teleport_Icon.83abfb1d.png";
+module.exports="Mod_Teleport_Icon.83abfb1d.png";
 },{}],"GLel":[function(require,module,exports) {
-module.exports="/Mod_TimeSlow_Icon.2ce77a4d.png";
+module.exports="Mod_TimeSlow_Icon.2ce77a4d.png";
 },{}],"AhmO":[function(require,module,exports) {
-module.exports="/Mod_TimeWarp_Icon.9ee84026.png";
+module.exports="Mod_TimeWarp_Icon.9ee84026.png";
 },{}],"vufT":[function(require,module,exports) {
-module.exports="/Mod_TradeBurst_Icon.b0d4cbed.png";
+module.exports="Mod_TradeBurst_Icon.b0d4cbed.png";
 },{}],"rs8D":[function(require,module,exports) {
-module.exports="/Mod_TransportAutopilot_Icon.33f80332.png";
+module.exports="Mod_TransportAutopilot_Icon.33f80332.png";
 },{}],"h1Jn":[function(require,module,exports) {
-module.exports="/Mod_TransportCapacity_Icon.e63f7d8a.png";
+module.exports="Mod_TransportCapacity_Icon.e63f7d8a.png";
 },{}],"rZ0H":[function(require,module,exports) {
-module.exports="/Mod_Unity_Icon.1e0c38f0.png";
+module.exports="Mod_Unity_Icon.1e0c38f0.png";
 },{}],"HfmP":[function(require,module,exports) {
-module.exports="/Mod_Vengeance_Icon.7d37680b.png";
+module.exports="Mod_Vengeance_Icon.7d37680b.png";
 },{}],"BFwE":[function(require,module,exports) {
-module.exports="/Mod_Weak_Battery_Icon.0b8f73c2.png";
+module.exports="Mod_Weak_Battery_Icon.0b8f73c2.png";
 },{}],"WxqL":[function(require,module,exports) {
 module.exports={Mod_AlphaDrone_Icon:require("./Mod_AlphaDrone_Icon.png"),Mod_AlphaRocket_Icon:require("./Mod_AlphaRocket_Icon.png"),Mod_AreaShieldRed_Icon:require("./Mod_AreaShieldRed_Icon.png"),Mod_AreaShield_Icon:require("./Mod_AreaShield_Icon.png"),Mod_Barrage_Icon:require("./Mod_Barrage_Icon.png"),Mod_Barrier_Icon:require("./Mod_Barrier_Icon.png"),Mod_Battery_Icon:require("./Mod_Battery_Icon.png"),Mod_BlastShield_Icon:require("./Mod_BlastShield_Icon.png"),Mod_BomberRocket_Icon:require("./Mod_BomberRocket_Icon.png"),Mod_Bond_Icon:require("./Mod_Bond_Icon.png"),Mod_Crunch_Icon:require("./Mod_Crunch_Icon.png"),Mod_DartBarrage_Icon:require("./Mod_DartBarrage_Icon.png"),Mod_DartLauncher_Icon:require("./Mod_DartLauncher_Icon.png"),Mod_DeltaRocket_Icon:require("./Mod_DeltaRocket_Icon.png"),Mod_Destiny_Icon:require("./Mod_Destiny_Icon.png"),Mod_Dispatch_Icon:require("./Mod_Dispatch_Icon.png"),Mod_DualLaser_Icon:require("./Mod_DualLaser_Icon.png"),Mod_EMPRocket_Icon:require("./Mod_EMPRocket_Icon.png"),Mod_EMP_Icon:require("./Mod_EMP_Icon.png"),Mod_Enrich_Icon:require("./Mod_Enrich_Icon.png"),Mod_Entrust_Icon:require("./Mod_Entrust_Icon.png"),Mod_Fortify_Icon:require("./Mod_Fortify_Icon.png"),Mod_Genesis_Icon:require("./Mod_Genesis_Icon.png"),Mod_HydroRocket_Icon:require("./Mod_HydroRocket_Icon.png"),Mod_Immolation_Icon:require("./Mod_Immolation_Icon.png"),Mod_Impulse_Icon:require("./Mod_Impulse_Icon.png"),Mod_Laser_Icon:require("./Mod_Laser_Icon.png"),Mod_Leap_Icon:require("./Mod_Leap_Icon.png"),Mod_MassBattery_Icon:require("./Mod_MassBattery_Icon.png"),Mod_MassMining_Icon:require("./Mod_MassMining_Icon.png"),Mod_MineralStorage_Icon:require("./Mod_MineralStorage_Icon.png"),Mod_MiningBoost_Icon:require("./Mod_MiningBoost_Icon.png"),Mod_MiningUnity_Icon:require("./Mod_MiningUnity_Icon.png"),Mod_Mining_Autopilot_Icon:require("./Mod_Mining_Autopilot_Icon.png"),Mod_Mining_Drone_Icon:require("./Mod_Mining_Drone_Icon.png"),Mod_MirrorShield_Icon:require("./Mod_MirrorShield_Icon.png"),Mod_Offload_Icon:require("./Mod_Offload_Icon.png"),Mod_OmegaRocket_Icon:require("./Mod_OmegaRocket_Icon.png"),Mod_PassiveShield_Icon:require("./Mod_PassiveShield_Icon.png"),Mod_Recall_Icon:require("./Mod_Recall_Icon.png"),Mod_Recoil_Icon:require("./Mod_Recoil_Icon.png"),Mod_RedStarExtender_Icon:require("./Mod_RedStarExtender_Icon.png"),Mod_Repair_Icon:require("./Mod_Repair_Icon.png"),Mod_Rush_Icon:require("./Mod_Rush_Icon.png"),Mod_Salvage_Icon:require("./Mod_Salvage_Icon.png"),Mod_Sanctuary_Icon:require("./Mod_Sanctuary_Icon.png"),Mod_ShieldsStrong_Icon:require("./Mod_ShieldsStrong_Icon.png"),Mod_ShieldsWeak_Icon:require("./Mod_ShieldsWeak_Icon.png"),Mod_Shields_Icon:require("./Mod_Shields_Icon.png"),Mod_ShipmentBeam_Icon:require("./Mod_ShipmentBeam_Icon.png"),Mod_ShipmentBonus_Icon:require("./Mod_ShipmentBonus_Icon.png"),Mod_ShipmentComputer_Icon:require("./Mod_ShipmentComputer_Icon.png"),Mod_Stealth_Icon:require("./Mod_Stealth_Icon.png"),Mod_Suppress_Icon:require("./Mod_Suppress_Icon.png"),Mod_Teleport_Icon:require("./Mod_Teleport_Icon.png"),Mod_TimeSlow_Icon:require("./Mod_TimeSlow_Icon.png"),Mod_TimeWarp_Icon:require("./Mod_TimeWarp_Icon.png"),Mod_TradeBurst_Icon:require("./Mod_TradeBurst_Icon.png"),Mod_TransportAutopilot_Icon:require("./Mod_TransportAutopilot_Icon.png"),Mod_TransportCapacity_Icon:require("./Mod_TransportCapacity_Icon.png"),Mod_Unity_Icon:require("./Mod_Unity_Icon.png"),Mod_Vengeance_Icon:require("./Mod_Vengeance_Icon.png"),Mod_Weak_Battery_Icon:require("./Mod_Weak_Battery_Icon.png")};
 },{"./Mod_AlphaDrone_Icon.png":"jpcQ","./Mod_AlphaRocket_Icon.png":"gSDe","./Mod_AreaShieldRed_Icon.png":"JIQv","./Mod_AreaShield_Icon.png":"cHt0","./Mod_Barrage_Icon.png":"rBks","./Mod_Barrier_Icon.png":"pW8K","./Mod_Battery_Icon.png":"AeGo","./Mod_BlastShield_Icon.png":"ophZ","./Mod_BomberRocket_Icon.png":"f6cA","./Mod_Bond_Icon.png":"H7Po","./Mod_Crunch_Icon.png":"nzvd","./Mod_DartBarrage_Icon.png":"QSL0","./Mod_DartLauncher_Icon.png":"uiwW","./Mod_DeltaRocket_Icon.png":"nbUK","./Mod_Destiny_Icon.png":"PZAm","./Mod_Dispatch_Icon.png":"oXlf","./Mod_DualLaser_Icon.png":"gFMb","./Mod_EMPRocket_Icon.png":"xwQg","./Mod_EMP_Icon.png":"wfOO","./Mod_Enrich_Icon.png":"x3nf","./Mod_Entrust_Icon.png":"YqX6","./Mod_Fortify_Icon.png":"sMit","./Mod_Genesis_Icon.png":"LKJL","./Mod_HydroRocket_Icon.png":"OKzW","./Mod_Immolation_Icon.png":"BJMi","./Mod_Impulse_Icon.png":"LiwC","./Mod_Laser_Icon.png":"yR1R","./Mod_Leap_Icon.png":"VbOZ","./Mod_MassBattery_Icon.png":"k63s","./Mod_MassMining_Icon.png":"SITB","./Mod_MineralStorage_Icon.png":"fDZu","./Mod_MiningBoost_Icon.png":"nJoD","./Mod_MiningUnity_Icon.png":"im1A","./Mod_Mining_Autopilot_Icon.png":"ZXBB","./Mod_Mining_Drone_Icon.png":"BuxI","./Mod_MirrorShield_Icon.png":"bqlb","./Mod_Offload_Icon.png":"Duvc","./Mod_OmegaRocket_Icon.png":"NrsI","./Mod_PassiveShield_Icon.png":"HqRR","./Mod_Recall_Icon.png":"skLA","./Mod_Recoil_Icon.png":"tTJK","./Mod_RedStarExtender_Icon.png":"RvK5","./Mod_Repair_Icon.png":"Bl8P","./Mod_Rush_Icon.png":"nL4K","./Mod_Salvage_Icon.png":"PLwA","./Mod_Sanctuary_Icon.png":"aPRu","./Mod_ShieldsStrong_Icon.png":"LaTc","./Mod_ShieldsWeak_Icon.png":"nBnK","./Mod_Shields_Icon.png":"FMwc","./Mod_ShipmentBeam_Icon.png":"yPwR","./Mod_ShipmentBonus_Icon.png":"JIrm","./Mod_ShipmentComputer_Icon.png":"Es1U","./Mod_Stealth_Icon.png":"pBGD","./Mod_Suppress_Icon.png":"Ncx6","./Mod_Teleport_Icon.png":"M5Zt","./Mod_TimeSlow_Icon.png":"GLel","./Mod_TimeWarp_Icon.png":"AhmO","./Mod_TradeBurst_Icon.png":"vufT","./Mod_TransportAutopilot_Icon.png":"rs8D","./Mod_TransportCapacity_Icon.png":"h1Jn","./Mod_Unity_Icon.png":"rZ0H","./Mod_Vengeance_Icon.png":"HfmP","./Mod_Weak_Battery_Icon.png":"BFwE"}],"C8BA":[function(require,module,exports) {
-module.exports="/Battleship_Cerberus_lv1.4a882293.png";
+module.exports="Battleship_Cerberus_lv1.4a882293.png";
 },{}],"Jk4j":[function(require,module,exports) {
-module.exports="/Battleship_lv1.267bdf7c.png";
+module.exports="Battleship_lv1.267bdf7c.png";
 },{}],"LU4s":[function(require,module,exports) {
-module.exports="/Battleship_lv2.a94bdf77.png";
+module.exports="Battleship_lv2.a94bdf77.png";
 },{}],"X7Wc":[function(require,module,exports) {
-module.exports="/Battleship_lv3.7e9293d9.png";
+module.exports="Battleship_lv3.7e9293d9.png";
 },{}],"Y2IY":[function(require,module,exports) {
-module.exports="/Battleship_lv4.2005e9e9.png";
+module.exports="Battleship_lv4.2005e9e9.png";
 },{}],"wVQT":[function(require,module,exports) {
-module.exports="/Battleship_lv5.05075ce9.png";
+module.exports="Battleship_lv5.05075ce9.png";
 },{}],"ElYW":[function(require,module,exports) {
-module.exports="/Battleship_lv6.9b186f6b.png";
+module.exports="Battleship_lv6.9b186f6b.png";
 },{}],"dV4M":[function(require,module,exports) {
-module.exports="/Cerberus_Destroyer_lv1.a5d1a934.png";
+module.exports="Cerberus_Destroyer_lv1.a5d1a934.png";
 },{}],"QBss":[function(require,module,exports) {
-module.exports="/Cerberus_Swarm_lv1.4af1b17f.png";
+module.exports="Cerberus_Swarm_lv1.4af1b17f.png";
 },{}],"CBJr":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv1.a3e95b01.png";
+module.exports="Corp_Flagship_lv1.a3e95b01.png";
 },{}],"p3Rz":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv10.e9c12909.png";
+module.exports="Corp_Flagship_lv10.e9c12909.png";
 },{}],"CQBO":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv2.3b8c07cd.png";
+module.exports="Corp_Flagship_lv2.3b8c07cd.png";
 },{}],"pU6c":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv3.bc20ed27.png";
+module.exports="Corp_Flagship_lv3.bc20ed27.png";
 },{}],"Wdvh":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv4.2833c071.png";
+module.exports="Corp_Flagship_lv4.2833c071.png";
 },{}],"v4t1":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv5.b0b21d7f.png";
-},{}],"TYX2":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv7.3f385b37.png";
+module.exports="Corp_Flagship_lv5.b0b21d7f.png";
 },{}],"tJ2l":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv6.fe9b1b94.png";
+module.exports="Corp_Flagship_lv6.fe9b1b94.png";
+},{}],"TYX2":[function(require,module,exports) {
+module.exports="Corp_Flagship_lv7.3f385b37.png";
 },{}],"T6yP":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv8.604ee69a.png";
+module.exports="Corp_Flagship_lv8.604ee69a.png";
 },{}],"ExET":[function(require,module,exports) {
-module.exports="/Corp_Flagship_lv9.26c30419.png";
+module.exports="Corp_Flagship_lv9.26c30419.png";
 },{}],"bseq":[function(require,module,exports) {
-module.exports="/Fighter_Cerberus1_lv1.84639ed3.png";
+module.exports="Fighter_Cerberus1_lv1.84639ed3.png";
 },{}],"jCc2":[function(require,module,exports) {
-module.exports="/Fighter_Cerberus2_lv1.eb66a2b8.png";
+module.exports="Fighter_Cerberus2_lv1.eb66a2b8.png";
 },{}],"hjtH":[function(require,module,exports) {
-module.exports="/Fighter_Cerberus3_lv1.009308ad.png";
+module.exports="Fighter_Cerberus3_lv1.009308ad.png";
 },{}],"Q7ZP":[function(require,module,exports) {
-module.exports="/Fighter_Cerberus4_lv1.cbb4e779.png";
+module.exports="Fighter_Cerberus4_lv1.cbb4e779.png";
 },{}],"vLDU":[function(require,module,exports) {
-module.exports="/Fighter_Cerberus5_lv1.c798e91b.png";
+module.exports="Fighter_Cerberus5_lv1.c798e91b.png";
 },{}],"WLe5":[function(require,module,exports) {
-module.exports="/Fighter_Cerberus6_lv1.4efb8cf5.png";
+module.exports="Fighter_Cerberus6_lv1.4efb8cf5.png";
 },{}],"SjGd":[function(require,module,exports) {
-module.exports="/Miner_lv1.41207066.png";
+module.exports="Miner_lv1.41207066.png";
 },{}],"y8F9":[function(require,module,exports) {
-module.exports="/Miner_lv2.f0222500.png";
+module.exports="Miner_lv2.f0222500.png";
 },{}],"SlCh":[function(require,module,exports) {
-module.exports="/Miner_lv3.304dea67.png";
+module.exports="Miner_lv3.304dea67.png";
 },{}],"QjA4":[function(require,module,exports) {
-module.exports="/Miner_lv4.b7deb539.png";
+module.exports="Miner_lv4.b7deb539.png";
 },{}],"kTNQ":[function(require,module,exports) {
-module.exports="/Miner_lv5.8b18470b.png";
+module.exports="Miner_lv5.8b18470b.png";
 },{}],"kdbs":[function(require,module,exports) {
-module.exports="/Miner_lv6.89c9805c.png";
+module.exports="Miner_lv6.89c9805c.png";
 },{}],"KfJr":[function(require,module,exports) {
-module.exports="/Transport_lv1.e92874dc.png";
+module.exports="Transport_lv1.e92874dc.png";
 },{}],"kKd2":[function(require,module,exports) {
-module.exports="/Transport_lv2.0a143dd3.png";
+module.exports="Transport_lv2.0a143dd3.png";
 },{}],"d0oC":[function(require,module,exports) {
-module.exports="/Transport_lv3.d507bb0b.png";
+module.exports="Transport_lv3.d507bb0b.png";
 },{}],"qDPb":[function(require,module,exports) {
-module.exports="/Transport_lv4.b97e4ca5.png";
+module.exports="Transport_lv4.b97e4ca5.png";
 },{}],"cM4H":[function(require,module,exports) {
-module.exports="/Transport_lv5.e1e66c13.png";
+module.exports="Transport_lv5.e1e66c13.png";
 },{}],"r6yE":[function(require,module,exports) {
-module.exports="/Transport_lv6.37f9eff7.png";
+module.exports="Transport_lv6.37f9eff7.png";
 },{}],"nsFx":[function(require,module,exports) {
-module.exports={Battleship_Cerberus_lv1:require("./Battleship_Cerberus_lv1.png"),Battleship_lv1:require("./Battleship_lv1.png"),Battleship_lv2:require("./Battleship_lv2.png"),Battleship_lv3:require("./Battleship_lv3.png"),Battleship_lv4:require("./Battleship_lv4.png"),Battleship_lv5:require("./Battleship_lv5.png"),Battleship_lv6:require("./Battleship_lv6.png"),Cerberus_Destroyer_lv1:require("./Cerberus_Destroyer_lv1.png"),Cerberus_Swarm_lv1:require("./Cerberus_Swarm_lv1.png"),Corp_Flagship_lv1:require("./Corp_Flagship_lv1.png"),Corp_Flagship_lv10:require("./Corp_Flagship_lv10.png"),Corp_Flagship_lv2:require("./Corp_Flagship_lv2.png"),Corp_Flagship_lv3:require("./Corp_Flagship_lv3.png"),Corp_Flagship_lv4:require("./Corp_Flagship_lv4.png"),Corp_Flagship_lv5:require("./Corp_Flagship_lv5.png"),Corp_Flagship_lv7:require("./Corp_Flagship_lv7.png"),Corp_Flagship_lv6:require("./Corp_Flagship_lv6.png"),Corp_Flagship_lv8:require("./Corp_Flagship_lv8.png"),Corp_Flagship_lv9:require("./Corp_Flagship_lv9.png"),Fighter_Cerberus1_lv1:require("./Fighter_Cerberus1_lv1.png"),Fighter_Cerberus2_lv1:require("./Fighter_Cerberus2_lv1.png"),Fighter_Cerberus3_lv1:require("./Fighter_Cerberus3_lv1.png"),Fighter_Cerberus4_lv1:require("./Fighter_Cerberus4_lv1.png"),Fighter_Cerberus5_lv1:require("./Fighter_Cerberus5_lv1.png"),Fighter_Cerberus6_lv1:require("./Fighter_Cerberus6_lv1.png"),Miner_lv1:require("./Miner_lv1.png"),Miner_lv2:require("./Miner_lv2.png"),Miner_lv3:require("./Miner_lv3.png"),Miner_lv4:require("./Miner_lv4.png"),Miner_lv5:require("./Miner_lv5.png"),Miner_lv6:require("./Miner_lv6.png"),Transport_lv1:require("./Transport_lv1.png"),Transport_lv2:require("./Transport_lv2.png"),Transport_lv3:require("./Transport_lv3.png"),Transport_lv4:require("./Transport_lv4.png"),Transport_lv5:require("./Transport_lv5.png"),Transport_lv6:require("./Transport_lv6.png")};
-},{"./Battleship_Cerberus_lv1.png":"C8BA","./Battleship_lv1.png":"Jk4j","./Battleship_lv2.png":"LU4s","./Battleship_lv3.png":"X7Wc","./Battleship_lv4.png":"Y2IY","./Battleship_lv5.png":"wVQT","./Battleship_lv6.png":"ElYW","./Cerberus_Destroyer_lv1.png":"dV4M","./Cerberus_Swarm_lv1.png":"QBss","./Corp_Flagship_lv1.png":"CBJr","./Corp_Flagship_lv10.png":"p3Rz","./Corp_Flagship_lv2.png":"CQBO","./Corp_Flagship_lv3.png":"pU6c","./Corp_Flagship_lv4.png":"Wdvh","./Corp_Flagship_lv5.png":"v4t1","./Corp_Flagship_lv7.png":"TYX2","./Corp_Flagship_lv6.png":"tJ2l","./Corp_Flagship_lv8.png":"T6yP","./Corp_Flagship_lv9.png":"ExET","./Fighter_Cerberus1_lv1.png":"bseq","./Fighter_Cerberus2_lv1.png":"jCc2","./Fighter_Cerberus3_lv1.png":"hjtH","./Fighter_Cerberus4_lv1.png":"Q7ZP","./Fighter_Cerberus5_lv1.png":"vLDU","./Fighter_Cerberus6_lv1.png":"WLe5","./Miner_lv1.png":"SjGd","./Miner_lv2.png":"y8F9","./Miner_lv3.png":"SlCh","./Miner_lv4.png":"QjA4","./Miner_lv5.png":"kTNQ","./Miner_lv6.png":"kdbs","./Transport_lv1.png":"KfJr","./Transport_lv2.png":"kKd2","./Transport_lv3.png":"d0oC","./Transport_lv4.png":"qDPb","./Transport_lv5.png":"cM4H","./Transport_lv6.png":"r6yE"}],"kXTS":[function(require,module,exports) {
+module.exports={Battleship_Cerberus_lv1:require("./Battleship_Cerberus_lv1.png"),Battleship_lv1:require("./Battleship_lv1.png"),Battleship_lv2:require("./Battleship_lv2.png"),Battleship_lv3:require("./Battleship_lv3.png"),Battleship_lv4:require("./Battleship_lv4.png"),Battleship_lv5:require("./Battleship_lv5.png"),Battleship_lv6:require("./Battleship_lv6.png"),Cerberus_Destroyer_lv1:require("./Cerberus_Destroyer_lv1.png"),Cerberus_Swarm_lv1:require("./Cerberus_Swarm_lv1.png"),Corp_Flagship_lv1:require("./Corp_Flagship_lv1.png"),Corp_Flagship_lv10:require("./Corp_Flagship_lv10.png"),Corp_Flagship_lv2:require("./Corp_Flagship_lv2.png"),Corp_Flagship_lv3:require("./Corp_Flagship_lv3.png"),Corp_Flagship_lv4:require("./Corp_Flagship_lv4.png"),Corp_Flagship_lv5:require("./Corp_Flagship_lv5.png"),Corp_Flagship_lv6:require("./Corp_Flagship_lv6.png"),Corp_Flagship_lv7:require("./Corp_Flagship_lv7.png"),Corp_Flagship_lv8:require("./Corp_Flagship_lv8.png"),Corp_Flagship_lv9:require("./Corp_Flagship_lv9.png"),Fighter_Cerberus1_lv1:require("./Fighter_Cerberus1_lv1.png"),Fighter_Cerberus2_lv1:require("./Fighter_Cerberus2_lv1.png"),Fighter_Cerberus3_lv1:require("./Fighter_Cerberus3_lv1.png"),Fighter_Cerberus4_lv1:require("./Fighter_Cerberus4_lv1.png"),Fighter_Cerberus5_lv1:require("./Fighter_Cerberus5_lv1.png"),Fighter_Cerberus6_lv1:require("./Fighter_Cerberus6_lv1.png"),Miner_lv1:require("./Miner_lv1.png"),Miner_lv2:require("./Miner_lv2.png"),Miner_lv3:require("./Miner_lv3.png"),Miner_lv4:require("./Miner_lv4.png"),Miner_lv5:require("./Miner_lv5.png"),Miner_lv6:require("./Miner_lv6.png"),Transport_lv1:require("./Transport_lv1.png"),Transport_lv2:require("./Transport_lv2.png"),Transport_lv3:require("./Transport_lv3.png"),Transport_lv4:require("./Transport_lv4.png"),Transport_lv5:require("./Transport_lv5.png"),Transport_lv6:require("./Transport_lv6.png")};
+},{"./Battleship_Cerberus_lv1.png":"C8BA","./Battleship_lv1.png":"Jk4j","./Battleship_lv2.png":"LU4s","./Battleship_lv3.png":"X7Wc","./Battleship_lv4.png":"Y2IY","./Battleship_lv5.png":"wVQT","./Battleship_lv6.png":"ElYW","./Cerberus_Destroyer_lv1.png":"dV4M","./Cerberus_Swarm_lv1.png":"QBss","./Corp_Flagship_lv1.png":"CBJr","./Corp_Flagship_lv10.png":"p3Rz","./Corp_Flagship_lv2.png":"CQBO","./Corp_Flagship_lv3.png":"pU6c","./Corp_Flagship_lv4.png":"Wdvh","./Corp_Flagship_lv5.png":"v4t1","./Corp_Flagship_lv6.png":"tJ2l","./Corp_Flagship_lv7.png":"TYX2","./Corp_Flagship_lv8.png":"T6yP","./Corp_Flagship_lv9.png":"ExET","./Fighter_Cerberus1_lv1.png":"bseq","./Fighter_Cerberus2_lv1.png":"jCc2","./Fighter_Cerberus3_lv1.png":"hjtH","./Fighter_Cerberus4_lv1.png":"Q7ZP","./Fighter_Cerberus5_lv1.png":"vLDU","./Fighter_Cerberus6_lv1.png":"WLe5","./Miner_lv1.png":"SjGd","./Miner_lv2.png":"y8F9","./Miner_lv3.png":"SlCh","./Miner_lv4.png":"QjA4","./Miner_lv5.png":"kTNQ","./Miner_lv6.png":"kdbs","./Transport_lv1.png":"KfJr","./Transport_lv2.png":"kKd2","./Transport_lv3.png":"d0oC","./Transport_lv4.png":"qDPb","./Transport_lv5.png":"cM4H","./Transport_lv6.png":"r6yE"}],"kXTS":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.generatePageTables=generatePageTables,exports.generateCerberusInfo=generateCerberusInfo;var modulesData=_interopRequireWildcard(require("../data/modulesData.js")),shipsData=_interopRequireWildcard(require("../data/shipsData.js")),_getString=require("./getString.js");function _getRequireWildcardCache(){if("function"!=typeof WeakMap)return null;var e=new WeakMap;return _getRequireWildcardCache=function(){return e},e}function _interopRequireWildcard(e){if(e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var t=_getRequireWildcardCache();if(t&&t.has(e))return t.get(e);var r={},a=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var n in e)if(Object.prototype.hasOwnProperty.call(e,n)){var o=a?Object.getOwnPropertyDescriptor(e,n):null;o&&(o.get||o.set)?Object.defineProperty(r,n,o):r[n]=e[n]}return r.default=e,t&&t.set(e,r),r}function _createForOfIteratorHelper(e){if("undefined"==typeof Symbol||null==e[Symbol.iterator]){if(Array.isArray(e)||(e=_unsupportedIterableToArray(e))){var t=0,r=function(){};return{s:r,n:function(){return t>=e.length?{done:!0}:{done:!1,value:e[t++]}},e:function(e){throw e},f:r}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var a,n,o=!0,i=!1;return{s:function(){a=e[Symbol.iterator]()},n:function(){var e=a.next();return o=e.done,e},e:function(e){i=!0,n=e},f:function(){try{o||null==a.return||a.return()}finally{if(i)throw n}}}}function _unsupportedIterableToArray(e,t){if(e){if("string"==typeof e)return _arrayLikeToArray(e,t);var r=Object.prototype.toString.call(e).slice(8,-1);return"Object"===r&&e.constructor&&(r=e.constructor.name),"Map"===r||"Set"===r?Array.from(r):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?_arrayLikeToArray(e,t):void 0}}function _arrayLikeToArray(e,t){(null==t||t>e.length)&&(t=e.length);for(var r=0,a=new Array(t);r<t;r++)a[r]=e[r];return a}var modulesIcons=require("../img/modules_icons/*.png"),shipsIcons=require("../img/ships_icons/*.png"),ignoringHeaders=["maxLevel","Name","TID","TID_Description","Icon","SlotType","Model"];function generatePageTables(typeData){var category=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,elem=arguments.length>2?arguments[2]:void 0,ByTypes=typeData+"ByTypes";typeData+="Data";var items=null!=category?eval(typeData)[ByTypes][category.toLowerCase()]:[elem],_iterator=_createForOfIteratorHelper(items),_step;try{var _loop=function _loop(){var item=_step.value,module=eval(typeData)[typeData][item],title='<a href="#'.concat(module.Name,'" name="').concat(module.Name,'">').concat((0,_getString.getStr)(module.TID),"</a>"),icon="";"modulesData"==typeData&&(icon=$("<div/>",{class:"module-background",html:'<span class="module-icon" style="background-image:url('.concat(modulesIcons[module.Icon],')"></span>')})[0].outerHTML);var titleAndIcom='<div class="title">'.concat(icon,'<div class="title-text ">').concat(title,"</div></div>"),listItem='<li><span><a href="#'.concat(module.Name,'">').concat((0,_getString.getStr)(module.TID),"</a></span></li>");function addDesc(){var e=(0,_getString.getStr)(module.TID_Description).replace(/(\\n\\n)(.)|(\\n)(.)/g,function(e,t,r){return"<br/>"+r.toUpperCase()});$("body").append("<blockquote>".concat(e,"</blockquote>"))}$("body").append(titleAndIcom),$("ol").append(listItem);for(var keys=[],_i=0,_Object$keys=Object.keys(module);_i<_Object$keys.length;_i++){var key=_Object$keys[_i];Array.isArray(module[key])||ignoringHeaders.includes(key)||keys.push(key)}for(var _i2=0,_keys=keys;_i2<_keys.length;_i2++){var _key=_keys[_i2];$("body").append($("<h2/>",{class:"stringStsts",html:"<b>".concat((0,_getString.getStr)(_key),"</b>: ").concat(getFormat(_key,module[_key]))}))}if(module.maxLevel<=1)return"continue";for(var _key2 in keys=[],module)Array.isArray(module[_key2])&&keys.push(_key2);var levelTable="<thead><tr><th>".concat((0,_getString.getStr)("lvl"),"</th></tr></thead>\n");levelTable+="<tbody>\n";for(var i=0;i<module.maxLevel;i++)levelTable+="<tr><td>".concat(i+1,"</td></tr>\n");levelTable+="</tbody>",levelTable=$("<div/>",{class:"gTable-lvls",html:"<table>".concat(levelTable,"</table>")})[0].outerHTML;for(var statsTable="<thead>\n<tr>",_i3=0;_i3<keys.length;_i3++)statsTable+="<th>".concat((0,_getString.getStr)(keys[_i3]),"</th>\n");statsTable+="</tr>\n</thead>\n",statsTable+="<tbody>\n";for(var _i4=0;_i4<module.maxLevel;_i4++){statsTable+="<tr>";for(var k=0;k<keys.length;k++){var value=getFormat(keys[k],module[keys[k]][_i4]);statsTable+="<td>".concat(value,"</td>\n")}statsTable+="</tr>\n"}statsTable+="</tbody>",statsTable=$("<div/>",{class:"gTable-stats",html:'<table class="generalTable" id ="'.concat(module.Name,'-table">').concat(statsTable,"</table>")})[0].outerHTML,$("body").append($("<div/>",{class:"gTable",html:levelTable+statsTable}))};for(_iterator.s();!(_step=_iterator.n()).done;)var _ret=_loop()}catch(err){_iterator.e(err)}finally{_iterator.f()}$("body > div.gTable").wrap('<div class="tableEnvironment"></div>')}function generateCerberusInfo(typeData,category){var ByTypes=typeData+"ByTypes";typeData+="Data";var items=eval(typeData)[ByTypes][category.toLowerCase()],cerbModules=["cerbShield","cerbWeapon","cerbModule"],_iterator2=_createForOfIteratorHelper(items),_step2;try{for(_iterator2.s();!(_step2=_iterator2.n()).done;){var item=_step2.value,module=eval(typeData)[typeData][item],title='<a href="#'.concat(module.Name,'" name="').concat(module.Name,'">').concat((0,_getString.getStr)(module.TID),"</a>"),icon="";console.log(shipsIcons[module.Model]),console.log([module.Model]+"^"),icon=$("<div/>",{class:"cerberus-background",html:'<img src="'.concat(shipsIcons[module.Model],'" alt="').concat(module.Name,'">')})[0].outerHTML;var titleAndIcom='<div class="title">'.concat(icon,'<div class="title-text ">').concat(title,"</div></div>"),listItem='<li><span><a href="#'.concat(module.Name,'">').concat((0,_getString.getStr)(module.TID),"</a></span></li>");$("body").append(titleAndIcom),$("ol").append(listItem);var descRaw=(0,_getString.getStr)(module.TID_Description),descFix=descRaw.replace(/(\\n\\n)(.)|(\\n)(.)/g,function(e,t,r){return"<br/>"+r.toUpperCase()});$("body").append("<blockquote>".concat(descFix,"</blockquote>"));for(var keys=[],_i5=0,_Object$keys2=Object.keys(module);_i5<_Object$keys2.length;_i5++){var key=_Object$keys2[_i5];Array.isArray(module[key])||ignoringHeaders.includes(key)||keys.push(key)}for(var typeCerbModule={name:null,type:null},_i6=0,_keys2=keys;_i6<_keys2.length;_i6++){var _key3=_keys2[_i6],_iterator3=_createForOfIteratorHelper(cerbModules),_step3;try{for(_iterator3.s();!(_step3=_iterator3.n()).done;){var stats=_step3.value;(0,_getString.getStr)(_key3)!=(0,_getString.getStr)(stats)||(typeCerbModule.name=_key3,typeCerbModule.type=stats)}}catch(err){_iterator3.e(err)}finally{_iterator3.f()}null==typeCerbModule.name&&$("body").append($("<h2/>",{class:"stringStsts",html:"<b>".concat((0,_getString.getStr)(_key3),"</b>: ").concat(getFormat(_key3,module[_key3]))}))}if(null!=typeCerbModule.name)for(var _key4 in $("body").append($("<h2/>",{class:"stringStsts cerberusModule",html:"<b>".concat((0,_getString.getStr)(typeCerbModule.name),"</b>:")})),module=modulesData.modulesData[typeCerbModule.name],module)ignoringHeaders.includes(_key4)||$("body").append($("<h2/>",{class:"stringStsts",html:"<b>".concat((0,_getString.getStr)(_key4),"</b>: ").concat(getFormat(_key4,module[_key4]))}))}}catch(err){_iterator2.e(err)}finally{_iterator2.f()}}function fixTime(e){var t="",r=Math.floor(e/60/60/24);e-=24*r*60*60;var a=Math.floor(e/60/60);e-=60*a*60;var n=Math.floor(e/60);return e-=60*n,0!=r&&(t+=r+"".concat((0,_getString.getStr)("days")," ")),0!=a&&(t+=a+"".concat((0,_getString.getStr)("hours")," ")),0!=n&&(t+=n+" ".concat((0,_getString.getStr)("min")," ")),0!=e&&(t+=Math.round(e)+" ".concat((0,_getString.getStr)("sec"))),t||0}function getFormat(e,t){var r=[{array:["JobPayoutIncreasePercent","DamageReductionPct","TradeStationDeliverReward","DroneShipmentBonus","TradeBurstShipmentBonus","MirrorDamagePct","WaypointShipmentRewardBonus","UnityBoostPercent","IncreaseSectorHydroPct","HydroUploadPct","SpeedIncreasePerShipment","SalvageHullPercent","IncreaseSectorHydroPct"],func:function(e){return e+"%"}},{array:["UnlockTime","SpawnLifetime","ActivationDelay","ActivationPrep","ActivationPrepBS","RedStarLifeExtention","TimeToFullyRegen","ShieldRegenDelay","EffectDurationx10","EffectDurationx10WS","EffectDurationx10BS","ActivationPrepWS","SpawnLifetime_WS","DesignUpgradeTime","ActivationDelayWS","ActivationDelayBS","MaxDPSTime_BS","MaxDPSTimeWS","MaxDPSTime","APTPIOTTPWS","DockedObjectDestroyTime","DisableTimeWS"],func:function(e){return fixTime(e)}},{array:["EffectRadiusWS","EffectRadiusBS","EffectRadius","DamageRange","DamageRangeWhenNeutralized","Speed"],func:function(e){return e+" "+(0,_getString.getStr)("AU")}},{array:["UnlockBlueprints","UnlockPrice","BCCost","BuildCost","DesignUpgradeCost","HP","WhiteStarScore","BSScore","ActivationFuelCost","AOEDamage","AOEDamage_WS","AOEDamage_BS","Damage"],func:function(e){return Number(e).toLocaleString()}},{array:["MiningSpeed"],func:function(e){return e+"/"+(0,_getString.getStr)("min")}},{array:["FuelUseIncrease","FuelUsePer5000Distance"],func:function(e){return e+"/100"+(0,_getString.getStr)("AU")}},{array:["TimeWarpFactor"],func:function(e){return"x"+e}},{array:["APTPIOTTP"],func:function(e){return e+" "+(0,_getString.getStr)("sec")}},{array:["MiningSpeedModifierPct"],func:function(e){return"x"+e+"%"}},{array:["Model"],func:function(e){return'<img class="model" src="'.concat(shipsIcons[e],'" alt="').concat(e,'">')}},{array:["NewModuleSlots"],func:function(e){var t,r=[],a=_createForOfIteratorHelper(e.split("!"));try{for(a.s();!(t=a.n()).done;){var n=t.value;r.push("+"+(0,_getString.getStr)(n))}}catch(o){a.e(o)}finally{a.f()}return r.join(", ")}}];for(var a in r)if(r[a].array.includes(e))return r[a].func(t);return t}
 },{"../data/modulesData.js":"Jbme","../data/shipsData.js":"LGIG","./getString.js":"NyIg","../img/modules_icons/*.png":"WxqL","../img/ships_icons/*.png":"nsFx"}],"Y5Mt":[function(require,module,exports) {
 "use strict";var e=require("./getString.js"),t=require("./header.js");require("./fixPage");var n=require("../js/outputData.js");function r(e){if("undefined"==typeof Symbol||null==e[Symbol.iterator]){if(Array.isArray(e)||(e=o(e))){var t=0,n=function(){};return{s:n,n:function(){return t>=e.length?{done:!0}:{done:!1,value:e[t++]}},e:function(e){throw e},f:n}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var r,a,i=!0,l=!1;return{s:function(){r=e[Symbol.iterator]()},n:function(){var e=r.next();return i=e.done,e},e:function(e){l=!0,a=e},f:function(){try{i||null==r.return||r.return()}finally{if(l)throw a}}}}function o(e,t){if(e){if("string"==typeof e)return a(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(n):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?a(e,t):void 0}}function a(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}window.func=function(e){(0,t.switchLang)(e)},window.func2=function(e){(0,t.getLangVal)(e)},onscroll=function(){document.getElementById("buttonTop").style.display=window.pageYOffset>"200"?"block":"none"},window.ScrollUp=function(){var e=document.body.scrollTop||window.pageYOffset,t=setInterval(function(){e>0?scroll(0,e-=70):clearInterval(t)},5)},window.generateIndexMenu=function(){for(var t=document.querySelectorAll("div.categories")[0],n={modules:{name:(0,e.getStr)("TID_SHIP_UPGRADE_DLG_TITLE"),list:["Trade","Mining","Weapon","Shield","Support"]},sections:{name:(0,e.getStr)("Sections"),list:["ships","Cerberus"]}},o=0,a=Object.keys(n);o<a.length;o++){var i=a[o],l=Object.keys(n).indexOf(i);t.querySelectorAll("section > h2")[l].innerHTML=n[i].name;var c,s=r(n[i].list);try{for(s.s();!(c=s.n()).done;){var u=c.value,d=void 0;d="modules"==i?"typeMod"+u:u,d=(0,e.getStr)(d);var f="/".concat(u,".html"),g='<li><a href="'.concat(f,'">').concat(d,"</a></li>");t.querySelectorAll("section > ul")[l].innerHTML+=g}}catch(p){s.e(p)}finally{s.f()}}},window.generatePageTables=function(e,t){(0,n.generatePageTables)(e,t)},window.setBaseData=function(t,r){var o,a=arguments.length>2&&void 0!==arguments[2]&&arguments[2];"modules"==t&&(o="typeMod"+r),"player"==r&&(o="ships"),$("h2").append((0,e.getStr)("content")),$("h1").append("".concat((0,e.getStr)(o||r))),$("body").append("<title>".concat((0,e.getStr)(o||r),"</title>")),a?(0,n.generateCerberusInfo)(t,r):(0,n.generatePageTables)(t,r)},window.setFlagshipModules=function(){var t='<a href="flagshipModules" name="flagshipModules">'.concat((0,e.getStr)("flagshipModules"),"</a>");$("body").append('<div class="title"><div class="title-text"><h1>'.concat(t,"<h1></div></div>")),(0,n.generatePageTables)("modules","flagship")};
 },{"./getString.js":"NyIg","./header.js":"AHaM","./fixPage":"YnBh","../js/outputData.js":"kXTS"}]},{},["Y5Mt"], null)
-//# sourceMappingURL=/js.47aab1ff.js.map
+//# sourceMappingURL=js.7bca4811.js.map
