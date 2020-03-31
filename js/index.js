@@ -44,7 +44,7 @@ window.generateIndexMenu = function(){
             name = page
             }
             name = getStr(name);
-            let path = `/${page}.html`;
+            let path = `${page.toLowerCase()}.html`;
             let paragraph =`<li><a href="${path}">${name}</a></li>`;
             menu.querySelectorAll('section > ul')[index]['innerHTML'] += paragraph;
         }
