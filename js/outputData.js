@@ -33,6 +33,7 @@ function generatePageTables(typeData, category = null, elem){
             });
             $('body').append(`<blockquote>${descFix}</blockquote>`);
         }
+        addDesc()
         let keys = [];
         for (let key of Object.keys(module)) {
             if (!(Array.isArray(module[key])) && !(ignoringHeaders.includes(key)))
