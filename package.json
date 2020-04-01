@@ -1,0 +1,26 @@
+{
+  "name": "HadesStarData",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generateGameData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/userXinos/HadesStarData.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/userXinos/HadesStarData/issues"
+  },
+  "homepage": "https://github.com/userXinos/HadesStarData#readme",
+  "dependencies": {
+    "prettier": "^2.0.2"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  }
+}
