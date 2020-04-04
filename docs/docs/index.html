@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <title>Hades Star Data</title>
+        <meta http-equiv="cleartype" content="on">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/hightlightjs-dark.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500|Source+Code+Pro:300" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css" media="all">
+    </head>
+
+    <body>
+        <div class="content-page">
+            <div class="content-code"></div>
+            <div class="content">
+                <div class="overflow-hidden content-section" id="content-get-started">
+                    <h1 id="get-started">Get started</h1>
+                    <pre>
+    API Endpoint
+
+        http://hs-data.herokuapp.com/api/v1
+                </pre>
+                    <p>
+                        This Api represents programmatic access to the data of the game Hades' Star. Getting given modules, ships and other data.
+                    </p>
+                    <p>
+                        Discord for communication <a href="https://discordapp.com/users/359208482290925568" target="_blank">Xinos#2003</a> . 
+                    </p>
+                </div>
+                <div class="overflow-hidden content-section" id="content-get-characters">
+                    <!-- <h2 id="get-characters">get characters</h2> -->
+                    <p>
+                        <span calss = "req-get">GET</span>
+                        <code class="higlighted">/modules</code>
+                    </p>
+                    <p>
+                        Returns all modules
+                    </p>
+                    <!-- <h4>QUERY PARAMETERS</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>limit</td>
+                                <td>String</td>
+                                <td>(optional)</td>
+                            </tr>
+                        </tbody>
+                    </table>                     -->
+                </div>
+                <div class="overflow-hidden content-section" id="content-get-characters">
+                    <p>
+                        <span calss = "req-get">GET</span>
+                        <code class="higlighted">/modules/{module.name}</code>
+                    </p>
+                    <p>
+                        Return a specific module by name
+                    </p>
+                </div>
+                <div class="overflow-hidden content-section" id="content-get-characters">
+                    <p>
+                        <span calss = "req-get">GET</span>
+                        <code class="higlighted">/ships</code>
+                    </p>
+                    <p>
+                        Return all ships, including Cerberus ships with their unique module
+                    </p>
+                </div>
+                <div class="overflow-hidden content-section" id="content-get-characters">
+                    <p>
+                        <span calss = "req-get">GET</span>
+                        <code class="higlighted">/ships/{ship.name}</code>
+                    </p>
+                    <p>
+                        Return a specific ship by name
+                    </p>
+                </div>
+            </div>
+            <div class="content-code"></div>
+        </div>
+    </body>
+</html>
