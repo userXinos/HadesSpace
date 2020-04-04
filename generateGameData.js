@@ -93,8 +93,8 @@ let ${varName} = ${JSON.stringify(jsonObj, null, 2)}
 
 ${addData['content'] || ""}
 
- module.exports = {${addData['export']}}
- //export {${addData['export']}}
+ // module.exports = {${addData['export']}}
+ export {${addData['export']}}
 `
   fs.writeFileSync(
     file,
