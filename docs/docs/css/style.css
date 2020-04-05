@@ -57,6 +57,12 @@ i{
     position: relative;
     overflow: hidden;
 }
+div.desc-api p {
+    padding-top: 15px;
+}
+.desc {
+    margin-bottom: 16px;
+}
 .content a{
     color: #00a8e3;
     text-decoration: none;
@@ -70,7 +76,7 @@ i{
 p{
     font-size: 14px;
     color: #777A7A;
-    margin-bottom: 16px;
+
     line-height: 1.6;
     font-weight: 300;
 }
@@ -102,7 +108,10 @@ p > span {
     text-transform: uppercase;
     margin-right: 10px;
 }
-
+#host {
+    padding-left: 100px;
+    font-size: 120%;
+}
 /* LEFT-MENU
 ----------------------------------------------------------------------------------------*/
 
@@ -291,7 +300,6 @@ p > span {
         display: none;
     }
     .content pre, .content blockquote {
-        margin: 20px 0;
         padding: 28px;
         display: block;
         width: auto;
@@ -309,6 +317,8 @@ p > span {
 .cf:after { clear: both; }
 .ie6 .cf { zoom: 1 }
 
-#content-get-started {
-    padding-bottom: 5%;
+#notification {
+    color: #696969;
+    padding: 30px;
+    font-style: italic;
 }

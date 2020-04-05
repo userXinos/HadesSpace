@@ -16,15 +16,13 @@
         <div class="content-page">
             <div class="content-code"></div>
             <div class="content">
-                <div class="overflow-hidden content-section" id="content-get-started">
+                <div class="desc-api">
                     <h1 id="get-started">Get started</h1>
-                    <pre>
-    API Endpoint
+                    <pre>API Endpoint</pre>
 
-        http://hs-data.herokuapp.com/api/v1
-                </pre>
+                    <pre id="host">http://hs-data.herokuapp.com/api/v1</pre>
                     <p>
-                        This Api represents programmatic access to the data of the game Hades' Star. Getting data modules, ships and etc. 
+                        Represents programmatic access to the data of the game Hades' Star. Getting data modules, ships and etc. 
                     </p>
                     <p>
                         Discord for communication <a href="https://discordapp.com/users/359208482290925568" target="_blank">Xinos#2003</a> . 
@@ -32,65 +30,44 @@
                 </div>
                 <div>
                     <p>
-                        <h1>Only a small part of the planned...</h1>
+                        <h1 id="notification">Only a small part of the planned...</h1>
                     </p>
                 </div>
-                <div class="overflow-hidden content-section" id="content-get-characters">
-                    <!-- <h2 id="get-characters">get characters</h2> -->
-                    <p>
-                        <span calss = "req-get">GET</span>
-                        <code class="higlighted">/modules</code>
-                    </p>
-                    <p>
-                        Returns all modules
-                    </p>
-                    <!-- <h4>QUERY PARAMETERS</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Field</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>limit</td>
-                                <td>String</td>
-                                <td>(optional)</td>
-                            </tr>
-                        </tbody>
-                    </table>                     -->
-                </div>
-                <div class="overflow-hidden content-section" id="content-get-characters">
+                <div class="overflow-hidden">
                     <p>
                         <span calss = "req-get">GET</span>
                         <code class="higlighted">/modules/{module.name}</code>
                     </p>
-                    <p>
+                    <p class="desc">
                         Return a specific module by name
                     </p>
                 </div>
-                <div class="overflow-hidden content-section" id="content-get-characters">
+                <div class="overflow-hidden">
                     <p>
                         <span calss = "req-get">GET</span>
-                        <code class="higlighted">/ships</code>
+                        <code class="higlighted">/modules/types/{type.name}</code>
                     </p>
-                    <p>
-                        Return all ships, including Cerberus ships
+                    <p class="desc">
+                        Return an array of modules in a category according to the order in the game
                     </p>
-                </div>
-                <div class="overflow-hidden content-section" id="content-get-characters">
-                    <p>
-                        <span calss = "req-get">GET</span>
-                        <code class="higlighted">/ships/{ship.name}</code>
-                    </p>
-                    <p>
-                        Return a specific ship by name
-                    </p>
-                </div>
-            </div>
-            <div class="content-code"></div>
+                    <div class="overflow-hidden">
+                        <p>
+                            <span calss = "req-get">GET</span>
+                            <code class="higlighted">/ships/{module.name}</code>
+                        </p>
+                        <p class="desc">
+                            Return a specific ship by name
+                        </p>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p>
+                            <span calss = "req-get">GET</span>
+                            <code class="higlighted">/ships/types/{type.name}</code>
+                        </p>
+                        <p class="desc">
+                            Return an array of ships in a category according to the order in the game
+                        </p>
+                    </div>
         </div>
     </body>
 </html>
