@@ -62,8 +62,8 @@ function generateFiles(pathCsvs,files,pathSave){
       json['EMPRocket']['ShowWSInfo'] = 1
       json = addStarInfo(json,'WS');
       json = addStarInfo(json,'BS');
-      json['MiningBoost']['WhiteStarScore'].unshift("0") // ошибка в таблице, не хватает "0"
-      json['MiningDrone']['MiningSpeed'] = ['29.1', '33.3', '37.5', '41.7', '45.8', '52.2', '58.8', '65.2', '74.1', '85.7']; // хз как считать это
+      json['MiningBoost']['WhiteStarScore'].unshift(0) // ошибка в таблице, не хватает "0"
+      json['MiningDrone']['MiningSpeed'] = [29.1, 33.3, 37.5, 41.7, 45.8, 52.2, 58.8, 65.2, 74.1, 85.7]; // хз как считать это
       
       json = fixOrder(json);
     }
@@ -100,7 +100,7 @@ ${addData['content'] || ""}
     file,
       prettier.format(content, {
           parser: 'babel',
-          trailingComma: 'es5',
+          trailingComma: 'all',
           printWidth: 500, // чтоб массивы выстраивались в одну линию
       })
   )
@@ -150,14 +150,17 @@ function fixValue(name, header, value){
   if(ignoringHeaders.includes(header)){
     return value
   }
-let fixValue = require(`${pathCsvs}modification/fixValue.js`).fixValue
-if(isHide(name, header)) return null
-for(let i in fixValue){
-  if(fixValue[i]['header'].includes(header)){
-      return fixValue[i]['func'](value)
+  let fixValue = require(`${pathCsvs}modification/fixValue.js`).fixValue
+  if(isHide(name, header)) return null
+  for(let i in fixValue){
+    if(fixValue[i]['header'].includes(header)){
+        return fixValue[i]['func'](value)
+    }
   }
-}
-return value
+  if(value >= 0){
+    return parseInt(value)
+  }
+  return value
 }
 function isHide(name, header, strict = false){ // скрывает невалидные данные: "0", " " или просто ненужные,  strict - скрыть валидные данные (2я проверка)
 let path = (strict) ? 'hide2' : 'hide'
