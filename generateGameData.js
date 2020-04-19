@@ -309,13 +309,25 @@ function addStarInfo(obj,star){
 
 // исправление порядка объекта
 function fixOrder(obj){
-  let headers = JSON.parse(fs.readFileSync(`${pathCsvs}modification/headingOrder.json`,"utf8"));
-  // создание объекта с ключами, которые есть в модуле (name)
-  for(let name in obj){
-    let module = obj[name]
-    let objKeys = Object.keys(module)
+  let headers = JSON.parse(fs.readFileSync(`${pathCsvs}modification/headersOrder.json`,"utf8"));
+  let result = {}
+
+  for(let i = 0; i < ObjectLength(obj); i++){
+    let objCopy = Object.assign({}, obj); // сделать копию, чтобы не помять основной объект
+    let path = null // уровень 0
+    let key = Object.keys(objCopy)[i]
+    //определение глубины 
+    let depth = 0
+    while(objCopy[key].constructor.name == 'Object'){
+      path = (path == null) ? key : path + '.' + key
+      key = Object.keys(objCopy[path])[depth]
+      objCopy = objCopy[path]
+      depth++
+    }
+    // создание объекта с ключами (+индекс)
+    let objKeys = Object.keys(objCopy)
     let indexes = [];
-    for(let key in module){
+    for(key in objCopy){
       let elem = {}
       let index = (headers.includes(key)) ? headers.indexOf(key) : 666
       elem['index'] = index
@@ -329,16 +341,37 @@ function fixOrder(obj){
     });
     // сборка готового массива и объекта 
     let newKeys = []
-    for(let i of objSorted){
-      newKeys.push(i.key)
+    for(let k of objSorted){
+      newKeys.push(k.key)
     }
-    let oldObj = obj[name]
-    obj[name] = {}
-    for(let key of newKeys){
-      obj[name][key] = oldObj[key]
+    let result2 = {}
+    for(key of newKeys){
+      result2[key] = objCopy[key]
+    }
+    if(path != null){
+      setToValue(result,result2,path)
+    }else{
+      result = result2
     }
   }
-  return obj   
+  return result   
+}
+function setToValue(obj, value, path) {
+  var i;
+  path = path.split('.');
+  for (i = 0; i < path.length - 1; i++)
+      obj = obj[path[i]];
+
+  obj[path[i]] = value;
+}
+function ObjectLength(object) {
+  let length = 0
+  for(let key in object ) {
+      if(object.hasOwnProperty(key)) {
+          ++length
+      }
+  }
+  return length
 }
 // из "{key:[module1!module2], key2:[1!2]}" в "{module1:[1], module2:[2]}"
 function fixModulesShipsData(obj, name, Modules, ModuleLevels){
