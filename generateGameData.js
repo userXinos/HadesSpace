@@ -18,7 +18,7 @@ let filesName = [
   'player_goals',
   'solar_system_gen_data',
 ]
-//let filesName = ['ships']
+// let filesName = ['yellow_star_sectors']
 let pathSave = './data/'
 let modulesPath = './generateGameData.js_modules/'
 
@@ -49,12 +49,12 @@ function generateFiles(pathCsvs, files, pathSave) {
           fixValue: require(`${pathCsvs}modification/fixValue.js`)
         })
         break;
-      case 'modules':
+      case 'ships':
         json = generateShips({
           rawData: json
         })
         break;
-      case 'modules':
+      case 'yellow_star_sectors':
         json = generateSolarSys({
           star: 'yellow',
           rawData: json,
