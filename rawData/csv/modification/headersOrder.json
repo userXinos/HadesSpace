@@ -162,6 +162,16 @@
     "BSOnly",
     "IsRecoil",
     "IsImmolation",
+    "MinScannerLevel",
+    "Cost",
+    "SectorUnlockTime",
+    "PlanetTypes",
+    "AsteroidsMax",
+    "HydrogenPerDay",
+    "CerbGroup",
+    "BaseType",
+    "BSAnomaly",
+    
 	"WhiteStarScore",
     "BSScore",
 	"maxLevel"

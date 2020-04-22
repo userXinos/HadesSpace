@@ -35,5 +35,13 @@
     "conceptimage",
     "NumMoons",
     "MoonDistance",
-    "MoonSize"
+    "MoonSize",
+    "MinPlanetDistanceFromCenter",
+    "MaxPlanetDistanceFromCenter",
+    "AsteroidBeltAxis1Size",
+    "AsteroidBeltAxis2Size",
+    "TutorialUse",
+    "NumBases",
+    "AsteroidsMin",
+    "Weight"
 ]
