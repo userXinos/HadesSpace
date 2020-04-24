@@ -17,8 +17,9 @@ let filesName = [
   'planets',
   'player_goals',
   'solar_system_gen_data',
+  'colonize_prices',
 ]
-// let filesName = ['yellow_star_sectors']
+// let filesName = ['planets']
 let pathSave = './data/'
 let modulesPath = './generateGameData.js_modules/'
 
@@ -29,7 +30,8 @@ global.cerberusList = ['CerberusSentinel', 'CerberusGuardian', 'CerberusIntercep
 module.exports = {
   combineObjects,
   renameKeys,
-  isHide
+  isHide,
+  compileOne
 }
 
 generateFiles(pathCsvs, filesName, pathSave)
@@ -38,6 +40,7 @@ function generateFiles(pathCsvs, files, pathSave) {
   let generateModules = require(`${modulesPath}modules.js`).generateModules
   let generateShips = require(`${modulesPath}ships.js`).generateShips
   let generateSolarSys = require(`${modulesPath}solarSystem.js`).generateSolarSys
+  let generatePlanets = require(`${modulesPath}planets.js`).addCommonTable
   for (let file of files) {
     let json = CSVtoJSON(fs.readFileSync(`${pathCsvs}${file}.csv`, "utf8"))
     switch (file) {
@@ -62,7 +65,16 @@ function generateFiles(pathCsvs, files, pathSave) {
           cerberusData: CSVtoJSON(fs.readFileSync(`${pathCsvs}cerb_groups.csv`, "utf8")),
         })
         break;
-
+      case 'planet_levels':
+        json = compileOne(json)
+        break;
+      case 'planets':
+        let content = require(`${modulesPath}addContent.js`).addContent
+        json = generatePlanets({
+          rawData: json,
+          categories: content(file + 'Data')['content'].replace(/.*{/, '{')
+        })
+        break;
       default:
         break;
     }
@@ -105,6 +117,7 @@ function CSVtoJSON(csv) {
   let jsonObj = {}
   let name = null
 
+  if (headers.length == 1) return simpleArray(data)
   for (let i = 1; i < data.length; i++) {
     let string = data[i].split(',')
 
@@ -287,4 +300,42 @@ function ObjectLength(object) {
     }
   }
   return length
+}
+// если не таблица, а просто данные в столбик
+function simpleArray(array) {
+  array.forEach((e, i, arr) => {
+    if (e == '') {
+      arr.splice(i, 1)
+      return
+    }
+    arr[i] = fixValue(null, null, e)
+  });
+  return {
+    maxLevel: array.length,
+    array: array
+  }
+}
+// из кучи объеков в один
+function compileOne(obj) {
+  let result = {}
+  for (let name of Object.keys(obj)) {
+    name = obj[name]
+    for (let key in name) {
+      let value = name[key]
+      key = key.replace(/\s+/g, '')
+      let stokValue = result[key]
+      if (stokValue == undefined || stokValue === "") {
+        result[key] = value
+      } else {
+        if (Array.isArray(stokValue)) {
+          result[key].push(value)
+        } else {
+          result[key] = []
+          result[key].push(stokValue, value)
+        }
+      }
+    }
+  }
+  result['maxLevel'] = result['maxLevel'].length
+  return result
 }
