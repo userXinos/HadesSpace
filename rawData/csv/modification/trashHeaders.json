@@ -43,5 +43,10 @@
     "TutorialUse",
     "NumBases",
     "AsteroidsMin",
-    "Weight"
+    "Weight",
+    "CrystalsWeight",
+    "ShipmentsHydroValuePerDay",
+    "PlanetSize",
+    "ModelFolders",
+    "FuelShipmentModifier"
 ]
