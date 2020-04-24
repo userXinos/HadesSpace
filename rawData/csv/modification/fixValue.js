@@ -94,6 +94,10 @@ let hide = [
     {
         header: ["APTPIOTTP"],
         func: (v) => v/5
+    },
+    {
+        header: ["ShipmentsPerHour"],
+        func: (v) => v/10
     }
  ]
  let whiteListBS = {

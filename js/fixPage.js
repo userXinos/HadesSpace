@@ -4,7 +4,6 @@ window.onload = function() {
 function reSize(){
   let gTables = document.querySelectorAll('div.gTable-stats > table');
   let lvlTables = document.querySelectorAll('div.gTable-lvls > table');
-  console.log('change size')
     for (let i = 0; i < gTables.length; i++) {
       let gTable = gTables[i];
       let lvlTable = lvlTables[i];
@@ -14,13 +13,14 @@ function reSize(){
       lvlTable.rows[r].style.height = tHeadSize+'px';
     }
   };
+  console.log('change size')
 };
 function autoMergeByRow(tableId,
    rowStartIndex,	// 0 или 1
    colStart,		// 0 или 1
    colEnd,		// равно colStart или больше, чем colStart или отрицательное
   ){
-    var trArr = $('#' + tableId).find('tr');			
+    var trArr = $('#' + tableId).find('tr');	
     for (var rowIndex = rowStartIndex ; rowIndex < trArr.length ; rowIndex++) {
       var tdArr = $(trArr[rowIndex]).find('td');
       if (colEnd < 0) colEnd = tdArr.length - 1;		
