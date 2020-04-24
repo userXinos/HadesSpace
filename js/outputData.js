@@ -1,65 +1,105 @@
-import * as  modulesData from '../data/modulesData.js';
-import * as  shipsData from '../data/shipsData.js';
 import { getStr } from './getString.js';
-let modulesIcons = require('../img/modules_icons/*.png');
-let shipsIcons = require('../img/ships_icons/*.png');
-let ignoringHeaders = ['maxLevel','Name','TID','TID_Description','Icon','SlotType','Model'];
+import 'regenerator-runtime/runtime'
 
-function generatePageTables(typeData, category = null, elem){
-    let ByTypes = typeData + 'ByTypes';
-    typeData = typeData + 'Data';
-    let items = (category != null) ? eval(typeData)[ByTypes][category.toLowerCase()] : [elem]
+const data = {
+    modules: import('../data/modulesData.js'),
+    ships: import('../data/shipsData.js'),
+    yellow_star_sectors: import('../data/yellow_star_sectorsData.js'),
+    planets: import('../data/planetsData.js'),
+    colonize_prices: import('../data/colonize_pricesData.js'),
+    planet_levels: import('../data/planet_levelsData.js')
+}
+const iconsData = {
+    modules: require('../img/modules_icons/*.png'),
+    ships: require('../img/ships_icons/*.png')
+}
+
+let ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
+let cerbModules = ['cerbShield', 'cerbWeapon', 'cerbModule'];
+
+async function generatePageTables(typeData, category = null, elem = null) {
+    let obj = await data[typeData]
+    let icons = await iconsData[typeData]
+    //let items = (category) ? obj[typeData + 'ByTypes'][category.toLowerCase()] : [ Object.keys(obj)[0] ]
+
+    let items = (category != null) ? obj[typeData + 'ByTypes'][category.toLowerCase()] :
+        (elem != null) ? [elem] : [Object.keys(obj)[0]]
+    let isCerb = (category == 'cerberus');
+
 
     for (let item of items) {
-        let module = eval(typeData)[typeData][item];
-        let title = `<a href="#${module.Name}" name="${module.Name}">${getStr(module.TID)}</a>`;
-        let icon = ""
-        if(typeData == 'modulesData'){
-            icon = $('<div/>', { 
-                'class': 'module-background',
-                 html  : `<span class="module-icon" style="background-image:url(${modulesIcons[module.Icon]})"></span>`
-            })[0]['outerHTML'];
+        let module = (category != null || elem != null) ? obj[typeData + 'Data'][item] : obj[typeData + 'Data']
+        let icon = '';
+        let typeCerbModule
+
+        if (isCerb) {
+            typeCerbModule = { name: null, type: null };
         }
-        let titleAndIcom = `<div class="title">${icon}<div class="title-text ">${title}</div></div>`;
-        let listItem = `<li><span><a href="#${module.Name}">${getStr(module.TID)}</a></span></li>`;
-        $('body').append(titleAndIcom);
-        $('ol').append(listItem);
-        function addDesc(){
-            let descRaw = getStr(module.TID_Description);
-            let descFix = descRaw.replace(
-                /(\\n\\n)(.)|(\\n)(.)/g,
-                function(str, n, freistLetter){
-                    return '<br/>'+freistLetter.toUpperCase()
-            });
-            $('body').append(`<blockquote>${descFix}</blockquote>`);
+
+        switch (typeData) {
+            case 'modules':
+                icon = $('<div/>', {
+                    'class': 'module-background',
+                    html: `<span class="module-icon" style="background-image:url(${icons[module.Icon]})"></span>`
+                })[0]['outerHTML'];
+                break;
+            case 'ships':
+                if (!isCerb) break;
+                icon = $('<div/>', {
+                    'class': 'cerberus-background',
+                    html: `<img src="${icons[module.Model]}" alt="${module.Name}">`
+                })[0]['outerHTML'];
+                break;
+            default:
+                break;
         }
-        addDesc()
+        if (module.TID != undefined && module.TID_Description != undefined && !Array.isArray(module.TID)) { // если это просто таблица
+            let title = `<a href="#${module.Name}" name="${module.Name}">${getStr(module.TID)}</a>`;
+            let titleAndIcom = `<div class="title">${icon}<div class="title-text ">${title}</div></div>`;
+            let listItem = `<li><span><a href="#${module.Name}">${getStr(module.TID)}</a></span></li>`;
+            $('body').append(titleAndIcom);
+            $('ol').append(listItem);
+            $('body').append(`<blockquote>${fixDesc(getStr(module.TID_Description))}</blockquote>`);
+        }
+        let sectorsStyle = null
+        let lvlCol = null
+        // if (typeData == 'yellow_star_sectors') {
+        //     lvlCol = 'sector'
+        //     sectorsStyle = 'style="padding-left: 70px"'
+        // }
+        if (typeData == 'planets' || typeData == 'colonize_prices' || typeData == 'yellow_star_sectors') {
+            lvlCol = '№'
+            sectorsStyle = 'style="padding-left: 37px"'
+        }
+
         let keys = [];
         for (let key of Object.keys(module)) {
-            if (!(Array.isArray(module[key])) && !(ignoringHeaders.includes(key)))
+            if (!Array.isArray(module[key]) && !ignoringHeaders.includes(key))
                 keys.push(key)
         };
         for (let key of keys) { // добавление доп стат
-            $('body').append( $('<h2/>', { 
-                 'class': 'stringStsts',
-                  html  : `<b>${getStr(key)}</b>: ${getFormat(key,module[key])}`
-             }));
+            if (isCerb && findModuleCerb(key, typeCerbModule)) continue
+            $('body').append($('<h2/>', {
+                'class': 'stringStsts',
+                html: `<b>${getStr(key)}</b>: ${getFormat(key, module[key])}`
+            }));
         }
-        if(module['maxLevel'] <= 1) continue
+        if (isCerb) await addModuleCerb(typeCerbModule)
+        if (module['maxLevel'] <= 1) continue
         keys = []
         for (let key in module) {
-            if(Array.isArray(module[key]))
+            if (Array.isArray(module[key]))
                 keys.push(key)
         };
-        let levelTable =`<thead><tr><th>${getStr("lvl")}</th></tr></thead>\n`;
+        let levelTable = `<thead><tr><th>${getStr(lvlCol || "lvl")}</th></tr></thead>\n`;
         levelTable += '<tbody>\n'
         for (let i = 0; i < module.maxLevel; i++) {  //уровни, циферки
-            levelTable += `<tr><td>${i+1}</td></tr>\n`
+            levelTable += `<tr><td>${i + 1}</td></tr>\n`
         };
         levelTable += '</tbody>';
-        levelTable = $('<div/>', { 
+        levelTable = $('<div/>', {
             'class': 'gTable-lvls',
-             html  : `<table>${levelTable}</table>`
+            html: `<table>${levelTable}</table>`
         })[0]['outerHTML'];
         let statsTable = '<thead>\n<tr>';
         for (let i = 0; i < keys.length; i++) {  //шапка
@@ -76,85 +116,56 @@ function generatePageTables(typeData, category = null, elem){
             statsTable += '</tr>\n'
         }
         statsTable += '</tbody>';
-        statsTable = $('<div/>', { 
+        statsTable = $('<div/>', {
             'class': 'gTable-stats',
-             html  : `<table class="generalTable" id ="${module.Name}-table">${statsTable}</table>`
+            html: `<table class="generalTable" ${sectorsStyle} id ="${module.Name}-table">${statsTable}</table>`
         })[0]['outerHTML'];
 
-        $('body').append( $('<div/>', { 
+        $('body').append($('<div/>', {
             'class': 'gTable',
-             html  : levelTable + statsTable
+            html: levelTable + statsTable
         }));
     };
     $('body > div.gTable').wrap('<div class="tableEnvironment"></div>')
 };
-function generateCerberusInfo(typeData,category){
-    let ByTypes = typeData + 'ByTypes';
-    typeData = typeData + 'Data';
-    let items = eval(typeData)[ByTypes][category.toLowerCase()];
-    let cerbModules = ['cerbShield','cerbWeapon', 'cerbModule']
-
-    for (let item of items) {
-        let module = eval(typeData)[typeData][item];
-        let title = `<a href="#${module.Name}" name="${module.Name}">${getStr(module.TID)}</a>`;
-        let icon = "";
-        console.log(shipsIcons[module.Model])
-        console.log([module.Model] + '^')
-            icon = $('<div/>', { 
-                'class': 'cerberus-background',
-                 html  : `<img src="${shipsIcons[module.Model]}" alt="${module.Name}">`
-            })[0]['outerHTML'];
-
-        let titleAndIcom = `<div class="title">${icon}<div class="title-text ">${title}</div></div>`;
-        let listItem = `<li><span><a href="#${module.Name}">${getStr(module.TID)}</a></span></li>`;
-        $('body').append(titleAndIcom);
-        $('ol').append(listItem);
-
-        let descRaw = getStr(module.TID_Description);
-        let descFix = descRaw.replace(
-            /(\\n\\n)(.)|(\\n)(.)/g,
-            function(str, n, freistLetter){
-                return '<br/>'+freistLetter.toUpperCase()
+// исправить написание с новой троки (\n)
+function fixDesc(descRaw) {
+    return descRaw.replace(
+        /(\\n\\n)(.)|(\\n)(.)/g,
+        function (str, n, freistLetter) {
+            return '<br/>' + freistLetter.toUpperCase()
         });
-        $('body').append(`<blockquote>${descFix}</blockquote>`);
-        let keys = [];
-        for (let key of Object.keys(module)) {
-            if (!(Array.isArray(module[key])) && !(ignoringHeaders.includes(key)))
-                keys.push(key)
-        };
-        let typeCerbModule = {name:null,type:null}
-        for (let key of keys) {
-            for(let stats of cerbModules){
-                if(getStr(key) == getStr(stats)){ // найти кастом пушку 
-                    typeCerbModule.name = key
-                    typeCerbModule.type = stats
-                    continue
-                }
-            }
-            if(typeCerbModule.name != null) continue // если у Цербера кастомная пушка - она не нужна тут
-            $('body').append( $('<h2/>', { 
-                 'class': 'stringStsts',
-                  html  : `<b>${getStr(key)}</b>: ${getFormat(key,module[key])}`
-             }));
+}
+// найти кастом пушку Цербера
+function findModuleCerb(key, typeCerbModule) {
+    for (let stats of cerbModules) {
+        if (getStr(key) == getStr(stats)) {
+            typeCerbModule.name = key
+            typeCerbModule.type = stats
+            return true
         }
-        if(typeCerbModule.name != null){ // она нужна тут
-            $('body').append( $('<h2/>', { 
-                'class': 'stringStsts cerberusModule',
-                 html  : `<b>${getStr(typeCerbModule.name)}</b>:`
+    }
+    return false
+}
+// пушка Церебера нужна тут
+async function addModuleCerb(typeCerbModule) {
+    if (typeCerbModule.name != null) {
+        $('body').append($('<h2/>', {
+            'class': 'stringStsts cerberusModule',
+            html: `<b>${getStr(typeCerbModule.name)}</b>:`
+        }));
+        let module = await data.modules
+        module = module.modulesData[typeCerbModule.name]
+        for (let key in module) {
+            if (ignoringHeaders.includes(key)) continue
+            $('body').append($('<h2/>', {
+                'class': 'stringStsts',
+                html: `<b>${getStr(key)}</b>: ${getFormat(key, module[key])}`
             }));
-            module = modulesData.modulesData[typeCerbModule.name]
-            for(let key in module){
-                if(ignoringHeaders.includes(key)) continue
-                $('body').append( $('<h2/>', { 
-                    'class': 'stringStsts',
-                        html  : `<b>${getStr(key)}</b>: ${getFormat(key,module[key])}`
-                }));
-            
-            }
-        }
-    };
-};
 
+        }
+    }
+}
 function fixTime(sec) {
     let result = '';
     let days = Math.floor(sec / 60 / 60 / 24);
@@ -175,25 +186,25 @@ function fixTime(sec) {
     if (sec != 0) {
         result += Math.round(sec) + ` ${getStr('sec')}`;
     }
-    return result || 0 ;
+    return result || 0;
 };
 
 function getFormat(key, value) {
     let formatList = [
         {
-            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct"],
+            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier"],
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention","TimeToFullyRegen","ShieldRegenDelay","EffectDurationx10","EffectDurationx10WS","EffectDurationx10BS","ActivationPrepWS","SpawnLifetime_WS","DesignUpgradeTime","ActivationDelayWS","ActivationDelayBS","MaxDPSTime_BS","MaxDPSTimeWS","MaxDPSTime","APTPIOTTPWS","DockedObjectDestroyTime","DisableTimeWS"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade"],
             func: (v) => fixTime(v)
         },
         {
-            array: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized","Speed"],
+            array: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized", "Speed"],
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice","BCCost","BuildCost","DesignUpgradeCost","HP","WhiteStarScore","BSScore","ActivationFuelCost","AOEDamage","AOEDamage_WS","AOEDamage_BS","Damage"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array"],
             func: (v) => Number(v).toLocaleString()
         },
         {
@@ -201,12 +212,12 @@ function getFormat(key, value) {
             func: (v) => v + "/" + getStr("min")
         },
         {
-            array: ["FuelUseIncrease","FuelUsePer5000Distance"],
+            array: ["FuelUseIncrease", "FuelUsePer5000Distance"],
             func: (v) => v + "/100" + getStr("AU")
         },
         {
             array: ["TimeWarpFactor"],
-           func: (v) => 'x' + v 
+            func: (v) => 'x' + v
         },
         {
             array: ["APTPIOTTP"],
@@ -214,33 +225,63 @@ function getFormat(key, value) {
         },
         {
             array: ["MiningSpeedModifierPct"],
-            func: (v) => 'x' + v + '%' 
+            func: (v) => 'x' + v + '%'
+        },
+        {
+            array: ["TID", "TID_Description"],
+            func: (v) => getStr(v)
         },
         {
             array: ["Model"],
-            func: (v) => `<img class="model" src="${shipsIcons[v]}" alt="${v}">`
+            func: (v) => `<img class="model" src="${iconsData.ships[v]}" alt="${v}">`
+        },
+        {
+            array: ["PlanetTypes", "Name"],
+            func: (v) => {
+                let result = [];
+                let palnets = v.split('!')
+                for (let planet of palnets) {
+                    if (planet == ' ') return ' '
+                    planet = planet.split('_')
+                    result.push(`${getStr(planet[0])} ${getStr('lvl')}. ${planet[1].slice(-1)}`)
+                }
+                return result.join(', ')
+            }
+        },
+        {
+            array: ["BaseType"],
+            func: (v) => {
+                if (v == ' ') return ' '
+                return getStr('lvl') + ' ' + v.replace(/\w*(\d)/, '$1')
+            }
         },
         {
             array: ["NewModuleSlots"],
             func: (v) => {
                 let arr = v.split("!");
                 let result = [];
-                for(let i of arr){
+                for (let i of arr) {
                     result.push('+' + getStr(i));
                 }
                 return result.join(', ')
             }
         }
     ];
-    for(let i in formatList){
-        if(formatList[i]['array'].includes(key)){
+    if (value.constructor.name == 'Object') {
+        let r = []
+        for (let i in value) {
+            r.push(`${getStr(i)}: ${value[i]}`)
+        }
+        return r.join(', ')
+    }
+    for (let i in formatList) {
+        if (formatList[i]['array'].includes(key)) {
             return formatList[i]['func'](value);
         }
     };
     return value;
-  };
+};
 
 export {
-    generatePageTables,
-    generateCerberusInfo
+    generatePageTables
 }
