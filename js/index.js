@@ -1,3 +1,5 @@
+"use strict";
+
 import { getStr } from './getString.js';
 import { switchLang, getLangVal } from './header.js';
 import { } from "./fixPage";

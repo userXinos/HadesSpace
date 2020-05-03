@@ -1,3 +1,4 @@
+"use strict";
 import { getStr } from './getString.js';
 import 'regenerator-runtime/runtime'
 
@@ -7,7 +8,7 @@ const data = {
     yellow_star_sectors: import('../data/yellow_star_sectorsData.js'),
     planets: import('../data/planetsData.js'),
     colonize_prices: import('../data/colonize_pricesData.js'),
-    planet_levels: import('../data/planet_levelsData.js')
+    planet_levels: import('../data/planet_levelsData.js'),
 }
 const iconsData = {
     modules: require('../img/modules_icons/*.png'),
@@ -20,6 +21,7 @@ let cerbModules = ['cerbShield', 'cerbWeapon', 'cerbModule'];
 async function generatePageTables(typeData, category = null, elem = null) {
     let obj = await data[typeData]
     let icons = await iconsData[typeData]
+
     //let items = (category) ? obj[typeData + 'ByTypes'][category.toLowerCase()] : [ Object.keys(obj)[0] ]
 
     let items = (category != null) ? obj[typeData + 'ByTypes'][category.toLowerCase()] :
