@@ -8,7 +8,7 @@ function generateSolarSys(args) {
       let value = name[key]
       let stokValue = result[key]
       if (stokValue == undefined || stokValue === "") {
-        startObj(key, value, result)
+        startObj(key, value)
       } else {
         if (Array.isArray(stokValue)) {
           result[key].push(value)
@@ -18,21 +18,77 @@ function generateSolarSys(args) {
         }
       }
     }
-    addScannerInfo(name.MinScannerLevel, result, args.scannersData)
-    addCerberus(name.CerbGroup, result, args.cerberusData)
-    endObj(result)
+    if (args.star == 'yellow') {
+      addScannerInfo(name.MinScannerLevel, args.scannersData)
+    }
+    addCerberus(name.CerbGroup, args.cerberusData)
+    endObj()
   }
   // небольшие фиксы 
   result['maxLevel'] = result['maxLevel'].length
-  result['Name'] = 'YSS'
-  result['MinScannerLevel'].forEach((e, i, arr) => {
-    if (e !== ' ')
-      arr[i] = e + 1
-  });
-  return result
+  result['Name'] = args.star + 'StarSectors'
+  if (result['MinScannerLevel'] != undefined) {
+    result['MinScannerLevel'].forEach((e, i, arr) => {
+      if (e !== ' ')
+        arr[i] = e + 1
+    });
+  }
+  return result;
+
+  // добавить записи в начало, для соотвествия уровня
+  function startObj(key, value) {
+    let length = getLength(result['maxLevel'])
+    result[key] = value
+    if (!length) return
+    result[key] = [value]
+    for (let k = 0; k < length; k++) {
+      result[key].unshift(getType(value))
+    }
+  }
+  // добавить записи в конец, для соотвествия уровня
+  function endObj() {
+    let length = getLength(result['maxLevel'])
+    for (let key in result) {
+      for (let i = 0; i < length; i++) {
+        if (result[key].length < length) {
+          result[key].push(getType(result[key][0]))
+        } else {
+          continue
+        }
+      }
+    }
+  }
+  function addScannerInfo(scanner, scanners) {
+    let ststs = ['Cost', 'SectorUnlockTime']
+    if (result[ststs[0]] == undefined) {
+      for (let i of ststs) {
+        result[i] = []
+      }
+    }
+    for (let i of ststs) {
+      result[i].push(scanners[i][scanner])
+    }
+  }
+  function addCerberus(cerb, cerberus) {
+    if (!cerb) return
+    let cerbObj = (() => {
+      let r = cerberus[cerb]
+      for (let i in r) {
+        let data = r[i]
+        delete r[i]
+        if (!ignoringHeaders.includes(i)) {
+          i = i.replace(/Num(\w*)/, '$1')
+          r[i] = data
+        }
+      }
+      return r
+    })
+    let index = result.CerbGroup.indexOf(cerb)
+    result.CerbGroup[index] = cerbObj()
+  }
 }
-function getType(val) {
-  // if(!isNaN(val) && val !== ' '){
+function getType(v) {
+  // if(!isNaN(v) && v !== ' '){
   //   return 0
   // }
   return ' '
@@ -43,57 +99,6 @@ function getLength(v) {
     r = v.length
   }
   return r || 0
-}
-// добавить записи в начало, для соотвествия уровня
-function startObj(key, value, obj) {
-  let length = getLength(obj['maxLevel'])
-  obj[key] = value
-  if (!length) return
-  obj[key] = [value]
-  for (let k = 0; k < length; k++) {
-    obj[key].unshift(getType(value))
-  }
-}
-// добавить записи в конец, для соотвествия уровня
-function endObj(obj) {
-  let length = getLength(obj['maxLevel'])
-  for (let key in obj) {
-    for (let i = 0; i < length; i++) {
-      if (obj[key].length < length) {
-        obj[key].push(getType(obj[key][0]))
-      } else {
-        continue
-      }
-    }
-  }
-}
-function addScannerInfo(scanner, obj, scanners) {
-  let ststs = ['Cost', 'SectorUnlockTime']
-  if (obj[ststs[0]] == undefined) {
-    for (let i of ststs) {
-      obj[i] = []
-    }
-  }
-  for (let i of ststs) {
-    obj[i].push(scanners[i][scanner])
-  }
-}
-function addCerberus(cerb, obj, cerberus) {
-  if (!cerb) return
-  let cerbObj = (() => {
-    let r = cerberus[cerb]
-    for (let i in r) {
-      let data = r[i]
-      delete r[i]
-      if (!ignoringHeaders.includes(i)) {
-        i = i.replace(/Num(\w*)/, '$1')
-        r[i] = data
-      }
-    }
-    return r
-  })
-  let index = obj.CerbGroup.indexOf(cerb)
-  obj.CerbGroup[index] = cerbObj()
 }
 
 module.exports = { generateSolarSys } 
