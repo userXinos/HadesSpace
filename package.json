@@ -19,6 +19,7 @@
   "homepage": "https://github.com/userXinos/HadesStarData#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "jquery": "^1.12.4",
     "prettier": "^2.0.2"
   },
   "devDependencies": {
