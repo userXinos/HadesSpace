@@ -1,15 +1,27 @@
 "use strict";
-import {langs} from '../data/locStrings.js'
-import {getCookie} from './cookie.js'
-// const locS = require("../data/locStrings");
-const lang = getCookie("language") || "en"
-const locStrings = langs[lang];
+import { getCookie } from './cookie.js'
 
-// console.log(getStr("TID_MODULE_LASER"))
-function getStr(key) {
-    key = (locStrings[key]) ? key : getKey(key)
-    return locStrings[key] || langs['en'][key] || key;
+const lang = getCookie("language") || "en"
+
+function load() {
+    let r = $.ajax({
+        url: `${lang}Strings.json`,
+        async: false,
+        dataType: 'json',
+    }).done(function (data) {
+        return data;
+    })
+    return JSON.parse(r.responseText)
 }
+
+function getStr(key) {
+    if (window.locStrings == undefined) { // иначе будет загружать до потери пульса 🥴
+        window.locStrings = load()
+    }
+    key = (locStrings[key]) ? key : getKey(key)
+    return locStrings[key] || key;
+}
+
 function getKey(str) {
     let stringKeys = {
         //MaxUpgradeLevel: '',
@@ -19,7 +31,6 @@ function getKey(str) {
         FuelStorageModifier: 'TID_PLANET_UPG_HYDROGEN_STORE',
         //CreditShipmentModifier: '',
         ShipmentsPerHour: 'TID_NUM_SHIPMENTS_PER_HR',
-        
         TID: 'TID_LEADERBOARDS_DIALOG_COLUMN_NAME',
         TID_Description: 'TID_CORP_DESCR_LABEL',
         Name: 'TID_CORP_NAME_LABEL',
@@ -56,19 +67,19 @@ function getKey(str) {
         Immolation: 'TID_MODULE_IMMOLATION',
         Stealth: 'TID_MODULE_STEALTH',
         EMPRocket: 'TID_MODULE_EMP_ROCKET',
-        NumSectorsToMine:'TID_MINER_AUTO_SECTORS',
+        NumSectorsToMine: 'TID_MINER_AUTO_SECTORS',
         Trade: 'TID_SHIP_MODULE_SLOT_TYPE_0',
         Support: 'TID_SHIP_MODULE_SLOT_TYPE_2',
         Mining: 'TID_SHIP_MODULE_SLOT_TYPE_1',
         Weapon: 'TID_SHIP_MODULE_SLOT_TYPE_3',
         Shield: 'TID_SHIP_MODULE_SLOT_TYPE_4',
-        AutoActivateHealth:'TID_MODULE_HULL_THRESHOLD_STAT',
-        InitialModule:'TID_INSTALLED_MODULES_AREA_TITLE',
+        AutoActivateHealth: 'TID_MODULE_HULL_THRESHOLD_STAT',
+        InitialModule: 'TID_INSTALLED_MODULES_AREA_TITLE',
         MaxDPSTime: 'TID_MODULE_DESCR_MAX_DPS_TIME',
         Salvage: 'TID_MODULE_SALVAGE',
         PassiveShield: 'TID_MODULE_PASSIVE_SHIELD',
-        InfluencePoints :'TID_PLAYER_INFO_INFLUENCE_TITLE',
-        DockedObjectDestroyTime:'TID_STATUS_DESTROYING_PLANET',
+        InfluencePoints: 'TID_PLAYER_INFO_INFLUENCE_TITLE',
+        DockedObjectDestroyTime: 'TID_STATUS_DESTROYING_PLANET',
         OnDestroySpawnCount: 'TID_FLEET_SENTINELS_SPAWNED',
         GuardianBattery: "cerbWeapon",
         WeakBattery: "cerbWeapon",
@@ -115,22 +126,22 @@ function getKey(str) {
         DamageRangeWhenNeutralized: 'TID_MODULE_SECONDARY_RANGE',
         HydrogenCapacity: 'TID_HYDRO_CAPACITY',
         AdditionalDPSPerTargetInRange: 'TID_MODULE_DESCR_DPADT',
-        TimeWarpFactor:'TID_MODULE_TIME_WARP_STAT',
-        UnityBoostPercent:'TID_MODULE_DESCR_UNITY',
-        DamageReductionPct:'TID_MODULE_DAMAGE_REDUCTION_PCT',
-        SalvageHullPercent:'TID_MODULE_SALVAGE_HULL_DESCR',
-        AOEDamage:'TID_DESTROYER_AREADAMAGE',
-        DamageWhenNeutralized:'TID_MODULE_SECONDARY_DAMAGE',
-        SpawnCapacity:'TID_TRANSPORT_CAPACITY_TOTAL',
-        DroneShipmentBonus:'TID_MODULE_BONUS_PER_SHIPMENT',
-        APTPIOTTP:'TID_DISPATCH_PREP_TIME',
-        ExtraMineralStorage:'TID_MODULE_MINERAL_STORAGE_STAT',
-        HydroUploadPct:'TID_MODULE_HYDRO_UPLOAD_PERCENT',
-        MiningSpeed:'TID_MINER_MINE_SPEED',
-        MaxDPS:'TID_MODULE_DESCR_MAX_DPS',
-        MaxTargets:'TID_MODULE_MAX_TARGETS',
-        MirrorDamagePct:'TID_MODULE_MIRROR_DAMAGE_STAT',
-        RedStarLifeExtention:'TID_MODULE_RED_STAR_EXTENSION_STAT'
+        TimeWarpFactor: 'TID_MODULE_TIME_WARP_STAT',
+        UnityBoostPercent: 'TID_MODULE_DESCR_UNITY',
+        DamageReductionPct: 'TID_MODULE_DAMAGE_REDUCTION_PCT',
+        SalvageHullPercent: 'TID_MODULE_SALVAGE_HULL_DESCR',
+        AOEDamage: 'TID_DESTROYER_AREADAMAGE',
+        DamageWhenNeutralized: 'TID_MODULE_SECONDARY_DAMAGE',
+        SpawnCapacity: 'TID_TRANSPORT_CAPACITY_TOTAL',
+        DroneShipmentBonus: 'TID_MODULE_BONUS_PER_SHIPMENT',
+        APTPIOTTP: 'TID_DISPATCH_PREP_TIME',
+        ExtraMineralStorage: 'TID_MODULE_MINERAL_STORAGE_STAT',
+        HydroUploadPct: 'TID_MODULE_HYDRO_UPLOAD_PERCENT',
+        MiningSpeed: 'TID_MINER_MINE_SPEED',
+        MaxDPS: 'TID_MODULE_DESCR_MAX_DPS',
+        MaxTargets: 'TID_MODULE_MAX_TARGETS',
+        MirrorDamagePct: 'TID_MODULE_MIRROR_DAMAGE_STAT',
+        RedStarLifeExtention: 'TID_MODULE_RED_STAR_EXTENSION_STAT'
     }
     if (str in stringKeys) {
         return stringKeys[str];
@@ -138,5 +149,5 @@ function getKey(str) {
     return str;
 }
 export {
-    getStr,
+    getStr
 }

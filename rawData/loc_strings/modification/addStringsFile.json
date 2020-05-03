@@ -45,7 +45,8 @@
         "CreditShipmentModifier": "Shipment modifier",
         "MaxUpgradeLevel": "Max Level",
         "planets": "Planets",
-        "stars": "Stars"
+        "stars": "Stars",
+        "ShipmentsCRValuePerDay": "Base Shipments Cost Per Day"
     },
     "ru":{
         "UnlockPrice": "Стоимость изучения",
@@ -93,7 +94,9 @@
         "MaxShipments": "Макс. грузов",
         "CreditShipmentModifier": "Модификатор грузов",
         "MaxUpgradeLevel": "Макс. уровень",
-        "planets": "Планеты"
+        "planets": "Планеты",
+        "stars": "Звёзды",
+        "ShipmentsCRValuePerDay": "Базовая стоимость грузов в день"
     },
     "de":{
         "UnlockPrice": "Preis freischalten",
