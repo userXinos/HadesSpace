@@ -11,16 +11,7 @@ window.func2 = function (v) {
     getLangVal(v)
 }
 onscroll = function vverh() {
-    document.getElementById('buttonTop').style.display = (window.pageYOffset > '200' ? 'block' : 'none');
-}
-window.ScrollUp = function () {
-    let s = document.body.scrollTop || window.pageYOffset;
-    let t = setInterval(
-        function () {
-            if (s > 0) scroll(0, s -= 70);
-            else clearInterval(t)
-        }, 5
-    );
+    document.getElementById('buttonTop').style.display = (window.pageYOffset > '300' ? 'block' : 'none');
 }
 window.generateIndexMenu = function () {
     let menu = document.querySelectorAll('div.categories')[0]
