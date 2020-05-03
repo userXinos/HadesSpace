@@ -1,13 +1,13 @@
-"use strict"
+"use strict";
 const fs = require("fs")
 const prettier = require('prettier')
 
-let pathCsvs = './rawData/csv/'
+const pathCsvs = './rawData/csv/'
 let filesName = [
   'ships',
   'modules',
   'red_star_sectors',
-  'stars','artifacts',
+  'stars', 'artifacts',
   'spacebuildings',
   'yellow_star_sectors',
   'achievements',
@@ -18,10 +18,12 @@ let filesName = [
   'player_goals',
   'solar_system_gen_data',
   'colonize_prices',
+  'blue_star_sectors',
+  'white_star_sectors'
 ]
-// let filesName = ['planets']
-let pathSave = './data/'
-let modulesPath = './generateGameData.js_modules/'
+//const filesName = ['planets']
+const pathSave = './data/'
+const modulesPath = './generateGameData.js_modules/'
 
 global.ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model']
 global.dronesList = ['ShipmentDrone', 'MiningDrone', 'AlphaDrone']
@@ -37,49 +39,72 @@ module.exports = {
 generateFiles(pathCsvs, filesName, pathSave)
 
 function generateFiles(pathCsvs, files, pathSave) {
-  let generateModules = require(`${modulesPath}modules.js`).generateModules
-  let generateShips = require(`${modulesPath}ships.js`).generateShips
-  let generateSolarSys = require(`${modulesPath}solarSystem.js`).generateSolarSys
-  let generatePlanets = require(`${modulesPath}planets.js`).addCommonTable
+  let modules = require(`${modulesPath}modules.js`).generateModules
+  let ships = require(`${modulesPath}ships.js`).generateShips
+  let solarSys = require(`${modulesPath}solarSystem.js`).generateSolarSys
+  let planets = require(`${modulesPath}planets.js`).addCommonTable
+
   for (let file of files) {
     let json = CSVtoJSON(fs.readFileSync(`${pathCsvs}${file}.csv`, "utf8"))
     switch (file) {
       case 'modules':
-        json = generateModules({
-          rawData: json,
-          shipsData: CSVtoJSON(fs.readFileSync(`${pathCsvs}ships.csv`, "utf8")),
-          projectilesData: CSVtoJSON(fs.readFileSync(`${pathCsvs}projectiles.csv`, "utf8")),
-          fixValue: require(`${pathCsvs}modification/fixValue.js`)
-        })
+        generateModules()
         break;
       case 'ships':
-        json = generateShips({
-          rawData: json
-        })
+        generateShips()
         break;
       case 'yellow_star_sectors':
-        json = generateSolarSys({
-          star: 'yellow',
-          rawData: json,
-          scannersData: CSVtoJSON(fs.readFileSync(`${pathCsvs}spacebuildings.csv`, "utf8")).ShortRangeScanner,
-          cerberusData: CSVtoJSON(fs.readFileSync(`${pathCsvs}cerb_groups.csv`, "utf8")),
-        })
+      case 'white_star_sectors':
+      case 'blue_star_sectors':
+        generateSolarSys(file)
+        break;
+      case 'planet_levels':
+        generatePlanet_levels()
+        break;
+      case 'planets':
+        generatePlanets()
         break;
       case 'planet_levels':
         json = compileOne(json)
         break;
-      case 'planets':
-        let content = require(`${modulesPath}addContent.js`).addContent
-        json = generatePlanets({
-          rawData: json,
-          categories: content(file + 'Data')['content'].replace(/.*{/, '{')
-        })
-        break;
+
       default:
         break;
     }
     file = `${pathSave}${file}Data.js`
     saveToFile(file, fixOrder(json))
+
+    function generateModules() {
+      json = modules({
+        rawData: json,
+        shipsData: CSVtoJSON(fs.readFileSync(`${pathCsvs}ships.csv`, "utf8")),
+        projectilesData: CSVtoJSON(fs.readFileSync(`${pathCsvs}projectiles.csv`, "utf8")),
+        fixValue: require(`${pathCsvs}modification/fixValue.js`)
+      })
+    }
+    function generateShips() {
+      json = ships({
+        rawData: json
+      })
+    }
+    function generateSolarSys(str) {
+      json = solarSys({
+        star: str.replace(/(.+?)_.*/, '$1'),
+        rawData: json,
+        scannersData: CSVtoJSON(fs.readFileSync(`${pathCsvs}spacebuildings.csv`, "utf8")).ShortRangeScanner,
+        cerberusData: CSVtoJSON(fs.readFileSync(`${pathCsvs}cerb_groups.csv`, "utf8")),
+      })
+    }
+    function generatePlanet_levels() {
+      json = compileOne(json)
+    }
+    function generatePlanets() {
+      let content = require(`${modulesPath}addContent.js`).addContent
+      json = planets({
+        rawData: json,
+        categories: content(file + 'Data')['content'].replace(/.*{/, '{')
+      })
+    }
   }
 }
 
