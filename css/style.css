@@ -121,14 +121,14 @@ th {
     /*Закрепить шапку*/
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 
 th, td {
-    font-weight: unset;
-    hyphens: auto;
+    /* hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
-    -ms-hyphens: auto;
+    -ms-hyphens: auto; */
     padding: 10% 10% 10%;
     line-height: 18px;
 }
@@ -351,9 +351,8 @@ a:active {
 [ Остальные статы ]*/
 
 .stringStsts {
-    margin-left: 6%;
+    padding: 3px 6%;
     text-align: left;
-    padding: 3px 0;
     font-weight: normal;
     font-size: 23px;
     color: #afb8be;
@@ -669,6 +668,8 @@ a:active {
 
 /*//////////////////////////////////////////////////////////////////
 [ Кнопка наверх ]*/
+
+/* TODO добавить анимацию появления */
 
 #buttonTop {
     display: none;
