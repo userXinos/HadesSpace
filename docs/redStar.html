@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="style.8acf1b15.css"><meta http-equiv="X-UA-Compatible" content="ie=edge"><script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script><script type="module" src="js.2d9ebab8.js"></script><style>.gTable-stats tr:hover{background-color:#1f2024}</style></head><body> <nav> <input type="checkbox" id="checkbox1"> <label for="checkbox1"> <ul class="menu demo"> <li class="buttonLangs"> <div class="langs"> <ul> </ul> </div> </li> <select class="compactLangs" onchange="func2(value)"> <option>language</option> </select> <li><a href="index.html"><span>Home</span></a></li> </ul> <span class="toggle"></span> </label> </nav> <h1 id="title"></h1> <img class="portrait" src="redStar.c0c1de3d.png" alt="cerberus"> <h2></h2> <div class="list"> <ol></ol> </div> <a href="#" id="buttonTop"></a> <script type="module">
+    setBaseData('redStar')
+    generateTables()
+
+    async function generateTables() {
+      let arts = ['Combat', 'Utility', 'Support']
+
+      genDesc('TID_RED_STAR_INFO')
+      genTitle(`<a href="#${'RSLevels'}" name="${'RSLevels'}">${getStr('RSLevels')}</a>`)
+      genOl(`<span><a href="#${'RSLevels'}">${getStr('RSLevels')}</a></span>`)
+      await generatePageTables('solar_system_gen_data', null, 'RedStar')
+      for (let art of arts) {
+        genTitle(`<a href="#${art}" name="${art}">${getStr(art + 'Art')}</a>`)
+        genOl(`<span><a href="#${art}">${getStr(art + 'Art')}</a></span>`)
+        await generatePageTables('artifacts', null, art)
+        art = 'blueprints' + art
+        genTitle(`<a href="#${art}" name="${art}">${getStr('blueprints')}</a>`)
+        await generatePageTables('artifacts', null, art)
+      }
+    }
+  </script> </body></html>
