@@ -7,7 +7,8 @@ let filesName = [
   'ships',
   'modules',
   'red_star_sectors',
-  'stars', 'artifacts',
+  'stars',
+  'artifacts',
   'spacebuildings',
   'yellow_star_sectors',
   'achievements',
@@ -21,28 +22,31 @@ let filesName = [
   'blue_star_sectors',
   'white_star_sectors'
 ]
-//const filesName = ['planets']
+//const filesName = ['solar_system_gen_data']
 const pathSave = './data/'
 const modulesPath = './generateGameData.js_modules/'
 
 global.ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model']
-global.dronesList = ['ShipmentDrone', 'MiningDrone', 'AlphaDrone']
-global.cerberusList = ['CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts']
 
 module.exports = {
   combineObjects,
   renameKeys,
   isHide,
-  compileOne
+  compileOne,
+  fillSpace,
+  pushArrays
 }
 
 generateFiles(pathCsvs, filesName, pathSave)
 
+// TODO сделать асинхронной
 function generateFiles(pathCsvs, files, pathSave) {
-  let modules = require(`${modulesPath}modules.js`).generateModules
-  let ships = require(`${modulesPath}ships.js`).generateShips
-  let solarSys = require(`${modulesPath}solarSystem.js`).generateSolarSys
-  let planets = require(`${modulesPath}planets.js`).addCommonTable
+  let content = require(`${modulesPath}addContent.js`).default
+  let modules = require(`${modulesPath}modules.js`).default
+  let ships = require(`${modulesPath}ships.js`).default
+  let solarSys = require(`${modulesPath}solarSystem.js`).default
+  let planets = require(`${modulesPath}planets.js`).default
+  let artifacts = require(`${modulesPath}artifacts.js`).default
 
   for (let file of files) {
     let json = CSVtoJSON(fs.readFileSync(`${pathCsvs}${file}.csv`, "utf8"))
@@ -67,24 +71,36 @@ function generateFiles(pathCsvs, files, pathSave) {
       case 'planet_levels':
         json = compileOne(json)
         break;
+      case 'artifacts':
+        generateArtifacts()
+        break;
+      case 'solar_system_gen_data':
+        generateSolar_system_gen_data()
+        break;
 
       default:
         break;
     }
-    file = `${pathSave}${file}Data.js`
-    saveToFile(file, fixOrder(json))
+    saveToFile(`${pathSave}${file}Data.js`,
+      fixOrder(json))
 
+    function getContent(name = file) {
+      let r = content(name + 'Data')['content'].replace(/.*{/, '{')
+      return JSON.parse(r)
+    }
     function generateModules() {
       json = modules({
         rawData: json,
         shipsData: CSVtoJSON(fs.readFileSync(`${pathCsvs}ships.csv`, "utf8")),
         projectilesData: CSVtoJSON(fs.readFileSync(`${pathCsvs}projectiles.csv`, "utf8")),
-        fixValue: require(`${pathCsvs}modification/fixValue.js`)
+        fixValue: require(`${pathCsvs}modification/fixValue.js`),
+        dronesList: getContent('ships')['drones']
       })
     }
     function generateShips() {
       json = ships({
-        rawData: json
+        rawData: json,
+        cerberusList: getContent()['cerberus']
       })
     }
     function generateSolarSys(str) {
@@ -99,17 +115,28 @@ function generateFiles(pathCsvs, files, pathSave) {
       json = compileOne(json)
     }
     function generatePlanets() {
-      let content = require(`${modulesPath}addContent.js`).addContent
       json = planets({
         rawData: json,
-        categories: content(file + 'Data')['content'].replace(/.*{/, '{')
+        categories: getContent()
       })
+    }
+    function generateArtifacts() {
+      json = artifacts({
+        rawData: json,
+        artsByTypes: getContent()['data'],
+        blueprints: getContent()['blueprints']
+      })
+    }
+    function generateSolar_system_gen_data() {
+      fillSpace(json.RedStar, ' ')
+      pushArrays(json.RedStar, 'RegularInfuenceRange', 'RegularInfuenceRange_Min', 'RegularInfuenceRange_Max')
+      pushArrays(json.RedStar, 'InfluenceAwardThreshold', 'InfluenceAwardThreshold_Min', 'InfluenceAwardThreshold_Max')
     }
   }
 }
 
 function saveToFile(file, jsonObj) {
-  let addContent = require(`${modulesPath}addContent.js`).addContent
+  let addContent = require(`${modulesPath}addContent.js`).default
   let varName = file.replace(/.*\/(.*)\.js/, '$1')
   let addData = addContent(varName)
 
@@ -121,15 +148,14 @@ let ${varName} = ${JSON.stringify(jsonObj, null, 2)}
 
 ${addData['content'] || ""}
 
- // module.exports = {${addData['export']}}
- export {${addData['export']}}
+export {${addData['export']}}
 `
   fs.writeFileSync(
     file,
     prettier.format(content, {
       parser: 'babel',
       trailingComma: 'es5',
-      printWidth: 500, // чтоб массивы выстраивались в одну линию
+      printWidth: 410, // чтоб массивы выстраивались в одну линию
     })
   )
   console.log(`Файл ${file} создан`)
@@ -363,4 +389,23 @@ function compileOne(obj) {
   }
   result['maxLevel'] = result['maxLevel'].length
   return result
+}
+// заполнить пространство для соответствия уровню 
+function fillSpace(obj, spaceSymbol = 0, method = 'unshift') {
+  for (let i of Object.keys(obj)) {
+    if (ignoringHeaders.includes(i) || !Array.isArray(obj[i])) continue
+    while (obj[i].length < obj.maxLevel) {
+      obj[i][method](spaceSymbol)
+    }
+  }
+  return obj
+}
+// объединить однотипные массивы, нужен рефакторинг для адекватного форматирования
+function pushArrays(obj, newName, key1, key2, symbol = '-') {
+  obj[newName] = []
+  for (let i = 0; i < obj.maxLevel; i++) {
+    obj[newName].push(obj[key1][i] + symbol + obj[key2][i])
+  }
+  [key1, key2].forEach(e => delete obj[e]);
+  return obj
 }

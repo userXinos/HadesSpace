@@ -104,9 +104,16 @@ function fixWorlds(rawStr) {
 
   if (firstLetterRaw.toUpperCase() == firstLetterRaw) { // первая буква была заглавной ?
     let result = lower.replace(firstLetter, firstLetter.toUpperCase());
-    return result.replace(/:$/, '');
+    return regexFix(result);
   }
   return lower;
+  // TODO рефакторинг
+  function regexFix(str) {
+    str = str.replace(/\s<color>\{0\}<\/color>|\s\(<color>\{0\}<\/color> шт\.\)/, '')
+    str = str.replace(/:$/, '')
+    str = str.replace(/\{\d\}/g, '')
+    return str
+  }
 }
 function combineObjects(obj1, obj2) {
   for (var p in obj2) {
