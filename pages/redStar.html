@@ -41,28 +41,32 @@
     </label>
   </nav>
   <h1 id="title"></h1>
-  <img class="portrait" src="../img/portraits/YSSectors.png" alt="cerberus">
+  <img class="portrait" src="../img/portraits/redStar.png" alt="cerberus">
   <h2></h2>
   <div class="list">
     <ol></ol>
   </div>
   <a href="#" id="buttonTop"></a>
   <script type="module">
-    setBaseData('yellowStar')
+    setBaseData('redStar')
     generateTables()
 
     async function generateTables() {
-      let locString = ['sectors', 'lvlsPlanets', 'planets', 'colonizationPlanets']
-      let tables = [['yellow_star_sectors'], ['planet_levels'], ['planets', null, 'yellowstarTable'], ['colonize_prices']]
+      let arts = ['Combat', 'Utility', 'Support']
 
-      genDesc('TID_YELLOW_STAR_DESCR')
-      for (let i in locString) {
-        genTitle(`<a href="#${locString[i]}" name="${locString[i]}">${getStr(locString[i])}</a>`)
-        genOl(`<span><a href="#${locString[i]}">${getStr(locString[i])}</a></span>`)
-        await generatePageTables.apply(this, tables[i]);
+      genDesc('TID_RED_STAR_INFO')
+      genTitle(`<a href="#${'RSLevels'}" name="${'RSLevels'}">${getStr('RSLevels')}</a>`)
+      genOl(`<span><a href="#${'RSLevels'}">${getStr('RSLevels')}</a></span>`)
+      await generatePageTables('solar_system_gen_data', null, 'RedStar')
+      for (let art of arts) {
+        genTitle(`<a href="#${art}" name="${art}">${getStr(art + 'Art')}</a>`)
+        genOl(`<span><a href="#${art}">${getStr(art + 'Art')}</a></span>`)
+        await generatePageTables('artifacts', null, art)
+        art = 'blueprints' + art
+        genTitle(`<a href="#${art}" name="${art}">${getStr('blueprints')}</a>`)
+        await generatePageTables('artifacts', null, art)
       }
     }
-
   </script>
 
 </body>

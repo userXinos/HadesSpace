@@ -22,6 +22,7 @@ function autoMergeByRow(tableId,
   colStart,		// 0 или 1
   colEnd,		// равно colStart или больше, чем colStart или отрицательное
 ) {
+  if ($('#' + tableId)[0].classList.contains('noFixTable')) return
   var trArr = $('#' + tableId).find('tr');
   for (var rowIndex = rowStartIndex; rowIndex < trArr.length; rowIndex++) {
     var tdArr = $(trArr[rowIndex]).find('td');

@@ -3,12 +3,14 @@ import { getStr } from './getString.js';
 import 'regenerator-runtime/runtime'
 
 const data = {
-    modules: import('../data/modulesData.js'),
-    ships: import('../data/shipsData.js'),
-    yellow_star_sectors: import('../data/yellow_star_sectorsData.js'),
+    modules: import('../data/modulesData'),
+    ships: import('../data/shipsData'),
+    yellow_star_sectors: import('../data/yellow_star_sectorsData'),
     planets: import('../data/planetsData.js'),
-    colonize_prices: import('../data/colonize_pricesData.js'),
-    planet_levels: import('../data/planet_levelsData.js'),
+    colonize_prices: import('../data/colonize_pricesData'),
+    planet_levels: import('../data/planet_levelsData'),
+    artifacts: import('../data/artifactsData'),
+    solar_system_gen_data: import('../data/solar_system_gen_dataData')
 }
 const iconsData = {
     modules: require('../img/modules_icons/*.png'),
@@ -17,12 +19,11 @@ const iconsData = {
 
 let ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
 let cerbModules = ['cerbShield', 'cerbWeapon', 'cerbModule'];
+let noFixTables = ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport']
 
 async function generatePageTables(typeData, category = null, elem = null) {
     let obj = await data[typeData]
     let icons = await iconsData[typeData]
-
-    //let items = (category) ? obj[typeData + 'ByTypes'][category.toLowerCase()] : [ Object.keys(obj)[0] ]
 
     let items = (category != null) ? obj[typeData + 'ByTypes'][category.toLowerCase()] :
         (elem != null) ? [elem] : [Object.keys(obj)[0]]
@@ -32,104 +33,85 @@ async function generatePageTables(typeData, category = null, elem = null) {
     for (let item of items) {
         let module = (category != null || elem != null) ? obj[typeData + 'Data'][item] : obj[typeData + 'Data']
         let icon = '';
-        let typeCerbModule
+        let id, typeCerbModule, lvlStyle, lvlCol, modifier
 
         if (isCerb) {
             typeCerbModule = { name: null, type: null };
         }
-
+        if (['planets', 'colonize_prices', 'yellow_star_sectors', 'artifacts'].includes(typeData)) {
+            lvlCol = '№'
+            lvlStyle = 'style="padding-left: 37px"'
+        }
+        if (module.Name == 'RedStar') modifier = 0
+        //свитчер иконок
         switch (typeData) {
             case 'modules':
-                icon = $('<div/>', {
-                    'class': 'module-background',
-                    html: `<span class="module-icon" style="background-image:url(${icons[module.Icon]})"></span>`
-                })[0]['outerHTML'];
+                icon = genModuleIcon(icons[module.Icon])
                 break;
             case 'ships':
                 if (!isCerb) break;
-                icon = $('<div/>', {
-                    'class': 'cerberus-background',
-                    html: `<img src="${icons[module.Model]}" alt="${module.Name}">`
-                })[0]['outerHTML'];
+                icon = genCerbIcon(icons[module.Model])
                 break;
             default:
                 break;
         }
-        if (module.TID != undefined && module.TID_Description != undefined && !Array.isArray(module.TID)) { // если это просто таблица
-            let title = `<a href="#${module.Name}" name="${module.Name}">${getStr(module.TID)}</a>`;
-            let titleAndIcom = `<div class="title">${icon}<div class="title-text ">${title}</div></div>`;
-            let listItem = `<li><span><a href="#${module.Name}">${getStr(module.TID)}</a></span></li>`;
-            $('body').append(titleAndIcom);
-            $('ol').append(listItem);
-            $('body').append(`<blockquote>${fixDesc(getStr(module.TID_Description))}</blockquote>`);
-        }
-        let sectorsStyle = null
-        let lvlCol = null
-        // if (typeData == 'yellow_star_sectors') {
-        //     lvlCol = 'sector'
-        //     sectorsStyle = 'style="padding-left: 70px"'
-        // }
-        if (typeData == 'planets' || typeData == 'colonize_prices' || typeData == 'yellow_star_sectors') {
-            lvlCol = '№'
-            sectorsStyle = 'style="padding-left: 37px"'
-        }
-
-        let keys = [];
-        for (let key of Object.keys(module)) {
-            if (!Array.isArray(module[key]) && !ignoringHeaders.includes(key))
-                keys.push(key)
-        };
-        for (let key of keys) { // добавление доп стат
-            if (isCerb && findModuleCerb(key, typeCerbModule)) continue
-            $('body').append($('<h2/>', {
-                'class': 'stringStsts',
-                html: `<b>${getStr(key)}</b>: ${getFormat(key, module[key])}`
+        if (module.TID != undefined && !Array.isArray(module.TID)) { // если это просто данные
+            $('ol').append($('<li/>', {
+                html: `<span><a href="#${module.Name}">${getStr(module.TID)}</a></span>`
+            }));
+            $('body').append($('<div/>', {
+                class: 'title',
+                html: icon + $('<div/>', {
+                    class: 'title-text',
+                    html: `<a href="#${module.Name}" name="${module.Name}">${getStr(module.TID)}</a>`
+                })[0]['outerHTML'],
             }));
         }
+        if (module.TID_Description != undefined && !Array.isArray(module.TID_Description)) {
+            $('body').append($('<blockquote/>', {
+                html: fixDesc(getStr(module.TID_Description))
+            }));
+        }
+        addStringStats(module, isCerb, typeCerbModule)
         if (isCerb) await addModuleCerb(typeCerbModule)
-        if (module['maxLevel'] <= 1) continue
-        keys = []
+        if (module.maxLevel <= 1) continue
+        let keys = []
         for (let key in module) {
             if (Array.isArray(module[key]))
                 keys.push(key)
         };
-        let levelTable = `<thead><tr><th>${getStr(lvlCol || "lvl")}</th></tr></thead>\n`;
-        levelTable += '<tbody>\n'
-        for (let i = 0; i < module.maxLevel; i++) {  //уровни, циферки
-            levelTable += `<tr><td>${i + 1}</td></tr>\n`
-        };
-        levelTable += '</tbody>';
-        levelTable = $('<div/>', {
-            'class': 'gTable-lvls',
-            html: `<table>${levelTable}</table>`
-        })[0]['outerHTML'];
-        let statsTable = '<thead>\n<tr>';
-        for (let i = 0; i < keys.length; i++) {  //шапка
-            statsTable += `<th>${getStr(keys[i])}</th>\n`
-        }
-        statsTable += '</tr>\n</thead>\n'
-        statsTable += '<tbody>\n';
-        for (let i = 0; i < module.maxLevel; i++) { //тело
-            statsTable += '<tr>';
-            for (let k = 0; k < keys.length; k++) {
-                let value = getFormat(keys[k], module[keys[k]][i]);
-                statsTable += `<td>${value}</td>\n`
+        let levelTable = genLevelTable(lvlCol, module.maxLevel, modifier);                            //уровни / циферки 
+        let table = genStatsTableHead(keys, module.Name) + genStatsTableBody(keys, module) //шапка и тело
+        try {
+            if (!Array.isArray(module.Name)) { // лучше пусть "undefined", чем массив
+                id = module.Name
             }
-            statsTable += '</tr>\n'
+        } catch (e) {
+            id = typeData
         }
-        statsTable += '</tbody>';
-        statsTable = $('<div/>', {
-            'class': 'gTable-stats',
-            html: `<table class="generalTable" ${sectorsStyle} id ="${module.Name}-table">${statsTable}</table>`
-        })[0]['outerHTML'];
-
-        $('body').append($('<div/>', {
-            'class': 'gTable',
-            html: levelTable + statsTable
-        }));
-    };
+        $('body').append($('<div/>', { // затолкать готовую таблицу на страницу 
+            class: 'gTable',
+            html: levelTable + $('<div/>', {
+                class: `gTable-stats`,
+                html: `<table class="${getCalss(module.Name)}" ${lvlStyle} id ="${id}-table">${table}</table>`
+            })[0]['outerHTML']
+        }))
+    }
     $('body > div.gTable').wrap('<div class="tableEnvironment"></div>')
 };
+// сгенерировать html иконки
+function genModuleIcon(url) {
+    return $('<div/>', {
+        'class': 'module-background',
+        html: `<span class="module-icon" style="background-image:url(${url})"></span>`
+    })[0]['outerHTML'];
+};
+function genCerbIcon(url) {
+    return $('<div/>', {
+        'class': 'cerberus-background',
+        html: `<img src="${url}" alt="">`
+    })[0]['outerHTML'];
+}
 // исправить написание с новой троки (\n)
 function fixDesc(descRaw) {
     return descRaw.replace(
@@ -149,7 +131,22 @@ function findModuleCerb(key, typeCerbModule) {
     }
     return false
 }
-// пушка Церебера нужна тут
+// добавить вне табличные данные
+function addStringStats(data, isCerb, cerbObj) {
+    let keys = [];
+    for (let key of Object.keys(data)) {
+        if (!Array.isArray(data[key]) && !ignoringHeaders.includes(key))
+            keys.push(key)
+    };
+    for (let key of keys) { // добавление доп стат
+        if (isCerb && findModuleCerb(key, cerbObj)) continue
+        $('body').append($('<h2/>', {
+            'class': 'stringStsts',
+            html: `<b>${getStr(key)}</b>: ${getFormat(key, data[key])}`
+        }));
+    }
+}
+// добавить пушку Церебера
 async function addModuleCerb(typeCerbModule) {
     if (typeCerbModule.name != null) {
         $('body').append($('<h2/>', {
@@ -167,6 +164,50 @@ async function addModuleCerb(typeCerbModule) {
 
         }
     }
+}
+// сгенерировать колонку лвлов 
+function genLevelTable(lvlCol, maxLevel, modifier = 1) {
+    let result = `<thead><tr><th>${getStr(lvlCol || "lvl")}</th></tr></thead>`
+    result += '<tbody>'
+    for (let i = 0; i < maxLevel; i++) {
+        result += `<tr><td>${i + modifier}</td></tr>\n`
+    };
+    result += '</tbody>';
+    result = $('<div/>', {
+        'class': 'gTable-lvls',
+        html: `<table>${result}</table>`
+    })[0]['outerHTML'];
+    return result
+}
+// сгенерировать шапку по ключам
+function genStatsTableHead(keys, objName) {
+    let result = '<thead><tr>';
+    for (let i = 0; i < keys.length; i++) {
+        result += `<th>${getFormat2(objName, keys[i])}</th>`
+    }
+    result += '</tr></thead>'
+    return result
+}
+// сгенерировать тело по ключам
+function genStatsTableBody(keys, data) {
+    let result = '<tbody>';
+    for (let i = 0; i < data.maxLevel; i++) {
+        result += '<tr>';
+        for (let k = 0; k < keys.length; k++) {
+            let value = getFormat(keys[k], data[keys[k]][i]);
+            result += `<td>${value}</td>`
+        }
+        result += '</tr>'
+    }
+    result += '</tbody>';
+    return result
+}
+function getCalss(name) {
+    let r = 'generalTable'
+    if (noFixTables.includes(name)) {
+        r += ' noFixTable'
+    }
+    return r
 }
 function fixTime(sec) {
     let result = '';
@@ -190,7 +231,6 @@ function fixTime(sec) {
     }
     return result || 0;
 };
-
 function getFormat(key, value) {
     let formatList = [
         {
@@ -198,7 +238,7 @@ function getFormat(key, value) {
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime"],
             func: (v) => fixTime(v)
         },
         {
@@ -206,7 +246,7 @@ function getFormat(key, value) {
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward"],
             func: (v) => Number(v).toLocaleString()
         },
         {
@@ -241,11 +281,11 @@ function getFormat(key, value) {
             array: ["PlanetTypes", "Name"],
             func: (v) => {
                 let result = [];
-                let palnets = v.split('!')
-                for (let planet of palnets) {
-                    if (planet == ' ') return ' '
-                    planet = planet.split('_')
-                    result.push(`${getStr(planet[0])} ${getStr('lvl')}. ${planet[1].slice(-1)}`)
+                let items = v.split('!')
+                for (let item of items) {
+                    if (item == ' ') return ' '
+                    item = item.split('_')
+                    result.push(`${getStr(item[0])} ${getStr('lvl')}. ${item[1].slice(-1)}`)
                 }
                 return result.join(', ')
             }
@@ -267,7 +307,16 @@ function getFormat(key, value) {
                 }
                 return result.join(', ')
             }
-        }
+        },
+        {
+            array: ["GhostSpawnSecs"],
+            func: (v) => v.replace(/(!)|(\d{1,2})/g,
+                function (match) {
+
+                    return (match == '!') ? ", " : `${match} ${getStr('sec')}`;
+
+                })
+        },
     ];
     if (value.constructor.name == 'Object') {
         let r = []
@@ -283,6 +332,24 @@ function getFormat(key, value) {
     };
     return value;
 };
+function getFormat2(key, value) {
+    let formatList = [
+        {
+            array: ['blueprintsSupport'],
+            func: (v) => `${getStr('lvl')} ${Number(v) + 1}`
+        },
+        {
+            array: ['blueprintsCombat', 'blueprintsUtility'],
+            func: (v) => `${getStr('lvl')} ${v}`
+        }
+    ]
+    for (let i in formatList) {
+        if (formatList[i]['array'].includes(key)) {
+            return formatList[i]['func'](value);
+        }
+    };
+    return getStr(value);
+}
 
 export {
     generatePageTables

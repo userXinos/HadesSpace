@@ -1,29 +1,57 @@
 "use strict";
 import { getCookie } from './cookie.js'
 
-const lang = getCookie("language") || "en"
+const defaultLang = 'en'
+const language = getCookie("language") || defaultLang
 
-function load() {
-    let r = $.ajax({
-        url: `${lang}Strings.json`,
-        async: false,
-        dataType: 'json',
-    }).done(function (data) {
-        return data;
-    })
-    return JSON.parse(r.responseText)
-}
-
-function getStr(key) {
-    if (window.locStrings == undefined) { // иначе будет загружать до потери пульса 🥴
-        window.locStrings = load()
+// загрузить сточку из sessionStorage
+// sessionStorage, чтобы качал новую версию кажый раз
+function load(lang) {
+    let key = 'locStrings' + lang.toUpperCase()
+    if (sessionStorage.getItem(key) == null) {
+        sessionStorage.setItem(key, JSON.stringify(ajax()))
+        console.log(ajax())
+        return ajax()
+    } else {
+        return JSON.parse(sessionStorage.getItem(key))
     }
+    function ajax() {
+        let r = $.ajax({
+            url: `${lang}Strings.json`,
+            async: false,
+            dataType: 'json',
+        }).done(function (data) {
+            return data;
+        })
+        return JSON.parse(r.responseText)
+    }
+}
+// получить сточку
+function getStr(key, lang = language) {
+    let locStrings = load(lang)
     key = (locStrings[key]) ? key : getKey(key)
-    return locStrings[key] || key;
+    if (locStrings[key]) {
+        return locStrings[key]
+    } else if (lang == defaultLang) {
+        return key
+    } else {
+        return getStr(key, defaultLang)
+    }
 }
 
 function getKey(str) {
     let stringKeys = {
+        MaxInfluence: 'TID_REDSCANNER_MAX_INFLUENCE',
+        RegularInfuenceRange: 'TID_REDSCANNER_OPTIMAL_INFLUENCE',
+        MaxBattleshipsPerPlayer: 'TID_REDSCANNER_MAX_BATTLESHIPS',
+        HydrogenSearchCost: 'TID_SECTOR_UNLOCK_PRICE',
+        DestroyersToSpawn: 'TID_SHIP_CERB_DESTROYER',
+        MinBombers: 'TID_SHIP_CERBERUS_BOMBER',
+        TimeToLoad: 'TID_STATUS_LOADING_ARTIFACT',
+        TimeToResearch: 'UpgradeTime',
+        Credits: 'TID_HUD_CREDITS',
+        Hydrogen: 'TID_HUD_HYDROGEN',
+        Lifetime: 'TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER',
         //MaxUpgradeLevel: '',
         CreditIncomeModifier: 'TID_PLANET_UPG_CREDIT_YIELD',
         FuelIncomeModifier: 'TID_PLANET_UPG_HYDROGEN_YIELD',

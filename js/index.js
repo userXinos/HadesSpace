@@ -45,64 +45,53 @@ window.generateIndexMenu = function () {
     }
 }
 
-import { generatePageTables, generateCerberusInfo, generateYSSectors } from '../js/outputData.js';
+import { generatePageTables } from '../js/outputData.js';
 
-// NEEDED refactoring
-window.generatePageTables = function (typeData, cacategory) {
-    generatePageTables(typeData, cacategory);
-}
-// NEEDED refactoring (!!!)
-window.generateYSSectors = async function () {
+window.generatePageTables = generatePageTables
+window.getStr = getStr
+window.setBaseData = async function (typeData, cacategory) {
+    let title = getStr( // hehe (TODO)
+        (typeData == 'modules') ? 'typeMod' + cacategory :
+            (typeData == 'yellowStar') ? 'TID_YELLOW_STAR' :
+                (typeData == 'redStar') ? 'TID_RED_STAR' :
+                    (cacategory == 'player') ? 'ships' :
+                        'cerberus'
+    )
     $('h2').append(getStr('content'));
-    $('h1').append(`${getStr('TID_YELLOW_STAR')}`);
-    $('body').append(`<title>${getStr('TID_YELLOW_STAR')}</title>`);
-    $('body').append(`<blockquote>${getStr('TID_YELLOW_STAR_DESCR')}</blockquote>`);
-
-    let title = `<a href="#${'sectors'}" name="${'sectors'}">${getStr('sectors')}</a>`;
-    let titleAndIcom = `<div class="title"><div class="title-text">${title}</div></div>`;
-    let listItem = `<li><span><a href="#${'sectors'}">${getStr('sectors')}</a></span></li>`;
-    $('body').append(titleAndIcom);
-    $('ol').append(listItem);
-    await generatePageTables('yellow_star_sectors');
-
-    title = `<a href="#${'lvlsPlanets'}" name="${'lvlsPlanets'}">${getStr('lvlsPlanets')}</a>`;
-    titleAndIcom = `<div class="title"><div class="title-text">${title}</div></div>`;
-    listItem = `<li><span><a href="#${'lvlsPlanets'}">${getStr('lvlsPlanets')}</a></span></li>`;
-    $('body').append(titleAndIcom);
-    $('ol').append(listItem);
-    await generatePageTables('planet_levels');
-
-    title = `<a href="#${'planets'}" name="${'planets'}">${getStr('planets')}</a>`;
-    titleAndIcom = `<div class="title"><div class="title-text">${title}</div></div>`;
-    listItem = `<li><span><a href="#${'planets'}">${getStr('planets')}</a></span></li>`;
-    $('body').append(titleAndIcom);
-    $('ol').append(listItem);
-    await generatePageTables('planets', null, 'yellowstarTable');
-
-    title = `<a href="#${'colonizationPlanets'}" name="${'colonizationPlanets'}">${getStr('colonizationPlanets')}</a>`;
-    titleAndIcom = `<div class="title"><div class="title-text">${title}</div></div>`;
-    listItem = `<li><span><a href="#${'colonizationPlanets'}">${getStr('colonizationPlanets')}</a></span></li>`;
-    $('body').append(titleAndIcom);
-    $('ol').append(listItem);
-    await generatePageTables('colonize_prices');
+    $('h1').append(`${title}`);
+    $('body').append(`<title>${title}</title>`);
+    if (typeData == 'modules' || typeData == 'ships') {
+        await generatePageTables(typeData, cacategory);
+    }
 }
-// NEEDED refactoring
-window.setBaseData = function (typeData, cacategory) {
-    let cacategoryMod
-    if (typeData == 'modules') {
-        cacategoryMod = 'typeMod' + cacategory
-    }
-    if (cacategory == 'player') {
-        cacategoryMod = 'ships'
-    }
-    $('h2').append(getStr('content'));
-    $('h1').append(`${getStr(cacategoryMod || cacategory)}`);
-    $('body').append(`<title>${getStr(cacategoryMod || cacategory)}</title>`);
-    generatePageTables(typeData, cacategory);
+window.genTitle = function (href_html) {
+    $('body').append($('<div/>', {
+        class: 'title',
+        html: $('<div/>', {
+            class: 'title-text',
+            html: href_html
+        })[0]['outerHTML'],
+    }));
+}
+window.genOl = function (span_html) {
+    $('ol').append($('<li/>', {
+        html: span_html
+    }));
+}
+window.genDesc = function (str) {
+    $('body').append($('<blockquote/>', {
+        html: getStr(str)
+    }));
 }
 
-window.setFlagshipModules = function () {
+window.setFlagshipModules = async function () {
     let flagshipModules = `<a href="flagshipModules" name="flagshipModules">${getStr('flagshipModules')}</a>`
     $('body').append(`<div class="title"><div class="title-text"><h1>${flagshipModules}<h1></div></div>`);
-    generatePageTables('modules', 'flagship');
+    await generatePageTables('modules', 'flagship');
 }
+
+// export { // TODO: хз пока как это сделать
+//     genTitle,
+//     genOl,
+//     genDesc
+// }
