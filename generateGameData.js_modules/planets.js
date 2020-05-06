@@ -3,9 +3,8 @@ const mainJs = require('../generateGameData.js')
 // создать одну таблицу со всеми планками
 function addCommonTable(args) {
     let compileOne = mainJs.compileOne
-    let stars = JSON.parse(args.categories)
+    let stars = args.categories
     let raw = args.rawData
-
 
     for (let star in stars) {
         let obj = {}
@@ -18,4 +17,4 @@ function addCommonTable(args) {
     return raw
 }
 
-module.exports = { addCommonTable } 
+exports.default = addCommonTable 

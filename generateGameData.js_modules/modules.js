@@ -17,19 +17,18 @@ function generateModules(args) {
   let starHeaders = ['EffectDurationx10', 'ActivationDelay', 'ActivationPrep', 'MaxDPSTime', 'APTPIOTTP', 'DisableTime']
   let projectiles = renameKeys(args.projectilesData, projectilesKeys)
   let drones = {}
-  for (let i of dronesList) {
+  for (let i of args.dronesList) {
     drones[i] = args.shipsData[i]
   }
   obj = combineObjects(obj, drones);
   obj = combineObjects(obj, projectiles);
-  obj['Recoil']['ShowWSInfo'] = 1
-  obj['Immolation']['ShowWSInfo'] = 1
-  obj['EMPRocket']['ShowWSInfo'] = 1
+  ['Recoil', 'Immolation', 'EMPRocket'].forEach(e => obj[e]['ShowWSInfo'] = 1);
   obj = addStarInfo(obj, args.fixValue, starHeaders, 'WS');
   obj = addStarInfo(obj, args.fixValue, starHeaders, 'BS');
-  obj['MiningBoost']['WhiteStarScore'].unshift(0) // ошибка в таблице, не хватает "0"
-  obj['Destiny']['WhiteStarScore'].unshift(0) // ошибка в таблице, не хватает "0"
-  obj['MiningDrone']['MiningSpeed'] = [29.1, 33.3, 37.5, 41.7, 45.8, 52.2, 58.8, 65.2, 74.1, 85.7]; // хз как считать это
+  obj.TimeWarp.Icon = 'Mod_TimeWarp_Icon' // ошибка в таблице, 'w' в иконках в верхнем регистре 
+  obj.MiningBoost.WhiteStarScore.unshift(0) // ошибка в таблице, не хватает "0"
+  obj.Destiny.WhiteStarScore.unshift(0) // ошибка в таблице, не хватает "0"
+  obj.MiningDrone.MiningSpeed = [29.1, 33.3, 37.5, 41.7, 45.8, 52.2, 58.8, 65.2, 74.1, 85.7]; // хз как считать это
   return obj;
 
 }
@@ -79,4 +78,4 @@ function addStarInfo(obj, fixValue, starHeaders, star) {
   return obj
 }
 
-module.exports = { generateModules }
+exports.default = generateModules 

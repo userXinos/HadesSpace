@@ -2,7 +2,7 @@ const mainJs = require('../generateGameData.js')
 
 function generateShips(args) {
   let obj = args.rawData
-  for (let cerb of cerberusList) {
+  for (let cerb of args.cerberusList) {
     obj = fixModulesShipsData(obj, cerb, 'InitialModule', 'InitialModuleLevels')
   }
   obj = fixModulesShipsData(obj, 'CorpFlagship', 'FlagshipModules', 'FlagshipModuleLevels')
@@ -34,23 +34,13 @@ function fixModulesShipsData(obj, name, Modules, ModuleLevels) {
       }
     }
   }
-  // изменить путь значений нового объекта для объединения результата с оригиналом и
-  // добавить недостающие нули, чтобы элементы массивов соответствовали уровню
-  let result2 = { [name]: {} }
-  for (let key in result) {
-    let needInts = obj[name]['maxLevel']
-    for (let i = 0; i < needInts; i++) {
-      if (result[key].length < needInts) {
-        result[key].unshift(0)
-      } else {
-        result2[name][key] = result[key]
-        continue
-      }
-    }
+  result.maxLevel = obj[name]['maxLevel']
+  result = {
+    [name]: mainJs.fillSpace(result)
   }
   delete obj[name][Modules]
   delete obj[name][ModuleLevels]
-  return combineObjects(obj, result2)
+  return combineObjects(obj, result)
 }
 
-module.exports = { generateShips }
+exports.default = generateShips 

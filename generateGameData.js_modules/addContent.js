@@ -20,8 +20,8 @@ function addContent(type) {
     case 'shipsData':
       let shipsByTypes = {
         player: ['Transport', 'Miner', 'Battleship', 'CorpFlagship'],
-        cerberus: cerberusList,
-        drones: dronesList
+        cerberus: ['CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts'],
+        drones: ['ShipmentDrone', 'MiningDrone', 'AlphaDrone']
       }
       result['content'] = 'let shipsByTypes= ' + JSON.stringify(shipsByTypes, null, 2)
       result['export'] += ',shipsByTypes'
@@ -35,10 +35,19 @@ function addContent(type) {
       result['content'] = 'let planetsByTypes= ' + JSON.stringify(planetsByTypes, null, 2)
       result['export'] += ', planetsByTypes'
       break;
+    case 'artifactsData':
+      let artifactsByTypes = {
+        data: ['Combat', 'Utility', 'Support'],
+        blueprints: ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport'],
+      }
+      result['content'] = 'let artifactsByTypes= ' + JSON.stringify(artifactsByTypes, null, 2)
+      result['export'] += ',artifactsByTypes'
+      break;
+
     default:
       break;
   }
   return result
 }
 
-module.exports = { addContent }
+exports.default = addContent 

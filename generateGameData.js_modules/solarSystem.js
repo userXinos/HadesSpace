@@ -101,4 +101,4 @@ function getLength(v) {
   return r || 0
 }
 
-module.exports = { generateSolarSys } 
+exports.default = generateSolarSys 
