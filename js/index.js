@@ -50,7 +50,7 @@ import { generatePageTables } from '../js/outputData.js';
 window.generatePageTables = generatePageTables
 window.getStr = getStr
 window.setBaseData = async function (typeData, cacategory) {
-    let tittle
+    let title
     switch (typeData) {
         case 'modules':
             title = 'typeMod' + cacategory
