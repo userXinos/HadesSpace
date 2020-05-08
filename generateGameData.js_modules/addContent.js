@@ -43,7 +43,21 @@ function addContent(type) {
       result['content'] = 'let artifactsByTypes= ' + JSON.stringify(artifactsByTypes, null, 2)
       result['export'] += ',artifactsByTypes'
       break;
-
+    case 'spacebuildingsData':
+      let spacebuildingsByTypes = {
+        player: ['Shipyard', 'ShortRangeScanner', 'RedStarScanner', 'ResearchStation', 'DiplomacyCenter', 'TradingStation', 'WarpLaneHub', 'WhiteStarScanner', 'TimeModulator', 'BlueStarScanner', 'ShipmentRelay'],
+        other: ['Stargate', 'OrangeStarScanner']
+      }
+      result['content'] = 'let spacebuildingsByTypes= ' + JSON.stringify(spacebuildingsByTypes, null, 2)
+      result['export'] += ',spacebuildingsByTypes'
+      break;
+    case 'player_goalsData':
+      let player_goalsByTypes = {
+        all: ['SalvageArtifacts', 'DestroySentinels', 'DestroyGuardians', 'DestroyColossus', 'DestroyInterceptor', 'DestroyPhoenix', 'ReachInfluence', 'MineHydrogenInRS', 'UploadHydroRS', 'EMPPEnemyShips', 'RepairOtherPlayerShips', 'UseAlphaRocket', 'EntrustArtifacts', 'UseDestinyNoSanct', 'DeliverShipmentsBatch', 'UseShipmentComputer', 'UseTradeBoostOrBurst', 'UseShipmentDrone', 'UseCrunch', 'UseSalvage', 'UseShipmentBeam', 'UseBlastShield', 'UseMiningDrone', 'UseGenesis', 'UseOffload', 'EarnFragments', 'WinBSWithEMP1', 'WinBSWithEMP2', 'WinBSWithEMP3', 'WinBSWithRepair1', 'WinBSWithRepair2', 'WinBSWithRepair3', 'WinBSWithTimeWarp', 'WinBSWithStealth1', 'WinBSWithStealth2', 'WinBSWithFortify1', 'WinBSWithFortify2', 'WinBSWithSalvage1', 'WinBSWithSalvage2', 'WinBSWithSupress1', 'WinBSWithSupress2', 'WinBSWithImpulse1', 'WinBSWithImpulse2', 'WinBSWithAlphaRocket1', 'WinBSWithAlphaRocket2', 'WinBSWithDestiny', 'WinBSWithVengeance', 'WinBSWithDeltaRocket', 'WinBSWithBarrier', 'WinBSWithAlphaDrone', 'WinBSWithBond', 'WinBSWithOmegaRocket']
+      }
+      result['content'] = 'let player_goalsByTypes= ' + JSON.stringify(player_goalsByTypes, null, 2)
+      result['export'] += ',player_goalsByTypes'
+      break;
     default:
       break;
   }

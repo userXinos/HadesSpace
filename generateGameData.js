@@ -3,26 +3,27 @@ const fs = require("fs")
 const prettier = require('prettier')
 
 const pathCsvs = './rawData/csv/'
-let filesName = [
-  'ships',
-  'modules',
-  'red_star_sectors',
-  'stars',
-  'artifacts',
-  'spacebuildings',
-  'yellow_star_sectors',
-  'achievements',
-  'alliance_levels',
-  'cerb_groups',
-  'planet_levels',
-  'planets',
-  'player_goals',
-  'solar_system_gen_data',
-  'colonize_prices',
-  'blue_star_sectors',
-  'white_star_sectors'
-]
-//const filesName = ['solar_system_gen_data']
+// let filesName = [
+//   'ships',
+//   'modules',
+//   'red_star_sectors',
+//   'stars',
+//   'artifacts',
+//   'spacebuildings',
+//   'yellow_star_sectors',
+//   'achievements',
+//   'alliance_levels',
+//   'cerb_groups',
+//   'planet_levels',
+//   'planets',
+//   'player_goals',
+//   'solar_system_gen_data',
+//   'colonize_prices',
+//   'blue_star_sectors',
+//   'white_star_sectors'
+//    'globals'
+// ]
+const filesName = ['player_goals']
 const pathSave = './data/'
 const modulesPath = './generateGameData.js_modules/'
 
@@ -47,6 +48,8 @@ function generateFiles(pathCsvs, files, pathSave) {
   let solarSys = require(`${modulesPath}solarSystem.js`).default
   let planets = require(`${modulesPath}planets.js`).default
   let artifacts = require(`${modulesPath}artifacts.js`).default
+  let spaceBuildings = require(`${modulesPath}spaceBuildings`).default
+  let playerGoals = require(`${modulesPath}playerGoals`).default
 
   for (let file of files) {
     let json = CSVtoJSON(fs.readFileSync(`${pathCsvs}${file}.csv`, "utf8"))
@@ -76,6 +79,15 @@ function generateFiles(pathCsvs, files, pathSave) {
         break;
       case 'solar_system_gen_data':
         generateSolar_system_gen_data()
+        break;
+      case 'spacebuildings':
+        generateSpaceBuildings()
+        break;
+      case 'globals':
+        generateGlobals()
+        break;
+      case 'player_goals':
+        generatePlayer_goals()
         break;
 
       default:
@@ -131,6 +143,22 @@ function generateFiles(pathCsvs, files, pathSave) {
       fillSpace(json.RedStar, ' ')
       pushArrays(json.RedStar, 'RegularInfuenceRange', 'RegularInfuenceRange_Min', 'RegularInfuenceRange_Max')
       pushArrays(json.RedStar, 'InfluenceAwardThreshold', 'InfluenceAwardThreshold_Min', 'InfluenceAwardThreshold_Max')
+    }
+    function generateSpaceBuildings() {
+      json = spaceBuildings({
+        rawData: json
+      })
+    }
+    function generateGlobals() {
+      for (let i of Object.keys(json)) {
+        json[i] = json[i]['Value']
+      }
+    }
+    function generatePlayer_goals() {
+      json = playerGoals({
+        rawData: json,
+        needFix: getContent().all
+      })
     }
   }
 }
@@ -297,7 +325,7 @@ function fixOrder(obj) {
     let key = Object.keys(objCopy)[i]
     //определение глубины 
     let depth = 0
-    while (objCopy[key].constructor.name == 'Object') {
+    while (typeof objCopy[key] === 'object' && objCopy[key].constructor.name == 'Object') {
       path = (path == null) ? key : path + '.' + key
       key = Object.keys(objCopy[path])[depth]
       objCopy = objCopy[path]

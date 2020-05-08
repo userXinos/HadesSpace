@@ -76,15 +76,11 @@ let fixValue = [
         func: (v) => v * 6
     },
     {
-        header: ["EffectDurationx10", "EffectDurationx10BS"],
-        func: (v) => v / 10
-    },
-    {
         header: ["ActivationPrepWS", "SpawnLifetime_WS"],
         func: (v) => v * 3600 / 6
     },
     {
-        header: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized"],
+        header: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized", "ShipmentsPerHour", "EffectDurationx10", "EffectDurationx10BS"],
         func: (v) => v / 10
     },
     {
@@ -96,8 +92,8 @@ let fixValue = [
         func: (v) => v / 5
     },
     {
-        header: ["ShipmentsPerHour"],
-        func: (v) => v / 10
+        header: ["TimeSpeedupFactor"],
+        func: (v) => v / 10000
     }
 ]
 let whiteListBS = {
