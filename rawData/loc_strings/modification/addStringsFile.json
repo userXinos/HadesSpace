@@ -59,10 +59,18 @@
         "MaxInfluenceGain": "Max. influence reward",
         "MaxInfluenceLoss": "Max. influence loss",
         "InfluenceAwardThreshold": "Actions for gaining influence",
-        "NumMaxPlanets": "Number of planets",
+        "NumMaxPlanets": "The number of max. planets",
         "NumPlayersWithAccess": "Number of players",
         "GhostSpawnSecs": "Ghost Spawn (RS 10)",
-        "RSLevels": "Red Star levels"
+        "RSLevels": "Red Star levels",
+        "ResearchSlots": "Number of slots for artifacts",
+        "MinPlayerLevel": "Min. player level",
+        "TimeLimitDays": "Days to complete",
+        "artLevel": "Artifact level",
+        "MinRSLevel": "Min. level RS",
+        "MaxRSLevel": "Max. level RS",
+        "module": "Module",
+        "IntParam": "value X"
     },
     "ru": {
         "UnlockPrice": "Стоимость изучения",
@@ -125,10 +133,18 @@
         "MaxInfluenceGain": "Макс. влияния за победу",
         "MaxInfluenceLoss": "Макс. влияния за проигрыш",
         "InfluenceAwardThreshold": "Действия для получения влияния",
-        "NumMaxPlanets": "Количество планет",
+        "NumMaxPlanets": "Число макс. планет",
         "NumPlayersWithAccess": "Количество игроков",
         "GhostSpawnSecs": "Спавн «Призраков» Цербера (КЗ 10)",
-        "RSLevels": "Уровни Красной звезды"
+        "RSLevels": "Уровни Красной звезды",
+        "ResearchSlots": "Количество слотов для артефактов",
+        "MinPlayerLevel": "Мин. уровень игрока",
+        "TimeLimitDays": "Дней на завершение",
+        "artLevel": "Уровень артефакта",
+        "MinRSLevel": "Мин. уровень КЗ",
+        "MaxRSLevel": "Макс. уровень КЗ",
+        "module": "Модуль",
+        "IntParam": "значение X"
     },
     "de": {
         "UnlockPrice": "Preis freischalten",

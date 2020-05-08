@@ -284,6 +284,25 @@ blockquote {
     filter: opacity(.5) drop-shadow(0.1px 0px 0px #6bd7ff);
 }
 
+.spaceBuildings-background {
+    background-image: url(../img/spaceBuilding_background.png);
+}
+
+.timeModulator-background {
+    background-image: url(../img/spaceBuildings_icons/TimeModulatorBackground.png);
+}
+
+.warpLine-background {
+    background-image: url(../img/spaceBuildings_icons/warp1.png);
+    background-position-y: 20px;
+    background-size: 100%;
+}
+
+.warpLine-body {
+    background-image: url(../img/spaceBuildings_icons/warp2.png);
+    background-size: 210%;
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ Список ]*/
 

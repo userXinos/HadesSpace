@@ -80,6 +80,7 @@ function addStrings(obj, lang) {
   }
   let result = {};
   let keys = Object.keys(addStringsToJson)
+
   for (let key of keys) {
     let items = addStringsToJson[key]
     for (let i of items) {
@@ -110,8 +111,7 @@ function fixWorlds(rawStr) {
   // TODO рефакторинг
   function regexFix(str) {
     str = str.replace(/\s<color>\{0\}<\/color>|\s\(<color>\{0\}<\/color> шт\.\)/, '')
-    str = str.replace(/:$/, '')
-    str = str.replace(/\{\d\}/g, '')
+    str = str.replace(/:\s?$/, '')
     return str
   }
 }

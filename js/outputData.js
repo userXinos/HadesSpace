@@ -10,16 +10,19 @@ const data = {
     colonize_prices: import('../data/colonize_pricesData'),
     planet_levels: import('../data/planet_levelsData'),
     artifacts: import('../data/artifactsData'),
-    solar_system_gen_data: import('../data/solar_system_gen_dataData')
+    solar_system_gen_data: import('../data/solar_system_gen_dataData'),
+    spacebuildings: import('../data/spacebuildingsData'),
+    player_goals: import('../data/player_goalsData')
 }
 const iconsData = {
     modules: require('../img/modules_icons/*.png'),
-    ships: require('../img/ships_icons/*.png')
+    ships: require('../img/ships_icons/*.png'),
+    spacebuildings: require('../img/spaceBuildings_icons/*.png')
 }
 
 let ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
 let cerbModules = ['cerbShield', 'cerbWeapon', 'cerbModule'];
-let noFixTables = ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport']
+let noFixTables = ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport', 'WarpLaneHub']
 
 async function generatePageTables(typeData, category = null, elem = null) {
     let obj = await data[typeData]
@@ -28,7 +31,6 @@ async function generatePageTables(typeData, category = null, elem = null) {
     let items = (category != null) ? obj[typeData + 'ByTypes'][category.toLowerCase()] :
         (elem != null) ? [elem] : [Object.keys(obj)[0]]
     let isCerb = (category == 'cerberus');
-
 
     for (let item of items) {
         let module = (category != null || elem != null) ? obj[typeData + 'Data'][item] : obj[typeData + 'Data']
@@ -51,6 +53,9 @@ async function generatePageTables(typeData, category = null, elem = null) {
             case 'ships':
                 if (!isCerb) break;
                 icon = genCerbIcon(icons[module.Model])
+                break;
+            case 'spacebuildings':
+                icon = genModuleIcon(icons[module.Model], true, module.Name)
                 break;
             default:
                 break;
@@ -100,20 +105,37 @@ async function generatePageTables(typeData, category = null, elem = null) {
     $('body > div.gTable').wrap('<div class="tableEnvironment"></div>')
 };
 // сгенерировать html иконки
-function genModuleIcon(url) {
+function genModuleIcon(url, isbuildings, custom) {
+    let classes = 'module-background'
+    let html = `class="module-icon" style="background-image:url(${url})">`
+    if (isbuildings) classes += ' spaceBuildings-background'
+    if (custom == 'TimeModulator') classes += ' timeModulator-background'
+    if (custom == 'WarpLaneHub') {
+        classes += ' warpLine-background'
+        html = 'class="module-icon warpLine-body">'
+    }
     return $('<div/>', {
-        'class': 'module-background',
-        html: `<span class="module-icon" style="background-image:url(${url})"></span>`
+        class: classes,
+        html: `<span ${html}</span>`
     })[0]['outerHTML'];
 };
 function genCerbIcon(url) {
     return $('<div/>', {
-        'class': 'cerberus-background',
+        class: 'cerberus-background',
         html: `<img src="${url}" alt="">`
     })[0]['outerHTML'];
-}
+};
 // исправить написание с новой троки (\n)
 function fixDesc(descRaw) {
+    if (/\{0\}.+?\{1\}.+?\{2\}/.test(descRaw)) {
+        descRaw = descRaw.replace(/(\{0\})(.*)(\{1\})(.+?)(\{2\})/, 'N$2X$4Y')
+    }
+    if (/\{0\}.+?\{1\}/.test(descRaw)) {
+        descRaw = descRaw.replace(/(\{0\})(.*)(\{1\})/, 'N$2X')
+    }
+    if (/\{\d\}/.test(descRaw)) {
+        descRaw = descRaw.replace(/(\{0\})/, 'N')
+    }
     return descRaw.replace(
         /(\\n\\n)(.)|(\\n)(.)/g,
         function (str, n, freistLetter) {
@@ -232,13 +254,14 @@ function fixTime(sec) {
     return result || 0;
 };
 function getFormat(key, value) {
+    //console.log(`${key} : ${value}`)
     let formatList = [
         {
-            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier"],
+            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct"],
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay"],
             func: (v) => fixTime(v)
         },
         {
@@ -246,8 +269,12 @@ function getFormat(key, value) {
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward"],
             func: (v) => Number(v).toLocaleString()
+        },
+        {
+            array: ["MoveHydrogenCostPerSector", "TSHydroCost"],
+            func: (v) => `${v.toLocaleString()} ${getStr("hyd")}.`
         },
         {
             array: ["MiningSpeed"],
@@ -258,7 +285,7 @@ function getFormat(key, value) {
             func: (v) => v + "/100" + getStr("AU")
         },
         {
-            array: ["TimeWarpFactor"],
+            array: ["TimeWarpFactor", "TimeSpeedupFactor"],
             func: (v) => 'x' + v
         },
         {
@@ -312,10 +339,19 @@ function getFormat(key, value) {
             array: ["GhostSpawnSecs"],
             func: (v) => v.replace(/(!)|(\d{1,2})/g,
                 function (match) {
-
                     return (match == '!') ? ", " : `${match} ${getStr('sec')}`;
-
                 })
+        },
+        {
+            array: ["StringParam"],
+            func: (v) => getStr(v.replace(/Cerberus(.*)/, '$1'))
+        },
+        {
+            array: ["module"],
+            func: (v) => {
+                let arr = v.split('!')
+                return `${getStr(arr[0])} ${arr[1]}`
+            }
         },
     ];
     if (value.constructor.name == 'Object') {

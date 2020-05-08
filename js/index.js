@@ -24,7 +24,7 @@ window.generateIndexMenu = function () {
         },
         sections: {
             name: getStr('Sections'),
-            list: ['ships', 'cerberus', 'stars'],
+            list: ['ships', 'cerberus', 'stars', 'spacebuildings', 'playerGoals'],
         }
     }
     for (let item of Object.keys(menuContent)) {
@@ -50,17 +50,35 @@ import { generatePageTables } from '../js/outputData.js';
 window.generatePageTables = generatePageTables
 window.getStr = getStr
 window.setBaseData = async function (typeData, cacategory) {
-    let title = getStr( // hehe (TODO)
-        (typeData == 'modules') ? 'typeMod' + cacategory :
-            (typeData == 'yellowStar') ? 'TID_YELLOW_STAR' :
-                (typeData == 'redStar') ? 'TID_RED_STAR' :
-                    (cacategory == 'player') ? 'ships' :
-                        'cerberus'
-    )
+    let tittle
+    switch (typeData) {
+        case 'modules':
+            title = 'typeMod' + cacategory
+            break;
+        case 'yellowStar':
+            title = 'TID_YELLOW_STAR'
+            break;
+        case 'redStar':
+            title = 'TID_RED_STAR'
+            break;
+        case 'ships':
+            title = (cacategory == 'player') ? 'ships' : 'cerberus'
+            break;
+        case 'spacebuildings':
+            title = 'TID_PRODUCTION_DLG_STATIONS'
+            break;
+        case 'player_goals':
+            title = 'TID_EMPIRE_OBJECTIVES'
+            break;
+        default:
+            title = typeData
+            break;
+    }
+    title = getStr(title)
     $('h2').append(getStr('content'));
     $('h1').append(`${title}`);
     $('body').append(`<title>${title}</title>`);
-    if (typeData == 'modules' || typeData == 'ships') {
+    if (['modules', 'ships', 'spacebuildings', 'player_goals'].includes(typeData)) {
         await generatePageTables(typeData, cacategory);
     }
 }
