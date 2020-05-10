@@ -95,5 +95,7 @@
     "GroupId",
     "GoalType",
     "ModuleReq",
+    "UnlockType",
+    "GoogleID",
     "RushCostModifier"
 ]

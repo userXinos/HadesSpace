@@ -3,27 +3,27 @@ const fs = require("fs")
 const prettier = require('prettier')
 
 const pathCsvs = './rawData/csv/'
-let filesName = [
-  'ships',
-  'modules',
-  'red_star_sectors',
-  'stars',
-  'artifacts',
-  'spacebuildings',
-  'yellow_star_sectors',
-  'achievements',
-  'alliance_levels',
-  'cerb_groups',
-  'planet_levels',
-  'planets',
-  'player_goals',
-  'solar_system_gen_data',
-  'colonize_prices',
-  'blue_star_sectors',
-  'white_star_sectors',
-  'globals'
-]
-//const filesName = ['achievements']
+// let filesName = [
+//   'ships',
+//   'modules',
+//   'red_star_sectors',
+//   'stars',
+//   'artifacts',
+//   'spacebuildings',
+//   'yellow_star_sectors',
+//   'achievements',
+//   'alliance_levels',
+//   'cerb_groups',
+//   'planet_levels',
+//   'planets',
+//   'player_goals',
+//   'solar_system_gen_data',
+//   'colonize_prices',
+//   'blue_star_sectors',
+//   'white_star_sectors',
+//   'globals'
+// ]
+const filesName = ['achievements']
 const pathSave = './data/'
 const modulesPath = './generateGameData.js_modules/'
 const dataByTypes = require(`${pathCsvs}modification/byTypes.js`).default
