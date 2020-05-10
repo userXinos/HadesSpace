@@ -41,6 +41,15 @@ function getStr(key, lang = language) {
 
 function getKey(str) {
     let stringKeys = {
+        NumToSpawn: 'TID_SPAWNER_NUM_SPAWNED',
+        SpawnDelay: 'TID_SPAWNER_DELAY',
+        RadiusMax: 'TID_SPAWNER_MAX_RADIUS',
+        alliancelevels: 'TID_CORP_LEVELS_LABEL',
+        RelicsRequired: 'TID_RELIC_DLG_TITLE',
+        MaxMembers: 'TID_CORP_MAX_MEMBERS',
+        PassiveIncomeModifier: 'TID_CORP_PASSIVE_INCOME_BONUS',
+        ArtifactYieldBonus: 'TID_CORP_ARTIFACT_YIELD_BONUS',
+        MaxFlagshipLevel: 'TID_CORP_MAX_FLAGSHIP_LEVEL',
         achievements: 'TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS',
         UnlockAmount: 'TID_TRADE_DLG_DESTINATION_COLUMN',
         PCReward: 'TID_HUD_CRYSTALS',

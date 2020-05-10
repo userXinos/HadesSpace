@@ -441,7 +441,7 @@ a:active {
     visibility: visible;
     margin: 0;
     color: #000;
-    z-index: 2;
+    z-index: 10;
     top: 64px;
     left: 0;
 }
@@ -523,6 +523,10 @@ a:active {
     line-height: 18px;
     text-align: center;
     cursor: pointer;
+}
+
+.langs>ul {
+    z-index: 10;
 }
 
 .buttonLangs:hover {

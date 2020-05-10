@@ -24,7 +24,7 @@ window.generateIndexMenu = function () {
         },
         sections: {
             name: getStr('Sections'),
-            list: ['ships', 'cerberus', 'stars', 'spacebuildings', 'playerGoals', 'achievements'],
+            list: ['ships', 'cerberus', 'stars', 'spacebuildings', 'playerGoals', 'achievements', 'alliancelevels'],
         }
     }
     for (let item of Object.keys(menuContent)) {
@@ -70,6 +70,9 @@ window.setBaseData = async function (typeData, cacategory) {
         case 'player_goals':
             title = 'TID_EMPIRE_OBJECTIVES'
             break;
+        case 'alliance_levels':
+            title = 'TID_CORP_LEVELS_LABEL'
+            break;
         default:
             title = typeData
             break;
@@ -78,7 +81,7 @@ window.setBaseData = async function (typeData, cacategory) {
     $('h2').append(getStr('content'));
     $('h1').append(`${title}`);
     $('body').append(`<title>${title}</title>`);
-    if (['modules', 'ships', 'spacebuildings', 'player_goals', 'achievements'].includes(typeData)) {
+    if (['modules', 'ships', 'spacebuildings', 'player_goals', 'achievements', 'alliance_levels'].includes(typeData)) {
         await generatePageTables(typeData, cacategory);
     }
 }

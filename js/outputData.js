@@ -13,7 +13,8 @@ const data = {
     solar_system_gen_data: import('../data/solar_system_gen_dataData'),
     spacebuildings: import('../data/spacebuildingsData'),
     player_goals: import('../data/player_goalsData'),
-    achievements: import('../data/achievementsData')
+    achievements: import('../data/achievementsData'),
+    alliance_levels: import('../data/alliance_levelsData')
 }
 const iconsData = {
     modules: require('../img/modules_icons/*.png'),
@@ -167,7 +168,7 @@ async function addModuleCerb(typeCerbModule) {
             html: `<b>${getStr(typeCerbModule.name)}</b>:`
         }));
         let module = await data.modules
-        module = module.modulesData[typeCerbModule.name]
+        module = module.data[typeCerbModule.name]
         for (let key in module) {
             if (ignoringHeaders.includes(key)) continue
             $('body').append($('<h2/>', {
@@ -248,11 +249,11 @@ function getFormat(key, value) {
     //console.log(`${key} : ${value}`)
     let formatList = [
         {
-            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct"],
+            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct", "ArtifactYieldBonus"],
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec"],
             func: (v) => fixTime(v)
         },
         {
@@ -260,7 +261,7 @@ function getFormat(key, value) {
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward", "RelicsRequired"],
             func: (v) => Number(v).toLocaleString()
         },
         {
@@ -343,6 +344,10 @@ function getFormat(key, value) {
                 let arr = v.split('!')
                 return `${getStr(arr[0])} ${arr[1]}`
             }
+        },
+        {
+            array: ["PassiveIncomeModifier"],
+            func: (v) => `+${v}%`
         },
     ];
     if (value.constructor.name == 'Object') {
