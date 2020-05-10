@@ -223,6 +223,11 @@ let data = {
     InfluencePoints: 0,
     maxLevel: 1,
     Battery: 3,
+    NumToSpawn: 15,
+    SpawnDelay: 40,
+    RadiusMax: 90,
+    MoveUpdateSec: 5,
+    GhostSpawnSecs: "90!80!70!65!60!60!60!50!50!45!45!45!40!40!35!35!35!30",
   },
   CorpFlagship: {
     Name: "CorpFlagship",

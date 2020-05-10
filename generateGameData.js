@@ -23,7 +23,7 @@ const pathCsvs = './rawData/csv/'
 //   'white_star_sectors',
 //   'globals'
 // ]
-const filesName = ['achievements']
+const filesName = ['ships']
 const pathSave = './data/'
 const modulesPath = './generateGameData.js_modules/'
 const dataByTypes = require(`${pathCsvs}modification/byTypes.js`).default
@@ -89,6 +89,9 @@ function generateFiles(pathCsvs, files, pathSave) {
       case 'player_goals':
         generatePlayer_goals()
         break;
+      case 'alliance_levels':
+        generateAlliance_levels()
+        break;
 
       default:
         break;
@@ -108,7 +111,9 @@ function generateFiles(pathCsvs, files, pathSave) {
     function generateShips() {
       json = ships({
         rawData: json,
-        cerberusList: dataByTypes[file]['cerberus']
+        cerberusList: dataByTypes[file]['cerberus'],
+        ship_spawners: CSVtoJSON(fs.readFileSync(`${pathCsvs}ship_spawners.csv`, "utf8")),
+        GhostSpawnSecs: CSVtoJSON(fs.readFileSync(`${pathCsvs}solar_system_gen_data.csv`, "utf8"))['RedStar']['GhostSpawnSecs']
       })
     }
     function generateSolarSys(str) {
@@ -139,6 +144,7 @@ function generateFiles(pathCsvs, files, pathSave) {
       fillSpace(json.RedStar, ' ')
       pushArrays(json.RedStar, 'RegularInfuenceRange', 'RegularInfuenceRange_Min', 'RegularInfuenceRange_Max')
       pushArrays(json.RedStar, 'InfluenceAwardThreshold', 'InfluenceAwardThreshold_Min', 'InfluenceAwardThreshold_Max')
+      delete json.RedStar.GhostSpawnSecs // лучше пусть будет в ships
     }
     function generateSpaceBuildings() {
       json = spaceBuildings({
@@ -155,6 +161,10 @@ function generateFiles(pathCsvs, files, pathSave) {
         rawData: json,
         needFix: dataByTypes[file]['all']
       })
+    }
+    function generateAlliance_levels() {
+      json = compileOne(json)
+      json.Name = 'alliance_levels'
     }
   }
 }

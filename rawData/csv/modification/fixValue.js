@@ -80,7 +80,7 @@ let fixValue = [
         func: (v) => v * 3600 / 6
     },
     {
-        header: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized", "ShipmentsPerHour", "EffectDurationx10", "EffectDurationx10BS"],
+        header: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized", "ShipmentsPerHour", "EffectDurationx10", "EffectDurationx10BS", "RadiusMax"],
         func: (v) => v / 10
     },
     {
@@ -94,6 +94,10 @@ let fixValue = [
     {
         header: ["TimeSpeedupFactor"],
         func: (v) => v / 10000
+    },
+    {
+        header: ["PassiveIncomeModifier"],
+        func: (v) => v - 100
     }
 ]
 let whiteListBS = {

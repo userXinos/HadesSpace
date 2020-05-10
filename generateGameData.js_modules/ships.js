@@ -6,6 +6,11 @@ function generateShips(args) {
     obj = fixModulesShipsData(obj, cerb, 'InitialModule', 'InitialModuleLevels')
   }
   obj = fixModulesShipsData(obj, 'CorpFlagship', 'FlagshipModules', 'FlagshipModuleLevels')
+  Object.keys(args.ship_spawners.Ghosts).forEach(k => {
+    if (!ignoringHeaders.includes(k))
+      obj.CerberusGhosts[k] = args.ship_spawners.Ghosts[k]
+  })
+  obj.CerberusGhosts.GhostSpawnSecs = args.GhostSpawnSecs
   return obj
 }
 
