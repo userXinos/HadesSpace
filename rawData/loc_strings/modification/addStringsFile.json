@@ -61,7 +61,7 @@
         "InfluenceAwardThreshold": "Actions for gaining influence",
         "NumMaxPlanets": "The number of max. planets",
         "NumPlayersWithAccess": "Number of players",
-        "GhostSpawnSecs": "Ghost Spawn (RS 10)",
+        "GhostSpawnSecs": "Ghost Spawn",
         "RSLevels": "Red Star levels",
         "ResearchSlots": "Number of slots for artifacts",
         "MinPlayerLevel": "Min. player level",
@@ -70,7 +70,8 @@
         "MinRSLevel": "Min. level RS",
         "MaxRSLevel": "Max. level RS",
         "module": "Module",
-        "IntParam": "value X"
+        "IntParam": "Value X",
+        "MoveUpdateSec": "Move delay"
     },
     "ru": {
         "UnlockPrice": "Стоимость изучения",
@@ -135,7 +136,7 @@
         "InfluenceAwardThreshold": "Действия для получения влияния",
         "NumMaxPlanets": "Число макс. планет",
         "NumPlayersWithAccess": "Количество игроков",
-        "GhostSpawnSecs": "Спавн «Призраков» Цербера (КЗ 10)",
+        "GhostSpawnSecs": "Спавн «Призраков» Цербера",
         "RSLevels": "Уровни Красной звезды",
         "ResearchSlots": "Количество слотов для артефактов",
         "MinPlayerLevel": "Мин. уровень игрока",
@@ -144,7 +145,8 @@
         "MinRSLevel": "Мин. уровень КЗ",
         "MaxRSLevel": "Макс. уровень КЗ",
         "module": "Модуль",
-        "IntParam": "значение X"
+        "IntParam": "Значение X",
+        "MoveUpdateSec": "Задержка движения"
     },
     "de": {
         "UnlockPrice": "Preis freischalten",
