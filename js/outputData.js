@@ -12,7 +12,8 @@ const data = {
     artifacts: import('../data/artifactsData'),
     solar_system_gen_data: import('../data/solar_system_gen_dataData'),
     spacebuildings: import('../data/spacebuildingsData'),
-    player_goals: import('../data/player_goalsData')
+    player_goals: import('../data/player_goalsData'),
+    achievements: import('../data/achievementsData')
 }
 const iconsData = {
     modules: require('../img/modules_icons/*.png'),
@@ -28,12 +29,11 @@ async function generatePageTables(typeData, category = null, elem = null) {
     let obj = await data[typeData]
     let icons = await iconsData[typeData]
 
-    let items = (category != null) ? obj[typeData + 'ByTypes'][category.toLowerCase()] :
+    let items = (category != null) ? obj.byTypes[category.toLowerCase()] :
         (elem != null) ? [elem] : [Object.keys(obj)[0]]
     let isCerb = (category == 'cerberus');
-
     for (let item of items) {
-        let module = (category != null || elem != null) ? obj[typeData + 'Data'][item] : obj[typeData + 'Data']
+        let module = (category != null || elem != null) ? obj.data[item] : obj.data
         let icon = '';
         let id, typeCerbModule, lvlStyle, lvlCol, modifier
 
@@ -127,15 +127,6 @@ function genCerbIcon(url) {
 };
 // исправить написание с новой троки (\n)
 function fixDesc(descRaw) {
-    if (/\{0\}.+?\{1\}.+?\{2\}/.test(descRaw)) {
-        descRaw = descRaw.replace(/(\{0\})(.*)(\{1\})(.+?)(\{2\})/, 'N$2X$4Y')
-    }
-    if (/\{0\}.+?\{1\}/.test(descRaw)) {
-        descRaw = descRaw.replace(/(\{0\})(.*)(\{1\})/, 'N$2X')
-    }
-    if (/\{\d\}/.test(descRaw)) {
-        descRaw = descRaw.replace(/(\{0\})/, 'N')
-    }
     return descRaw.replace(
         /(\\n\\n)(.)|(\\n)(.)/g,
         function (str, n, freistLetter) {
@@ -269,7 +260,7 @@ function getFormat(key, value) {
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward"],
             func: (v) => Number(v).toLocaleString()
         },
         {

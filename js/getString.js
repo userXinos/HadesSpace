@@ -41,6 +41,10 @@ function getStr(key, lang = language) {
 
 function getKey(str) {
     let stringKeys = {
+        achievements: 'TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS',
+        UnlockAmount: 'TID_TRADE_DLG_DESTINATION_COLUMN',
+        PCReward: 'TID_HUD_CRYSTALS',
+        XPReward: 'XPAward',
         spacebuildings: 'TID_PRODUCTION_DLG_STATIONS',
         playerGoals: 'TID_EMPIRE_OBJECTIVES',
         EMP: 'TID_MODULE_EMP',

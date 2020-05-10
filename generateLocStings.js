@@ -108,10 +108,19 @@ function fixWorlds(rawStr) {
     return regexFix(result);
   }
   return lower;
-  // TODO рефакторинг
+  // TODO рефакторинг 2
   function regexFix(str) {
     str = str.replace(/\s<color>\{0\}<\/color>|\s\(<color>\{0\}<\/color> шт\.\)/, '')
     str = str.replace(/:\s?$/, '')
+    if (/\{0\}.+?\{1\}.+?\{2\}/.test(str)) {
+      str = str.replace(/(\{0\})(.*)(\{1\})(.+?)(\{2\})/, 'N$2X$4Y')
+    }
+    if (/\{0\}.+?\{1\}/.test(str)) {
+      str = str.replace(/(\{0\})(.*)(\{1\})/, 'N$2X')
+    }
+    if (/\{\d\}/.test(str)) {
+      str = str.replace(/(\{0\})/, 'N')
+    }
     return str
   }
 }

@@ -24,7 +24,7 @@ window.generateIndexMenu = function () {
         },
         sections: {
             name: getStr('Sections'),
-            list: ['ships', 'cerberus', 'stars', 'spacebuildings', 'playerGoals'],
+            list: ['ships', 'cerberus', 'stars', 'spacebuildings', 'playerGoals', 'achievements'],
         }
     }
     for (let item of Object.keys(menuContent)) {
@@ -78,7 +78,7 @@ window.setBaseData = async function (typeData, cacategory) {
     $('h2').append(getStr('content'));
     $('h1').append(`${title}`);
     $('body').append(`<title>${title}</title>`);
-    if (['modules', 'ships', 'spacebuildings', 'player_goals'].includes(typeData)) {
+    if (['modules', 'ships', 'spacebuildings', 'player_goals', 'achievements'].includes(typeData)) {
         await generatePageTables(typeData, cacategory);
     }
 }

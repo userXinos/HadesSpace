@@ -22,13 +22,13 @@ menu.querySelectorAll('li > a > span')[0]['innerHTML'] = getStr('home');
 
 let typeModules = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
 for (let typeMod of typeModules) {
-    let modules = modulesData.modulesByTypes[typeMod.toLowerCase()];
+    let modules = modulesData.byTypes[typeMod.toLowerCase()];
     let name = getStr('typeMod' + typeMod);
     let path = `${typeMod.toLowerCase()}.html`;
     let heading = `<a href="${path}"><span>${name}</span></a><ul class="subMenu">`;
     let list = heading;
     for (let i of modules) {
-        let module = modulesData.modulesData[i]
+        let module = modulesData.data[i]
         let name = getStr(module.TID);
         list += `<li><a href="${path}#${module.Name}"><span>${name}</span></a></li>`
     }
