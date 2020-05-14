@@ -2,7 +2,7 @@
 
 const mainJs = require('../generateGameData.js')
 
-function fixTimeSpaceBuildings(args) {
+exports.default = function (args) {
     let obj = args.rawData
 
     let timeFixModifiers = {
@@ -19,9 +19,9 @@ function fixTimeSpaceBuildings(args) {
                     obj1[newValue] = []
                 }
                 if (Array.isArray(obj1[k])) {
-                    for (let i in obj1[k]) {
-                        obj1['ConstructionTime'].push(obj1[k][i] * timeFixModifiers[k])
-                    }
+                    obj1[k].forEach((e, i) => {
+                        obj1[newValue].push(obj1[k][i] * timeFixModifiers[k])
+                    })
                 } else {
                     obj1[newValue].push(obj1[k] * timeFixModifiers[k])
                 }
@@ -43,6 +43,3 @@ function fixTimeSpaceBuildings(args) {
     obj.TimeModulator.Model = 'TimeModulator'
     return obj
 }
-
-
-exports.default = fixTimeSpaceBuildings

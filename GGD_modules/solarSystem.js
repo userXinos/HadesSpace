@@ -1,4 +1,6 @@
-function generateSolarSys(args) {
+"use strict";
+
+exports.default = function (args) {
   let result = {}
   let obj = args.rawData
 
@@ -18,9 +20,7 @@ function generateSolarSys(args) {
         }
       }
     }
-    if (args.star == 'yellow') {
-      addScannerInfo(name.MinScannerLevel, args.scannersData)
-    }
+    if (args.star == 'yellow') addScannerInfo(name.MinScannerLevel, args.scannersData)
     addCerberus(name.CerbGroup, args.cerberusData)
     endObj()
   }
@@ -28,9 +28,8 @@ function generateSolarSys(args) {
   result['maxLevel'] = result['maxLevel'].length
   result['Name'] = args.star + 'StarSectors'
   if (result['MinScannerLevel'] != undefined) {
-    result['MinScannerLevel'].forEach((e, i, arr) => {
-      if (e !== ' ')
-        arr[i] = e + 1
+    result['MinScannerLevel'].map(e => {
+      if (e !== ' ') e + 1
     });
   }
   return result;
@@ -88,17 +87,11 @@ function generateSolarSys(args) {
   }
 }
 function getType(v) {
-  // if(!isNaN(v) && v !== ' '){
-  //   return 0
-  // }
   return ' '
 }
-function getLength(v) {
-  let r
+function getLength(v, r = null) {
   if (v != undefined) {
     r = v.length
   }
   return r || 0
 }
-
-exports.default = generateSolarSys 

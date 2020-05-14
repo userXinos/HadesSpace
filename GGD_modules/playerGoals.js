@@ -2,12 +2,12 @@
 
 const mainJs = require('../generateGameData.js')
 
-function generatePlayerGoals(args) {
+exports.default = function (args) {
     let obj = args.rawData
     let whiteList = args.needFix
     let newKeys = {
-        'CRRewardPerDay': 'CRReward',
-        'FuelRewardPerDay': 'FuelReward'
+        CRRewardPerDay: 'CRReward',
+        FuelRewardPerDay: 'FuelReward'
     }
 
     for (let k of Object.keys(obj)) {
@@ -41,5 +41,3 @@ function generatePlayerGoals(args) {
     }
     return obj
 }
-
-exports.default = generatePlayerGoals

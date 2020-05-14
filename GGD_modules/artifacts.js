@@ -2,40 +2,36 @@
 
 const mainJs = require('../generateGameData.js')
 
-function generateArtifacts(args) {
+exports.default = function (args) {
     let obj = args.rawData
     let artsTypes = args.artsByTypes
     let tableNames = args.blueprints
     let result = {}
 
-    for (let startName of artsTypes) {
-        let keys = []
-        let tmp = {}
+    for (let name of artsTypes) {
+        let obj1 = {} // собрать объекты одного типа в одном месте 
 
-        Object.keys(obj).forEach(e => {
-            if (e.startsWith(startName))
-                keys.push(e)
+        let keys = Object.keys(obj).map(e => {
+            if (e.startsWith(name))
+                return e
         });
-        keys.forEach(k => {
-            tmp[k] = obj[k]
-        });
-        result[startName] = mainJs.compileOne(tmp)
-
-        result[startName]['Name'] = startName
-        result[startName]['TID_Description'] = result[startName]['TID_Description'][0]
-        delete result[startName]['Model']
+        keys.forEach(k => obj1[k] = obj[k]);
+        result[name] = mainJs.compileOne(obj1)
+        result[name]['Name'] = name
+        result[name]['TID_Description'] = result[name]['TID_Description'][0]
+        delete result[name]['Model']
     }
     return fixBlueprintsCredHydroMinMax(result, tableNames)
 }
 function fixBlueprintsCredHydroMinMax(obj, tableNames) {
     for (let a of Object.keys(obj)) {
-        let art = obj[a]
-        let minArr = art.BlueprintsMin
-        let maxArr = art.BlueprintsMax
+        let obj1 = obj[a]
+        let minArr = obj1.BlueprintsMin
+        let maxArr = obj1.BlueprintsMax
         let blueprints = {} // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
 
-        mainJs.pushArrays(art, 'Credits', 'CreditsMin', 'CreditsMax')
-        mainJs.pushArrays(art, 'Hydrogen', 'HydrogenMin', 'HydrogenMax')
+        mainJs.pushArrays(obj1, 'Credits', 'CreditsMin', 'CreditsMax')
+        mainJs.pushArrays(obj1, 'Hydrogen', 'HydrogenMin', 'HydrogenMax')
         for (let i = 0; i < minArr.length; i++) {
             let min = String(minArr[i]).split('!')
             let max = String(maxArr[i]).split('!')
@@ -46,11 +42,10 @@ function fixBlueprintsCredHydroMinMax(obj, tableNames) {
             blueprints[i + 1] = arr
         }
         let i = Object.keys(obj).indexOf(a);
-        blueprints.maxLevel = art.maxLevel
+        blueprints.maxLevel = obj1.maxLevel
         obj[tableNames[i]] = mainJs.fillSpace(blueprints, ' ', 'push')
         obj[tableNames[i]]['Name'] = tableNames[i];
-        ['BlueprintsMin', 'BlueprintsMax'].forEach(e => delete art[e]);
+        ['BlueprintsMin', 'BlueprintsMax'].forEach(e => delete obj1[e]);
     }
     return obj
 }
-exports.default = generateArtifacts
