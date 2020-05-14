@@ -5,7 +5,7 @@ const prettier = require('prettier')
 var pathCSVs = './rawData/csv/'
 var pathSave = './data/'
 var modulesPath = './GGD_modules/'
-var optionalFiles = ['cerberus_stations.csv', 'projectiles.csv', 'ship_spawners.csv']
+var optionalFiles = ['cerberus_stations.csv', 'projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv']
 var dataByTypes = require(`${pathCSVs}modification/byTypes.js`).default
 global.ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model']
 
@@ -18,7 +18,7 @@ module.exports = {
   pushArrays
 }
 
-let f = ['spacebuildings.csv']
+let f = ['stars.csv']
 generateFiles(pathCSVs, pathSave)
 
 async function generateFiles(pathCSVs, pathSave, files) {
@@ -32,7 +32,7 @@ async function generateFiles(pathCSVs, pathSave, files) {
     planet_levels: fixPlanet_levels,
     planets: fixPlanets,
     artifacts: fixArtifacts,
-    solar_system_gen_data: fixSolar_system_gen_data,
+    stars: fixStars,
     spacebuildings: fixSpaceBuildings,
     globals: fixGlobals,
     player_goals: fixPlayer_goals,
@@ -114,12 +114,12 @@ async function generateFiles(pathCSVs, pathSave, files) {
       blueprints: dataByTypes[file]['blueprints']
     })
   }
-  function fixSolar_system_gen_data(obj) {
-    fillSpace(obj.RedStar, ' ')
-    pushArrays(obj.RedStar, 'RegularInfuenceRange', 'RegularInfuenceRange_Min', 'RegularInfuenceRange_Max')
-    pushArrays(obj.RedStar, 'InfluenceAwardThreshold', 'InfluenceAwardThreshold_Min', 'InfluenceAwardThreshold_Max')
-    delete obj.RedStar.GhostSpawnSecs // лучше пусть будет в ships
-    return obj
+  function fixStars(obj) {
+    let func = require(`${modulesPath}stars.js`).default
+    return func({
+      rawData: obj,
+      solarSysGenData: CSVtoJSON(fs.readFileSync(`${pathCSVs}solar_system_gen_data.csv`, "utf8")),
+    })
   }
   function fixSpaceBuildings(obj) {
     let func = require(`${modulesPath}spaceBuildings`).default
@@ -173,7 +173,6 @@ export {${addData['export']}}
     () => console.log(`Файл "${file}" создан`)
   )
 }
-
 // парсер из таблицы в обектJS
 function CSVtoJSON(csv) {
   let data = csv.split('\n');
@@ -215,7 +214,6 @@ function CSVtoJSON(csv) {
   }
   return removeDupsFromArrays(jsonObj)
 }
-
 // скрыть/исправить значения для красоты результата
 function fixValue(name, header, value) {
   if (ignoringHeaders.includes(header)) {
@@ -299,7 +297,6 @@ function addContent(obj, needData) {
   result['export'] += ', byTypes'
   return result
 }
-
 function combineObjects(obj1, obj2) {
   for (var p in obj2) {
     try {
@@ -315,7 +312,6 @@ function combineObjects(obj1, obj2) {
   }
   return obj1
 }
-
 function renameKeys(obj, newKeys) {
   const keyValues = Object.keys(obj).map(key => {
     const newKey = newKeys[key] || key
@@ -323,14 +319,12 @@ function renameKeys(obj, newKeys) {
   })
   return Object.assign({}, ...keyValues)
 }
-
 // глобально скрытые значения - не имеют важности
 function isTrashHeader(str) {
   let trashHeaders = JSON.parse(fs.readFileSync(`${pathCSVs}modification/trashHeaders.json`, "utf8").toLowerCase())
   str = str.toLowerCase()
   return (trashHeaders.includes(str) || str.startsWith('is') || str.includes('fx'))
 }
-
 // исправление порядка объекта
 function fixOrder(obj) {
   let headers = JSON.parse(fs.readFileSync(`${pathCSVs}modification/headersOrder.json`, "utf8"));

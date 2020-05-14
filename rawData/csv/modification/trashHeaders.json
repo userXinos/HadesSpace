@@ -98,6 +98,7 @@
     "UnlockType",
     "GoogleID",
     "ModelToSpawn",
+    "SecurityRating",
     "RadiusMin",
     "RushCostModifier"
 ]
