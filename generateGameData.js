@@ -445,11 +445,10 @@ function fillSpace(obj, spaceSymbol = 0, method = 'unshift') {
   }
   return obj
 }
-// объединить однотипные массивы, нужен рефакторинг для адекватного форматирования
-function pushArrays(obj, newName, key1, key2, symbol = '-') {
+function pushArrays(obj, newName, key1, key2) {
   obj[newName] = []
   for (let i = 0; i < obj.maxLevel; i++) {
-    obj[newName].push(obj[key1][i] + symbol + obj[key2][i])
+    obj[newName].push(obj[key1][i] + '!' + obj[key2][i])
   }
   [key1, key2].forEach(e => delete obj[e]);
   return obj

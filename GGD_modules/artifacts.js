@@ -37,7 +37,7 @@ function fixBlueprintsCredHydroMinMax(obj, tableNames) {
             let max = String(maxArr[i]).split('!')
             let arr = []
             for (let j = 0; j < min.length; j++) {
-                arr.push(min[j] + '-' + max[j])
+                arr.push(min[j] + '!' + max[j])
             }
             blueprints[i + 1] = arr
         }
