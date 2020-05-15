@@ -15,7 +15,8 @@ module.exports = {
   isHide,
   compileOne,
   fillSpace,
-  pushArrays
+  pushArrays,
+  fixValue
 }
 
 let f = ['stars.csv']
@@ -68,6 +69,17 @@ async function generateFiles(pathCSVs, pathSave, files) {
       })
     })
   }
+  function getGlobalsBy(str) {
+    let obj = CSVtoJSON(fs.readFileSync(`${pathCSVs}globals.csv`, "utf8"))
+    fixGlobals(obj)
+    let result = {}
+    Object.keys(obj).forEach(e => {
+      if (e.includes(str)) {
+        result[e] = obj[e]
+      }
+    })
+    return result
+  }
   function fixModules(obj) {
     let func = require(`${modulesPath}modules.js`).default
     return func({
@@ -119,6 +131,11 @@ async function generateFiles(pathCSVs, pathSave, files) {
     return func({
       rawData: obj,
       solarSysGenData: CSVtoJSON(fs.readFileSync(`${pathCSVs}solar_system_gen_data.csv`, "utf8")),
+      globals: {
+        BlueStar: getGlobalsBy('BlueStar_'),
+        WhiteStar: getGlobalsBy('WS'),
+        RedStar: getGlobalsBy('RS')
+      }
     })
   }
   function fixSpaceBuildings(obj) {

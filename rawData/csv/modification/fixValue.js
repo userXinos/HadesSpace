@@ -46,7 +46,15 @@ let hide = [
     {
         name: ['CerberusGuardian', 'CerberusInterceptor', 'CerberusDestroyer', 'CerberusBomber', 'CerberusStorm', 'CerberusGhosts', 'CerberusPhoenix'],
         headers: ['ApplyModuleOnDockedObjectDestroy', 'OnDestroySpawnMinRadius', 'OnDestroySpawnMaxRadius']
-    }
+    },
+    {
+        name: ['BlueStar'],
+        headers: ['HydrogenSearchCost', 'MaxBattleshipsPerPlayer']
+    },
+    {
+        name: ['BlueStar', 'RedStar', 'WhiteStar'],
+        headers: ['WSShipEventCRRewards', 'WSShipEventTopBrackets', 'WSHQAsteroidsPerBucket', 'FleetDepartTimeInSeconds_WS', 'MaxWaypointsWS', 'DontAllowUseOfEnemyWSGate', 'WSShipXPCollectEnabled', 'WSShipMinXP', 'WSShipXPEventClientDisplayMode', 'WSShipXPEventVersion', 'BlueStar_HydroPctPerMatch', 'DisableRSSearchDuringTutorial', 'WarnOnSRSPlacementMinNumNeighbors', 'PrivateRSEventClientDisplayMode']
+    },
 ];
 let hide2 = [
     {
@@ -98,6 +106,10 @@ let fixValue = [
     {
         header: ["PassiveIncomeModifier"],
         func: (v) => v - 100
+    },
+    {
+        header: ["BlueStar_HydroPctPerPos"],
+        func: (v) => v / 10
     }
 ]
 let whiteListBS = {
