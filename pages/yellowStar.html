@@ -32,7 +32,7 @@
             </ul>
           </div>
         </li>
-        <select class="compactLangs" onchange="func2(value)">
+        <select class="compactLangs" onchange="getLangVal(value)">
           <option>language</option>
         </select>
         <li><a href='index.html'><span>Home</span></a></li>
@@ -41,27 +41,23 @@
     </label>
   </nav>
   <h1 id="title"></h1>
-  <img class="portrait" src="../img/portraits/YSSectors.png" alt="cerberus">
+  <img class="portrait" src="../img/portraits/yellowStar.png" alt="cerberus">
   <h2></h2>
   <div class="list">
     <ol></ol>
   </div>
   <a href="#" id="buttonTop"></a>
   <script type="module">
-    setBaseData('yellowStar')
-    generateTables()
-
-    async function generateTables() {
-      let locString = ['sectors', 'lvlsPlanets', 'planets', 'colonizationPlanets']
-      let tables = [['yellow_star_sectors'], ['planet_levels'], ['planets', null, 'yellowstarTable'], ['colonize_prices']]
-
-      genDesc('TID_YELLOW_STAR_DESCR')
-      for (let i in locString) {
-        genTitle(`<a href="#${locString[i]}" name="${locString[i]}">${getStr(locString[i])}</a>`)
-        genOl(`<span><a href="#${locString[i]}">${getStr(locString[i])}</a></span>`)
-        await generatePageTables.apply(this, tables[i]);
-      }
-    }
+    setBaseData('stars', null, 'YellowStar')
+      .finally(async () => {
+        let locString = ['sectors', 'lvlsPlanets', 'planets', 'colonizationPlanets']
+        let tables = [['yellow_star_sectors'], ['planet_levels'], ['planets', null, 'yellowstarTable'], ['colonize_prices']]
+        for (let i in locString) {
+          genTitle(`<a href="#${locString[i]}" name="${locString[i]}">${getStr(locString[i])}</a>`)
+          genOl(`<span><a href="#${locString[i]}">${getStr(locString[i])}</a></span>`)
+          await generatePageTables.apply(null, tables[i]);
+        }
+      })
 
   </script>
 

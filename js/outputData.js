@@ -10,7 +10,7 @@ const data = {
     colonize_prices: import('../data/colonize_pricesData'),
     planet_levels: import('../data/planet_levelsData'),
     artifacts: import('../data/artifactsData'),
-    solar_system_gen_data: import('../data/solar_system_gen_dataData'),
+    stars: import('../data/starsData'),
     spacebuildings: import('../data/spacebuildingsData'),
     player_goals: import('../data/player_goalsData'),
     achievements: import('../data/achievementsData'),
@@ -19,7 +19,8 @@ const data = {
 const iconsData = {
     modules: require('../img/modules_icons/*.png'),
     ships: require('../img/ships_icons/*.png'),
-    spacebuildings: require('../img/spaceBuildings_icons/*.png')
+    spacebuildings: require('../img/spaceBuildings_icons/*.png'),
+    stars: require('../img/stars_icons/*.png')
 }
 
 let ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
@@ -41,7 +42,7 @@ async function generatePageTables(typeData, category = null, elem = null) {
         if (isCerb) {
             typeCerbModule = { name: null, type: null };
         }
-        if (['planets', 'colonize_prices', 'yellow_star_sectors', 'artifacts'].includes(typeData)) {
+        if (['planets', 'colonize_prices', 'yellow_star_sectors', 'artifacts', 'stars'].includes(typeData)) {
             lvlCol = '№'
             lvlStyle = 'style="padding-left: 37px"'
         }
@@ -56,7 +57,10 @@ async function generatePageTables(typeData, category = null, elem = null) {
                 icon = genCerbIcon(icons[module.Model])
                 break;
             case 'spacebuildings':
-                icon = genModuleIcon(icons[module.Model], true, module.Name)
+                icon = genModuleIcon(icons[module.Model], false, module.Name)
+                break;
+            case 'stars':
+                icon = genModuleIcon(icons[module.Icon], false, module.Name)
                 break;
             default:
                 break;
@@ -106,11 +110,11 @@ async function generatePageTables(typeData, category = null, elem = null) {
     $('body > div.gTable').wrap('<div class="tableEnvironment"></div>')
 };
 // сгенерировать html иконки
-function genModuleIcon(url, isbuildings, custom) {
+function genModuleIcon(url, isModules, custom) {
     let classes = 'module-background'
     let html = `class="module-icon" style="background-image:url(${url})">`
-    if (isbuildings) classes += ' spaceBuildings-background'
-    if (custom == 'TimeModulator') classes += ' timeModulator-background'
+    if (!isModules) classes += ' spaceBuildings-background'
+    if (custom == 'TimeModulator' || custom.endsWith('Star')) classes += ' round-background'
     if (custom == 'WarpLaneHub') {
         classes += ' warpLine-background'
         html = 'class="module-icon warpLine-body">'
@@ -249,11 +253,11 @@ function getFormat(key, value) {
     //console.log(`${key} : ${value}`)
     let formatList = [
         {
-            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct", "ArtifactYieldBonus"],
+            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct", "ArtifactYieldBonus", "BlueStar_CRRewardRate", "BlueStar_MaxHydroPerDayPct", "BlueStar_HydroPctPerPos"],
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown"],
             func: (v) => fixTime(v)
         },
         {
@@ -261,7 +265,7 @@ function getFormat(key, value) {
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward", "RelicsRequired"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward", "RelicsRequired", "Score1Thresholds", "Score2Thresholds", "Score2Thresholds"],
             func: (v) => Number(v).toLocaleString()
         },
         {
@@ -277,7 +281,7 @@ function getFormat(key, value) {
             func: (v) => v + "/100" + getStr("AU")
         },
         {
-            array: ["TimeWarpFactor", "TimeSpeedupFactor"],
+            array: ["TimeWarpFactor", "TimeSpeedupFactor", "TimeSlowdownFactor"],
             func: (v) => 'x' + v
         },
         {
@@ -304,6 +308,7 @@ function getFormat(key, value) {
                 for (let item of items) {
                     if (item == ' ') return ' '
                     item = item.split('_')
+                    if (item.length == 1) item.push(item[0])
                     result.push(`${getStr(item[0])} ${getStr('lvl')}. ${item[1].slice(-1)}`)
                 }
                 return result.join(', ')
@@ -349,6 +354,28 @@ function getFormat(key, value) {
             array: ["PassiveIncomeModifier"],
             func: (v) => `+${v}%`
         },
+        {
+            array: ["Hydrogen", "Credits", "RegularInfuenceRange", "InfluenceAwardThreshold", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            func: (v) => {
+                let arr = v.split('!')
+                arr = arr.map(e => {
+                    if (e != ' ') {
+                        return Number(e).toLocaleString()
+                    } else {
+                        return null
+                    }
+                })
+                return `${arr[0] || ''}-${arr[1] || ''}`
+            }
+        },
+        {
+            array: ["TicksPerRelic"],
+            func: (v) => fixTime(v * 120)
+        },
+        {
+            array: ["PreparationTimeHours"],
+            func: (v) => v + ' ' + getStr('hours')
+        }
     ];
     if (value.constructor.name == 'Object') {
         let r = []
@@ -373,9 +400,20 @@ function getFormat2(key, value) {
         {
             array: ['blueprintsCombat', 'blueprintsUtility'],
             func: (v) => `${getStr('lvl')} ${v}`
-        }
+        },
+        {
+            array: ["WhiteStar"],
+            func: (v) => {
+                if (/Score/.test(v)) {
+                    return getStr('ScoreNThresholds') + ' ' + v.replace(/Score(\d).*/, '$1')
+                } else {
+                    return getStr(v)
+                }
+            }
+        },
     ]
     for (let i in formatList) {
+        //debugger
         if (formatList[i]['array'].includes(key)) {
             return formatList[i]['func'](value);
         }

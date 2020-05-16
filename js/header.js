@@ -43,7 +43,7 @@ for (let typeMod of typeModules) {
 let langs = locList;
 for (let l of Object.keys(langs)) {
     // основное меню
-    let lang = `<input value="${l}" onclick="func('${locList[l]}')" type="button">`;
+    let lang = `<input value="${l}" onclick="switchLang('${locList[l]}')" type="button">`;
     menu.querySelectorAll('div.langs > ul')[0]['innerHTML'] += lang;
     // мини-меню языка 
     lang = `<option>${l}</option>\n`

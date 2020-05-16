@@ -32,7 +32,7 @@
             </ul>
           </div>
         </li>
-        <select class="compactLangs" onchange="func2(value)">
+        <select class="compactLangs" onchange="getLangVal(value)">
           <option>language</option>
         </select>
         <li><a href='index.html'><span>Home</span></a></li>
@@ -48,25 +48,21 @@
   </div>
   <a href="#" id="buttonTop"></a>
   <script type="module">
-    setBaseData('redStar')
-    generateTables()
-
-    async function generateTables() {
-      let arts = ['Combat', 'Utility', 'Support']
-
-      genDesc('TID_RED_STAR_INFO')
-      genTitle(`<a href="#${'RSLevels'}" name="${'RSLevels'}">${getStr('RSLevels')}</a>`)
-      genOl(`<span><a href="#${'RSLevels'}">${getStr('RSLevels')}</a></span>`)
-      await generatePageTables('solar_system_gen_data', null, 'RedStar')
-      for (let art of arts) {
-        genTitle(`<a href="#${art}" name="${art}">${getStr(art + 'Art')}</a>`)
-        genOl(`<span><a href="#${art}">${getStr(art + 'Art')}</a></span>`)
-        await generatePageTables('artifacts', null, art)
-        art = 'blueprints' + art
-        genTitle(`<a href="#${art}" name="${art}">${getStr('blueprints')}</a>`)
-        await generatePageTables('artifacts', null, art)
-      }
-    }
+    setBaseData('stars', null, 'RedStar')
+      .finally(async () => {
+        //genTitle(`<a href="#${'planets'}" name="${'planets'}">${getStr('planets')}</a>`)
+        //genOl(`<span><a href="#${'planets'}">${getStr('planets')}</a></span>`)
+        //await generatePageTables('planets', null, 'redstarTable')
+        let arts = ['Combat', 'Utility', 'Support']
+        for (let art of arts) {
+          genTitle(`<a href="#${art}" name="${art}">${getStr(art + 'Art')}</a>`)
+          genOl(`<span><a href="#${art}">${getStr(art + 'Art')}</a></span>`)
+          await generatePageTables('artifacts', null, art)
+          art = 'blueprints' + art
+          genTitle(`<a href="#${art}" name="${art}">${getStr('blueprints')}</a>`)
+          await generatePageTables('artifacts', null, art)
+        }
+      })
   </script>
 
 </body>

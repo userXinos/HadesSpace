@@ -41,6 +41,15 @@ function getStr(key, lang = language) {
 
 function getKey(str) {
     let stringKeys = {
+        TimeSlowdownFactor: 'TID_STAR_TIME_SLOWDOWN',
+        PreparationTimeHours: 'TID_WS_PREPARATION_PERIOD',
+        HydrogenForRelic: 'TID_PLANET_INFO_HYDRO_PER_RELIC',
+        TicksPerRelic: 'TID_PLANET_DESCR_GENERATING_RELIC',
+        RedStarDisplayLevel: 'lvl',
+        RedStar: 'TID_RED_STAR',
+        YellowStar: 'TID_YELLOW_STAR',
+        WhiteStar: 'TID_WHITE_STAR',
+        BlueStar: 'TID_BLUE_STAR',
         NumToSpawn: 'TID_SPAWNER_NUM_SPAWNED',
         SpawnDelay: 'TID_SPAWNER_DELAY',
         RadiusMax: 'TID_SPAWNER_MAX_RADIUS',
@@ -55,7 +64,7 @@ function getKey(str) {
         PCReward: 'TID_HUD_CRYSTALS',
         XPReward: 'XPAward',
         spacebuildings: 'TID_PRODUCTION_DLG_STATIONS',
-        playerGoals: 'TID_EMPIRE_OBJECTIVES',
+        playergoals: 'TID_EMPIRE_OBJECTIVES',
         EMP: 'TID_MODULE_EMP',
         Repair: 'TID_MODULE_REPAIR',
         TimeWarp: 'TID_MODULE_TIME_WARP',

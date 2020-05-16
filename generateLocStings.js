@@ -40,8 +40,8 @@ function loadStrings(lang) {
   return addStrings(result, lang);
 }
 function addStrings(obj, lang) {
-  let jsonStrings = JSON.parse(fs.readFileSync(`${path}modification/addStringsFile.json`, "utf8"))
-  let defaultLang = JSON.parse(fs.readFileSync(`${path}modification/addStringsFile.json`, "utf8"))['en']
+  let jsonStrings = require(`${path}modification/addStringsFile.js`, "utf8").default
+  let defaultLang = require(`${path}modification/addStringsFile.js`, "utf8").default.en
   obj = combineObjects(obj, jsonStrings[lang])
   let addStringsToJson = {
     TID_MODULE_EFFECT_DURATION_DESCR: [
@@ -112,6 +112,7 @@ function fixWorlds(rawStr) {
   function regexFix(str) {
     str = str.replace(/\s<color>\{0\}<\/color>|\s\(<color>\{0\}<\/color> шт\.\)/, '')
     str = str.replace(/:\s?$/, '')
+    str = str.replace(/\s(\{0\})$/, '')
     if (/\{0\}.+?\{1\}.+?\{2\}/.test(str)) {
       str = str.replace(/(\{0\})(.*)(\{1\})(.+?)(\{2\})/, 'N$2X$4Y')
     }

@@ -21,7 +21,7 @@
             </ul>
           </div>
         </li>
-        <select class="compactLangs" onchange="func2(value)">
+        <select class="compactLangs" onchange="getLangVal(value)">
           <option>language</option>
         </select>
         <li><a href='index.html'><span>Home</span></a></li>
@@ -36,13 +36,19 @@
       <h2>Stars</h2>
       <ul>
         <!-- <li><a href="pages/....html">...</a></li> -->
-        <li><a href="yellowStar.html">Yellow star</a></li>
-        <li><a href="redStar.html">Red star</a></li>
       </ul>
     </section>
   </div>
   <a href="#" id="buttonTop"></a>
   <script type="module">
+    let stars = ['YellowStar', 'RedStar', 'WhiteStar', 'BlueStar']
+
+    document.querySelectorAll('section > h2')[0].innerHTML = `<h2>${getStr('stars')}</h2>`;
+    stars.forEach(e => {
+      $('div.categories > section > ul').append($('<li/>', {
+        html: `<a href="${e.toLowerCase()}.html">${getStr(e)}</a>`
+      }));
+    })
   </script>
 
 </body>

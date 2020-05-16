@@ -19,8 +19,8 @@ module.exports = {
   fixValue
 }
 
-let f = ['stars.csv']
-generateFiles(pathCSVs, pathSave)
+let f = ['planets.csv']
+generateFiles(pathCSVs, pathSave, f)
 
 async function generateFiles(pathCSVs, pathSave, files) {
   let startTime = new Date().getTime()

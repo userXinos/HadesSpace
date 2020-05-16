@@ -23,7 +23,7 @@
             </ul>
           </div>
         </li>
-        <select class="compactLangs" onchange="func2(value)">
+        <select class="compactLangs" onchange="getLangVal(value)">
           <option>language</option>
         </select>
         <li><a href='index.html'><span>Home</span></a></li>
@@ -53,8 +53,34 @@
     </section>
   </div>
   <script type="module">
-    generateIndexMenu()
-  </script>
+    let menu = document.querySelectorAll('div.categories')[0]
+    let menuContent = {
+      modules: {
+        name: getStr('TID_SHIP_UPGRADE_DLG_TITLE'),
+        list: ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'],
+      },
+      sections: {
+        name: getStr('Sections'),
+        list: ['ships', 'cerberus', 'stars', 'spacebuildings', 'playergoals', 'achievements', 'alliancelevels'],
+      }
+    }
+    for (let item of Object.keys(menuContent)) {
+      let index = Object.keys(menuContent).indexOf(item)
+      menu.querySelectorAll('section > h2')[index].innerHTML = menuContent[item]['name']
+      for (let page of menuContent[item]['list']) {
+        let name
+        if (item == 'modules') {
+          name = 'typeMod' + page
+        } else {
+          name = page
+        }
+        name = getStr(name);
+        let path = `${page.toLowerCase()}.html`;
+        let paragraph = `<li><a href="${path}">${name}</a></li>`;
+        menu.querySelectorAll('section > ul')[index].innerHTML += paragraph;
+      }
+    }
+
   </script>
 </body>
 

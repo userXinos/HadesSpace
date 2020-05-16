@@ -1,3 +1,30 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="style.ed08426a.css"><meta http-equiv="X-UA-Compatible" content="ie=edge"><script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script><script type="module" src="js.1850f08c.js"></script><title>Hades' Star Data</title></head><body> <nav> <input type="checkbox" id="checkbox1"> <label for="checkbox1"> <ul class="menu demo"> <li class="buttonLangs"> <div class="langs"> <ul> </ul> </div> </li> <select class="compactLangs" onchange="func2(value)"> <option>language</option> </select> <li><a href="index.html"><span>Home</span></a></li> </ul> <span class="toggle"></span> </label> </nav> <div class="logo"><img src="logo.0bea11eb.png" alt="logo"></div> <div class="categories"> <section> <h2>Модули</h2> <ul>  </ul> </section> <section> <h2>Разделы</h2> <ul>  </ul> </section> <section> <h2>Raznoe</h2> <ul>  </ul> </section> </div> <script type="module">
-    generateIndexMenu()
-  </script>  </body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="style.e30106d6.css"><meta http-equiv="X-UA-Compatible" content="ie=edge"><script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script><script type="module" src="js.51299d6e.js"></script><title>Hades' Star Data</title></head><body> <nav> <input type="checkbox" id="checkbox1"> <label for="checkbox1"> <ul class="menu demo"> <li class="buttonLangs"> <div class="langs"> <ul> </ul> </div> </li> <select class="compactLangs" onchange="getLangVal(value)"> <option>language</option> </select> <li><a href="index.html"><span>Home</span></a></li> </ul> <span class="toggle"></span> </label> </nav> <div class="logo"><img src="logo.0bea11eb.png" alt="logo"></div> <div class="categories"> <section> <h2>Модули</h2> <ul>  </ul> </section> <section> <h2>Разделы</h2> <ul>  </ul> </section> <section> <h2>Raznoe</h2> <ul>  </ul> </section> </div> <script type="module">
+    let menu = document.querySelectorAll('div.categories')[0]
+    let menuContent = {
+      modules: {
+        name: getStr('TID_SHIP_UPGRADE_DLG_TITLE'),
+        list: ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'],
+      },
+      sections: {
+        name: getStr('Sections'),
+        list: ['ships', 'cerberus', 'stars', 'spacebuildings', 'playergoals', 'achievements', 'alliancelevels'],
+      }
+    }
+    for (let item of Object.keys(menuContent)) {
+      let index = Object.keys(menuContent).indexOf(item)
+      menu.querySelectorAll('section > h2')[index].innerHTML = menuContent[item]['name']
+      for (let page of menuContent[item]['list']) {
+        let name
+        if (item == 'modules') {
+          name = 'typeMod' + page
+        } else {
+          name = page
+        }
+        name = getStr(name);
+        let path = `${page.toLowerCase()}.html`;
+        let paragraph = `<li><a href="${path}">${name}</a></li>`;
+        menu.querySelectorAll('section > ul')[index].innerHTML += paragraph;
+      }
+    }
+
+  </script> </body></html>

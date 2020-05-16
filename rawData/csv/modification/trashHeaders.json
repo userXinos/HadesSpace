@@ -100,5 +100,15 @@
     "ModelToSpawn",
     "SecurityRating",
     "RadiusMin",
+    "CollapseAreaSize",
+    "CollapseReductionPerCycle",
+    "CycleTicks",
+    "StageStartSec",
+    "HQPlanetsPerBracket",
+    "LQPlanetsPerBracket",
+    "",
+    "",
+    "",
+    "",
     "RushCostModifier"
 ]
