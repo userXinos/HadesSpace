@@ -110,7 +110,7 @@ async function generatePageTables(typeData, category = null, elem = null) {
     $('body > div.gTable').wrap('<div class="tableEnvironment"></div>')
 };
 // сгенерировать html иконки
-function genModuleIcon(url, isModules, custom) {
+function genModuleIcon(url, isModules = true, custom = 'null') {
     let classes = 'module-background'
     let html = `class="module-icon" style="background-image:url(${url})">`
     if (!isModules) classes += ' spaceBuildings-background'
