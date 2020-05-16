@@ -28,8 +28,8 @@ exports.default = function (args) {
   result['maxLevel'] = result['maxLevel'].length
   result['Name'] = args.star + 'StarSectors'
   if (result['MinScannerLevel'] != undefined) {
-    result['MinScannerLevel'].map(e => {
-      if (e !== ' ') e + 1
+    result['MinScannerLevel'].forEach((e, i, arr) => {
+      if (e !== ' ') arr[i] = e + 1
     });
   }
   return result;
@@ -58,7 +58,7 @@ exports.default = function (args) {
     }
   }
   function addScannerInfo(scanner, scanners) {
-    let ststs = ['Cost', 'SectorUnlockTime']
+    let ststs = ['SectorUnlockCost', 'SectorUnlockTime']
     if (result[ststs[0]] == undefined) {
       for (let i of ststs) {
         result[i] = []
