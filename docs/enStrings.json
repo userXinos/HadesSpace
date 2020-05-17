@@ -517,6 +517,7 @@
   "SafeInterceptorInPublicRS": "Neutral Interceptors on Public RS",
   "NoCerbBondTeleportPRS": "Deny use of Cerberus + Bond + Teleport on Public RS",
   "PubRSEMPReqEnemies": "Enemy in EMP zone is required before activation in the Public RS",
+  "TID_Artifact": "Artifact",
   "EffectDurationx10WS": "Effect duration (WS)",
   "EffectDurationx10BS": "Effect duration (BS)",
   "EffectRadiusWS": "Effect range (WS)",

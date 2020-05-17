@@ -518,6 +518,7 @@
   "SafeInterceptorInPublicRS": "Нейтральные Перехватчики на общедоступных КЗ",
   "NoCerbBondTeleportPRS": "Запретить использование Цербера + Узы + Телепорт на общедоступной КЗ",
   "PubRSEMPReqEnemies": "Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ",
+  "TID_Artifact": "Артефакт",
   "EffectDurationx10WS": "Время действия (БЗ)",
   "EffectDurationx10BS": "Время действия (ГЗ)",
   "EffectRadiusWS": "Дальность действия (БЗ)",

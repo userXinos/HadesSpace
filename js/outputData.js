@@ -23,7 +23,7 @@ const iconsData = {
     stars: require('../img/stars_icons/*.png')
 }
 
-let ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
+let ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model', 'AwardLevel'];
 let cerbModules = ['cerbShield', 'cerbWeapon', 'cerbModule'];
 let noFixTables = ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport', 'WarpLaneHub']
 
@@ -375,6 +375,10 @@ function getFormat(key, value) {
         {
             array: ["PreparationTimeHours"],
             func: (v) => v + ' ' + getStr('hours')
+        },
+        {
+            array: ["TID_Artifact"],
+            func: (v) => getStr(v)
         }
     ];
     if (value.constructor.name == 'Object') {

@@ -2,6 +2,7 @@
     "Name",
     "TID",
     "TID_Description",
+    "TID_Artifact",
     "AwardLevel",
     "Icon",
     "array",

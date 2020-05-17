@@ -31,6 +31,25 @@ exports.default = function (args) {
   obj.MiningBoost.WhiteStarScore.unshift(0) // ошибка в таблице, не хватает "0"
   obj.Destiny.WhiteStarScore.unshift(0) // ошибка в таблице, не хватает "0"
   obj.MiningDrone.MiningSpeed = [29.1, 33.3, 37.5, 41.7, 45.8, 52.2, 58.8, 65.2, 74.1, 85.7]; // хз как считать это
+  for (let key in obj) {
+    let obj1 = obj[key]
+    Object.keys(args.globals).forEach(e => {  // добавить глобальные к модулям 
+      if (e.includes(key)) {
+        obj1[e] = args.globals[e]
+      }
+    })
+    let check = obj1.Hide
+    delete obj1.Hide
+    if (check) continue;
+    for (let key2 in args.artifacts) {// ур артефакта
+      let art = args.artifacts[key2]
+      if (!art.BlueprintTypes) continue;
+      let types = art.BlueprintTypes.split('!')
+      if (art.MaxModuleLevelToAward == obj1.AwardLevel && types.includes(obj1.SlotType)) {
+        obj1.TID_Artifact = art.TID
+      }
+    }
+  }
   return obj;
 }
 // фикс модулей, добавление БЗ/ГЗ стат

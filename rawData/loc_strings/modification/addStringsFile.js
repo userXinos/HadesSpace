@@ -90,7 +90,8 @@ exports.default = {
         WSScoreTransportModifier: 'WS score transportation modifier',
         SafeInterceptorInPublicRS: 'Neutral Interceptors on Public RS',
         NoCerbBondTeleportPRS: 'Deny use of Cerberus + Bond + Teleport on Public RS',
-        PubRSEMPReqEnemies: 'Enemy in EMP zone is required before activation in the Public RS'
+        PubRSEMPReqEnemies: 'Enemy in EMP zone is required before activation in the Public RS',
+        TID_Artifact: 'Artifact'
 
     },
     ru: {
@@ -185,7 +186,8 @@ exports.default = {
         WSScoreTransportModifier: 'WS Score модификатор транспортировки',
         SafeInterceptorInPublicRS: 'Нейтральные Перехватчики на общедоступных КЗ',
         NoCerbBondTeleportPRS: 'Запретить использование Цербера + Узы + Телепорт на общедоступной КЗ',
-        PubRSEMPReqEnemies: 'Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ'
+        PubRSEMPReqEnemies: 'Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ',
+        TID_Artifact: 'Артефакт'
     },
     de: {
         UnlockPrice: 'Preis freischalten',
