@@ -257,7 +257,7 @@ function getFormat(key, value) {
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown", "ProximityTriggerSec"],
             func: (v) => fixTime(v)
         },
         {
@@ -371,6 +371,10 @@ function getFormat(key, value) {
         {
             array: ["TicksPerRelic"],
             func: (v) => fixTime(v * 120)
+        },
+        {
+            array: ["TargetSwitchTicks"],
+            func: (v) => fixTime(v - 4)
         },
         {
             array: ["PreparationTimeHours"],

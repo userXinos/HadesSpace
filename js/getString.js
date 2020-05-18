@@ -41,6 +41,10 @@ function getStr(key, lang = language) {
 
 function getKey(str) {
     let stringKeys = {
+        EMPResist: 'TID_EMP_RESIST',
+        TargetSwitchTicks: 'TID_MODULE_DESCR_TARGET_SWITCH_DELAY',
+        ProximityTriggerSec: 'TID_MODULE_TRIGGER_TIME',
+        HydraBarrage: 'cerbWeapon',
         TimeSlowdownFactor: 'TID_STAR_TIME_SLOWDOWN',
         PreparationTimeHours: 'TID_WS_PREPARATION_PERIOD',
         HydrogenForRelic: 'TID_PLANET_INFO_HYDRO_PER_RELIC',
@@ -109,7 +113,7 @@ function getKey(str) {
         DestroyersToSpawn: 'TID_SHIP_CERB_DESTROYER',
         MinBombers: 'TID_SHIP_CERBERUS_BOMBER',
         TimeToLoad: 'TID_STATUS_LOADING_ARTIFACT',
-        TimeToResearch: 'UpgradeTime',
+        TimeToResearch: 'UnlockTime',
         Credits: 'TID_HUD_CREDITS',
         Hydrogen: 'TID_HUD_HYDROGEN',
         Lifetime: 'TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER',

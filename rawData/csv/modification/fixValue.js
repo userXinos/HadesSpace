@@ -117,7 +117,15 @@ exports.isHide = function (name, header, isStrict = false) { // скрывает
         {
             name: ['BlueStar', 'RedStar', 'WhiteStar'],
             headers: ['WSShipEventCRRewards', 'WSShipEventTopBrackets', 'WSHQAsteroidsPerBucket', 'FleetDepartTimeInSeconds_WS', 'MaxWaypointsWS', 'DontAllowUseOfEnemyWSGate', 'WSShipXPCollectEnabled', 'WSShipMinXP', 'WSShipXPEventClientDisplayMode', 'WSShipXPEventVersion', 'BlueStar_HydroPctPerMatch', 'DisableRSSearchDuringTutorial', 'WarnOnSRSPlacementMinNumNeighbors', 'PrivateRSEventClientDisplayMode', 'BlueStar_CRRewardWinLimit']
-        }
+        },
+        {
+            name: ['RemoteBomb'],
+            headers: ['Speed']
+        },
+        {
+            name: ['RedStar'],
+            headers: ['CRAsteroidAmt', 'GhostSpawner']
+        },
     ];
     let strict = [
         {

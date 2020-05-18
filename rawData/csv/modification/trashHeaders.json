@@ -103,6 +103,13 @@
     "LQPlanetsPerBracket",
     "ShipAIHandler",
     "AIUpdateIntervalSeconds",
+    "AggressiveAI",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
     "",
     "",
     "RushCostModifier"

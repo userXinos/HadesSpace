@@ -19,6 +19,7 @@ exports.default = function (obj) {
         result[name].Name = name
         result[name].TID_Description = result[name].TID_Description[0]
         result[name].MaxModuleLevelToAward = result[name].MaxModuleLevelToAward[0]
+        result[name].BlueprintTypes = result[name].BlueprintTypes[0]
         delete result[name].Model
         delete result[name].MaxModuleLevelToAward
     }
