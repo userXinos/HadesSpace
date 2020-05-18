@@ -22,6 +22,7 @@ let data = {
   CrystalCostForCredits_100000: 1000,
   CrystalCostForCredits_1000000: 4000,
   CrystalCostForCredits_10000000: 12000,
+  CrystalCostForCredits_100000000: 80000,
   CrystalCostForHydrogen_10: 1,
   CrystalCostForHydrogen_100: 15,
   CrystalCostForHydrogen_1000: 80,
@@ -106,7 +107,7 @@ let data = {
   MaxAllianceMessageLength: 300,
   LargeSystemTravelTimeModifier: 360,
   LargeSystemCombatTurnModifier: 60,
-  ReplayVersion: 27,
+  ReplayVersion: 28,
   CorporationScoreIntervals: "10!20!100",
   CorporationScoreDividers: "2!4!10",
   PlaceIncomingStargateInMiddleOfSector: 1,
@@ -207,7 +208,6 @@ let data = {
   PrivateRSEventClientDisplayMode: 2,
   FollowJumpShipImmediately: 0,
   FreeObjectiveRefreshIntervalHr: 72,
-  SanctuaryDisableTime: 0,
   SeparationMaxZoom: 15,
   SeparationClampSize: 45,
   SeparationMinDistance: 8,
@@ -246,6 +246,7 @@ let data = {
   WSScoreTransportModifier: 800,
   NewsletterURL: "http://eepurl.com/cal8yD",
   FlagshipContribAmounts: "10000!100000!1000000!8000000",
+  CRAsteroidMineTicks: 600,
 };
 
 export { data };

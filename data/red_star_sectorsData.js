@@ -339,6 +339,39 @@ let data = {
     SpawnPctPerGateDistance: "12!100",
     GhostsSpawnWeight: 1000,
   },
+  ArtifactPlanet_Lv11: {
+    Name: "ArtifactPlanet_Lv11",
+    PlanetTypes: "destroyed11",
+    AsteroidsMax: 12,
+    HydrogenPerDay: 1250,
+    CerbGroup: "RSP11",
+    maxLevel: 1,
+    MinArtifacts: 4,
+    MaxArtifacts: 6,
+    ArtifactGroupName: "rs11",
+    SpawnPctPerGateDistance: "12!100",
+    GhostsSpawnWeight: 1000,
+  },
+  Mine_Risk0_Lv11: {
+    Name: "Mine_Risk0_Lv11",
+    AsteroidsMax: 4,
+    HydrogenPerDay: 1800,
+    maxLevel: 1,
+  },
+  Mine_Risk1_Lv11: {
+    Name: "Mine_Risk1_Lv11",
+    AsteroidsMax: 7,
+    HydrogenPerDay: 2600,
+    CerbGroup: "RSM1L11",
+    maxLevel: 1,
+  },
+  Mine_Risk2_Lv11: {
+    Name: "Mine_Risk2_Lv11",
+    AsteroidsMax: 10,
+    HydrogenPerDay: 8000,
+    CerbGroup: "RSM2L11",
+    maxLevel: 1,
+  },
 };
 
 let byTypes = {
@@ -384,6 +417,10 @@ let byTypes = {
     "ArtifactPlanet_Lv8",
     "ArtifactPlanet_Lv9",
     "ArtifactPlanet_Lv10",
+    "ArtifactPlanet_Lv11",
+    "Mine_Risk0_Lv11",
+    "Mine_Risk1_Lv11",
+    "Mine_Risk2_Lv11",
   ],
 };
 

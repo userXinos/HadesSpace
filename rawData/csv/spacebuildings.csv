@@ -31,6 +31,7 @@ RedStarScanner,1,,,,,,,1000,,TID_BUILDING_REDSTAR_SCANNER,TID_BUILDING_REDSTAR_S
 ,,,,,,,,,,,,,,,,,,,,2000000,,,,,,120,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,4000000,,,,,,144,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,8000000,,,,,,168,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,12000000,,,,,,240,,,,,,,,,,,,,,,,,,,,,,,,
 ResearchStation,1,,,,,,,200,,TID_BUILDING_RESEARCH,TID_BUILDING_RESEARCH_DESCR,TID_BUILDING_RESEARCH_INFO,TID_BLD_RESEARCH_STATION_UPGRADE,TID_TUT_SELECT_RESEARCH_STATION,portrait_SpaceBuilding,ResearchStation,,,5,1000,,,,,,,,5,,,,4,0,,1,1,,,,,,,,,,,,,1,1
 DiplomacyCenter,1,,,,1,,,2000,,TID_BUILDING_DIPLOMACY_CENTER,TID_BUILDING_DIPLOMACY_CENTER_DESCR,TID_BUILDING_DIPLOMACY_CENTER_INFO,,,portrait_SpaceBuilding,embassy,,,7,25000,,,,,,8,,,,,,,0,,3,1,,,,,,JumpGate,,,,,,,3,1
 ,,,,,,,,,,,,,,,,,,,,500000,,,,,,120,,,,,,,,,,,,,,,,,,,,,,,,

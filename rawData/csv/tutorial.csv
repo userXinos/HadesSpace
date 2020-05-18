@@ -1,0 +1,10 @@
+Name,TID,TID_Description,MissionType,EnterNameAfterStepIsComplete,MaxShipsAtStep,AskForNotificationsAfterStepIsComplete,ShowModulesButtonAfterThisStep,ConsumeFuelAfterThisStep,NameParam,IntParam,IntParam2,XPReward,BCReward,FuelReward,ClientTutorialHelper,HintTID,DontHideTopHUD,DisableMovement
+N_ColonizeFirstPlanet,TID_TUT_COLONIZE_FIRST_PLANET,TID_TUT_COLONIZE_FIRST_PLANET_DESCR,ColonizePlanet,,1!0!0,,,1,,1,,50,100,50,FirstColonize,TID_TUT_FIRST_SHIP_INTRO_LABEL,,1
+N_UpgradePlanetToLv2,TID_TUT_UPGRADE_PLANET,TID_TUT_UPGRADE_PLANET_DESCR,UpgradePlanet,1,1!0!0,,,,,1,,20,1000,50,BuildTradeOutpost,,,
+N_ConstructShipyard,TID_TUT_CONSTRUCT_SHIPYARD,TID_TUT_CONSTRUCT_SHIPYARD_INFO,ConstructBuilding,,1!0!0,,,,Shipyard,,,,1000,,ConstructBuilding,TID_TUT_SHIPYARD_HINT,,
+N_ConstructTransport,TID_TUT_CREATE_SECOND_TRANSPORT,TID_TUT_CREATE_SECOND_TRANSPORT_INFO,ConstructFleet,,2!0!0,,,,Transport,2,,20,500,,ConstructFleet,,,
+N_ColonizeSecondPlanet,TID_TUT_COLONIZE_SECOND_PLANET,TID_TUT_COLONIZE_SECOND_PLANET_DESCR,ColonizePlanet,,2!0!0,,,,,2,,30,1000,,SecondColonize,TID_TUT_HINT_MOVEMENT,,
+N_CollectMoneyForMiner,TID_TUT_KEEP_DOING_STUFF,TID_TUT_KEEP_DOING_STUFF_DESCR,WaitForResources,,2!0!0,,,,,500,,,,,,,,
+N_ConstructMiner,TID_TUT_CONSTRUCT_SHIP,TID_TUT_MINER_INFO,ConstructFleet,,2!1!0,,,,Miner,1,,50,,,ConstructFleet,,,
+N_StartMiningCycle,TID_TUT_MINING_TITLE,TID_TUT_MINING_DESCR,DoMining,,2!1!0,1,1,,,,,50,800,50,DoMining,TID_TUT_HINT_MINING,,
+N_ViewObjectives,TID_TUT_VIEW_OBJECTIVES,TID_TUT_VIEW_OBJECTIVES_DESCR,ViewObjectives,,2!1!0,,,,,,,,,,ViewObjectives,,1,

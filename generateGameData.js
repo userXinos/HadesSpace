@@ -26,7 +26,11 @@ module.exports = {
 }
 
 //let f = ['modules']
-generateFiles(pathCSVs, pathSave)
+generateFiles(
+  pathCSVs,
+  pathSave,
+  //f
+)
 
 async function generateFiles(pathCSVs, pathSave, files) {
   let startTime = new Date().getTime()
@@ -210,6 +214,9 @@ function renameKeys(obj, newKeys) {
 // глобально скрытые значения - не имеют важности
 function isTrashHeader(str) {
   let trashHeaders = JSON.parse(fs.readFileSync(`${pathCSVs}modification/trashHeaders.json`, "utf8").toLowerCase())
+  let whiteList = ['WeaponFx']
+
+  if (whiteList.includes(str)) return false
   str = str.toLowerCase()
   return (trashHeaders.includes(str) || str.startsWith('is') || str.includes('fx'))
 }

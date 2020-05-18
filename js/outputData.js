@@ -4,7 +4,7 @@ import 'regenerator-runtime/runtime'
 
 const data = {
     modules: import('../data/modulesData'),
-    ships: import('../data/shipsData'),
+    ships: import('../data/capital_shipsData'),
     yellow_star_sectors: import('../data/yellow_star_sectorsData'),
     planets: import('../data/planetsData.js'),
     colonize_prices: import('../data/colonize_pricesData'),

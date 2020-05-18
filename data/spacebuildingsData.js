@@ -31,10 +31,10 @@ let data = {
     TID: "TID_BUILDING_REDSTAR_SCANNER",
     TID_Description: "TID_BUILDING_REDSTAR_SCANNER_DESCR",
     Model: "redStarScanner",
-    Cost: [1000, 2000, 20000, 60000, 120000, 250000, 1000000, 2000000, 4000000, 8000000],
-    ConstructionTime: [3, 1800, 14400, 86400, 172800, 259200, 345600, 432000, 518400, 604800],
+    Cost: [1000, 2000, 20000, 60000, 120000, 250000, 1000000, 2000000, 4000000, 8000000, 12000000],
+    ConstructionTime: [3, 1800, 14400, 86400, 172800, 259200, 345600, 432000, 518400, 604800, 864000],
     MoveHydrogenCostPerSector: 1000,
-    maxLevel: 10,
+    maxLevel: 11,
   },
   ResearchStation: {
     Name: "ResearchStation",
