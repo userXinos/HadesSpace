@@ -102,8 +102,8 @@
     "StageStartSec",
     "HQPlanetsPerBracket",
     "LQPlanetsPerBracket",
-    "",
-    "",
+    "ShipAIHandler",
+    "AIUpdateIntervalSeconds",
     "",
     "",
     "RushCostModifier"

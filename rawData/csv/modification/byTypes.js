@@ -10,7 +10,7 @@ exports.default = {
         cerberus: ['GuardianBattery', 'WeakBattery', 'InterceptorMBattery', 'ColossusLaser', 'DestroyerVengeance', 'BomberLauncher', 'PhoenixShield', 'DartBarrage'],
         flagship: ['Recoil', 'Immolation', 'EMPRocket']
     },
-    ships: {
+    capital_ships: {
         player: ['Transport', 'Miner', 'Battleship', 'CorpFlagship'],
         cerberus: ['CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts'],
         drones: ['ShipmentDrone', 'MiningDrone', 'AlphaDrone']

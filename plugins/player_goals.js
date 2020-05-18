@@ -1,10 +1,8 @@
 "use strict";
+const main = require('../generateGameData.js')
 
-const mainJs = require('../generateGameData.js')
-
-exports.default = function (args) {
-    let obj = args.rawData
-    let whiteList = args.needFix
+let whiteList = main.dataByTypes.player_goals.all
+exports.default = function (obj) {
     let newKeys = {
         CRRewardPerDay: 'CRReward',
         FuelRewardPerDay: 'FuelReward'
@@ -13,7 +11,7 @@ exports.default = function (args) {
     for (let k of Object.keys(obj)) {
         let obj1 = obj[k]
 
-        mainJs.fillSpace(obj1, ' ', 'push')
+        main.fillSpace(obj1, ' ', 'push')
         if (!whiteList.includes(k)) continue
         if (k == 'SalvageArtifacts') { // фикс значения "уровень арта", не удобно форматировать и локализировать
             obj1.artLevel = []
@@ -35,7 +33,7 @@ exports.default = function (args) {
                 } else {
                     obj1[i] = obj1[i] * obj1['TimeLimitDays']
                 }
-                obj[k] = mainJs.renameKeys(obj1, newKeys)
+                obj[k] = main.renameKeys(obj1, newKeys)
             }
         }
     }

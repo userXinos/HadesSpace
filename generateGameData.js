@@ -4,9 +4,12 @@ const prettier = require('prettier')
 
 var pathCSVs = './rawData/csv/'
 var pathSave = './data/'
-var modulesPath = './GGD_modules/'
+var pluginsPath = './plugins/'
 var optionalFiles = ['cerberus_stations.csv', 'projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv']
+var isWhiteListBS = require(`${pathCSVs}modification/fixValue.js`).isWhiteListBS
 var dataByTypes = require(`${pathCSVs}modification/byTypes.js`).default
+var fixValue = require(`${pathCSVs}modification/fixValue.js`).default
+var isHide = require(`${pathCSVs}modification/fixValue.js`).isHide
 global.ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model']
 
 module.exports = {
@@ -16,39 +19,27 @@ module.exports = {
   compileOne,
   fillSpace,
   pushArrays,
-  fixValue
+  fixValue,
+  dataByTypes,
+  readCSV,
+  isWhiteListBS
 }
 
-let f = ['planets.csv']
-generateFiles(pathCSVs, pathSave, f)
+//let f = ['modules']
+generateFiles(pathCSVs, pathSave)
 
 async function generateFiles(pathCSVs, pathSave, files) {
   let startTime = new Date().getTime()
-  let funcs = {
-    modules: fixModules,
-    ships: fixShips,
-    yellow_star_sectors: fixSolarSys,
-    white_star_sectors: fixSolarSys,
-    blue_star_sectors: fixSolarSys,
-    planet_levels: fixPlanet_levels,
-    planets: fixPlanets,
-    artifacts: fixArtifacts,
-    stars: fixStars,
-    spacebuildings: fixSpaceBuildings,
-    globals: fixGlobals,
-    player_goals: fixPlayer_goals,
-    alliance_levels: fixAlliance_levels,
-    //xp_levels: fixXp_levels,
-  };
 
   if (!files || files.length == 0) {
-    files = fs.readdirSync(pathCSVs).filter(e => {
-      if (!e.endsWith('.csv')) return
-      if (e != undefined && !optionalFiles.includes(e)) {
-        return e
-      }
-    });
+    files = fs.readdirSync(pathCSVs)
+      .filter(e => (e != undefined && !optionalFiles.includes(e) && e.endsWith('.csv')))
+      .map(e => e.replace(/(.*)\.csv/, '$1'))
   }
+  let plugins = fs.readdirSync(pluginsPath)
+    .filter(e => e.endsWith('.js'))
+    .map(e => e.replace(/(.*)\.js/, '$1'))
+
   let promises = files.map(loadSaveFile)
   await Promise.all(promises) // .then() не хочет работать
     .catch(error => console.log(`Ошибки в выполнении. \n ${error}`))
@@ -57,114 +48,20 @@ async function generateFiles(pathCSVs, pathSave, files) {
 
   function loadSaveFile(file) {
     return new Promise((resolve, reject) => {
-      fs.readFile(pathCSVs + file, 'utf8', (err, data) => {
+      fs.readFile(`${pathCSVs + file}.csv`, 'utf8', (err, data) => {
         if (err) return reject(`Ошибка загрузки файла "${file}": ${err}`)
         let json = CSVtoJSON(data)
-        file = file.replace(/(.*)\.csv/, '$1')
-        if (file in funcs) {
-          json = funcs[file](json, file)
+
+        for (let i of plugins) {
+          if (i == file) {
+            json = require(`${pluginsPath + i}.js`).default(json)
+          }
         }
         saveToFile(`${pathSave}${file}Data.js`, fixOrder(json))
         resolve()
       })
     })
   }
-  function getGlobalsBy(str) {
-    let obj = CSVtoJSON(fs.readFileSync(`${pathCSVs}globals.csv`, "utf8"))
-    fixGlobals(obj)
-    let result = {}
-    Object.keys(obj).forEach(e => {
-      if (e.includes(str)) {
-        result[e] = obj[e]
-      }
-    })
-    return result
-  }
-  function fixModules(obj) {
-    let func = require(`${modulesPath}modules.js`).default
-    return func({
-      rawData: obj,
-      shipsData: CSVtoJSON(fs.readFileSync(`${pathCSVs}ships.csv`, "utf8")),
-      projectilesData: CSVtoJSON(fs.readFileSync(`${pathCSVs}projectiles.csv`, "utf8")),
-      fixValue: require(`${pathCSVs}modification/fixValue.js`),
-      dronesList: dataByTypes['ships']['drones']
-    })
-  }
-  function fixShips(obj, file) {
-    let func = require(`${modulesPath}ships.js`).default
-    return func({
-      rawData: obj,
-      cerberusList: dataByTypes[file]['cerberus'],
-      ship_spawners: CSVtoJSON(fs.readFileSync(`${pathCSVs}ship_spawners.csv`, "utf8")),
-      GhostSpawnSecs: CSVtoJSON(fs.readFileSync(`${pathCSVs}solar_system_gen_data.csv`, "utf8"))['RedStar']['GhostSpawnSecs']
-    })
-  }
-  function fixSolarSys(obj, file) {
-    let func = require(`${modulesPath}solarSystem.js`).default
-    return func({
-      star: file.replace(/(.+?)_.*/, '$1'),
-      rawData: obj,
-      scannersData: CSVtoJSON(fs.readFileSync(`${pathCSVs}spacebuildings.csv`, "utf8")).ShortRangeScanner,
-      cerberusData: CSVtoJSON(fs.readFileSync(`${pathCSVs}cerb_groups.csv`, "utf8")),
-    })
-  }
-  function fixPlanet_levels(obj) {
-    return compileOne(obj)
-  }
-  function fixPlanets(obj, file) {
-    let func = require(`${modulesPath}planets.js`).default
-    return func({
-      rawData: obj,
-      categories: dataByTypes[file]
-    })
-  }
-  function fixArtifacts(obj, file) {
-    let func = require(`${modulesPath}artifacts.js`).default
-    return func({
-      rawData: obj,
-      artsByTypes: dataByTypes[file]['data'],
-      blueprints: dataByTypes[file]['blueprints']
-    })
-  }
-  function fixStars(obj) {
-    let func = require(`${modulesPath}stars.js`).default
-    return func({
-      rawData: obj,
-      solarSysGenData: CSVtoJSON(fs.readFileSync(`${pathCSVs}solar_system_gen_data.csv`, "utf8")),
-      globals: {
-        BlueStar: getGlobalsBy('BlueStar_'),
-        WhiteStar: getGlobalsBy('WS'),
-        RedStar: getGlobalsBy('RS')
-      }
-    })
-  }
-  function fixSpaceBuildings(obj) {
-    let func = require(`${modulesPath}spaceBuildings`).default
-    return func({
-      rawData: obj
-    })
-  }
-  function fixGlobals(obj) {
-    for (let i of Object.keys(obj)) {
-      obj[i] = obj[i]['Value']
-    }
-    return obj
-  }
-  function fixPlayer_goals(obj, file) {
-    let func = require(`${modulesPath}playerGoals`).default
-    return func({
-      rawData: obj,
-      needFix: dataByTypes[file]['all']
-    })
-  }
-  function fixAlliance_levels(obj) {
-    obj = compileOne(obj)
-    obj.Name = 'alliance_levels'
-    return obj
-  }
-  // function fixXp_levels(obj) {
-  //   delete obj.array[0]
-  // }
 }
 function saveToFile(file, jsonObj) {
   let name = file.replace(/.*\/(.*)Data\.js/, '$1')
@@ -190,6 +87,9 @@ export {${addData['export']}}
     () => console.log(`Файл "${file}" создан`)
   )
 }
+function readCSV(path) {
+  return CSVtoJSON(fs.readFileSync(`${pathCSVs + path}.csv`, "utf8"))
+}
 // парсер из таблицы в обектJS
 function CSVtoJSON(csv) {
   let data = csv.split('\n');
@@ -205,9 +105,9 @@ function CSVtoJSON(csv) {
     if (string[0] !== "") {
       name = string[0]
       jsonObj[name] = {}
-      jsonObj[name]['maxLevel'] = 1
+      jsonObj[name].maxLevel = 1
     } else {
-      jsonObj[name]['maxLevel']++
+      jsonObj[name].maxLevel++
     }
     for (let j = 0; j < string.length; j++) {
       let header = headers[j].trim()
@@ -230,35 +130,6 @@ function CSVtoJSON(csv) {
     }
   }
   return removeDupsFromArrays(jsonObj)
-}
-// скрыть/исправить значения для красоты результата
-function fixValue(name, header, value) {
-  if (ignoringHeaders.includes(header)) {
-    return value
-  }
-  let fixValue = require(`${pathCSVs}modification/fixValue.js`).fixValue
-  if (isHide(name, header)) return null
-  for (let i in fixValue) {
-    if (fixValue[i]['header'].includes(header)) {
-      return fixValue[i]['func'](value)
-    }
-  }
-  if (value >= 0) {
-    return parseInt(value)
-  }
-  return value
-}
-function isHide(name, header, strict = false) { // скрывает невалидные данные: "0", " " или просто ненужные,  strict - скрыть валидные данные (2я проверка)
-  let path = (strict) ? 'hide2' : 'hide'
-  let hide = require(`${pathCSVs}modification/fixValue.js`)[path]
-  for (let i in hide) {
-    if (hide[i]['name'].includes(name)) {
-      if (hide[i]['headers'].includes(header)) {
-        return true
-      }
-    }
-  }
-  return false
 }
 // массив, сравнивать i и i+1, если все элементы равны установить вместо массива i[0] || {key:[1,1,1,1]} => {key:1}
 function removeDupsFromArrays(obj) {

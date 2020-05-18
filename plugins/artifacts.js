@@ -1,11 +1,10 @@
 "use strict";
+const main = require('../generateGameData.js')
 
-const mainJs = require('../generateGameData.js')
+let artsTypes = main.dataByTypes.artifacts.data
+let tableNames = main.dataByTypes.artifacts.blueprints
 
-exports.default = function (args) {
-    let obj = args.rawData
-    let artsTypes = args.artsByTypes
-    let tableNames = args.blueprints
+exports.default = function (obj) {
     let result = {}
 
     for (let name of artsTypes) {
@@ -16,10 +15,12 @@ exports.default = function (args) {
                 return e
         });
         keys.forEach(k => obj1[k] = obj[k]);
-        result[name] = mainJs.compileOne(obj1)
-        result[name]['Name'] = name
-        result[name]['TID_Description'] = result[name]['TID_Description'][0]
-        delete result[name]['Model']
+        result[name] = main.compileOne(obj1)
+        result[name].Name = name
+        result[name].TID_Description = result[name].TID_Description[0]
+        result[name].MaxModuleLevelToAward = result[name].MaxModuleLevelToAward[0]
+        delete result[name].Model
+        delete result[name].MaxModuleLevelToAward
     }
     return fixBlueprintsCredHydroMinMax(result, tableNames)
 }
@@ -30,8 +31,8 @@ function fixBlueprintsCredHydroMinMax(obj, tableNames) {
         let maxArr = obj1.BlueprintsMax
         let blueprints = {} // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
 
-        mainJs.pushArrays(obj1, 'Credits', 'CreditsMin', 'CreditsMax')
-        mainJs.pushArrays(obj1, 'Hydrogen', 'HydrogenMin', 'HydrogenMax')
+        main.pushArrays(obj1, 'Credits', 'CreditsMin', 'CreditsMax')
+        main.pushArrays(obj1, 'Hydrogen', 'HydrogenMin', 'HydrogenMax')
         for (let i = 0; i < minArr.length; i++) {
             let min = String(minArr[i]).split('!')
             let max = String(maxArr[i]).split('!')
@@ -43,7 +44,7 @@ function fixBlueprintsCredHydroMinMax(obj, tableNames) {
         }
         let i = Object.keys(obj).indexOf(a);
         blueprints.maxLevel = obj1.maxLevel
-        obj[tableNames[i]] = mainJs.fillSpace(blueprints, ' ', 'push')
+        obj[tableNames[i]] = main.fillSpace(blueprints, ' ', 'push')
         obj[tableNames[i]]['Name'] = tableNames[i];
         ['BlueprintsMin', 'BlueprintsMax'].forEach(e => delete obj1[e]);
     }

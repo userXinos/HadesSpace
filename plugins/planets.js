@@ -1,13 +1,13 @@
 "use strict";
-const mainJs = require('../generateGameData.js')
+const main = require('../generateGameData.js')
+
+let stars = main.dataByTypes.planets
+let compileOne = main.compileOne
+let onlyYS = ['MaxUpgradeLevel', 'CreditIncomeModifier', 'FuelIncomeModifier', 'CreditStorageModifier', 'FuelStorageModifier', 'CreditShipmentModifier', 'MaxShipments', 'ShipmentsPerHour']
 
 // создать одну таблицу со всеми планками
-exports.default = function (args) {
-    let compileOne = mainJs.compileOne
-    let stars = args.categories
-    let obj = args.rawData
+exports.default = function (obj) {
     let result = {}
-    let onlyYS = ['MaxUpgradeLevel', 'CreditIncomeModifier', 'FuelIncomeModifier', 'CreditStorageModifier', 'FuelStorageModifier', 'CreditShipmentModifier', 'MaxShipments', 'ShipmentsPerHour']
 
     for (let s in stars) {
         let obj1 = {}

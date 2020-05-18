@@ -1,8 +1,11 @@
 "use strict";
+const main = require('../generateGameData.js')
 
-exports.default = function (args) {
+let scannersData = main.readCSV('spacebuildings').ShortRangeScanner
+let cerberusData = main.readCSV('cerb_groups')
+
+exports.default = function (obj, star) {
   let result = {}
-  let obj = args.rawData
 
   for (let name of Object.keys(obj)) {
     name = obj[name]
@@ -20,15 +23,15 @@ exports.default = function (args) {
         }
       }
     }
-    if (args.star == 'yellow') addScannerInfo(name.MinScannerLevel, args.scannersData)
-    addCerberus(name.CerbGroup, args.cerberusData)
+    if (star == 'yellow') addScannerInfo(name.MinScannerLevel, scannersData)
+    addCerberus(name.CerbGroup, cerberusData)
     endObj()
   }
   // небольшие фиксы 
-  result['maxLevel'] = result['maxLevel'].length
-  result['Name'] = args.star + 'StarSectors'
-  if (result['MinScannerLevel'] != undefined) {
-    result['MinScannerLevel'].forEach((e, i, arr) => {
+  result.maxLevel = result.maxLevel.length
+  result.Name = star + 'StarSectors'
+  if (result.MinScannerLevel != undefined) {
+    result.MinScannerLevel.forEach((e, i, arr) => {
       if (e !== ' ') arr[i] = e + 1
     });
   }

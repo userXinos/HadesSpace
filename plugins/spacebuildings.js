@@ -1,16 +1,15 @@
 "use strict";
 
-const mainJs = require('../generateGameData.js')
+const main = require('../generateGameData.js')
 
-exports.default = function (args) {
-    let obj = args.rawData
-
+exports.default = function (obj) {
     let timeFixModifiers = {
         ConstructionTimeSeconds: 1,
         ConstructionTimeMinutes: 60,
         ConstructionTimeHours: 3600
     }
     let newValue = 'ConstructionTime'
+
     for (let key of Object.keys(obj)) {
         let obj1 = obj[key];
         for (let k of Object.keys(obj1)) {
@@ -38,7 +37,7 @@ exports.default = function (args) {
                 obj1[newValue] = obj1[newValue][0]
             }
         }
-        mainJs.fillSpace(obj1)
+        main.fillSpace(obj1)
     }
     obj.TimeModulator.Model = 'TimeModulator'
     return obj

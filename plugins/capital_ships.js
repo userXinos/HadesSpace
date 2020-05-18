@@ -1,22 +1,25 @@
 "use strict";
-const mainJs = require('../generateGameData.js')
+const main = require('../generateGameData.js')
 
-exports.default = function (args) {
-  let obj = args.rawData
-  args.cerberusList.forEach(e => {
+let cerberusList = main.dataByTypes.capital_ships.cerberus
+let ship_spawners = main.readCSV('ship_spawners')
+let GhostSpawnSecs = main.readCSV('solar_system_gen_data').RedStar.GhostSpawnSecs
+
+exports.default = function (obj) {
+  cerberusList.forEach(e => {
     fixModulesShipsData(obj, e, 'InitialModule', 'InitialModuleLevels')
   })
   fixModulesShipsData(obj, 'CorpFlagship', 'FlagshipModules', 'FlagshipModuleLevels')
-  Object.keys(args.ship_spawners.Ghosts).forEach(k => {
+  Object.keys(ship_spawners.Ghosts).forEach(k => {
     if (!ignoringHeaders.includes(k))
-      obj.CerberusGhosts[k] = args.ship_spawners.Ghosts[k]
+      obj.CerberusGhosts[k] = ship_spawners.Ghosts[k]
   })
-  obj.CerberusGhosts.GhostSpawnSecs = args.GhostSpawnSecs
+  obj.CerberusGhosts.GhostSpawnSecs = GhostSpawnSecs
   return obj
 }
 // из "{key:[module1!module2], key2:[1!2]}" в "{module1:[1], module2:[2]}"
 function fixModulesShipsData(obj, name, Modules, ModuleLevels) {
-  let combineObjects = mainJs.combineObjects
+  let combineObjects = main.combineObjects
   let modules = (Array.isArray(obj[name][Modules])) ? obj[name][Modules] : [obj[name][Modules]]
   let levels = (Array.isArray(obj[name][ModuleLevels])) ? obj[name][ModuleLevels] : [obj[name][ModuleLevels]]
   let obj1 = obj[name]
@@ -39,8 +42,8 @@ function fixModulesShipsData(obj, name, Modules, ModuleLevels) {
       }
     }
   }
-  obj1.maxLevel = obj[name]['maxLevel']
-  mainJs.fillSpace(obj1)
+  obj1.maxLevel = obj[name].maxLevel
+  main.fillSpace(obj1)
   delete obj1[Modules]
   delete obj1[ModuleLevels]
 }
