@@ -546,6 +546,8 @@
   "NoCerbBondTeleportPRS": "Deny use of Cerberus + Bond + Teleport on Public RS",
   "PubRSEMPReqEnemies": "Enemy in EMP zone is required before activation in the Public RS",
   "TID_Artifact": "Artifact",
+  "OnDestroySpawnCount": "A number of spawn ships after destroy",
+  "BarrageMaxAdditionalEnemies": "Max. enemies for additional damage",
   "EffectDurationx10WS": "Effect duration (WS)",
   "EffectDurationx10BS": "Effect duration (BS)",
   "EffectRadiusWS": "Effect range (WS)",
@@ -560,5 +562,7 @@
   "MaxDPSTimeWS": "Time to maximum damage (WS)",
   "MaxDPSTime_BS": "Time to maximum damage (BS)",
   "APTPIOTTPWS": "Preparation time per item (WS)",
-  "DisableTimeWS": "Disable time (WS)"
+  "DisableTimeWS": "Disable time (WS)",
+  "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
+  "ProximityTriggerSecWS": "Trigger time (WS)"
 }

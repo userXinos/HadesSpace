@@ -6,7 +6,7 @@ let shipsData = main.readCSV('capital_ships')
 let projectilesData = main.readCSV('projectiles')
 let artifacts = main.readCSV('artifacts')
 let globalsData = globals.default(main.readCSV('globals'))
-let starHeaders = ['EffectDurationx10', 'ActivationDelay', 'ActivationPrep', 'MaxDPSTime', 'APTPIOTTP', 'DisableTime'];
+let starHeaders = ['EffectDurationx10', 'ActivationDelay', 'ActivationPrep', 'MaxDPSTime', 'APTPIOTTP', 'DisableTime', 'ProximityTriggerSec'];
 
 exports.default = function (obj) {
   for (let key in obj) {
@@ -36,6 +36,12 @@ exports.default = function (obj) {
     // добавить данные дронов
     if (obj1.SpawnLifetime) {
       obj[key] = main.combineObjects(obj1, shipsData[obj1.Name]);
+    }
+    // добавить данные дронов
+    if (obj1.BarrageMaxAdditionalEnemies) {
+      let arr = obj1.BarrageMaxAdditionalEnemies.split('!')
+      obj1.BarrageMaxAdditionalEnemies = Number(arr[0])
+      obj1.BarrageMaxAdditionalEnemiesWS = Number(arr[1])
     }
     ['WeaponEffectType', 'WeaponFx', 'Hide'].forEach(e => delete obj1[e]);
   }

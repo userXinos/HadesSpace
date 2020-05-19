@@ -489,5 +489,7 @@
   "MaxDPSTimeWS": "Temps jusqu'aux dégâts max (WS)",
   "MaxDPSTime_BS": "Temps jusqu'aux dégâts max (BS)",
   "APTPIOTTPWS": "Temps de préparation par objet (WS)",
-  "DisableTimeWS": "Disable time (WS)"
+  "DisableTimeWS": "Disable time (WS)",
+  "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
+  "ProximityTriggerSecWS": "Temps d'activation (WS)"
 }

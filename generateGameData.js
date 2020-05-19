@@ -25,11 +25,11 @@ module.exports = {
   isWhiteListBS
 }
 
-let f = ['stars']
+let f = ['modules']
 generateFiles(
   pathCSVs,
   pathSave,
-  f
+  //f
 )
 
 async function generateFiles(pathCSVs, pathSave, files) {

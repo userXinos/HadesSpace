@@ -103,11 +103,11 @@ exports.isHide = function (name, header, isStrict = false) { // скрывает
             headers: ['ShowWSInfo', 'UnlockPrice', 'UnlockBlueprints', 'UnlockTime', 'WhiteStarScore', 'Install', 'BCCost', 'FuelUseIncrease']
         },
         {
-            name: ['AlphaDrone', 'CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts'],
+            name: ['AlphaDrone', 'CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts', 'CerberusHydra', 'Hydraling1', 'Hydraling2'],
             headers: ['NewModuleSlots', 'BuildCost', 'HideModulesOnHUD', 'BSPenaltyPerSec', 'DesignUpgradeCost', 'DesignUpgradeTime', 'ShipAIHandler', 'AIUpdateIntervalSeconds', 'AggressiveAI', 'OnDestroySpawn', 'BSPenaltyPerSecOnSector']
         },
         {
-            name: ['CerberusGuardian', 'CerberusInterceptor', 'CerberusDestroyer', 'CerberusBomber', 'CerberusStorm', 'CerberusGhosts', 'CerberusPhoenix'],
+            name: ['CerberusGuardian', 'CerberusInterceptor', 'CerberusDestroyer', 'CerberusBomber', 'CerberusStorm', 'CerberusGhosts', 'CerberusPhoenix', 'CerberusHydra', 'Hydraling1', 'Hydraling2'],
             headers: ['ApplyModuleOnDockedObjectDestroy', 'OnDestroySpawnMinRadius', 'OnDestroySpawnMaxRadius']
         },
         {
@@ -124,7 +124,7 @@ exports.isHide = function (name, header, isStrict = false) { // скрывает
         },
         {
             name: ['RedStar'],
-            headers: ['CRAsteroidAmt', 'GhostSpawner']
+            headers: ['GhostSpawner']
         },
     ];
     let strict = [

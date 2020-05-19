@@ -83,7 +83,7 @@ async function generatePageTables(typeData, category = null, elem = null) {
             }));
         }
         addStringStats(module, isCerb, typeCerbModule)
-        if (isCerb) await addModuleCerb(typeCerbModule)
+        if (isCerb) await addModuleCerb(module, typeCerbModule)
         if (module.maxLevel <= 1) continue
         let keys = []
         for (let key in module) {
@@ -165,7 +165,7 @@ function addStringStats(data, isCerb, cerbObj) {
     }
 }
 // добавить пушку Церебера
-async function addModuleCerb(typeCerbModule) {
+async function addModuleCerb(obj, typeCerbModule) {
     if (typeCerbModule.name != null) {
         $('body').append($('<h2/>', {
             'class': 'stringStsts cerberusModule',
@@ -175,11 +175,17 @@ async function addModuleCerb(typeCerbModule) {
         module = module.data[typeCerbModule.name]
         for (let key in module) {
             if (ignoringHeaders.includes(key)) continue
+            let str = module[key]
+            if (Array.isArray(module[key])) str = fixHydraWeapon(key)
             $('body').append($('<h2/>', {
                 'class': 'stringStsts',
-                html: `<b>${getStr(key)}</b>: ${getFormat(key, module[key])}`
+                html: `<b>${getStr(key)}</b>: ${getFormat(key, str)}`
             }));
 
+        }
+        function fixHydraWeapon(key) {
+            let index = obj.HydraBarrage - 1
+            return module[key][index]
         }
     }
 }
@@ -257,7 +263,7 @@ function getFormat(key, value) {
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown", "ProximityTriggerSec"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown", "ProximityTriggerSec", "EMPResist", "ProximityTriggerSecWS"],
             func: (v) => fixTime(v)
         },
         {
@@ -265,7 +271,7 @@ function getFormat(key, value) {
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward", "RelicsRequired", "Score1Thresholds", "Score2Thresholds", "Score2Thresholds"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward", "RelicsRequired", "Score1Thresholds", "Score2Thresholds", "Score2Thresholds", "CRAsteroidAmt"],
             func: (v) => Number(v).toLocaleString()
         },
         {
@@ -354,8 +360,8 @@ function getFormat(key, value) {
             array: ["PassiveIncomeModifier"],
             func: (v) => `+${v}%`
         },
-        {
-            array: ["Hydrogen", "Credits", "RegularInfuenceRange", "InfluenceAwardThreshold", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+        { // нужен рефакторинг
+            array: ["Hydrogen", "Credits", "RegularInfuenceRange", "InfluenceAwardThreshold", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
             func: (v) => {
                 let arr = v.split('!')
                 arr = arr.map(e => {
@@ -374,7 +380,7 @@ function getFormat(key, value) {
         },
         {
             array: ["TargetSwitchTicks"],
-            func: (v) => fixTime(v - 4)
+            func: (v) => fixTime(v / 5)
         },
         {
             array: ["PreparationTimeHours"],

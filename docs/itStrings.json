@@ -489,5 +489,7 @@
   "MaxDPSTimeWS": "Tempo per danno massimo (WS)",
   "MaxDPSTime_BS": "Tempo per danno massimo (BS)",
   "APTPIOTTPWS": "Tempo di preparazione per oggetto (WS)",
-  "DisableTimeWS": "Disable time (WS)"
+  "DisableTimeWS": "Disable time (WS)",
+  "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
+  "ProximityTriggerSecWS": "Tempo d'innesco (WS)"
 }

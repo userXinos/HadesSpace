@@ -489,5 +489,7 @@
   "MaxDPSTimeWS": "最大伤害用时 (WS)",
   "MaxDPSTime_BS": "最大伤害用时 (BS)",
   "APTPIOTTPWS": "每件物品的准备时间 (WS)",
-  "DisableTimeWS": "Disable time (WS)"
+  "DisableTimeWS": "Disable time (WS)",
+  "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
+  "ProximityTriggerSecWS": "触发时间 (WS)"
 }

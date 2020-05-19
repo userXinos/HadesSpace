@@ -10,7 +10,7 @@ function load(lang) {
     let key = 'locStrings' + lang.toUpperCase()
     if (sessionStorage.getItem(key) == null) {
         sessionStorage.setItem(key, JSON.stringify(ajax()))
-        console.log(ajax())
+        //console.log(ajax())
         return ajax()
     } else {
         return JSON.parse(sessionStorage.getItem(key))
@@ -41,6 +41,7 @@ function getStr(key, lang = language) {
 
 function getKey(str) {
     let stringKeys = {
+        CRAsteroidAmt: 'TID_CR_ASTEROID_FIELD',
         EMPResist: 'TID_EMP_RESIST',
         TargetSwitchTicks: 'TID_MODULE_DESCR_TARGET_SWITCH_DELAY',
         ProximityTriggerSec: 'TID_MODULE_TRIGGER_TIME',
@@ -173,7 +174,7 @@ function getKey(str) {
         PassiveShield: 'TID_MODULE_PASSIVE_SHIELD',
         InfluencePoints: 'TID_PLAYER_INFO_INFLUENCE_TITLE',
         DockedObjectDestroyTime: 'TID_STATUS_DESTROYING_PLANET',
-        OnDestroySpawnCount: 'TID_FLEET_SENTINELS_SPAWNED',
+        //OnDestroySpawnCount: 'TID_FLEET_SENTINELS_SPAWNED',
         GuardianBattery: "cerbWeapon",
         WeakBattery: "cerbWeapon",
         InterceptorMBattery: "cerbWeapon",

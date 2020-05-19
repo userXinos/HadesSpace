@@ -489,5 +489,7 @@
   "MaxDPSTimeWS": "最大ダメージまでの時間 (WS)",
   "MaxDPSTime_BS": "最大ダメージまでの時間 (BS)",
   "APTPIOTTPWS": "アイテムごとの準備時間 (WS)",
-  "DisableTimeWS": "Disable time (WS)"
+  "DisableTimeWS": "Disable time (WS)",
+  "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
+  "ProximityTriggerSecWS": "起爆時間 (WS)"
 }

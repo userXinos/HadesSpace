@@ -97,9 +97,10 @@ table {
 }
 
 table th, table td {
-    padding: 10px 10px 10px;
-    line-height: 18px;
+    padding: 8px 10px 8px;
+    line-height: 15px;
     text-align: center;
+    font-size: 85%;
 }
 
 table td {

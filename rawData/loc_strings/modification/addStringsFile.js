@@ -91,8 +91,9 @@ exports.default = {
         SafeInterceptorInPublicRS: 'Neutral Interceptors on Public RS',
         NoCerbBondTeleportPRS: 'Deny use of Cerberus + Bond + Teleport on Public RS',
         PubRSEMPReqEnemies: 'Enemy in EMP zone is required before activation in the Public RS',
-        TID_Artifact: 'Artifact'
-
+        TID_Artifact: 'Artifact',
+        OnDestroySpawnCount: 'A number of spawn ships after destroy',
+        BarrageMaxAdditionalEnemies: 'Max. enemies for additional damage'
     },
     ru: {
         UnlockPrice: 'Стоимость изучения',

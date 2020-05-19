@@ -699,7 +699,8 @@ let data = {
     BSScore: [250, 500, 750, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 5200, 5400],
     maxLevel: 12,
     TargetSwitchTicks: 5,
-    BarrageMaxAdditionalEnemies: "16!8",
+    BarrageMaxAdditionalEnemies: 16,
+    BarrageMaxAdditionalEnemiesWS: 8,
   },
   TradeBurst: {
     Name: "TradeBurst",
@@ -1379,6 +1380,7 @@ let data = {
     BSScore: [3000, 3500, 4000, 4500, 5000, 5500, 6000, 7000, 8000, 9000, 9500, 10000],
     maxLevel: 12,
     ProximityTriggerSec: 15,
+    ProximityTriggerSecWS: 9000,
   },
 };
 

@@ -76,6 +76,12 @@ function addStrings(obj, lang) {
     ],
     DisableTime: [
       'DisableTimeWS'
+    ],
+    BarrageMaxAdditionalEnemies: [
+      'BarrageMaxAdditionalEnemiesWS'
+    ],
+    TID_MODULE_TRIGGER_TIME: [
+      'ProximityTriggerSecWS'
     ]
   }
   let result = {};
@@ -99,10 +105,12 @@ function isTrash(key) {
 }
 // вернуть сточку в нижем регистре, но с заглавной буквой, если такая есть
 function fixWorlds(rawStr) {
-  let firstLetterRaw = rawStr.slice(0, 1);
+  let firstLetterRaw = rawStr.slice(0, 1); // '«'
   let lower = rawStr.toLowerCase();
-  let firstLetter = lower.slice(0, 1);
+  let firstLetter = lower.slice(0, 1)
 
+  lower = lower.replace(/(«)(\W)/g,
+    (math, symb, w) => symb + w.toUpperCase())
   if (firstLetterRaw.toUpperCase() == firstLetterRaw) { // первая буква была заглавной ?
     let result = lower.replace(firstLetter, firstLetter.toUpperCase());
     return regexFix(result);

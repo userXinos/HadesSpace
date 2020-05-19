@@ -489,5 +489,7 @@
   "MaxDPSTimeWS": "최대 피해량 도달 시간 (WS)",
   "MaxDPSTime_BS": "최대 피해량 도달 시간 (BS)",
   "APTPIOTTPWS": "아이템 당 준비 시간 (WS)",
-  "DisableTimeWS": "Disable time (WS)"
+  "DisableTimeWS": "Disable time (WS)",
+  "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
+  "ProximityTriggerSecWS": "발동 시간 (WS)"
 }
