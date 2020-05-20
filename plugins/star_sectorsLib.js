@@ -3,6 +3,7 @@ const main = require('../generateGameData.js')
 
 let scannersData = main.readCSV('spacebuildings').ShortRangeScanner
 let cerberusData = main.readCSV('cerb_groups')
+let cerberusStationsData = main.readCSV('cerberus_stations')
 
 exports.default = function (obj, star) {
   let result = {}
@@ -24,7 +25,8 @@ exports.default = function (obj, star) {
       }
     }
     if (star == 'yellow') addScannerInfo(name.MinScannerLevel, scannersData)
-    addCerberus(name.CerbGroup, cerberusData)
+    addCerberus(name.CerbGroup)
+    fixCerbBaseName(name.BaseType)
     endObj()
   }
   // небольшие фиксы 
@@ -71,10 +73,10 @@ exports.default = function (obj, star) {
       result[i].push(scanners[i][scanner])
     }
   }
-  function addCerberus(cerb, cerberus) {
+  function addCerberus(cerb) {
     if (!cerb) return
     let cerbObj = (() => {
-      let r = cerberus[cerb]
+      let r = cerberusData[cerb]
       for (let i in r) {
         let data = r[i]
         delete r[i]
@@ -87,6 +89,11 @@ exports.default = function (obj, star) {
     })
     let index = result.CerbGroup.indexOf(cerb)
     result.CerbGroup[index] = cerbObj()
+  }
+  function fixCerbBaseName(base) {
+    if (!base) return
+    let index = result.BaseType.indexOf(base)
+    result.BaseType[index] = cerberusStationsData[base].TID
   }
 }
 function getType(v) {

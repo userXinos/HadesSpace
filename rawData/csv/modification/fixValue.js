@@ -2,10 +2,6 @@
 exports.default = function (name, header, value) { // скрыть/исправить значения для красоты результата
     let data = [
         {
-            header: ["Battery"],
-            func: (v) => 'TID_MODULE_BATTERY'
-        },
-        {
             header: ["HealRate"],
             func: (v) => v / 200
         },
@@ -125,6 +121,14 @@ exports.isHide = function (name, header, isStrict = false) { // скрывает
         {
             name: ['RedStar'],
             headers: ['GhostSpawner']
+        },
+        {
+            name: ['globals'],
+            headers: ['BondMinPullVector', 'BondMaxPullListSize', 'BondWorksOnLoadingTransport']
+        },
+        {
+            name: ['HomeSystem1', 'HomeSystem2', 'HomeSystem3'],
+            headers: ['ShipLevel', 'WeaponFx']
         },
     ];
     let strict = [

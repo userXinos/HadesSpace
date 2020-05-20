@@ -5,7 +5,7 @@ const prettier = require('prettier')
 var pathCSVs = './rawData/csv/'
 var pathSave = './data/'
 var pluginsPath = './plugins/'
-var optionalFiles = ['cerberus_stations.csv', 'projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv']
+var optionalFiles = ['projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv']
 var isWhiteListBS = require(`${pathCSVs}modification/fixValue.js`).isWhiteListBS
 var dataByTypes = require(`${pathCSVs}modification/byTypes.js`).default
 var fixValue = require(`${pathCSVs}modification/fixValue.js`).default
@@ -25,11 +25,11 @@ module.exports = {
   isWhiteListBS
 }
 
-let f = ['modules']
+let f = ['cerberus_stations']
 generateFiles(
   pathCSVs,
   pathSave,
-  //f
+  f
 )
 
 async function generateFiles(pathCSVs, pathSave, files) {

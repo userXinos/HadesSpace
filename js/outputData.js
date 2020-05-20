@@ -14,7 +14,8 @@ const data = {
     spacebuildings: import('../data/spacebuildingsData'),
     player_goals: import('../data/player_goalsData'),
     achievements: import('../data/achievementsData'),
-    alliance_levels: import('../data/alliance_levelsData')
+    alliance_levels: import('../data/alliance_levelsData'),
+    cerberus_stations: import('../data/cerberus_stationsData'),
 }
 const iconsData = {
     modules: require('../img/modules_icons/*.png'),
@@ -160,7 +161,7 @@ function addStringStats(data, isCerb, cerbObj) {
         if (isCerb && findModuleCerb(key, cerbObj)) continue
         $('body').append($('<h2/>', {
             'class': 'stringStsts',
-            html: `<b>${getStr(key)}</b>: ${getFormat(key, data[key])}`
+            html: `<b>${getStr(key)}</b>: ${getFormatValue(key, data[key])}`
         }));
     }
 }
@@ -179,7 +180,7 @@ async function addModuleCerb(obj, typeCerbModule) {
             if (Array.isArray(module[key])) str = fixHydraWeapon(key)
             $('body').append($('<h2/>', {
                 'class': 'stringStsts',
-                html: `<b>${getStr(key)}</b>: ${getFormat(key, str)}`
+                html: `<b>${getStr(key)}</b>: ${getFormatValue(key, str)}`
             }));
 
         }
@@ -207,7 +208,7 @@ function genLevelTable(lvlCol, maxLevel, modifier = 1) {
 function genStatsTableHead(keys, objName) {
     let result = '<thead><tr>';
     for (let i = 0; i < keys.length; i++) {
-        result += `<th>${getFormat2(objName, keys[i])}</th>`
+        result += `<th>${getFormatHead(objName, keys[i])}</th>`
     }
     result += '</tr></thead>'
     return result
@@ -218,7 +219,7 @@ function genStatsTableBody(keys, data) {
     for (let i = 0; i < data.maxLevel; i++) {
         result += '<tr>';
         for (let k = 0; k < keys.length; k++) {
-            let value = getFormat(keys[k], data[keys[k]][i]);
+            let value = getFormatValue(keys[k], data[keys[k]][i]);
             result += `<td>${value}</td>`
         }
         result += '</tr>'
@@ -255,23 +256,23 @@ function fixTime(sec) {
     }
     return result || 0;
 };
-function getFormat(key, value) {
+function getFormatValue(key, value) {
     //console.log(`${key} : ${value}`)
     let formatList = [
         {
-            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct", "ArtifactYieldBonus", "BlueStar_CRRewardRate", "BlueStar_MaxHydroPerDayPct", "BlueStar_HydroPctPerPos"],
+            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct", "ArtifactYieldBonus", "BlueStar_CRRewardRate", "BlueStar_MaxHydroPerDayPct", "BlueStar_HydroPctPerPos", "DroneShipmentBonusMax"],
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown", "ProximityTriggerSec", "EMPResist", "ProximityTriggerSecWS"],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown", "ProximityTriggerSec", "EMPResist", "ProximityTriggerSecWS", "DestinyDisableTimes", "DestinyDisableTimesWS", 'SpawnFleetIntervalSeconds', 'ShieldRegenTimeAfterDamage'],
             func: (v) => fixTime(v)
         },
         {
-            array: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized", "Speed"],
+            array: ["EffectRadiusWS", "EffectRadiusBS", "EffectRadius", "DamageRange", "DamageRangeWhenNeutralized", "Speed", 'AttackRange'],
             func: (v) => v + " " + getStr("AU")
         },
         {
-            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward", "RelicsRequired", "Score1Thresholds", "Score2Thresholds", "Score2Thresholds", "CRAsteroidAmt"],
+            array: ["UnlockBlueprints", "UnlockPrice", "BCCost", "BuildCost", "DesignUpgradeCost", "HP", "WhiteStarScore", "BSScore", "ActivationFuelCost", "AOEDamage", "AOEDamage_WS", "AOEDamage_BS", "Damage", "Cost", "HydrogenPerDay", "CreditStorage", "FuelStorage", "ShipmentsCRValuePerDay", "array", "SalvageCRReward", "PriceInCrystals", "XP", "SalvageHydroReward", "SectorUnlockCost", "TotalShipmentCRPerDay", "GoalTarget", "CRReward", "FuelReward", "UnlockAmount", "PCReward", "XPReward", "RelicsRequired", "Score1Thresholds", "Score2Thresholds", "Score2Thresholds", "CRAsteroidAmt", 'MaxHP', 'MaxShield'],
             func: (v) => Number(v).toLocaleString()
         },
         {
@@ -299,7 +300,7 @@ function getFormat(key, value) {
             func: (v) => 'x' + v + '%'
         },
         {
-            array: ["TID", "TID_Description"],
+            array: ["TID", "TID_Description", "BaseType", "TID_Artifact", 'InitialModule'],
             func: (v) => getStr(v)
         },
         {
@@ -321,13 +322,6 @@ function getFormat(key, value) {
             }
         },
         {
-            array: ["BaseType"],
-            func: (v) => {
-                if (v == ' ') return ' '
-                return getStr('lvl') + ' ' + v.replace(/\w*(\d)/, '$1')
-            }
-        },
-        {
             array: ["NewModuleSlots"],
             func: (v) => {
                 let arr = v.split("!");
@@ -346,7 +340,7 @@ function getFormat(key, value) {
                 })
         },
         {
-            array: ["StringParam"],
+            array: ["StringParam", 'ShipToSpawn'],
             func: (v) => getStr(v.replace(/Cerberus(.*)/, '$1'))
         },
         {
@@ -357,7 +351,7 @@ function getFormat(key, value) {
             }
         },
         {
-            array: ["PassiveIncomeModifier"],
+            array: ["PassiveIncomeModifier", "UnityMaxDamageIncreasePct"],
             func: (v) => `+${v}%`
         },
         { // нужен рефакторинг
@@ -385,10 +379,6 @@ function getFormat(key, value) {
         {
             array: ["PreparationTimeHours"],
             func: (v) => v + ' ' + getStr('hours')
-        },
-        {
-            array: ["TID_Artifact"],
-            func: (v) => getStr(v)
         }
     ];
     if (value.constructor.name == 'Object') {
@@ -399,13 +389,13 @@ function getFormat(key, value) {
         return r.join(', ')
     }
     for (let i in formatList) {
-        if (formatList[i]['array'].includes(key)) {
-            return formatList[i]['func'](value);
+        if (formatList[i].array.includes(key)) {
+            return formatList[i].func(value);
         }
     };
     return value;
 };
-function getFormat2(key, value) {
+function getFormatHead(tableName, value) {
     let formatList = [
         {
             array: ['blueprintsSupport'],
@@ -427,8 +417,7 @@ function getFormat2(key, value) {
         },
     ]
     for (let i in formatList) {
-        //debugger
-        if (formatList[i]['array'].includes(key)) {
+        if (formatList[i]['array'].includes(tableName)) {
             return formatList[i]['func'](value);
         }
     };

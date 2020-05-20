@@ -51,12 +51,6 @@ window.genDesc = function (str) {
         html: getStr(str)
     }));
 }
-
-window.setFlagshipModules = async function () {
-    genTitle(`<a href="flagshipModules" name="flagshipModules">${getStr('flagshipModules')}</a>`)
-    await generatePageTables('modules', 'flagship');
-}
-
 // export { // TODO: хз пока как это сделать
 //     genTitle,
 //     genOl,

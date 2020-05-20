@@ -98,7 +98,7 @@ table {
 
 table th, table td {
     padding: 8px 10px 8px;
-    line-height: 15px;
+    line-height: 16px;
     text-align: center;
     font-size: 85%;
 }
@@ -132,6 +132,11 @@ th, td {
     -ms-hyphens: auto; */
     padding: 10% 10% 10%;
     line-height: 18px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .generalTable {

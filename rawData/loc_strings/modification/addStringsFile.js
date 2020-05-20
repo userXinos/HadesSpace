@@ -93,7 +93,17 @@ exports.default = {
         PubRSEMPReqEnemies: 'Enemy in EMP zone is required before activation in the Public RS',
         TID_Artifact: 'Artifact',
         OnDestroySpawnCount: 'A number of spawn ships after destroy',
-        BarrageMaxAdditionalEnemies: 'Max. enemies for additional damage'
+        BarrageMaxAdditionalEnemies: 'Max. enemies for additional damage',
+        DroneShipmentBonusMax: 'Max. bonus',
+        TeleportBreaksBond: 'Teleport breaks the Bond',
+        LeapBreaksBond: 'Leap breaks the Bond',
+        DestinyBreaksBond: 'Destiny breaks the Bond',
+        BondBreaksBond: 'Bond breaks the Bond',
+        BondOverridesBarrier: 'Bond ignores the Barrier',
+        UnityMaxDamageIncreasePct: 'Max. damage',
+        MaxShips: 'Max. ships',
+        ShipToSpawn: 'Ship spawn'
+
     },
     ru: {
         UnlockPrice: 'Стоимость изучения',
@@ -136,7 +146,7 @@ exports.default = {
         sectors: 'Сектора',
         colonizationPlanets: 'Колонизация планет',
         lvlsPlanets: 'Улучшение планет',
-        XPAward: 'XP награда',
+        XPAward: 'Опыт',
         TimeToUpgrade: 'Время улучшения',
         MaxShipments: 'Макс. грузов',
         CreditShipmentModifier: 'Модификатор грузов',
@@ -190,7 +200,16 @@ exports.default = {
         PubRSEMPReqEnemies: 'Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ',
         TID_Artifact: 'Артефакт',
         OnDestroySpawnCount: 'Количество появившихся кораблей после уничтожения',
-        BarrageMaxAdditionalEnemies: 'Макс. врагов для доп. урона'
+        BarrageMaxAdditionalEnemies: 'Макс. врагов для доп. урона',
+        DroneShipmentBonusMax: 'Макс. бонус',
+        TeleportBreaksBond: 'Телепорт ломает Узы',
+        LeapBreaksBond: 'Скачок ломает Узы',
+        DestinyBreaksBond: 'Рок ломает Узы',
+        BondBreaksBond: 'Узы ломают Узы',
+        BondOverridesBarrier: 'Узы игнорируют Барьер',
+        UnityMaxDamageIncreasePct: 'Макс. урон',
+        MaxShips: 'Макс. кораблей',
+        ShipToSpawn: 'Спавн корабля'
     },
     de: {
         UnlockPrice: 'Preis freischalten',

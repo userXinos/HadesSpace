@@ -54,7 +54,10 @@
   <a href="#" id="buttonTop"></a>
   <script type="module">
     setBaseData('ships', 'player').finally(() => {
-      setFlagshipModules()
+      let flagshipModules = `<a href="flagshipModules" name="flagshipModules">${getStr('flagshipModules')}</a>`
+      $('body').append(`<div class="title"><div class="title-text"><h1>${flagshipModules}<h1></div></div>`);
+      generatePageTables('modules', 'flagship');
+
     })
 
   </script>

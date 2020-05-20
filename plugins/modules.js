@@ -14,7 +14,7 @@ exports.default = function (obj) {
 
     // добавить глобальные к модулям 
     Object.keys(globalsData).forEach(e => {
-      if (e.includes(key)) {
+      if (e.includes(key) && !main.isHide('globals', e)) {
         obj1[e] = globalsData[e]
       }
     })
@@ -37,11 +37,26 @@ exports.default = function (obj) {
     if (obj1.SpawnLifetime) {
       obj[key] = main.combineObjects(obj1, shipsData[obj1.Name]);
     }
-    // добавить данные дронов
+    // фикс Арты
     if (obj1.BarrageMaxAdditionalEnemies) {
       let arr = obj1.BarrageMaxAdditionalEnemies.split('!')
       obj1.BarrageMaxAdditionalEnemies = Number(arr[0])
       obj1.BarrageMaxAdditionalEnemiesWS = Number(arr[1])
+    }
+    // фикс Рока
+    if (obj1.DestinyDisableTimes) {
+      let arr = obj1.DestinyDisableTimes.split('!')
+      obj1.DestinyDisableTimes = Number(arr[0])
+      obj1.DestinyDisableTimesWS = Number(arr[1] / 6 * 3600)
+    }
+    // + макс бонус у торг. дрона 
+    if (obj1.DroneShipmentBonus) {
+      obj1.DroneShipmentBonusMax = []
+      obj1.DroneShipmentBonus.forEach((e, i) => {
+        obj1.DroneShipmentBonusMax.push(
+          (obj1.SpawnCapacity[i] - 1) * e
+        )
+      });
     }
     ['WeaponEffectType', 'WeaponFx', 'Hide'].forEach(e => delete obj1[e]);
   }
@@ -82,10 +97,4 @@ function addStarInfo(obj, starHeaders, star) {
       }
     }
   }
-}
-function fixGlobals(obj) {
-  for (let i of Object.keys(obj)) {
-    obj[i] = obj[i]['Value']
-  }
-  return obj
 }

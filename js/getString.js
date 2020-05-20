@@ -60,6 +60,15 @@ function getStr(key, lang = language) {
 }
 function getKey(str) {
     let stringKeys = {
+        MaxHP: 'TID_FLEET_HULL_STRENGTH_MAX',
+        MaxShield: 'TID_MODULE_SHIELD_STRENGTH_STAT',
+        ShieldRegenPerMinute: 'TID_CERBERUS_STATION_SHIELD_REGEN_LABEL',
+        ShieldRegenTimeAfterDamage: 'TID_CERBERUS_STATION_SHIELD_REGEN_DELAY',
+        AwardXP: 'XPAward',
+        SpawnFleetIntervalSeconds: 'TID_CERBERUS_STATION_SPAWNING_IN',
+        AttackRange: 'TID_MODULE_ATTACK_RANGE_DESCR',
+        DestinyDisableTimes: 'DisableTime',
+        DestinyDisableTimesWS: 'DisableTimeWS',
         CRAsteroidAmt: 'TID_CR_ASTEROID_FIELD',
         EMPResist: 'TID_EMP_RESIST',
         TargetSwitchTicks: 'TID_MODULE_DESCR_TARGET_SWITCH_DELAY',
@@ -165,7 +174,7 @@ function getKey(str) {
         ice: 'TID_PLANET_ICE',
         MinScannerLevel: 'TID_BUILDING_SHORT_RANGE_SCANNER',
         AsteroidsMax: 'TID_MODULE_GENESIS_MAX_ASTEROIDS',
-        CerbGroup: 'Cerberus',
+        CerbGroup: 'cerberus',
         BaseType: 'TID_CERB_STATION_HOME2',
         BSAnomaly: 'TID_BLUE_STAR_ANOMALY',
         DesignUpgradeCost: 'UpgradeCost',
