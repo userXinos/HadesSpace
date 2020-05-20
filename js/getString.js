@@ -1,9 +1,29 @@
 "use strict";
-import { getCookie } from './cookie.js'
 
-const defaultLang = 'en'
-const language = getCookie("language") || defaultLang
-
+const defaultLang = 'en';
+let locList = {
+    'English': 'en',
+    'Pусский': 'ru',
+    'Français': 'fr',
+    'Deutsch': 'de',
+    'Español': 'es',
+    'Italiano': 'it',
+    'Português': 'pt',
+    '한국어': 'ko',
+    '日本語': 'jp',
+    '简体中文': 'zh-si',
+};
+let langsList = Object.keys(locList).map(e => locList[e])
+let language
+if (localStorage.getItem('language') && langsList.includes(localStorage.getItem('language'))) {
+    language = localStorage.getItem('language')
+} else {
+    if (langsList.includes(window.navigator.language.slice(0, 2))) {
+        language = window.navigator.language.slice(0, 2)
+    } else {
+        language = defaultLang
+    }
+}
 // загрузить сточку из sessionStorage
 // sessionStorage, чтобы качал новую версию кажый раз
 function load(lang) {
@@ -38,7 +58,6 @@ function getStr(key, lang = language) {
         return getStr(key, defaultLang)
     }
 }
-
 function getKey(str) {
     let stringKeys = {
         CRAsteroidAmt: 'TID_CR_ASTEROID_FIELD',
@@ -243,5 +262,6 @@ function getKey(str) {
     return str;
 }
 export {
-    getStr
+    getStr,
+    locList
 }

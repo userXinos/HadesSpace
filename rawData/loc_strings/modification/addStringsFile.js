@@ -188,7 +188,9 @@ exports.default = {
         SafeInterceptorInPublicRS: 'Нейтральные Перехватчики на общедоступных КЗ',
         NoCerbBondTeleportPRS: 'Запретить использование Цербера + Узы + Телепорт на общедоступной КЗ',
         PubRSEMPReqEnemies: 'Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ',
-        TID_Artifact: 'Артефакт'
+        TID_Artifact: 'Артефакт',
+        OnDestroySpawnCount: 'Количество появившихся кораблей после уничтожения',
+        BarrageMaxAdditionalEnemies: 'Макс. врагов для доп. урона'
     },
     de: {
         UnlockPrice: 'Preis freischalten',

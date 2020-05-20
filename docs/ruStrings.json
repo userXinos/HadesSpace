@@ -547,6 +547,8 @@
   "NoCerbBondTeleportPRS": "Запретить использование Цербера + Узы + Телепорт на общедоступной КЗ",
   "PubRSEMPReqEnemies": "Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ",
   "TID_Artifact": "Артефакт",
+  "OnDestroySpawnCount": "Количество появившихся кораблей после уничтожения",
+  "BarrageMaxAdditionalEnemies": "Макс. врагов для доп. урона",
   "EffectDurationx10WS": "Время действия (БЗ)",
   "EffectDurationx10BS": "Время действия (ГЗ)",
   "EffectRadiusWS": "Дальность действия (БЗ)",
@@ -562,6 +564,6 @@
   "MaxDPSTime_BS": "Время до макс. урона (ГЗ)",
   "APTPIOTTPWS": "Время подготовки за предмет (БЗ)",
   "DisableTimeWS": "Время отключения (БЗ)",
-  "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (БЗ)",
+  "BarrageMaxAdditionalEnemiesWS": "Макс. врагов для доп. урона (БЗ)",
   "ProximityTriggerSecWS": "Время срабатывания (БЗ)"
 }

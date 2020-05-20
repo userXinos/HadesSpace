@@ -1,20 +1,7 @@
 "use strict";
-import { getStr } from './getString.js';
-import { setCookie } from './cookie.js';
+import { getStr, locList } from './getString.js';
 import * as  modulesData from '../data/modulesData.js';
 
-let locList = {
-    'English': 'en',
-    'Pусский': 'ru',
-    'Français': 'fr',
-    'Deutsch': 'de',
-    'Español': 'es',
-    'Italiano': 'it',
-    'Português': 'pt',
-    '한국어': 'ko',
-    '日本語': 'jp',
-    '简体中文': 'zh-si',
-};
 let menu = document.querySelectorAll('ul.menu')[0]
 
 // основа
@@ -50,7 +37,7 @@ for (let l of Object.keys(langs)) {
     menu.querySelectorAll('select.compactLangs')[0]['innerHTML'] += lang
 };
 function switchLang(l) {
-    setCookie('language', l);
+    localStorage.setItem('language', l);
     location.reload()
 };
 function getLangVal(k) {
