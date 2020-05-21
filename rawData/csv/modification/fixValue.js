@@ -40,6 +40,10 @@ exports.default = function (name, header, value) { // скрыть/исправ�
         {
             header: ["BlueStar_HydroPctPerPos"],
             func: (v) => v / 10
+        },
+        {
+            header: ["FuelUseIncrease"],
+            func: (v) => v / 5
         }
     ]
 
