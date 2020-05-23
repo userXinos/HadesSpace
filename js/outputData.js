@@ -29,17 +29,34 @@ let cerbModules = ['cerbShield', 'cerbWeapon', 'cerbModule'];
 let noFixTables = ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport', 'WarpLaneHub']
 
 async function generatePageTables(typeData, category = null, elem = null) {
-    let obj = await data[typeData]
-    let icons = await iconsData[typeData]
+    let obj, icons
+    let isCerb = (category == 'cerberus')
 
-    let items = (category != null) ? obj.byTypes[category.toLowerCase()] :
-        (elem != null) ? [elem] : [Object.keys(obj)[0]]
-    let isCerb = (category == 'cerberus');
-    for (let item of items) {
+    if (typeData.constructor.name == 'Object') {
+        obj = {}
+        obj.data = typeData
+    } else {
+        obj = await data[typeData]
+        icons = await iconsData[typeData]
+    }
+    let items = () => {
+        if (category != null) {
+            return obj.byTypes[category.toLowerCase()]
+        } else if (elem != null) {
+            return [elem]
+        } else {
+            [Object.keys(obj)[0]]
+        }
+    }
+    for (let item of items()) {
         let module = (category != null || elem != null) ? obj.data[item] : obj.data
         let icon = '';
-        let id, typeCerbModule, lvlStyle, lvlCol, modifier
+        let id, typeCerbModule, lvlStyle, lvlCol, modifier, keys
 
+        if (Array.isArray(elem)) {
+            module = obj.data
+            keys = elem
+        }
         if (isCerb) {
             typeCerbModule = { name: null, type: null };
         }
@@ -86,11 +103,13 @@ async function generatePageTables(typeData, category = null, elem = null) {
         addStringStats(module, isCerb, typeCerbModule)
         if (isCerb) await addModuleCerb(module, typeCerbModule)
         if (module.maxLevel <= 1) continue
-        let keys = []
-        for (let key in module) {
-            if (Array.isArray(module[key]))
-                keys.push(key)
-        };
+        if (!keys) {
+            keys = []
+            for (let key in module) {
+                if (Array.isArray(module[key]))
+                    keys.push(key)
+            }
+        }
         let levelTable = genLevelTable(lvlCol, module.maxLevel, modifier);                            //уровни / циферки 
         let table = genStatsTableHead(keys, module.Name) + genStatsTableBody(keys, module) //шапка и тело
         try {
@@ -229,7 +248,7 @@ function genStatsTableBody(keys, data) {
 }
 function getCalss(name) {
     let r = 'generalTable'
-    if (noFixTables.includes(name)) {
+    if (noFixTables.includes(name) || Array.isArray(name)) {
         r += ' noFixTable'
     }
     return r
@@ -425,5 +444,6 @@ function getFormatHead(tableName, value) {
 }
 
 export {
-    generatePageTables
+    generatePageTables,
+    fixTime
 }

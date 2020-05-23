@@ -102,7 +102,11 @@ exports.default = {
         BondOverridesBarrier: 'Bond ignores the Barrier',
         UnityMaxDamageIncreasePct: 'Max. damage',
         MaxShips: 'Max. ships',
-        ShipToSpawn: 'Ship spawn'
+        ShipToSpawn: 'Ship spawn',
+        plan: 'Plan',
+        resetAll: 'Reset everything',
+        resetPlan: 'Reset the plan',
+        planetscalc: 'Planet calculator'
 
     },
     ru: {
@@ -209,7 +213,11 @@ exports.default = {
         BondOverridesBarrier: 'Узы игнорируют Барьер',
         UnityMaxDamageIncreasePct: 'Макс. урон',
         MaxShips: 'Макс. кораблей',
-        ShipToSpawn: 'Спавн корабля'
+        ShipToSpawn: 'Спавн корабля',
+        plan: 'План',
+        resetAll: 'Сбросить всё',
+        resetPlan: 'Сбросить план',
+        planetscalc: 'Калькулятор планет'
     },
     de: {
         UnlockPrice: 'Preis freischalten',

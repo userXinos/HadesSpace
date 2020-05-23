@@ -222,7 +222,7 @@ blockquote {
     margin: 1px 5%;
     padding: 1% 0%;
     color: #afb8be;
-    font-size: 23px;
+    font-size: 150%;
     text-align: center;
 }
 
@@ -379,7 +379,7 @@ a:active {
     padding: 3px 6%;
     text-align: left;
     font-weight: normal;
-    font-size: 23px;
+    font-size: 120%;
     color: #afb8be;
     list-style-type: circle;
 }
@@ -569,6 +569,12 @@ a:active {
 }
 
 @media screen and (max-width: 754px) {
+    .title-text {
+        font-size: 110%;
+    }
+    blockquote {
+        font-size: 100%;
+    }
     #title {
         padding: 0;
     }
@@ -726,4 +732,76 @@ a:active {
 #buttonTop:hover {
     background-color: #454347;
     opacity: 1;
+}
+
+/*Планетный калькулятор*/
+
+.planetsCalc {
+    margin-top: 15px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.planetsCalc td {
+    border: none;
+}
+
+table.planetsCalc td:first-child {
+    text-align: left;
+    /* background-color: #1c1c1f;
+    border-right: 1px solid #bebebeb2; */
+}
+
+td[id$='plan'] {
+    color: #fff19f;
+}
+
+.resetButtons {
+    padding: 25px 3%;
+}
+
+.resetButtons>button {
+    color: #fff;
+    cursor: pointer;
+    background-color: Transparent;
+    position: relative;
+    border: 1px solid #F7CA18;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    float: right;
+    padding: 10px 10px;
+    margin-left: 5px;
+}
+
+.resetButtons>button:hover {
+    color: #000!important;
+    background-color: transparent;
+    text-shadow: nthree;
+}
+
+.resetButtons>button:hover:before {
+    left: 0%;
+    right: auto;
+    width: 100%;
+}
+
+.resetButtons>button:before {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 0px;
+    z-index: -1;
+    content: '';
+    color: #000!important;
+    background: #F7CA18;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+button.resetButtonAll {
+    border: 1.3px solid #c90000;
+}
+
+button.resetButtonAll:before {
+    background: #c90000;
 }
