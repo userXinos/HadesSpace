@@ -39,16 +39,9 @@ async function generatePageTables(typeData, category = null, elem = null) {
         obj = await data[typeData]
         icons = await iconsData[typeData]
     }
-    let items = () => {
-        if (category != null) {
-            return obj.byTypes[category.toLowerCase()]
-        } else if (elem != null) {
-            return [elem]
-        } else {
-            [Object.keys(obj)[0]]
-        }
-    }
-    for (let item of items()) {
+    let items = (category != null) ? obj.byTypes[category.toLowerCase()] :
+        (elem != null) ? [elem] : [Object.keys(obj)[0]]
+    for (let item of items) {
         let module = (category != null || elem != null) ? obj.data[item] : obj.data
         let icon = '';
         let id, typeCerbModule, lvlStyle, lvlCol, modifier, keys
