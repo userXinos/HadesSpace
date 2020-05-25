@@ -26,7 +26,7 @@ const iconsData = {
 
 let ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model', 'AwardLevel'];
 let cerbModules = ['cerbShield', 'cerbWeapon', 'cerbModule'];
-let noFixTables = ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport', 'WarpLaneHub']
+let noFixTables = ['blueprintsCombat', 'blueprintsUtility', 'blueprintsSupport', 'WarpLaneHub', 'DONTFIXTABLE']
 
 async function generatePageTables(typeData, category = null, elem = null) {
     let obj, icons
@@ -41,10 +41,11 @@ async function generatePageTables(typeData, category = null, elem = null) {
     }
     let items = (category != null) ? obj.byTypes[category.toLowerCase()] :
         (elem != null) ? [elem] : [Object.keys(obj)[0]]
+
     for (let item of items) {
         let module = (category != null || elem != null) ? obj.data[item] : obj.data
         let icon = '';
-        let id, typeCerbModule, lvlStyle, lvlCol, modifier, keys
+        let id, typeCerbModule, lvlStyle, lvlCol, modifier
 
         if (Array.isArray(elem)) {
             module = obj.data
@@ -96,13 +97,11 @@ async function generatePageTables(typeData, category = null, elem = null) {
         addStringStats(module, isCerb, typeCerbModule)
         if (isCerb) await addModuleCerb(module, typeCerbModule)
         if (module.maxLevel <= 1) continue
-        if (!keys) {
-            keys = []
-            for (let key in module) {
-                if (Array.isArray(module[key]))
-                    keys.push(key)
-            }
-        }
+        let keys = []
+        for (let key in module) {
+            if (Array.isArray(module[key]))
+                keys.push(key)
+        };
         let levelTable = genLevelTable(lvlCol, module.maxLevel, modifier);                            //уровни / циферки 
         let table = genStatsTableHead(keys, module.Name) + genStatsTableBody(keys, module) //шапка и тело
         try {

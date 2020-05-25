@@ -51,6 +51,12 @@ window.genDesc = function (str) {
         html: getStr(str)
     }));
 }
+window.planetsCalc = function () {
+    import('./planetsCalc').then((i) => {
+        i.start()
+    })
+}
+
 // export { // TODO: хз пока как это сделать
 //     genTitle,
 //     genOl,
