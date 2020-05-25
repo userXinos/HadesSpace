@@ -82,6 +82,10 @@ function addStrings(obj, lang) {
     ],
     TID_MODULE_TRIGGER_TIME: [
       'ProximityTriggerSecWS'
+    ],
+    TID_MODULE_SALVAGE_HULL_DESCR: [
+      'SalvageHullPercentWS',
+      'SalvageHullPercentBS'
     ]
   }
   let result = {};

@@ -9,7 +9,7 @@ let globalsData = globals.default(main.readCSV('globals'))
 let starHeaders = ['EffectDurationx10', 'ActivationDelay', 'ActivationPrep', 'MaxDPSTime', 'APTPIOTTP', 'DisableTime', 'ProximityTriggerSec'];
 
 exports.default = function (obj) {
-  for (let key in obj) {
+  for (let key in obj) {  //TODO рефакторинг 
     let obj1 = obj[key]
 
     // добавить глобальные к модулям 
@@ -56,6 +56,23 @@ exports.default = function (obj) {
         obj1.DroneShipmentBonusMax.push(
           (obj1.SpawnCapacity[i] - 1) * e
         )
+      });
+    }
+    // фикс БЗ стат
+    if (obj1.EffectDurationx10WS) {
+      obj1.EffectDurationx10WS.forEach((e, i, arr) => {
+        arr[i] = e * 60
+      })
+    }
+    // фикс Утиля
+    if (obj1.SalvageHullPercent) {
+      obj1.SalvageHullPercentWS = []
+      obj1.SalvageHullPercentBS = []
+      obj1.SalvageHullPercent.forEach((e, i) => {
+        let arr = e.split('!')
+        obj1.SalvageHullPercent[i] = Number(arr[0])
+        obj1.SalvageHullPercentWS[i] = Number(arr[1])
+        obj1.SalvageHullPercentBS[i] = Number(arr[2])
       });
     }
     ['WeaponEffectType', 'WeaponFx', 'Hide'].forEach(e => delete obj1[e]);

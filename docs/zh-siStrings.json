@@ -500,5 +500,7 @@
   "APTPIOTTPWS": "每件物品的准备时间 (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "触发时间 (WS)"
+  "ProximityTriggerSecWS": "触发时间 (WS)",
+  "SalvageHullPercentWS": "每摧毁船舰获得维修 (WS)",
+  "SalvageHullPercentBS": "每摧毁船舰获得维修 (BS)"
 }

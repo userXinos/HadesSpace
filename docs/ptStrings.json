@@ -500,5 +500,7 @@
   "APTPIOTTPWS": "Tempo de preparação por item (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Acionamento (WS)"
+  "ProximityTriggerSecWS": "Acionamento (WS)",
+  "SalvageHullPercentWS": "Reparo de fusel. por nave destruída (WS)",
+  "SalvageHullPercentBS": "Reparo de fusel. por nave destruída (BS)"
 }

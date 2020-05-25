@@ -500,5 +500,7 @@
   "APTPIOTTPWS": "Vorbereitungszeit pro gegenstand (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Zündungsdauer (WS)"
+  "ProximityTriggerSecWS": "Zündungsdauer (WS)",
+  "SalvageHullPercentWS": "Reparatur je zerstörtes schiff (WS)",
+  "SalvageHullPercentBS": "Reparatur je zerstörtes schiff (BS)"
 }

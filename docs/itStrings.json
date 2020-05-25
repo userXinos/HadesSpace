@@ -500,5 +500,7 @@
   "APTPIOTTPWS": "Tempo di preparazione per oggetto (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Tempo d'innesco (WS)"
+  "ProximityTriggerSecWS": "Tempo d'innesco (WS)",
+  "SalvageHullPercentWS": "Scafo riparato per ogni nave distrutta (WS)",
+  "SalvageHullPercentBS": "Scafo riparato per ogni nave distrutta (BS)"
 }

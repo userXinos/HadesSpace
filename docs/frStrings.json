@@ -500,5 +500,7 @@
   "APTPIOTTPWS": "Temps de préparation par objet (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Temps d'activation (WS)"
+  "ProximityTriggerSecWS": "Temps d'activation (WS)",
+  "SalvageHullPercentWS": "Réparation de coque par vaisseau détruit (WS)",
+  "SalvageHullPercentBS": "Réparation de coque par vaisseau détruit (BS)"
 }

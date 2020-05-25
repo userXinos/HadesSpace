@@ -500,5 +500,7 @@
   "APTPIOTTPWS": "Tiempo de preparación por objeto (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Tiempo de activación (WS)"
+  "ProximityTriggerSecWS": "Tiempo de activación (WS)",
+  "SalvageHullPercentWS": "Casco reparado por nave destruida (WS)",
+  "SalvageHullPercentBS": "Casco reparado por nave destruida (BS)"
 }

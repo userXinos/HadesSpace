@@ -587,5 +587,7 @@
   "APTPIOTTPWS": "Время подготовки за предмет (БЗ)",
   "DisableTimeWS": "Время отключения (БЗ)",
   "BarrageMaxAdditionalEnemiesWS": "Макс. врагов для доп. урона (БЗ)",
-  "ProximityTriggerSecWS": "Время срабатывания (БЗ)"
+  "ProximityTriggerSecWS": "Время срабатывания (БЗ)",
+  "SalvageHullPercentWS": "Ремонт корпуса за сбитый корабль (БЗ)",
+  "SalvageHullPercentBS": "Ремонт корпуса за сбитый корабль (ГЗ)"
 }

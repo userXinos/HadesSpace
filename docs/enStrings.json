@@ -586,5 +586,7 @@
   "APTPIOTTPWS": "Preparation time per item (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Trigger time (WS)"
+  "ProximityTriggerSecWS": "Trigger time (WS)",
+  "SalvageHullPercentWS": "Hull repaired per destroyed ship (WS)",
+  "SalvageHullPercentBS": "Hull repaired per destroyed ship (BS)"
 }

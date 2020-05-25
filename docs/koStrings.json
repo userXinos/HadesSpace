@@ -500,5 +500,7 @@
   "APTPIOTTPWS": "아이템 당 준비 시간 (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "발동 시간 (WS)"
+  "ProximityTriggerSecWS": "발동 시간 (WS)",
+  "SalvageHullPercentWS": "파괴한 함선당 회복되는 선체 체력 (WS)",
+  "SalvageHullPercentBS": "파괴한 함선당 회복되는 선체 체력 (BS)"
 }
