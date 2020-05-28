@@ -12,7 +12,6 @@
     "disableactivationduringprep",
     "activationprepbs",
     "scaleeffectswithzoom",
-    "speedincrduringactivation",
     "preventshieldduringactivation",
     "applyaoedamageondestroy",
     "teleporttoclosestcombat",

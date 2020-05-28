@@ -271,7 +271,7 @@ function getFormatValue(key, value) {
     //console.log(`${key} : ${value}`)
     let formatList = [
         {
-            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct", "ArtifactYieldBonus", "BlueStar_CRRewardRate", "BlueStar_MaxHydroPerDayPct", "BlueStar_HydroPctPerPos", "DroneShipmentBonusMax", "SalvageHullPercentWS", "SalvageHullPercentBS"],
+            array: ["JobPayoutIncreasePercent", "DamageReductionPct", "TradeStationDeliverReward", "DroneShipmentBonus", "TradeBurstShipmentBonus", "MirrorDamagePct", "WaypointShipmentRewardBonus", "UnityBoostPercent", "IncreaseSectorHydroPct", "HydroUploadPct", "SpeedIncreasePerShipment", "SalvageHullPercent", "IncreaseSectorHydroPct", "CreditIncomeModifier", "FuelIncomeModifier", "CreditStorageModifier", "FuelStorageModifier", "CreditShipmentModifier", "FuelShipmentModifier", "CancelBuildRefundPct", "ArtifactYieldBonus", "BlueStar_CRRewardRate", "BlueStar_MaxHydroPerDayPct", "BlueStar_HydroPctPerPos", "DroneShipmentBonusMax", "SalvageHullPercentWS", "SalvageHullPercentBS", "SpeedIncrDuringActivation"],
             func: (v) => v + '%'
         },
         {
