@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "起爆中…",
   "TID_OBJ_ACTION_CANCEL_BUILD": "建設をキャンセル",
   "TID_OBJECT_ACTION_MOVE": "移動",
+  "TID_OBJECT_ACTION_ARTIFACTS": "アーティファクト",
   "TID_CERBERUS_STATION_SPAWNING_IN": "新たな戦艦の生産まで：N",
   "TID_CR_ASTEROID_CONTAINS": "<quad class=''cr''>を含む。",
   "TID_CORP_NAME_LABEL": "名前",

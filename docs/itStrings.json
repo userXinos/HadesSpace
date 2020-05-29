@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "Innesco...",
   "TID_OBJ_ACTION_CANCEL_BUILD": "Annulla costruzione",
   "TID_OBJECT_ACTION_MOVE": "Sposta",
+  "TID_OBJECT_ACTION_ARTIFACTS": "Manufatti",
   "TID_CERBERUS_STATION_SPAWNING_IN": "Generazione nuovi combattenti tra",
   "TID_CR_ASTEROID_CONTAINS": "Contiene <quad class=''cr''>.",
   "TID_CORP_NAME_LABEL": "Nome",

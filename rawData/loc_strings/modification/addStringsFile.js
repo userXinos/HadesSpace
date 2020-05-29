@@ -106,7 +106,9 @@ exports.default = {
         plan: 'Plan',
         resetAll: 'Reset everything',
         resetPlan: 'Reset the plan',
-        planetscalc: 'Planet calculator'
+        planetscalc: 'Planet calculator',
+        other: 'Other',
+        switchAccs: 'Account switcher'
 
     },
     ru: {
@@ -141,7 +143,7 @@ exports.default = {
         cerbWeapon: 'Оружие Цербера',
         cerbModule: 'Модуль Цербера',
         cerberus: 'Церберы',
-        Sections: 'Разделы',
+        sections: 'Разделы',
         flagshipModules: 'Модули флагмана',
         Cost: 'Стоимость',
         SectorUnlockTime: 'Время открытия сектора',
@@ -217,7 +219,9 @@ exports.default = {
         plan: 'План',
         resetAll: 'Сбросить всё',
         resetPlan: 'Сбросить план',
-        planetscalc: 'Калькулятор планет'
+        planetscalc: 'Калькулятор планет',
+        other: 'Другое',
+        switchAccs: 'Переключатель аккаунтов'
     },
     de: {
         UnlockPrice: 'Preis freischalten',

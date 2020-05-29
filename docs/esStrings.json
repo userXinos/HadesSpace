@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "Activando...",
   "TID_OBJ_ACTION_CANCEL_BUILD": "Cancelar construcción",
   "TID_OBJECT_ACTION_MOVE": "Mover",
+  "TID_OBJECT_ACTION_ARTIFACTS": "Artefactos",
   "TID_CERBERUS_STATION_SPAWNING_IN": "Generando nuevos cazas en",
   "TID_CR_ASTEROID_CONTAINS": "Contiene <quad class=''cr''>.",
   "TID_CORP_NAME_LABEL": "Nombre",

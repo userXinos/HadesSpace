@@ -26,24 +26,25 @@
 </head>
 
 <body>
-  <nav>
-    <input type="checkbox" id="checkbox1" />
-    <label for="checkbox1">
-      <ul class="menu demo">
-        <li class="buttonLangs">
-          <div class="langs">
-            <ul>
-            </ul>
-          </div>
-        </li>
-        <select class="compactLangs" onchange="getLangVal(value)">
-          <option>language</option>
-        </select>
-        <li><a href='index.html'><span>Loading...</span></a></li>
-      </ul>
-      <span class="toggle"></span>
-    </label>
-  </nav>
+  <header>
+    <div id="buttonLangs" onClick="showButtonLangs()">
+      <div class="langs">
+        <input value="English" onClick="switchLang('en')" type="button">
+        <input value="Pусский" onClick="switchLang('ru')" type="button">
+        <input value="Français" onClick="switchLang('fr')" type="button">
+        <input value="Deutsch" onClick="switchLang('de')" type="button">
+        <input value="Español" onClick="switchLang('es')" type="button">
+        <input value="Italiano" onClick="switchLang('it')" type="button">
+        <input value="Português" onClick="switchLang('pt')" type="button">
+        <input value="한국어" onClick="switchLang('ko')" type="button">
+        <input value="日本語" onClick="switchLang('jp')" type="button">
+        <input value="简体中文" onClick="switchLang('zh-si')" type="button">
+      </div>
+    </div>
+    <a href="./index.html">
+      <div class="logo"></div>
+    </a>
+  </header>
   <h1 id="title"></h1>
   <img class="portrait" src="../img/portraits/weapon.png" alt="weapon modules">
   <h2></h2>

@@ -6,9 +6,10 @@ import { } from "./fixPage";
 
 window.switchLang = switchLang
 window.getLangVal = getLangVal
-onscroll = function vverh() {
+
+$(window).scroll((e) => {
     document.getElementById('buttonTop').style.display = (window.pageYOffset > '300' ? 'block' : 'none');
-}
+});
 
 import { generatePageTables } from '../js/outputData.js';
 

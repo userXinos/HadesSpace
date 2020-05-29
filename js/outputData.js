@@ -123,13 +123,14 @@ async function generatePageTables(typeData, category = null, elem = null) {
 };
 // сгенерировать html иконки
 function genModuleIcon(url, isModules = true, custom = 'null') {
-    let classes = 'module-background'
-    let html = `class="module-icon" style="background-image:url(${url})">`
-    if (!isModules) classes += ' spaceBuildings-background'
-    if (custom == 'TimeModulator' || custom.endsWith('Star')) classes += ' round-background'
+    let classes = 'icon-background'
+    let html = `class="icon" style="background-image:url(${url})">`
+    if (isModules) classes += ' module-bg'
+    if (!isModules) classes += ' spaceBuildings-bg'
+    if (custom == 'TimeModulator' || custom.endsWith('Star')) classes += ' round-bg'
     if (custom == 'WarpLaneHub') {
-        classes += ' warpLine-background'
-        html = 'class="module-icon warpLine-body">'
+        classes += ' warpLine-bg'
+        html = 'class="icon warpLine-body">'
     }
     return $('<div/>', {
         class: classes,
@@ -138,7 +139,7 @@ function genModuleIcon(url, isModules = true, custom = 'null') {
 };
 function genCerbIcon(url) {
     return $('<div/>', {
-        class: 'cerberus-background',
+        class: 'cerberus',
         html: `<img src="${url}" alt="">`
     })[0]['outerHTML'];
 };
@@ -316,7 +317,7 @@ function getFormatValue(key, value) {
         },
         {
             array: ["Model"],
-            func: (v) => `<img class="model" src="${iconsData.ships[v]}" alt="${v}">`
+            func: (v) => `<img class="ships" src="${iconsData.ships[v]}" alt="${v}">`
         },
         {
             array: ["PlanetTypes", "Name"],

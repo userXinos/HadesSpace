@@ -1,59 +1,45 @@
 "use strict";
-import { getStr, locList } from './getString.js';
-import * as  modulesData from '../data/modulesData.js';
+import { locList } from './getString.js';
 
-let menu = document.querySelectorAll('ul.menu')[0]
-
-// основа
-menu.querySelectorAll('li > a > span')[0]['innerHTML'] = getStr('home');
-
-let typeModules = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
-for (let typeMod of typeModules) {
-    let modules = modulesData.byTypes[typeMod.toLowerCase()];
-    let name = getStr('typeMod' + typeMod);
-    let path = `${typeMod.toLowerCase()}.html`;
-    let heading = `<a href="${path}"><span>${name}</span></a><ul class="subMenu">`;
-    let list = heading;
-    for (let i of modules) {
-        let module = modulesData.data[i]
-        let name = getStr(module.TID);
-        list += `<li><a href="${path}#${module.Name}"><span>${name}</span></a></li>`
-    }
-    list += '</ul>';
-    list = $('<li/>', {
-        'class': typeMod,
-        html: list
-    })[0]['outerHTML'];
-    menu.innerHTML += list;
-}
-// блок языков
-let langs = locList;
-for (let l of Object.keys(langs)) {
-    // основное меню
-    let lang = `<input value="${l}" onclick="switchLang('${locList[l]}')" type="button">`;
-    menu.querySelectorAll('div.langs > ul')[0]['innerHTML'] += lang;
-    // мини-меню языка 
-    lang = `<option>${l}</option>\n`
-    menu.querySelectorAll('select.compactLangs')[0]['innerHTML'] += lang
-};
 function switchLang(l) {
     localStorage.setItem('language', l);
     location.reload()
 };
 function getLangVal(k) {
-    switchLang(langs[k]);
+    switchLang(locList[k]);
 };
 
-// показать блок языков
-let btn = menu.children[0]
-btn.onclick = function (e) {
-    let element = document.querySelector(".langs");
-    if (element.classList.contains("show-block")) {
-        element.classList.remove("show-block");
+window.showButtonLangs = function (show = true) { // показать меню языков
+    if ($('div.langs').css('display') == 'none') {
+        if (show) {
+            $('div.langs').show()
+        }
     } else {
-        element.classList.add("show-block");
+        $('div.langs').hide()
     }
 }
+$(document).ready(function () {
+
+    $(document).click((e) => { // спрятать меню языков при рандомном клике
+        if ($(e.target).attr('id') != 'buttonLangs') {
+            showButtonLangs(false)
+        }
+    });
+
+    let oldScrollY = 0; // спрятать шапку при скролле
+    $(window).scroll((e) => {
+        let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        let dY = scrolled - oldScrollY;
+
+        if (dY > 0) {
+            $('header').fadeOut();
+            showButtonLangs(false)
+        } else {
+            $('header').css("display", "block");
+        }
+        oldScrollY = scrolled;
+    })
+})
 export {
     switchLang,
     getLangVal

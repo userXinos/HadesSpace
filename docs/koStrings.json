@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "발동 중...",
   "TID_OBJ_ACTION_CANCEL_BUILD": "건설 취소",
   "TID_OBJECT_ACTION_MOVE": "이동",
+  "TID_OBJECT_ACTION_ARTIFACTS": "유물",
   "TID_CERBERUS_STATION_SPAWNING_IN": "N에 새 전함 생성",
   "TID_CR_ASTEROID_CONTAINS": "<quad class=''cr''>  포함.",
   "TID_CORP_NAME_LABEL": "이름",
