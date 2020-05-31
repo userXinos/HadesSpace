@@ -6,12 +6,16 @@ window.onload = function () {
 function reSize() {
   let gTables = document.querySelectorAll('div.gTable-stats > table');
   let lvlTables = document.querySelectorAll('div.gTable-lvls > table');
+
   for (let i = 0; i < gTables.length; i++) {
     let gTable = gTables[i];
     let lvlTable = lvlTables[i];
+
+    gTable.style.paddingLeft = lvlTable.rows[0].offsetWidth + 'px' // сместить таблицу от колонки лвл
     autoMergeByRow(gTables[i].id, 0, 0, -1);
     for (let r = 0; r < gTable.rows.length; r++) {
       let tHeadSize = gTable.rows[r].offsetHeight;
+
       lvlTable.rows[r].style.height = tHeadSize + 'px';
     }
   };
@@ -50,7 +54,7 @@ function autoMergeByRow(tableId,
   window.onresize = function () {
     if (time)
       clearTimeout(time);
-    time = setTimeout(function () {
+    time = setTimeout(() => {
       reSize();
     }, 100);
   }

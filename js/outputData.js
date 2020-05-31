@@ -59,6 +59,7 @@ async function generatePageTables(typeData, category = null, elem = null) {
             lvlStyle = 'style="padding-left: 37px"'
         }
         if (module.Name == 'RedStar') modifier = 0
+        if (module.Name == 'blueprintsSupport') modifier = 2
         //свитчер иконок
         switch (typeData) {
             case 'modules':
@@ -276,7 +277,7 @@ function getFormatValue(key, value) {
             func: (v) => v + '%'
         },
         {
-            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown", "ProximityTriggerSec", "EMPResist", "ProximityTriggerSecWS", "DestinyDisableTimes", "DestinyDisableTimesWS", 'SpawnFleetIntervalSeconds', 'ShieldRegenTimeAfterDamage'],
+            array: ["UnlockTime", "SpawnLifetime", "ActivationDelay", "ActivationPrep", "ActivationPrepBS", "RedStarLifeExtention", "TimeToFullyRegen", "ShieldRegenDelay", "EffectDurationx10", "EffectDurationx10WS", "EffectDurationx10BS", "ActivationPrepWS", "SpawnLifetime_WS", "DesignUpgradeTime", "ActivationDelayWS", "ActivationDelayBS", "MaxDPSTime_BS", "MaxDPSTimeWS", "MaxDPSTime", "APTPIOTTPWS", "DockedObjectDestroyTime", "DisableTimeWS", "SectorUnlockTime", "TimeToUpgrade", "TimeToResearch", "TimeToLoad", "Lifetime", "ConstructionTime", "TeleportShipmentsDurationHr", "TimeSpeedupMaxSeconds", "TimeSpeedupRegenPerDay", "SpawnDelay", "MoveUpdateSec", "BlueStar_CRRewardWinLimitPeriod", "WSLostBSTimeCooldown", "WSLostOtherTimeCooldown", "WSJumpBSTimeCooldown", "WSJumpOtherTimeCooldown", "ProximityTriggerSec", "EMPResist", "ProximityTriggerSecWS", "DestinyDisableTimes", "DestinyDisableTimesWS", 'SpawnFleetIntervalSeconds', 'ShieldRegenTimeAfterDamage', 'SectorEnrichCooldownSeconds'],
             func: (v) => fixTime(v)
         },
         {
