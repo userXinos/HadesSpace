@@ -2,7 +2,7 @@
 
 const main = require('../generateGameData.js')
 
-exports.default = function (obj) {
+module.exports = function (obj) {
     let timeFixModifiers = {
         ConstructionTimeSeconds: 1,
         ConstructionTimeMinutes: 60,

@@ -4,7 +4,7 @@ const main = require('../generateGameData.js')
 let artsTypes = main.dataByTypes.artifacts.data
 let tableNames = main.dataByTypes.artifacts.blueprints
 
-exports.default = function (obj) {
+module.exports = function (obj) {
     let result = {}
 
     for (let name of artsTypes) {

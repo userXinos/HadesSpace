@@ -8,7 +8,7 @@ let globalsData = {
     WhiteStar: globals.getGlobalsBy('WS'),
     RedStar: globals.getGlobalsBy('RS')
 }
-exports.default = function (obj) {
+module.exports = function (obj) {
     obj = main.combineObjects(obj, solarSysGenData)
 
     delete obj.RedStar.GhostSpawnSecs // лучше пусть будет в ships
@@ -22,9 +22,6 @@ exports.default = function (obj) {
         if (key in solarSysGenData) { // фикс лвл из "solar_system_gen_data" т.к. в stars == 1 
             obj1.maxLevel = solarSysGenData[key].maxLevel
         }
-        if (key == 'WhiteStar') {
-            obj1.Lifetime = obj1.Lifetime * obj1.TimeSlowdownFactor
-        }
         for (let i in obj1) { // фикс массивов из сточки
             if (Array.isArray(obj1[i]) || ignoringHeaders.includes(i)) continue;
             let arr = String(obj1[i]).split('!')
@@ -35,6 +32,31 @@ exports.default = function (obj) {
             if (arr.length > obj1.maxLevel) {
                 obj1.maxLevel = arr.length
             }
+        }
+        if (key == 'WhiteStar') {
+            let matrix = []
+            let keys = Object.keys(obj1)
+            let regex = /Score(\d+?)Thresholds/
+
+            obj1.Lifetime = obj1.Lifetime * obj1.TimeSlowdownFactor // фикс времени
+            keys.forEach(e => { // фикс очков за режимы
+                if (regex.test(e)) {
+                    matrix.push([])
+                }
+            })
+            keys.forEach(e => {
+                if (regex.test(e)) {
+                    obj1[e].forEach((e, i) => {
+                        matrix[i].push(e)
+                    })
+                }
+            })
+            keys.forEach(e => {
+                if (regex.test(e)) {
+                    let index = e.replace(regex, '$1') - 1
+                    obj1[e] = matrix[index]
+                }
+            })
         }
         main.fillSpace(obj1, ' ')
     }

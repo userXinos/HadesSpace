@@ -5,7 +5,7 @@ let cerberusList = main.dataByTypes.capital_ships.cerberus
 let ship_spawners = main.readCSV('ship_spawners')
 let GhostSpawnSecs = main.readCSV('solar_system_gen_data').RedStar.GhostSpawnSecs
 
-exports.default = function (obj) {
+module.exports = function (obj) {
   cerberusList.forEach(e => {
     fixModulesShipsData(obj, e, 'InitialModule', 'InitialModuleLevels')
   })

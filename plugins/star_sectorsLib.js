@@ -5,7 +5,7 @@ let scannersData = main.readCSV('spacebuildings').ShortRangeScanner
 let cerberusData = main.readCSV('cerb_groups')
 let cerberusStationsData = main.readCSV('cerberus_stations')
 
-exports.default = function (obj, star) {
+module.exports = function (obj, star) {
   let result = {}
 
   for (let name of Object.keys(obj)) {

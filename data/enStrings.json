@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "Triggering...",
   "TID_OBJ_ACTION_CANCEL_BUILD": "Cancel construction",
   "TID_OBJECT_ACTION_MOVE": "Move",
+  "TID_OBJECT_ACTION_ARTIFACTS": "Artifacts",
   "TID_CERBERUS_STATION_SPAWNING_IN": "Spawning new fighters in",
   "TID_CR_ASTEROID_CONTAINS": "Contains  <quad class=''cr''>.",
   "TID_CORP_NAME_LABEL": "Name",
@@ -566,6 +567,12 @@
   "UnityMaxDamageIncreasePct": "Max. damage",
   "MaxShips": "Max. ships",
   "ShipToSpawn": "Ship spawn",
+  "plan": "Plan",
+  "resetAll": "Reset everything",
+  "resetPlan": "Reset the plan",
+  "planetscalc": "Planet calculator",
+  "other": "Other",
+  "switchAccs": "Account switcher",
   "EffectDurationx10WS": "Effect duration (WS)",
   "EffectDurationx10BS": "Effect duration (BS)",
   "EffectRadiusWS": "Effect range (WS)",
@@ -582,5 +589,7 @@
   "APTPIOTTPWS": "Preparation time per item (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Trigger time (WS)"
+  "ProximityTriggerSecWS": "Trigger time (WS)",
+  "SalvageHullPercentWS": "Hull repaired per destroyed ship (WS)",
+  "SalvageHullPercentBS": "Hull repaired per destroyed ship (BS)"
 }

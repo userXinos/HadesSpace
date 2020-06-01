@@ -25,11 +25,11 @@ module.exports = {
   isWhiteListBS
 }
 
-let f = ['cerberus_stations']
+let f = ['player_goals']
 generateFiles(
   pathCSVs,
   pathSave,
-  f
+  //f
 )
 
 async function generateFiles(pathCSVs, pathSave, files) {
@@ -58,7 +58,7 @@ async function generateFiles(pathCSVs, pathSave, files) {
 
         for (let i of plugins) {
           if (i == file) {
-            json = require(`${pluginsPath + i}.js`).default(json)
+            json = require(`${pluginsPath + i}.js`)(json)
           }
         }
         saveToFile(`${pathSave}${file}Data.js`, fixOrder(json))

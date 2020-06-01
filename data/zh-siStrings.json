@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "触发中……",
   "TID_OBJ_ACTION_CANCEL_BUILD": "取消建造",
   "TID_OBJECT_ACTION_MOVE": "移动",
+  "TID_OBJECT_ACTION_ARTIFACTS": "神器",
   "TID_CERBERUS_STATION_SPAWNING_IN": "N内将生成新的战斗舰",
   "TID_CR_ASTEROID_CONTAINS": "包含  <quad class=''cr''><color>N</color>。",
   "TID_CORP_NAME_LABEL": "名称",
@@ -500,5 +501,7 @@
   "APTPIOTTPWS": "每件物品的准备时间 (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "触发时间 (WS)"
+  "ProximityTriggerSecWS": "触发时间 (WS)",
+  "SalvageHullPercentWS": "每摧毁船舰获得维修 (WS)",
+  "SalvageHullPercentBS": "每摧毁船舰获得维修 (BS)"
 }

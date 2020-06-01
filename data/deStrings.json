@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "Wird gezündet …",
   "TID_OBJ_ACTION_CANCEL_BUILD": "Bau abbrechen",
   "TID_OBJECT_ACTION_MOVE": "Bewegen",
+  "TID_OBJECT_ACTION_ARTIFACTS": "Artefakte",
   "TID_CERBERUS_STATION_SPAWNING_IN": "Neue kampfschiffe erscheinen in",
   "TID_CR_ASTEROID_CONTAINS": "Enthält <quad class=''cr''>.",
   "TID_CORP_NAME_LABEL": "Name",
@@ -500,5 +501,7 @@
   "APTPIOTTPWS": "Vorbereitungszeit pro gegenstand (WS)",
   "DisableTimeWS": "Disable time (WS)",
   "BarrageMaxAdditionalEnemiesWS": "Max. enemies for additional damage (WS)",
-  "ProximityTriggerSecWS": "Zündungsdauer (WS)"
+  "ProximityTriggerSecWS": "Zündungsdauer (WS)",
+  "SalvageHullPercentWS": "Reparatur je zerstörtes schiff (WS)",
+  "SalvageHullPercentBS": "Reparatur je zerstörtes schiff (BS)"
 }

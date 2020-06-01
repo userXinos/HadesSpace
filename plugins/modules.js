@@ -5,10 +5,10 @@ const globals = require('./globals.js')
 let shipsData = main.readCSV('capital_ships')
 let projectilesData = main.readCSV('projectiles')
 let artifacts = main.readCSV('artifacts')
-let globalsData = globals.default(main.readCSV('globals'))
+let globalsData = globals(main.readCSV('globals'))
 let starHeaders = ['EffectDurationx10', 'ActivationDelay', 'ActivationPrep', 'MaxDPSTime', 'APTPIOTTP', 'DisableTime', 'ProximityTriggerSec'];
 
-exports.default = function (obj) {
+module.exports = function (obj) {
   for (let key in obj) {  //TODO рефакторинг 
     let obj1 = obj[key]
 

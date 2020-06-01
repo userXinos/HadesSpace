@@ -294,6 +294,7 @@
   "TID_STATUS_TRIGGERING": "Начат обратный отсчет...",
   "TID_OBJ_ACTION_CANCEL_BUILD": "Отменить строительство",
   "TID_OBJECT_ACTION_MOVE": "Переместить",
+  "TID_OBJECT_ACTION_ARTIFACTS": "Артефакты",
   "TID_CERBERUS_STATION_SPAWNING_IN": "Выпустит новые истребители через",
   "TID_CR_ASTEROID_CONTAINS": "Содержит <quad class=''cr''>.",
   "TID_CORP_NAME_LABEL": "Название",
@@ -494,7 +495,7 @@
   "cerbWeapon": "Оружие Цербера",
   "cerbModule": "Модуль Цербера",
   "cerberus": "Церберы",
-  "Sections": "Разделы",
+  "sections": "Разделы",
   "flagshipModules": "Модули флагмана",
   "Cost": "Стоимость",
   "SectorUnlockTime": "Время открытия сектора",
@@ -567,6 +568,12 @@
   "UnityMaxDamageIncreasePct": "Макс. урон",
   "MaxShips": "Макс. кораблей",
   "ShipToSpawn": "Спавн корабля",
+  "plan": "План",
+  "resetAll": "Сбросить всё",
+  "resetPlan": "Сбросить план",
+  "planetscalc": "Калькулятор планет",
+  "other": "Другое",
+  "switchAccs": "Переключатель аккаунтов",
   "EffectDurationx10WS": "Время действия (БЗ)",
   "EffectDurationx10BS": "Время действия (ГЗ)",
   "EffectRadiusWS": "Дальность действия (БЗ)",
@@ -583,5 +590,7 @@
   "APTPIOTTPWS": "Время подготовки за предмет (БЗ)",
   "DisableTimeWS": "Время отключения (БЗ)",
   "BarrageMaxAdditionalEnemiesWS": "Макс. врагов для доп. урона (БЗ)",
-  "ProximityTriggerSecWS": "Время срабатывания (БЗ)"
+  "ProximityTriggerSecWS": "Время срабатывания (БЗ)",
+  "SalvageHullPercentWS": "Ремонт корпуса за сбитый корабль (БЗ)",
+  "SalvageHullPercentBS": "Ремонт корпуса за сбитый корабль (ГЗ)"
 }

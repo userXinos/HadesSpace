@@ -6,7 +6,7 @@ let compileOne = main.compileOne
 let onlyYS = ['MaxUpgradeLevel', 'CreditIncomeModifier', 'FuelIncomeModifier', 'CreditStorageModifier', 'FuelStorageModifier', 'CreditShipmentModifier', 'MaxShipments', 'ShipmentsPerHour']
 
 // создать одну таблицу со всеми планками
-exports.default = function (obj) {
+module.exports = function (obj) {
     let result = {}
 
     for (let s in stars) {
