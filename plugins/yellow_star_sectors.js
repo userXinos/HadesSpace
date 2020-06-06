@@ -1,8 +1,8 @@
-"use strict";
-const starFix = require('./star_sectorsLib.js')
+'use strict';
+const starFix = require('./star_sectorsLib.js');
 
-let star = 'yellow'
+const star = 'yellow';
 
-module.exports = function (obj) {
+module.exports = function(obj) {
   return starFix(obj, star);
-}
+};

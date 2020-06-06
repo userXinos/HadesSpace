@@ -1,6 +1,6 @@
-"use strict";
-const main = require('../generateGameData.js')
+'use strict';
+const main = require('../generateGameData.js');
 
-module.exports = function (obj) {
-    return main.compileOne(obj)
-}
+module.exports = function(obj) {
+  return main.compileOne(obj);
+};

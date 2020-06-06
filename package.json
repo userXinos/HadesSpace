@@ -18,10 +18,15 @@
   },
   "homepage": "https://github.com/userXinos/HadesStarData#readme",
   "dependencies": {
+    "jquery": "^3.5.1",
     "prettier": "^2.0.2",
     "regenerator-runtime": "^0.13.5"
   },
   "devDependencies": {
-    "cssnano": "^4.1.10"
+    "cssnano": "^4.1.10",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.20.2"
   }
 }

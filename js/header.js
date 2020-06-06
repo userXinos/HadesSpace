@@ -1,46 +1,47 @@
-"use strict";
-import { locList } from './getString.js';
+'use strict';
+import {locList} from './getString.js';
 
 function switchLang(l) {
-    localStorage.setItem('language', l);
-    location.reload()
-};
+  localStorage.setItem('language', l);
+  location.reload();
+}
 function getLangVal(k) {
-    switchLang(locList[k]);
-};
+  switchLang(locList[k]);
+}
 
-window.showButtonLangs = function (show = true) { // показать меню языков
-    if ($('div.langs').css('display') == 'none') {
-        if (show) {
-            $('div.langs').show()
-        }
-    } else {
-        $('div.langs').hide()
+window.showButtonLangs = function(show = true) { // показать меню языков
+  const divlangs = $('div.langs');
+
+  if (divlangs.css('display') == 'none') {
+    if (show) {
+      divlangs.show();
     }
-}
-$(document).ready(function () {
+  } else {
+    divlangs.hide();
+  }
+};
+$(document).ready(function() {
+  $(document).click((e) => { // спрятать меню языков при рандомном клике
+    if ($(e.target).attr('id') != 'buttonLangs') {
+      showButtonLangs(false);
+    }
+  });
 
-    $(document).click((e) => { // спрятать меню языков при рандомном клике
-        if ($(e.target).attr('id') != 'buttonLangs') {
-            showButtonLangs(false)
-        }
-    });
+  let oldScrollY = 0; // спрятать шапку при скролле
+  $(window).scroll(() => {
+    const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    const dY = scrolled - oldScrollY;
 
-    let oldScrollY = 0; // спрятать шапку при скролле
-    $(window).scroll((e) => {
-        let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        let dY = scrolled - oldScrollY;
-
-        if (dY > 0) {
-            $('header').fadeOut();
-            showButtonLangs(false)
-        } else {
-            $('header').css("display", "block");
-        }
-        oldScrollY = scrolled;
-    })
-})
+    if (dY > 0) {
+      $('header').fadeOut();
+      showButtonLangs(false);
+    } else {
+      $('header').css('display', 'block');
+    }
+    oldScrollY = scrolled;
+  });
+});
 export {
-    switchLang,
-    getLangVal
-}
+  switchLang,
+  getLangVal,
+};

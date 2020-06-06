@@ -77,7 +77,6 @@
     "AllowMoveInSameSectorOnly",
     "RequiresEmptySector",
     "CanScanSectors",
-    "MaxOnOwnSolarSystem",
     "StargateModel",
     "StarScannerType",
     "CanBeRenamed",

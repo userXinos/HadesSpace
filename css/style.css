@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -26,7 +26,11 @@ h1 {
 body {
     margin: 5%;
     background-color: #101415;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Exo 2', sans-serif;
+    position: relative
+}
+html, body {
+    overflow-x: hidden;
 }
 
 header {
@@ -72,6 +76,7 @@ header {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    clear: both;
 }
 
 .item {
@@ -92,7 +97,6 @@ header {
     -ms-transform: scale(1.2);
     transform: scale(1.2);
     box-shadow: 1px 1px #000000, 2px 2px #000000, 3px 3px #000000, 4px 4px #000000, 5px 5px #000000, 6px 6px #000000, 7px 7px #000000;
-    -webkit-transform: translateX(-7px);
     transform: translateX(-7px);
     transition: 0.5s;
     background-color: #1f282b;
@@ -144,7 +148,7 @@ header {
 
 .tableEnvironment {
     padding: 20px 3%;
-    margin: 0% 0% 4%;
+    margin: 0 0 4%;
 }
 
 table {
@@ -167,7 +171,7 @@ table th, table td {
     padding: 8px 10px 8px;
     line-height: 16px;
     text-align: center;
-    font-size: 85%;
+    font-size: 80%;
 }
 
 table td {
@@ -283,7 +287,7 @@ table tbody tr:last-child td:last-child
 
 blockquote {
     margin: 1px 5%;
-    padding: 1% 0%;
+    padding: 1% 0;
     color: #afb8be;
     font-size: 150%;
     text-align: center;
@@ -296,7 +300,7 @@ blockquote {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 3% 0% 0%;
+    margin: 3% 0 0;
 }
 
 .title-text {
@@ -347,7 +351,7 @@ blockquote {
 }
 
 .cerberus img {
-    padding: 50% 30% 0% 0%;
+    padding: 50% 30% 0 0;
     width: 100%;
     height: auto;
 }
@@ -398,7 +402,7 @@ blockquote {
 [ Список ]*/
 
 .list {
-    padding: 0% 5% 0%;
+    padding: 0 5% 0;
     margin-left: auto;
     margin-right: auto;
 }
@@ -491,7 +495,6 @@ a:active {
     display: none;
     top: 100%;
     z-index: 1;
-    opacity: 1;
     position: absolute;
     opacity: 0.8;
 }
@@ -586,21 +589,20 @@ td[id$='plan'] {
 .resetButtons>button:hover {
     color: #000!important;
     background-color: transparent;
-    text-shadow: nthree;
 }
 
 .resetButtons>button:hover:before {
-    left: 0%;
+    left: 0;
     right: auto;
     width: 100%;
 }
 
 .resetButtons>button:before {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     height: 100%;
-    width: 0px;
+    width: 0;
     z-index: -1;
     content: '';
     color: #000!important;
@@ -672,7 +674,7 @@ button.resetButtonAll:before {
         top: 0;
     }
     .index-page {
-        padding: 18% 0% 2% 0%;
+        padding: 18% 0 2% 0;
     }
     #buttonLangs {
         top: 15%;
