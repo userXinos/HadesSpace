@@ -1,5 +1,5 @@
 'use strict';
-import {getStr} from './getString.js';
+import { getStr } from './getString.js';
 import 'regenerator-runtime/runtime';
 
 const data = {
@@ -41,7 +41,7 @@ async function generatePageTables(typeData, category = null, elem = null) {
     icons = await iconsData[typeData];
   }
   const items = (category != null) ? obj.byTypes[category.toLowerCase()] :
-        (elem != null) ? [elem] : [Object.keys(obj)[0]];
+    (elem != null) ? [elem] : [Object.keys(obj)[0]];
 
   for (const item of items) {
     const module = (category != null || elem != null) ? obj.data[item] : obj.data;
@@ -49,7 +49,7 @@ async function generatePageTables(typeData, category = null, elem = null) {
     let id; let typeCerbModule; let lvlStyle; let lvlCol; let modifier;
 
     if (isCerb) {
-      typeCerbModule = {name: null, type: null};
+      typeCerbModule = { name: null, type: null };
     }
     if (['planets', 'colonize_prices', 'yellow_star_sectors', 'artifacts', 'stars'].includes(typeData)) {
       lvlCol = '№';
@@ -145,10 +145,10 @@ function genCerbIcon(url) {
 // исправить написание с новой троки (\n)
 function fixDesc(descRaw) {
   return descRaw.replace(
-      /(\\n\\n)(.)|(\\n)(.)/g,
-      function(str, n, freistLetter) {
-        return '<br/>' + freistLetter.toUpperCase();
-      });
+    /(\\n\\n)(.)|(\\n)(.)/g,
+    function (str, n, freistLetter) {
+      return '<br/>' + freistLetter.toUpperCase();
+    });
 }
 // найти кастом пушку Цербера
 function findModuleCerb(key, typeCerbModule) {
@@ -299,16 +299,12 @@ function getFormatValue(key, value) {
       func: (v) => v + '/100' + getStr('AU'),
     },
     {
-      array: ['TimeWarpFactor', 'TimeSpeedupFactor', 'TimeSlowdownFactor'],
+      array: ['TimeWarpFactor', 'TimeSpeedupFactor', 'TimeSlowdownFactor', 'MiningSpeedModifierPct'],
       func: (v) => 'x' + v,
     },
     {
       array: ['APTPIOTTP'],
       func: (v) => v + ' ' + getStr('sec'),
-    },
-    {
-      array: ['MiningSpeedModifierPct'],
-      func: (v) => 'x' + v + '%',
     },
     {
       array: ['TID', 'TID_Description', 'BaseType', 'TID_Artifact', 'InitialModule'],
@@ -346,9 +342,9 @@ function getFormatValue(key, value) {
     {
       array: ['GhostSpawnSecs'],
       func: (v) => v.replace(/(!)|(\d{1,2})/g,
-          function(match) {
-            return (match == '!') ? ', ' : `${match} ${getStr('sec')}`;
-          }),
+        function (match) {
+          return (match == '!') ? ', ' : `${match} ${getStr('sec')}`;
+        }),
     },
     {
       array: ['StringParam', 'ShipToSpawn'],

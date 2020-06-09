@@ -26,9 +26,10 @@ h1 {
 body {
     margin: 5%;
     background-color: #101415;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     position: relative
 }
+
 html, body {
     overflow-x: hidden;
 }
@@ -171,7 +172,7 @@ table th, table td {
     padding: 8px 10px 8px;
     line-height: 16px;
     text-align: center;
-    font-size: 80%;
+    font-size: 75%;
 }
 
 table td {
@@ -215,6 +216,7 @@ th, td {
 
 .gTable {
     width: 100%;
+    padding-top: 1%;
 }
 
 .gTable-lvls {
@@ -461,7 +463,7 @@ a:active {
 [ Остальные статы ]*/
 
 .stringStsts {
-    padding: 3px 6%;
+    padding: 2px 6%;
     text-align: left;
     font-weight: normal;
     font-size: 120%;
@@ -631,7 +633,7 @@ button.resetButtonAll:before {
         position: relative;
     }
     body {
-        margin: 1%
+        margin: 1%;
     }
 }
 

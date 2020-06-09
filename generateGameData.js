@@ -25,11 +25,11 @@ module.exports = {
   isWhiteListBS,
 };
 
-const f = ['spacebuildings'];
+const f = ['modules'];
 generateFiles(
-    pathCSVs,
-    pathSave,
-    // f,
+  pathCSVs,
+  pathSave,
+  f,
 );
 
 async function generateFiles(pathCSVs, pathSave, files) {
@@ -37,16 +37,16 @@ async function generateFiles(pathCSVs, pathSave, files) {
 
   if (!files || files.length == 0) {
     files = fs.readdirSync(pathCSVs)
-        .filter((e) => (e != undefined && !optionalFiles.includes(e) && e.endsWith('.csv')))
-        .map((e) => e.replace(/(.*)\.csv/, '$1'));
+      .filter((e) => (e != undefined && !optionalFiles.includes(e) && e.endsWith('.csv')))
+      .map((e) => e.replace(/(.*)\.csv/, '$1'));
   }
   const plugins = fs.readdirSync(pluginsPath)
-      .filter((e) => e.endsWith('.js'))
-      .map((e) => e.replace(/(.*)\.js/, '$1'));
+    .filter((e) => e.endsWith('.js'))
+    .map((e) => e.replace(/(.*)\.js/, '$1'));
 
   const promises = files.map(loadSaveFile);
   await Promise.all(promises) // .then() не хочет работать
-      .catch((error) => console.log(`Ошибки в выполнении. \n ${error}`));
+    .catch((error) => console.log(`Ошибки в выполнении. \n ${error}`));
   const time = (new Date().getTime() - startTime) / 1000;
   console.log(`Готово! (${time} сек.)`);
 
@@ -82,13 +82,13 @@ ${addData.content || ''}
 export {${addData.export}}
 `;
   fs.writeFile(
-      file,
-      prettier.format(content, {
-        parser: 'babel',
-        trailingComma: 'es5',
-        printWidth: 410, // чтоб массивы выстраивались в одну линию
-      }),
-      () => console.log(`Файл "${file}" создан`),
+    file,
+    prettier.format(content, {
+      parser: 'babel',
+      trailingComma: 'es5',
+      printWidth: 410, // чтоб массивы выстраивались в одну линию
+    }),
+    () => console.log(`Файл "${file}" создан`),
   );
 }
 function readCSV(path) {
@@ -205,7 +205,7 @@ function combineObjects(obj1, obj2) {
 function renameKeys(obj, newKeys) {
   const keyValues = Object.keys(obj).map((key) => {
     const newKey = newKeys[key] || key;
-    return {[newKey]: obj[key]};
+    return { [newKey]: obj[key] };
   });
   return Object.assign({}, ...keyValues);
 }
@@ -224,7 +224,7 @@ function fixOrder(obj) {
   let result = {};
 
   for (let i = 0; i < ObjectLength(obj); i++) {
-    let objCopy = {...obj}; // сделать копию, чтобы не помять основной объект
+    let objCopy = { ...obj }; // сделать копию, чтобы не помять основной объект
     let path = null; // уровень 0
     let key = Object.keys(objCopy)[i];
     // определение глубины
