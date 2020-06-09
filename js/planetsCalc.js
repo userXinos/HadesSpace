@@ -2,26 +2,25 @@
 require('regenerator-runtime/runtime');
 
 export async function start() {
-  const planets = await import('../data/planetsData').then((m) => m.data.yellowstarTable);
+  const Data = await import('../data/planetsData').then((m) => m.data.yellowstarTable);
   const levels = await import('../data/planet_levelsData').then((m) => m.data);
-  const dataOutput = ['CreditStorage', 'FuelStorage', 'CreditsPerHour', 'FuelPerHour', 'ShipmentsCRValuePerDay'];
-  const modifiers = ['CreditStorageModifier', 'FuelStorageModifier', 'CreditIncomeModifier', 'FuelIncomeModifier', 'CreditShipmentModifier'];
-  const dataTotal = ['Cost', 'TimeToUpgrade'];
-  const customTable = {
-    Name: 'DONTFIXTABLE',
-    TID: planets.TID,
-    lvl: [],
-    plan: [],
-    maxLevel: planets.maxLevel,
+  const TradingStations = await import('../data/spacebuildingsData').then(((m) => m.data.TradingStation));
+  const keys = ['CreditStorage', 'FuelStorage', 'CreditsPerHour', 'FuelPerHour', 'ShipmentsCRValuePerDay'];
+  const keysModifiers = ['CreditStorageModifier', 'FuelStorageModifier', 'CreditIncomeModifier', 'FuelIncomeModifier', 'CreditShipmentModifier'];
+  const keysTotal = ['Cost', 'TimeToUpgrade'];
+  const keysAliasesTS = {
+    ShipmentsCRValuePerDay: 'TotalShipmentCRPerDay',
+    Cost: 'Cost',
+    TimeToUpgrade: 'ConstructionTime',
   };
-  const body = $('body');
 
   $('h1').append(`${getStr('planetscalc')}`);
+  const body = $('body');
   body.append(`<title>${getStr('planetscalc')}</title>`);
   body.append($('<table/>', {
     class: 'planetsCalc',
   }));
-  for (const i of dataOutput) {
+  for (const i of keys) {
     let td = '';
     const rows = ['actually', 'plan', 'result'];
 
@@ -38,7 +37,7 @@ export async function start() {
       html: td,
     }));
   }
-  for (const i of dataTotal) {
+  for (const i of keysTotal) {
     let td = '';
     td += $('<td/>', { // имена rows
       text: getStr(i),
@@ -58,23 +57,40 @@ export async function start() {
     html: `<button class = "resetButtonAll" name="button" onclick="reset()">${getStr('resetAll')}</button>
                 <button name="button" onclick="reset('plan')">${getStr('resetPlan')}</button>`,
   }));
-  for (const i in planets.Name) {
+
+  // добавить торги
+  for (let i = 0; TradingStations.MaxOnOwnSolarSystem > i; i++) {
+    Data.TID.push(TradingStations.TID);
+    Data.Name.push(TradingStations.Name + '_' + i);
+    Data.MaxUpgradeLevel.push(TradingStations.maxLevel);
+    Data.maxLevel++;
+  }
+
+  const customTable = {
+    Name: 'DONTFIXTABLE',
+    TID: Data.TID,
+    lvl: [],
+    plan: [],
+    maxLevel: Data.maxLevel,
+  };
+
+  for (const i in Data.Name) {
     let select = '';
-    for (let lvl = 0; planets.MaxUpgradeLevel[i] + 1 > lvl; lvl++) {
+    for (let lvl = 0; Data.MaxUpgradeLevel[i] + 1 > lvl; lvl++) {
       select += `<option>${lvl}</option>`;
     }
-    customTable.lvl.push(`<select onchange="changeLvl(this,'${i}')"> ${select} </select>`);
-    customTable.plan.push(`<select onchange="changeLvl(this,'${i}', 'plan')"> ${select} </select>`);
+    customTable.lvl.push(`<select onchange="changeLvl(this.value,'${i}')"> ${select} </select>`);
+    customTable.plan.push(`<select onchange="changeLvl(this.value,'${i}', true)"> ${select} </select>`);
   }
 
   generatePageTables(customTable)
       .then(() => loadUserData());
 
   // колбек выбора лавлов
-  window.changeLvl = function(index, planetIndex, isPlan = false) {
+  window.changeLvl = function(index, itemIndex, isPlan = false) {
+    index = parseInt(index);
     const data = JSON.parse(localStorage.getItem('planetsCalc')) || {};
-    const planet = planets.Name[planetIndex];
-    index = index.value - 1;
+    const item = Data.Name[itemIndex];
     let obj;
 
     if (!data.actually) data.actually = {};
@@ -84,15 +100,14 @@ export async function start() {
     } else {
       obj = data.actually;
     }
-    obj[planet] = index + 1 || 0;
-    index++;
+    obj[item] = index;
     if (!isPlan) { // подогнать план под уровень
-      if (data.plan[planet]) {
-        if (data.plan[planet] < index) {
-          data.plan[planet] = index;
+      if (data.plan[item]) {
+        if (data.plan[item] < index) {
+          data.plan[item] = index;
         }
       } else {
-        data.plan[planet] = index;
+        data.plan[item] = index;
       }
     }
     localStorage.setItem('planetsCalc', JSON.stringify(data));
@@ -141,20 +156,20 @@ export async function start() {
       if (!obj1) return;
       updateCol(mode, obj1);
     }
-    for (const i of dataOutput) { // вычислить прирост плана
+    for (const i of keys) { // вычислить прирост плана
       const num1 = getSafeVar('plan', i);
       const num2 = getSafeVar('actually', i);
       result.plan[i] = num1 - num2;
     }
     updateCol('result', obj.plan);
     if (Object.keys(result).length !== 0) { // отобразить данные
-      dataOutput.forEach((e) => {
+      keys.forEach((e) => {
         for (const mode in result) {
           let v = result[mode][e];
           if (!v) v = 0;
           $('#' + e + mode)[0].textContent = (
             ((mode == 'plan' ? (v <= 0 ? '' : '+') : '')) + // форматировать планы
-                        v.toLocaleString()
+              v.toLocaleString()
           );
         }
       });
@@ -162,27 +177,36 @@ export async function start() {
     calculateTotal(obj);
 
     function updateCol(mode, obj) {
-      for (const planka in obj) {
-        const plankalvl = obj[planka] - 1;
-        const plankaIndex = planets.Name.indexOf(planka);
-        if (plankalvl == -1) continue;
-        for (const i in dataOutput) {
-          let num1; let num2;
+      for (const item in obj) {
+        const itemLvl = obj[item] - 1;
+        const itemIndex = Data.Name.indexOf(item);
+
+        if (itemLvl == -1) continue;
+        if (item.includes('TradingStation')) {
+
+        }
+        for (const i in keys) {
+          let num1;
+          let num2;
 
           if (!result[mode]) result[mode] = {};
           if (mode == 'result') { // обновить результат
-            num1 = getSafeVar('plan', dataOutput[i]);
-            num2 = getSafeVar('actually', dataOutput[i]);
+            num1 = getSafeVar('plan', keys[i]);
+            num2 = getSafeVar('actually', keys[i]);
           } else {
-            num1 = result[mode][dataOutput[i]] || 0;
-            if (modifiers[i]) {
-              num2 = levels[dataOutput[i]][plankalvl] * planets[modifiers[i]][plankaIndex] / 100;
+            num1 = result[mode][keys[i]] || 0;
+            if (keysModifiers[i]) {
+              num2 = levels[keys[i]][itemLvl] * Data[keysModifiers[i]][itemIndex] / 100;
+
+              if (item.includes('TradingStation') && keys[i] in keysAliasesTS) {
+                num2 = TradingStations[keysAliasesTS[keys[i]]][itemLvl];
+              }
             } else {
-              num2 = levels[dataOutput[i]][plankalvl];
+              num2 = levels[keys[i]][itemLvl];
             }
           }
-          result[mode][dataOutput[i]] = num1 + num2;
-          if (mode == 'result') formatResult(dataOutput[i]);
+          result[mode][keys[i]] = num1 + num2;
+          if (mode == 'result') formatResult(keys[i]);
         }
       }
     }
@@ -199,29 +223,34 @@ export async function start() {
       }
     }
     function calculateTotal(obj) {
-      for (const planka in obj.plan) {
-        if (obj.plan[planka] == 0) continue;
-        for (const i of dataTotal) {
-          let num1 = 0; let num2 = 0;
-          const PlanIndexLvl = obj.plan[planka] - 1;
-          const ActuallyIndexLvl = (obj.actually[planka] || 0) - 1;
+      for (const item in obj.plan) {
+        if (obj.plan[item] == 0) continue;
+        for (const i of keysTotal) {
+          let num1 = 0;
+          let num2 = 0;
+          const PlanIndexLvl = obj.plan[item] - 1;
+          const ActuallyIndexLvl = (obj.actually[item] || 0) - 1;
 
           num1 = (result[i] == undefined) ? 0 : result[i];
           for (let level = ActuallyIndexLvl; PlanIndexLvl > level; level++) {
-            const data = levels[i][level + 1] || 0;
+            let data = levels[i][level + 1] || 0;
+
+            if (item.includes('TradingStation') && i in keysAliasesTS) {
+              data = TradingStations[keysAliasesTS[i]][level + 1] || 0;
+            }
             num2 = num2 + data;
           }
           result[i] = num1 + num2;
         }
       }
-      dataTotal.forEach((e) => { // отобразить данные
+      keysTotal.forEach((e) => { // отобразить данные
         let v = result[e];
         if (!v) v = 0;
         $('#' + e + 'result')[0].textContent =
-                    (e == 'TimeToUpgrade') ? fixTime(v) : v.toLocaleString();
+            (e == 'TimeToUpgrade') ? fixTime(v) : v.toLocaleString();
       });
     }
-    // console.log(obj)
+    // console.log(obj);
   }
   // отобразить данные
   function loadUserData() {
@@ -239,7 +268,7 @@ export async function start() {
       index = index / 2;
       const obj = data[(isPlan) ? 'plan' : 'actually'];
       if (!obj) continue;
-      const val = obj[planets.Name[index]];
+      const val = obj[Data.Name[index]];
       if (!val) continue;
       $(selects[select]).val(val);
       if (isPlan) { // заблокировать плановые лавлы ниже актуальных
