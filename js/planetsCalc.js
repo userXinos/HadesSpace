@@ -84,10 +84,10 @@ export async function start() {
   }
 
   generatePageTables(customTable)
-      .then(() => loadUserData());
+    .then(() => loadUserData());
 
   // колбек выбора лавлов
-  window.changeLvl = function(index, itemIndex, isPlan = false) {
+  window.changeLvl = function (index, itemIndex, isPlan = false) {
     index = parseInt(index);
     const data = JSON.parse(localStorage.getItem('planetsCalc')) || {};
     const item = Data.Name[itemIndex];
@@ -114,7 +114,7 @@ export async function start() {
     loadUserData();
   };
   // колбек кнопок
-  window.reset = function(isPlan) {
+  window.reset = function (isPlan) {
     if (!isPlan) {
       const msg = confirm('Reset all? Ar u serious ?');
       if (msg) {
@@ -169,7 +169,7 @@ export async function start() {
           if (!v) v = 0;
           $('#' + e + mode)[0].textContent = (
             ((mode == 'plan' ? (v <= 0 ? '' : '+') : '')) + // форматировать планы
-              v.toLocaleString()
+            v.toLocaleString()
           );
         }
       });
@@ -198,8 +198,11 @@ export async function start() {
             if (keysModifiers[i]) {
               num2 = levels[keys[i]][itemLvl] * Data[keysModifiers[i]][itemIndex] / 100;
 
-              if (item.includes('TradingStation') && keys[i] in keysAliasesTS) {
-                num2 = TradingStations[keysAliasesTS[keys[i]]][itemLvl];
+              if (item.includes('TradingStation')) {
+                num2 = 0;
+                if (keys[i] in keysAliasesTS) {
+                  num2 = TradingStations[keysAliasesTS[keys[i]]][itemLvl];
+                }
               }
             } else {
               num2 = levels[keys[i]][itemLvl];
@@ -247,7 +250,7 @@ export async function start() {
         let v = result[e];
         if (!v) v = 0;
         $('#' + e + 'result')[0].textContent =
-            (e == 'TimeToUpgrade') ? fixTime(v) : v.toLocaleString();
+          (e == 'TimeToUpgrade') ? fixTime(v) : v.toLocaleString();
       });
     }
     // console.log(obj);
