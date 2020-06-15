@@ -20,7 +20,7 @@ module.exports = function(obj) {
     if (!whiteList.includes(key)) continue;
     if (key == 'SalvageArtifacts') { // фикс значения "уровень арта", не удобно форматировать и локализировать
       obj1.artLevel = [];
-      obj1.StringParam.forEach((e, i, arr) => {
+      obj1.StringParam.forEach((e) => {
         obj1.artLevel.push(e.split('!')[0]);
       });
       delete obj1.StringParam;
@@ -45,8 +45,9 @@ module.exports = function(obj) {
           obj.WinBSWith = {};
         }
         const WinBSWith = obj.WinBSWith;
+        WinBSWith.Name = 'WinBSWith';
 
-        if (ignoringHeaders.includes(i) || ['TimeLimitDays', 'GoalTarget'].includes(i)) {
+        if (ignoringHeaders.includes(i) || ['TimeLimitDays', 'GoalTarget', 'Name'].includes(i)) {
           if (i != 'maxLevel') {
             WinBSWith[i] = obj1[i];
           } else {
