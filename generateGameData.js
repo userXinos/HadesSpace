@@ -8,7 +8,7 @@ const pluginsPath = './plugins/';
 const optionalFiles = ['projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv'];
 const isWhiteListBS = require(`${pathCSVs}modification/fixValue.js`).isWhiteListBS;
 const dataByTypes = require(`${pathCSVs}modification/byTypes.js`);
-const fixValue = require(`${pathCSVs}modification/fixValue.js`).default;
+const fixValue = require(`${pathCSVs}modification/fixValue.js`);
 const isHide = require(`${pathCSVs}modification/fixValue.js`).isHide;
 global.ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
 
