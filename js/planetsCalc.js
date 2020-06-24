@@ -84,10 +84,10 @@ export async function start() {
   }
 
   generatePageTables(customTable)
-    .then(() => loadUserData());
+      .then(() => loadUserData());
 
   // колбек выбора лавлов
-  window.changeLvl = function (index, itemIndex, isPlan = false) {
+  window.changeLvl = function(index, itemIndex, isPlan = false) {
     index = parseInt(index);
     const data = JSON.parse(localStorage.getItem('planetsCalc')) || {};
     const item = Data.Name[itemIndex];
@@ -114,7 +114,7 @@ export async function start() {
     loadUserData();
   };
   // колбек кнопок
-  window.reset = function (isPlan) {
+  window.reset = function(isPlan) {
     if (!isPlan) {
       const msg = confirm('Reset all? Ar u serious ?');
       if (msg) {
@@ -299,10 +299,10 @@ function fixTime(sec) {
     result += hours + `${getStr('hours')} `;
   }
   if (min != 0) {
-    result += min + ` ${getStr('min')} `;
+    result += min + `${getStr('min')} `;
   }
   if (sec != 0) {
-    result += Math.round(sec) + ` ${getStr('sec')}`;
+    result += Math.round(sec) + `${getStr('sec')} `;
   }
   return result || 0;
 }

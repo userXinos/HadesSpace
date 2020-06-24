@@ -1,5 +1,5 @@
 'use strict';
-import { getStr } from './getString.js';
+import {getStr} from './getString.js';
 import 'regenerator-runtime/runtime';
 
 const data = {
@@ -49,7 +49,7 @@ async function generatePageTables(typeData, category = null, elem = null) {
     let id; let typeCerbModule; let lvlStyle; let lvlCol; let modifier;
 
     if (isCerb) {
-      typeCerbModule = { name: null, type: null };
+      typeCerbModule = {name: null, type: null};
     }
     if (['planets', 'colonize_prices', 'yellow_star_sectors', 'artifacts', 'stars'].includes(typeData)) {
       lvlCol = '№';
@@ -145,10 +145,10 @@ function genCerbIcon(url) {
 // исправить написание с новой троки (\n)
 function fixDesc(descRaw) {
   return descRaw.replace(
-    /(\\n\\n)(.)|(\\n)(.)/g,
-    function (str, n, freistLetter) {
-      return '<br/>' + freistLetter.toUpperCase();
-    });
+      /(\\n\\n)(.)|(\\n)(.)/g,
+      function(str, n, freistLetter) {
+        return '<br/>' + freistLetter.toUpperCase();
+      });
 }
 // найти кастом пушку Цербера
 function findModuleCerb(key, typeCerbModule) {
@@ -342,9 +342,9 @@ function getFormatValue(key, value) {
     {
       array: ['GhostSpawnSecs'],
       func: (v) => v.replace(/(!)|(\d{1,2})/g,
-        function (match) {
-          return (match == '!') ? ', ' : `${match} ${getStr('sec')}`;
-        }),
+          function(match) {
+            return (match == '!') ? ', ' : `${match} ${getStr('sec')}`;
+          }),
     },
     {
       array: ['StringParam', 'ShipToSpawn'],

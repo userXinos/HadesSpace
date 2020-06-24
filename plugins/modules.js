@@ -8,7 +8,7 @@ const artifacts = main.readCSV('artifacts');
 const globalsData = globals(main.readCSV('globals'));
 const starHeaders = ['EffectDurationx10', 'ActivationDelay', 'ActivationPrep', 'MaxDPSTime', 'APTPIOTTP', 'DisableTime', 'ProximityTriggerSec'];
 
-module.exports = function (obj) {
+module.exports = function(obj) {
   for (const key in obj) { // TODO рефакторинг
     const obj1 = obj[key];
 
@@ -54,7 +54,7 @@ module.exports = function (obj) {
       obj1.DroneShipmentBonusMax = [];
       obj1.DroneShipmentBonus.forEach((e, i) => {
         obj1.DroneShipmentBonusMax.push(
-          (obj1.SpawnCapacity[i] - 1) * e,
+            (obj1.SpawnCapacity[i] - 1) * e,
         );
       });
     }
@@ -67,7 +67,7 @@ module.exports = function (obj) {
     // фикс Утиля
     if (obj1.SalvageHullPercent) {
       obj1.SalvageHullPercentWS = [];
-      //obj1.SalvageHullPercentBS = [];
+      // obj1.SalvageHullPercentBS = [];
       obj1.SalvageHullPercent.forEach((e, i) => {
         const arr = e.split('!');
         obj1.SalvageHullPercent[i] = Number(arr[0]);
