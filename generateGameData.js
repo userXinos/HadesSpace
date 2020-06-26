@@ -63,14 +63,14 @@ async function generateFiles(pathCSVs, pathSave, files) {
             pluginName = i;
           }
         }
-        saveToFile(`${pathSave}${file}Data.js`, fixOrder(json), pluginName);
+        saveToFile(`${pathSave}${file}.js`, fixOrder(json), pluginName);
         resolve();
       });
     });
   }
 }
 function saveToFile(file, jsonObj, pluginName = null) {
-  const name = file.replace(/.*\/(.*)Data\.js/, '$1');
+  const name = file.replace(/.*\/(.*)\.js/, '$1');
   const addData = addContent(jsonObj, name);
   pluginName = (pluginName)? `+ ${pluginName}.js plugin` : '';
 

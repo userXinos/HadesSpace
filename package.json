@@ -18,12 +18,17 @@
     "url": "https://github.com/userXinos/HadesStarData/issues"
   },
   "homepage": "https://github.com/userXinos/HadesStarData#readme",
+  "staticFiles": {
+    "staticPath": [
+      "data/loc_strings"
+    ]
+  },
   "dependencies": {
     "jquery": "^3.5.1",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-dist": "0.0.6",
-    "phin": "^3.4.1",
+    "parcel-plugin-static-files-copy": "^2.4.3",
     "prettier": "^2.0.2",
     "regenerator-runtime": "^0.13.5"
   },

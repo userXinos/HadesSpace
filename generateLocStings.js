@@ -3,16 +3,14 @@ const fs = require('fs');
 
 const langs = ['en', 'ru', 'es', 'fr', 'it', 'jp', 'ko', 'pt', 'de', 'zh-si'];
 const path = './rawData/loc_strings/';
-const pathSave = './data/';
+const pathSave = './data/loc_strings/';
 
 generateFiles(path, langs, pathSave);
-generateFiles(path, langs, './dist/'); // сборшик чёт не может сам
-generateFiles(path, langs, './docs/');
 
 function generateFiles(pathCsvs, langs, pathSave) {
   for (const lang of langs) {
     const json = loadStrings(lang);
-    const file = `${pathSave}${lang}Strings.json`;
+    const file = `${pathSave}${lang}.json`;
     saveToFile(file, json);
   }
 }
