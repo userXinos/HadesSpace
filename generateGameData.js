@@ -25,11 +25,11 @@ module.exports = {
   isWhiteListBS,
 };
 
-const f = ['player_goals'];
+const f = ['capital_ships'];
 generateFiles(
     pathCSVs,
     pathSave,
-    // f,
+    f,
 );
 
 async function generateFiles(pathCSVs, pathSave, files) {

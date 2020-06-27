@@ -47,7 +47,10 @@ module.exports = function(name, header, value) { // скрыть/исправи�
     },
     {
       header: ['InitialModuleLevels'],
-      func: (v) => 1 + parseInt(v),
+      func: (v) => {
+        const r = v.split('!').map((e) => Number(e) + 1);
+        return (v.includes('!')) ? r.join('!') : r[0];
+      },
     },
   ];
 

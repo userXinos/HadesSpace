@@ -1014,7 +1014,7 @@ let data = {
     SpawnLifetime_WS: 108000,
     HP: [400, 1200, 2500, 3500, 4500, 5500, 6500, 7500, 8500, 10000, 12000, 14000],
     InitialModule: "Battery",
-    InitialModuleLevels: 3,
+    InitialModuleLevels: "2",
     Speed: 1050,
     ActivationFuelCost: [1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750],
     BCCost: [40000, 42000, 44000, 46000, 48000, 50000, 52000, 54000, 56000, 58000, 60000, 62000],

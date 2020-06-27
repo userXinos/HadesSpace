@@ -29,7 +29,7 @@ function fixModulesShipsData(obj, name, Modules, ModuleLevels) {
     const levelArr = String(levels[i]).split('!');
     for (const k in moduleArr) {
       const key = moduleArr[k];
-      const value = Number(levelArr[k]) + 1;
+      const value = Number(levelArr[k]);
       const stokValue = obj1[key];
       if (stokValue === undefined || stokValue === '') {
         obj1[key] = value;

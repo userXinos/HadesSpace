@@ -62,7 +62,7 @@ let data = {
     Speed: 300,
     InfluencePoints: 10,
     maxLevel: 1,
-    Battery: 7,
+    Battery: 6,
   },
   CerberusGuardian: {
     Name: "CerberusGuardian",
@@ -73,7 +73,7 @@ let data = {
     Speed: 330,
     InfluencePoints: 20,
     maxLevel: 1,
-    GuardianBattery: 2,
+    GuardianBattery: 1,
   },
   CerberusColossus: {
     Name: "CerberusColossus",
@@ -84,9 +84,9 @@ let data = {
     Speed: 360,
     InfluencePoints: 150,
     maxLevel: 1,
-    ColossusLaser: 2,
-    Salvage: null,
-    PassiveShield: null,
+    ColossusLaser: 1,
+    Salvage: 12,
+    PassiveShield: 10,
   },
   CerberusInterceptor: {
     Name: "CerberusInterceptor",
@@ -97,7 +97,7 @@ let data = {
     Speed: 660,
     InfluencePoints: 40,
     maxLevel: 1,
-    InterceptorMBattery: 2,
+    InterceptorMBattery: 1,
   },
   CerberusDestroyer: {
     Name: "CerberusDestroyer",
@@ -109,7 +109,7 @@ let data = {
     DockedObjectDestroyTime: 180,
     InfluencePoints: 80,
     maxLevel: 1,
-    DestroyerVengeance: 2,
+    DestroyerVengeance: 1,
   },
   CerberusPhoenix: {
     Name: "CerberusPhoenix",
@@ -121,8 +121,8 @@ let data = {
     OnDestroySpawnCount: 3,
     InfluencePoints: 180,
     maxLevel: 1,
-    DualLaser: 6,
-    PhoenixShield: null,
+    DualLaser: 5,
+    PhoenixShield: 1,
   },
   AlphaDrone: {
     Name: "AlphaDrone",
@@ -185,7 +185,7 @@ let data = {
     Speed: 240,
     InfluencePoints: 200,
     maxLevel: 1,
-    BomberLauncher: 2,
+    BomberLauncher: 1,
   },
   BlueStarBot: {
     Name: "BlueStarBot",
@@ -209,7 +209,7 @@ let data = {
     Speed: 36,
     InfluencePoints: 150,
     maxLevel: 1,
-    DartBarrage: 2,
+    DartBarrage: 1,
   },
   CerberusGhosts: {
     Name: "CerberusGhosts",
@@ -220,7 +220,7 @@ let data = {
     Speed: 900,
     InfluencePoints: 0,
     maxLevel: 1,
-    Battery: 4,
+    Battery: 3,
     NumToSpawn: 14,
     SpawnDelay: 40,
     RadiusMax: 90,
@@ -237,11 +237,11 @@ let data = {
     Speed: 480,
     WhiteStarScore: [5000, 10000, 15000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000],
     maxLevel: 15,
-    Battery: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 12, 12],
-    Immolation: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    Recoil: [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    Stealth: [0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
-    EMPRocket: [0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8],
+    Battery: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 10, 11, 11],
+    Immolation: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    Recoil: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    Stealth: [0, 0, 0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
+    EMPRocket: [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 7, 7],
   },
   Hydraling2: {
     Name: "Hydraling2",
@@ -253,7 +253,7 @@ let data = {
     InfluencePoints: 100,
     maxLevel: 1,
     EMPResist: 80,
-    HydraBarrage: 2,
+    HydraBarrage: 1,
   },
   Hydraling1: {
     Name: "Hydraling1",
@@ -266,7 +266,7 @@ let data = {
     InfluencePoints: 200,
     maxLevel: 1,
     EMPResist: 80,
-    HydraBarrage: 3,
+    HydraBarrage: 2,
   },
   CerberusHydra: {
     Name: "CerberusHydra",
@@ -279,7 +279,7 @@ let data = {
     InfluencePoints: 500,
     maxLevel: 1,
     EMPResist: 80,
-    HydraBarrage: 4,
+    HydraBarrage: 3,
   },
 };
 
