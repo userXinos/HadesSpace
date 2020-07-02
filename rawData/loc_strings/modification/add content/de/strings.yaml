@@ -1,0 +1,23 @@
+# Add values that are not in the original game files
+
+UnlockPrice: Preis freischalten
+UnlockBlueprints: Schalte Blaupausen frei
+UnlockTime: Zeit entsperren
+WhiteStarScore: WS Ergebnis
+BSScore: BS Ergebnis
+hyd: hyd
+AU: AU
+days: t
+hours: s
+min: p
+sec: z
+WS: WS
+BS: BS
+typeModTrade: Handelsmodule
+typeModMining: Mining-Module
+typeModWeapon: Waffenmodule
+typeModShield: Abschirmmodule
+typeModSupport: Unterstützungsmodule
+lvl: Niveau
+home: Home
+content: Inhalt

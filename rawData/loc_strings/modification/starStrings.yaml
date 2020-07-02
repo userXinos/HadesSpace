@@ -1,0 +1,33 @@
+# localization key + keys of the necessary headers based on it
+
+TID_MODULE_EFFECT_DURATION_DESCR:
+    - EffectDurationx10WS
+    - EffectDurationx10BS
+TID_MODULE_EFFECT_RANGE_DESCR:
+    - EffectRadiusWS
+    - EffectRadiusBS
+TID_MODULE_AOE_STAT:
+    - AOEDamage_WS
+    - AOEDamage_BS
+TID_MODULE_ACTIVATION_PREP_TIME:
+    - ActivationPrepWS
+    - ActivationPrepBS
+TID_DRONE_LIFETIME:
+    - SpawnLifetime_WS
+TID_MODULE_COOLDOWN_STAT:
+    - ActivationDelayWS
+    - ActivationDelayBS
+TID_MODULE_DESCR_MAX_DPS_TIME:
+    - MaxDPSTimeWS
+    - MaxDPSTime_BS
+TID_DISPATCH_PREP_TIME:
+    - APTPIOTTPWS
+DisableTime:
+    - DisableTimeWS
+BarrageMaxAdditionalEnemies:
+    - BarrageMaxAdditionalEnemiesWS
+TID_MODULE_TRIGGER_TIME:
+    - ProximityTriggerSecWS
+TID_MODULE_SALVAGE_HULL_DESCR:
+    - SalvageHullPercentWS
+    - SalvageHullPercentBS

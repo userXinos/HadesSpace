@@ -1,0 +1,23 @@
+# Add values that are not in the original game files
+
+UnlockPrice: Precio de desbloqueo
+UnlockBlueprints: Desbloquear planos
+UnlockTime: Tiempo de desbloqueo
+WhiteStarScore: WS Puntuación
+BSScore: BS Puntuación
+hyd: hyd
+AU: AU
+days: d
+hours: h
+min: min
+sec: sec
+WS: WS
+BS: BS
+typeModTrade: Módulos comerciales
+typeModMining: Módulos de minería
+typeModWeapon: Módulos de armas
+typeModShield: Módulos de protección
+typeModSupport: Módulos de soporte
+lvl: nivel
+home: Home
+content: Contenido

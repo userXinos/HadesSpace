@@ -1,0 +1,112 @@
+# Add values that are not in the original game files
+
+UnlockPrice: Unlock price
+UnlockBlueprints: Unlock blueprints
+UnlockTime: Unlock Time
+WhiteStarScore: WS Score
+BSScore: BS Score
+hyd: hyd
+AU: AU
+days: d
+hours: h
+min: min
+sec: sec
+WS: WS
+BS: BS
+typeModTrade: Trade modules
+typeModMining: Mining modules
+typeModWeapon: Weapon modules
+typeModShield: Shield modules
+typeModSupport: Support modules
+lvl: lvl
+home: Home
+content: Content
+UpgradeCost: Upgrade Cost
+UpgradeTime: Upgrade time
+NewModuleSlots: Type of additional new slot
+InitialModuleLevels: Module level
+MaxPerStarSystem: Maximum quantity per system
+DisableTime: Disable time
+cerbShield: Cerberus shield
+cerbWeapon: Cerberus weapons
+cerbSupport: Cerberus module
+cerberus: Cerberus
+sections: Sections
+flagshipModules: Flagship modules
+Cost: Cost
+PlanetTypes: Planet Types
+HydrogenPerDay: New hydro every day
+sectors: Sectors
+colonizationPlanets: Colonization of planets
+lvlsPlanets: Planet improvement
+XPAward: XP Award
+TimeToUpgrade: Time Upgrade
+MaxShipments: Max Shipments
+CreditShipmentModifier: Shipment modifier
+MaxUpgradeLevel: Max Level
+planets: Planets
+stars: Stars
+ShipmentsCRValuePerDay: Base Shipments Cost Per Day
+Model: Model
+SlotsUsed: Weight
+SalvageCRReward: Credits for Salvage
+SalvageHydroReward: Hydrogen behind Salvage
+PriceInCrystals: Buying for crystals
+CombatArt: Orb
+UtilityArt: Blue crystal
+SupportArt: Tetrahedron
+blueprints: Blueprints drop for each level
+MaxInfluenceGain: Max. influence reward
+MaxInfluenceLoss: Max. influence loss
+InfluenceAwardThreshold: Actions for gaining influence
+NumMaxPlanets: The number of max. planets
+NumPlayersWithAccess: Number of players
+GhostSpawnSecs: Ghost Spawn
+ResearchSlots: Number of slots for artifacts
+MinPlayerLevel: Min. player level
+TimeLimitDays: Days to complete
+artLevel: Artifact level
+MinRSLevel: Min. level RS
+MaxRSLevel: Max. level RS
+module: Module
+IntParam: Value X
+MoveUpdateSec: Move delay
+BlueStar_CRRewardRate: Compensation from the cost of the battleship
+BlueStar_CRRewardWinLimitPeriod: Cooldown rewards
+BlueStar_MaxHydroPerDayPct: Maximum Hydrogen Reward
+BlueStar_HydroPctPerPos: Hydrogen reward percent of tank
+BlueStar_Fragments: Fragments per position
+StarSectorDPS: Star damage
+WSBucketSizes: Mode
+ScoreNThresholds: Actions for Tick
+WSMaxBSPerPlayer: Maximum battleships per player
+WSMaxOtherPerPlayer: Maximum ships of another type per player
+WSLostBSTimeCooldown: Cooldown lost battleship
+WSLostOtherTimeCooldown: Cooldown lost ships of another type
+WSJumpBSTimeCooldown: Cooldown after the jump battleship
+WSJumpOtherTimeCooldown: Cooldown after jumping another type of ship
+WSScoreDamageModifier: WS score battle modifier
+WSScoreMiningModifier: WS score mining modifier
+WSScoreTransportModifier: WS score transportation modifier
+SafeInterceptorInPublicRS: Neutral Interceptors on Public RS
+NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
+PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
+TID_Artifact: Artifact
+OnDestroySpawnCount: A number of spawn ships after destroy
+BarrageMaxAdditionalEnemies: Max. enemies for additional damage
+DroneShipmentBonusMax: Max. bonus
+TeleportBreaksBond: Teleport breaks the Bond
+LeapBreaksBond: Leap breaks the Bond
+DestinyBreaksBond: Destiny breaks the Bond
+BondBreaksBond: Bond breaks the Bond
+BondOverridesBarrier: Bond ignores the Barrier
+UnityMaxDamageIncreasePct: Max. damage
+MaxShips: Max. ships
+ShipToSpawn: Ship spawn
+plan: Plan
+resetAll: Reset everything
+resetPlan: Reset the plan
+planetscalc: Planet calculator
+other: Other
+switchAccs: Account switcher
+open: Open
