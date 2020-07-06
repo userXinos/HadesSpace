@@ -1,8 +1,0 @@
-Name,TID,TID_Description,ConceptImage,Models,SecurityRating,Icon,TimeSlowdownFactor,PreparationTimeHours,SupernovaFX,SupernovaFXSpawnTimeSec
-YellowStar,TID_YELLOW_STAR,TID_YELLOW_STAR_DESCR,portrait_YellowStar,Home_Star!Home_Star_1!Home_Star_2!Home_Star_3!Home_Star_4!Home_Star_5!Home_Star_6!Home_Star_7!Home_Star_8,0,star_yellow,,,,
-RedStar,TID_RED_STAR,TID_RED_STAR_INFO,portrait_RedStar,Red_Star!Red_Star_1!Red_Star_2!Red_Star_3!Red_Star_4!Red_Star_5!Red_Star_6!Red_Star_7!Red_Star_8!Red_Star_9!Red_Star_10!Red_Star_11,0,star_red,,,RedStarExplode_FX,3
-BlueStar,TID_BLUE_STAR,TID_BLUE_STAR_INFO,portrait_BlueStar,Blue_Star,2,star_blue,,,BlueStarExplode_FX,3
-GreenStar,TID_TODO,TID_TODO,portrait_YellowStar,Green_Star,0,star_yellow,,,,
-WhiteStar,TID_WHITE_STAR,TID_WHITE_STAR_INFO,portrait_WhiteStar,White_Star!White_Star_02,1,star_white,600,12,WhiteStarExplode_FX,7
-OrangeStar,TID_TODO,TID_TODO,portrait_YellowStar,Orange_Star,2,star_yellow,,,,
-RedStarLarge,TID_RED_STAR,TID_RED_STAR_INFO,portrait_RedStar,Red_StarLarge,0,star_red,,,,
