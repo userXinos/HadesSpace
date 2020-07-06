@@ -864,7 +864,7 @@ let data = {
     MinRSLevel: [6, 6, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, " ", " ", " ", " ", " ", " ", " ", " "],
   },
   WinBSWith: {
-    Name: "WinBSWithOmegaRocket",
+    Name: "WinBSWith",
     TID: "TID_WIN_BS_WITH_MODULE",
     TID_Description: "TID_WIN_BS_WITH_MODULE_DESCR",
     TimeLimitDays: 1,

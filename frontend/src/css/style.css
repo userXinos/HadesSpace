@@ -1,0 +1,674 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h2 {
+    padding: 50px 0% 1%;
+    color: #ccd7de;
+    text-align: center;
+}
+#title {
+    padding: 50px;
+    color: #a2a7aa;
+    text-align: center;
+    font-size: 250%;
+}
+h1 {
+    color: #a2a7aa;
+    text-align: center;
+    font-size: 250%;
+}
+body {
+    margin: 5%;
+    background-color: #101415;
+    font-family: "Noto Sans", sans-serif;
+    position: relative;
+}
+html,
+body {
+    overflow-x: hidden;
+}
+header {
+    background: #101415;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    z-index: 10;
+    left: 0;
+    border-bottom: 2px solid #20282b;
+    transition: top 0.2s ease-in-out;
+}
+.index-page {
+    padding: 10% 10% 2% 10%;
+}
+.logo {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-image: url(../img/logo.png);
+    background-size: 20%;
+    background-repeat: no-repeat;
+}
+main {
+    background-color: #161b1d;
+    box-shadow: 0 0 10px 5px #20282b;
+}
+.container-name {
+    color: white;
+    font-size: 200%;
+    padding: 2%;
+    text-align: center;
+    font-weight: bold;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    clear: both;
+}
+.item {
+    width: 17%;
+    height: 250px;
+    margin: 10px;
+    background-color: #1b2325;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    transition: 0.5s;
+}
+.item:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    box-shadow: 1px 1px #000000, 2px 2px #000000, 3px 3px #000000, 4px 4px #000000,
+    5px 5px #000000, 6px 6px #000000, 7px 7px #000000;
+    transform: translateX(-7px);
+    transition: 0.5s;
+    background-color: #1f282b;
+}
+.item-text {
+    height: 90px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 17px;
+    color: white;
+    position: absolute;
+    top: 150px;
+    padding: 5%;
+}
+.item-icon {
+    bottom: 100px;
+    position: absolute;
+}
+.item-icon > span {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-size: auto 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.item-link {
+    display: contents;
+}
+.portrait {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    opacity: 0.8;
+}
+/*//////////////////////////////////////////////////////////////////
+[ Таблица ]*/
+
+.tableEnvironment {
+    padding: 20px 3%;
+    margin: 0 0 4%;
+}
+table {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #424547;
+    border-spacing: 0;
+    border-collapse: separate;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #aab2b6;
+}
+.gTable {
+    background-color: #0f1416;
+}
+table th,
+table td {
+    padding: 8px 10px 8px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 75%;
+}
+table td {
+    vertical-align: center;
+    border-top: 1px solid #25262e;
+    /*Верхняя граница ячейки*/
+}
+th {
+    background-color: #090e10;
+    padding-top: 9px;
+    /*Отступы внутри ячеек*/
+    font-weight: bold;
+    /*Установка жирного начертания шрифта*/
+    vertical-align: middle;
+    /*Выравнивание по вертикали. Текст находится по середине*/
+    color: #c9cfd3;
+    border-bottom: 2px solid #25262e;
+    /*Закрепить шапку*/
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+th,
+td {
+    /* hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto; */
+    padding: 10% 10% 10%;
+    line-height: 18px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+/*==================================================================
+[ Fix col ]*/
+
+.gTable {
+    width: 100%;
+    padding-top: 1%;
+}
+.gTable-lvls {
+    background-color: #090e10;
+    position: absolute;
+    z-index: 5;
+}
+/* .gTable-stats {
+    overflow: auto;
+} */
+
+.gTable-stats tr:hover {
+    background-color: #151a1c;
+    /*Цвет строки при наведении курсора мыши*/
+}
+/* ==================================================================
+ Закругление краёв */
+
+table th + th,
+table td + td,
+table th + td {
+    border-left: 1px solid #25262e;
+    /*Стиль для левой границы между двумя ячейками*/
+}
+table thead tr:first-child th:first-child,
+    /*Первая строка первая ячейка в заголовке таблицы*/
+
+table tbody tr:first-child td:first-child
+    /*Первая строка первая ячейка в теле таблицы*/ {
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+    border-radius: 5px 0 0 0;
+}
+table thead tr:first-child th:last-child,
+    /*Первая строка последняя ячейка в заголовке таблицы*/
+
+table tbody tr:first-child td:last-child
+    /*Первая строка последняя ячейка в теле таблицы*/ {
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+    border-radius: 0 5px 0 0;
+}
+table tbody tr:last-child td:first-child
+    /*Последняя строка первая ячейка в теле таблицы*/ {
+    -webkit-border-radius: 0 0 0 5px;
+    -moz-border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 5px;
+}
+table tbody tr:last-child td:last-child
+    /*Последняя строка последняя ячейка в теле таблицы*/ {
+    -webkit-border-radius: 0 0 5px 0;
+    -moz-border-radius: 0 0 5px 0;
+    border-radius: 0 0 5px 0;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Заголовок ]*/
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3% 0 0;
+}
+.title-text {
+    margin-left: 10px;
+    font-size: 150%;
+    color: #ccd7de;
+}
+/*==================================================================
+[ Иконки ]*/
+
+.icon-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    opacity: 0.8;
+    background-size: auto 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/module_background.png);
+}
+.icon {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+.module-bg {
+    background-image: url(../img/module_background.png);
+}
+.ships {
+    width: 40px;
+    transform: rotate(45deg);
+    padding: 10px;
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #6bd7ff);
+}
+.cerberus {
+    width: 45px;
+    transform: rotate(45deg);
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
+}
+.cerberus img {
+    padding: 50% 30% 0 0;
+    width: 100%;
+    height: auto;
+}
+.cerberusModule {
+    text-decoration: underline;
+}
+.spaceBuildings-bg {
+    background-image: url(../img/spaceBuilding_background.png);
+}
+.round-bg {
+    background-image: url(../img/spaceBuildings_icons/TimeModulatorBackground.png);
+}
+.warpLine-bg {
+    background-image: url(../img/spaceBuildings_icons/warp1.png);
+    background-position-y: 20px;
+    background-size: 100%;
+}
+.warpLine-body {
+    background-image: url(../img/spaceBuildings_icons/warp2.png);
+    background-size: 210%;
+}
+/*/////////////////////////////////
+[ index ]*/
+
+.item-icon > .icon-background {
+    width: 90px;
+    height: 90px;
+    background-size: auto 80px;
+}
+.item-icon > .icon-background > .icon {
+    width: 50px;
+    height: 50px;
+}
+.art-bg {
+    background-image: url(../img/artifact_background.png);
+    opacity: 0.9;
+}
+/*//////////////////////////////////////////////////////////////////
+[ Список ]*/
+
+.list {
+    padding: 0 5% 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.list ol {
+    border: 5px outset #586066;
+    list-style-type: none;
+    columns: 200px auto;
+    font-size: 125%;
+}
+.list li {
+    /* border: 1px solid #424547; */
+    text-align: center;
+}
+/*==================================================================
+[ Ссылки списка ]*/
+
+a {
+    color: #176da3;
+    text-decoration: none;
+}
+a:hover {
+    color: #16bde7;
+    text-decoration: underline;
+}
+a:active {
+    color: #a33f17;
+}
+/*==================================================================
+[ Ссылка модуля ]*/
+
+.title-text a {
+    color: #ccd7de;
+    text-decoration: none;
+}
+.title-text a:hover {
+    color: #90979b;
+    text-decoration: underline;
+}
+.title-text a:active {
+    color: #a33f17;
+}
+/* .title-text a:visited {
+  color: #771bb4;
+} */
+
+/*==================================================================
+[ Остальные статы ]*/
+
+.stringStsts {
+    padding: 2px 6%;
+    text-align: left;
+    font-weight: normal;
+    font-size: 120%;
+    color: #afb8be;
+    list-style-type: circle;
+    margin: 0 -2%;
+}
+/*//////////////////////////////////////////////////////////////////
+[ Описание ]*/
+
+.desc {
+    margin: 1px 5%;
+    padding: 10px 0;
+    color: #afb8be;
+    font-size: 150%;
+    text-align: center;
+}
+.desc > p {
+    padding: 10px 0;
+    font-size: 80%;
+    text-align: right;
+}
+.desc > p:before{
+    content:"\2014\00A0"
+}
+/*//////////////////////////////////////////////////////////////////
+[ Шапка ]*/
+
+#buttonLangs {
+    background-image: url(../img/icons/lang.svg);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 23px 26px;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 24%;
+    left: 2%;
+    width: 50px;
+}
+/* #buttonLangs:hover {
+    filter: invert(6%) sepia(4%) saturate(2544%) hue-rotate(153deg) brightness(100%) contrast(91%);
+} */
+
+.langs {
+    display: none;
+    top: 100%;
+    z-index: 1;
+    position: absolute;
+    opacity: 0.8;
+}
+.langs input {
+    border: none;
+    background-color: #101415;
+    color: white;
+    padding: 12px 26px;
+    display: block;
+    font-size: 13px;
+    width: 120%;
+    text-align: left;
+}
+.langs input:hover {
+    border-left: 5px solid #253033;
+}
+/*//////////////////////////////////////////////////////////////////
+[ Кнопка наверх ]*/
+
+/* TODO добавить анимацию появления */
+
+#buttonTop {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #313033;
+    z-index: 9999;
+    opacity: 0.8;
+    background-image: url(../img/icons/top.svg);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    cursor: pointer;
+}
+#buttonTop:hover {
+    background-color: #454347;
+    opacity: 1;
+}
+/*Планетный калькулятор*/
+
+.planetsCalc {
+    margin-top: 15px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+table.planetsCalc td {
+    border: none;
+}
+table.planetsCalc td:first-child {
+    text-align: left;
+    /* background-color: #1c1c1f;
+      border-right: 1px solid #bebebeb2; */
+}
+td[id$="plan"] {
+    color: #fff19f;
+}
+.resetButtons {
+    padding: 25px 3%;
+}
+.resetButtons > button {
+    color: #fff;
+    cursor: pointer;
+    background-color: Transparent;
+    position: relative;
+    border: 1px solid #f7ca18;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    float: right;
+    padding: 10px 10px;
+    margin-left: 5px;
+}
+.resetButtons > button:hover {
+    color: #000 !important;
+    background-color: transparent;
+}
+.resetButtons > button:hover:before {
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+.resetButtons > button:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+    z-index: -1;
+    content: "";
+    color: #000 !important;
+    background: #f7ca18;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+button.resetButtonAll {
+    border: 1.3px solid #c90000;
+}
+button.resetButtonAll:before {
+    background: #c90000;
+}
+.infoStats {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.infoStats > div {
+    max-width: 400px;
+    padding: 5px 10px 10px;
+    background: #111a19;
+    border: 2px solid #243532;
+    color: #cfd6ad;
+    font-size: 100%;
+    margin: auto 30px;
+}
+.infoStats > p {
+    padding-top: 2%;
+}
+.infoStats p:nth-child(2) {
+    color: #f0f5f5;
+    font-size: 120%;
+    padding-left: 35px;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    background-image:url(../img/icons/info.png);
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position-y: center;
+}
+.infoStats div button {
+    width: 20px;
+    height: 20px;
+    background-image: url(../img/icons/close.png);
+    background-repeat: no-repeat;
+    border: none;
+    background-size: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    float: right;
+}
+.infoMark {
+   color: #cfd6ad;
+   cursor: pointer;
+}
+/*==================================================================
+[ Адаптация ]*/
+
+@media screen and (max-width: 1062px) {
+    /*использовать прокрутку */
+    .gTable-stats {
+        overflow: auto;
+    }
+    th {
+        /*открепить шапку*/
+        position: relative;
+    }
+    body {
+        margin: 1%;
+    }
+}
+@media screen and (max-width: 960px) {
+    .item {
+        width: 100%;
+        height: 80px;
+        flex-direction: row;
+        position: relative;
+        margin: 5px;
+    }
+    .item-icon > .icon-background {
+        width: 50px;
+        height: 50px;
+        background-size: auto 40px;
+    }
+    .item-icon > .icon-background > .icon {
+        width: 20px;
+    }
+    .item-icon {
+        position: absolute;
+        right: 80%;
+        bottom: 20%;
+    }
+    .item-icon > span {
+        width: 45px;
+        height: 45px;
+        background-size: auto 45px;
+    }
+    .item-text {
+        position: static;
+        width: 60%;
+    }
+}
+@media screen and (max-width: 550px) {
+    header {
+        width: 100%;
+        height: 60px;
+        top: 0;
+    }
+    .index-page {
+        padding: 18% 0 2% 0;
+    }
+    #buttonLangs {
+        top: 15%;
+        width: 50px;
+        right: 10%;
+    }
+    .logo {
+        background-size: 40%;
+    }
+    .stringStsts,
+    .desc {
+        font-size: 100%;
+        text-align: left;
+    }
+    .title-text {
+        font-size: 120%;
+    }
+}
