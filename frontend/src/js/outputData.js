@@ -270,8 +270,7 @@ async function generatePageTables(args) {
     function genStatsTableHead() {
       let result = '<thead><tr>';
       keysByArrays.forEach((key) => {
-        result += `<th id="${key}">${getFormatHead(obj1.Name, key)}</th>`;
-        $(document).on('click', `#${key}`, getClick(key));
+        result += `<th>${getFormatHead(obj1.Name, key)}</th>`;
       });
       result += '</tr></thead>';
       return result;
@@ -281,10 +280,10 @@ async function generatePageTables(args) {
       let result = '<tbody>';
       for (let i = 0; i < obj1.maxLevel; i++) {
         result += '<tr>';
-        for (let k = 0; k < keysByArrays.length; k++) {
-          const value = getFormatValue(keysByArrays[k], obj1[keysByArrays[k]][i]);
+        keysByArrays.forEach((key) => {
+          const value = getFormatValue(key, obj1[key][i]);
           result += `<td>${value}</td>`;
-        }
+        });
         result += '</tr>';
       }
       result += '</tbody>';
