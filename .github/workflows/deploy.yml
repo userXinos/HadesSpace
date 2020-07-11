@@ -3,17 +3,19 @@ on:
   push:
     branches:
       - master
-  jobs:
-    deploy:
-      runs-on: ubuntu-latest
-      steps:
-          uses: actions/checkout@v1
-        - name: Build
-          run: |
-            npm install
-            npm run pack
-        - name: Deploy to gh-pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-            publish_dir: ./dist
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build
+        run: |
+          npm install
+          npm run pack
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./dist
