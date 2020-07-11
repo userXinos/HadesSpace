@@ -1,26 +1,27 @@
 'use strict';
+
 const fs = require('fs');
 const YAML = require('yaml');
+const path = require('path');
 
 const defaultLang = 'en';
-const path = './rawData/loc_strings/';
-const pathSave = './data/loc_strings/';
-const langs = fs.readdirSync(path)
-    .filter((e) => (e.endsWith('.txt')))
-    .map((e) => e.replace(/loc_strings_(.*)\.txt/, '$1'));
+const homePath = path.join(__dirname, '/modification/loc_strings/');
 
-for (const lang of langs) {
+module.exports = function(main, json) {
+  const lang = json.metadata.originalFile.replace(/.*\/loc_strings_(.+)\..+$/, '$1');
+
+  for (const k in json) {
+    const key = k.replace(/"/g, '');
+    json[key] = json[k]['value'].replace(/"/g, '');
+    delete json[k];
+  }
   const trashStrings = getYaml('trashStrings').file;
   const upperCaseKeys = getYaml('upperCaseKeys').file;
   const customDesc = getYaml(`add content/${lang}/customDesc`);
-  const json =
-      addContent(
-          fixStrings(
-              parseStrings(
-                  fs.readFileSync(`${path}loc_strings_${lang}.txt`, 'utf8'),
-              ),
-          ));
-  saveToFile(`${pathSave}${lang}.json`, json);
+  json.metadata.saveAs = json.metadata.saveAs.replace(/(js)$/, 'json');
+
+  return addContent(fixStrings(json));
+  // saveToFile(`${pathSave}${lang}.json`, json);
 
   // исправить регистр строк, убрать лишние
   function fixStrings(obj) {
@@ -114,37 +115,19 @@ for (const lang of langs) {
   function getYaml(pathFile) {
     let replaced = false;
 
-    if (!fs.existsSync(`${path}modification/${pathFile}.yaml`)) {
+    if (!fs.existsSync(path.join(homePath, pathFile) + '.yaml')) {
       const oldPath = pathFile;
       replaced = true;
 
       pathFile = pathFile.replace(new RegExp(lang), defaultLang);
-      console.log(`Файл "${path}modification/${oldPath}.yaml" не найден, заменён на ${path}modification/${pathFile}.yaml`);
+      console.log(`Замена "${path.relative(__dirname, path.join(homePath, oldPath))}.yaml" => 
+                       "${path.relative(__dirname, path.join(homePath, pathFile))}.yaml"`);
     }
     return {
       file: YAML.parse(
-          fs.readFileSync(`${path}modification/${pathFile}.yaml`, 'utf8'),
+          fs.readFileSync(`${path.join(homePath, pathFile)}.yaml`, 'utf8'),
       ),
       replaced,
     };
   }
-}
-// парсер в обектJS
-function parseStrings(txt) {
-  const strings = txt.split('\n');
-  const result = {};
-
-  strings.forEach((string) => {
-    if (string == '') return;
-    string = string.match(/"(?<key>.+?)","(?<value>.+?)"/).groups;
-    result[string.key] = string.value;
-  });
-  return result;
-}
-function saveToFile(file, json) {
-  fs.writeFile(
-      file,
-      JSON.stringify(json, null, 2),
-      () => console.log(`Файл ${file} создан`),
-  );
-}
+};

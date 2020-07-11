@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = function(main, obj, star) {
+module.exports = function(main, obj) {
+  const star = obj.metadata.originalFile.replace(/.*\/(.+)_star_sectors\..+$/, '$1');
   const scannersData = main.readCSV('spacebuildings').ShortRangeScanner;
   const cerberusData = main.readCSV('cerb_groups');
   const cerberusStationsData = main.readCSV('cerberus_stations');
@@ -36,6 +37,7 @@ module.exports = function(main, obj, star) {
       if (e !== ' ') arr[i] = e + 1;
     });
   }
+  result.metadata = obj.metadata;
   return result;
 
   // добавить записи в начало, для соотвествия уровня

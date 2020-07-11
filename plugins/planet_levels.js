@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function(m, obj) {
-  return obj.compileOne();
+module.exports = function(main, obj) {
+  return main.compileOne(obj);
 };

@@ -6,7 +6,7 @@ module.exports = function(main, obj) {
   const tableNames = main.dataByTypes.artifacts.blueprints;
 
   for (const name of artsTypes) {
-    const obj1 = new main.RawJson; // собрать объекты одного типа в одном месте
+    const obj1 = new main.NestedRawJson; // собрать объекты одного типа в одном месте
 
     const keys = Object.keys(obj).map((e) => {
       if (e.startsWith(name)) {
@@ -14,7 +14,7 @@ module.exports = function(main, obj) {
       }
     });
     keys.forEach((k) => obj1[k] = obj[k]);
-    result[name] = obj1.compileOne();
+    result[name] = main.compileOne(obj1);
     result[name].Name = name;
     result[name].TID_Description = result[name].TID_Description[0];
     result[name].MaxModuleLevelToAward = result[name].MaxModuleLevelToAward[0];
@@ -27,7 +27,6 @@ module.exports = function(main, obj) {
     const minArr = obj1.BlueprintsMin;
     const maxArr = obj1.BlueprintsMax;
     const blueprints = new main.NestedRawJson(); // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
-    Object.setPrototypeOf(obj1, new main.NestedRawJson());
 
     obj1.pushArrays('Credits', 'CreditsMin', 'CreditsMax');
     obj1.pushArrays('Hydrogen', 'HydrogenMin', 'HydrogenMax');
@@ -46,5 +45,6 @@ module.exports = function(main, obj) {
     result[tableNames[i]]['Name'] = tableNames[i];
     ['BlueprintsMin', 'BlueprintsMax'].forEach((e) => delete obj1[e]);
   }
+  result.metadata = obj.metadata;
   return result;
 };

@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = function(m, obj) {
-  obj = obj.compileOne();
+module.exports = function(main, obj) {
+  obj = main.compileOne(obj);
   obj.Name = 'alliance_levels';
   return obj;
 };

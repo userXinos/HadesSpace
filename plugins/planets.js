@@ -19,7 +19,8 @@ module.exports = function(main, obj) {
         }
       }
     }
-    result[s + 'Table'] = obj1.compileOne();
+    result[s + 'Table'] = main.compileOne(obj1);
   }
+  result.metadata = obj.metadata;
   return result;
 };
