@@ -5,7 +5,7 @@
   "main": "generateGameData.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pack": "node frontend/build.js"
+    "pack": "node generateGameData.js; parcel build /frontend/src/pages/*.html --public-url ."
   },
   "repository": {
     "type": "git",

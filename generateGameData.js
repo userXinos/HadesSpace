@@ -59,19 +59,16 @@ const plugins = fs.readdirSync(pluginsPath)
 
 const promises = files.map(loadSaveFile);
 Promise.all(promises)
-    .catch((error) => {
-      console.log(`Ошибки в выполнении. \n ${error} ${error.stack}`);
-    })
     .then(() => {
       const time = (new Date().getTime() - startTime) / 1000;
       console.log(`Готово! (${time} сек.)`);
+    })
+    .catch((error) => {
+      console.log(`Ошибки в выполнении. \n ${error} ${error.stack}`);
     });
 
 function loadSaveFile(file) {
   return fsPromises.readFile(file, 'utf8')
-      .catch((err) => {
-        throw err;
-      })
       .then((data) => {
         const headers = (file.includes('loc_strings_')) ? ['key', 'value'] : undefined; // TODO избавиться от харкода
         let json = CSVtoJSON(data, headers);
@@ -101,6 +98,9 @@ function loadSaveFile(file) {
           // plugins.splice(plugins.indexOf(pluginName), 1);
         }
         return saveFile(json.fixOrder());
+      })
+      .catch((err) => {
+        throw err;
       });
 }
 function saveFile(json) {
@@ -134,10 +134,11 @@ function saveFile(json) {
         trailingComma: 'es5',
         printWidth: 410, // чтоб массивы выстраивались в одну линию
       }))
+      .then(() => console.log(`Файл "${file}" создан`))
+      .then(() => 'done')
       .catch((err) => {
         throw err;
-      })
-      .then(() => console.log(`Файл "${file}" создан`));
+      });
 
   // добавить захардкоженый контент
   function addContent(json) {

@@ -18,7 +18,7 @@ module.exports = function(main, json) {
   const trashStrings = getYaml('trashStrings').file;
   const upperCaseKeys = getYaml('upperCaseKeys').file;
   const customDesc = getYaml(`add content/${lang}/customDesc`);
-  json.metadata.saveAs = json.metadata.saveAs.replace(/(js)$/, 'json');
+  json.metadata.saveAs = json.metadata.saveAs.replace(/loc_strings_(.+)\.(js)$/, '$1.json');
 
   return addContent(fixStrings(json));
   // saveToFile(`${pathSave}${lang}.json`, json);
@@ -121,7 +121,7 @@ module.exports = function(main, json) {
 
       pathFile = pathFile.replace(new RegExp(lang), defaultLang);
       console.log(`Замена "${path.relative(__dirname, path.join(homePath, oldPath))}.yaml" => 
-                       "${path.relative(__dirname, path.join(homePath, pathFile))}.yaml"`);
+                "${path.relative(__dirname, path.join(homePath, pathFile))}.yaml"`);
     }
     return {
       file: YAML.parse(
