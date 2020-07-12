@@ -146,23 +146,16 @@ function saveFile(json) {
     const needData = json.metadata.originalFile.replace(/.*\/(.+)\..+$/, '$1');
     const byType = dataByTypes[needData] || {};
     const result = {};
-    const registered = [];
-    const notRegistered = [];
+    let registered = [];
 
     result.export = 'data';
     if (json[Object.keys(json)[0]].constructor !== NestedRawJson) {
       return result; // нет вложенных объектов - просто данные
     }
-    for (const i in byType) {
-      byType[i].forEach((e) => {
-        registered.push(e);
-      });
-    }
-    for (const key in json) {
-      if (!registered.includes(key)) {
-        notRegistered.push(key);
-      }
-    }
+    Object.keys(byType)
+        .forEach((key) => registered = registered.concat(byType[key]));
+    const notRegistered = Object.keys(json)
+        .filter((key) => !registered.includes(key));
     if (notRegistered.length != 0) {
       if (Object.keys(byType).length != 0) {
         byType.notregistered = notRegistered;
@@ -229,40 +222,30 @@ function CSVtoJSON(csv, headers) {
   }
   // массив, сравнивать i и i+1, если все элементы равны установить вместо массива i[0] || {key:[1,1,1,1]} => {key:1}
   function removeDupsFromArrays(obj) {
-    const names = Object.keys(obj);
-    for (const name of names) {
-      const headers = Object.keys(obj[name]);
-      for (const header of headers) {
-        const item = obj[name][header];
-        if (!Array.isArray(item)) continue;
-        let isBreak = false;
-        for (let i = 0; i < item.length; i++) {
-          if (item[i] !== item[i + 1] && item[i + 1] !== undefined) {
-            isBreak = true;
-            break;
-          }
-        }
-        if (!isBreak) {
-          obj[name][header] = item[0];
-        }
-      }
+    if (obj.constructor == NestedRawJson) {
+      Object.keys(obj).forEach((key) => {
+        const item = obj[key];
+        if (!Array.isArray(item)) return;
+        const isAllDups = item.every((v) => v === item[0]);
+        if (isAllDups) obj[key] = item[0];
+      });
+      return obj;
+    } else {
+      Object.keys(obj).forEach((k) => {
+        obj[k] = removeDupsFromArrays(obj[k]);
+      });
+      return obj;
     }
-    return obj;
   }
   // если не таблица, а просто данные в столбик
   function simpleArray(array) {
-    const r = new RawJson();
+    const result = new RawJson();
 
-    array.forEach((e, i, arr) => {
-      if (e == '') {
-        arr.splice(i, 1);
-        return;
-      }
-      arr[i] = fixValue(null, null, e);
-    });
-    r.maxLevel = array.length;
-    r.array = array;
-    return r;
+    result.array = array
+        .filter((e) => !(e === ''))
+        .map((e) => fixValue(null, null, e));
+    result.maxLevel = result.array.length;
+    return result;
   }
 }
 // главный класс
