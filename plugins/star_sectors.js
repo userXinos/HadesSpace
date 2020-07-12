@@ -37,7 +37,12 @@ module.exports = function(main, obj) {
       if (e !== ' ') arr[i] = e + 1;
     });
   }
-  result.metadata = obj.metadata;
+  Object.defineProperty(result,
+      'metadata', { // скрытый объект от перебора
+        configurable: true,
+        writable: true,
+        value: obj.metadata,
+      });
   return result;
 
   // добавить записи в начало, для соотвествия уровня

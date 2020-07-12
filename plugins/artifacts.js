@@ -6,14 +6,12 @@ module.exports = function(main, obj) {
   const tableNames = main.dataByTypes.artifacts.blueprints;
 
   for (const name of artsTypes) {
-    const obj1 = new main.NestedRawJson; // собрать объекты одного типа в одном месте
+    const obj1 = new main.NestedRawJson;
 
-    const keys = Object.keys(obj).map((e) => {
-      if (e.startsWith(name)) {
-        return e;
-      }
-    });
-    keys.forEach((k) => obj1[k] = obj[k]);
+    Object.keys(obj) // собрать объекты одного типа в одном месте
+        .filter((e) => (e.startsWith(name)))
+        .forEach((k) => obj1[k] = obj[k]);
+
     result[name] = main.compileOne(obj1);
     result[name].Name = name;
     result[name].TID_Description = result[name].TID_Description[0];
@@ -21,7 +19,6 @@ module.exports = function(main, obj) {
     // result[name].BlueprintTypes = result[name].BlueprintTypes[0]
     ['BlueprintTypes', 'Model', 'MaxModuleLevelToAward'].forEach((e) => delete result[name][e]);
   }
-
   for (const a of Object.keys(result)) {
     const obj1 = result[a];
     const minArr = obj1.BlueprintsMin;
@@ -45,6 +42,11 @@ module.exports = function(main, obj) {
     result[tableNames[i]]['Name'] = tableNames[i];
     ['BlueprintsMin', 'BlueprintsMax'].forEach((e) => delete obj1[e]);
   }
-  result.metadata = obj.metadata;
+  Object.defineProperty(result,
+      'metadata', { // скрытый объект от перебора
+        configurable: true,
+        writable: true,
+        value: obj.metadata,
+      });
   return result;
 };

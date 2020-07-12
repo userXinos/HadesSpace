@@ -76,18 +76,19 @@ function loadSaveFile(file) {
             .replace(/.*\/(.+)\.csv/, '$1');
         pluginName = plugins
             .find(((e) => pluginName.includes(e)));
-        Object.defineProperty(json, 'metadata', { // скрытый объект от перебора
-          writable: true,
-          configurable: true,
-          value: {
-            originalFile: file,
-            saveAs: path.join(
-                pathSave,
-                path.relative(pathCSVs, file).replace(/csv$/, 'js'),
-            ),
-            pluginName: null,
-          },
-        });
+        Object.defineProperty(json,
+            'metadata', { // скрытый объект от перебора
+              configurable: true,
+              writable: true,
+              value: {
+                originalFile: file,
+                saveAs: path.join(
+                    pathSave,
+                    path.relative(pathCSVs, file).replace(/csv$/, 'js'),
+                ),
+                pluginName: null,
+              },
+            });
 
         if (pluginName) {
           json = require(path.join(pluginsPath, '/', pluginName) + '.js')(
@@ -97,7 +98,7 @@ function loadSaveFile(file) {
           json.metadata.pluginName = pluginName;
           // plugins.splice(plugins.indexOf(pluginName), 1);
         }
-        return saveFile(json.fixOrder());
+        return saveFile(fixOrder(json));
       })
       .catch((err) => {
         throw err;
@@ -145,7 +146,7 @@ function saveFile(json) {
     const needData = json.metadata.originalFile.replace(/.*\/(.+)\..+$/, '$1');
     const byType = dataByTypes[needData] || {};
     const result = {};
-    const registered = ['metadata'];
+    const registered = [];
     const notRegistered = [];
 
     result.export = 'data';
@@ -265,72 +266,29 @@ function CSVtoJSON(csv, headers) {
   }
 }
 // главный класс
-class RawJson extends Object {
-  // исправление порядка объекта
-  fixOrder() {
-    const obj = this;
-    const headers = JSON.parse(fs.readFileSync(`${pluginsPath}modification/headersOrder.json`, 'utf8'));
-    let result = Object.create(obj);
+class RawJson extends Object {}
+// исправление порядка объекта
+function fixOrder(obj) {
+  const headers = JSON.parse(fs.readFileSync(`${pluginsPath}modification/headersOrder.json`, 'utf8'));
 
-    for (let i = 0; i < ObjectLength(obj); i++) {
-      let objCopy = {...obj}; // сделать копию, чтобы не помять основной объект
-      let path = null; // уровень 0
-      let key = Object.keys(objCopy)[i];
-      let depth = 0; // определение глубины
-
-      while (objCopy[key].constructor == NestedRawJson) {
-        path = (path == null) ? key : `${path}.${key}`;
-        key = Object.keys(objCopy[path])[depth];
-        objCopy = objCopy[path];
-        depth++;
-      }
-      // создание объекта с ключами (+индекс)
-      const indexes = [];
-      for (key in objCopy) {
-        const elem = {};
-
-        elem.index = (headers.includes(key)) ? headers.indexOf(key) : 666;
-        elem.key = key;
-        indexes.push(elem);
-      }
-      // сортировка по идексу
-      const objSorted = indexes.slice(0);
-      objSorted.sort((a, b) => a.index - b.index);
-      // сборка готового массива и объекта
-      const newKeys = [];
-      for (const k of objSorted) {
-        newKeys.push(k.key);
-      }
-      const result2 = new NestedRawJson();
-      for (key of newKeys) {
-        result2[key] = objCopy[key];
-      }
-      if (path != null) {
-        setToValue(result, result2, path);
-      } else {
-        result = result2;
-      }
+  if (obj.constructor == RawJson || obj.constructor == NestedRawJson || obj.constructor == Object) {
+    const indexes = []; // создание объекта с ключами + индекс
+    for (const key in obj) {
+      const elem = {};
+      elem.index = (headers.includes(key)) ? headers.indexOf(key) : 666;
+      elem.key = key;
+      indexes.push(elem);
     }
-    result.metadata = obj.metadata;
+    indexes.sort((a, b) => a.index - b.index);
+
+    // сборка готового объекта
+    const result = Object.create(obj);
+    for (const i in indexes) {
+      result[indexes[i].key] = fixOrder(obj[indexes[i].key]);
+    }
     return result;
-
-    function setToValue(obj, value, path) {
-      let i;
-      path = path.split('.');
-      for (i = 0; i < path.length - 1; i++) obj = obj[path[i]];
-
-      obj[path[i]] = value;
-    }
-
-    function ObjectLength(object) {
-      let length = 0;
-      for (const key in object) {
-        if (object.hasOwnProperty(key)) {
-          ++length;
-        }
-      }
-      return length;
-    }
+  } else {
+    return obj;
   }
 }
 // вложенные объекты в главном
@@ -385,27 +343,29 @@ function renameKeys(obj, newKeys) {
 }
 // из кучи объеков в один
 function compileOne(obj) {
-  const result = Object.create(obj);
+  const copyObj = Object.assign(obj, {});
 
-  for (let name of Object.keys(obj)) {
-    name = obj[name];
-    for (let key in name) {
-      const value = name[key];
-      key = key.replace(/\s+/g, '');
-      const stockValue = result[key];
+  for (const key of Object.keys(obj)) {
+    const obj1 = copyObj[key];
+    delete obj[key];
+
+    for (let k in obj1) {
+      const value = obj1[k];
+      const stockValue = obj[k];
+      k = k.replace(/\s+/g, ''); // напр "Credit Storage"
+
       if (stockValue == undefined || stockValue === '') {
-        result[key] = value;
+        obj[k] = value;
       } else if (Array.isArray(stockValue)) {
-        result[key].push(value);
+        obj[k].push(value);
       } else {
-        result[key] = [];
-        result[key].push(stockValue, value);
+        obj[k] = [];
+        obj[k].push(stockValue, value);
       }
     }
   }
-  result.maxLevel = result.maxLevel.length;
-  result.metadata = obj.metadata;
-  return result;
+  obj.maxLevel = obj.maxLevel.length;
+  return obj;
 }
 
 module.exports = {

@@ -7,7 +7,7 @@ module.exports = function(main, obj) {
   const result = new main.RawJson;
 
   for (const s in stars) {
-    const obj1 = new main.RawJson;
+    const obj1 = new main.NestedRawJson;
 
     stars[s].forEach((e) => {
       obj1[e] = obj[e];
@@ -21,6 +21,11 @@ module.exports = function(main, obj) {
     }
     result[s + 'Table'] = main.compileOne(obj1);
   }
-  result.metadata = obj.metadata;
+  Object.defineProperty(result,
+      'metadata', { // скрытый объект от перебора
+        configurable: true,
+        writable: true,
+        value: obj.metadata,
+      });
   return result;
 };
