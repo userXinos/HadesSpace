@@ -326,16 +326,16 @@ function renameKeys(obj, newKeys) {
 }
 // из кучи объеков в один
 function compileOne(obj) {
-  const copyObj = Object.assign(obj, {});
+  const copyObj = Object.assign({}, obj);
 
-  for (const key of Object.keys(obj)) {
-    const obj1 = copyObj[key];
+  Object.keys(obj).forEach((key) => {
     delete obj[key];
+    const obj1 = copyObj[key];
 
     for (let k in obj1) {
       const value = obj1[k];
-      const stockValue = obj[k];
       k = k.replace(/\s+/g, ''); // напр "Credit Storage"
+      const stockValue = obj[k];
 
       if (stockValue == undefined || stockValue === '') {
         obj[k] = value;
@@ -346,7 +346,7 @@ function compileOne(obj) {
         obj[k].push(stockValue, value);
       }
     }
-  }
+  });
   obj.maxLevel = obj.maxLevel.length;
   return obj;
 }

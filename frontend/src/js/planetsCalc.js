@@ -182,10 +182,7 @@ export async function start() {
         const itemIndex = Data.Name.indexOf(item);
 
         if (itemLvl == -1) continue;
-        if (item.includes('TradingStation')) {
-
-        }
-        for (const i in keys) {
+        keys.forEach((e, i) => {
           let num1;
           let num2;
 
@@ -210,7 +207,7 @@ export async function start() {
           }
           result[mode][keys[i]] = num1 + num2;
           if (mode == 'result') formatResult(keys[i]);
-        }
+        });
       }
     }
     function formatResult(i) {
