@@ -1,70 +1,36 @@
 'use strict';
 
-import {getStr} from './getString.js';
-import {switchLang, getLangVal} from './header.js';
-import { } from './fixPage';
+import Vue from 'vue';
+import i18n from '../js/modules/i18n';
+import TheHeader from '../components/TheHeader';
 
-window.switchLang = switchLang;
-window.getLangVal = getLangVal;
-
-$(window).scroll(() => {
-  document.getElementById('buttonTop').style.display = (window.pageYOffset > '300' ? 'block' : 'none');
+new Vue({
+  el: '#main',
+  i18n,
+  components: {
+    'App': () => import('../components/App'),
+    'PlanetsCalc': () => import('../components/ThePlanetsCalc'),
+  },
+  data: {obj: {}},
 });
 
-import {generatePageTables} from './outputData';
+// шапка
+Vue.component('my-header', TheHeader);
+new Vue({
+  el: '#header',
+  components: {TheHeader},
+});
 
-window.generatePageTables = generatePageTables;
-window.getStr = getStr;
-window.setBaseData = async function(args) {
-  const title = getStr(args.titleKey);
-  $('h2').append(getStr('content'));
-  $('h1').append(`${title}`);
-  $('body').append(`<title>${title}</title>`);
-  await generatePageTables(args);
-};
-window.genTitle = function(hrefHtml) {
-  $('body').append($('<div/>', {
-    class: 'title',
-    html: $('<div/>', {
-      class: 'title-text',
-      html: hrefHtml,
-    })[0]['outerHTML'],
-  }));
-};
-window.genOl = function(spanHtml) {
-  $('ol').append($('<li/>', {
-    html: spanHtml,
-  }));
-};
-window.planetsCalc = function() {
-  import('./planetsCalc').then((i) => {
-    i.start();
-  });
-};
-window.staticStatsInfo = function(header, text) {
-  const elem = $('<div/>', {
-    class: 'infoStats',
-    html: $('<div/>', {
-      class: 'test',
-      html: `<button id="close"></button> <p>${header}</p> <p>${text}</p>`,
-    })[0].outerHTML,
-    click: (e) => { // рандомный клик
-      if (!$(e.target).hasClass('infoStats')) return;
-      hide();
+// кнопка наверх
+const btnTop = new Vue({
+  el: '#btn-top',
+  data: {
+    show: false,
+  },
+  methods: {
+    scroll() {
+      this.show = window.pageYOffset > 300;
     },
-  });
-  const hide = () => {
-    elem.remove();
-    $('html').css('overflow', 'auto');
-  };
-
-  $('body').append(elem);
-  $('html').css('overflow', 'hidden');
-  $('#close').click(() => hide());
-};
-
-// export { // TODO: хз пока как это сделать
-//     genTitle,
-//     genOl,
-//     genDesc
-// }
+  },
+});
+window.addEventListener('scroll', btnTop.scroll);

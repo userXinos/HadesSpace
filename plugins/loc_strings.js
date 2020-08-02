@@ -18,10 +18,10 @@ module.exports = function(main, json) {
   const trashStrings = getYaml('trashStrings').file;
   const upperCaseKeys = getYaml('upperCaseKeys').file;
   const customDesc = getYaml(`add content/${lang}/customDesc`);
-  json.metadata.saveAs = json.metadata.saveAs.replace(/loc_strings_(.+)\.(js)$/, '$1.json');
+  // json.metadata.saveAs = json.metadata.saveAs.replace(/loc_strings_(.+)\.(js)$/, '$1.json');
+  json.metadata.saveAs = json.metadata.saveAs.replace(/loc_strings_(.+)\.(js)$/, '$1.js');
 
   return addContent(fixStrings(json));
-  // saveToFile(`${pathSave}${lang}.json`, json);
 
   // исправить регистр строк, убрать лишние
   function fixStrings(obj) {

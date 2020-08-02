@@ -31,20 +31,26 @@
     "regenerator-runtime": "^0.13.5"
   },
   "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
     "cssnano": "^4.1.10",
     "eslint": "^7.5.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-vue": "^6.2.2",
     "fastify": "^3.1.1",
     "fastify-autoload": "^3.0.5",
     "fastify-sensible": "^3.0.1",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
+    "parcel-plugin-bundle-visualiser": "^1.2.0",
     "parcel-plugin-clean-dist": "0.0.6",
     "parcel-plugin-static-files-copy": "^2.4.3",
     "pino-pretty": "^4.1.0",
     "prettier": "^2.0.5",
     "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-i18n": "^8.18.2",
+    "vue-template-compiler": "^2.6.11",
     "yaml": "^1.10.0"
   }
 }

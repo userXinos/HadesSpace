@@ -1,84 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-167101762-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-167101762-1");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta property="og:site_name" content="Hades' Star Data" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../img/stars_icons/star_yellow.png" />
+    <meta property="og:title" content="Yellow star" />
+    <meta property="og:url" content="yellowstar.html" />
+    <meta
+      property="og:description"
+      content="Yellow stars contain numerous habitable planets and are great for building base infrastructure. each empire is assigned its own yellow star to establish its base of operations."
+    />
+    <meta name="theme-color" content="#d1c23f" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="../js/index.js"></script>
+  </head>
 
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167101762-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-167101762-1');
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta property="og:site_name" content="Hades' Star Data" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="../img/stars_icons/star_yellow.png" />
-  <meta property="og:title" content="Yellow star" />
-  <meta property="og:url" content="yellowstar.html" />
-  <meta property="og:description"
-    content="Yellow stars contain numerous habitable planets and are great for building base infrastructure. each empire is assigned its own yellow star to establish its base of operations." />
-  <meta name="theme-color" content="#d1c23f">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-  <script type="module" src="../js/index.js"></script>
+  <body>
+    <my-header id="header"></my-header>
 
+    <div id="main">
+      <h1 id="title">{{ $t('TID_YELLOW_STAR') }}</h1>
+      <img
+        class="portrait"
+        src="../img/portraits/yellowStar.png"
+        alt="yellowStar"
+      />
 
-</head>
-
-<body>
-  <header>
-    <div id="buttonLangs" onClick="showButtonLangs()">
-      <div class="langs">
-        <input value="English" onClick="switchLang('en')" type="button">
-        <input value="Pусский" onClick="switchLang('ru')" type="button">
-        <input value="Français" onClick="switchLang('fr')" type="button">
-        <input value="Deutsch" onClick="switchLang('de')" type="button">
-        <input value="Español" onClick="switchLang('es')" type="button">
-        <input value="Italiano" onClick="switchLang('it')" type="button">
-        <input value="Português" onClick="switchLang('pt')" type="button">
-        <input value="한국어" onClick="switchLang('ko')" type="button">
-        <input value="日本語" onClick="switchLang('jp')" type="button">
-        <input value="简体中文" onClick="switchLang('zh-si')" type="button">
+      <app
+        v-bind:args="{
+       data: 'stars',
+       single: 'YellowStar',
+    }"
+      >
+      </app>
+      <div class="title">
+        <div class="title-text">
+          <a href="#sectors" id="sectors">
+            {{ $t('sectors') }}
+          </a>
+        </div>
       </div>
+      <app
+        v-bind:args="{
+       data: 'yellow_star_sectors',
+       lvlColKey: '№',
+    }"
+      >
+      </app>
+      <div class="title">
+        <div class="title-text">
+          <a href="#lvlsPlanets" id="lvlsPlanets">
+            {{ $t('lvlsPlanets') }}
+          </a>
+        </div>
+      </div>
+      <app
+        v-bind:args="{
+       data: 'planet_levels',
+    }"
+      >
+      </app>
+      <div class="title">
+        <div class="title-text">
+          <a href="#planets" id="planets">
+            {{ $t('planets') }}
+          </a>
+        </div>
+      </div>
+      <app
+        v-bind:args="{
+       data: 'planets',
+       single: 'yellowstarTable',
+       dontFixTables: true,
+       lvlColKey: '№',
+    }"
+      >
+      </app>
+      <div class="title">
+        <div class="title-text">
+          <a href="#colonizationPlanets" id="colonizationPlanets">
+            {{ $t('colonizationPlanets') }}
+          </a>
+        </div>
+      </div>
+      <app
+        v-bind:args="{
+       data: 'colonize_prices',
+       lvlColKey: '№',
+    }"
+      >
+      </app>
     </div>
-    <a href="index.html">
-      <div class="logo"></div>
-    </a>
-  </header>
-  <h1 id="title"></h1>
-  <img class="portrait" src="../img/portraits/yellowStar.png" alt="cerberus">
-  <h2></h2>
-  <div class="list">
-    <ol></ol>
-  </div>
-  <a href="#" id="buttonTop"></a>
-  <script type="module">
-    setBaseData({
-      data: 'stars',
-      single: 'YellowStar',
-      titleKey: 'YellowStar'
-    })
-      .finally(async () => {
-        let locString = ['sectors', 'lvlsPlanets', 'planets', 'colonizationPlanets']
-        let tables = [
-          {data: 'yellow_star_sectors', lvlColKey: '№'},
-          {data: 'planet_levels'},
-          {data:'planets', single: 'yellowstarTable', lvlColKey: '№'},
-          {data:'colonize_prices', lvlColKey: '№'}
-          ]
-        for (let i in locString) {
-          genTitle(`<a href="#${locString[i]}" name="${locString[i]}">${getStr(locString[i])}</a>`)
-          genOl(`<span><a href="#${locString[i]}">${getStr(locString[i])}</a></span>`)
-          await generatePageTables(tables[i]);
-        }
-      })
 
-  </script>
-
-</body>
-
+    <a href="#" id="btn-top" v-show="show"></a>
+  </body>
 </html>
