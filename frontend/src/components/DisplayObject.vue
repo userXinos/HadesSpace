@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import VTable from './DisplayObjectTable';
-import VTitle from './DisplayObjectTitle';
+import VTable from './DisplayObjectTable.vue';
+import VTitle from './DisplayObjectTitle.vue';
 
 const ignoringHeaders = [
   'maxLevel',

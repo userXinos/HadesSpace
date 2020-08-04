@@ -39,7 +39,11 @@
 
 <script>
 import i18n from '../js/modules/i18n';
-import DisplayObject from './DisplayObject';
+import DisplayObject from './DisplayObject.vue';
+
+// let importAll = (r) => r.keys().map(r)
+//
+// importAll(require.context('./', false, /\.(png|jpe?g|svg)$/));
 
 const filesData = {
   modules: import('../../../data/modules'),
@@ -56,12 +60,11 @@ const filesData = {
   alliance_levels: import('../../../data/alliance_levels'),
   cerberus_stations: import('../../../data/cerberus_stations'),
 };
-// noinspection JSFileReferences
 const iconsData = {
-  modules: require('../img/modules_icons/*.png'),
-  ships: require('../img/ships_icons/*.png'),
-  spacebuildings: require('../img/spaceBuildings_icons/*.png'),
-  stars: require('../img/stars_icons/*.png'),
+  // modules: require('../img/modules_icons/*.png'),
+  // ships: require('../img/ships_icons/*.png'),
+  // spacebuildings: require('../img/spaceBuildings_icons/*.png'),
+  // stars: require('../img/stars_icons/*.png'),
 };
 
 export default {

@@ -2,16 +2,18 @@
 
 import Vue from 'vue';
 import i18n from '../js/modules/i18n';
-import TheHeader from '../components/TheHeader';
+import TheHeader from '../components/TheHeader.vue';
 
 new Vue({
-  el: '#main',
   i18n,
+  el: '#main',
   components: {
-    'App': () => import('../components/App'),
-    'PlanetsCalc': () => import('../components/ThePlanetsCalc'),
+    'App': () => import('../components/App.vue'),
+    'PlanetsCalc': () => import('../components/ThePlanetsCalc.vue'),
   },
-  data: {obj: {}},
+  data: {
+    obj: {},
+  },
 });
 
 // шапка
@@ -29,7 +31,7 @@ const btnTop = new Vue({
   },
   methods: {
     scroll() {
-      this.show = window.pageYOffset > 300;
+      this.show = (window.pageYOffset > 300);
     },
   },
 });

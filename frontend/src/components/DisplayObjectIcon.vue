@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'Icon',
   props: {
     url: {type: String},
     objName: {type: String},

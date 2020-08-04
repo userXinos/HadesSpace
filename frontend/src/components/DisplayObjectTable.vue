@@ -48,7 +48,7 @@
 import formatValue from '../js/modules/formatValue';
 import formatKey from '../js/modules/formatKey';
 import {getTextInfoStats} from '../js/modules/descriptionsHandler';
-import StatsInfo from './DisplayObjectStatsInfo';
+import StatsInfo from './DisplayObjectStatsInfo.vue';
 
 export default {
   name: 'Table',

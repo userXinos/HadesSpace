@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {i18n as i18n, loadLanguageAsync} from '../js/modules/i18n';
+import i18n, {loadLanguageAsync} from '../js/modules/i18n';
 
 const langs = {
   'en': 'English',

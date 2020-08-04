@@ -1,56 +1,92 @@
 {
   "name": "hades-star-data",
   "version": "1.0.0",
-  "description": "",
-  "main": "generateGameData.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pack": "node generateGameData.js; parcel build ./frontend/src/pages/*.html --public-url ."
+    "start": "webpack --mode development --watch --open",
+    "build": "webpack --config ./frontend/webpack/webpack.prod.js",
+    "dev": "webpack --config ./frontend/webpack/webpack.dev.js --open"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/userXinos/HadesStarData.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/userXinos/HadesStarData/issues"
   },
   "homepage": "https://github.com/userXinos/HadesStarData#readme",
   "staticFiles": {
     "staticPath": [
-      "frontend/src/static",
-      "data/loc_strings"
+      "frontend/src/static"
     ]
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
   },
-  "dependencies": {
-    "regenerator-runtime": "^0.13.5"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@vue/component-compiler-utils": "^3.1.2",
-    "cssnano": "^4.1.10",
-    "eslint": "^7.5.0",
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@vue/component-compiler-utils": "^3.2.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "css-loader": "^4.2.0",
+    "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-vue": "^6.2.2",
     "fastify": "^3.1.1",
     "fastify-autoload": "^3.0.5",
     "fastify-sensible": "^3.0.1",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
     "parcel": "^1.12.4",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-bundle-visualiser": "^1.2.0",
-    "parcel-plugin-clean-dist": "0.0.6",
-    "parcel-plugin-static-files-copy": "^2.4.3",
     "pino-pretty": "^4.1.0",
     "prettier": "^2.0.5",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4",
-    "vue-i18n": "^8.18.2",
+    "vue-i18n": "^8.20.0",
+    "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.1",
+    "webpack-runtime-analyzer": "^1.5.0",
     "yaml": "^1.10.0"
-  }
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true
+    },
+    "extends": [
+      "google",
+      "plugin:vue/essential"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType": "module"
+    },
+    "rules": {
+      "max-len": 0,
+      "require-jsdoc": 0,
+      "new-cap": 0,
+      "prefer-promise-reject-errors": 0,
+      "guard-for-in": 0,
+      "no-unused-vars": 1,
+      "vue/no-use-v-if-with-v-for": 1
+    }
+  },
+  "eslintIgnore": [
+    "data",
+    "dist",
+    "node_modules"
+  ]
 }

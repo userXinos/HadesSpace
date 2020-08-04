@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import VTable from './DisplayObjectTable';
 import formatKey from '../js/modules/formatKey';
 import formatValue from '../js/modules/formatValue';
+import VTable from './DisplayObjectTable.vue';
 
 const localStorageKey = 'planetsCalc';
 const keys = [

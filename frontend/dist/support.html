@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-167101762-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-167101762-1");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta property="og:site_name" content="Hades' Star Data" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="../img/modules_icons/Mod_Destiny_Icon.png"
+    />
+    <meta property="og:title" content="Support modules" />
+    <meta property="og:url" content="support.html" />
+    <meta
+      property="og:description"
+      content="Support modules can be installed on all types of your ships."
+    />
+    <meta name="theme-color" content="#98d285" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="../js/index.js"></script>
+  </head>
+
+  <body>
+    <my-header id="header"></my-header>
+
+    <div id="main">
+      <h1 id="title">{{ $t('typeModSupport') }}</h1>
+      <img
+        class="portrait"
+        src="../img/portraits/support.png"
+        alt="support modules"
+      />
+
+      <app
+        v-bind:args="{
+       data: 'modules',
+       category: 'support',
+    }"
+      >
+      </app>
+    </div>
+
+    <a href="#" id="btn-top" v-show="show"></a>
+  <script src="index.bundle.js"></script></body>
+</html>

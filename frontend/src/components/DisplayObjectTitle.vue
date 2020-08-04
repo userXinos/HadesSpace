@@ -61,8 +61,8 @@
 import formatValue from '../js/modules/formatValue';
 import formatKey from '../js/modules/formatKey';
 import {genDescr, getTextInfoStats} from '../js/modules/descriptionsHandler';
-import Icon from './DisplayObjectIcon';
-import StatsInfo from './DisplayObjectStatsInfo';
+import Icon from './DisplayObjectIcon.vue';
+import StatsInfo from './DisplayObjectStatsInfo.vue';
 
 export default {
   name: 'Title',
