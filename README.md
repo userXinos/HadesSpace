@@ -1,2 +1,2 @@
 # HadesStarData
-Parsing csv data and implementation of reading as a simple site
+### Parsing CSV game data and reading as a web app or getting data via API

@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "private": true,
+  "scripts": {
+    "start": "node ../generateGameData/index.js; node server.js",
+    "dev": "node server.js"
+  },
+  "devDependencies": {
+    "fastify": "^3.1.1",
+    "fastify-autoload": "^3.0.6",
+    "fastify-sensible": "^3.0.1",
+    "pino-pretty": "^4.1.0"
+  }
+}

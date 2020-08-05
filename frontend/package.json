@@ -1,0 +1,38 @@
+{
+  "name": "frontend",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@vue/cli": "^4.4.6",
+    "@vue/cli-plugin-babel": "^4.4.6",
+    "@vue/cli-service": "^4.4.6",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-async-import": "^2.1.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.20.0",
+    "vue-router": "^3.3.4",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:vue/essential"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
