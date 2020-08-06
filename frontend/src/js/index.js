@@ -2,7 +2,7 @@
 //
 // import Vue from 'vue';
 // import VueRouter from 'vue-router';
-// import i18n from '../js/modules/i18n';
+// import i18n from '../js/Modules/i18n';
 // import TheHeader from '../components/TheHeader.vue';
 // import '../css/style.css';
 //

@@ -2,7 +2,15 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "../generateGameData/index.js; vue build",
+    "dev": "vue serve"
+  },
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.20.0",
+    "vue-meta": "^2.4.0",
+    "vue-router": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli": "^4.4.6",
@@ -12,9 +20,6 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-async-import": "^2.1.0",
     "eslint-plugin-vue": "^6.2.2",
-    "vue": "^2.6.11",
-    "vue-i18n": "^8.20.0",
-    "vue-router": "^3.3.4",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -23,6 +28,9 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint"
+    },
+    "rules": {
+      "vue/no-use-v-if-with-v-for": 1
     }
   },
   "postcss": {

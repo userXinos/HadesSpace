@@ -16,6 +16,7 @@
             <th
               v-for="key in head"
               :key="key"
+
               :class="{ 'info-mark': headStatsInfoData[key].text }"
               v-on="headStatsInfoData[key].text ? { click: (e) => clickInfo(e, key) } : {}"
             >
@@ -29,13 +30,16 @@
             <td class="level-column">
               {{ levelIndex + colLvlStartAt }}
             </td>
+            <!-- eslint-disable vue/no-use-v-if-with-v-for -->
             <td
               v-for="(value, index) in body"
               v-if="value[levelIndex].value !== null"
               :key="index"
+
               :rowspan="value[levelIndex].rowspan"
               v-html="getFormatBody(head[index], value[levelIndex].value)"
             ></td>
+            <!-- eslint-enable vue/no-use-v-if-with-v-for -->
             <slot name="body" :level="levelIndex"></slot>
           </tr>
         </tbody>
@@ -73,7 +77,7 @@ export default {
     objName: String,
     head: Array,
     body: Array,
-    icons: Object,
+    iconDir: String,
   },
   data() {
     return {
@@ -97,7 +101,7 @@ export default {
     getFormatBody(...args) {
       const $t = (key) => this.$t.call(this, key);
       const $te = (key) => this.$te.call(this, key);
-      return formatValue($t, $te, this.icons, ...args);
+      return formatValue($t, $te, this.iconDir, ...args);
     },
     getFormatHead(...args) {
       const $t = (key) => this.$t.call(this, key);

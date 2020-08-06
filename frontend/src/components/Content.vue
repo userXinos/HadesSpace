@@ -18,7 +18,7 @@
         :merge-cells="mergeCellsItems()"
         :lvl-col-key="args.lvlColKey"
         :collvl-start-at="args.collvlStartAt"
-        :icons="icons"
+        :args-content="args"
         :cerberus-modules="cerberusModules"
       />
     </template>
@@ -26,49 +26,38 @@
       <displayObject
         v-for="item in items"
         :key="item"
+
         :obj="rawObj[item]"
         :merge-cells="mergeCellsItems(item)"
         :lvl-col-key="args.lvlColKey"
         :collvl-start-at="args.collvlStartAt"
-        :icons="icons"
-        :cerberus-modules="cerberusModules"
+        :cerberus-modules="args.cerberusModules"
+        :args-content="args"
       />
     </template>
   </div>
 </template>
 
 <script>
-import i18n from '../js/modules/i18n';
 import DisplayObject from './DisplayObject.vue';
 
-// let importAll = (r) => r.keys().map(r)
-//
-// importAll(require.context('./', false, /\.(png|jpe?g|svg)$/));
-
-const filesData = {
-  // modules: import('../../../data/modules'),
-  // ships: import('../../../data/capital_ships'),
-  // yellow_star_sectors: import('../../../data/yellow_star_sectors'),
-  // planets: import('../../../data/planets.js'),
-  // colonize_prices: import('../../../data/colonize_prices'),
-  // planet_levels: import('../../../data/planet_levels'),
-  // artifacts: import('../../../data/artifacts'),
-  // stars: import('../../../data/stars'),
-  // spacebuildings: import('../../../data/spacebuildings'),
-  // player_goals: import('../../../data/player_goals'),
-  achievements: import('../../../generateGameData/data/achievements'),
-  // alliance_levels: import('../../../data/alliance_levels'),
-  // cerberus_stations: import('../../../data/cerberus_stations'),
-};
-const iconsData = {
-  // modules: require('../img/modules_icons/*.png'),
-  // ships: require('../img/ships_icons/*.png'),
-  // spacebuildings: require('../img/spaceBuildings_icons/*.png'),
-  // stars: require('../img/stars_icons/*.png'),
-};
+// const filesData = {
+// Modules: import('../../../data/Modules'),
+// Ships: import('../../../data/capital_ships'),
+// yellow_star_sectors: import('../../../data/yellow_star_sectors'),
+// planets: import('../../../data/planets.js'),
+// colonize_prices: import('../../../data/colonize_prices'),
+// planet_levels: import('../../../data/planet_levels'),
+// artifacts: import('../../../data/artifacts'),
+// Stars: import('../../../data/Stars'),
+// spacebuildings: import('../../../data/spacebuildings'),
+// player_goals: import('../../../data/player_goals'),
+// achievements: import('../../../generateGameData/data/achievements'),
+// alliance_levels: import('../../../data/alliance_levels'),
+// cerberus_stations: import('../../../data/cerberus_stations'),
+// };
 
 export default {
-  i18n,
   components: {DisplayObject},
   props: {
     args: Object,
@@ -78,11 +67,10 @@ export default {
       items: [],
       rawObj: {},
       cerberusModules: {},
-      icons: {},
     };
   },
   created() {
-    filesData[this.args.data]
+    this.args.data
         .then((raw) => {
           this.rawObj = raw.data;
           return raw;
@@ -95,20 +83,6 @@ export default {
           [null];
         })
         .catch(console.error);
-
-    if (this.args.category == 'cerberus') {
-      filesData['modules']
-          .then((raw) => {
-            raw.byTypes.cerberus.forEach((e) => {
-              this.$set(this.cerberusModules, e, raw.data[e]);
-            });
-          })
-          .catch(console.error);
-    }
-    if (this.args.data in iconsData) {
-      this.icons = iconsData[this.args.data];
-      this.icons.argsFromApp = this.args;
-    }
   },
   methods: {
     mergeCellsItems(key) {

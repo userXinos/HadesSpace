@@ -17,15 +17,16 @@
 export default {
   name: 'Icon',
   props: {
-    url: {type: String},
-    objName: {type: String},
-    argsFromApp: {type: Object},
+    icon: String,
+    objName: String,
+    argsContent: Object,
   },
   data() {
     return {
-      isCerb: this.argsFromApp.category == 'cerberus',
-      isModules: this.argsFromApp.data == 'modules',
-      isShips: this.argsFromApp.data == 'ships',
+      url: (this.icon) ? require(`../img/${this.argsContent.iconDir}/${this.icon}.png`) : '',
+      isCerb: this.argsContent.category == 'cerberus',
+      isModules: this.argsContent.iconDir == 'Modules',
+      isShips: this.argsContent.iconDir == 'Ships',
       show: true,
 
       divClasses: {},
@@ -53,7 +54,4 @@ export default {
 };
 </script>
 
-<style>
-  /* <style scr=...> не работает... */
-  @import "../css/icons.css";
-</style>
+<style src="../css/icons.css"></style>

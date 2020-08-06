@@ -4,18 +4,19 @@
       :obj="obj"
       :stringStats="stringStats"
       :cerberus-module="cerberusModule"
-      :icons="icons"
+      :args-content="argsContent"
     ></v-title>
     <v-table
       v-if="table.maxLevel > 1"
+
       :max-level="table.maxLevel"
       :obj-name="table.objName"
       :merge-cells="mergeCells"
       :lvl-col-key="lvlColKey"
       :col-lvl-start-at="collvlStartAt"
+      :icon-dir="argsContent.iconDir"
       :head="table.head"
       :body="table.body"
-      :icons="icons"
     ></v-table>
   </div>
 </template>
@@ -49,7 +50,7 @@ export default {
     mergeCells: Boolean,
     lvlColKey: String,
     collvlStartAt: Number,
-    icons: Object,
+    argsContent: Object,
     cerberusModules: Object,
   },
   data() {

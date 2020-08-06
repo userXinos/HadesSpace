@@ -2,10 +2,10 @@
   <div>
     <div class="title" v-if="!Array.isArray(obj.TID) && obj.TID">
       <icon
-        v-if="Object.keys(icons).length"
-        :url="icons[obj.Icon] || icons[obj.Model]"
+        v-if="argsContent.iconDir && (typeof icon != 'object')"
+        :icon="icon"
         :obj-name="obj.Name"
-        :args-from-app="icons.argsFromApp"
+        :args-content="argsContent"
       ></icon>
       <div class="title-text">
         <a :id="obj.Name" :href="'#' + obj.Name">
@@ -73,8 +73,8 @@ export default {
   props: {
     obj: Object,
     stringStats: Object,
+    argsContent: Object,
     cerberusModule: Object,
-    icons: Object,
   },
   data() {
     return {
@@ -92,6 +92,9 @@ export default {
         ...this.stringStats,
         ...this.cerberusModule.value,
       };
+    },
+    icon() {
+      return this.obj.Icon || this.obj.Model;
     },
   },
   watch: {
@@ -191,14 +194,9 @@ export default {
 .title-text a {
   color: #ccd7de;
   text-decoration: none;
+
+  scroll-margin-top: 6rem;
 }
-/*.title-text:before {*/
-/*  content: "";*/
-/*  display: block;*/
-/*  margin-top: -150px;*/
-/*  height: 150px;*/
-/*  visibility: hidden;*/
-/*}*/
 .title-text a:hover {
   color: #90979b;
   text-decoration: underline;

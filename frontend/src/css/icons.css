@@ -43,14 +43,14 @@
     background-image: url(../img/spaceBuilding_background.png);
 }
 .round-bg {
-    background-image: url(../img/spaceBuildings_icons/TimeModulatorBackground.png);
+    background-image: url(../img/SpaceBuildings/TimeModulatorBackground.png);
 }
 .warpLine-bg {
-    background-image: url(../img/spaceBuildings_icons/warp1.png);
+    background-image: url(../img/SpaceBuildings/warp1.png);
     background-position-y: 20px;
     background-size: 100%;
 }
 .warpLine-body {
-    background-image: url(../img/spaceBuildings_icons/warp2.png);
+    background-image: url(../img/SpaceBuildings/warp2.png);
     background-size: 210%;
 }

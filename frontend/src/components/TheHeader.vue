@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <header class="header">
     <div class="btn-langs" @click="swithHide">
       <ul class="langs"
           v-if="!isHidden"
@@ -7,14 +7,14 @@
           tabindex="0"
       >
         <li v-for="(value, key) in langs" :key="key">
-          <button @click="swithLang(key)">{{ value }}</button>
+          <button class="btn" @click="swithLang(key)">{{ value }}</button>
         </li>
       </ul>
     </div>
-    <a href="../pages/index.html">
+    <router-link to="/">
       <div class="logo"></div>
-    </a>
-  </div>
+    </router-link>
+  </header>
 </template>
 
 <script>
@@ -58,7 +58,7 @@ export default {
   background: #101415;
   position: fixed;
   width: 100%;
-  height: 100px;
+  height: 80px;
   top: 0;
   z-index: 10;
   left: 0;
@@ -70,7 +70,7 @@ export default {
   height: 100%;
   background-position: center;
   background-image: url(../img/logo.png);
-  background-size: 20%;
+  background-size: 200px;
   background-repeat: no-repeat;
 }
 .btn-langs {
@@ -93,7 +93,7 @@ export default {
   opacity: 0.8;
   list-style-type: none;
 }
-.langs li button {
+.langs li .btn {
   border: none;
   background-color: #101415;
   color: white;
@@ -104,7 +104,7 @@ export default {
   text-align: left;
   cursor: pointer;
 }
-.langs li button:hover {
+.langs li .btn:hover {
   border-left: 5px solid #253033;
 }
 /* #buttonLangs:hover {

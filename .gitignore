@@ -11,7 +11,7 @@ Thumbs.db
 node_modules/
 .cache/
 .directory
-/dist/
+/frontend/dist/
 
 # Папка с собранными файлами проекта
 # build/

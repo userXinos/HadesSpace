@@ -3,7 +3,7 @@
 import secToStringTime from './secToStringTime';
 import stringKeys from '../stringKeys';
 
-export default function($t, $te, iconsData, key, value) {
+export default function($t, $te, iconDir, key, value) {
   const fixTime = (...args) => secToStringTime(getStr, ...args);
   const getStr = (key) => {
     if (key in stringKeys) key = stringKeys[key];
@@ -20,7 +20,10 @@ export default function($t, $te, iconsData, key, value) {
     addX: (v) => 'x' + v,
     addSec: (v) => v + ' ' + getStr('sec'),
     getStr: (v) => getStr(v),
-    shipsModel: (v) => `<img class="ships" src="${iconsData[v]}" alt="${v}">`,
+    shipsModel: (v) => {
+      const src = require(`../../img/${iconDir}/${v}.png`);
+      return `<img class="ships" src="${src}" alt="${v}">`;
+    },
     splitExclamationMark: (v) => {
       const result = [];
       const items = v.split('!');

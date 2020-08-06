@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 h2 {
-    padding: 50px 0% 1%;
+    padding: 50px 0 1%;
     color: #ccd7de;
     text-align: center;
 }
@@ -55,8 +55,7 @@ a:active {
 /*//////////////////////////////////////////////////////////////////
 [ Кнопка наверх ]*/
 /* TODO добавить анимацию появления */
-#buttonTop {
-    display: none;
+#btn-top {
     position: fixed;
     bottom: 10px;
     right: 20px;
@@ -77,7 +76,7 @@ a:active {
     transform: rotate(270deg);
     cursor: pointer;
 }
-#buttonTop:hover {
+#btn-top:hover {
     background-color: #454347;
     opacity: 1;
 }
@@ -94,7 +93,7 @@ a:active {
         position: relative;
     }
     body {
-        margin: 1%;
+        margin: 5% 1% 1%;
     }
 }
 @media screen and (max-width: 550px) {
