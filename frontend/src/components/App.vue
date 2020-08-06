@@ -2,6 +2,7 @@
   <div id="app">
     <the-header/>
     <router-view/>
+    <vue-progress-bar/>
     <a href="#" id="btn-top" v-show="showBtnTop"></a>
   </div>
 </template>
@@ -20,7 +21,20 @@ export default {
     };
   },
   created() {
-    window.addEventListener('scroll', this.scroll);
+    window.addEventListener('scroll', this.scroll); // кнопка наверх
+
+    this.$Progress.start();
+    this.$router.beforeEach((to, from, next) => {
+      if (to.meta.progress !== undefined) {
+        const meta = to.meta.progress;
+        this.$Progress.parseMeta(meta);
+      }
+      this.$Progress.start();
+      next();
+    });
+    this.$router.afterEach(() => {
+      this.$Progress.finish();
+    });
   },
   methods: {
     scroll() {

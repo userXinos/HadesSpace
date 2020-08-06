@@ -3,13 +3,14 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "../generateGameData/index.js; vue build",
+    "build": "node ../generateGameData/index.js; vue build ./index.js",
     "dev": "vue serve"
   },
   "dependencies": {
     "vue": "^2.6.11",
     "vue-i18n": "^8.20.0",
     "vue-meta": "^2.4.0",
+    "vue-progressbar": "^0.7.5",
     "vue-router": "^3.4.0"
   },
   "devDependencies": {

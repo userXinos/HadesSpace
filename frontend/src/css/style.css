@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
 }
 h2 {
     padding: 50px 0 1%;
@@ -22,7 +25,6 @@ h1 {
 body {
     margin: 5%;
     background-color: #101415;
-    font-family: "Noto Sans", sans-serif;
     position: relative;
 }
 html,
@@ -93,7 +95,7 @@ a:active {
         position: relative;
     }
     body {
-        margin: 5% 1% 1%;
+        margin: 7% 1% 1%;
     }
 }
 @media screen and (max-width: 550px) {

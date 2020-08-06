@@ -177,6 +177,14 @@ export default {
   color: #cfd6ad;
   cursor: pointer;
 }
+
+@media screen and (max-width: 550px) {
+  .stringStsts,
+  .desc {
+    font-size: 100%;
+    text-align: left;
+  }
+}
 </style>
 
 <style>
@@ -204,12 +212,8 @@ export default {
 .title-text a:active {
   color: #a33f17;
 }
+
 @media screen and (max-width: 550px) {
-  .stringStsts,
-  .desc {
-    font-size: 100%;
-    text-align: left;
-  }
   .title-text {
     font-size: 120%;
   }
