@@ -57,7 +57,7 @@ export default {
     return {
       table: {
         maxLevel: this.obj.maxLevel,
-        objName: this.obj.Name,
+        objName: this.correctObjName,
         head: [],
         body: [],
       },
@@ -67,6 +67,11 @@ export default {
         value: {},
       },
     };
+  },
+  computed: {
+    correctObjName() {
+      return (typeof this.objName == 'string') ? this.objName : null;
+    },
   },
   watch: {
     cerberusModules(modules) {

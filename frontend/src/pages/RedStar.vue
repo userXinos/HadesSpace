@@ -17,10 +17,10 @@
     >
     </v-content>
 
-    <div class="title">
+    <div class="title" id="Artifacts">
       <div class="title-text">
         <h1>
-          <a href="#Artifacts" id="Artifacts">
+          <a href="#Artifacts">
             {{ $t('TID_OBJECT_ACTION_ARTIFACTS') }}
           </a>
         </h1>
@@ -28,8 +28,8 @@
     </div>
     <div v-for="art of ['Combat', 'Utility', 'Support']" :key="art">
       <div class="title">
-        <div class="title-text">
-          <a :href="'#' + art" :id="art">
+        <div class="title-text" :id="art">
+          <a :href="'#' + art">
             {{ $t(art + 'Art') }}
           </a>
         </div>

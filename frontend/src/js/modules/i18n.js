@@ -45,7 +45,7 @@ export function loadLanguageAsync(lang) {
         i18n.setLocaleMessage(lang, file.data);
         loadedLanguages.push(lang);
         setI18nLanguage(lang);
-        console.log(lang.toUpperCase() + ' language loaded');
+        console.info(lang.toUpperCase() + ' language loaded');
       })
       .catch(console.error);
 }

@@ -81,7 +81,7 @@
       </div>
       <div class="container-name">{{ $t('sections') }}</div>
       <div class="container">
-        <router-link class="item-link" to="/yellowstar#sectors">
+        <router-link class="item-link" to="/yellowstar#Planets">
           <div class="item">
             <div class="item-icon">
               <span

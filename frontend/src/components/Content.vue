@@ -41,22 +41,6 @@
 <script>
 import DisplayObject from './DisplayObject.vue';
 
-// const filesData = {
-// Modules: import('../../../data/Modules'),
-// Ships: import('../../../data/capital_ships'),
-// yellow_star_sectors: import('../../../data/yellow_star_sectors'),
-// planets: import('../../../data/planets.js'),
-// colonize_prices: import('../../../data/colonize_prices'),
-// planet_levels: import('../../../data/planet_levels'),
-// artifacts: import('../../../data/artifacts'),
-// Stars: import('../../../data/Stars'),
-// spacebuildings: import('../../../data/spacebuildings'),
-// player_goals: import('../../../data/player_goals'),
-// achievements: import('../../../generateGameData/data/achievements'),
-// alliance_levels: import('../../../data/alliance_levels'),
-// cerberus_stations: import('../../../data/cerberus_stations'),
-// };
-
 export default {
   components: {DisplayObject},
   props: {
@@ -82,6 +66,7 @@ export default {
           raw.byTypes[this.args.category.toLowerCase()] :
           [null];
         })
+        .then(this.$fixScroll)
         .catch(console.error);
   },
   methods: {
@@ -112,7 +97,6 @@ export default {
   font-size: 125%;
 }
 .list li {
-  /* border: 1px solid #424547; */
   text-align: center;
 }
 </style>

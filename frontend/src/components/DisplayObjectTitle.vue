@@ -7,8 +7,8 @@
         :obj-name="obj.Name"
         :args-content="argsContent"
       ></icon>
-      <div class="title-text">
-        <a :id="obj.Name" :href="'#' + obj.Name">
+      <div class="title-text" :id="obj.Name" >
+        <a :href="'#' + obj.Name">
           {{ $t(obj.TID) }}
         </a>
       </div>
@@ -199,11 +199,13 @@ export default {
   font-size: 150%;
   color: #ccd7de;
 }
+.title-text:target {
+  padding-top: 100px;
+  margin-top: -100px;
+}
 .title-text a {
   color: #ccd7de;
   text-decoration: none;
-
-  scroll-margin-top: 6rem;
 }
 .title-text a:hover {
   color: #90979b;

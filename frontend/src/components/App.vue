@@ -23,6 +23,7 @@ export default {
   created() {
     window.addEventListener('scroll', this.scroll); // кнопка наверх
 
+    // статус-бар
     this.$Progress.start();
     this.$router.beforeEach((to, from, next) => {
       if (to.meta.progress !== undefined) {
@@ -37,7 +38,7 @@ export default {
     });
   },
   methods: {
-    scroll() {
+    scroll() { // колбек кнопки наверх
       this.showBtnTop = (window.pageYOffset > 300);
     },
   },

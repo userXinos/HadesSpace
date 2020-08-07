@@ -18,9 +18,9 @@
     </v-content>
 
     <div class="title">
-      <div class="title-text">
+      <div class="title-text" id="FlagshipModules">
         <h1>
-          <a href="#FlagshipModules" id="FlagshipModules">
+          <a href="#FlagshipModules">
             {{ $t('flagshipModules') }}
           </a>
         </h1>

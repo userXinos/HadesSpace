@@ -17,8 +17,8 @@
     </v-content>
 
     <div class="title">
-      <div class="title-text">
-        <a href="#sectors" id="sectors">
+      <div class="title-text" id="Sectors">
+        <a href="#Sectors">
           {{ $t('sectors') }}
         </a>
       </div>
@@ -31,8 +31,8 @@
     >
     </v-content>
     <div class="title">
-      <div class="title-text">
-        <a href="#lvlsPlanets" id="lvlsPlanets">
+      <div class="title-text" id="LvlsPlanets">
+        <a href="#LvlsPlanets">
           {{ $t('lvlsPlanets') }}
         </a>
       </div>
@@ -44,8 +44,8 @@
     >
     </v-content>
     <div class="title">
-      <div class="title-text">
-        <a href="#planets" id="planets">
+      <div class="title-text" id="Planets">
+        <a href="#Planets">
           {{ $t('planets') }}
         </a>
       </div>
@@ -60,8 +60,8 @@
     >
     </v-content>
     <div class="title">
-      <div class="title-text">
-        <a href="#colonizationPlanets" id="colonizationPlanets">
+      <div class="title-text" id="ColonizationPlanets">
+        <a href="#ColonizationPlanets">
           {{ $t('colonizationPlanets') }}
         </a>
       </div>

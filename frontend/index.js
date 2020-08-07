@@ -1,13 +1,26 @@
 import Vue from 'vue';
+import VueProgressBar from 'vue-progressbar';
 import App from './src/components/App.vue';
 import router from './src/js/router';
-import VueProgressBar from 'vue-progressbar';
 import './src/css/style.css';
+
+const srcollPlugin = {
+  install(Vue, options) {
+    Vue.prototype.$fixScroll = () => { // скролл, после загрузки данных
+      if (options.router.history.current.hash) {
+        location.href = options.router.history.current.hash;
+      }
+    };
+  },
+};
 
 Vue.config.productionTip = false;
 
+Vue.use(srcollPlugin, {
+  router,
+});
 Vue.use(VueProgressBar, {
-  color: '#283a3d',
+  color: '#345b66',
   failedColor: '#874b4b',
   thickness: '3px',
   transition: {
@@ -19,6 +32,7 @@ Vue.use(VueProgressBar, {
   location: 'top',
   inverse: false,
 });
+
 
 new Vue({
   router,

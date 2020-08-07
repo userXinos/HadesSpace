@@ -18,9 +18,9 @@
     </v-content>
 
     <div class="title">
-      <div class="title-text">
+      <div class="title-text" id="CerberusStations">
         <h1>
-          <a href="#CerberusStations" id="CerberusStations">
+          <a href="#CerberusStations">
             {{ $t('TID_CERB_STATION_HOME2') }}
           </a>
         </h1>
