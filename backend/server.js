@@ -23,7 +23,7 @@ const path = require('path');
 fastify.register(require('fastify-sensible')); // плагин HTTP ошибок
 fastify.register(autoLoad, {
   dir: path.join(__dirname, 'routes'),
-  options: {prefix: '/api/'},
+  options: {prefix: '/api'},
 });
 
 fastify.listen(3000, (err, address) => {

@@ -1,4 +1,4 @@
-export const stringKeys = {
+module.exports = {
   MaxHP: 'TID_FLEET_HULL_STRENGTH_MAX',
   MaxShield: 'TID_MODULE_SHIELD_STRENGTH_STAT',
   ShieldRegenPerMinute: 'TID_CERBERUS_STATION_SHIELD_REGEN_LABEL',

@@ -1,0 +1,56 @@
+
+.icon-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    opacity: 0.8;
+    background-size: auto 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.icon {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+.module-bg {
+    background-image: url(../img/module_background.png);
+}
+.ships {
+    width: 40px;
+    transform: rotate(45deg);
+    padding: 10px;
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #6bd7ff);
+}
+.cerberus {
+    width: 45px;
+    transform: rotate(45deg);
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
+}
+.cerberus img {
+    padding: 50% 30% 0 0;
+    width: 100%;
+    height: auto;
+}
+.cerberusModule {
+    text-decoration: underline;
+}
+.spaceBuildings-bg {
+    background-image: url(../img/spaceBuilding_background.png);
+}
+.round-bg {
+    background-image: url(../img/SpaceBuildings/TimeModulatorBackground.png);
+}
+.warpLine-bg {
+    background-image: url(../img/SpaceBuildings/warp1.png);
+    background-position-y: 20px;
+    background-size: 100%;
+}
+.warpLine-body {
+    background-image: url(../img/SpaceBuildings/warp2.png);
+    background-size: 210%;
+}

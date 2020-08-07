@@ -1,4 +1,4 @@
-name: Site deployment
+name: Web app deployment
 on:
   push:
     branches:
@@ -9,10 +9,20 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Dependencies
+        run: npm start
+
+      - name: Generate game data
+        run: |
+          cd ./generateGameData
+          npm install
+          npm start
+
       - name: Build
         run: |
+          cd ../frontend
           npm install
-          npm run pack
+          npm run build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3

@@ -1,48 +1,19 @@
 {
   "name": "hades-star-data",
   "version": "1.0.0",
-  "description": "",
-  "main": "generateGameData.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pack": "node generateGameData.js; parcel build ./frontend/src/pages/*.html --public-url ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/userXinos/HadesStarData.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/userXinos/HadesStarData/issues"
   },
   "homepage": "https://github.com/userXinos/HadesStarData#readme",
-  "staticFiles": {
-    "staticPath": [
-      "frontend/src/static",
-      "data/loc_strings"
-    ]
-  },
   "dependencies": {
-    "data": "^0.6.1",
-    "fastify": "^2.15.0",
-    "fastify-autoload": "^1.2.2",
-    "fastify-sensible": "^2.1.1",
-    "jquery": "^3.5.1",
-    "parcel": "^1.12.4",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-clean-dist": "0.0.6",
-    "pino-pretty": "^4.0.0",
-    "prettier": "^2.0.2",
-    "regenerator-runtime": "^0.13.5",
-    "yaml": "^1.10.0"
-  },
-  "devDependencies": {
-    "cssnano": "^4.1.10",
-    "eslint": "^6.8.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "^2.20.2",
-    "parcel-plugin-static-files-copy": "^2.4.3"
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0"
   }
 }

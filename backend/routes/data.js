@@ -1,19 +1,19 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const dataPath = path.join(__dirname, '..', '..', 'data/');
+const dataPath = path.resolve('../generateGameData/data/');
 
 module.exports = async function routes(fastify) {
   let file;
 
-  fastify.get('data/*', async (request, reply) => {
+  fastify.get('/data/*', async (request, reply) => {
     const args = request.params['*'].split('/');
     let path = 'data';
     const err = () => reply.notFound('path not found');
 
     if (args) {
       try {
-        file = require(dataPath + args.shift());
+        file = require(dataPath + '/' + args.shift());
       } catch (e) {
         return err();
       }
@@ -23,16 +23,17 @@ module.exports = async function routes(fastify) {
       args.shift();
     }
     const data = getByPath(file[path], args);
+
     if (!data) return err();
     reply.send(data);
   });
-  fastify.get('data/locstrings/*', async (request, reply) => {
+  fastify.get('/data/locstrings/*', async (request, reply) => {
     const args = request.params['*'].split('/');
     const err = () => reply.notFound('path not found');
 
     if (args) {
       try {
-        file = JSON.parse(fs.readFileSync(dataPath +'loc_strings/' + args.shift() + '.json', 'utf8'));
+        file = require(dataPath + '/loc_strings/' + args.shift());
       } catch (e) {
         return err();
       }

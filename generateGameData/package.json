@@ -1,0 +1,17 @@
+{
+  "name": "generate-game-data",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "prettier": "^2.0.5",
+    "yaml": "^1.10.0"
+  },
+  "eslintIgnore": [
+    "data"
+  ],
+  "dependencies": {}
+}
