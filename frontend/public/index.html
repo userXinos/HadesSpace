@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Hades' Star Data</title>
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+<!--  <link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
 
   <meta property="og:site_name" content="Hades' Star Data">
   <meta property="og:type" content="website">
@@ -14,12 +14,24 @@
   <meta property="og:url" content="index.html">
   <meta property="og:description" content="Current information about the game Hades' star">
   <meta name="theme-color" content="#b64437">
+
+  <script>
+      (function(){
+          var redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect != location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
 </head>
 <body>
 <noscript>
-  <strong>We're sorry but Hades' Star Data doesn't work properly without JavaScript enabled. Please enable it to
-    continue.</strong>
+  <strong>
+    We're sorry but Hades' Star Data doesn't work properly without JavaScript enabled. Please enable it to continue.
+  </strong>
 </noscript>
+
 <div id="app"> <!-- built files will be auto injected --> </div>
 </body>
 </html>
