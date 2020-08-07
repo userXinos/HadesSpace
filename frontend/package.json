@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ../generateGameData/index.js; vue build ./index.js",
+    "build": "vue build ./index.js",
     "dev": "vue serve"
   },
   "dependencies": {

@@ -12,7 +12,7 @@
     "url": "https://github.com/userXinos/HadesStarData/issues"
   },
   "homepage": "https://github.com/userXinos/HadesStarData#readme",
-  "devDependencies": {
+  "dependencies": {
     "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0"
   }
