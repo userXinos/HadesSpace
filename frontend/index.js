@@ -33,6 +33,10 @@ Vue.use(VueProgressBar, {
   inverse: false,
 });
 
+router.onError((err) => {
+  console.error(err);
+  Vue.prototype.$Progress.fail();
+});
 
 new Vue({
   router,

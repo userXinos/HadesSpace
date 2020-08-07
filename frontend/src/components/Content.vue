@@ -54,6 +54,7 @@ export default {
     };
   },
   created() {
+    this.$Progress.set(30);
     this.args.data
         .then((raw) => {
           this.rawObj = raw.data;
@@ -66,8 +67,14 @@ export default {
           raw.byTypes[this.args.category.toLowerCase()] :
           [null];
         })
-        .then(this.$fixScroll)
-        .catch(console.error);
+        .then(() => {
+          this.$fixScroll();
+          this.$Progress.set(90);
+        })
+        .catch((err) => {
+          console.error(err);
+          this.$Progress.fail();
+        });
   },
   methods: {
     mergeCellsItems(key) {
