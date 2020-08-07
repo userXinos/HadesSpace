@@ -7,7 +7,7 @@ Vue.use(VueMeta);
 
 export default new Router({
   mode: 'history',
-  base: '/hades-star-data/', // process.env.VUE_APP_BASE_URL ?
+  base: '/HadesStarData/', // process.env.VUE_APP_BASE_URL ?
   routes: [
     {
       path: '/',
