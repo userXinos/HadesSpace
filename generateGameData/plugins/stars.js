@@ -20,13 +20,23 @@ module.exports = function(main, obj) {
     if (key in solarSysGenData) { // фикс лвл из "solar_system_gen_data" т.к. в stars == 1
       obj1.maxLevel = solarSysGenData[key].maxLevel;
     }
-    for (const i in obj1) { // фикс массивов из сточки
+    for (const i in obj1) { // фикс массивов из сточки (в основном глобалс)
       if (Array.isArray(obj1[i]) || ignoringHeaders.includes(i)) continue;
-      let arr = String(obj1[i]).split('!');
+      const arr = String(obj1[i])
+          .split('!')
+          .map((e) => main.fixValue(key, i, e))
+          .filter((e) => (e != null));
 
-      arr = arr.map((e) => main.fixValue(key, i, e));
-      if (arr.length > 1) obj1[i] = arr;
-      if (arr[0] == null) delete obj1[i];
+      if (arr.length > 1) {
+        obj1[i] = arr;
+        if (arr.length > obj1.maxLevel) {
+          obj1.maxLevel = arr.length;
+        }
+      } else if (arr.length == 1) {
+        obj1[i] = arr[0];
+      } else {
+        delete obj1[i];
+      }
     }
     if (key == 'WhiteStar') {
       const matrix = [];
