@@ -100,15 +100,15 @@ export default new Router({
       name: 'YellowStar',
       component: () => import(/* webpackChunkName: "YellowStar" */ '../pages/YellowStar.vue'),
     },
-    // {
-    //   path: '/404',
-    //   name: '404',
-    //   component: () => import(/* webpackChunkName: "404" */ '../pages/404.vue'),
-    // },
-    // {
-    //   path: '*',
-    //   redirect: '/404',
-    // },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import(/* webpackChunkName: "404" */ '../pages/404.vue'),
+    },
+    {
+      path: '*',
+      redirect: '/404',
+    },
   ],
   scrollBehavior(to) {
     if (to.hash) {

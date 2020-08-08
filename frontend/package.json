@@ -24,6 +24,10 @@
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
+    "env": {
+      "node": true,
+      "commonjs": true
+    },
     "extends": [
       "plugin:vue/essential"
     ],
