@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>404</title>
+  <title>Hades' Star Data</title>
 
   <!--  section:seometa  -->
   <meta property="og:site_name" content="Hades' Star Data">
@@ -12,21 +12,24 @@
   <meta property="og:url" content="index.html">
   <meta property="og:description" content="Current information about the game Hades' star">
   <meta name="theme-color" content="#b64437">
-  <script>
+
+  <script type="text/javascript">
       // ===============================================================================================================
       // This text is simply to make sure the 404.html file is bigger than 512 bytes, else, IE will ignore it.
       // Thank you internet explorer for requiring such awesome workarounds in order to work properly
       // ===============================================================================================================
 
-      var segment = 1
+      var segmentCount = 1;
 
-      sessionStorage.redirect = '/' + location.pathname.slice(1).split('/').slice(segment).join('/')
-
-      location.replace(
-          location.pathname.split('/').slice(0, 1 + segment).join('/')
-      )
+      var l = window.location;
+      l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
+          l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+      );
   </script>
-  <meta http-equiv="refresh" content="0;URL='/HadesStarData/'">
 </head>
 <body></body>
 </html>
