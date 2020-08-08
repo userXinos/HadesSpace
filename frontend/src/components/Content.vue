@@ -69,7 +69,7 @@ export default {
         })
         .then(() => {
           this.$fixScroll();
-          this.$Progress.set(90);
+          this.$Progress.finish();
         })
         .catch((err) => {
           console.error(err);

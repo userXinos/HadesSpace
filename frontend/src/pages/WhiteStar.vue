@@ -17,8 +17,8 @@
     </v-content>
 
     <div class="title">
-      <div class="title-text">
-        <a href="#planets" id="planets">
+      <div class="title-text" id="Planets">
+        <a href="#Planets">
           {{ $t('planets') }}
         </a>
       </div>

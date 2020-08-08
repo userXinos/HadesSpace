@@ -17,8 +17,8 @@
     >
     </v-content>
 
-    <div class="title" id="Artifacts">
-      <div class="title-text">
+    <div class="title">
+      <div class="title-text" id="Artifacts">
         <h1>
           <a href="#Artifacts">
             {{ $t('TID_OBJECT_ACTION_ARTIFACTS') }}

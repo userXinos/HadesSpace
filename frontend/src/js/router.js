@@ -7,7 +7,7 @@ Vue.use(VueMeta);
 
 export default new Router({
   mode: 'history',
-  base: '/HadesStarData/', // process.env.VUE_APP_BASE_URL ?
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -110,7 +110,7 @@ export default new Router({
     //   redirect: '/404',
     // },
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to) {
     if (to.hash) {
       return {selector: to.hash};
     }
