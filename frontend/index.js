@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueProgressBar from 'vue-progressbar';
-import VueGtag from 'vue-gtag';
+import VueAnalytics from 'vue-analytics';
+// import VueGtag from 'vue-gtag';
 import App from './src/components/App.vue';
 import router from './src/js/router';
 import './src/css/style.css';
@@ -33,10 +34,14 @@ Vue.use(VueProgressBar, {
   location: 'top',
   inverse: false,
 });
-Vue.use(VueGtag, {
-  config: {id: 'UA-167101762-1'},
+Vue.use(VueAnalytics, {
+  id: 'UA-167101762-1',
   router,
 });
+// Vue.use(VueGtag, {
+//   config: {id: 'UA-167101762-1'},
+//   // router,
+// });
 
 router.onError((err) => {
   console.error(err);
