@@ -20,6 +20,13 @@ export default {
       showBtnTop: false,
     };
   },
+  metaInfo() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
+    };
+  },
   created() {
     window.addEventListener('scroll', this.scroll); // кнопка наверх
 
