@@ -27,10 +27,6 @@ body {
     background-color: #101415;
     position: relative;
 }
-html,
-body {
-    overflow-x: hidden;
-}
 
 .portrait {
     display: block;
@@ -65,7 +61,7 @@ a:active {
     height: 50px;
     border-radius: 100%;
     background-color: #313033;
-    z-index: 9999;
+    z-index: 50;
     opacity: 0.8;
     background-image: url(../img/icons/top.svg);
     background-size: 30px;

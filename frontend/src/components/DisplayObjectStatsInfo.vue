@@ -17,14 +17,7 @@ export default {
   },
   watch: {
     show: function(val) {
-      let result;
-
-      if (val) {
-        result = 'hidden';
-      } else {
-        result = 'auto';
-      }
-      document.documentElement.style.overflow = result;
+      document.body.style.overflow = (val) ? 'hidden' : 'auto';
     },
   },
   methods: {
@@ -46,7 +39,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 100;
   cursor: auto;
 }
 .statsInfo div {

@@ -1,20 +1,16 @@
 import Vue from 'vue';
+
+import {srcollPlugin} from './src/js/plugins';
 import VueProgressBar from 'vue-progressbar';
 import VueAnalytics from 'vue-analytics';
+import VueMeta from 'vue-meta';
 // import VueGtag from 'vue-gtag';
+
 import App from './src/components/App.vue';
 import router from './src/js/router';
-import './src/css/style.css';
 
-const srcollPlugin = {
-  install(Vue, options) {
-    Vue.prototype.$fixScroll = () => { // скролл, после загрузки данных
-      if (options.router.history.current.hash) {
-        location.href = options.router.history.current.hash;
-      }
-    };
-  },
-};
+import './src/js/directives';
+import './src/css/style.css';
 
 Vue.config.productionTip = false;
 
@@ -38,15 +34,11 @@ Vue.use(VueAnalytics, {
   id: 'UA-167101762-1',
   router,
 });
+Vue.use(VueMeta);
 // Vue.use(VueGtag, {
 //   config: {id: 'UA-167101762-1'},
 //   // router,
 // });
-
-router.onError((err) => {
-  console.error(err);
-  Vue.prototype.$Progress.fail();
-});
 
 new Vue({
   router,

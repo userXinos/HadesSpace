@@ -17,13 +17,15 @@
         </td>
       </tr>
     </table>
-    <div class="resetButtons">
-      <button @click="reset" name="plan">
-        {{ $t("resetPlan") }}
-      </button>
-      <button class="resetButtonAll" @click="reset" name="all">
-        {{ $t("resetAll") }}
-      </button>
+    <div class="btns-warp">
+      <div class="btns-reset">
+        <button @click="reset" name="plan">
+          {{ $t("resetPlan") }}
+        </button>
+        <button class="resetButtonAll" @click="reset" name="all">
+          {{ $t("resetAll") }}
+        </button>
+      </div>
     </div>
     <v-table
         v-if="allDataLoaded"
@@ -342,86 +344,87 @@ export default {
 </script>
 
 <style scoped>
-  .planetsCalc {
-    border: 1px solid #424547;
-    border-spacing: 0;
-    color: #aab2b6;
+.planetsCalc {
+  border: 1px solid #424547;
+  border-spacing: 0;
+  color: #aab2b6;
 
-    width: 90%;
-    max-width: 450px;
-    margin: 15px auto;
-  }
-  .planetsCalc >>> td {
-    padding: 8px 10px 8px;
-    line-height: 16px;
-    text-align: center;
-    font-size: 75%;
-    border: none;
-  }
-  .planetsCalc td:first-child {
-    text-align: left;
-  }
-  .planetsCalc tr.total {
-    background-color: rgba(9, 12, 12, 0.99);
-    font-weight: bold;
-  }
+  width: 90%;
+  max-width: 450px;
+  margin: 15px auto;
+}
+.planetsCalc >>> td {
+  padding: 8px 10px 8px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 75%;
+  border: none;
+}
+.planetsCalc td:first-child {
+  text-align: left;
+}
+.planetsCalc tr.total {
+  background-color: rgba(9, 12, 12, 0.99);
+  font-weight: bold;
+}
 
-  .hide {
-    visibility: collapse;
-  }
-  .plan-plus {
-    color: #fff19f;
-    white-space: nowrap;
-  }
-  .plan-plus:before {
-    content: "+";
-  }
-  .result-growth {
-    color: #1e7e34;
-  }
-  .result-not-growth{
-    opacity: 0.5;
-  }
-
-  .resetButtons {
-    display: flex;
-    justify-content: right;
-    padding-right: 3%;
-  }
-  .resetButtons button {
-    color: #fff;
-    cursor: pointer;
-    background-color: Transparent;
-    position: relative;
-    border: 1px solid #f7ca18;
-    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-    padding: 10px 10px;
-    margin-left: 5px;
-  }
-  .resetButtons button:hover {
-    color: #000;
-    background-color: transparent;
-  }
-  .resetButtons button:hover:before {
-    left: 0;
-    right: auto;
-    width: 100%;
-  }
-  .resetButtons button:before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 0;
-    z-index: -1;
-    content: "";
-    background: #f7ca18;
-    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  }
-  .resetButtonAll {
-    border: 1px solid #c90000 !important;
-  }
-  .resetButtonAll:before {
-    background: #c90000 !important;
-  }
+.hide {
+  visibility: collapse;
+}
+.plan-plus {
+  color: #fff19f;
+  white-space: nowrap;
+}
+.plan-plus:before {
+  content: "+";
+}
+.result-growth {
+  color: #1e7e34;
+}
+.result-not-growth{
+  opacity: 0.5;
+}
+.btns-warp {
+  display: flex;
+}
+.btns-reset {
+  margin-left: auto;
+  padding-right: 3%;
+}
+.btns-reset button {
+  color: #fff;
+  cursor: pointer;
+  background-color: Transparent;
+  position: relative;
+  border: 1px solid #f7ca18;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  padding: 10px 10px;
+  margin-left: 5px;
+}
+.btns-reset button:hover {
+  color: #000;
+  background-color: transparent;
+}
+.btns-reset button:hover:before {
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+.btns-reset button:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0;
+  z-index: -1;
+  content: "";
+  background: #f7ca18;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+.resetButtonAll {
+  border: 1px solid #c90000 !important;
+}
+.resetButtonAll:before {
+  background: #c90000 !important;
+}
 </style>
