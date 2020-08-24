@@ -162,6 +162,8 @@
 }
 .leaflet-right .leaflet-control {
   float: right;
+  background-color: white;
+  padding: 10px;
 }
 .leaflet-top .leaflet-control {
   margin-top: 10px;
