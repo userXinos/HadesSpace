@@ -1,16 +1,23 @@
 <template>
   <header class="header">
-    <div class="btn-langs" @click="swithHide" v-click-outside="hide">
-      <ul class="langs"
-          v-if="!isHidden"
+    <div
+        v-if="isMinMode"
+        v-click-outside="hideSidebar"
+    >
+      <div class="btn-sidebar"
+           @click="isShowSidebar = true"
+      />
+      <div class="sidebar"
+           v-if="isShowSidebar"
       >
-        <li v-for="(value, key) in langs" :key="key">
-          <button class="btn" @click="swithLang(key)">
-            {{ value }}
-          </button>
-        </li>
-      </ul>
+        <v-nav/>
+        <langs :is-min-mode="true"/>
+      </div>
     </div>
+    <template v-else>
+      <v-nav/>
+      <langs/>
+    </template>
     <div class="logo">
       <router-link to="/">
         <img src="../img/logo.png" alt="logo">
@@ -20,40 +27,34 @@
 </template>
 
 <script>
-import i18n, {loadLanguageAsync} from '../js/modules/i18n';
-
-const langs = {
-  'en': 'English',
-  'ru': 'Pусский',
-  'fr': 'Français',
-  'de': 'Deutsch',
-  'es': 'Español',
-  'it': 'Italiano',
-  'pt': 'Português',
-  'ko': '한국어',
-  'jp': '日本語',
-  'zh-si': '简体中文',
-};
+import TheNavigation from './TheHeaderNavigation';
+import TheLanguagesButton from './TheHeaderLanguagesButton';
 
 export default {
-  i18n,
+  name: 'Header',
+  components: {
+    VNav: TheNavigation,
+    Langs: TheLanguagesButton,
+  },
   data() {
     return {
-      isHidden: true,
-      langs,
+      isMinMode: (window.innerWidth < 960),
+      isShowSidebar: false,
     };
   },
+  watch: {
+    isShowSidebar: function(val) {
+      document.body.style.overflow = (val) ? 'hidden' : 'auto';
+    },
+  },
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.isMinMode = (window.innerWidth < 960);
+    });
+  },
   methods: {
-    swithLang(languageKey) {
-      localStorage.setItem('language', languageKey);
-      loadLanguageAsync(languageKey);
-      this.swithHide();
-    },
-    swithHide() {
-      this.isHidden = !this.isHidden;
-    },
-    hide() {
-      this.isHidden = true;
+    hideSidebar() {
+      this.isShowSidebar = false;
     },
   },
 };
@@ -61,10 +62,14 @@ export default {
 
 <style scoped>
 .header {
+  --header-height: 80px;
+  --bnt-color: #101415;
+  --btn-hover-color: #242e2f;
+
   background: #101415;
   position: fixed;
   width: 100%;
-  height: 80px;
+  height: var(--header-height);
   top: 0;
   z-index: 10;
   left: 0;
@@ -74,45 +79,29 @@ export default {
   justify-content: center;
 }
 .logo img {
-  height: 80px;
+  height: var(--header-height);
 }
 .logo a {
   display: contents;
 }
-.btn-langs {
-  background-image: url(../img/icons/lang.svg);
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 23px 26px;
-  display: block;
-  cursor: pointer;
+
+.btn-sidebar {
+  background-image: url("../img/icons/menu.svg");
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
   position: absolute;
-  top: 24%;
-  right: 2%;
-  width: 50px;
-}
-.langs {
-  top: 80px;
-  z-index: 1;
-  position: absolute;
-  list-style-type: none;
-  right: 0;
-}
-.langs li .btn {
-  border: none;
-  background-color: #101415;
-  color: white;
-  padding: 12px 26px;
-  display: block;
-  font-size: 13px;
+  left: 25px;
+  top: 25%;
   cursor: pointer;
-  width: 100%;
 }
-.langs li .btn:hover {
-  background-color: #242e2f;
+.sidebar {
+  background-color: #161b1d;
+  width: 80%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  z-index: 11;
+  overflow-x: auto;
 }
-/* #buttonLangs:hover {
-    filter: invert(6%) sepia(4%) saturate(2544%) hue-rotate(153deg) brightness(100%) contrast(91%);
-} */
 </style>
