@@ -74,7 +74,7 @@ const nav = [
     childrens: [
       {
         text: {locKey: 'planets'},
-        link: '/yellowstar#Planets',
+        link: {router: '/yellowstar#Planets'},
       },
       {
         text: {locKey: 'TID_PRODUCTION_DLG_SHIPS'},
@@ -94,7 +94,7 @@ const nav = [
       },
       {
         text: {locKey: 'TID_OBJECT_ACTION_ARTIFACTS'},
-        link: '/redstar#Artifacts',
+        link: {router: '/redstar#Artifacts'},
       },
       {
         text: {locKey: 'TID_CORP_LEVELS_LABEL'},
@@ -206,16 +206,19 @@ export default {
     width: 100%;
     display: inline-block;
   }
-  .nav .list li {
-    height: 100%;
-    padding: 15px 0;
+  .nav .list .name {
+    padding: 15px 0 15px 6%;
   }
   .list li {
     display: block;
     margin: 0;
   }
+  .list li div .name {
+    text-align: left;
+  }
   .sublist {
     position: inherit;
+    padding-top: 5%;
   }
   .name {
     padding-top: 0

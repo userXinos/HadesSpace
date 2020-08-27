@@ -7,8 +7,12 @@
       <div class="btn-sidebar"
            @click="isShowSidebar = true"
       />
-      <div class="sidebar"
+      <div class="bg-sidebar"
+           @click.self="hideSidebar"
            v-if="isShowSidebar"
+      />
+      <div class="sidebar"
+           :class="{'show-sidebar': isShowSidebar}"
       >
         <v-nav/>
         <langs :is-min-mode="true"/>
@@ -84,7 +88,13 @@ export default {
 .logo a {
   display: contents;
 }
-
+.bg-sidebar{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.4;
+}
 .btn-sidebar {
   background-image: url("../img/icons/menu.svg");
   background-size: 100%;
@@ -97,11 +107,15 @@ export default {
 }
 .sidebar {
   background-color: #161b1d;
-  width: 80%;
   height: 100%;
+  width: 0;
   position: fixed;
   left: 0;
   z-index: 11;
   overflow-x: auto;
+  transition: 0.5s;
+}
+.show-sidebar {
+  width: 80%;
 }
 </style>
