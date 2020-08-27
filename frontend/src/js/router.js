@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import routerPaths from './routerPaths';
+import {routes} from './pages';
 
 Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: routerPaths,
+  routes: routes,
   scrollBehavior(to) {
     if (to.hash) {
       return {selector: to.hash};

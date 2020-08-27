@@ -41,106 +41,20 @@
 </template>
 
 <script>
-const nav = [
-  {
-    isShow: false,
-    text: {locKey: 'TID_SHIP_UPGRADE_DLG_TITLE'},
-    childrens: [
-      {
-        text: {locKey: 'typeModTrade'},
-        link: {router: '/trade'},
-      },
-      {
-        text: {locKey: 'typeModMining'},
-        link: {router: '/mining'},
-      },
-      {
-        text: {locKey: 'typeModWeapon'},
-        link: {router: '/weapon'},
-      },
-      {
-        text: {locKey: 'typeModShield'},
-        link: {router: '/shield'},
-      },
-      {
-        text: {locKey: 'typeModSupport'},
-        link: {router: '/support'},
-      },
-    ],
-  },
-  {
-    isShow: false,
-    text: {locKey: 'sections'},
-    childrens: [
-      {
-        text: {locKey: 'planets'},
-        link: {router: '/yellowstar#Planets'},
-      },
-      {
-        text: {locKey: 'TID_PRODUCTION_DLG_SHIPS'},
-        link: {router: '/ships'},
-      },
-      {
-        text: {locKey: 'cerberus'},
-        link: {router: '/cerberus'},
-      },
-      {
-        text: {locKey: 'stars'},
-        link: {router: '/stars'},
-      },
-      {
-        text: {locKey: 'TID_PRODUCTION_DLG_STATIONS'},
-        link: {router: '/spacebuildings'},
-      },
-      {
-        text: {locKey: 'TID_OBJECT_ACTION_ARTIFACTS'},
-        link: {router: '/redstar#Artifacts'},
-      },
-      {
-        text: {locKey: 'TID_CORP_LEVELS_LABEL'},
-        link: {router: '/alliancelevels'},
-      },
-      {
-        text: {locKey: 'TID_EMPIRE_OBJECTIVES'},
-        link: {router: '/playergoals'},
-      },
-      {
-        text: {locKey: 'TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS'},
-        link: {router: '/achievements'},
-      },
-    ],
-  },
-  {
-    isShow: false,
-    text: {locKey: 'other'},
-    childrens: [
-      {
-        text: {locKey: 'planetscalc'},
-        link: {router: '/planetscalc'},
-      },
-      {
-        text: {
-          locKey: 'switchAccs',
-          after: '(by Raerten)',
-        },
-        link: 'https://github.com/Raerten/HSAccs',
-      },
-    ],
-  },
-];
+import {pages} from '../js/pages';
+
+pages.forEach((e) => e.isShow = false); // модифицировать пути
 
 export default {
   name: 'Nav',
   data() {
     return {
-      nav: nav,
+      nav: pages,
     };
   },
   methods: {
     hideAll() {
-      this.nav.forEach((e) => {
-        e.isShow = false;
-      });
+      this.nav.forEach((e) => e.isShow = false);
     },
     swith(obj) {
       const result = !obj.isShow;
