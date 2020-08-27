@@ -71,9 +71,6 @@ export default {
 </script>
 
 <style scoped>
-.nav {
-
-}
 .btn-langs {
   background-image: url(../img/icons/lang.svg);
   background-size: 70%;
@@ -92,7 +89,7 @@ export default {
   z-index: 1;
   position: absolute;
   list-style-type: none;
-  right: 0;
+  right: 1%;
 }
 .langs li .btn {
   border: none;

@@ -48,6 +48,7 @@ export default {
   },
   watch: {
     isShowSidebar: function(val) {
+      if (!this.isMinMode) return;
       document.body.style.overflow = (val) ? 'hidden' : 'auto';
     },
   },
@@ -94,15 +95,16 @@ export default {
   height: 100%;
   background-color: black;
   opacity: 0.4;
+  z-index: 10;
 }
 .btn-sidebar {
   background-image: url("../img/icons/menu.svg");
   background-size: 100%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: absolute;
-  left: 25px;
-  top: 25%;
+  left: 20px;
+  top: 30%;
   cursor: pointer;
 }
 .sidebar {

@@ -161,9 +161,6 @@ export default {
   left: 10px;
   height: var(--header-height);
 }
-/*.nav .list li {*/
-/*  height: var(--header-height);*/
-/*}*/
 .nav ul, .nav ul li {
   list-style-type: none;
   cursor: pointer;
@@ -186,7 +183,6 @@ export default {
   top: var(--header-height);
   min-width: 250px;
   transition: 0.5s ease-in-out;
-  /*padding: 12px 26px;*/
   font-size: 10px;
 }
 .sublist .name {
