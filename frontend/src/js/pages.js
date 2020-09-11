@@ -248,14 +248,14 @@ function getPages(data) {
   const result = [];
 
   data.forEach((item) => {
-    if (Object.keys(item).includes('text')) {
+    if ('text' in item) {
       const resultItem = {};
 
+      resultItem.text = item.text;
       if ('childrens' in item) {
         if (!Array.isArray(resultItem.childrens)) resultItem.childrens = [];
         resultItem.childrens = resultItem.childrens.concat(getPages(item.childrens));
       }
-      if ('text' in item) resultItem.text = item.text;
       if ('link' in item) {
         resultItem.link = item.link;
         resultItem.icon = item.icon;

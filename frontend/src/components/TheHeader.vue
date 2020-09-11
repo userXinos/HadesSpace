@@ -9,7 +9,7 @@
       />
       <div class="bg-sidebar"
            @click.self="hideSidebar"
-           v-if="isShowSidebar"
+           v-show="isShowSidebar"
       />
       <div class="sidebar"
            :class="{'show-sidebar': isShowSidebar}"

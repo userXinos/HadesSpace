@@ -94,9 +94,6 @@ export default {
 }
 
 @media screen and (max-width: 960px) {
-  .main {
-    padding: 60px 0;
-  }
   .item {
     width: 100%;
     height: 80px;
