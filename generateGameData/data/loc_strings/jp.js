@@ -65,7 +65,6 @@ let data = {
   TID_CORP_COLEADER_DESCR: "オフィサー",
   TID_CORP_ELDER_DESCR: "シニアメンバー",
   TID_CORP_MEMBER_DESCR: "メンバー",
-  TID_MAINTENANCE_INFO: "私たちはゲームを改善するため、定期的にサーバーのメンテナンスを行っています。\\n\\n<a name=''http://blog.hadesstar.com/2017/08/about-maintenance.html''>詳細</a>",
   TID_SHARE_VIEW_DESCR: "コーポレーションのメンバーと共有するための恒星系の展望図を選択してください",
   TID_TUT_CONSTRUCT_SHIPYARD_INFO: "造船所では、新たな艦船を建造することができます。",
   TID_TUT_COLONIZE_FIRST_PLANET_DESCR: "帝国は、より多くの惑星に入植することで成長します。\\n\\n惑星は貨物輸送によって収益を生み、この収益が宇宙ステーションの建設を可能にします。",
@@ -406,7 +405,6 @@ let data = {
   TID_OBJECT_ACTION_ARTIFACTS: "アーティファクト",
   TID_CERBERUS_STATION_SPAWNING_IN: "新たな戦艦の生産まで：N",
   TID_OBJECT_ACTION_INFO: "情報",
-  TID_CR_ASTEROID_CONTAINS: "<quad class=''cr''>を含む。",
   TID_DIPLOMACTY_DLG_INCOMING_REQUEST_PLAYER_INFO: "プレーヤー情報",
   TID_LINK_DEVICE_DLG_FIRSTPAGE_DESCR: "このページは、別のデバイスからアカウントにアクセスする際に使用します。\\n\\n現在使用中のデバイスはどちらですか？",
   TID_CORP_NAME_LABEL: "名前",
@@ -497,7 +495,6 @@ let data = {
   TID_BS_SHIP_JUMP_INFO: "船はブルースター発見時に自動でジャンプします。",
   TID_BS_CREDIT_REWARD_DESCR: "クレジット報酬は、ブルースターに送られた戦艦の再建コストのN%になります。\\n\\nブルースターで船を失った場合、必ずこの報酬を獲得できます。また、X毎のブルースターでの最初の勝利に同じ報酬を獲得できます。",
   TID_BS_HYDRO_REWARD_INFO: "受け取る水素の量は、ブルースターの最終成績と、帝国のストレージ容量によって決まります。また、一日に獲得できる水素の量には上限があります。",
-  TID_BS_FRAGMENTS_REWARD_DESCR: "ブルースター・ミッションに参加すると、最終成績に応じてブルースター・フラグメントが与えられます。フラグメントを回収することでで貨物リレーステーションを稼働させたり、ブルースター順位表における順位を上げたりできるほか、各ブルースター・シーズンの終わりにクリスタル報酬を確実に受け取ることができます。\\n\\n詳細は、<a name=''__bsldb''>ブルースター順位表</a>を見てください。",
   TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "　　",
   TID_ASTEROID_FIELD_DESCR: "小惑星帯には水素が存在し、採掘船を使用することで少しずつ回収することができ る。",
   TID_CR_ASTEROID_FIELD: "豊穣の小惑星帯",
@@ -597,14 +594,6 @@ let data = {
   TID_EMP_RESIST_DESCR: "Empモジュールがこの艦船に対して使用されるとき、無効化時間がこの割合で減少します。",
   TID_LEADERBOARDS_DIALOG_COLUMN_NAME: "名前",
   TID_SHIP_STAT_XP_INFO: "Xpはホワイトスター内で他のプレーヤーの戦艦にダメージを与えることで獲得できます。",
-  TID_SHIP_XP_EVENT_INFO:
-    "戦艦をホワイトスターに送ってxpを獲得しましょう！\\n\\nxpはホワイトスター内で他のプレーヤーの戦艦にダメージを与えることで獲得できます。破壊された戦艦は順位表から取り除かれます。サンクチュアリのある船は破壊されると獲得したxpを全て失います。\\n\\nイベント終了時に上位にいる戦艦の所有者はクリスタルを獲得できます：\\n\\nトップN：<quad class=''pc''>\\nトップX：<quad class=''pc''>\\nトップY：<quad class=''pc''>",
-  TID_PRIVATE_RS_EVENT_INFO:
-    "コーポレーションのために努力して、個人レッドスター順位表の頂点を目指そう！個人レッドスターが終わるたびに、そのレッドスターのレベル、回収したアーティファクト数、倒したケルベロスによって、あなたのコーポレーションにポイントが入ります。\\n\\nイベント終了時のトップコーポレーションの全メンバーにはクリスタルが当たられます：\\n\\nトップN：<quad class=''pc''>\\nトップX：<quad class=''pc''>\\nトップY：<quad class=''pc''>",
-  TID_BS_EVENT_INFO:
-    "ブルースター・ミッションに参加することで、フラグメントを手に入れたり、シーズンの終わりにクリスタル報酬を獲得したりできます。\\n\\n全ての参加者は、シーズンの終わりに一定のフラグメント数を超えることで以下の報酬を入手できます：\\n\\nNまたはさらなるフラグメント：<quad class=''pc''><color>X</color>\\nYまたはさらなるフラグメント：<quad class=''pc''><color>N</color>\\nXまたはさらなるフラグメント：<quad class=''pc''><color>N</color>\\n\\nさらに、イベント終了時に順位表にランクインしたプレーヤーは以下の報酬を入手できます：\\n\\nトップ{6}：<quad class=''pc''>\\nトップ{7}：<quad class=''pc''>\\nトップ{8}：<quad class=''pc''>",
-  TID_WS_EVENT_INFO:
-    "ホワイトスターに参加し、貢献に基づいてポイントを獲得し、シーズン終了時にクリスタル報酬が手に入ります。\\n\\n参加者は、シーズン終了時に一定のポイントを超過していると、もれなく以下の報酬を獲得できます：\\n\\nNポイント以上：<quad class=''pc''>\\nXポイント以上：<quad class=''pc''><color>Y</color>\\nNポイント以上：<quad class=''pc''><color>X</color>\\n\\nさらに、イベント終了時にランキングにランクインしたプレイヤーは以下の報酬を入手できます：\\n\\nトップN：<quad class=''pc''>\\nトップ{7}：<quad class=''pc''>\\nトップ{8}：<quad class=''pc''><color>{11}</color>",
   TID_INFLUENCE_DECAY_INFO: "このランキングに入っているプレイヤーは、最大レベルのレッドスターで勝利しない場合、、3日ごとに影響力の3％を失います。",
   TID_STARTER_PACK_DESCR: "各アカウントにつき1つのみ",
   TID_CHAT_GLOBAL_INFO: "ここに送信したメッセージは全てのプレーヤーが閲覧できます。個人情報は絶対に送信しないでください。相手を尊重し、マナーを守ってください。",

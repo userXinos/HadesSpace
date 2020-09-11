@@ -65,7 +65,6 @@ let data = {
   TID_CORP_COLEADER_DESCR: "Officer",
   TID_CORP_ELDER_DESCR: "Senior member",
   TID_CORP_MEMBER_DESCR: "Member",
-  TID_MAINTENANCE_INFO: "We regularly do server maintenance to improve the game.\\n\\n<a name=''http://blog.hadesstar.com/2017/08/about-maintenance.html''>more information</a>",
   TID_SHARE_VIEW_DESCR: "Select a view in this star system to share with your corporation",
   TID_TUT_CONSTRUCT_SHIPYARD_INFO: "Shipyards allow you to create new ships.",
   TID_TUT_COLONIZE_FIRST_PLANET_DESCR: "Your empire grows by colonizing more planets.\\n\\nplanets provide income via shipments, and allow you to build space stations.",
@@ -412,7 +411,6 @@ let data = {
   TID_OBJECT_ACTION_ARTIFACTS: "Artifacts",
   TID_CERBERUS_STATION_SPAWNING_IN: "Spawning new fighters in",
   TID_OBJECT_ACTION_INFO: "Info",
-  TID_CR_ASTEROID_CONTAINS: "Contains  <quad class=''cr''>.",
   TID_DIPLOMACTY_DLG_INCOMING_REQUEST_PLAYER_INFO: "Player info",
   TID_LINK_DEVICE_DLG_FIRSTPAGE_DESCR: "Use this page if you want to access your account from another device.\\n\\nwhich device are you on now?",
   TID_CORP_NAME_LABEL: "Name",
@@ -503,7 +501,6 @@ let data = {
   TID_BS_SHIP_JUMP_INFO: "Your ship will jump automatically when the blue star is discovered.",
   TID_BS_CREDIT_REWARD_DESCR: "The credit reward is calculated as N% of the rebuild cost for the battleship sent to the blue star.\\n\\nyou will always receive the reward if you lose your ship in the blue star. you will also receive it for the first blue star win every X.",
   TID_BS_HYDRO_REWARD_INFO: "The hydrogen awarded depends on your final standing in the blue star, and your empire's maximum storage capacity. there is also a maximum amount of hydrogen that can be earned per day.",
-  TID_BS_FRAGMENTS_REWARD_DESCR: "Every blue star mission will award blue star fragments according to your final standing. collect these fragments to power the shipment relay station, climb the blue star leaderboards, and to receive guaranteed crystal rewards at the end of every season.\\n\\nfor more information, <a name=''__bsldb''>see the blue star leaderboards</a>.",
   TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "Diplomatic relations established N ago, total tax collected by this player's activity: X cr",
   TID_ASTEROID_FIELD_DESCR: "Asteroid fields contain hydrogen that can be collected over time using miner ships.",
   TID_CR_ASTEROID_FIELD: "Rich asteroid field",
@@ -603,14 +600,6 @@ let data = {
   TID_EMP_RESIST_DESCR: "Disable time is reduced by this percentage when the EMP module is used against this ship.",
   TID_LEADERBOARDS_DIALOG_COLUMN_NAME: "Name",
   TID_SHIP_STAT_XP_INFO: "Xp is gained when doing damage to other player's battleships in white stars.",
-  TID_SHIP_XP_EVENT_INFO:
-    "Send your battleships to collect xp on white stars!\\n\\nxp is collected when doing damage to other player's battleships. destroyed ships are removed from the leaderboard. ships with sanctuary will lose all collected xp when destroyed.\\n\\nat the end of the event, the owners of the top battleships will earn crystals:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop Y: <quad class=''pc''>",
-  TID_PRIVATE_RS_EVENT_INFO:
-    "Help your corporation succeed in private red stars and climb the leaderboards! every time a private red star ends, your corporation will gain points depending on the red star level, how many artifacts were collected, and how many cerberus ships cleared.\\n\\nevery member in a top corporation at the time the event ends will earn crystals:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop Y: <quad class=''pc''>",
-  TID_BS_EVENT_INFO:
-    "Participate in blue stars to earn fragments and win crystal rewards when the season ends.\\n\\nall participants will receive the following rewards if they exceed a certain fragment count at the end of the season:\\n\\nN or more fragments: <quad class=''pc''>\\nX or more fragments: <quad class=''pc''>\\nY or more fragments: <quad class=''pc''>\\n\\nin addition, players on the leaderboard when the event ends will receive the following rewards:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop N: <quad class=''pc''>",
-  TID_WS_EVENT_INFO:
-    "Participate in white stars to earn points based on your contribution and win crystal rewards when the season ends.\\n\\nall participants will receive the following rewards if they exceed a certain point count at the end of the season:\\n\\nN or more points: <quad class=''pc''>\\nX or more points: <quad class=''pc''>\\nY or more points: <quad class=''pc''>\\n\\nin addition, players on the leaderboard when the event ends will receive the following rewards:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop N: <quad class=''pc''>",
   TID_INFLUENCE_DECAY_INFO: "Players on this leaderboard lose 3% of their influence for every 3 days without a win in their maximum level red star.",
   TID_STARTER_PACK_DESCR: "Limit one per account",
   TID_CHAT_GLOBAL_INFO: "Messages you transmit here can be seen by all players. never give out personal information. please be respectful and polite.",

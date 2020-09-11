@@ -65,7 +65,6 @@ let data = {
   TID_CORP_COLEADER_DESCR: "Offizier",
   TID_CORP_ELDER_DESCR: "Hochrangiges mitglied",
   TID_CORP_MEMBER_DESCR: "Mitglied",
-  TID_MAINTENANCE_INFO: "Wir führen regelmäßig serverwartungen durch, um das spiel zu verbessern.\\n\\n<a name=''http://blog.hadesstar.com/2017/08/about-maintenance.html''>weitere informationen</a>",
   TID_SHARE_VIEW_DESCR: "Wähle einen ausschnitt des sternensystems, den du mit deinem konzern teilen möchtest.",
   TID_TUT_CONSTRUCT_SHIPYARD_INFO: "In weltraumwerften baust du neue schiffe.",
   TID_TUT_COLONIZE_FIRST_PLANET_DESCR: "Dein imperium wächst mit jeder neuen kolonie.\\n\\nplaneten bieten dir einnahmen durch das liefern von waren und erlauben den bau von weltraumstationen.",
@@ -419,7 +418,6 @@ let data = {
   TID_OBJECT_ACTION_ARTIFACTS: "Artefakte",
   TID_CERBERUS_STATION_SPAWNING_IN: "Neue kampfschiffe erscheinen in",
   TID_OBJECT_ACTION_INFO: "Info",
-  TID_CR_ASTEROID_CONTAINS: "Enthält <quad class=''cr''>.",
   TID_DIPLOMACTY_DLG_INCOMING_REQUEST_PLAYER_INFO: "Spielerinfo",
   TID_LINK_DEVICE_DLG_FIRSTPAGE_DESCR: "Mit dieser aktion kannst du von einem anderen gerät auf deinen account zugreifen.\\n\\nwelches gerät verwendest du gerade?",
   TID_CORP_NAME_LABEL: "Name",
@@ -510,7 +508,6 @@ let data = {
   TID_BS_SHIP_JUMP_INFO: "Dein schiff springt automatisch, wenn der blaue riese entdeckt wird.",
   TID_BS_CREDIT_REWARD_DESCR: "Die credit-belohnung errechnet sich aus N % der wiederherstellungskosten für das schlachtschiff, das zum blauen riesen geschickt wird.\\n\\ndu erhältst immer dann eine belohnung, wenn du dein schiff auf dem blauen riesen verlierst. du erhältst sie zudem für den ersten br-sieg alle X.",
   TID_BS_HYDRO_REWARD_INFO: "Der wasserstoff wird entsprechend deines rangs im blauen riesen und der maximalen lagerkapazität deines imperiums vergeben. du kannst zudem nur eine begrenzte menge an wasserstoff pro tag erhalten.",
-  TID_BS_FRAGMENTS_REWARD_DESCR: "In jeder br-mission erhältst du br-sternensplitter basierend auf deinem rang. sammle diese splitter, um die warenweiterleitungsstation zu betreiben, die br-ranglisten aufzusteigen und am ende jeder saison garantierte kristall-belohnungen zu erhalten.\\n\\nweitere informationen findest du in <a name=''__bsldb''>der br-rangliste</a>.",
   TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "Diplomatische beziehungen vor N begonnen, durch diesen spieler eingenommene steuern: X cr",
   TID_ASTEROID_FIELD_DESCR: "Asteroidenfelder enthalten wasserstoff, der von bergbauschiffen gesammelt werden kann.",
   TID_CR_ASTEROID_FIELD: "Üppiges asteroidenfeld",
@@ -610,14 +607,6 @@ let data = {
   TID_EMP_RESIST_DESCR: "Deaktivierungsdauer wird um diese prozentzahl herabgesetzt, wenn das emp-modul gegen dieses schiff eingesetzt wird.",
   TID_LEADERBOARDS_DIALOG_COLUMN_NAME: "Name",
   TID_SHIP_STAT_XP_INFO: "Du erhältst ep, wenn du den schlachtschiffen anderer spieler auf wz-missionen schaden zufügst.",
-  TID_SHIP_XP_EVENT_INFO:
-    "Schicke deine schlachtschiffe auf wz-missionen, um ep zu sammeln!\\n\\ndu erhältst ep, wenn du den schlachtschiffen anderer spieler schaden zufügst. zerstörte schiffe werden von der rangliste entfernt. zerstörte schiffe verlieren ihre gesammelten ep.\\n\\ndie besitzer der besten schlachtschiffe erhalten nach abschluss des ereignisses kristalle:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop Y: <quad class=''pc''>",
-  TID_PRIVATE_RS_EVENT_INFO:
-    "Erklimme mit deinem konzern die rangliste in privaten rr-ereignissen! jedes mal, wenn ein privates rr-ereignis endet, erhält dein konzern punkte entsprechend der stufe des roten riesens, der zahl der gesammelten artefakte und der zerstörten cerberus-schiffe.\\n\\njedes mitglied eines konzerns, das sich nach abschluss des ereignisses an der spitze befindet, erhält kristalle:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop Y: <quad class=''pc''>",
-  TID_BS_EVENT_INFO:
-    "Nimm an blauen sternen teil, um splitter zu verdienen und am ende der saison kristall-belohnungen zu erhalten.\\n\\nalle teilnehmer erhalten die folgenden belohnungen, wenn sie am ende der saison eine bestimmte splitteranzahl überschreiten:\\n\\nN oder mehr splitter: <quad class=''pc''>\\nX oder mehr splitter: <quad class=''pc''>\\nY oder mehr splitter: <quad class=''pc''>\\n\\nzusätzlich erhalten die spieler, die sich am ende des ereignisses auf der rangliste befinden, folgende belohnungen:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop N: <quad class=''pc''>",
-  TID_WS_EVENT_INFO:
-    "Nimm an weißen zwergen teil, um abhängig von deiner leistung punkte zu verdienen und am ende der saison kristall-belohnungen zu erhalten.\\n\\nalle teilnehmer erhalten die folgenden belohnungen, wenn sie am ende der saison eine bestimmte punktzahl überschreiten:\\n\\nN oder mehr punkte: <quad class=''pc''>\\nX oder mehr punkte: <quad class=''pc''>\\nY oder mehr punkte: <quad class=''pc''>\\n\\nzusätzlich erhalten die spieler, die sich am ende des ereignisses auf der rangliste befinden, folgende belohnungen:\\n\\ntop N: <quad class=''pc''>\\ntop X: <quad class=''pc''>\\ntop N: <quad class=''pc''>",
   TID_INFLUENCE_DECAY_INFO: "Spieler auf dieser rangliste verlieren nach jeweils drei tagen ohne sieg bei ihrem roten riesen auf maximalstufe 3 % ihres einflusses.",
   TID_STARTER_PACK_DESCR: "Begrenzt auf eins pro account",
   TID_CHAT_GLOBAL_INFO: "Hier gesendete nachrichten können von allen spielern gesehen werden. teile nie persönliche informationen mit anderen. bitte verhalte dich höflich und respektvoll.",

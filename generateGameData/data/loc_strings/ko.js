@@ -65,7 +65,6 @@ let data = {
   TID_CORP_COLEADER_DESCR: "항해사",
   TID_CORP_ELDER_DESCR: "수석 대원",
   TID_CORP_MEMBER_DESCR: "멤버",
-  TID_MAINTENANCE_INFO: "게임을 개선하기 위해 정기적으로 서버 점검을 수행합니다.\\n\\n<a name=''http://blog.hadesstar.com/2017/08/about-maintenance.html''>추가 정보 보기</a>",
   TID_SHARE_VIEW_DESCR: "이 항성계의 경관을 선택하여 코퍼레이션과 공유하세요.",
   TID_TUT_CONSTRUCT_SHIPYARD_INFO: "함선 제작소에서 새 함선을 건조할 수 있습니다.",
   TID_TUT_COLONIZE_FIRST_PLANET_DESCR: "여러분의 제국이 확장하려면 더 많은 행성을 식민지로 만들어야 합니다.\\n\\n행성은 수송품을 통해 수입을 제공하고, 이를 통해 우주 정거장을 건설할 수 있습니다.",
@@ -406,7 +405,6 @@ let data = {
   TID_OBJECT_ACTION_ARTIFACTS: "유물",
   TID_CERBERUS_STATION_SPAWNING_IN: "N에 새 전함 생성",
   TID_OBJECT_ACTION_INFO: "정보",
-  TID_CR_ASTEROID_CONTAINS: "<quad class=''cr''>  포함.",
   TID_DIPLOMACTY_DLG_INCOMING_REQUEST_PLAYER_INFO: "플레이어 정보",
   TID_LINK_DEVICE_DLG_FIRSTPAGE_DESCR: "다른 기기에서 계정에 접속하고 싶은 경우 이 페이지를 이용하세요.\\n\\n현재 어느 기기를 사용 중인가요?",
   TID_CORP_NAME_LABEL: "이름",
@@ -497,7 +495,6 @@ let data = {
   TID_BS_SHIP_JUMP_INFO: "청색성단이 발견되는 동시에 플레이어의 전함이 자동적으로 점프됩니다.",
   TID_BS_CREDIT_REWARD_DESCR: "크레딧 보상은 청색성단에 보내진 전함의 재건조 비용의 N%로 산정됩니다.\\n\\n청색성단에서 전함을 잃으면 항상 보상이 지급됩니다. 매 X 마다의 청색성단 첫승에 대해서도 보상이 지급됩니다.",
   TID_BS_HYDRO_REWARD_INFO: "수소 보상은 청색성단 파이널 스탠딩에서의 결과와 제국의 최대 수소 저장량에 따라 산정됩니다. 하루에 얻을 수 있는 수소의 양에도 한계가 있습니다.",
-  TID_BS_FRAGMENTS_REWARD_DESCR: "청색성단 미션은 파이널 스탠딩에서의 결과에 따라 청색성단 파편을 보상으로 지급합니다. 청색성단 파편은 수송품 릴레이 정거장에 대한 전력 공급은 물론, 청색성단 리더보드에서의 랭킹 상승과 청색성단 시즌 마지막 크리스탈 보상 확보에 필요한 자원입니다.\\n\\n보다 자세한 정보는, <a name=''__bsldb''>청색성단 리더보드</a>를 통해 확인하세요.",
   TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "N 전에 외교 관계를 수립했으며, 이 플레이어의 활동에 의해 징수된 총 세금은 X cr입니다.",
   TID_ASTEROID_FIELD_DESCR: "소행성 지대에는 채굴함이 지속적으로 수집할 수 있는 수소가 있습니다.",
   TID_CR_ASTEROID_FIELD: "풍족한 소행성 지대",
@@ -597,13 +594,6 @@ let data = {
   TID_EMP_RESIST_DESCR: "EMP 모듈이 이 함선에 사용될 경우 여기 적힌 퍼센트만큼 비활성 시간을 감소시킵니다.",
   TID_LEADERBOARDS_DIALOG_COLUMN_NAME: "이름",
   TID_SHIP_STAT_XP_INFO: "Xp는 백색성단에서 다른 플레이어의 전함에 피해를 주면 획득합니다.",
-  TID_SHIP_XP_EVENT_INFO: "전함을 보내 백색성단의 xp를 수집하세요!\\n\\nxp는 백색성단에서 다른 플레이어의 전함에 피해를 주면 수집합니다. 파괴된 함선은 리더보드에서 제거됩니다. 안식처가 장착된 함선이 파괴되면 수집된 xp가 모두 사라집니다.\\n\\n이벤트가 끝나는 대로, 상위 전함의 소유자에게는 크리스털이 지급됩니다.\\n\\n상위 N: <quad class=''pc''>\\n상위 X: <quad class=''pc''>\\n상위 Y: <quad class=''pc''>",
-  TID_PRIVATE_RS_EVENT_INFO:
-    "여러분의 코퍼레이션이 비공개 적색성단에서 성공을 거두고 리더보드 순위를 올리도록 도와주세요! 비공개 적색성단이 종료될 때마다 코퍼레이션은 해당 적색성단 레벨, 수집한 유물 숫자, 소탕한 케르베로스 함선 숫자에 따라 포인트를 얻게 됩니다.\\n\\n이벤트 종료 시점에서 순위권에 오른 코퍼레이션의 모든 멤버에게는 크리스털이 지급됩니다: \\n\\nN위: <quad class=''pc''>\\n X위: <quad class=''pc''>\\n Y위: <quad class=''pc''>",
-  TID_BS_EVENT_INFO:
-    "청색성단에 참가하여 성단 파편을 모으고 시즌 종료와 함께 지급되는 크리스털 보상을 획득하세요.\\n\\n모든 참가자들은 시즌 종료 시점까지 확보한 성단 파편의 수량에 따라 다음의 보상을 지급받습니다.\\n\\n성단 파편 N개 이상: <quad class=''pc''>\\n성단 파편 X개 이상: <quad class=''pc''>\\n성단 파편 Y개 이상: <quad class=''pc''>\\n\\n이벤트 종료 시점 상 리더보드 랭킹에 따른 보상은 다음과 같습니다.\\n\\nN위: <quad class=''pc''>\\nX위: <quad class=''pc''>\\nN위: <quad class=''pc''>",
-  TID_WS_EVENT_INFO:
-    "백색성단에 참가하여 기여도에 따라 포인트를 모으고 시즌 종료와 함께 지급되는 크리스털 보상을 획득하세요.\\n\\n모든 참가자들은 시즌 종료 시점까지 확보한 포인트에 따라 다음의 보상을 지급받습니다.\\n\\n포인트 N 이상: <quad class=''pc''>\\n포인트 X 이상: <quad class=''pc''>\\n포인트 Y 이상: <quad class=''pc''>\\n\\n이벤트 종료 시점 상 리더보드 랭킹에 따른 보상은 다음과 같습니다.\\n\\nN위: <quad class=''pc''>\\nX위: <quad class=''pc''>\\nN위: <quad class=''pc''>",
   TID_INFLUENCE_DECAY_INFO: "리더보드 상의 플레이어들은 최대 레벨 적색성단에서 3일마다 최소 1회 이상 승리를 기록하지 못할 경우 보유 명성의 3%를 잃습니다.",
   TID_STARTER_PACK_DESCR: "계정당 한 개로 제한",
   TID_CHAT_GLOBAL_INFO: "여기에서 메시지를 전송하면 모든 플레이어가 볼 수 있습니다. 개인 정보를 절대 입력하지 마세요. 상대방을 존경하고 정중하게 행동하세요.",
