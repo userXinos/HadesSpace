@@ -10,5 +10,28 @@
     "fastify-autoload": "^3.0.6",
     "fastify-sensible": "^3.0.1",
     "pino-pretty": "^4.1.0"
+  },
+  "dependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "commonjs": true,
+      "es6": true
+    },
+    "extends": "google",
+    "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType":"module"
+    },
+    "rules": {
+      "max-len": 0,
+      "require-jsdoc": 0,
+      "new-cap": 0,
+      "no-unused-vars": 1,
+      "linebreak-style": 0
+    }
   }
 }

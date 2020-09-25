@@ -10,8 +10,30 @@
     "prettier": "^2.0.5",
     "yaml": "^1.10.0"
   },
+  "dependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "commonjs": true,
+      "es6": true
+    },
+    "extends": "google",
+    "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType":"module"
+    },
+    "rules": {
+      "max-len": 0,
+      "require-jsdoc": 0,
+      "new-cap": 0,
+      "no-unused-vars": 1,
+      "linebreak-style": 0
+    }
+  },
   "eslintIgnore": [
     "data"
-  ],
-  "dependencies": {}
+  ]
 }
