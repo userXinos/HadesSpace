@@ -13,10 +13,12 @@ module.exports = function(main, obj) {
   for (const key in obj) {
     let obj1 = main.combineObjects(obj[key], solarSysGenData[key]);
 
-    delete obj1.Models;
     if (key in globalsData) { // добавить "globals"
       obj1 = main.combineObjects(obj1, globalsData[key]);
     }
+    delete obj.RedStar.GhostSpawnSecs; // лучше пусть будет в ships
+    delete obj1.Models;
+
     if (key in solarSysGenData) { // фикс лвл из "solar_system_gen_data" т.к. в stars == 1
       obj1.maxLevel = solarSysGenData[key].maxLevel;
     }
@@ -65,7 +67,6 @@ module.exports = function(main, obj) {
     }
     obj1.fillSpace(' ');
   }
-  delete obj.RedStar.GhostSpawnSecs; // лучше пусть будет в ships
   obj.RedStar.pushArrays('RegularInfuenceRange', 'RegularInfuenceRange_Min', 'RegularInfuenceRange_Max');
   obj.RedStar.pushArrays('InfluenceAwardThreshold', 'InfluenceAwardThreshold_Min', 'InfluenceAwardThreshold_Max');
   return obj;

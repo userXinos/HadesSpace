@@ -1,8 +1,9 @@
 <template>
   <div id="app">
+    <vue-progress-bar/>
     <the-header/>
     <router-view/>
-    <vue-progress-bar/>
+
     <a href="#" id="btn-top" v-show="showBtnTop"></a>
   </div>
 </template>

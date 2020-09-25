@@ -61,7 +61,7 @@ a:active {
     height: 50px;
     border-radius: 100%;
     background-color: #313033;
-    z-index: 50;
+    z-index: 9;
     opacity: 0.8;
     background-image: url(../img/icons/top.svg);
     background-size: 30px;
