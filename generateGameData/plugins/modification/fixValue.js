@@ -46,6 +46,10 @@ module.exports = function(name, header, value) { // скрыть/исправи�
       func: (v) => v / 5,
     },
     {
+      header: ['AttackRange'],
+      func: (v) => v / 10,
+    },
+    {
       header: ['InitialModuleLevels'],
       func: (v) => {
         const r = v.split('!').map((e) => Number(e) + 1);
