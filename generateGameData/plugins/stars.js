@@ -10,8 +10,8 @@ module.exports = function(main, obj) {
     RedStar: globals.getGlobalsBy(main, 'RS'),
   };
 
-  for (const key in obj) {
-    let obj1 = main.combineObjects(obj[key], solarSysGenData[key]);
+  Object.keys(obj).forEach((key) =>{
+    let obj1 = (solarSysGenData[key]) ? main.combineObjects(obj[key], solarSysGenData[key]) : obj[key];
 
     if (key in globalsData) { // добавить "globals"
       obj1 = main.combineObjects(obj1, globalsData[key]);
@@ -66,7 +66,7 @@ module.exports = function(main, obj) {
       });
     }
     obj1.fillSpace(' ');
-  }
+  });
   obj.RedStar.pushArrays('RegularInfuenceRange', 'RegularInfuenceRange_Min', 'RegularInfuenceRange_Max');
   obj.RedStar.pushArrays('InfluenceAwardThreshold', 'InfluenceAwardThreshold_Min', 'InfluenceAwardThreshold_Max');
   return obj;

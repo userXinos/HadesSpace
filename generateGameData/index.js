@@ -13,15 +13,14 @@ const isWhiteListBS = require(pluginsPath + 'modification/fixValue.js').isWhiteL
 const isHide = require(pluginsPath + 'modification/fixValue.js').isHide;
 const dataByTypes = require(pluginsPath + 'modification/byTypes.js');
 const fixValue = require(pluginsPath + 'modification/fixValue.js');
-const optionalFiles = ['projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv']
-    .map((e) => path.join(pathCSVs, e));
+const optionalFiles = ['projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv'].map((e) => path.join(pathCSVs, e));
 const startTime = new Date().getTime();
 let files = process.argv.slice(2);
 
 if (!files.length) {
   wipeDir(pathSave); // подготовить папку для новых файлов
   files = walk(pathCSVs)
-      .filter((e) => (e != undefined && !optionalFiles.includes(e) && e.endsWith('.csv')));
+      .filter((e) => (e !== undefined && !optionalFiles.includes(e) && e.endsWith('.csv')));
 
   // рекурсивная читалка директории
   function walk(dir) {
@@ -123,7 +122,7 @@ function saveFile(json) {
   if (!fs.existsSync(path.dirname(file))) {
     fs.mkdirSync(path.dirname(file));
   }
-  if (file.split('.').pop() == 'json') {
+  if (file.split('.').pop() === 'json') {
     content = JSON.stringify(json, null, 2);
     parser = 'json';
   }
@@ -155,8 +154,8 @@ function saveFile(json) {
         .forEach((key) => registered = registered.concat(byType[key]));
     const notRegistered = Object.keys(json)
         .filter((key) => !registered.includes(key));
-    if (notRegistered.length != 0) {
-      if (Object.keys(byType).length != 0) {
+    if (notRegistered.length !== 0) {
+      if (Object.keys(byType).length !== 0) {
         byType.notregistered = notRegistered;
       } else {
         byType.default = notRegistered;
@@ -173,46 +172,47 @@ function readCSV(file) {
 // парсер из таблицы в обектJS
 function CSVtoJSON(csv, headers) {
   const regexSplitStr = new RegExp(',(?!\\s)');
-  const data = csv.split('\n');
+  const data = csv.trim().split('\n');
   if (!headers) headers = data[0].split(regexSplitStr);
-  const jsonObj = new RawJson();
-  let name = null;
+  const json = new RawJson();
+  let subJsonName = null;
 
-  if (headers.length == 1) return simpleArray(data);
+  if (headers.length <= 1) return simpleArray(data);
   for (let i = 1; i < data.length; i++) {
     const string = data[i].split(regexSplitStr);
 
-    if (string == '') continue;
-    if (string[0] !== '') {
-      name = string[0];
-      jsonObj[name] = new NestedRawJson();
-      jsonObj[name].maxLevel = 1;
+    if (!string.length) continue;
+    if (string[0]) {
+      subJsonName = string[0];
+      json[subJsonName] = new NestedRawJson();
+      json[subJsonName].maxLevel = 1;
     } else {
-      jsonObj[name].maxLevel++;
+      json[subJsonName].maxLevel++;
     }
     for (let j = 0; j < string.length; j++) {
       const header = headers[j].trim();
       let value = string[j].trim();
-      const stockValue = jsonObj[name][header];
+      const stockValue = json[subJsonName][header];
 
-      if (isTrashHeader(header) || value === undefined || value === '') continue;
-      value = fixValue(name, header, value);
+      if (isTrashHeader(header) || value === undefined || !value.length) continue;
+      value = fixValue(subJsonName, header, value);
       if (value == null) continue;
-      if (stockValue == undefined || stockValue === '') {
-        jsonObj[name][header] = value;
+      if (stockValue === undefined || stockValue === '') {
+        json[subJsonName][header] = value;
       } else if (Array.isArray(stockValue)) {
-        jsonObj[name][header].push(value);
+        json[subJsonName][header].push(value);
       } else {
-        jsonObj[name][header] = [];
-        jsonObj[name][header].push(stockValue, value);
+        json[subJsonName][header] = [stockValue, value];
       }
     }
   }
-  return removeDupsFromArrays(jsonObj);
+  return removeDupsFromArrays(json);
 
   // глобально скрытые значения - не имеют важности
   function isTrashHeader(str) {
-    const trashHeaders = JSON.parse(fs.readFileSync(`${pluginsPath}modification/trashHeaders.json`, 'utf8').toLowerCase());
+    const trashHeaders = JSON.parse(
+        fs.readFileSync(path.resolve(pluginsPath, 'modification/trashHeaders.json'), 'utf8').toLowerCase(),
+    );
     const whiteList = ['WeaponFx']; // нужен только для modules, а все FX удаляются
 
     if (whiteList.includes(str)) return false;
@@ -221,7 +221,7 @@ function CSVtoJSON(csv, headers) {
   }
   // массив, сравнивать i и i+1, если все элементы равны установить вместо массива i[0] || {key:[1,1,1,1]} => {key:1}
   function removeDupsFromArrays(obj) {
-    if (obj.constructor == NestedRawJson) {
+    if (obj.constructor === NestedRawJson) {
       Object.keys(obj).forEach((key) => {
         const item = obj[key];
         if (!Array.isArray(item)) return;
@@ -241,7 +241,7 @@ function CSVtoJSON(csv, headers) {
     const result = new RawJson();
 
     result.array = array
-        .filter((e) => !(e === ''))
+        .filter((e) => e.length)
         .map((e) => fixValue(null, null, e));
     result.maxLevel = result.array.length;
     return result;
@@ -253,21 +253,21 @@ class RawJson extends Object {}
 function fixOrder(obj) {
   const headers = JSON.parse(fs.readFileSync(`${pluginsPath}modification/headersOrder.json`, 'utf8'));
 
-  if (obj.constructor == RawJson || obj.constructor == NestedRawJson || obj.constructor == Object) {
+  if (obj.constructor === RawJson || obj.constructor === NestedRawJson || obj.constructor === Object) {
     const indexes = []; // создание объекта с ключами + индекс
-    for (const key in obj) {
+    Object.keys(obj).forEach((key) => {
       const elem = {};
       elem.index = (headers.includes(key)) ? headers.indexOf(key) : 666;
       elem.key = key;
       indexes.push(elem);
-    }
+    });
     indexes.sort((a, b) => a.index - b.index);
 
     // сборка готового объекта
     const result = Object.create(obj);
-    for (const i in indexes) {
+    Object.keys(indexes).forEach((i) => {
       result[indexes[i].key] = fixOrder(obj[indexes[i].key]);
-    }
+    });
     return result;
   } else {
     return obj;
@@ -302,10 +302,10 @@ class NestedRawJson extends Object {
   }
 }
 function combineObjects(obj1, obj2) {
-  for (const p in obj2) {
+  Object.keys(obj2).forEach((p) =>{
     try {
-      if (ignoringHeaders.includes(p)) continue;
-      if (obj2[p].constructor == Object) {
+      if (ignoringHeaders.includes(p)) return;
+      if (obj2[p].constructor === Object) {
         obj1[p] = combineObjects(obj1[p], obj2[p]);
       } else {
         obj1[p] = obj2[p];
@@ -313,7 +313,7 @@ function combineObjects(obj1, obj2) {
     } catch (e) {
       obj1[p] = obj2[p];
     }
-  }
+  });
   return obj1;
 }
 function renameKeys(obj, newKeys) {
@@ -331,12 +331,12 @@ function compileOne(obj) {
     delete obj[key];
     const obj1 = copyObj[key];
 
-    for (let k in obj1) {
+    Object.keys(obj1).forEach((k) =>{
       const value = obj1[k];
       k = k.replace(/\s+/g, ''); // напр "Credit Storage"
       const stockValue = obj[k];
 
-      if (stockValue == undefined || stockValue === '') {
+      if (stockValue === undefined || stockValue === '') {
         obj[k] = value;
       } else if (Array.isArray(stockValue)) {
         obj[k].push(value);
@@ -344,7 +344,7 @@ function compileOne(obj) {
         obj[k] = [];
         obj[k].push(stockValue, value);
       }
-    }
+    });
   });
   obj.maxLevel = obj.maxLevel.length;
   return obj;
