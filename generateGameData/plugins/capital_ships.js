@@ -10,12 +10,13 @@ export default function(obj) {
     fixModulesShipsData(obj, e, 'InitialModule', 'InitialModuleLevels');
   });
   fixModulesShipsData(obj, 'CorpFlagship', 'FlagshipModules', 'FlagshipModuleLevels');
-  Object.keys(shipSpawners.Ghosts).forEach((k) => {
+  Object.keys(shipSpawners['Ghosts']).forEach((k) => {
     if (!ignoringHeaders.includes(k)) {
-      obj.CerberusGhosts[k] = shipSpawners.Ghosts[k];
+      obj['CerberusGhosts'][k] = shipSpawners['Ghosts'][k];
     }
   });
-  obj.CerberusGhosts.GhostSpawnSecs = GhostSpawnSecs;
+  obj['CerberusGhosts'].GhostSpawnSecs = GhostSpawnSecs;
+
   return obj;
 
   // из "{key:[module1!module2], key2:[1!2]}" в "{module1:[1], module2:[2]}"
@@ -24,25 +25,25 @@ export default function(obj) {
     const levels = (Array.isArray(obj[name][ModuleLevels])) ? obj[name][ModuleLevels] : [obj[name][ModuleLevels]];
     const obj1 = obj[name];
 
-    for (const i in modules) {
+    modules.forEach((e, i) => {
       const moduleArr = modules[i].split('!');
       const levelArr = String(levels[i]).split('!');
-      for (const k in moduleArr) {
-        const key = moduleArr[k];
-        const value = Number(levelArr[k]);
+
+      moduleArr.forEach((key, kIndex) => {
+        const value = Number(levelArr[kIndex]);
         const stockValue = obj1[key];
+
         if (stockValue === undefined || stockValue === '') {
           obj1[key] = value;
         } else {
           if (typeof (stockValue) == 'object') {
             obj1[key].push(value);
           } else {
-            obj1[key] = [];
-            obj1[key].push(stockValue, value);
+            obj1[key] = [stockValue, value];
           }
         }
-      }
-    }
+      });
+    });
     obj1.maxLevel = obj[name].maxLevel;
     obj1.fillSpace();
     delete obj1[Modules];

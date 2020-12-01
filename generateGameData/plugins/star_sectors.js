@@ -1,16 +1,18 @@
 import {readCsv} from '../modules/loadFile.js';
 import RawJson from '../modules/RawJson.js';
 
+const scannersData = readCsv('spacebuildings')['ShortRangeScanner'];
+const cerberusData = readCsv('cerb_groups');
+const cerberusStationsData = readCsv('cerberus_stations');
+
 export default function(obj) {
   const star = obj.metadata.originalFile.replace(/.*\/(.+)_star_sectors\..+$/, '$1');
-  const scannersData = readCsv('spacebuildings').ShortRangeScanner;
-  const cerberusData = readCsv('cerb_groups');
-  const cerberusStationsData = readCsv('cerberus_stations');
   const result = new RawJson();
 
-  for (let name of Object.keys(obj)) {
-    name = obj[name];
-    for (const key in name) {
+  Object.keys(obj).forEach((key) => {
+    const name = obj[key];
+
+    Object.keys(name).forEach((key) => {
       const value = name[key];
       const stockValue = result[key];
 
@@ -20,16 +22,17 @@ export default function(obj) {
         if (Array.isArray(stockValue)) {
           result[key].push(value);
         } else {
-          result[key] = [];
-          result[key].push(stockValue, value);
+          result[key] = [stockValue, value];
         }
       }
+    });
+    if (star === 'yellow') {
+      addScannerInfo(name.MinScannerLevel);
     }
-    if (star === 'yellow') addScannerInfo(name.MinScannerLevel, scannersData);
     addCerberus(name.CerbGroup);
     fixCerbBaseName(name.BaseType);
     endObj();
-  }
+  });
   // небольшие фиксы
   result.maxLevel = result.maxLevel.length;
   result.Name = star + 'StarSectors';
@@ -59,7 +62,7 @@ export default function(obj) {
   // добавить записи в конец, для соотвествия уровня
   function endObj() {
     const length = getLength(result['maxLevel']);
-    for (const key in result) {
+    Object.keys(result).forEach((key) => {
       for (let i = 0; i < length; i++) {
         if (Array.isArray(result[key]) && result[key].length < length) {
           result[key].push(getType(result[key][0]));
@@ -67,9 +70,9 @@ export default function(obj) {
 
         }
       }
-    }
+    });
   }
-  function addScannerInfo(scanner, scanners) {
+  function addScannerInfo(scanner) {
     const ststs = ['SectorUnlockCost', 'SectorUnlockTime'];
     if (result[ststs[0]] === undefined) {
       for (const i of ststs) {
@@ -77,21 +80,21 @@ export default function(obj) {
       }
     }
     for (const i of ststs) {
-      result[i].push(scanners[i][scanner]);
+      result[i].push(scannersData[i][scanner]);
     }
   }
   function addCerberus(cerb) {
     if (!cerb) return;
     const cerbObj = () => {
       const r = cerberusData[cerb];
-      for (let i in r) {
+      Object.keys(r).forEach((i) => {
         const data = r[i];
         delete r[i];
         if (!ignoringHeaders.includes(i)) {
           i = i.replace(/Num(\w*)/, '$1');
           r[i] = data;
         }
-      }
+      });
       return r;
     };
     if (!Array.isArray(result.CerbGroup)) result.CerbGroup = [result.CerbGroup];

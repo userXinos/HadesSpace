@@ -6,6 +6,12 @@ export default function globals(obj) {
   }
   return obj;
 };
+
+/**
+ * Получить глобальные которые содержат искомую строчку
+ * @param  {String} str   Искомая строчка
+ * @return {Object}       Все совпадения
+ */
 export function getGlobalsBy(str) {
   const obj = globals(readCsv('globals'));
   const result = {};

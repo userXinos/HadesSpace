@@ -27,7 +27,7 @@ Promise.all(promises)
       console.log('\x1b[32m[✓]\x1b[0m', `Готово! (${time} сек.)`);
     })
     .catch((error) => {
-      console.log('\x1b[31m❌[❌❌х]\x1b[0m', `Ошибки в выполнении.`, error, error.stack);
+      console.log('\x1b[31m❌[х]\x1b[0m', `Ошибки в выполнении.`, error, error.stack);
       process.exit(-1);
     });
 

@@ -24,8 +24,8 @@ export default function(obj) {
   }
   for (const a of Object.keys(result)) {
     const obj1 = result[a];
-    const minArr = obj1.BlueprintsMin;
-    const maxArr = obj1.BlueprintsMax;
+    const minArr = obj1['BlueprintsMin'];
+    const maxArr = obj1['BlueprintsMax'];
     const blueprints = new NestedRawJson(); // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
 
     obj1.pushArrays('Credits', 'CreditsMin', 'CreditsMax');

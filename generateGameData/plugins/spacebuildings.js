@@ -1,40 +1,54 @@
-export default function(obj) {
-  const timeFixModifiers = {
-    ConstructionTimeSeconds: 1,
-    ConstructionTimeMinutes: 60,
-    ConstructionTimeHours: 3600,
-  };
-  const newValue = 'ConstructionTime';
+const timeFixModifiers = {
+  ConstructionTimeSeconds: 1,
+  ConstructionTimeMinutes: 60,
+  ConstructionTimeHours: 3600,
+};
 
-  for (const key of Object.keys(obj)) {
+export default function(obj) {
+  Object.keys(obj).forEach((key) => {
     const obj1 = obj[key];
-    for (const k of Object.keys(obj1)) {
-      if (Object.keys(timeFixModifiers).includes(k)) {
-        if (obj1[newValue] === undefined) {
-          obj1[newValue] = [];
-        }
-        if (Array.isArray(obj1[k])) {
-          obj1[k].forEach((e, i) => {
-            obj1[newValue].push(obj1[k][i] * timeFixModifiers[k]);
-          });
-        } else {
-          obj1[newValue].push(obj1[k] * timeFixModifiers[k]);
-        }
-        delete obj1[k];
+
+    fixTime(obj1);
+    fixRelayTp(obj1);
+    obj1.fillSpace();
+  });
+  obj['TimeModulator'].Model = 'TimeModulator';
+  return obj;
+};
+function fixTime(obj) {
+  let result = [];
+  const keysMatches = Object.keys(obj)
+      .filter((key) => Object.keys(timeFixModifiers).includes(key));
+
+  if (keysMatches.length) {
+    keysMatches.sort((a, b) => {
+      return timeFixModifiers[a] - timeFixModifiers[b];
+    });
+    keysMatches.forEach((key) => {
+      if (Array.isArray(obj[key])) {
+        result = result.concat(
+            obj[key].map((e) => e * timeFixModifiers[key]),
+        );
+      } else {
+        result.push(obj[key] * timeFixModifiers[key]);
       }
-      if (k === 'TeleportShipmentsDurationHr') {
-        obj1[k].forEach((e, i, arr) => {
+      delete obj[key];
+    });
+    if (result.length > 1) {
+      obj['ConstructionTime'] = result;
+    } else {
+      obj['ConstructionTime'] = result[0];
+    }
+  }
+}
+function fixRelayTp(obj) {
+  if (obj.Name === 'ShipmentRelay') {
+    Object.keys(obj).forEach((key) => {
+      if (key === 'TeleportShipmentsDurationHr') {
+        obj[key].forEach((e, i, arr) => {
           arr[i] = e * timeFixModifiers.ConstructionTimeHours;
         });
       }
-    }
-    for (const k of Object.keys(obj1)) { // исправить исправления) TODO рефакторинг
-      if (obj1[newValue] !== undefined && obj1[newValue].length === 1) {
-        obj1[newValue] = obj1[newValue][0];
-      }
-    }
-    obj1.fillSpace();
+    });
   }
-  obj.TimeModulator.Model = 'TimeModulator';
-  return obj;
-};
+}
