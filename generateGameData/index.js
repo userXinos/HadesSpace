@@ -6,18 +6,27 @@ import {wipeDir, walkDir} from './modules/dirUtils.js';
 import loadFile from './modules/loadFile.js';
 import saveFile from './modules/saveFile.js';
 import fixOrder from './modules/fixOrder.js';
+import {Command} from 'commander';
 
-global.ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
+const program = new Command();
 const startTime = new Date().getTime();
 const pathCSVs = join('./rawData/');
 const pathSave = join('./data/');
 const optionalFiles = ['projectiles.csv', 'ship_spawners.csv', 'solar_system_gen_data.csv'].map((e) => join(pathCSVs, e));
-let files = process.argv.slice(2);
+global.ignoringHeaders = ['maxLevel', 'Name', 'TID', 'TID_Description', 'Icon', 'SlotType', 'Model'];
+let files;
 
-if (!files.length) {
+program
+    .version('0.0.1')
+    .option('-t, --type <type>', 'Type files')
+    .parse(process.argv);
+
+if (!program.args.length) {
   wipeDir(pathSave);
   files = walkDir(pathCSVs)
       .filter((e) => (e !== undefined && !optionalFiles.includes(e) && e.endsWith('.csv')));
+} else {
+  files = program.args;
 }
 
 const promises = files.map(loadSaveFile);
@@ -36,7 +45,7 @@ function loadSaveFile(file) {
       .then((data) => {
         return loadFile(file, data)
             .then((data) => fixOrder(data))
-            .then((data) => saveFile(data))
+            .then((data) => saveFile(data, program.type))
             .catch((err) => {
               throw err;
             });
