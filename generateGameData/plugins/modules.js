@@ -1,13 +1,14 @@
-'use strict';
+import {readCsv} from '../modules/loadFile.js';
+import globals from './globals.js';
+import {isHide, isWhiteListBS} from '../modules/fixValue.js';
 
-const globals = require('./globals.js');
 const starHeaders = ['EffectDurationx10', 'ActivationDelay', 'ActivationPrep', 'MaxDPSTime', 'APTPIOTTP', 'DisableTime', 'ProximityTriggerSec'];
 
-module.exports = function(main, obj) {
-  const shipsData = main.readCSV('capital_ships');
-  const projectilesData = main.readCSV('projectiles');
-  const artifacts = main.readCSV('artifacts');
-  const globalsData = globals(main, main.readCSV('globals'));
+export default function(obj) {
+  const shipsData = readCsv('capital_ships');
+  const projectilesData = readCsv('projectiles');
+  const artifacts = readCsv('artifacts');
+  const globalsData = globals(readCsv('globals'));
   ['Recoil', 'Immolation', 'EMPRocket'].forEach((e) => obj[e].ShowWSInfo = 1);
 
   for (const key in obj) {
@@ -15,7 +16,7 @@ module.exports = function(main, obj) {
 
     // добавить глобальные к модулям
     Object.keys(globalsData).forEach((e) => {
-      if (e.includes(key) && !main.isHide('globals', e)) {
+      if (e.includes(key) && !isHide('globals', e)) {
         obj1[e] = globalsData[e];
       }
     });
@@ -26,13 +27,13 @@ module.exports = function(main, obj) {
 
         if (!art.BlueprintTypes) continue;
         const types = art.BlueprintTypes.split('!');
-        if (art.MaxModuleLevelToAward == obj1.AwardLevel && types.includes(obj1.SlotType)) {
+        if (art.MaxModuleLevelToAward === obj1.AwardLevel && types.includes(obj1.SlotType)) {
           obj1.TID_Artifact = art.TID;
         }
       }
     }
     // добавить projectiles к ракетоподобным
-    if (obj1.WeaponEffectType == 'projectile') {
+    if (obj1.WeaponEffectType === 'projectile') {
       obj[key].combineWith(projectilesData[obj1.WeaponFx]);
     }
     // добавить данные дронов
@@ -90,15 +91,14 @@ module.exports = function(main, obj) {
 
   // фикс модулей, добавление БЗ/ГЗ стат
   function addStarInfo(obj, star) {
-    const isHide = main.isHide;
-    const coefficient = (v) => (star == 'WS') ? v * 600 : v * 2;
+    const coefficient = (v) => (star === 'WS') ? v * 600 : v * 2;
     const check = obj[`Show${star}Info`];
 
     delete obj[`Show${star}Info`];
-    if (check != 1) return;
+    if (check !== 1) return;
     for (const stata in obj) {
       if (starHeaders.includes(stata)) {
-        if (star == 'BS' && !main.isWhiteListBS(stata, obj.Name)) continue; // пока тлоько для ГЗ
+        if (star === 'BS' && !isWhiteListBS(stata, obj.Name)) continue; // пока тлоько для ГЗ
         if (!Object.keys(obj).includes(stata + star)) {
           const value = obj[stata];
 

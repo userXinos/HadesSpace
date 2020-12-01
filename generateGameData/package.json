@@ -1,6 +1,7 @@
 {
   "name": "generate-game-data",
   "private": true,
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
@@ -23,7 +24,7 @@
     "extends": "google",
     "parserOptions": {
       "ecmaVersion": 11,
-      "sourceType":"module"
+      "sourceType": "module"
     },
     "rules": {
       "max-len": 0,

@@ -1,7 +1,9 @@
-'use strict';
+import byTypes from './modification/byTypes.js';
+import renameKeys from '../modules/renameKeys.js';
+import NestedRawJson from '../modules/NestedRawJson.js';
 
-module.exports = function(main, obj) {
-  const whiteList = main.dataByTypes.player_goals.all;
+export default function(obj) {
+  const whiteList = byTypes.player_goals.all;
   const newKeys = {
     CRRewardPerDay: 'CRReward',
     FuelRewardPerDay: 'FuelReward',
@@ -15,9 +17,9 @@ module.exports = function(main, obj) {
   for (const key of Object.keys(obj)) {
     const obj1 = obj[key];
 
-    obj1.fillSpace( ' ', 'push');
+    obj1.fillSpace( ' ', true);
     if (!whiteList.includes(key)) continue;
-    if (key == 'SalvageArtifacts') { // фикс значения "уровень арта", не удобно форматировать и локализировать
+    if (key === 'SalvageArtifacts') { // фикс значения "уровень арта", не удобно форматировать и локализировать
       obj1.artLevel = [];
       obj1.StringParam.forEach((e) => {
         obj1.artLevel.push(e.split('!')[0]);
@@ -39,23 +41,23 @@ module.exports = function(main, obj) {
         } else {
           obj1[i] = obj1[i] * obj1.TimeLimitDays;
         }
-        obj[key] = main.renameKeys(obj1, newKeys);
+        obj[key] = renameKeys(obj1, newKeys);
       }
     }
     if (key.startsWith('WinBSWith')) { // собрать квесты ГЗ в одну таблицу
       const obj1 = obj[key];
       for (const i in obj1) {
-        if (obj.WinBSWith == undefined) {
-          obj.WinBSWith = new main.NestedRawJson;
+        if (obj.WinBSWith === undefined) {
+          obj.WinBSWith = new NestedRawJson;
         }
         const WinBSWith = obj.WinBSWith;
 
         WinBSWith.Name = 'WinBSWith';
         if (ignoringHeaders.includes(i) || ['TimeLimitDays', 'GoalTarget'].includes(i)) {
-          if (i != 'maxLevel') {
+          if (i !== 'maxLevel') {
             WinBSWith[i] = obj1[i];
           } else {
-            if (WinBSWith.maxLevel != undefined) {
+            if (WinBSWith.maxLevel !== undefined) {
               WinBSWith.maxLevel++;
             } else {
               WinBSWith.maxLevel = 1;
@@ -70,7 +72,7 @@ module.exports = function(main, obj) {
           }
         }
       }
-      obj.WinBSWith.fillSpace(' ', 'push');
+      obj.WinBSWith.fillSpace(' ', true);
       delete obj[key];
     }
   }

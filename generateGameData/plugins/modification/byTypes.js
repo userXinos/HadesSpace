@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+export default {
   modules: {
     trade: ['TransportCapacity', 'ShipmentComputer', 'Trader', 'Rush', 'TradeBurst', 'ShipmentDrone', 'Offload', 'ShipmentBeam', 'Entrust', 'Dispatch', 'Recall'],
     mining: ['MiningBoost', 'MineralStorageCapacity', 'Enrich', 'MassMining', 'HydrogenUpload', 'MiningUnity', 'Crunch', 'Genesis', 'HydroRocket', 'MiningDrone'],

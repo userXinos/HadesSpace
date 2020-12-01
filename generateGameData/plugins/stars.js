@@ -1,20 +1,21 @@
-'use strict';
+import {getGlobalsBy} from './globals.js';
+import {readCsv} from '../modules/loadFile.js';
+import combineObjects from '../modules/combineObjects.js';
+import fixValue from '../modules/fixValue.js';
 
-const globals = require('./globals.js');
-
-module.exports = function(main, obj) {
-  const solarSysGenData = main.readCSV('solar_system_gen_data');
+export default function(obj) {
+  const solarSysGenData = readCsv('solar_system_gen_data');
   const globalsData = {
-    BlueStar: globals.getGlobalsBy(main, 'BlueStar_'),
-    WhiteStar: globals.getGlobalsBy(main, 'WS'),
-    RedStar: globals.getGlobalsBy(main, 'RS'),
+    BlueStar: getGlobalsBy('BlueStar_'),
+    WhiteStar: getGlobalsBy('WS'),
+    RedStar: getGlobalsBy('RS'),
   };
 
   Object.keys(obj).forEach((key) =>{
-    let obj1 = (solarSysGenData[key]) ? main.combineObjects(obj[key], solarSysGenData[key]) : obj[key];
+    let obj1 = (solarSysGenData[key]) ? combineObjects(obj[key], solarSysGenData[key]) : obj[key];
 
     if (key in globalsData) { // добавить "globals"
-      obj1 = main.combineObjects(obj1, globalsData[key]);
+      obj1 = combineObjects(obj1, globalsData[key]);
     }
     delete obj.RedStar.GhostSpawnSecs; // лучше пусть будет в ships
     delete obj1.Models;
@@ -26,7 +27,7 @@ module.exports = function(main, obj) {
       if (Array.isArray(obj1[i]) || ignoringHeaders.includes(i)) continue;
       const arr = String(obj1[i])
           .split('!')
-          .map((e) => main.fixValue(key, i, e))
+          .map((e) => fixValue(key, i, e))
           .filter((e) => (e != null));
 
       if (arr.length > 1) {
@@ -34,13 +35,13 @@ module.exports = function(main, obj) {
         if (arr.length > obj1.maxLevel) {
           obj1.maxLevel = arr.length;
         }
-      } else if (arr.length == 1) {
+      } else if (arr.length === 1) {
         obj1[i] = arr[0];
       } else {
         delete obj1[i];
       }
     }
-    if (key == 'WhiteStar') {
+    if (key === 'WhiteStar') {
       const matrix = [];
       const keys = Object.keys(obj1);
       const regex = /Score(\d+?)Thresholds/;

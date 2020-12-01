@@ -1,10 +1,11 @@
-'use strict';
+import {readCsv} from '../modules/loadFile.js';
+import byTypes from './modification/byTypes.js';
 
-module.exports = function(main, obj) {
-  const planets = main.readCSV('planets');
+export default function(obj) {
+  const planets = readCsv('planets');
   const names = [];
 
-  main.dataByTypes.planets.yellowstar.forEach((item) => {
+  byTypes.planets.yellowstar.forEach((item) => {
     names.push(planets[item].TID);
   });
   obj.TID = names;

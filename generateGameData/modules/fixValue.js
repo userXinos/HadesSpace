@@ -1,5 +1,4 @@
-'use strict';
-module.exports = function(name, header, value) { // скрыть/исправить значения для красоты результата
+export default function(name, header, value) { // скрыть/исправить значения для красоты результата
   const data = [
     {
       header: ['HealRate'],
@@ -59,7 +58,7 @@ module.exports = function(name, header, value) { // скрыть/исправи�
   ];
 
   if (ignoringHeaders.includes(header)) return value;
-  if (module.exports.isHide(name, header)) return null;
+  if (isHide(name, header)) return null;
   for (const i in data) {
     const obj1 = data[i];
     if (obj1.header.includes(header)) {
@@ -71,7 +70,7 @@ module.exports = function(name, header, value) { // скрыть/исправи�
   }
   return value;
 };
-module.exports.isHide = function(name, header, isStrict = false) { // скрывает невалидные данные: "0", " " или просто ненужные,  strict - скрыть валидные данные (2я проверка)
+export function isHide(name, header, isStrict = false) { // скрывает невалидные данные: "0", " " или просто ненужные,  strict - скрыть валидные данные (2я проверка)
   const data1 = [
     {
       name: ['WeakBattery'],
@@ -168,7 +167,7 @@ module.exports.isHide = function(name, header, isStrict = false) { // скрыв
   }
   return false;
 };
-module.exports.isWhiteListBS = function(header, name) {
+export function isWhiteListBS(header, name) {
   const data = [
     {
       headers: ['ActivationPrep'],

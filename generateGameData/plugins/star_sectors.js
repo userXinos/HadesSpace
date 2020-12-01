@@ -1,11 +1,12 @@
-'use strict';
+import {readCsv} from '../modules/loadFile.js';
+import RawJson from '../modules/RawJson.js';
 
-module.exports = function(main, obj) {
+export default function(obj) {
   const star = obj.metadata.originalFile.replace(/.*\/(.+)_star_sectors\..+$/, '$1');
-  const scannersData = main.readCSV('spacebuildings').ShortRangeScanner;
-  const cerberusData = main.readCSV('cerb_groups');
-  const cerberusStationsData = main.readCSV('cerberus_stations');
-  const result = new main.RawJson();
+  const scannersData = readCsv('spacebuildings').ShortRangeScanner;
+  const cerberusData = readCsv('cerb_groups');
+  const cerberusStationsData = readCsv('cerberus_stations');
+  const result = new RawJson();
 
   for (let name of Object.keys(obj)) {
     name = obj[name];
@@ -13,7 +14,7 @@ module.exports = function(main, obj) {
       const value = name[key];
       const stockValue = result[key];
 
-      if (stockValue == undefined || stockValue === '') {
+      if (stockValue === undefined || stockValue === '') {
         startObj(key, value);
       } else {
         if (Array.isArray(stockValue)) {
@@ -24,7 +25,7 @@ module.exports = function(main, obj) {
         }
       }
     }
-    if (star == 'yellow') addScannerInfo(name.MinScannerLevel, scannersData);
+    if (star === 'yellow') addScannerInfo(name.MinScannerLevel, scannersData);
     addCerberus(name.CerbGroup);
     fixCerbBaseName(name.BaseType);
     endObj();
@@ -32,7 +33,7 @@ module.exports = function(main, obj) {
   // небольшие фиксы
   result.maxLevel = result.maxLevel.length;
   result.Name = star + 'StarSectors';
-  if (result.MinScannerLevel != undefined) {
+  if (result.MinScannerLevel !== undefined) {
     result.MinScannerLevel.forEach((e, i, arr) => {
       if (e !== ' ') arr[i] = e + 1;
     });
@@ -70,7 +71,7 @@ module.exports = function(main, obj) {
   }
   function addScannerInfo(scanner, scanners) {
     const ststs = ['SectorUnlockCost', 'SectorUnlockTime'];
-    if (result[ststs[0]] == undefined) {
+    if (result[ststs[0]] === undefined) {
       for (const i of ststs) {
         result[i] = [];
       }
@@ -107,7 +108,7 @@ function getType() {
   return ' ';
 }
 function getLength(v, r = null) {
-  if (v != undefined) {
+  if (v !== undefined) {
     r = v.length;
   }
   return r || 0;

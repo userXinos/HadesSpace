@@ -1,18 +1,21 @@
-'use strict';
+import RawJson from '../modules/RawJson.js';
+import NestedRawJson from '../modules/NestedRawJson.js';
+import byTypes from './modification/byTypes.js';
+import compileOne from '../modules/compileOne.js';
 
-module.exports = function(main, obj) {
-  const result = new main.RawJson;
-  const artsTypes = main.dataByTypes.artifacts.data;
-  const tableNames = main.dataByTypes.artifacts.blueprints;
+export default function(obj) {
+  const result = new RawJson;
+  const artsTypes = byTypes.artifacts.data;
+  const tableNames = byTypes.artifacts.blueprints;
 
   for (const name of artsTypes) {
-    const obj1 = new main.NestedRawJson;
+    const obj1 = new NestedRawJson;
 
     Object.keys(obj) // собрать объекты одного типа в одном месте
         .filter((e) => (e.startsWith(name)))
         .forEach((k) => obj1[k] = obj[k]);
 
-    result[name] = main.compileOne(obj1);
+    result[name] = compileOne(obj1);
     result[name].Name = name;
     result[name].TID_Description = result[name].TID_Description[0];
     result[name].MaxModuleLevelToAward = result[name].MaxModuleLevelToAward[0];
@@ -23,7 +26,7 @@ module.exports = function(main, obj) {
     const obj1 = result[a];
     const minArr = obj1.BlueprintsMin;
     const maxArr = obj1.BlueprintsMax;
-    const blueprints = new main.NestedRawJson(); // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
+    const blueprints = new NestedRawJson(); // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
 
     obj1.pushArrays('Credits', 'CreditsMin', 'CreditsMax');
     obj1.pushArrays('Hydrogen', 'HydrogenMin', 'HydrogenMax');
@@ -38,7 +41,7 @@ module.exports = function(main, obj) {
     }
     const i = Object.keys(result).indexOf(a);
     blueprints.maxLevel = obj1.maxLevel;
-    result[tableNames[i]] = blueprints.fillSpace(' ', 'push');
+    result[tableNames[i]] = blueprints.fillSpace(' ', true);
     result[tableNames[i]]['Name'] = tableNames[i];
     ['BlueprintsMin', 'BlueprintsMax'].forEach((e) => delete obj1[e]);
   }

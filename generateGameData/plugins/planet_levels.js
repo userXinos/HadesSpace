@@ -1,5 +1,5 @@
-'use strict';
+import compileOne from '../modules/compileOne.js';
 
-module.exports = function(main, obj) {
-  return main.compileOne(obj);
+export default function(obj) {
+  return compileOne(obj);
 };

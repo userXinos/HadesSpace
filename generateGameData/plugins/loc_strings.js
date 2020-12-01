@@ -1,27 +1,30 @@
-'use strict';
-
-const fs = require('fs');
-const YAML = require('yaml');
-const path = require('path');
+import {existsSync, readFileSync} from 'fs';
+import {join} from 'path';
+import YAML from 'yaml';
+import RawJson from '../modules/RawJson.js';
 
 const defaultLang = 'en';
-const homePath = path.join(__dirname, '/modification/loc_strings/');
+const homePath = join('./plugins/loc_strings/');
 
-module.exports = function(main, json) {
+export default function(json) {
   const lang = json.metadata.originalFile.replace(/.*\/loc_strings_(.+)\..+$/, '$1');
 
-  for (const k in json) {
-    const key = k.replace(/"/g, '');
-    json[key] = json[k]['value'].replace(/"/g, '');
-    delete json[k];
-  }
+  const newJson = new RawJson();
+  Object.defineProperty(newJson,
+      'metadata', { // скрытый объект от перебора
+        configurable: true,
+        writable: true,
+        value: json.metadata,
+      });
+  Object.keys(json).forEach((i) => {
+    newJson[json[i].key] = (json[i].value) ? json[i].value : ''; // в оригинальных таблицах есть пустые значения
+  });
   const trashStrings = getYaml('trashStrings').file;
   const upperCaseKeys = getYaml('upperCaseKeys').file;
   const customDesc = getYaml(`add content/${lang}/customDesc`);
-  // json.metadata.saveAs = json.metadata.saveAs.replace(/loc_strings_(.+)\.(js)$/, '$1.json');
   json.metadata.saveAs = json.metadata.saveAs.replace(/loc_strings_(.+)\.(js)$/, '$1.js');
 
-  return addContent(fixStrings(json));
+  return addContent(fixStrings(newJson));
 
   // исправить регистр строк, убрать лишние
   function fixStrings(obj) {
@@ -39,7 +42,7 @@ module.exports = function(main, json) {
       let result = rawStr.toLowerCase();
 
       result = result.replace(/(«)(\W)/g,
-          (math, symb, w) => symb + w.toUpperCase());
+          (math, s, w) => s + w.toUpperCase());
       for (const key of upperCaseKeys) {
         const w = obj[key];
         // const regex = /(?<=[\s,.:;"']|^)+w+(?=[\s,.:;"']|$)/gi;
@@ -48,7 +51,7 @@ module.exports = function(main, json) {
 
         result = result.replace(regex, w);
       }
-      if (firstLetterRaw.toUpperCase() == firstLetterRaw) { // первая буква была заглавной ?
+      if (firstLetterRaw.toUpperCase() === firstLetterRaw) { // первая буква была заглавной ?
         const firstLetter = result.slice(0, 1);
         result = result.replace(firstLetter, firstLetter.toUpperCase());
       }
@@ -115,17 +118,17 @@ module.exports = function(main, json) {
   function getYaml(pathFile) {
     let replaced = false;
 
-    if (!fs.existsSync(path.join(homePath, pathFile) + '.yaml')) {
+    if (!existsSync(join(homePath, pathFile) + '.yaml')) {
       const oldPath = pathFile;
       replaced = true;
 
       pathFile = pathFile.replace(new RegExp(lang), defaultLang);
-      console.log(`Замена "${path.relative(__dirname, path.join(homePath, oldPath))}.yaml" => 
-                "${path.relative(__dirname, path.join(homePath, pathFile))}.yaml"`);
+      console.log(`Замена "${join(homePath, oldPath)}.yaml" => 
+                "${join(homePath, pathFile)}.yaml"`);
     }
     return {
       file: YAML.parse(
-          fs.readFileSync(`${path.join(homePath, pathFile)}.yaml`, 'utf8'),
+          readFileSync(`${join(homePath, pathFile)}.yaml`, 'utf8'),
       ),
       replaced,
     };

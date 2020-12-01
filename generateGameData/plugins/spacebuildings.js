@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function(m, obj) {
+export default function(obj) {
   const timeFixModifiers = {
     ConstructionTimeSeconds: 1,
     ConstructionTimeMinutes: 60,
@@ -12,7 +10,7 @@ module.exports = function(m, obj) {
     const obj1 = obj[key];
     for (const k of Object.keys(obj1)) {
       if (Object.keys(timeFixModifiers).includes(k)) {
-        if (obj1[newValue] == undefined) {
+        if (obj1[newValue] === undefined) {
           obj1[newValue] = [];
         }
         if (Array.isArray(obj1[k])) {
@@ -24,14 +22,14 @@ module.exports = function(m, obj) {
         }
         delete obj1[k];
       }
-      if (k == 'TeleportShipmentsDurationHr') {
+      if (k === 'TeleportShipmentsDurationHr') {
         obj1[k].forEach((e, i, arr) => {
           arr[i] = e * timeFixModifiers.ConstructionTimeHours;
         });
       }
     }
     for (const k of Object.keys(obj1)) { // исправить исправления) TODO рефакторинг
-      if (obj1[newValue] != undefined && obj1[newValue].length == 1) {
+      if (obj1[newValue] !== undefined && obj1[newValue].length === 1) {
         obj1[newValue] = obj1[newValue][0];
       }
     }

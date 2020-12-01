@@ -1,9 +1,10 @@
-'use strict';
+import {readCsv} from '../modules/loadFile.js';
+import byTypes from './modification/byTypes.js';
 
-module.exports = function(main, obj) {
-  const cerberusList = main.dataByTypes.capital_ships.cerberus;
-  const shipSpawners = main.readCSV('ship_spawners');
-  const GhostSpawnSecs = main.readCSV('solar_system_gen_data').RedStar.GhostSpawnSecs;
+export default function(obj) {
+  const cerberusList = byTypes.capital_ships.cerberus;
+  const shipSpawners = readCsv('ship_spawners');
+  const GhostSpawnSecs = readCsv('solar_system_gen_data').RedStar.GhostSpawnSecs;
 
   cerberusList.forEach((e) => {
     fixModulesShipsData(obj, e, 'InitialModule', 'InitialModuleLevels');
