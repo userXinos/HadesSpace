@@ -2,14 +2,11 @@
 
 let data = {
   Name: "blueStarSectors",
-  AsteroidsMax: [3, 8, 6, 7],
-  maxLevel: 4,
-  CerbGroup_RS3: [" ", " ", "BSR3_1", "BSR3_2", "BSR3_3"],
-  CerbGroup_RS4: [" ", " ", "BSR4_1", "BSR4_2", "BSR4_3"],
-  CerbGroup_RS5: [" ", " ", "BSR5_1", "BSR5_2", "BSR5_3"],
-  CerbGroup_RS6: [" ", " ", "BSR5_1", "BSR5_2", "BSR5_3"],
-  CerbGroup_RS7: [" ", " ", "BSR7_1", "BSR7_2", "BSR7_3"],
-  CerbGroup_RS8: [" ", " ", "BSR7_1", "BSR7_2", "BSR7_3"],
+  AsteroidsMax: [3, 8, 6, 7, " "],
+  maxLevel: 5,
+  CerbGroup_Low: [" ", " ", "BSR4_1", "BSR4_2", "BSR4_3", "BSR4_C"],
+  CerbGroup_Mid: [" ", " ", "BSR5_1", "BSR5_2", "BSR5_3", "BSR5_C"],
+  CerbGroup_High: [" ", " ", "BSR7_1", "BSR7_2", "BSR7_3", "BSR7_C"],
 };
 
 module.exports = { data };

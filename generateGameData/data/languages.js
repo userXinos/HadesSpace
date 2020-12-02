@@ -72,7 +72,6 @@ let data = {
     UnityLocale: "japanese",
     SteamLocale: "japanese",
     SteamCode: "ja",
-    OverrideBestFit: 1,
   },
   简体中文: {
     Name: "简体中文",
@@ -81,7 +80,6 @@ let data = {
     UnityLocale: "chinese",
     SteamLocale: "schinese",
     SteamCode: "zh-CN",
-    OverrideBestFit: 1,
   },
 };
 

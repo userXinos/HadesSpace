@@ -101,6 +101,11 @@ export default [
   'ShipAIHandler',
   'AIUpdateIntervalSeconds',
   'AggressiveAI',
+  'CUnitShipmentScaleY',
+  'CUnitShipmentSpacingY',
+  'CShipmentSizeMin',
+  'CShipmentSizeMax',
+  'HideModulesOnHUD',
   '',
   'RushCostModifier', // ???
 ];

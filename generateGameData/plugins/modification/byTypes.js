@@ -1,17 +1,17 @@
 export default {
   modules: {
-    trade: ['TransportCapacity', 'ShipmentComputer', 'Trader', 'Rush', 'TradeBurst', 'ShipmentDrone', 'Offload', 'ShipmentBeam', 'Entrust', 'Dispatch', 'Recall'],
+    trade: ['TransportCapacity', 'ShipmentComputer', 'Trader', 'Rush', 'TradeBurst', 'ShipmentDrone', 'Offload', 'ShipmentBeam', 'Entrust', 'Dispatch', 'Recall', 'RelicDrone'],
     mining: ['MiningBoost', 'MineralStorageCapacity', 'Enrich', 'MassMining', 'HydrogenUpload', 'MiningUnity', 'Crunch', 'Genesis', 'HydroRocket', 'MiningDrone'],
     weapon: ['WeakBattery', 'Battery', 'Laser', 'MassBattery', 'DualLaser', 'Barrage', 'DartLauncher'],
     shield: ['WeakShield', 'StandardShield', 'PassiveShield', 'StrongShield', 'MirrorShield', 'BlastShield', 'AreaShield'],
     support: ['EMP', 'Teleport', 'RedStarExtender', 'Repair', 'TimeWarp', 'Unity', 'Sanctuary', 'Stealth', 'Fortify', 'Impulse', 'AlphaRocket', 'Salvage', 'Supress', 'Destiny', 'Barrier', 'Vengeance', 'DeltaRocket', 'Leap', 'Bond', 'AlphaDrone', 'Suspend', 'OmegaRocket', 'RemoteBomb'],
     cerberus: ['GuardianBattery', 'WeakBattery', 'InterceptorMBattery', 'ColossusLaser', 'DestroyerVengeance', 'BomberLauncher', 'PhoenixShield', 'DartBarrage', 'HydraBarrage'],
-    flagship: ['Recoil', 'Immolation', 'EMPRocket'],
+    flagship: ['Recoil', 'Immolation', 'EMPRocket', 'FlagshipDartBarrage', 'FlagshipAreaShield'],
   },
   capital_ships: {
     player: ['Transport', 'Miner', 'Battleship', 'CorpFlagship'],
     cerberus: ['CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts', 'CerberusHydra', 'Hydraling1', 'Hydraling2'],
-    drones: ['ShipmentDrone', 'MiningDrone', 'AlphaDrone'],
+    drones: ['ShipmentDrone', 'MiningDrone', 'AlphaDrone', 'RelicDrone'],
   },
   planets: {
     yellowstar: ['desert_lv1', 'lava_lv1', 'water_lv1', 'terran_lv1', 'gas_lv1', 'terran_lv2', 'lava_lv2', 'water_lv2', 'gas_lv2', 'desert_lv2', 'lava_lv3', 'desert_lv3', 'water_lv3', 'terran_lv3', 'ice_variation1', 'ice_variation2'],

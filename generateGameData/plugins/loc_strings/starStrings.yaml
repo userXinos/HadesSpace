@@ -31,3 +31,5 @@ TID_MODULE_TRIGGER_TIME:
 TID_MODULE_SALVAGE_HULL_DESCR:
     - SalvageHullPercentWS
     - SalvageHullPercentBS
+RelicLoad:
+    - RelicLoadWS

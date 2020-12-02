@@ -3,10 +3,11 @@ import NestedRawJson from '../modules/NestedRawJson.js';
 import byTypes from './modification/byTypes.js';
 import compileOne from '../modules/compileOne.js';
 
+const artsTypes = byTypes.artifacts.data;
+const tableNames = byTypes.artifacts.blueprints;
+
 export default function(obj) {
   const result = new RawJson;
-  const artsTypes = byTypes.artifacts.data;
-  const tableNames = byTypes.artifacts.blueprints;
 
   for (const name of artsTypes) {
     const obj1 = new NestedRawJson;
@@ -19,32 +20,13 @@ export default function(obj) {
     result[name].Name = name;
     result[name].TID_Description = result[name].TID_Description[0];
     result[name].MaxModuleLevelToAward = result[name].MaxModuleLevelToAward[0];
-    // result[name].BlueprintTypes = result[name].BlueprintTypes[0]
     ['BlueprintTypes', 'Model', 'MaxModuleLevelToAward'].forEach((e) => delete result[name][e]);
   }
-  for (const a of Object.keys(result)) {
-    const obj1 = result[a];
-    const minArr = obj1['BlueprintsMin'];
-    const maxArr = obj1['BlueprintsMax'];
-    const blueprints = new NestedRawJson(); // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
-
-    obj1.pushArrays('Credits', 'CreditsMin', 'CreditsMax');
-    obj1.pushArrays('Hydrogen', 'HydrogenMin', 'HydrogenMax');
-    for (let i = 0; i < minArr.length; i++) {
-      const min = String(minArr[i]).split('!');
-      const max = String(maxArr[i]).split('!');
-      const arr = [];
-      for (let j = 0; j < min.length; j++) {
-        arr.push(min[j] + '!' + max[j]);
-      }
-      blueprints[i + 1] = arr;
-    }
-    const i = Object.keys(result).indexOf(a);
-    blueprints.maxLevel = obj1.maxLevel;
-    result[tableNames[i]] = blueprints.fillSpace(' ', true);
-    result[tableNames[i]]['Name'] = tableNames[i];
-    ['BlueprintsMin', 'BlueprintsMax'].forEach((e) => delete obj1[e]);
-  }
+  Object.keys(result).forEach((a) => {
+    genTableBP(a, result);
+    result[a].pushArrays('Credits', 'CreditsMin', 'CreditsMax');
+    result[a].pushArrays('Hydrogen', 'HydrogenMin', 'HydrogenMax');
+  });
   Object.defineProperty(result,
       'metadata', { // скрытый объект от перебора
         configurable: true,
@@ -53,3 +35,29 @@ export default function(obj) {
       });
   return result;
 };
+
+function genTableBP(art, result) { // "таблица" Blueprints получилась большой, было принято решение сохранить отдельно
+  const obj = result[art];
+  const blueprints = new NestedRawJson();
+  const minArr = obj['BlueprintsMin'];
+  const maxArr = obj['BlueprintsMax'];
+
+  for (let i = 0; i < minArr.length; i++) {
+    const min = String(minArr[i]).split('!');
+    const max = String(maxArr[i]).split('!');
+    const arr = [];
+
+    for (let j = 0; j < min.length; j++) {
+      arr.push(min[j] + '!' + max[j]);
+    }
+    let index = i + 1;
+
+    if (obj.Name === 'Support') index++;
+    blueprints[index] = arr;
+  }
+  const i = Object.keys(result).indexOf(art);
+  blueprints.maxLevel = obj.maxLevel;
+  result[tableNames[i]] = blueprints.fillSpace(' ', true);
+  result[tableNames[i]]['Name'] = tableNames[i];
+  ['BlueprintsMin', 'BlueprintsMax'].forEach((e) => delete obj[e]);
+}

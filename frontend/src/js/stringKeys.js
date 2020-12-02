@@ -193,4 +193,6 @@ module.exports = {
   MaxTargets: 'TID_MODULE_MAX_TARGETS',
   MirrorDamagePct: 'TID_MODULE_MIRROR_DAMAGE_STAT',
   RedStarLifeExtention: 'TID_MODULE_RED_STAR_EXTENSION_STAT',
+  FlagshipShieldModule: 'TID_MODULE_FLAGSHIP_SHIELD',
+  FlagshipWeaponModule: 'TID_MODULE_FLAGSHIP_WEAPON',
 };

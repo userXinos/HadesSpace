@@ -168,6 +168,8 @@ function getType(header) {
       'SpawnFleetIntervalSeconds',
       'ShieldRegenTimeAfterDamage',
       'SectorEnrichCooldownSeconds',
+      'RelicLoad',
+      'RelicLoadWS',
     ],
     addAU: [
       'EffectRadiusWS',

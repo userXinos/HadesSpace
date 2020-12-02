@@ -13,48 +13,48 @@ const starHeaders = [
   'APTPIOTTP',
   'DisableTime',
   'ProximityTriggerSec',
+  'RelicLoad',
 ];
+const combineKeys = { // TODO
+  FlagshipDartBarrage: 'FlagshipWeaponModule',
+  FlagshipAreaShield: 'FlagshipShieldModule',
+};
 
 export default function(obj) {
-  ['Recoil', 'Immolation', 'EMPRocket'].forEach((e) => obj[e].ShowWSInfo = 1);
+  Object.keys(obj)
+      .filter((e) => !Object.values(combineKeys).includes(e))
+      .forEach((key) => {
+        const obj1 = obj[key];
 
-  Object.keys(obj).forEach((key) => {
-    const obj1 = obj[key];
+        addGlobals(key, obj1);
+        addArt(obj1);
+        addProjectiles(obj1, obj, key);
+        addDrones(obj1, obj, key);
+        addMaxBonusDS(obj1);
+        fixBarrage(obj1);
+        fixDestiny(obj1);
+        fixWSStats(obj1);
+        fixSalvage(obj1);
+        fixRelicLoad(obj1, obj, key);
+        combine(obj, key);
+        addStarInfo(obj1, 'WS');
+        addStarInfo(obj1, 'BS');
 
-    addGlobals(key, obj1);
-    addArt(obj1);
-    addProjectiles(obj1, obj, key);
-    addDrones(obj1, obj, key);
-    addMaxBonusDS(obj1);
-    fixBarrage(obj1);
-    fixDestiny(obj1);
-    fixWSStats(obj1);
-    fixSalvage(obj1);
-    addStarInfo(obj1, 'WS');
-    addStarInfo(obj1, 'BS');
-
-    ['WeaponEffectType', 'WeaponFx', 'Hide']
-        .forEach((e) => delete obj1[e]);
-  });
+        ['WeaponEffectType', 'WeaponFx', 'Hide']
+            .forEach((e) => delete obj1[e]);
+      });
 
   obj.TimeWarp.Icon = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
   obj['MiningBoost']['WhiteStarScore'].unshift(0); // ошибка в таблице, не хватает "0"
   obj['Destiny']['WhiteStarScore'].unshift(0); // ошибка в таблице, не хватает "0"
   obj['MiningDrone']['MiningSpeed'] = [29.1, 33.3, 37.5, 41.7, 45.8, 52.2, 58.8, 65.2, 74.1, 85.7]; // хз как считать это
+  obj['FlagshipDartBarrage']['TID_Description'] = obj['FlagshipDartBarrage']['TID_Description'][0]; // какие-то буквы лишние в таблице
   return obj;
 };
 
 // фикс модулей, добавление БЗ/ГЗ стат
 function addStarInfo(obj, star) {
   const coefficient = (v) => (star === 'WS') ? v * 600 : v * 2;
-  const showKey = 'Show' + star + 'Info';
-
-  if (obj[showKey] !== 1) {
-    delete obj[showKey];
-    return;
-  } else {
-    delete obj[showKey];
-  }
   Object.keys(obj).forEach((stata) => {
     if (starHeaders.includes(stata)) {
       if (star === 'BS' && !isWhiteListBS(stata, obj.Name)) return; // пока тлоько для ГЗ
@@ -101,7 +101,7 @@ function addProjectiles(obj, generalObj, key) {
   }
 }
 function addDrones(obj, generalObj, key) {
-  if (obj.SpawnLifetime) {
+  if (key.includes('Drone')) {
     generalObj[key].combineWith(shipsData[obj.Name]);
   }
 }
@@ -146,5 +146,17 @@ function fixDestiny(obj) {
     const arr = obj.DestinyDisableTimes.split('!');
     obj.DestinyDisableTimes = Number(arr[0]);
     obj.DestinyDisableTimesWS = Number(arr[1] / 6 * 3600);
+  }
+}
+function fixRelicLoad(obj, generalObj, key) {
+  if (obj['RelicLoadTicks']) {
+    obj.RelicLoad = obj['RelicLoadTicks'].map((e) => e / 5);
+    delete generalObj[key]['RelicLoadTicks'];
+  }
+}
+function combine(obj, key) {
+  if (Object.keys(combineKeys).includes(key)) {
+    obj[key].combineWith(obj[combineKeys[key]]);
+    delete obj[combineKeys[key]];
   }
 }

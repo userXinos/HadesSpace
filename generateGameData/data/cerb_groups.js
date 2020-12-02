@@ -874,6 +874,41 @@ let data = {
     NumStorm: 2,
     NumHydra: 1,
   },
+  BSR7_C1: {
+    Name: "BSR7_C1",
+    maxLevel: 1,
+    NumStorm: 1,
+  },
+  BSR7_C2: {
+    Name: "BSR7_C2",
+    maxLevel: 1,
+    NumBomber: 1,
+  },
+  BSR7_C3: {
+    Name: "BSR7_C3",
+    maxLevel: 1,
+    NumPhoenix: "0!1",
+  },
+  BSR5_C1: {
+    Name: "BSR5_C1",
+    maxLevel: 1,
+    NumColossus: 1,
+  },
+  BSR5_C2: {
+    Name: "BSR5_C2",
+    maxLevel: 1,
+    NumInterceptors: "0!1",
+  },
+  BSR5_C3: {
+    Name: "BSR5_C3",
+    maxLevel: 1,
+    NumColossus: 1,
+  },
+  BSR4_C1: {
+    Name: "BSR4_C1",
+    maxLevel: 1,
+    NumInterceptors: "0!1",
+  },
 };
 
 let byTypes = {
@@ -1003,6 +1038,13 @@ let byTypes = {
     "RSP11_3",
     "RSP11_4",
     "RSP11_5",
+    "BSR7_C1",
+    "BSR7_C2",
+    "BSR7_C3",
+    "BSR5_C1",
+    "BSR5_C2",
+    "BSR5_C3",
+    "BSR4_C1",
   ],
 };
 

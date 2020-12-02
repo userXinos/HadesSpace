@@ -31,6 +31,11 @@ let data = {
     maxLevel: 1,
     CreditType: 0,
   },
+  "John Fedorkiw": {
+    Name: "John Fedorkiw",
+    maxLevel: 1,
+    CreditType: 0,
+  },
   "1910 Design & Communication": {
     Name: "1910 Design & Communication",
     maxLevel: 1,
@@ -74,7 +79,7 @@ let data = {
 };
 
 let byTypes = {
-  default: ["John Kanaan", "Andreas Papathanasis", "Kristin Papathanasis", "Ash Sevilla", "Chris Michael Smith", "Gabriel Björk Stiernström", "1910 Design & Communication", "Grant Swanjord", "Cody Watts", "Kryptik", "Lightmere", "Terrawynd", "TheDarkestWisp", "Whytewulf"],
+  default: ["John Kanaan", "Andreas Papathanasis", "Kristin Papathanasis", "Ash Sevilla", "Chris Michael Smith", "Gabriel Björk Stiernström", "John Fedorkiw", "1910 Design & Communication", "Grant Swanjord", "Cody Watts", "Kryptik", "Lightmere", "Terrawynd", "TheDarkestWisp", "Whytewulf"],
 };
 
 module.exports = { data, byTypes };

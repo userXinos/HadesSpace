@@ -119,6 +119,8 @@ export default [
   'InitialModuleLevels',
   'CanBuildBuildingLevel',
   'JobCapacity',
+  'RelicLoad',
+  'RelicLoadWS',
   'HydrogenCapacity',
   'MiningPeriod',
   'Speed',

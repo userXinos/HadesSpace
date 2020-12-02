@@ -38,7 +38,7 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint",
-      "sourceType":"module"
+      "sourceType": "module"
     },
     "rules": {
       "vue/no-use-v-if-with-v-for": 1,

@@ -113,7 +113,7 @@ let data = {
   MaxAllianceMessageLength: 300,
   LargeSystemTravelTimeModifier: 360,
   LargeSystemCombatTurnModifier: 60,
-  ReplayVersion: 28,
+  ReplayVersion: 29,
   CorporationScoreIntervals: "10!20!100",
   CorporationScoreDividers: "2!4!10",
   PlaceIncomingStargateInMiddleOfSector: 1,
@@ -160,9 +160,6 @@ let data = {
   InterceptorPrioritizeTriggerer: 1,
   MaxAsteroidsInSector: 14,
   DontAllowUseOfEnemyWSGate: 1,
-  CUnitShipmentScaleY: 693,
-  CUnitShipmentSpacingY: 303,
-  CUnitShipmentMinMax: "1!4",
   BarrageMaxAdditionalEnemies: "16!8",
   WSShipXPCollectEnabled: " ",
   WSShipMinXP: 1000,
@@ -216,7 +213,6 @@ let data = {
   MinMultiSelectDistance: 1000,
   UseSeparationInYS: " ",
   SafeInterceptorInPublicRS: 1,
-  AOEShieldPriority: 1,
   NoCerbBondTeleportPRS: 1,
   StoreArtifactBonusYield: 20,
   BomberLaunchOffsetV: "50!100",
@@ -228,6 +224,7 @@ let data = {
   BlueStar_HydroPctPerMatch: 10,
   BlueStar_HydroPctPerPos: "100!60!25!10!0",
   BlueStar_MaxHydroPerDayPct: 25,
+  BlueStar_RankedMatchesPerDay: 3,
   BlueStar_Fragments: "12!8!5!3!0",
   BlueStar_SPFactor: 25,
   KillShipOn0H: 1,
@@ -247,6 +244,8 @@ let data = {
   NewsletterURL: "http://eepurl.com/cal8yD",
   FlagshipContribAmounts: "10000!100000!1000000!8000000",
   CRAsteroidMineTicks: 600,
+  TutorialDialogImg: "youtube/video1!youtube/video2!youtube/video3!youtube/video5",
+  TutorialDialogURL: "https://www.youtube.com/watch?v=UPkk6yKzRnI!https://www.youtube.com/watch?v=Ajdg8jgBXVg!https://www.youtube.com/watch?v=U4zvvJqsaXc!https://www.youtube.com/watch?v=LrY853vumu8",
 };
 
 module.exports = { data };
