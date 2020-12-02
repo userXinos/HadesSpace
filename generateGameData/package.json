@@ -9,7 +9,7 @@
   "devDependencies": {
     "fs": "0.0.1-security",
     "prettier": "^2.0.5",
-    "yaml": "^1.10.0"
+    "yaml": "^2.0.0-1"
   },
   "dependencies": {
     "commander": "^6.2.0",

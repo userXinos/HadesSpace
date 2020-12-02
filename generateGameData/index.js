@@ -19,10 +19,11 @@ let files;
 program
     .version('0.0.1')
     .option('-t, --type <type>', 'Type files')
+    .option('-w, --no-wipe', 'disable wipe dir before starting', false)
     .parse(process.argv);
 
 if (!program.args.length) {
-  wipeDir(pathSave);
+  if (!program.noWipe) wipeDir(pathSave);
   files = walkDir(pathCSVs)
       .filter((e) => (e !== undefined && !optionalFiles.includes(e) && e.endsWith('.csv')));
 } else {
