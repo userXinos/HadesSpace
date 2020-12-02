@@ -30,9 +30,10 @@ export default function(obj) {
       const levelArr = String(levels[i]).split('!');
 
       moduleArr.forEach((key, kIndex) => {
-        const value = Number(levelArr[kIndex]);
+        let value = Number(levelArr[kIndex]);
         const stockValue = obj1[key];
 
+        if (name === 'CorpFlagship') value++;
         if (stockValue === undefined || stockValue === '') {
           obj1[key] = value;
         } else {
