@@ -11,14 +11,13 @@ jobs:
 
       - name: Dependencies
         run: |
-          npm install
           yarn global add @vue/cli-service-global
 
       - name: Generate game data
         working-directory: ./generateGameData
         run: |
           npm install
-          npm start
+          npm run generateFrontendData
 
       - name: Build
         working-directory: ./frontend

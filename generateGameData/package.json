@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "generateFrontendData": "node index.js -t js"
   },
   "devDependencies": {
     "fs": "0.0.1-security",
