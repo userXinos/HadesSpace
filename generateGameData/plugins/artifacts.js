@@ -1,6 +1,6 @@
 import RawJson from '../modules/RawJson.js';
 import NestedRawJson from '../modules/NestedRawJson.js';
-import byTypes from './modification/byTypes.js';
+import byTypes from '../config/byTypes.js';
 import compileOne from '../modules/compileOne.js';
 
 const artsTypes = byTypes.artifacts.data;

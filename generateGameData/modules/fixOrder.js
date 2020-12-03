@@ -1,6 +1,6 @@
 import RawJson from './RawJson.js';
 import NestedRawJson from './NestedRawJson.js';
-import {default as headers} from '../plugins/modification/headersOrder.js';
+import {default as headers} from '../config/headersOrder.js';
 
 /**
  * Исправление порядка объекта согласно списку

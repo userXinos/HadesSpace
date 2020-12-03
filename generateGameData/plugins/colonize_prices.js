@@ -1,5 +1,5 @@
 import {readCsv} from '../modules/loadFile.js';
-import byTypes from './modification/byTypes.js';
+import byTypes from '../config/byTypes.js';
 
 export default function(obj) {
   const planets = readCsv('planets');

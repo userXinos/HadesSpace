@@ -1,4 +1,4 @@
-import byTypes from './modification/byTypes.js';
+import byTypes from '../config/byTypes.js';
 import RawJson from '../modules/RawJson.js';
 import NestedRawJson from '../modules/NestedRawJson.js';
 import compileOne from '../modules/compileOne.js';

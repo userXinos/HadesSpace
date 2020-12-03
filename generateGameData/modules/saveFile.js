@@ -3,7 +3,7 @@ import {existsSync, mkdirSync} from 'fs';
 import {writeFile} from 'fs/promises';
 import {dirname} from 'path';
 import NestedRawJson from './NestedRawJson.js';
-import byTypes from '../plugins/modification/byTypes.js';
+import byTypes from '../config/byTypes.js';
 import {default as config} from './loadFile.config.js';
 
 /**

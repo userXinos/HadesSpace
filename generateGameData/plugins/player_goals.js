@@ -1,4 +1,4 @@
-import byTypes from './modification/byTypes.js';
+import byTypes from '../config/byTypes.js';
 import renameKeys from '../modules/renameKeys.js';
 import NestedRawJson from '../modules/NestedRawJson.js';
 

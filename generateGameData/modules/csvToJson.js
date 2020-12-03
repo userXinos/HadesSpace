@@ -1,7 +1,7 @@
 import fixValue from './fixValue.js';
 import RawJson from './RawJson.js';
 import NestedRawJson from './NestedRawJson.js';
-import trashHeaders from '../plugins/modification/trashHeaders.js';
+import trashHeaders from '../config/trashHeaders.js';
 
 trashHeaders.forEach((e, i, arr) => {
   arr[i] = e.toLowerCase();
