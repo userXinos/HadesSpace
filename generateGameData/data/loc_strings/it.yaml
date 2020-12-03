@@ -7,7 +7,9 @@ UnlockTime: Sblocca tempo
 APTPIOTTPWS: Tempo di preparazione per oggetto (WS)
 ActivationPrepWS: Ritardo di attivazione (WS)
 ActivationPrepBS: Ritardo di attivazione (BS)
+ActivationDelayRS: Ricarica (RS)
 ActivationDelayWS: Ricarica (WS)
+ActivationDelayBS: Ricarica (BS)
 EffectRadiusWS: Raggio d'effetto (WS)
 EffectRadiusBS: Raggio d'effetto (BS)
 AOEDamage_WS: Danno ad area (WS)
@@ -16,9 +18,11 @@ EffectDurationx10WS: Durata dell'effetto (WS)
 EffectDurationx10BS: Durata dell'effetto (BS)
 MaxDPSTimeWS: Tempo per danno massimo (WS)
 MaxDPSTime_BS: Tempo per danno massimo (BS)
+MaxDPSTimeBS: Tempo per danno massimo (BS)
 SalvageHullPercentWS: Scafo riparato per ogni nave distrutta (WS)
-SalvageHullPercentBS: Scafo riparato per ogni nave distrutta (BS)
 SpawnLifetime_WS: Durata di vita (WS)
+SpawnLifetime_BS: Durata di vita (BS)
+SpawnLifetimeBS: Durata di vita (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
@@ -28,6 +32,7 @@ RelicLoadWS: Load a relic (WS)
 OnDestroySpawnCount: A number of spawn ships after destroy
 MaxPerStarSystem: Maximum quantity per system
 DisableTime: Disable time
+DisableTimeWS: Disable time (WS)
 Cost: Cost
 PlanetTypes: Planet Types
 HydrogenPerDay: New hydro every day
@@ -60,6 +65,14 @@ LeapBreaksBond: Leap breaks the Bond
 DestinyBreaksBond: Destiny breaks the Bond
 BondBreaksBond: Bond breaks the Bond
 BondOverridesBarrier: Bond ignores the Barrier
+ProximityTriggerSecRS: Tempo d'innesco (RS)
+ProximityTriggerSecWS: Tempo d'innesco (WS)
+ProximityTriggerSecBS: Tempo d'innesco (BS)
+PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
+NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
+UnityMaxDamageIncreasePct: Max. damage
+BarrageMaxAdditionalEnemies: Max. enemies for additional damage
+BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
 WhiteStarScore: WS Punto
 BSScore: BS Punto
 TID_CORP_LEADER_DESCR: Primo ufficiale
@@ -1205,6 +1218,7 @@ typeModSupport: Moduli di supporto
 lvl: livello
 home: Home
 content: Soddisfare
+RS: RS
 UpgradeCost: Upgrade Cost
 UpgradeTime: Upgrade time
 cerbShield: Cerberus shield
@@ -1241,10 +1255,6 @@ WSScoreDamageModifier: WS score battle modifier
 WSScoreMiningModifier: WS score mining modifier
 WSScoreTransportModifier: WS score transportation modifier
 SafeInterceptorInPublicRS: Neutral Interceptors on Public RS
-NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
-PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
-BarrageMaxAdditionalEnemies: Max. enemies for additional damage
-UnityMaxDamageIncreasePct: Max. damage
 MaxShips: Max. ships
 ShipToSpawn: Ship spawn
 plan: Plan
@@ -1254,7 +1264,4 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-ActivationDelayBS: Ricarica (BS)
-DisableTimeWS: Disable time (WS)
-BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
-ProximityTriggerSecWS: Tempo d'innesco (WS)
+ActivationPrepRS: Ritardo di attivazione (RS)

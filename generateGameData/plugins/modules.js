@@ -1,6 +1,6 @@
 import {readCsv} from '../modules/loadFile.js';
 import {getGlobalsBy} from './globals.js';
-import {isHide, isWhiteListBS} from '../modules/fixValue.js';
+import {isHide} from '../modules/fixValue.js';
 
 const shipsData = readCsv('capital_ships');
 const projectilesData = readCsv('projectiles');
@@ -14,6 +14,7 @@ const starHeaders = [
   'DisableTime',
   'ProximityTriggerSec',
   'RelicLoad',
+  'SpawnLifetime',
 ];
 const combineKeys = { // TODO
   FlagshipDartBarrage: 'FlagshipWeaponModule',
@@ -21,6 +22,9 @@ const combineKeys = { // TODO
 };
 
 export default function(obj) {
+  ['Recoil', 'Immolation', 'EMPRocket', 'FlagshipDartBarrage', 'FlagshipAreaShield']
+      .forEach((e) => obj[e].AllowedStarTypes = 2);
+
   Object.keys(obj)
       .filter((e) => !Object.values(combineKeys).includes(e))
       .forEach((key) => {
@@ -37,8 +41,7 @@ export default function(obj) {
         fixSalvage(obj1);
         fixRelicLoad(obj1, obj, key);
         combine(obj, key);
-        addStarInfo(obj1, 'WS');
-        addStarInfo(obj1, 'BS');
+        addStartsInfo(obj1);
 
         ['WeaponEffectType', 'WeaponFx', 'Hide']
             .forEach((e) => delete obj1[e]);
@@ -52,26 +55,82 @@ export default function(obj) {
   return obj;
 };
 
-// фикс модулей, добавление БЗ/ГЗ стат
-function addStarInfo(obj, star) {
-  const coefficient = (v) => (star === 'WS') ? v * 600 : v * 2;
-  Object.keys(obj).forEach((stata) => {
-    if (starHeaders.includes(stata)) {
-      if (star === 'BS' && !isWhiteListBS(stata, obj.Name)) return; // пока тлоько для ГЗ
-      if (!Object.keys(obj).includes(stata + star)) {
-        const value = obj[stata];
+function addStartsInfo(obj) {
+  const starsOrder = ['YS', 'RS', 'WS', 'BS'];
+  const keysRemove = []; // кешировать ключи, т.к. нельзя их просто удалить сразу, на их основе надо добавить другие статы
 
-        if (!Array.isArray(value)) {
-          obj[stata + star] = coefficient(value);
-        } else if (Array.isArray(value)) {
-          obj[stata + star] = value.map((e) => {
-            return coefficient(e);
-          });
+  if (obj['AllowedStarTypes'] !== undefined) {
+    starsOrder.forEach((star, starIndex) => {
+      if (Array.isArray(obj['AllowedStarTypes'])) {
+        if (obj['AllowedStarTypes'].includes(starIndex)) {
+          addStarInfo(obj, star);
+        } else {
+          removeStarInfo(obj, star);
         }
-        if (isHide(obj.Name, stata, true)) delete obj[stata]; // удалить оригинальную стату, если не нужна
+      } else {
+        if (obj['AllowedStarTypes'] === starIndex) {
+          addStarInfo(obj, star);
+        } else {
+          removeStarInfo(obj, star);
+        }
       }
-    }
-  });
+    });
+  } else {
+    starsOrder.forEach((e) => addStarInfo(obj, e));
+  }
+  keysRemove.push('AllowedStarTypes');
+  keysRemove.forEach((e) => delete obj[e]);
+
+  function addStarInfo(obj, star) {
+    const coefficient = (v) => {
+      if (star === 'WS') return v * 600;
+      if (star === 'BS') return v * 2;
+      return v;
+    };
+
+    if (star === 'YS') return;
+    Object.keys(obj)
+        .filter((e) => starHeaders.includes(e))
+        .forEach((key) => {
+          const matches = Object.keys(obj) // где-то есть "_", где-то нету...
+              .filter((e) => new RegExp(key +'.+?' + star).test(e));
+          if (!matches.length) {
+            const newKey = key + star;
+            const value = obj[key];
+            let newValue;
+            let isEqual;
+
+            if (Array.isArray(value)) {
+              newValue = value.map((e) => coefficient(e));
+              isEqual = newValue[0] === value[0];
+            } else {
+              newValue = coefficient(value);
+              isEqual = newValue === value;
+            }
+            if (keysRemove.includes(key) || !isEqual) { // дубликаты RS == YS
+              obj[newKey] = newValue;
+            }
+          }
+        });
+  }
+  function removeStarInfo(obj, star) {
+    Object.keys(obj)
+        .filter((e) => starHeaders.includes(e))
+        .forEach((key) => {
+          let regex;
+
+          if (star === 'YS') {
+            regex = new RegExp(key);
+          } else {
+            regex = new RegExp(key +'.+?' + star);
+          }
+          const matches = Object.keys(obj)
+              .filter((e) => regex.test(e));
+          if (matches.length) {
+            keysRemove.push(matches[0]);
+          }
+        });
+  }
 }
 function addGlobals(key, obj) {
   const matches = getGlobalsBy(key);

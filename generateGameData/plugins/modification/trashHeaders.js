@@ -17,7 +17,6 @@ export default [
   'JumpToSafety',
   'TeleportToClosestCombat',
   'SwapLoadWithOtherTransport',
-  'AllowedStarTypes',
   'PreventUseOnWsJumpGate',
   'DeactivateOnJump',
   'MinPublicRSLevel',

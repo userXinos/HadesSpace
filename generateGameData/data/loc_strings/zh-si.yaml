@@ -7,7 +7,9 @@ UnlockTime: 解锁时间
 APTPIOTTPWS: 每件物品的准备时间 (WS)
 ActivationPrepWS: 启动延迟 (WS)
 ActivationPrepBS: 启动延迟 (BS)
+ActivationDelayRS: 冷却 (RS)
 ActivationDelayWS: 冷却 (WS)
+ActivationDelayBS: 冷却 (BS)
 EffectRadiusWS: 效果范围 (WS)
 EffectRadiusBS: 效果范围 (BS)
 AOEDamage_WS: 区域性伤害 (WS)
@@ -16,9 +18,11 @@ EffectDurationx10WS: 效果时长 (WS)
 EffectDurationx10BS: 效果时长 (BS)
 MaxDPSTimeWS: 最大伤害用时 (WS)
 MaxDPSTime_BS: 最大伤害用时 (BS)
+MaxDPSTimeBS: 最大伤害用时 (BS)
 SalvageHullPercentWS: 每摧毁船舰获得维修 (WS)
-SalvageHullPercentBS: 每摧毁船舰获得维修 (BS)
 SpawnLifetime_WS: 寿命 (WS)
+SpawnLifetime_BS: 寿命 (BS)
+SpawnLifetimeBS: 寿命 (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
@@ -28,6 +32,7 @@ RelicLoadWS: Load a relic (WS)
 OnDestroySpawnCount: A number of spawn ships after destroy
 MaxPerStarSystem: Maximum quantity per system
 DisableTime: Disable time
+DisableTimeWS: Disable time (WS)
 Cost: Cost
 PlanetTypes: Planet Types
 HydrogenPerDay: New hydro every day
@@ -60,6 +65,14 @@ LeapBreaksBond: Leap breaks the Bond
 DestinyBreaksBond: Destiny breaks the Bond
 BondBreaksBond: Bond breaks the Bond
 BondOverridesBarrier: Bond ignores the Barrier
+ProximityTriggerSecRS: 触发时间 (RS)
+ProximityTriggerSecWS: 触发时间 (WS)
+ProximityTriggerSecBS: 触发时间 (BS)
+PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
+NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
+UnityMaxDamageIncreasePct: Max. damage
+BarrageMaxAdditionalEnemies: Max. enemies for additional damage
+BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
 WhiteStarScore: WS 得分了
 BSScore: BS 得分了
 TID_CORP_LEADER_DESCR: 首席干事
@@ -755,6 +768,7 @@ typeModSupport: 支持模块
 lvl: 水平
 home: Home
 content: 内容
+RS: RS
 UpgradeCost: Upgrade Cost
 UpgradeTime: Upgrade time
 cerbShield: Cerberus shield
@@ -791,10 +805,6 @@ WSScoreDamageModifier: WS score battle modifier
 WSScoreMiningModifier: WS score mining modifier
 WSScoreTransportModifier: WS score transportation modifier
 SafeInterceptorInPublicRS: Neutral Interceptors on Public RS
-NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
-PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
-BarrageMaxAdditionalEnemies: Max. enemies for additional damage
-UnityMaxDamageIncreasePct: Max. damage
 MaxShips: Max. ships
 ShipToSpawn: Ship spawn
 plan: Plan
@@ -804,7 +814,4 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-ActivationDelayBS: 冷却 (BS)
-DisableTimeWS: Disable time (WS)
-BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
-ProximityTriggerSecWS: 触发时间 (WS)
+ActivationPrepRS: 启动延迟 (RS)

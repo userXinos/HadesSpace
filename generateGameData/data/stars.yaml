@@ -23,11 +23,11 @@ RedStar:
   MaxBattleshipsPerPlayer: [1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3]
   DestroyersToSpawn: [" ", " ", " ", " ", " ", " ", 1, 2, 3, 4, 5, 6]
   MinBombers: [" ", " ", " ", " ", " ", " ", " ", 3, 5, 6, 9, 10]
+  PubRSEMPReqEnemies: 1
+  NoCerbBondTeleportPRS: 1
   maxLevel: 12
   Lifetime: 900
   SafeInterceptorInPublicRS: 1
-  NoCerbBondTeleportPRS: 1
-  PubRSEMPReqEnemies: 1
 BlueStar:
   Name: BlueStar
   TID: TID_BLUE_STAR

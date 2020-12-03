@@ -43,10 +43,7 @@ Trader:
   UnlockTime: [28800, 57600, 86400, 172800, 259200, 345600, 432000, 518400, 604800, 604800, 864000, 864000]
   SlotType: Trade
   ActivationDelay: 82800
-  ActivationDelayWS: 49680000
   EffectDurationx10: 600
-  EffectDurationx10WS: 360000
-  EffectDurationx10BS: 1200
   JobPayoutIncreasePercent: [6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28]
   ActivationFuelCost: [50, 60, 72, 86, 103, 123, 147, 176, 211, 250, 275, 300]
   BCCost: [2500, 3125, 4000, 5000, 6000, 7500, 9500, 12000, 15000, 20000, 25000, 30000]
@@ -66,7 +63,6 @@ MiningBoost:
   ActivationDelayWS: 720000
   EffectDurationx10: 600
   EffectDurationx10WS: 360000
-  EffectDurationx10BS: 1200
   MiningSpeedModifierPct: [2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10]
   ActivationFuelCost: [5, 6, 7, 8, 9, 10, 12, 14, 16, 19, 24, 30]
   BCCost: [2500, 3125, 4000, 5000, 6000, 7500, 9500, 12000, 15000, 20000, 30000, 40000]
@@ -85,16 +81,17 @@ EMP:
   SlotType: Support
   ActivationDelay: 288
   ActivationDelayWS: 172800
+  ActivationDelayBS: 576
   EffectRadius: 120
   EffectDurationx10: [30, 33, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54]
   EffectDurationx10WS: [18000, 19800, 21600, 22800, 24000, 25200, 26400, 27600, 28800, 30000, 31200, 32400]
-  EffectDurationx10BS: [10, 11, 13, 15, 17, 19, 22, 25, 28, 31, 34, 37]
+  EffectDurationx10BS: [60, 66, 72, 76, 80, 84, 88, 92, 96, 100, 104, 108]
   ActivationFuelCost: [40, 80, 150, 250, 400, 600, 800, 1000, 1250, 1500, 1750, 2000]
   BCCost: [500, 750, 1000, 1500, 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000]
+  PubRSEMPReqEnemies: 1
   WhiteStarScore: [0, 25, 75, 125, 250, 375, 500, 625, 750, 1000, 1100, 1200]
   BSScore: [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000]
   maxLevel: 12
-  PubRSEMPReqEnemies: 1
 Repair:
   Name: Repair
   TID: TID_MODULE_REPAIR
@@ -108,10 +105,11 @@ Repair:
   SlotType: Support
   ActivationDelay: 1200
   ActivationDelayWS: 720000
+  ActivationDelayBS: 2400
   EffectRadius: [40, 50, 60, 70, 80, 90, 110, 130, 150, 170, 170, 170]
   EffectDurationx10: [30, 35, 40, 45, 50, 55, 60, 65, 70, 80, 90, 100]
   EffectDurationx10WS: [18000, 21000, 24000, 27000, 30000, 33000, 36000, 39000, 42000, 48000, 54000, 60000]
-  EffectDurationx10BS: 45
+  EffectDurationx10BS: [60, 70, 80, 90, 100, 110, 120, 130, 140, 160, 180, 200]
   RepairHullPointsPerSecond: [60, 70, 80, 100, 120, 140, 170, 200, 240, 280, 320, 360]
   ActivationFuelCost: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1250, 1500]
   BCCost: [1000, 1500, 2500, 4000, 5000, 6000, 8000, 10000, 12500, 15000, 17500, 20000]
@@ -131,6 +129,7 @@ WeakShield:
   SlotType: Shield
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectDurationx10: 300
   EffectDurationx10WS: 180000
   EffectDurationx10BS: 600
@@ -152,6 +151,7 @@ StandardShield:
   SlotType: Shield
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   SpeedIncrDuringActivation: [6, 10, 14, 18, 22, 26, 30, 33, 36, 40, 45, 50]
   EffectDurationx10: 300
   EffectDurationx10WS: 180000
@@ -175,6 +175,7 @@ StrongShield:
   SlotType: Shield
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectDurationx10: 300
   EffectDurationx10WS: 180000
   EffectDurationx10BS: 600
@@ -196,19 +197,21 @@ Teleport:
   UnlockTime: [7200, 14400, 43200, 86400, 172800, 259200, 345600, 432000, 518400, 604800, 864000, 864000]
   SlotType: Support
   ActivationPrep: 5
-  ActivationPrepWS: 14400
+  ActivationPrepWS: 3000
+  ActivationPrepBS: 10
   ActivationDelay: 360
   ActivationDelayWS: 216000
+  ActivationDelayBS: 720
   EffectRadius: [200, 270, 364.5, 492, 664.2, 896.6, 1210.4, 1634, 2250, 3000, 3000, 3000]
   EffectRadiusWS: [300, 330, 360, 400, 440, 485, 535, 580, 650, 700, 750, 800]
   EffectRadiusBS: [175, 200, 220, 250, 285, 325, 365, 410, 460, 540, 600, 650]
   ActivationFuelCost: [50, 80, 150, 200, 250, 300, 350, 500, 800, 1000, 1250, 1500]
   BCCost: [500, 750, 1000, 1500, 2500, 5000, 7500, 10000, 15000, 20000, 22500, 25000]
   TeleportBreaksBond: 1
+  NoCerbBondTeleportPRS: 1
   WhiteStarScore: [0, 25, 75, 125, 250, 375, 500, 625, 750, 1000, 1100, 1200]
   BSScore: [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000]
   maxLevel: 12
-  NoCerbBondTeleportPRS: 1
 TimeWarp:
   Name: TimeWarp
   TID: TID_MODULE_TIME_WARP
@@ -222,6 +225,7 @@ TimeWarp:
   SlotType: Support
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectRadius: 200
   EffectDurationx10: [144.1, 156, 168, 180, 192.1, 204.1, 216, 228, 240, 264.1, 288.1, 312.1]
   EffectDurationx10WS: [86460, 93600, 100800, 108000, 115260, 122460, 129600, 136800, 144000, 158460, 172860, 187260]
@@ -243,8 +247,7 @@ RedStarExtender:
   UnlockPrice: [8000, 12000, 25000, 50000, 100000, 250000, 500000, 1000000, 2000000, 4000000]
   UnlockTime: [7200, 14400, 43200, 86400, 172800, 259200, 345600, 432000, 518400, 604800]
   SlotType: Support
-  ActivationDelay: 3600
-  ActivationDelayWS: 2160000
+  ActivationDelayRS: 3600
   EffectRadius: 2000
   RedStarLifeExtention: [15, 22, 30, 35, 40, 45, 50, 60, 75, 90]
   ActivationFuelCost: [80, 120, 160, 200, 250, 320, 400, 500, 600, 750]
@@ -314,9 +317,10 @@ Stealth:
   SlotType: Support
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectDurationx10: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
-  EffectDurationx10WS: [18000, 24000, 30000, 36000, 42000, 48000, 54000, 60000, 66000, 72000, 78000, 84000]
-  EffectDurationx10BS: [8, 10, 12, 14, 16, 18, 20, 23, 26, 29, 32, 35]
+  EffectDurationx10WS: [9000, 12000, 15000, 18000, 21000, 24000, 27000, 30000, 33000, 36000, 39000, 42000]
+  EffectDurationx10BS: [30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140]
   ActivationFuelCost: [50, 60, 72, 86, 103, 123, 147, 176, 211, 300, 500, 700]
   BCCost: [1000, 1500, 2200, 3300, 5000, 7500, 10000, 15000, 20000, 22500, 25000, 27500]
   WhiteStarScore: [0, 12, 37, 62, 125, 187, 250, 337, 375, 450, 500, 550]
@@ -367,13 +371,12 @@ Unity:
   ActivationDelayWS: 720000
   EffectDurationx10: 900
   EffectDurationx10WS: 540000
-  EffectDurationx10BS: 1800
   UnityBoostPercent: [18, 20, 22, 24, 26, 28, 30, 33, 36, 40, 45, 50]
   ActivationFuelCost: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1250, 1500]
   BCCost: [2500, 3750, 5500, 8250, 12500, 18000, 25000, 30000, 35000, 40000, 45000, 50000]
+  UnityMaxDamageIncreasePct: 200
   WhiteStarScore: [0, 12, 37, 62, 125, 187, 250, 337, 375, 500, 550, 600]
   maxLevel: 12
-  UnityMaxDamageIncreasePct: 200
 Fortify:
   Name: Fortify
   TID: TID_MODULE_FORTIFY
@@ -387,9 +390,10 @@ Fortify:
   SlotType: Support
   ActivationDelay: 360
   ActivationDelayWS: 216000
+  ActivationDelayBS: 720
   EffectDurationx10: 120
   EffectDurationx10WS: 72000
-  EffectDurationx10BS: 60
+  EffectDurationx10BS: 240
   DamageReductionPct: [8, 10, 12, 15, 18, 22, 27, 33, 40, 50, 60, 70]
   ActivationFuelCost: [100, 120, 144, 172, 206, 247, 296, 355, 426, 511, 750, 1000]
   BCCost: [2500, 3750, 5500, 8000, 10000, 12000, 16000, 20000, 25000, 30000, 32500, 35000]
@@ -427,10 +431,11 @@ Supress:
   SlotType: Support
   ActivationDelay: 360
   ActivationDelayWS: 216000
+  ActivationDelayBS: 720
   EffectRadius: [200, 220, 240, 260, 300, 350, 400, 450, 500, 550, 600, 650]
   EffectRadiusBS: 200
   EffectDurationx10: [3, 4, 5, 6, 7, 9, 11, 13, 16, 20, 22, 24]
-  EffectDurationx10WS: [3600, 4500, 5700, 7200, 9000, 11400, 14400, 18000, 22800, 28800, 31200, 33000]
+  EffectDurationx10WS: [1800, 2400, 3000, 3600, 4200, 5400, 6600, 7800, 9600, 12000, 13200, 14400]
   EffectDurationx10BS: [6, 8, 10, 12, 14, 18, 22, 26, 32, 40, 44, 48]
   ActivationFuelCost: [100, 120, 144, 172, 206, 247, 296, 355, 426, 511, 750, 1000]
   BCCost: [5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500]
@@ -449,9 +454,7 @@ ShipmentDrone:
   UnlockTime: [86400, 172800, 259200, 345600, 432000, 518400, 604800, 604800, 604800, 604800, 864000, 864000]
   SlotType: Trade
   ActivationDelay: 3600
-  ActivationDelayWS: 2160000
   SpawnLifetime: 3600
-  SpawnLifetime_WS: 2160000
   SpawnCapacity: [4, 5, 5, 6, 6, 7, 7, 7, 8, 9, 10, 11]
   DroneShipmentBonus: [3, 5, 7, 8, 9, 10, 12, 14, 15, 16, 17, 18]
   DroneShipmentBonusMax: [9, 20, 28, 40, 45, 60, 72, 84, 105, 128, 153, 180]
@@ -473,6 +476,7 @@ Destiny:
   SlotType: Support
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectRadius: 100
   AOEDamage: [5500, 6500, 7600, 9000, 10500, 12600, 15000, 17500, 20500, 25000, 30000, 35000]
   AOEDamage_WS: [5000, 5500, 6000, 6600, 7300, 8000, 8800, 9700, 10500, 12000, 14000, 16000]
@@ -517,6 +521,7 @@ MirrorShield:
   SlotType: Shield
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectDurationx10: 300
   EffectDurationx10WS: 180000
   EffectDurationx10BS: 600
@@ -539,7 +544,6 @@ HydrogenUpload:
   UnlockTime: [43200, 86400, 172800, 259200, 345600, 432000, 518400, 604800, 604800, 604800, 864000, 864000]
   SlotType: Mining
   ActivationDelay: 240
-  ActivationDelayWS: 144000
   HydroUploadPct: [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85]
   BCCost: [10000, 12500, 15000, 17500, 20000, 25000, 30000, 35000, 40000, 45000, 50000, 55000]
   maxLevel: 12
@@ -558,7 +562,6 @@ MiningUnity:
   ActivationDelayWS: 360000
   EffectDurationx10: 300
   EffectDurationx10WS: 180000
-  EffectDurationx10BS: 600
   UnityBoostPercent: [25, 29, 34, 39, 45, 52, 61, 71, 83, 100]
   ActivationFuelCost: [100, 120, 144, 172, 206, 247, 296, 355, 426, 511]
   BCCost: [5000, 7500, 10000, 12500, 15000, 17500, 20000, 25000, 30000, 35000]
@@ -629,11 +632,12 @@ Barrier:
   SlotType: Support
   ActivationDelay: 360
   ActivationDelayWS: 216000
+  ActivationDelayBS: 720
   EffectRadius: [150, 150, 150, 150, 200, 200, 200, 250, 250, 300, 300, 300]
   EffectRadiusBS: [130, 130, 130, 130, 150, 150, 150, 150, 160, 170, 180, 190]
   EffectDurationx10: [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85]
   EffectDurationx10WS: [18000, 21000, 24000, 27000, 30000, 33000, 36000, 39000, 42000, 45000, 48000, 51000]
-  EffectDurationx10BS: [7, 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24]
+  EffectDurationx10BS: [60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170]
   ActivationFuelCost: [600, 800, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 3750, 4000]
   BCCost: [5000, 7500, 10000, 12500, 15000, 17500, 20000, 25000, 30000, 35000, 37500, 40000]
   BondOverridesBarrier: 1
@@ -653,9 +657,10 @@ Impulse:
   SlotType: Support
   ActivationDelay: 240
   ActivationDelayWS: 144000
+  ActivationDelayBS: 480
   EffectDurationx10: [3, 3.7, 4.5, 5.2, 6, 6.7, 7.5, 8.6, 9.7, 11.2, 13, 15]
   EffectDurationx10WS: [1800, 2220, 2700, 3120, 3600, 4020, 4500, 5160, 5820, 6720, 7800, 9000]
-  EffectDurationx10BS: [1.5, 1.7, 2, 2.3, 2.7, 3.2, 3.8, 4.5, 5.3, 6, 6.8, 7.6]
+  EffectDurationx10BS: [6, 7.4, 9, 10.4, 12, 13.4, 15, 17.2, 19.4, 22.4, 26, 30]
   MaxImpulse: 800
   ActivationFuelCost: [60, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 750]
   BCCost: [5000, 7500, 10000, 12500, 15000, 17500, 20000, 25000, 30000, 35000, 37500, 40000]
@@ -678,12 +683,12 @@ Barrage:
   AdditionalDPSPerTargetInRange: [60, 65, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160]
   FuelUseIncrease: [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48]
   BCCost: [5000, 7500, 10000, 12500, 15000, 17500, 20000, 25000, 30000, 35000, 37500, 40000]
-  WhiteStarScore: [0, 25, 75, 125, 250, 375, 500, 625, 750, 1000, 1100, 1200]
-  BSScore: [400, 500, 600, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000]
-  maxLevel: 12
   TargetSwitchTicks: 5
   BarrageMaxAdditionalEnemies: 16
   BarrageMaxAdditionalEnemiesWS: 8
+  WhiteStarScore: [0, 25, 75, 125, 250, 375, 500, 625, 750, 1000, 1100, 1200]
+  BSScore: [400, 500, 600, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000]
+  maxLevel: 12
 TradeBurst:
   Name: TradeBurst
   TID: TID_MODULE_TRADE_BURST
@@ -696,10 +701,7 @@ TradeBurst:
   UnlockTime: [86400, 172800, 259200, 345600, 432000, 518400, 604800, 691200, 777600, 864000, 864000, 864000]
   SlotType: Trade
   ActivationDelay: 82800
-  ActivationDelayWS: 49680000
   EffectDurationx10: 1200
-  EffectDurationx10WS: 720000
-  EffectDurationx10BS: 2400
   TradeBurstShipmentsStart: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
   TradeBurstShipmentBonus: [20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42]
   ActivationFuelCost: [250, 300, 350, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200]
@@ -717,9 +719,11 @@ Leap:
   UnlockTime: [172800, 259200, 345600, 432000, 518400, 604800, 604800, 604800, 604800, 604800]
   SlotType: Support
   ActivationPrep: 5
-  ActivationPrepWS: [21600, 19800, 18000, 16200, 14400, 12600, 10800, 9000, 7200, 5400]
+  ActivationPrepWS: 3000
+  ActivationPrepBS: 10
   ActivationDelay: 600
   ActivationDelayWS: 360000
+  ActivationDelayBS: 1200
   EffectDurationx10: 12
   EffectDurationx10WS: 7200
   EffectDurationx10BS: 24
@@ -741,10 +745,11 @@ Vengeance:
   UnlockTime: [86400, 172800, 259200, 345600, 432000, 518400, 604800, 604800, 604800, 604800, 864000, 864000]
   SlotType: Support
   ActivationPrep: 5
-  ActivationPrepWS: 14400
+  ActivationPrepWS: 3000
   ActivationPrepBS: 10
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectRadius: [100, 120, 130, 140, 150, 160, 180, 200, 225, 250, 275, 300]
   EffectRadiusWS: [100, 120, 130, 140, 150, 160, 180, 200, 225, 250, 275, 300]
   AOEDamage: [6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000, 18000, 20000, 22000, 24000]
@@ -768,7 +773,6 @@ ShipmentBeam:
   UnlockTime: [86400, 172800, 259200, 345600, 432000, 518400, 604800, 604800, 604800, 604800, 604800, 864000]
   SlotType: Trade
   ActivationDelay: 300
-  ActivationDelayWS: 180000
   TeleportShipments: [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 26, 32]
   ActivationFuelCost: [200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1500, 2000]
   BCCost: [2000, 4000, 8000, 12000, 16000, 20000, 25000, 30000, 35000, 40000, 45000, 50000]
@@ -786,9 +790,9 @@ Sanctuary:
   SlotType: Support
   FuelUseIncrease: 2
   BCCost: 5000
+  SanctuaryHydroCostPct: " "
   BSScore: 0
   maxLevel: 1
-  SanctuaryHydroCostPct: " "
 Crunch:
   Name: Crunch
   TID: TID_MODULE_CRUNCH
@@ -818,7 +822,6 @@ Recall:
   UnlockTime: 172800
   SlotType: Trade
   ActivationDelay: 60
-  ActivationDelayWS: 36000
   ActivationFuelCost: 500
   BCCost: 20000
   maxLevel: 1
@@ -835,6 +838,7 @@ AlphaRocket:
   SlotType: Support
   ActivationDelay: 600
   ActivationDelayWS: 360000
+  ActivationDelayBS: 1200
   HP: [200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400, 420]
   Speed: 1320
   Damage: [1500, 1900, 2400, 3000, 3900, 5000, 6200, 8000, 9500, 11000, 12500, 14000]
@@ -859,9 +863,9 @@ Enrich:
   ActivationDelayWS: 25920000
   IncreaseSectorHydroPct: [5, 8, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24]
   BCCost: [3000, 4000, 5000, 6500, 8500, 11000, 15000, 19000, 25000, 30000, 35000, 40000]
+  SectorEnrichCooldownSeconds: 86400
   WhiteStarScore: [0, 25, 75, 125, 250, 375, 500, 625, 750, 1000, 1100, 1200]
   maxLevel: 12
-  SectorEnrichCooldownSeconds: 86400
 Rush:
   Name: Rush
   TID: TID_MODULE_RUSH
@@ -876,8 +880,8 @@ Rush:
   SpeedIncreasePerShipment: [6, 10, 14, 18, 20, 24, 28, 32, 36, 40, 44, 48]
   FuelUseIncrease: [0.8, 2, 3.2, 4.6, 5.6, 6.8, 8, 9.4, 10.8, 12.2, 14, 16]
   BCCost: [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000, 22000, 24000]
-  maxLevel: 12
   GoalRushCostMultiplier: 100
+  maxLevel: 12
 Genesis:
   Name: Genesis
   TID: TID_MODULE_GENESIS
@@ -894,9 +898,9 @@ Genesis:
   MaxNewAsteroids: [2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7]
   HydroPerNewAsteroid: [75, 100, 80, 100, 90, 100, 90, 100, 100, 120, 130, 140]
   BCCost: [20000, 23000, 26000, 29000, 32000, 35000, 38000, 41000, 45000, 50000, 60000, 75000]
+  SectorGenesisCooldownSeconds: 720
   WhiteStarScore: [25, 37, 75, 125, 250, 375, 500, 625, 750, 1000, 1200, 1400]
   maxLevel: 12
-  SectorGenesisCooldownSeconds: 720
 Entrust:
   Name: Entrust
   TID: TID_MODULE_ENTRUST
@@ -927,10 +931,7 @@ Offload:
   UnlockTime: [172800, 259200, 345600, 432000, 518400, 604800, 691200, 777600, 864000, 864000]
   SlotType: Trade
   ActivationDelay: 1200
-  ActivationDelayWS: 720000
   EffectDurationx10: 1200
-  EffectDurationx10WS: 720000
-  EffectDurationx10BS: 2400
   TradeStationDeliverReward: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
   ActivationFuelCost: [400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100]
   BCCost: [10000, 12000, 14000, 16000, 18000, 20000, 22000, 24000, 26000, 28000]
@@ -948,6 +949,7 @@ AreaShield:
   SlotType: Shield
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectRadius: 160
   EffectRadiusWS: [140, 150, 160, 170, 180, 190, 200, 220, 240, 260, 280, 300]
   EffectDurationx10: 300
@@ -968,6 +970,7 @@ PhoenixShield:
   SlotType: Shield
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectRadius: 200
   EffectDurationx10: 1800
   EffectDurationx10WS: 1080000
@@ -987,8 +990,10 @@ AlphaDrone:
   SlotType: Support
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   SpawnLifetime: 180
   SpawnLifetime_WS: 108000
+  SpawnLifetimeBS: 360
   HP: [400, 1200, 2500, 3500, 4500, 5500, 6500, 7500, 8500, 10000, 12000, 14000]
   InitialModule: Battery
   InitialModuleLevels: 3
@@ -1011,12 +1016,13 @@ Bond:
   SlotType: Support
   ActivationDelay: 360
   ActivationDelayWS: 216000
+  ActivationDelayBS: 720
   EffectRadius: [160, 160, 160, 160, 210, 210, 210, 260, 260, 310, 310, 350]
   EffectRadiusWS: [160, 160, 160, 160, 210, 210, 210, 260, 260, 310, 310, 350]
   EffectRadiusBS: [140, 140, 140, 140, 180, 180, 180, 220, 220, 260, 260, 300]
   EffectDurationx10: [15, 18, 22, 26, 31, 37, 44, 53, 64, 75, 85, 95]
   EffectDurationx10WS: [9000, 10800, 13200, 15600, 18600, 22200, 26400, 31800, 38400, 45000, 51000, 57000]
-  EffectDurationx10BS: [6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28]
+  EffectDurationx10BS: [30, 36, 44, 52, 62, 74, 88, 106, 128, 150, 170, 190]
   ActivationFuelCost: [800, 960, 1150, 1350, 1650, 2000, 2400, 2800, 3400, 4100, 5000, 6000]
   BCCost: [5000, 7500, 10000, 12500, 15000, 17500, 20000, 25000, 30000, 35000, 40000, 45000]
   TeleportBreaksBond: 1
@@ -1024,10 +1030,10 @@ Bond:
   DestinyBreaksBond: 1
   BondBreaksBond: 1
   BondOverridesBarrier: 1
+  NoCerbBondTeleportPRS: 1
   WhiteStarScore: [600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700]
   BSScore: [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000]
   maxLevel: 12
-  NoCerbBondTeleportPRS: 1
 DeltaRocket:
   Name: DeltaRocket
   TID: TID_MODULE_DELTAROCKET
@@ -1041,16 +1047,17 @@ DeltaRocket:
   SlotType: Support
   ActivationDelay: 600
   ActivationDelayWS: 360000
+  ActivationDelayBS: 1200
   HP: [100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320]
   Speed: 1800
   Damage: [1250, 1500, 1900, 2300, 2850, 3500, 4300, 5300, 6500, 8000, 10000, 13000]
   DamageRange: 90
   ActivationFuelCost: [500, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2500, 2750]
   BCCost: [20000, 22000, 24000, 26000, 28000, 30000, 35000, 40000, 45000, 50000, 52500, 55000]
+  IgnoreBarrier: 1
   WhiteStarScore: [150, 200, 350, 500, 600, 800, 1000, 1200, 1500, 2000, 2100, 2200]
   BSScore: [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000]
   maxLevel: 12
-  IgnoreBarrier: 1
 BlastShield:
   Name: BlastShield
   TID: TID_MODULE_BLAST_SHIELD
@@ -1064,6 +1071,7 @@ BlastShield:
   SlotType: Shield
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectRadius: 140
   EffectDurationx10: 300
   EffectDurationx10WS: 180000
@@ -1087,6 +1095,7 @@ OmegaRocket:
   SlotType: Support
   ActivationDelay: 600
   ActivationDelayWS: 360000
+  ActivationDelayBS: 1200
   EffectRadius: 1000
   HP: [1000, 1100, 1210, 1330, 1465, 1611, 1770, 1950, 2150, 2350, 2600, 2900]
   Speed: 600
@@ -1129,12 +1138,12 @@ MiningDrone:
   SpawnLifetime_WS: 2160000
   HP: [4000, 5000, 6000, 7500, 9000, 11000, 13000, 16000, 20000, 25000]
   HydrogenCapacity: [140, 160, 180, 200, 220, 250, 280, 310, 350, 400]
+  MiningPeriod_WS: 250
   Speed: 1200
   MaxPerStarSystem: 50
   BCCost: [20000, 22500, 25000, 27500, 30000, 32500, 35000, 40000, 45000, 50000]
   WhiteStarScore: [150, 200, 350, 500, 600, 800, 1000, 1200, 1500, 2000]
   maxLevel: 10
-  MiningPeriod_WS: 250
 BomberLauncher:
   Name: BomberLauncher
   TID: TID_MODULE_ROCKET_LAUNCHER
@@ -1144,6 +1153,7 @@ BomberLauncher:
   SlotType: Weapon
   ActivationDelay: 20
   ActivationDelayWS: 12000
+  ActivationDelayBS: 40
   HP: 1000
   Speed: 540
   Damage: 4000
@@ -1163,6 +1173,7 @@ ColossusLaser:
   MaxDPS: 270
   MaxDPSTime: 45
   MaxDPSTimeWS: 27000
+  MaxDPSTimeBS: 90
   maxLevel: 1
 DartLauncher:
   Name: DartLauncher
@@ -1177,6 +1188,7 @@ DartLauncher:
   SlotType: Weapon
   ActivationDelay: 10
   ActivationDelayWS: 6000
+  ActivationDelayBS: 20
   EffectRadius: 150
   HP: 250
   Speed: 840
@@ -1215,6 +1227,7 @@ DartBarrage:
   SlotType: Weapon
   ActivationDelay: 5
   ActivationDelayWS: 3000
+  ActivationDelayBS: 10
   EffectRadius: 250
   MaxTargets: 16
   HP: 350
@@ -1267,17 +1280,18 @@ Suspend:
   SlotType: Support
   ActivationDelay: 300
   ActivationDelayWS: 180000
+  ActivationDelayBS: 600
   EffectRadius: [120, 140, 160, 180, 200, 220, 230, 240, 250, 260, 270, 280]
   EffectDurationx10: [54, 51.1, 48.1, 45.7, 43.9, 42.1, 40.3, 39.1, 37.9, 36.7, 35.5, 34.3]
   EffectDurationx10WS: [32400, 30660, 28860, 27420, 26340, 25260, 24180, 23460, 22740, 22020, 21300, 20580]
   EffectDurationx10BS: [108, 102.2, 96.2, 91.4, 87.8, 84.2, 80.6, 78.2, 75.8, 73.4, 71, 68.6]
   TimeWarpFactor: [0.9, 0.9, 0.9, 0.9, 0.9, 0.84, 0.78, 0.72, 0.66, 0.62, 0.58, 0.55]
+  TimeWarpSuppression: [20, 40, 60, 80, 100, 100, 100, 100, 100, 100, 100, 100]
   ActivationFuelCost: [500, 600, 720, 850, 1000, 1250, 1500, 1800, 2150, 2500, 2750, 3000]
   BCCost: [40000, 42000, 44000, 46000, 48000, 50000, 52000, 54000, 56000, 58000, 60000, 62000]
   WhiteStarScore: [1500, 2000, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200]
   BSScore: [300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400]
   maxLevel: 12
-  TimeWarpSuppression: [20, 40, 60, 80, 100, 100, 100, 100, 100, 100, 100, 100]
 Recoil:
   Name: Recoil
   TID: TID_MODULE_RECOIL
@@ -1308,9 +1322,9 @@ EMPRocket:
   ActivationDelayWS: 120000
   HP: [200, 300, 400, 500, 600, 700, 800, 1000]
   Speed: 1200
+  DisableTimeWS: [12000, 14400, 16800, 19200, 21600, 24000, 26400, 28800]
   DamageRange: 90
   maxLevel: 8
-  DisableTimeWS: [12000, 14400, 16800, 19200, 21600, 24000, 26400, 28800]
 HydraBarrage:
   Name: HydraBarrage
   TID: TID_MODULE_HYDRA_BARRAGE
@@ -1333,8 +1347,9 @@ RemoteBomb:
   UnlockPrice: [10000000, 10500000, 11000000, 11500000, 12000000, 12000000, 12000000, 12000000, 12000000, 12000000, 12000000, 12000000]
   UnlockTime: [432000, 518400, 604800, 691200, 777600, 864000, 864000, 864000, 864000, 864000, 864000, 864000]
   SlotType: Support
-  ActivationDelay: 600
+  ActivationDelayRS: 600
   ActivationDelayWS: 360000
+  ActivationDelayBS: 1200
   HP: [2500, 2750, 3000, 3300, 3650, 4000, 4400, 4850, 5350, 5900, 6500, 7100]
   Damage: [12000, 14000, 16000, 18000, 20000, 22000, 24000, 26000, 28000, 30000, 32000, 34000]
   DamageWhenNeutralized: [3500, 3750, 4000, 4250, 4500, 4750, 5000, 5500, 6000, 6500, 7000, 7500]
@@ -1342,12 +1357,12 @@ RemoteBomb:
   DamageRangeWhenNeutralized: 80
   ActivationFuelCost: [2000, 2300, 2650, 3050, 3500, 4000, 4650, 5000, 5500, 6000, 6500, 7000]
   BCCost: [40000, 42000, 44000, 46000, 48000, 50000, 52000, 54000, 56000, 60000, 62000, 64000]
+  ProximityTriggerSecRS: 15
+  ProximityTriggerSecWS: 9000
+  ProximityTriggerSecBS: 30
   WhiteStarScore: [1000, 1150, 1322, 1520, 1748, 2010, 2311, 2657, 3055, 3513, 3750, 4000]
   BSScore: [500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600]
   maxLevel: 12
-  ProximityTriggerSec: 15
-  ProximityTriggerSecWS: 9000
-  ProximityTriggerSecBS: 30
 RelicDrone:
   Name: RelicDrone
   TID: TID_RELIC_DRONE
@@ -1359,9 +1374,7 @@ RelicDrone:
   UnlockPrice: [200000, 400000, 600000, 800000, 1000000, 1200000, 1400000, 1600000, 1800000, 2000000, 2500000, 3000000]
   UnlockTime: [86400, 172800, 259200, 345600, 432000, 432000, 518400, 518400, 604800, 604800, 604800, 604800]
   SlotType: Trade
-  ActivationDelay: 720
   ActivationDelayWS: 432000
-  SpawnLifetime: 3600
   SpawnLifetime_WS: 2160000
   NewModuleSlots: Trade
   BuildCost: 0
@@ -1369,7 +1382,6 @@ RelicDrone:
   DesignUpgradeTime: 0
   HP: 500
   JobCapacity: [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48]
-  RelicLoad: [48, 42, 36, 30, 24, 20, 17, 15, 13.2, 12, 11, 10]
   RelicLoadWS: [28800, 25200, 21600, 18000, 14400, 12000, 10200, 9000, 7920, 7200, 6600, 6000]
   Speed: 480
   ActivationFuelCost: [1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100]
@@ -1377,7 +1389,6 @@ RelicDrone:
   MaxShipments: 99
   WhiteStarScore: [300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850]
   maxLevel: 12
-  RelicLoadBS: [96, 84, 72, 60, 48, 40, 34, 30, 26.4, 24, 22, 20]
 FlagshipDartBarrage:
   Name: FlagshipDartBarrage
   TID: TID_MODULE_FLAGSHIP_WEAPON
@@ -1385,11 +1396,9 @@ FlagshipDartBarrage:
   AwardLevel: 0
   Icon: Mod_DroneDartLauncher_Icon
   SlotType: Weapon
-  ActivationDelay: 200
   ActivationDelayWS: 120000
   EffectRadius: 250
   MaxTargets: 30
-  SpawnLifetime: 300
   SpawnLifetime_WS: 180000
   HP: [300, 400, 500]
   Speed: 1500
@@ -1403,13 +1412,9 @@ FlagshipAreaShield:
   AwardLevel: 0
   Icon: Mod_DroneAreaShield_Icon
   SlotType: Shield
-  ActivationDelay: 200
   ActivationDelayWS: 120000
   EffectRadius: [160, 190, 220]
-  EffectDurationx10: 300
   EffectDurationx10WS: 180000
-  EffectDurationx10BS: 600
   ShieldStrength: [15000, 25000, 35000]
-  SpawnLifetime: 300
   SpawnLifetime_WS: 180000
   maxLevel: 3

@@ -7,6 +7,14 @@ LeapBreaksBond: 1
 DestinyBreaksBond: 1
 BondBreaksBond: 1
 BondOverridesBarrier: 1
+PubRSEMPReqEnemies: 1
+NoCerbBondTeleportPRS: 1
+UnityMaxDamageIncreasePct: 200
+BarrageMaxAdditionalEnemies: 16!8
+SanctuaryHydroCostPct: " "
+SectorEnrichCooldownSeconds: 86400
+GoalRushCostMultiplier: 100
+SectorGenesisCooldownSeconds: 720
 TicksPerSecond: 5
 SubticksPerTick: 4
 SubTicksPerTurn: 400
@@ -143,15 +151,12 @@ SupportWebURL: https://hadesstar.com/{0}/support.html?uid={1}&pcc={2}
 SupportWebURLSteam: https://hadesstar.com/{0}/support.html?uid={1}&pcc={2}
 WhiteStarHintCount: 11
 WhiteStarHintTimer: 12
-SectorEnrichCooldownSeconds: 86400
-SectorGenesisCooldownSeconds: 720
 WSMaxBSPerPlayer: 1
 WSMaxOtherPerPlayer: 1
 WSLostBSTimeCooldown: 64800
 WSLostOtherTimeCooldown: 64800
 WSJumpBSTimeCooldown: 7200
 WSJumpOtherTimeCooldown: 7200
-UnityMaxDamageIncreasePct: 200
 MaxScheduledOrders: 12
 MaxTimeMachineFutureSeconds: 172800
 WSHQAsteroidsPerBucket: 4!6!8
@@ -159,7 +164,6 @@ TimeMachineRewindIntervalSeconds: 43200
 InterceptorPrioritizeTriggerer: 1
 MaxAsteroidsInSector: 14
 DontAllowUseOfEnemyWSGate: 1
-BarrageMaxAdditionalEnemies: 16!8
 WSShipXPCollectEnabled: " "
 WSShipMinXP: 1000
 WSShipXPEventClientDisplayMode: " "
@@ -181,9 +185,7 @@ WarpLaneAutoPath: 1
 WarpLaneAutoAbortMs: 100
 WarpLaneMaxSearchDepth: 4
 TimeMachineAffectFxSpeed: 1
-SanctuaryHydroCostPct: " "
 BondMinPullVector: 100!100
-GoalRushCostMultiplier: 100
 FadeLoadingShipments: 1
 ShipsHealOnAnyObject: 1
 BackgroundReloadSec: 30
@@ -212,11 +214,9 @@ SeparationModifier: 200
 MinMultiSelectDistance: 1000
 UseSeparationInYS: " "
 SafeInterceptorInPublicRS: 1
-NoCerbBondTeleportPRS: 1
 StoreArtifactBonusYield: 20
 BomberLaunchOffsetV: 50!100
 AllShipmentInstaLoadYS: 1
-PubRSEMPReqEnemies: 1
 BlueStar_CRRewardRate: 90
 BlueStar_CRRewardWinLimit: 1
 BlueStar_CRRewardWinLimitPeriod: 86400

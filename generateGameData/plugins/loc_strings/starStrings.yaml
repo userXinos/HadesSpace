@@ -12,14 +12,19 @@ TID_MODULE_AOE_STAT:
 TID_MODULE_ACTIVATION_PREP_TIME:
     - ActivationPrepWS
     - ActivationPrepBS
+    - ActivationPrepRS
 TID_DRONE_LIFETIME:
     - SpawnLifetime_WS
+    - SpawnLifetime_BS
+    - SpawnLifetimeBS
 TID_MODULE_COOLDOWN_STAT:
     - ActivationDelayWS
     - ActivationDelayBS
+    - ActivationDelayRS
 TID_MODULE_DESCR_MAX_DPS_TIME:
     - MaxDPSTimeWS
     - MaxDPSTime_BS
+    - MaxDPSTimeBS
 TID_DISPATCH_PREP_TIME:
     - APTPIOTTPWS
 DisableTime:
@@ -28,8 +33,9 @@ BarrageMaxAdditionalEnemies:
     - BarrageMaxAdditionalEnemiesWS
 TID_MODULE_TRIGGER_TIME:
     - ProximityTriggerSecWS
+    - ProximityTriggerSecBS
+    - ProximityTriggerSecRS
 TID_MODULE_SALVAGE_HULL_DESCR:
     - SalvageHullPercentWS
-    - SalvageHullPercentBS
 RelicLoad:
     - RelicLoadWS

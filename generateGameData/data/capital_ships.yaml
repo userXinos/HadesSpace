@@ -157,10 +157,10 @@ MiningDrone:
   Model: [MiningDrone_lv1, MiningDrone_lv2, MiningDrone_lv3, MiningDrone_lv4, MiningDrone_lv5, MiningDrone_lv6, MiningDrone_lv7, MiningDrone_lv8, MiningDrone_lv9, MiningDrone_lv10]
   HP: [4000, 5000, 6000, 7500, 9000, 11000, 13000, 16000, 20000, 25000]
   HydrogenCapacity: [140, 160, 180, 200, 220, 250, 280, 310, 350, 400]
+  MiningPeriod_WS: 250
   Speed: 1200
   MaxPerStarSystem: 50
   maxLevel: 10
-  MiningPeriod_WS: 250
 CerberusBomber:
   Name: CerberusBomber
   TID: TID_SHIP_CERBERUS_BOMBER

@@ -7,7 +7,9 @@ UnlockTime: ロック解除時間
 APTPIOTTPWS: アイテムごとの準備時間 (WS)
 ActivationPrepWS: 作動ディレイ (WS)
 ActivationPrepBS: 作動ディレイ (BS)
+ActivationDelayRS: クールダウン (RS)
 ActivationDelayWS: クールダウン (WS)
+ActivationDelayBS: クールダウン (BS)
 EffectRadiusWS: 効果範囲 (WS)
 EffectRadiusBS: 効果範囲 (BS)
 AOEDamage_WS: 範囲ダメージ (WS)
@@ -16,9 +18,11 @@ EffectDurationx10WS: 効果持続時間 (WS)
 EffectDurationx10BS: 効果持続時間 (BS)
 MaxDPSTimeWS: 最大ダメージまでの時間 (WS)
 MaxDPSTime_BS: 最大ダメージまでの時間 (BS)
+MaxDPSTimeBS: 最大ダメージまでの時間 (BS)
 SalvageHullPercentWS: 破壊された艦船1隻あたりの船体修復量 (WS)
-SalvageHullPercentBS: 破壊された艦船1隻あたりの船体修復量 (BS)
 SpawnLifetime_WS: 存続期間 (WS)
+SpawnLifetime_BS: 存続期間 (BS)
+SpawnLifetimeBS: 存続期間 (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
@@ -28,6 +32,7 @@ RelicLoadWS: Load a relic (WS)
 OnDestroySpawnCount: A number of spawn ships after destroy
 MaxPerStarSystem: Maximum quantity per system
 DisableTime: Disable time
+DisableTimeWS: Disable time (WS)
 Cost: Cost
 PlanetTypes: Planet Types
 HydrogenPerDay: New hydro every day
@@ -60,6 +65,14 @@ LeapBreaksBond: Leap breaks the Bond
 DestinyBreaksBond: Destiny breaks the Bond
 BondBreaksBond: Bond breaks the Bond
 BondOverridesBarrier: Bond ignores the Barrier
+ProximityTriggerSecRS: 起爆時間 (RS)
+ProximityTriggerSecWS: 起爆時間 (WS)
+ProximityTriggerSecBS: 起爆時間 (BS)
+PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
+NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
+UnityMaxDamageIncreasePct: Max. damage
+BarrageMaxAdditionalEnemies: Max. enemies for additional damage
+BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
 WhiteStarScore: WS スコア
 BSScore: BS スコア
 TID_CORP_LEADER_DESCR: ファーストオフィサー
@@ -756,6 +769,7 @@ typeModSupport: サポートモジュール
 lvl: レベル
 home: Home
 content: コンテンツ
+RS: RS
 UpgradeCost: Upgrade Cost
 UpgradeTime: Upgrade time
 cerbShield: Cerberus shield
@@ -792,10 +806,6 @@ WSScoreDamageModifier: WS score battle modifier
 WSScoreMiningModifier: WS score mining modifier
 WSScoreTransportModifier: WS score transportation modifier
 SafeInterceptorInPublicRS: Neutral Interceptors on Public RS
-NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
-PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
-BarrageMaxAdditionalEnemies: Max. enemies for additional damage
-UnityMaxDamageIncreasePct: Max. damage
 MaxShips: Max. ships
 ShipToSpawn: Ship spawn
 plan: Plan
@@ -805,7 +815,4 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-ActivationDelayBS: クールダウン (BS)
-DisableTimeWS: Disable time (WS)
-BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
-ProximityTriggerSecWS: 起爆時間 (WS)
+ActivationPrepRS: 作動ディレイ (RS)

@@ -7,7 +7,9 @@ UnlockTime: Tiempo de desbloqueo
 APTPIOTTPWS: Tiempo de preparación por objeto (WS)
 ActivationPrepWS: Demora de activación (WS)
 ActivationPrepBS: Demora de activación (BS)
+ActivationDelayRS: Enfriamiento (RS)
 ActivationDelayWS: Enfriamiento (WS)
+ActivationDelayBS: Enfriamiento (BS)
 EffectRadiusWS: Distancia de efecto (WS)
 EffectRadiusBS: Distancia de efecto (BS)
 AOEDamage_WS: Daño de área (WS)
@@ -16,9 +18,11 @@ EffectDurationx10WS: Duración de efecto (WS)
 EffectDurationx10BS: Duración de efecto (BS)
 MaxDPSTimeWS: Tiempo hasta daño máx. (WS)
 MaxDPSTime_BS: Tiempo hasta daño máx. (BS)
+MaxDPSTimeBS: Tiempo hasta daño máx. (BS)
 SalvageHullPercentWS: Casco reparado por nave destruida (WS)
-SalvageHullPercentBS: Casco reparado por nave destruida (BS)
 SpawnLifetime_WS: Esperanza de vida (WS)
+SpawnLifetime_BS: Esperanza de vida (BS)
+SpawnLifetimeBS: Esperanza de vida (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
@@ -28,6 +32,7 @@ RelicLoadWS: Load a relic (WS)
 OnDestroySpawnCount: A number of spawn ships after destroy
 MaxPerStarSystem: Maximum quantity per system
 DisableTime: Disable time
+DisableTimeWS: Disable time (WS)
 Cost: Cost
 PlanetTypes: Planet Types
 HydrogenPerDay: New hydro every day
@@ -60,6 +65,14 @@ LeapBreaksBond: Leap breaks the Bond
 DestinyBreaksBond: Destiny breaks the Bond
 BondBreaksBond: Bond breaks the Bond
 BondOverridesBarrier: Bond ignores the Barrier
+ProximityTriggerSecRS: Tiempo de activación (RS)
+ProximityTriggerSecWS: Tiempo de activación (WS)
+ProximityTriggerSecBS: Tiempo de activación (BS)
+PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
+NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
+UnityMaxDamageIncreasePct: Max. damage
+BarrageMaxAdditionalEnemies: Max. enemies for additional damage
+BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
 WhiteStarScore: WS Puntuación
 BSScore: BS Puntuación
 TID_CORP_LEADER_DESCR: Primer oficial
@@ -1201,6 +1214,7 @@ typeModSupport: Módulos de soporte
 lvl: nivel
 home: Home
 content: Contenido
+RS: RS
 UpgradeCost: Upgrade Cost
 UpgradeTime: Upgrade time
 cerbShield: Cerberus shield
@@ -1237,10 +1251,6 @@ WSScoreDamageModifier: WS score battle modifier
 WSScoreMiningModifier: WS score mining modifier
 WSScoreTransportModifier: WS score transportation modifier
 SafeInterceptorInPublicRS: Neutral Interceptors on Public RS
-NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
-PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
-BarrageMaxAdditionalEnemies: Max. enemies for additional damage
-UnityMaxDamageIncreasePct: Max. damage
 MaxShips: Max. ships
 ShipToSpawn: Ship spawn
 plan: Plan
@@ -1250,7 +1260,4 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-ActivationDelayBS: Enfriamiento (BS)
-DisableTimeWS: Disable time (WS)
-BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
-ProximityTriggerSecWS: Tiempo de activación (WS)
+ActivationPrepRS: Demora de activación (RS)

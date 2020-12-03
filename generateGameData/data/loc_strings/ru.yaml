@@ -7,7 +7,9 @@ UnlockTime: Время изучения
 APTPIOTTPWS: Время подготовки за предмет (БЗ)
 ActivationPrepWS: Задержка включения (БЗ)
 ActivationPrepBS: Задержка включения (ГЗ)
+ActivationDelayRS: Перезарядка (КЗ)
 ActivationDelayWS: Перезарядка (БЗ)
+ActivationDelayBS: Перезарядка (ГЗ)
 EffectRadiusWS: Дальность действия (БЗ)
 EffectRadiusBS: Дальность действия (ГЗ)
 AOEDamage_WS: Урон по области (БЗ)
@@ -16,9 +18,11 @@ EffectDurationx10WS: Время действия (БЗ)
 EffectDurationx10BS: Время действия (ГЗ)
 MaxDPSTimeWS: Время до макс. урона (БЗ)
 MaxDPSTime_BS: Время до макс. урона (ГЗ)
+MaxDPSTimeBS: Время до макс. урона (ГЗ)
 SalvageHullPercentWS: Ремонт корпуса за сбитый корабль (БЗ)
-SalvageHullPercentBS: Ремонт корпуса за сбитый корабль (ГЗ)
 SpawnLifetime_WS: Срок службы (БЗ)
+SpawnLifetime_BS: Срок службы (ГЗ)
+SpawnLifetimeBS: Срок службы (ГЗ)
 DroneShipmentBonusMax: Макс. бонус
 Model: Модель
 NewModuleSlots: Тип дополнительного нового слота
@@ -28,6 +32,7 @@ RelicLoadWS: Загрузка реликвии (БЗ)
 OnDestroySpawnCount: Количество появившихся кораблей после уничтожения
 MaxPerStarSystem: Максимальное количество на систему
 DisableTime: Время отключения
+DisableTimeWS: Время отключения (БЗ)
 Cost: Стоимость
 PlanetTypes: Типы планет
 HydrogenPerDay: Новый водород каждый день
@@ -60,6 +65,14 @@ LeapBreaksBond: Скачок ломает Узы
 DestinyBreaksBond: Рок ломает Узы
 BondBreaksBond: Узы ломают Узы
 BondOverridesBarrier: Узы игнорируют Барьер
+ProximityTriggerSecRS: Время срабатывания (КЗ)
+ProximityTriggerSecWS: Время срабатывания (БЗ)
+ProximityTriggerSecBS: Время срабатывания (ГЗ)
+PubRSEMPReqEnemies: Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ
+NoCerbBondTeleportPRS: Запретить использование Цербера + Узы + Телепорт на общедоступной КЗ
+UnityMaxDamageIncreasePct: Макс. урон
+BarrageMaxAdditionalEnemies: Макс. врагов для доп. урона
+BarrageMaxAdditionalEnemiesWS: Макс. врагов для доп. урона (БЗ)
 WhiteStarScore: БЗ очки
 BSScore: ГЗ очки
 TID_CORP_LEADER_DESCR: Старший офицер
@@ -1149,6 +1162,7 @@ min: мин
 sec: сек
 WS: БЗ
 BS: ГЗ
+RS: КЗ
 typeModTrade: Модули торговли
 typeModMining: Модули добычи
 typeModWeapon: Оружейные модули
@@ -1193,10 +1207,6 @@ WSScoreDamageModifier: WS Score модификатор битвы за
 WSScoreMiningModifier: WS Score модификатор добычи
 WSScoreTransportModifier: WS Score модификатор транспортировки
 SafeInterceptorInPublicRS: Нейтральные Перехватчики на общедоступных КЗ
-NoCerbBondTeleportPRS: Запретить использование Цербера + Узы + Телепорт на общедоступной КЗ
-PubRSEMPReqEnemies: Враг в зоне ЭМИ требуется перед активацией в общедоступной КЗ
-BarrageMaxAdditionalEnemies: Макс. врагов для доп. урона
-UnityMaxDamageIncreasePct: Макс. урон
 MaxShips: Макс. кораблей
 ShipToSpawn: Спавн корабля
 plan: План
@@ -1206,10 +1216,7 @@ planetscalc: Калькулятор планет
 other: Другое
 switchAccs: Переключатель аккаунтов
 open: Открыть
-ActivationDelayBS: Перезарядка (ГЗ)
-DisableTimeWS: Время отключения (БЗ)
-BarrageMaxAdditionalEnemiesWS: Макс. врагов для доп. урона (БЗ)
-ProximityTriggerSecWS: Время срабатывания (БЗ)
+ActivationPrepRS: Задержка включения (КЗ)
 TimeWarp_customDesc: Влияет на время в пути, бой, скорость захвата артефактов,
   исследование артефактов, строительство зданий, время восстановления модулей и
   ремонт корабля в вашей домашней системе.

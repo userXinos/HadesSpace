@@ -170,6 +170,7 @@ function getType(header) {
       'SectorEnrichCooldownSeconds',
       'RelicLoad',
       'RelicLoadWS',
+      'ProximityTriggerSecBS',
     ],
     addAU: [
       'EffectRadiusWS',

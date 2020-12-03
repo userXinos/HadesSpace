@@ -7,7 +7,9 @@ UnlockTime: Unlock Time
 APTPIOTTPWS: Preparation time per item (WS)
 ActivationPrepWS: Activation delay (WS)
 ActivationPrepBS: Activation delay (BS)
+ActivationDelayRS: Cooldown (RS)
 ActivationDelayWS: Cooldown (WS)
+ActivationDelayBS: Cooldown (BS)
 EffectRadiusWS: Effect range (WS)
 EffectRadiusBS: Effect range (BS)
 AOEDamage_WS: Area damage (WS)
@@ -16,9 +18,11 @@ EffectDurationx10WS: Effect duration (WS)
 EffectDurationx10BS: Effect duration (BS)
 MaxDPSTimeWS: Time to maximum damage (WS)
 MaxDPSTime_BS: Time to maximum damage (BS)
+MaxDPSTimeBS: Time to maximum damage (BS)
 SalvageHullPercentWS: Hull repaired per destroyed ship (WS)
-SalvageHullPercentBS: Hull repaired per destroyed ship (BS)
 SpawnLifetime_WS: Lifetime (WS)
+SpawnLifetime_BS: Lifetime (BS)
+SpawnLifetimeBS: Lifetime (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
@@ -28,6 +32,7 @@ RelicLoadWS: Load a relic (WS)
 OnDestroySpawnCount: A number of spawn ships after destroy
 MaxPerStarSystem: Maximum quantity per system
 DisableTime: Disable time
+DisableTimeWS: Disable time (WS)
 Cost: Cost
 PlanetTypes: Planet Types
 HydrogenPerDay: New hydro every day
@@ -60,6 +65,14 @@ LeapBreaksBond: Leap breaks the Bond
 DestinyBreaksBond: Destiny breaks the Bond
 BondBreaksBond: Bond breaks the Bond
 BondOverridesBarrier: Bond ignores the Barrier
+ProximityTriggerSecRS: Trigger time (RS)
+ProximityTriggerSecWS: Trigger time (WS)
+ProximityTriggerSecBS: Trigger time (BS)
+PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
+NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
+UnityMaxDamageIncreasePct: Max. damage
+BarrageMaxAdditionalEnemies: Max. enemies for additional damage
+BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
 WhiteStarScore: WS Score
 BSScore: BS Score
 TID_CORP_LEADER_DESCR: First officer
@@ -1109,6 +1122,7 @@ min: min
 sec: sec
 WS: WS
 BS: BS
+RS: RS
 typeModTrade: Trade modules
 typeModMining: Mining modules
 typeModWeapon: Weapon modules
@@ -1153,10 +1167,6 @@ WSScoreDamageModifier: WS score battle modifier
 WSScoreMiningModifier: WS score mining modifier
 WSScoreTransportModifier: WS score transportation modifier
 SafeInterceptorInPublicRS: Neutral Interceptors on Public RS
-NoCerbBondTeleportPRS: Deny use of Cerberus + Bond + Teleport on Public RS
-PubRSEMPReqEnemies: Enemy in EMP zone is required before activation in the Public RS
-BarrageMaxAdditionalEnemies: Max. enemies for additional damage
-UnityMaxDamageIncreasePct: Max. damage
 MaxShips: Max. ships
 ShipToSpawn: Ship spawn
 plan: Plan
@@ -1166,7 +1176,4 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-ActivationDelayBS: Cooldown (BS)
-DisableTimeWS: Disable time (WS)
-BarrageMaxAdditionalEnemiesWS: Max. enemies for additional damage (WS)
-ProximityTriggerSecWS: Trigger time (WS)
+ActivationPrepRS: Activation delay (RS)

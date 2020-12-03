@@ -55,6 +55,12 @@ export default function(name, header, value) { // скрыть/исправит�
         return (v.includes('!')) ? r.join('!') : r[0];
       },
     },
+    {
+      header: ['AllowedStarTypes'],
+      func: (v) => v
+          .split('!')
+          .map((e) => Number(e)),
+    },
   ];
 
   if (ignoringHeaders.includes(header)) return value;
@@ -70,7 +76,7 @@ export default function(name, header, value) { // скрыть/исправит�
   }
   return value;
 };
-export function isHide(name, header, isStrict = false) { // скрывает невалидные данные: "0", " " или просто ненужные,  strict - скрыть валидные данные (2я проверка)
+export function isHide(name, header) { // скрывает невалидные данные: "0", " " или просто ненужные
   const data1 = [
     {
       name: ['WeakBattery'],
@@ -145,18 +151,8 @@ export function isHide(name, header, isStrict = false) { // скрывает н�
       headers: ['ShipLevel', 'WeaponFx'],
     },
   ];
-  const strict = [
-    {
-      name: ['Recoil', 'Immolation', 'EMPRocket'],
-      headers: ['ActivationPrep', 'ActivationDelay', 'DisableTime'],
-    },
-    {
-      name: ['ShipmentDrone'],
-      headers: ['SpawnLifetime_WS'],
-    },
-  ];
 
-  const data = (isStrict) ? strict : data1;
+  const data = data1;
   for (const i in data) {
     const obj1 = data[i];
     if (obj1.name.includes(name)) {
@@ -166,22 +162,4 @@ export function isHide(name, header, isStrict = false) { // скрывает н�
     }
   }
   return false;
-};
-export function isWhiteListBS(header, name) {
-  const data = [
-    {
-      headers: ['ActivationPrep'],
-      names: ['Vengeance'],
-    },
-    {
-      headers: ['ActivationDelay', 'MaxDPSTime', 'APTPIOTTP'],
-      names: [''], // нужны только БЗ статы
-    },
-  ];
-  for (const i of data) {
-    if (i.headers.includes(header)) {
-      return i.names.includes(name);
-    }
-  }
-  return true;
 };
