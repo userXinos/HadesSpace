@@ -12,8 +12,8 @@ ActivationDelayWS: Перезарядка (БЗ)
 ActivationDelayBS: Перезарядка (ГЗ)
 EffectRadiusWS: Дальность действия (БЗ)
 EffectRadiusBS: Дальность действия (ГЗ)
-AOEDamage_WS: Урон по области (БЗ)
-AOEDamage_BS: Урон по области (ГЗ)
+AOEDamage_WS: Объем урона по области (БЗ)
+AOEDamage_BS: Объем урона по области (ГЗ)
 EffectDurationx10WS: Время действия (БЗ)
 EffectDurationx10BS: Время действия (ГЗ)
 MaxDPSTimeWS: Время до макс. урона (БЗ)
@@ -21,7 +21,6 @@ MaxDPSTime_BS: Время до макс. урона (ГЗ)
 MaxDPSTimeBS: Время до макс. урона (ГЗ)
 SalvageHullPercentWS: Ремонт корпуса за сбитый корабль (БЗ)
 SpawnLifetime_WS: Срок службы (БЗ)
-SpawnLifetime_BS: Срок службы (ГЗ)
 SpawnLifetimeBS: Срок службы (ГЗ)
 DroneShipmentBonusMax: Макс. бонус
 Model: Модель
@@ -29,6 +28,7 @@ NewModuleSlots: Тип дополнительного нового слота
 InitialModuleLevels: Уровень модуля
 RelicLoad: Загрузка реликвии
 RelicLoadWS: Загрузка реликвии (БЗ)
+MiningPeriod_WS: undefined (БЗ)
 OnDestroySpawnCount: Количество появившихся кораблей после уничтожения
 MaxPerStarSystem: Максимальное количество на систему
 DisableTime: Время отключения
@@ -60,6 +60,7 @@ module: Модуль
 MinRSLevel: Мин. уровень КЗ
 MaxRSLevel: Макс. уровень КЗ
 WSBucketSizes: Режим
+DestinyDisableTimesWS: Время отключения (БЗ)
 TeleportBreaksBond: Телепорт ломает Узы
 LeapBreaksBond: Скачок ломает Узы
 DestinyBreaksBond: Рок ломает Узы
@@ -1216,7 +1217,6 @@ planetscalc: Калькулятор планет
 other: Другое
 switchAccs: Переключатель аккаунтов
 open: Открыть
-ActivationPrepRS: Задержка включения (КЗ)
 TimeWarp_customDesc: Влияет на время в пути, бой, скорость захвата артефактов,
   исследование артефактов, строительство зданий, время восстановления модулей и
   ремонт корабля в вашей домашней системе.

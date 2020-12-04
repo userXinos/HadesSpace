@@ -13,8 +13,8 @@ export const combineKeys = { // TODO
   FlagshipDartBarrage: 'FlagshipWeaponModule',
   FlagshipAreaShield: 'FlagshipShieldModule',
 };
-export const forciblyWS = ['Recoil', 'Immolation', 'EMPRocket', 'FlagshipDartBarrage', 'FlagshipAreaShield'];
 export const starsOrder = ['YS', 'RS', 'WS', 'BS'];
+export const excludeKeysStringStar = ['NoCerbBondTeleportPRS'];
 export function otherFix(obj) {
   obj.TimeWarp.Icon = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
   obj['MiningBoost']['WhiteStarScore'].unshift(0); // ошибка в таблице, не хватает "0"

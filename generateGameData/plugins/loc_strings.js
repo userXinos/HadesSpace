@@ -2,15 +2,15 @@ import {existsSync, readFileSync} from 'fs';
 import {join} from 'path';
 import YAML from 'yaml';
 import RawJson from '../modules/RawJson.js';
+import * as config from '../config/loc_strings.js';
+import stringKeys from '../config/stringKeys.js';
 
 const defaultLang = 'en';
 const homePath = join('./plugins/loc_strings/');
-const trashStrings = getYaml('trashStrings');
-const upperCaseKeys = getYaml('upperCaseKeys');
 
 export default function(json) {
   const lang = json.metadata.originalFile.replace(/.*\/loc_strings_(.+)\..+$/, '$1');
-  const customDesc = getYaml(`add content/${lang}/customDesc`);
+  const customDesc = getYaml(`${lang}/customDesc`);
   const newJson = new RawJson();
 
   Object.defineProperty(newJson,
@@ -30,7 +30,7 @@ export default function(json) {
 // исправить регистр строк, убрать лишние
 function fixStrings(obj) {
   Object.keys(obj).forEach((key) => {
-    if (trashStrings.includes(key)) {
+    if (config.trashStrings.includes(key)) {
       delete obj[key];
       return;
     }
@@ -45,7 +45,7 @@ function fixStrings(obj) {
 
     result = result.replace(/(«)(\W)/g,
         (math, s, w) => s + w.toUpperCase());
-    for (const key of upperCaseKeys) {
+    for (const key of config.upperCaseKeys) {
       const w = obj[key];
       // const regex = /(?<=[\s,.:;"']|^)+w+(?=[\s,.:;"']|$)/gi;
       // \b word \b, а всё потому что regex адекватно не работает с юникодом :/
@@ -77,22 +77,20 @@ function addContent(obj, customDesc, lang) {
   return obj;
 
   function addGeneralPart() {
-    const defaultLangFile = getYaml(`add content/${defaultLang}/strings`);
-    const currentLangFile = getYaml(`add content/${lang}/strings`);
-    const starStrings = getYaml('starStrings');
+    const defaultLangFile = getYaml(`${defaultLang}/strings`);
+    const currentLangFile = getYaml(`${lang}/strings`);
+    const starHeaders = JSON.parse(readFileSync('./config/stringsStarHeaders.json', 'utf-8'));
 
     compareStrings(currentLangFile, defaultLangFile, true); // добавить ключи из доп файла которых нету в defaultLangFile
     compareStrings(defaultLangFile, currentLangFile);
 
-    Object.keys(starStrings).forEach((key) => {
-      const items = starStrings[key];
+    Object.keys(starHeaders).forEach((k) => {
+      starHeaders[k].forEach((star) => {
+        const starKey = star.replace(/_?(\w\w)/, '$1');
+        const key = (k in stringKeys) ? stringKeys[k] : k;
 
-      for (const i of items) {
-        const startVal = obj[key];
-        const endVal = obj[i.slice(-2)];
-
-        obj[i] = `${startVal} (${endVal})`;
-      }
+        obj[k + star] = `${obj[key]} (${obj[starKey]})`;
+      });
     });
     return obj;
 

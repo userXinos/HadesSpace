@@ -24,20 +24,18 @@ export default function saveFile(json, type = 'js') {
   if (!existsSync(dirname(file))) {
     mkdirSync(dirname(file));
   }
-  if (type) {
-    return writeFile(file,
-        prettier.format(
-            config[type].formatting(json, pluginName, addData),
-            config[type].opts,
-        ),
-    )
-        .then(() => {
-          console.log('Файл', `"\x1b[32m${file}\x1b[0m"`, 'создан');
-        })
-        .catch((err) => {
-          throw err;
-        });
-  }
+  return writeFile(file,
+      prettier.format(
+          config[type].formatting(json, pluginName, addData),
+          config[type].opts,
+      ),
+  )
+      .then(() => {
+        console.log('Файл', `"\x1b[32m${file}\x1b[0m"`, 'создан');
+      })
+      .catch((err) => {
+        throw err;
+      });
 
   // добавить захардкоженый контент
   function addContent(json) {

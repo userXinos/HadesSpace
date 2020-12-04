@@ -1,3 +1,4 @@
+// noinspection SpellCheckingInspection
 export default [
   'Name',
   'TID',

@@ -12,8 +12,8 @@ ActivationDelayWS: 冷却 (WS)
 ActivationDelayBS: 冷却 (BS)
 EffectRadiusWS: 效果范围 (WS)
 EffectRadiusBS: 效果范围 (BS)
-AOEDamage_WS: 区域性伤害 (WS)
-AOEDamage_BS: 区域性伤害 (BS)
+AOEDamage_WS: 区域性伤害量 (WS)
+AOEDamage_BS: 区域性伤害量 (BS)
 EffectDurationx10WS: 效果时长 (WS)
 EffectDurationx10BS: 效果时长 (BS)
 MaxDPSTimeWS: 最大伤害用时 (WS)
@@ -21,7 +21,6 @@ MaxDPSTime_BS: 最大伤害用时 (BS)
 MaxDPSTimeBS: 最大伤害用时 (BS)
 SalvageHullPercentWS: 每摧毁船舰获得维修 (WS)
 SpawnLifetime_WS: 寿命 (WS)
-SpawnLifetime_BS: 寿命 (BS)
 SpawnLifetimeBS: 寿命 (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
@@ -29,6 +28,7 @@ NewModuleSlots: Type of additional new slot
 InitialModuleLevels: Module level
 RelicLoad: Load a relic
 RelicLoadWS: Load a relic (WS)
+MiningPeriod_WS: undefined (WS)
 OnDestroySpawnCount: A number of spawn ships after destroy
 MaxPerStarSystem: Maximum quantity per system
 DisableTime: Disable time
@@ -60,6 +60,7 @@ module: Module
 MinRSLevel: Min. level RS
 MaxRSLevel: Max. level RS
 WSBucketSizes: Mode
+DestinyDisableTimesWS: Disable time (WS)
 TeleportBreaksBond: Teleport breaks the Bond
 LeapBreaksBond: Leap breaks the Bond
 DestinyBreaksBond: Destiny breaks the Bond
@@ -814,4 +815,3 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-ActivationPrepRS: 启动延迟 (RS)

@@ -12,8 +12,8 @@ ActivationDelayWS: Cooldown (WS)
 ActivationDelayBS: Cooldown (BS)
 EffectRadiusWS: Effect range (WS)
 EffectRadiusBS: Effect range (BS)
-AOEDamage_WS: Area damage (WS)
-AOEDamage_BS: Area damage (BS)
+AOEDamage_WS: Area damage amount (WS)
+AOEDamage_BS: Area damage amount (BS)
 EffectDurationx10WS: Effect duration (WS)
 EffectDurationx10BS: Effect duration (BS)
 MaxDPSTimeWS: Time to maximum damage (WS)
@@ -21,7 +21,6 @@ MaxDPSTime_BS: Time to maximum damage (BS)
 MaxDPSTimeBS: Time to maximum damage (BS)
 SalvageHullPercentWS: Hull repaired per destroyed ship (WS)
 SpawnLifetime_WS: Lifetime (WS)
-SpawnLifetime_BS: Lifetime (BS)
 SpawnLifetimeBS: Lifetime (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
@@ -29,6 +28,7 @@ NewModuleSlots: Type of additional new slot
 InitialModuleLevels: Module level
 RelicLoad: Load a relic
 RelicLoadWS: Load a relic (WS)
+MiningPeriod_WS: undefined (WS)
 OnDestroySpawnCount: A number of spawn ships after destroy
 MaxPerStarSystem: Maximum quantity per system
 DisableTime: Disable time
@@ -60,6 +60,7 @@ module: Module
 MinRSLevel: Min. level RS
 MaxRSLevel: Max. level RS
 WSBucketSizes: Mode
+DestinyDisableTimesWS: Disable time (WS)
 TeleportBreaksBond: Teleport breaks the Bond
 LeapBreaksBond: Leap breaks the Bond
 DestinyBreaksBond: Destiny breaks the Bond
@@ -1176,4 +1177,3 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-ActivationPrepRS: Activation delay (RS)

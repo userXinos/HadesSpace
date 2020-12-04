@@ -2,13 +2,16 @@ import {readCsv} from '../modules/loadFile.js';
 import {getGlobalsBy} from './globals.js';
 import {isHide} from '../modules/fixValue.js';
 import * as config from '../config/modules.js';
+import byTypes from '../config/byTypes.js';
+import {writeFileSync} from 'fs';
 
 const shipsData = readCsv('capital_ships');
 const projectilesData = readCsv('projectiles');
 const artifacts = readCsv('artifacts');
+const stringsStarHeaders = {};
 
 export default function(obj) {
-  config.forciblyWS.forEach((e) => obj[e].AllowedStarTypes = 2);
+  byTypes.modules.flagship.forEach((e) => obj[e].AllowedStarTypes = 2);
 
   Object.keys(obj)
       .filter((e) => !Object.values(config.combineKeys).includes(e))
@@ -25,7 +28,13 @@ export default function(obj) {
         fixSalvage(obj[key]);
         fixRelicLoad(obj[key], obj, key);
         addStartsInfo(obj[key]);
+        generateStringsStarHeaders(obj[key]);
       });
+
+  writeFileSync(
+      './config/stringsStarHeaders.json',
+      JSON.stringify(stringsStarHeaders, null, 2),
+  );
   config.otherFix(obj);
   return obj;
 };
@@ -196,4 +205,24 @@ function addStartsInfo(obj) {
           }
         });
   }
+}
+function generateStringsStarHeaders(obj) {
+  const stars = config.starsOrder;
+
+  Object.keys(obj)
+      .filter((e) => {
+        const regex = new RegExp('.+?_?' + '(' + stars.join('|') + ')$', 'm');
+        return regex.test(e) && !config.excludeKeysStringStar.includes(e);
+      })
+      .forEach((k) => {
+        const key = k.replace(/(.+?)_?\w\w$/m, '$1');
+        const star = /(_?\w\w$)/.exec(k)[0];
+
+        if (!Object.keys(stringsStarHeaders).includes(key)) {
+          stringsStarHeaders[key] = [];
+        }
+        if (!stringsStarHeaders[key].includes(star)) {
+          stringsStarHeaders[key].push(star);
+        }
+      });
 }
