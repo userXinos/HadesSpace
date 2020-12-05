@@ -1,3 +1,4 @@
+// noinspection SpellCheckingInspection
 export default {
   MaxHP: 'TID_FLEET_HULL_STRENGTH_MAX',
   MaxShield: 'TID_MODULE_SHIELD_STRENGTH_STAT',

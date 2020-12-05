@@ -1,4 +1,4 @@
-import fixValue from './fixValue.js';
+import fixValue, {isHide} from './fixValue.js';
 import RawJson from './RawJson.js';
 import NestedRawJson from './NestedRawJson.js';
 import trashHeaders from '../config/trashHeaders.js';
@@ -9,9 +9,9 @@ trashHeaders.forEach((e, i, arr) => {
 
 /**
  * Парсер из таблицы в обектJS
- * @param  {String} csv        Сырая таблица
+ * @param  {String} csv         Сырая таблица
  * @param  {Array=} headers=[]  Заголовки. По умолчанию первая строчка таблицы
- * @return {Object}            Результат
+ * @return {Object}             Результат
  */
 export default function csvToJson(csv, headers) {
   const regexSplitStr = new RegExp(',(?!\\s)');
@@ -37,9 +37,9 @@ export default function csvToJson(csv, headers) {
       let value = string[j].replace(/["]+/g, '').trim();
       const stockValue = json[subName][header];
 
-      if (isTrashHeader(header) || value === undefined || !value.length) continue;
-      value = fixValue(subName, header, value);
-      if (value == null) continue;
+      if (isTrashHeader(header) || isHide(subName, header) || value === undefined || !value.length) continue;
+      value = fixValue(header, value);
+
       if (stockValue === undefined || stockValue === '') {
         json[subName][header] = value;
       } else if (Array.isArray(stockValue)) {
@@ -82,7 +82,7 @@ export default function csvToJson(csv, headers) {
 
     result.array = array
         .filter((e) => e.length)
-        .map((e) => fixValue(null, null, e));
+        .map((e) => fixValue( null, e));
     result.maxLevel = result.array.length;
     return result;
   }

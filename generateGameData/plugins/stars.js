@@ -1,7 +1,7 @@
 import {getGlobalsBy} from './globals.js';
 import {readCsv} from '../modules/loadFile.js';
 import combineObjects from '../modules/combineObjects.js';
-import fixValue from '../modules/fixValue.js';
+import fixValue, {isHide} from '../modules/fixValue.js';
 
 const solarSysGenData = readCsv('solar_system_gen_data');
 const globalsData = {
@@ -54,8 +54,8 @@ function fixArrays(key, obj) { // фикс массивов из сточки (�
     if (Array.isArray(obj[k]) || ignoringHeaders.includes(k)) return;
     const arr = String(obj[k])
         .split('!')
-        .map((e) => fixValue(key, k, e))
-        .filter((e) => (e != null));
+        .filter(() => !isHide(key, k))
+        .map((e) => fixValue(k, e));
 
     if (arr.length > 1) {
       obj[k] = arr;
