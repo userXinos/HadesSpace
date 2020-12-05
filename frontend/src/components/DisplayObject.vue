@@ -10,7 +10,7 @@
       v-if="table.maxLevel > 1"
 
       :max-level="table.maxLevel"
-      :obj-name="table.objName"
+      :obj-name="correctObjName"
       :merge-cells="mergeCells"
       :lvl-col-key="lvlColKey"
       :col-lvl-start-at="collvlStartAt"
@@ -57,7 +57,6 @@ export default {
     return {
       table: {
         maxLevel: this.obj.maxLevel,
-        objName: this.correctObjName,
         head: [],
         body: [],
       },
@@ -70,7 +69,7 @@ export default {
   },
   computed: {
     correctObjName() {
-      return (typeof this.objName == 'string') ? this.objName : null;
+      return (typeof this.obj.Name == 'string') ? this.obj.Name : null;
     },
   },
   watch: {

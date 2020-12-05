@@ -1,42 +1,19 @@
 'use strict';
 
-import stringKeys from '../stringKeys';
+import stringKeys from '../../../../generateGameData/config/stringKeys';
+import {default as data} from '../../../../generateGameData/config/frontend/formatKey';
 
 export default function($t, tableName, value) {
-  const funcs = {
-    tedrs: (v) => `${$t('lvl')} ${v++}`,
-    orbsCristals: (v) => `${$t('lvl')} ${v}`,
-    wsTicks: (v) => {
-      if (/Score/.test(v)) {
-        return (
-          $t('ScoreNThresholds') + ' ' + v.replace(/Score(\d).*/, '$1')
-        );
-      } else {
-        return $t(v);
-      }
-    },
+  const getStr = (key) => {
+    if (key in stringKeys) key = stringKeys[key];
+    return $t(key);
   };
-  const type = getType(tableName);
-  if (type) {
-    return funcs[type](value);
-  } else {
-    if (value in stringKeys) {
-      value = stringKeys[value];
-    }
-    return $t(value);
-  }
-}
+  const opts = {getStr};
 
-function getType(tableName) {
-  const data = {
-    tedrs: ['blueprintsSupport'],
-    orbsCristals: ['blueprintsCombat', 'blueprintsUtility'],
-    wsTicks: ['WhiteStar'],
-  };
-  for (const key in data) {
-    if (data[key].includes(tableName)) {
-      return key;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][0].includes(tableName)) {
+      return data[i][1](value, opts);
     }
   }
-  return null;
+  return getStr(value);
 }

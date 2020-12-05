@@ -1,6 +1,6 @@
 'use strict';
 
-import stringKeys from '../stringKeys';
+import stringKeys from '../../../../generateGameData/config/stringKeys';
 
 // загрузить описание
 export function genDescr($t, $te, objName, TID, key) {
