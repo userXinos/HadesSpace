@@ -6,7 +6,7 @@ const cerberusData = readCsv('cerb_groups');
 const cerberusStationsData = readCsv('cerberus_stations');
 
 export default function(obj) {
-  const star = obj.metadata.originalFile.replace(/.*\/(.+)_star_sectors\..+$/, '$1');
+  const star = /(\w+)(_star_sectors)/.exec(obj.metadata.originalFile)[1];
   const result = new RawJson();
 
   Object.keys(obj).forEach((key) => {

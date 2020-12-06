@@ -9,7 +9,7 @@ const defaultLang = 'en';
 const homePath = join('./plugins/loc_strings/');
 
 export default function(json) {
-  const lang = json.metadata.originalFile.replace(/.*\/loc_strings_(.+)\..+$/, '$1');
+  const lang = json.metadata.originalFile.replace(/.*loc_strings_(.+)\..+$/, '$1');
   const customDesc = getYaml(`${lang}/customDesc`);
   const newJson = new RawJson();
 

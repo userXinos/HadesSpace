@@ -1,6 +1,6 @@
 import prettier from 'prettier';
 import {existsSync, mkdirSync} from 'fs';
-import {writeFile} from 'fs/promises';
+import {writeFile2} from './dirUtils.js';
 import {dirname} from 'path';
 import NestedRawJson from './NestedRawJson.js';
 import byTypes from '../config/byTypes.js';
@@ -24,7 +24,7 @@ export default function saveFile(json, type = 'js') {
   if (!existsSync(dirname(file))) {
     mkdirSync(dirname(file));
   }
-  return writeFile(file,
+  return writeFile2(file,
       prettier.format(
           config[type].formatting(json, pluginName, addData),
           config[type].opts,
@@ -39,7 +39,7 @@ export default function saveFile(json, type = 'js') {
 
   // добавить захардкоженый контент
   function addContent(json) {
-    const needData = json.metadata.originalFile.replace(/.*\/(.+)\..+$/, '$1');
+    const needData = /(\w+)\..+?/.exec(json.metadata.originalFile)[1];
     const byType = byTypes[needData] || {};
     const result = {};
     let registered = [];

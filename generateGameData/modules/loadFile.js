@@ -38,8 +38,7 @@ export default async function loadFile(fileName, data) {
       });
 
   if (pluginName) {
-    const pluginPath = join('../', pluginsPath, '/', pluginName) + '.js';
-    json = await import(pluginPath)
+    json = await import('../' + pluginsPath + '/' + pluginName + '.js')
         .then((plugin) => plugin.default(json))
         .then((json) => {
           json.metadata.pluginName = pluginName;

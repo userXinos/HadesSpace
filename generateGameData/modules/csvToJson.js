@@ -15,7 +15,7 @@ trashHeaders.forEach((e, i, arr) => {
  */
 export default function csvToJson(csv, headers) {
   const regexSplitStr = new RegExp(',(?!\\s)');
-  const data = csv.trim().split('\n');
+  const data = csv.trim().split(/\r?\n/);
   if (!headers) headers = data[0].split(regexSplitStr);
   const json = new RawJson();
   let subName = null;

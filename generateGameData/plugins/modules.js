@@ -3,7 +3,7 @@ import {getGlobalsBy} from './globals.js';
 import {isHide} from '../modules/fixValue.js';
 import * as config from '../config/modules.js';
 import byTypes from '../config/byTypes.js';
-import {writeFileSync} from 'fs';
+import {writeFile2} from '../modules/dirUtils.js';
 
 const shipsData = readCsv('capital_ships');
 const projectilesData = readCsv('projectiles');
@@ -30,11 +30,7 @@ export default function(obj) {
         addStartsInfo(obj[key]);
         generateStringsStarHeaders(obj[key]);
       });
-
-  writeFileSync(
-      './config/stringsStarHeaders.json',
-      JSON.stringify(stringsStarHeaders, null, 2),
-  );
+  saveStringsStarHeaders();
   config.otherFix(obj);
   return obj;
 };
@@ -225,4 +221,12 @@ function generateStringsStarHeaders(obj) {
           stringsStarHeaders[key].push(star);
         }
       });
+}
+function saveStringsStarHeaders() {
+  writeFile2(
+      './config/stringsStarHeaders.json',
+      JSON.stringify(stringsStarHeaders, null, 2),
+  ).catch((err) => {
+    throw err;
+  });
 }
