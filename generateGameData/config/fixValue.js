@@ -379,4 +379,9 @@ export const hide = [
   'HomeSystem2.WeaponFx',
   'HomeSystem3.ShipLevel',
   'HomeSystem3.WeaponFx',
+  'RelicDrone.NewModuleSlots',
+  'RelicDrone.BuildCost',
+  'RelicDrone.DesignUpgradeCost',
+  'RelicDrone.DesignUpgradeTime',
+  'RelicDrone.MaxShipments',
 ];

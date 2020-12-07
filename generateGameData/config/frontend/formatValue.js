@@ -25,7 +25,8 @@ export default [
       'BlueStar_MaxHydroPerDayPct',
       'BlueStar_HydroPctPerPos',
       'DroneShipmentBonusMax',
-      'SpeedIncrDuringActivation'],
+      'SpeedIncrDuringActivation',
+      'TimeWarpSuppression'],
     (v) => v + '%',
   ],
   [
@@ -65,7 +66,7 @@ export default [
       'ShieldRegenTimeAfterDamage',
       'SectorEnrichCooldownSeconds',
       'RelicLoad'],
-    (v, o) => o.fixTime(v, o),
+    (v, o) => o.fixTime(v),
   ],
   [
     ['EffectRadius',
