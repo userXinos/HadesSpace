@@ -21,7 +21,8 @@ export default function($t, $te, iconDir, key, value) {
   }
 
   for (let i = 0; i < data.length; i++) {
-    if (data[i][0].includes(key)) {
+    const find = data[i][0].find((e) => key.includes(e));
+    if (find) {
       return data[i][1](value, opts);
     }
   }
