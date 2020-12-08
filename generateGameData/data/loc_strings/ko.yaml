@@ -19,6 +19,7 @@ EffectDurationx10BS: 효과 지속 시간 (BS)
 MaxDPSTimeWS: 최대 피해량 도달 시간 (WS)
 MaxDPSTime_BS: 최대 피해량 도달 시간 (BS)
 MaxDPSTimeBS: 최대 피해량 도달 시간 (BS)
+TimeWarpSuppression: Suppression Time Warp
 SalvageHullPercentWS: 파괴한 함선당 회복되는 선체 체력 (WS)
 SpawnLifetime_WS: 수명 (WS)
 SpawnLifetimeBS: 수명 (BS)

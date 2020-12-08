@@ -1376,17 +1376,12 @@ RelicDrone:
   SlotType: Trade
   ActivationDelayWS: 432000
   SpawnLifetime_WS: 2160000
-  NewModuleSlots: Trade
-  BuildCost: 0
-  DesignUpgradeCost: 0
-  DesignUpgradeTime: 0
   HP: 500
   JobCapacity: [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48]
   RelicLoadWS: [28800, 25200, 21600, 18000, 14400, 12000, 10200, 9000, 7920, 7200, 6600, 6000]
   Speed: 480
   ActivationFuelCost: [1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100]
   BCCost: [20000, 22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000, 38000, 40000, 42000]
-  MaxShipments: 99
   WhiteStarScore: [300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850]
   maxLevel: 12
 FlagshipDartBarrage:

@@ -19,6 +19,7 @@ EffectDurationx10BS: 效果时长 (BS)
 MaxDPSTimeWS: 最大伤害用时 (WS)
 MaxDPSTime_BS: 最大伤害用时 (BS)
 MaxDPSTimeBS: 最大伤害用时 (BS)
+TimeWarpSuppression: Suppression Time Warp
 SalvageHullPercentWS: 每摧毁船舰获得维修 (WS)
 SpawnLifetime_WS: 寿命 (WS)
 SpawnLifetimeBS: 寿命 (BS)

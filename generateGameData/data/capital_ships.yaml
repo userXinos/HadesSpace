@@ -281,14 +281,9 @@ RelicDrone:
   TID: TID_RELIC_DRONE
   TID_Description: TID_RELIC_DRONE_DESCR
   Model: [RelicDrone_lv1, RelicDrone_lv1, RelicDrone_lv1, RelicDrone_lv2, RelicDrone_lv2, RelicDrone_lv2, RelicDrone_lv2, RelicDrone_lv3, RelicDrone_lv3, RelicDrone_lv3, RelicDrone_lv3, RelicDrone_lv3]
-  NewModuleSlots: Trade
-  BuildCost: 0
-  DesignUpgradeCost: 0
-  DesignUpgradeTime: 0
   HP: 500
   JobCapacity: [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48]
   Speed: 480
-  MaxShipments: 99
   maxLevel: 12
   RelicLoadTicks: [240, 210, 180, 150, 120, 100, 85, 75, 66, 60, 55, 50]
 FlagshipDartBarrage:

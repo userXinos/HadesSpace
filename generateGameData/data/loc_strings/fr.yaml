@@ -19,6 +19,7 @@ EffectDurationx10BS: Durée d'effet (BS)
 MaxDPSTimeWS: Temps jusqu'aux dégâts max (WS)
 MaxDPSTime_BS: Temps jusqu'aux dégâts max (BS)
 MaxDPSTimeBS: Temps jusqu'aux dégâts max (BS)
+TimeWarpSuppression: Suppression Time Warp
 SalvageHullPercentWS: Réparation de coque par vaisseau détruit (WS)
 SpawnLifetime_WS: Durée de vie (WS)
 SpawnLifetimeBS: Durée de vie (BS)

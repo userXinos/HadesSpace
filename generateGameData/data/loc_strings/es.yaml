@@ -19,6 +19,7 @@ EffectDurationx10BS: Duración de efecto (BS)
 MaxDPSTimeWS: Tiempo hasta daño máx. (WS)
 MaxDPSTime_BS: Tiempo hasta daño máx. (BS)
 MaxDPSTimeBS: Tiempo hasta daño máx. (BS)
+TimeWarpSuppression: Suppression Time Warp
 SalvageHullPercentWS: Casco reparado por nave destruida (WS)
 SpawnLifetime_WS: Esperanza de vida (WS)
 SpawnLifetimeBS: Esperanza de vida (BS)

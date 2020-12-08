@@ -19,6 +19,7 @@ EffectDurationx10BS: Effektdauer (BS)
 MaxDPSTimeWS: Zeit bis maximaler schaden (WS)
 MaxDPSTime_BS: Zeit bis maximaler schaden (BS)
 MaxDPSTimeBS: Zeit bis maximaler schaden (BS)
+TimeWarpSuppression: Suppression Time Warp
 SalvageHullPercentWS: Reparatur je zerstörtes schiff (WS)
 SpawnLifetime_WS: Laufzeit (WS)
 SpawnLifetimeBS: Laufzeit (BS)

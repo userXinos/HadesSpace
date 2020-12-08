@@ -143,14 +143,14 @@ export default [
       'InitialModule'],
     (v, o) => o.getStr(v, o),
   ],
-  // [
-  //   ['Model'],
-  //   (v, o) => {
-  //     const src = require(`../../img/${o.iconDir}/${v}.png`);
-  //     return `<img class="ships" src="${src}" alt="${v}">`;
-  //   },
-  //
-  // ],
+  [
+    ['Model'],
+    (v, o) => {
+      const src = require(`../../../frontend/src/img/${o.iconDir}/${v}.png`);
+      return `<img class="ships" src="${src}" alt="${v}">`;
+    },
+
+  ],
   [
     ['PlanetTypes', 'Name'],
     (v, o) => {

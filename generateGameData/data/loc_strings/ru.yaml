@@ -19,6 +19,7 @@ EffectDurationx10BS: Время действия (ГЗ)
 MaxDPSTimeWS: Время до макс. урона (БЗ)
 MaxDPSTime_BS: Время до макс. урона (ГЗ)
 MaxDPSTimeBS: Время до макс. урона (ГЗ)
+TimeWarpSuppression: Подавление Искажения времени
 SalvageHullPercentWS: Ремонт корпуса за сбитый корабль (БЗ)
 SpawnLifetime_WS: Срок службы (БЗ)
 SpawnLifetimeBS: Срок службы (ГЗ)
