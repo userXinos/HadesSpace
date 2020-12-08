@@ -16,12 +16,10 @@
     >
     </v-content>
 
-    <div class="title">
-      <div class="title-text" id="Sectors">
-        <a href="#Sectors">
-          {{ $t('sectors') }}
-        </a>
-      </div>
+    <div class="title title-heading" id="Sectors">
+      <a href="#Sectors">
+        {{ $t('sectors') }}
+      </a>
     </div>
     <v-content
        v-bind:args="{
@@ -30,25 +28,21 @@
     }"
     >
     </v-content>
-    <div class="title">
-      <div class="title-text" id="LvlsPlanets">
+      <div class="title title-heading" id="LvlsPlanets">
         <a href="#LvlsPlanets">
           {{ $t('lvlsPlanets') }}
         </a>
       </div>
-    </div>
     <v-content
        v-bind:args="{
-         data: promise3,
+         data: promise3
     }"
     >
     </v-content>
-    <div class="title">
-      <div class="title-text" id="Planets">
-        <a href="#Planets">
-          {{ $t('planets') }}
-        </a>
-      </div>
+    <div class="title title-heading" id="Planets">
+      <a href="#Planets">
+        {{ $t('planets') }}
+      </a>
     </div>
     <v-content
        v-bind:args="{
@@ -59,13 +53,11 @@
     }"
     >
     </v-content>
-    <div class="title">
-      <div class="title-text" id="ColonizationPlanets">
+      <div class="title title-heading" id="ColonizationPlanets">
         <a href="#ColonizationPlanets">
           {{ $t('colonizationPlanets') }}
         </a>
       </div>
-    </div>
     <v-content
        v-bind:args="{
          data: promise5,

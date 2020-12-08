@@ -1,8 +1,12 @@
 <template>
   <div v-if="show">
     <template v-if="!isCerb">
-      <div class="icon-background" :class="divClasses">
-        <span class="icon" :style="spanStyle" :class="spanClasses"></span>
+      <div class="ratio">
+        <div class="content">
+          <div class="icon-background" :class="divClasses">
+            <span class="icon" :style="spanStyle" :class="spanClasses"></span>
+          </div>
+        </div>
       </div>
     </template>
     <template v-else>

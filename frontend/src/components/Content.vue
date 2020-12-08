@@ -96,6 +96,7 @@ export default {
   padding: 0 5% 0;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5%;
 }
 .list ol {
   border: 5px outset #586066;

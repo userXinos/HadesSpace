@@ -151,13 +151,12 @@ function rowspanMask(rawArray, mergeCells) {
 
 <style scoped>
 .table-bg {
-  padding: 20px 3%;
-  margin: 0 0 4%;
   background-color: #0f1416;
 }
 .wrapper {
   position: relative;
   overflow: auto;
+  width: 100%;
 }
 .table {
   width: 100%;

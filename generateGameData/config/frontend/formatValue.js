@@ -215,7 +215,7 @@ export default [
       '10',
       '11'],
     (v) => {
-      const arr = v
+      const arr = String(v)
           .split('!')
           .map((e) => {
             if (e !== ' ') {

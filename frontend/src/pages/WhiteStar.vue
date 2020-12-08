@@ -16,12 +16,10 @@
     >
     </v-content>
 
-    <div class="title">
-      <div class="title-text" id="Planets">
-        <a href="#Planets">
-          {{ $t('planets') }}
-        </a>
-      </div>
+    <div class="title title-heading" id="Planets">
+      <a href="#Planets">
+        {{ $t('planets') }}
+      </a>
     </div>
     <v-content
        v-bind:args="{

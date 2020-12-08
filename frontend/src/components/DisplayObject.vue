@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <v-title
       :obj="obj"
       :stringStats="stringStats"
@@ -108,3 +108,15 @@ export default {
   },
 };
 </script>
+<style scoped>
+.container {
+  padding: 1px 1%;
+  margin-bottom: 3%;
+}
+@media screen and (max-width: 550px) {
+  .container {
+    padding: 1px 3%;
+    margin-bottom: 5%;
+  }
+}
+</style>

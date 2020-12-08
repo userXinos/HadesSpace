@@ -17,14 +17,12 @@
     >
     </v-content>
 
-    <div class="title">
-      <div class="title-text" id="CerberusStations">
-        <h1>
-          <a href="#CerberusStations">
-            {{ $t('TID_CERB_STATION_HOME2') }}
-          </a>
-        </h1>
-      </div>
+    <div class="title title-heading" id="CerberusStations">
+      <h1>
+        <a href="#CerberusStations">
+          {{ $t('TID_CERB_STATION_HOME2') }}
+        </a>
+      </h1>
     </div>
     <v-content
        v-bind:args="{

@@ -1,21 +1,33 @@
+.ratio {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
 
+.content {
+    margin-top: 85%;
+}
 .icon-background {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
-    height: 70px;
     opacity: 0.8;
-    background-size: auto 60px;
+    background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 .icon {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 35px;
-    height: 35px;
+    width: 50%;
+    height: 60%;
 }
 .module-bg {
     background-image: url(../img/module_background.png);

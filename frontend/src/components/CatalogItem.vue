@@ -1,18 +1,19 @@
 <template>
   <div class="item">
-    <div class="item-icon">
-      <div
+    <div class="item-icon"
+         :class="[(icon.isNotIcon) ? '' : 'icon-pos']"
+    >
+      <div v-if="!icon.isNotIcon"
           :class="[icon.bgClass, 'icon-background']"
-          v-if="!icon.isNotIcon"
       >
           <span
-              :class="[icon.classes, (icon.isNotIcon) ? '' : 'icon']"
+              :class="[icon.classes, 'icon']"
               :style="{'background-image': `url( ${icon.img} )`}"
           />
       </div>
       <template v-else>
           <span
-              :class="[icon.classes, (icon.isNotIcon) ? '' : 'icon']"
+              :class="[icon.classes]"
               :style="{'background-image': `url( ${icon.img} )`}"
           />
       </template>
@@ -68,8 +69,13 @@ export default {
   padding: 5%;
 }
 .item-icon {
-  bottom: 100px;
   position: absolute;
+  bottom: 50%;
+  left: 30%;
+}
+.icon-pos {
+  bottom: 80%;
+  left: 20%;
 }
 .item-icon > span {
   display: block;
@@ -83,6 +89,8 @@ export default {
   width: 90px;
   height: 90px;
   background-size: auto 80px;
+  bottom: 80%;
+  left: 20%;
 }
 .item-icon > .icon-background > .icon {
   width: 50px;
@@ -111,8 +119,13 @@ export default {
   }
   .item-icon {
     position: absolute;
-    right: 80%;
+    right: 0%;
     bottom: 20%;
+    left: 10%;
+  }
+  .icon-pos {
+    bottom: 80%;
+    right: 100%;
   }
   .item-icon > span {
     width: 45px;

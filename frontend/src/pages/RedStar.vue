@@ -17,23 +17,19 @@
     >
     </v-content>
 
-    <div class="title">
-      <div class="title-text" id="Artifacts">
-        <h1>
-          <a href="#Artifacts">
-            {{ $t('TID_OBJECT_ACTION_ARTIFACTS') }}
-          </a>
-        </h1>
-      </div>
+    <div class="title title-heading" id="Artifacts">
+      <h1>
+        <a href="#Artifacts">
+          {{ $t('TID_OBJECT_ACTION_ARTIFACTS') }}
+        </a>
+      </h1>
     </div>
     <div v-for="art of ['Combat', 'Utility', 'Support']" :key="art">
-      <div class="title">
-        <div class="title-text" :id="art">
+        <div class="title title-heading art-title" :id="art">
           <a :href="'#' + art">
             {{ $t(art + 'Art') }}
           </a>
         </div>
-      </div>
       <v-content
        v-bind:args="{
            data: promise2,
@@ -43,10 +39,8 @@
     }"
       >
       </v-content>
-      <div class="title">
-        <div class="title-text">
-          {{ $t('blueprints') }}
-        </div>
+      <div class="title title-heading">
+        {{ $t('blueprints') }}
       </div>
       <v-content
        v-bind:args="{
@@ -81,3 +75,8 @@ export default {
   },
 };
 </script>
+<style>
+.art-title {
+  padding: 2%;
+}
+</style>

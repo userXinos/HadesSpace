@@ -17,14 +17,12 @@
     >
     </v-content>
 
-    <div class="title">
-      <div class="title-text" id="FlagshipModules">
-        <h1>
-          <a href="#FlagshipModules">
-            {{ $t('flagshipModules') }}
-          </a>
-        </h1>
-      </div>
+    <div class="title title-heading" id="FlagshipModules">
+      <h1>
+        <a href="#FlagshipModules">
+          {{ $t('flagshipModules') }}
+        </a>
+      </h1>
     </div>
     <v-content
        v-bind:args="{

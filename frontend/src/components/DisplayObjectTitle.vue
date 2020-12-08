@@ -1,34 +1,37 @@
 <template>
-  <div>
-    <div class="title" v-if="!Array.isArray(obj.TID) && obj.TID">
-      <icon
-        v-if="argsContent.iconDir && (typeof icon != 'object')"
-        :icon="icon"
-        :obj-name="obj.Name"
-        :args-content="argsContent"
-      ></icon>
-      <div class="title-text" :id="obj.Name" >
-        <a :href="'#' + obj.Name">
-          {{ $t(obj.TID) }}
-        </a>
-      </div>
+  <div class="container">
+    <icon class="icon"
+          v-if="argsContent.iconDir && (typeof icon != 'object')"
+          :icon="icon"
+          :obj-name="obj.Name"
+          :args-content="argsContent"
+    ></icon>
+    <div
+        v-if="!Array.isArray(obj.TID) && obj.TID"
+        class="title"
+        :id="obj.Name" >
+      <a :href="'#' + obj.Name">
+        {{ $t(obj.TID) }}
+      </a>
     </div>
     <div
       class="desc"
       v-if="!Array.isArray(obj.TID_Description) && obj.TID_Description"
       v-html="getDescr(obj.TID_Description)"
     ></div>
-    <h2
-      class="stringStsts"
-      v-for="(value, key) in stringStats"
-      :key="key + '-stats'"
-      :class="{ 'info-mark': infoData[key].text }"
-      v-on="infoData[key].text ? { click: (e) => clickInfo(e, key) } : {}"
-    >
-      <b>{{ getFormatKey(key) }}</b
-      >:
-      {{ getFormaValue(key, value) }}
+    <div class="stringStats">
+      <h2
+          class="stringStatsElem"
+          v-for="(value, key) in stringStats"
+          :key="key + '-stats'"
+          :class="{ 'info-mark': infoData[key].text }"
+          v-on="infoData[key].text ? { click: (e) => clickInfo(e, key) } : {}"
+      >
+        <b>{{ getFormatKey(key) }}</b
+        >:
+        {{ getFormaValue(key, value) }}
     </h2>
+    </div>
 
     <!--    TODO избавиться от дублирования-->
     <template v-if="cerberusModule.locKey">
@@ -143,29 +146,26 @@ export default {
 
 <style scoped>
 .desc {
-  margin: 1px 5%;
-  padding: 10px 0;
   color: #afb8be;
-  font-size: 150%;
-  text-align: center;
+  font-size: 110%;
+  text-align: left;
 }
 .desc > p {
-  padding: 10px 0;
   font-size: 80%;
   text-align: right;
 }
 .desc > p:before {
   content: "\2014\00A0";
 }
-
-.stringStsts {
-  padding: 2px 6%;
-  text-align: left;
+.stringStats {
+  padding: 10px 0;
+}
+.stringStatsElem {
   font-weight: normal;
+  padding: 2px 0;
   font-size: 120%;
   color: #afb8be;
-  list-style-type: circle;
-  margin: 0 -2%;
+  text-align: left;
 }
 .cerberusModule {
   text-decoration: underline;
@@ -177,46 +177,53 @@ export default {
   color: #cfd6ad;
   cursor: pointer;
 }
+.icon {
+  float: right;
+  width: 10%;
+  margin-left: 3%;
+  margin-bottom: 3%;
+}
 
 @media screen and (max-width: 550px) {
-  .stringStsts,
+  .stringStatsElem,
   .desc {
     font-size: 100%;
     text-align: left;
+  }
+  .icon {
+    width: 21%;
   }
 }
 </style>
 
 <style>
 .title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 3% 0 0;
-}
-.title-text {
-  margin-left: 10px;
-  font-size: 150%;
+  font-size: 200%;
   color: #ccd7de;
+  padding-bottom: 19px;
 }
-.title-text:target {
+.title-heading {
+  padding-bottom: 0;
+  text-align: center;
+}
+.title:target {
   padding-top: 100px;
   margin-top: -100px;
 }
-.title-text a {
+.title a {
   color: #ccd7de;
   text-decoration: none;
 }
-.title-text a:hover {
+.title a:hover {
   color: #90979b;
   text-decoration: underline;
 }
-.title-text a:active {
+.title a:active {
   color: #a33f17;
 }
 
 @media screen and (max-width: 550px) {
-  .title-text {
+  .title {
     font-size: 120%;
   }
 }
