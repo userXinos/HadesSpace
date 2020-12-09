@@ -35,11 +35,11 @@
 
     <!--    TODO избавиться от дублирования-->
     <template v-if="cerberusModule.locKey">
-      <h2 class="stringStsts cerberusModule">
+      <h2 class="stringStatsElem cerberusModule">
         {{ $t(cerberusModule.locKey) }}:
       </h2>
       <h2
-        class="stringStsts"
+        class="stringStatsElem"
         v-for="(value, key) in cerberusModule.value"
         :key="key + '-cerbStats'"
         :class="{ 'info-mark': infoData[key].text }"
@@ -171,6 +171,7 @@ export default {
   text-decoration: underline;
   font-weight: bold;
   padding-top: 10px;
+  text-align: left;
 }
 
 .info-mark {

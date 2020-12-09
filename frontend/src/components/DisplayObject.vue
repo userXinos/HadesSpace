@@ -80,11 +80,11 @@ export default {
       if (key) {
         const result = Object.assign({}, modules[key]);
 
-        this.cerberusModule.locKey = 'cerb' + result.SlotType;
+        this.cerberusModule.locKey = 'cerb' + result['SlotType'];
         ignoringHeaders.forEach((e) => delete result[e]);
 
         if (key == 'HydraBarrage') {
-          const index = this.obj.HydraBarrage - 1;
+          const index = this.obj['HydraBarrage'] - 1;
           for (const [key, value] of Object.entries(result)) {
             if (Array.isArray(value)) {
               result[key] = value[index];
