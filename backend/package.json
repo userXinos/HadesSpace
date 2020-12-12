@@ -6,14 +6,16 @@
     "dev": "node server.js"
   },
   "devDependencies": {
-    "fastify": "^3.1.1",
-    "fastify-autoload": "^3.0.6",
-    "fastify-sensible": "^3.0.1",
-    "pino-pretty": "^4.1.0"
+    "eslint": "^7.15.0",
+    "eslint-config-google": "^0.14.0",
+    "fastify-autoload": "^3.3.1",
+    "fastify-sensible": "^3.1.0",
+    "pino-pretty": "^4.3.0"
   },
   "dependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-google": "^0.14.0"
+    "fastify": "^3.9.1",
+    "jsdom": "^14.1.0",
+    "pageres": "^5.2.1"
   },
   "eslintConfig": {
     "env": {
@@ -24,7 +26,7 @@
     "extends": "google",
     "parserOptions": {
       "ecmaVersion": 11,
-      "sourceType":"module"
+      "sourceType": "module"
     },
     "rules": {
       "max-len": 0,

@@ -55,7 +55,7 @@ export default {
   created() {
     import(/* webpackChunkName: "data-modules"*/ '../../../generateGameData/data/modules')
         .then((raw) => {
-          raw.byTypes.cerberus.forEach((e) => {
+          raw['byTypes'].cerberus.forEach((e) => {
             this.$set(this.cerberusModules, e, raw.data[e]);
           });
         })

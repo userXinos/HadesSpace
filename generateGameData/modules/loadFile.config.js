@@ -4,7 +4,7 @@ export default {
   js: {
     opts: {
       parser: 'babel',
-      trailingComma: 'es5',
+      trailingComma: 'all',
       printWidth: 410, // чтоб массивы выстраивались в одну линию
     },
     formatting(content, pluginName, addData) {
@@ -15,7 +15,7 @@ export default {
 
       ${addData.content || ''}
 
-      module.exports = {${addData.export}}
+      export {${addData.export}}
       `;
     },
   },
