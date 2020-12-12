@@ -65,7 +65,8 @@ export default {
 .item-text {
   text-align: center;
   color: white;
-  padding: 5% 5% 30%;
+  padding: 5% 5% 47%;
+  height: 20%;
 }
 .item-icon {
   position: relative;
@@ -81,7 +82,7 @@ export default {
   background-position: center;
 }
 .item-icon > .icon-background {
-  background-size: auto 80px;
+  background-size: auto 50%;
 }
 .item-icon > .not-icon-background {
   display: flex;
@@ -94,8 +95,7 @@ export default {
   right: 0;
 }
 .item-icon > .icon-background > .icon {
-  width: 50px;
-  height: 50px;
+  height: 27%;
 }
 .art-bg {
   background-image: url(../img/artifact_background.png);
@@ -131,7 +131,8 @@ export default {
     background-size: auto 40px;
   }
   .item-icon > .icon-background > .icon {
-    width: 20px;
+    width: 42%;
+    height: 42%;
   }
   .item-icon {
     position: absolute;
