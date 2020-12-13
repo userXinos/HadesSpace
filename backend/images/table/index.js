@@ -1,35 +1,34 @@
-const {JSDOM} = require('jsdom');
+const {parse} = require('node-html-parser');
 
 module.exports = function(html, data) {
-  const {document} = (new JSDOM(html)).window;
+  const document = parse(html);
   renderTable(document, data);
-  return document.documentElement.outerHTML;
+  return document.toString();
 };
 
 function renderTable(document, obj) {
   const arraysKeys = Object.keys(obj).filter((k) => Array.isArray(obj[k]));
-
-  const $table = document.querySelector('table');
-  const $thead = $table.querySelector('thead');
-  const $tbody = $table.querySelector('tbody');
+  const $thead = document.querySelector('thead');
+  const $tbody = document.querySelector('tbody');
 
   arraysKeys.forEach((key) => {
-    const elem = document.createElement('th');
-    elem.append(key);
-
-    $thead.querySelector('tr').append(elem);
+    $thead.querySelector('tr').insertAdjacentHTML(
+        'beforeend',
+        '<th>' + key + '</th>',
+    );
   });
 
   for (let i = 0; i < obj.maxLevel; i++) {
-    const row = document.createElement('tr');
+    let result = '';
     arraysKeys.forEach((key) => {
-      const elem = document.createElement('th');
-      elem.append(obj[key][i]);
-      row.append(elem);
+      result += '<td>' + obj[key][i] + '</td>';
     });
-    $tbody.append(row);
+    $tbody.insertAdjacentHTML(
+        'beforeend',
+        '<tr>'+ result + '</tr>',
+    );
   }
-};
+}
 
 // function rowspanMask(rawArray, mergeCells) {
 //   return rawArray

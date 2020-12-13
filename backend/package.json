@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "fastify": "^3.9.1",
-    "jsdom": "^14.1.0",
+    "node-html-parser": "^2.0.0",
     "pageres": "^5.2.1"
   },
   "eslintConfig": {
