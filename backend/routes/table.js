@@ -1,6 +1,6 @@
-import Pageres from 'pageres';
 import {readFile} from 'fs/promises';
 import {default as renderHtml} from '../images/table/index.js';
+import nodeHtmlToImage from 'node-html-to-image';
 
 export default async function routes(fastify) {
   fastify.get('/table.png', (request, reply) => {
@@ -11,7 +11,7 @@ export default async function routes(fastify) {
     Promise.all([
       import('../../generateGameData/data/' + path[0] + '.js'),
       import('../../generateGameData/data/loc_strings/' + lang + '.js'),
-      readFile('./images/table/index.html', 'utf-8'),
+      readFile('./images/table/template.html', 'utf-8'),
       readFile('./images/table/style.css', 'utf-8'),
     ])
         .then((files) => {
@@ -24,14 +24,13 @@ export default async function routes(fastify) {
               },
               {theme},
           );
+          const style = '<style>' + files[3] + '</style>';
 
-          new Pageres({
-            css: files[3],
+          nodeHtmlToImage({
+            html: html + style,
           })
-              .src(`data:text/html,${html}`, ['1228x431'])
-              .run()
               .then((img) => {
-                reply.type('image/png').send(img[0]);
+                reply.type('image/png').send(img);
               });
         })
         .catch((err) => {

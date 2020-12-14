@@ -6,13 +6,12 @@ const {parse} = pkg;
 
 export default function(html, data, opts) {
   const document = parse(html);
+  const t = (key) => data.locStrings[key];
+
   renderTable(document, data.raw, t);
   document.querySelector('table').setAttribute('class', 'theme-' + opts.theme);
+  document.querySelector('body').setAttribute('class', tableSize(data.tableName));
   return document.toString();
-
-  function t(key) {
-    return data.locStrings[key];
-  }
 };
 
 function renderTable(document, data, t) {
@@ -51,4 +50,12 @@ function renderTable(document, data, t) {
         '<tr>'+ result + '</tr>',
     );
   }
+}
+function tableSize(name) {
+  const data = {
+    long: ['yellowstarTable', 'RedStar'],
+    short: ['EMPRocket', 'FlagshipDartBarrage', 'FlagshipAreaShield', 'ColonizationPlanets'],
+  };
+  const search = Object.keys(data).filter((key) => data[key].includes(name));
+  return search.pop() || 'default';
 }

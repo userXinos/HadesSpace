@@ -1,6 +1,15 @@
 body {
   margin: 0;
 }
+body.long {
+  width: 2048px;
+}
+body.default {
+  width: 1024px;
+}
+body.short {
+  width: 480px;
+}
 .theme-dark {
   --background: #0f1416;
   --background2: #161b1d;
@@ -27,6 +36,7 @@ th {
 }
 th:first-child {
   border-bottom: none;
+  border-left: 1px solid var(--border-color);
 }
 
 td:nth-child(2) {
