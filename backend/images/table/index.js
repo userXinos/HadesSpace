@@ -1,17 +1,25 @@
-const {parse} = require('node-html-parser');
+import pkg from 'node-html-parser';
+import formatValue from '../../../frontend/src/js/modules/formatValue.js';
+import formatKey from '../../../frontend/src/js/modules/formatKey.js';
+import rowspanMask from '../../../frontend/src/js/modules/rowspanMask.js';
+const {parse} = pkg;
 
-module.exports = function(html, data, opts) {
+export default function(html, data, opts) {
   const document = parse(html);
-  renderTable(document, data, opts.lang);
+  renderTable(document, data.raw, t);
   document.querySelector('table').setAttribute('class', 'theme-' + opts.theme);
   return document.toString();
+
+  function t(key) {
+    return data.locStrings[key];
+  }
 };
 
-function renderTable(document, data, lang) {
+function renderTable(document, data, t) {
   const obj = {
     lvl: Array.from(
         {length: data.maxLevel},
-        (_, i) => i + 1,
+        (e, i) => i + 1,
     ),
     ...data,
   };
@@ -23,18 +31,19 @@ function renderTable(document, data, lang) {
   arraysKeys.forEach((key) => {
     $thead.querySelector('tr').insertAdjacentHTML(
         'beforeend',
-        '<th>' + key + '</th>',
+        '<th>' + formatKey(t, data.tableName, key) + '</th>',
     );
   });
 
   for (let i = 0; i < obj.maxLevel; i++) {
     let result = '';
     arraysKeys.forEach((k, keyIndex) => {
-      const num = bodyData[keyIndex][i].rowspan;
-      const value = bodyData[keyIndex][i].value;
+      const num = bodyData[keyIndex][i].rowspan || 0;
+      let value = bodyData[keyIndex][i].value;
       const rowspan = (num) ? `rowspan="${num}" class="rowspaned"` : '';
       if (value != null) {
-        result += `<td ${rowspan}>` + bodyData[keyIndex][i].value + '</td>';
+        value = formatValue(t, null, null, k, bodyData[keyIndex][i].value);
+        result += `<td ${rowspan}>` + value + '</td>';
       }
     });
     $tbody.insertAdjacentHTML(
@@ -42,27 +51,4 @@ function renderTable(document, data, lang) {
         '<tr>'+ result + '</tr>',
     );
   }
-}
-
-function rowspanMask(rawArray, mergeCells) {
-  return rawArray
-      .map((item, index, arr) => {
-        if (item == arr[index - 1] && mergeCells) {
-          item = null;
-        }
-        return {value: item};
-      })
-      .map((item, index, arr) => {
-        if (item.value === null) {
-          let rowspan = 1;
-          let lastItemIndex = index;
-
-          while (arr[lastItemIndex].value == null) {
-            lastItemIndex--;
-            rowspan++;
-          }
-          arr[lastItemIndex].rowspan = rowspan;
-        }
-        return item;
-      });
 }

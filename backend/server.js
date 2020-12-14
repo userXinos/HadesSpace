@@ -1,5 +1,10 @@
-'use strict';
-const fastify = require('fastify')({
+import {fastify as app} from 'fastify';
+import autoLoad from 'fastify-autoload';
+import {dirname, join} from 'path';
+import {fileURLToPath} from 'url';
+import {default as httpErrors} from 'fastify-sensible';
+
+const fastify = app({
   logger: {
     level: 'info',
     prettyPrint: {
@@ -17,12 +22,12 @@ const fastify = require('fastify')({
     },
   },
 });
-const autoLoad = require('fastify-autoload');
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-fastify.register(require('fastify-sensible')); // плагин HTTP ошибок
+fastify.register(httpErrors);
 fastify.register(autoLoad, {
-  dir: path.join(__dirname, 'routes'),
+  dir: join(__dirname, 'routes'),
   options: {prefix: '/api'},
 });
 

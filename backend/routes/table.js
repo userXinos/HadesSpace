@@ -1,8 +1,8 @@
-const PageRes = require('pageres');
-const fs = require('fs/promises');
-const renderHtml = require('../images/table/index');
+import Pageres from 'pageres';
+import {readFile} from 'fs/promises';
+import {default as renderHtml} from '../images/table/index.js';
 
-module.exports = async function routes(fastify) {
+export default async function routes(fastify) {
   fastify.get('/table.png', (request, reply) => {
     const theme = request.query.theme || 'dark';
     const lang = request.query.lang || 'en';
@@ -10,18 +10,23 @@ module.exports = async function routes(fastify) {
 
     Promise.all([
       import('../../generateGameData/data/' + path[0] + '.js'),
-      fs.readFile('./images/table/index.html', 'utf-8'),
-      fs.readFile('./images/table/style.css', 'utf-8'),
+      import('../../generateGameData/data/loc_strings/' + lang + '.js'),
+      readFile('./images/table/index.html', 'utf-8'),
+      readFile('./images/table/style.css', 'utf-8'),
     ])
-        .then((values) => {
+        .then((files) => {
           const html = renderHtml(
-              values[1],
-              values[0].data[path[1]],
-              {theme, lang},
+              files[2],
+              {
+                raw: files[0].data[path[1]],
+                locStrings: files[1].data,
+                tableName: path[1],
+              },
+              {theme},
           );
 
-          new PageRes({
-            css: values[2],
+          new Pageres({
+            css: files[3],
           })
               .src(`data:text/html,${html}`, ['1228x431'])
               .run()

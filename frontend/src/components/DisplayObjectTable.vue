@@ -53,6 +53,7 @@ import formatValue from '../js/modules/formatValue';
 import formatKey from '../js/modules/formatKey';
 import {getTextInfoStats} from '../js/modules/descriptionsHandler';
 import StatsInfo from './DisplayObjectStatsInfo.vue';
+import rowspanMask from '@/js/modules/rowspanMask';
 
 export default {
   name: 'Table',
@@ -124,29 +125,6 @@ export default {
     },
   },
 };
-
-function rowspanMask(rawArray, mergeCells) {
-  return rawArray
-      .map((item, index, arr) => {
-        if (item == arr[index - 1] && mergeCells) {
-          item = null;
-        }
-        return {value: item};
-      })
-      .map((item, index, arr) => {
-        if (item.value === null) {
-          let rowspan = 1;
-          let lastItemIndex = index;
-
-          while (arr[lastItemIndex].value == null) {
-            lastItemIndex--;
-            rowspan++;
-          }
-          arr[lastItemIndex].rowspan = rowspan;
-        }
-        return item;
-      });
-}
 </script>
 
 <style scoped>

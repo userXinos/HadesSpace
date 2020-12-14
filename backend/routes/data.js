@@ -1,9 +1,7 @@
-'use strict';
-const fs = require('fs');
-const path = require('path');
-const dataPath = path.resolve('../generateGameData/data/');
+import {resolve} from 'path';
+const dataPath = resolve('../generateGameData/data/');
 
-module.exports = async function routes(fastify) {
+export default async function routes(fastify) {
   let file;
 
   fastify.get('/data/*', async (request, reply) => {

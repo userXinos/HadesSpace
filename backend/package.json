@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "node ../generateGameData/index.js; node server.js",
     "dev": "node server.js"

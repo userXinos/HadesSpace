@@ -1,7 +1,7 @@
 'use strict';
 
-import stringKeys from '../../../../generateGameData/config/stringKeys';
-import {default as data} from '../../../../generateGameData/config/frontend/formatKey';
+import stringKeys from '../../../../generateGameData/config/stringKeys.js';
+import {default as data} from '../../../../generateGameData/config/frontend/formatKey.js';
 
 export default function($t, tableName, value) {
   const getStr = (key) => {

@@ -1,8 +1,8 @@
 'use strict';
 
-import secToStringTime from './secToStringTime';
-import stringKeys from '../../../../generateGameData/config/stringKeys';
-import {default as data, objectEdition} from '../../../../generateGameData/config/frontend/formatValue';
+import secToStringTime from './secToStringTime.js';
+import stringKeys from '../../../../generateGameData/config/stringKeys.js';
+import {default as data, objectEdition} from '../../../../generateGameData/config/frontend/formatValue.js';
 
 export default function($t, $te, iconDir, key, value) {
   const fixTime = (...args) => secToStringTime(getStr, ...args);
