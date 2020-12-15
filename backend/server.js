@@ -12,12 +12,18 @@ const fastify = app({
     },
     redact: ['req.headers.authorization'],
     serializers: {
+      // req(request) {
+      //   return {
+      //     method: request.method,
+      //     headers: request.headers,
+      //     remoteAddress: request.ip,
+      //   };
+      // },
       req(request) {
-        return {
-          method: request.method,
-          headers: request.headers,
-          remoteAddress: request.ip,
-        };
+        return `method: ${request.method} | remoteAddress: ${request.ip}`;
+      },
+      res(reply) {
+        return `statusCode: ${reply.statusCode}`;
       },
     },
   },
