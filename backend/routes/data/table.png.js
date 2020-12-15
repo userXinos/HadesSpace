@@ -1,23 +1,25 @@
 import {readFile} from 'fs/promises';
-import renderHtml from '../images/table/index.js';
-import getByPath from '../modules/getByPath.js';
+import renderHtml from '../../images/table/index.js';
 import nodeHtmlToImage from 'node-html-to-image';
+import getByPath from '../../modules/getByPath.js';
 
 export default async function routes(fastify) {
-  fastify.get('/table.png', async (request, reply) => {
+  fastify.get('/:file/table.png', table);
+  fastify.get('/:file/:id/table.png', table);
+
+  async function table(request, reply) {
     const theme = request.query.theme || 'dark';
     const lang = request.query.lang || 'en';
-    const path = request.query.path.split('.');
-    const file = path.shift();
+    const id = (request.params.id) ? request.params.id : null;
 
     const imports = await Promise.all([
-      import('../../generateGameData/data/' + file + '.js')
+      import('../../../generateGameData/data/' + request.params.file + '.js')
           .catch((err) => {
             if (err.code == 'ERR_MODULE_NOT_FOUND') {
               reply.badRequest('File not found');
             }
           }),
-      import('../../generateGameData/data/loc_strings/' + lang + '.js')
+      import('../../../generateGameData/data/loc_strings/' + lang + '.js')
           .catch((err) => {
             if (err.code == 'ERR_MODULE_NOT_FOUND') {
               reply.badRequest('Invalid or unsupported language');
@@ -30,8 +32,7 @@ export default async function routes(fastify) {
       throw fastify.httpErrors.internalServerError('File import error');
     });
 
-
-    const obj = getByPath(imports[0].data, path);
+    const obj = (id) ? getByPath(imports[0].data, [id]) : imports[0].data;
 
     if (obj == null) {
       throw fastify.httpErrors.badRequest('Path not found in file');
@@ -44,7 +45,7 @@ export default async function routes(fastify) {
         {
           raw: obj,
           locStrings: imports[1].data,
-          tableName: path.pop(),
+          tableName: id,
         },
         {theme},
     );
@@ -60,6 +61,5 @@ export default async function routes(fastify) {
           request.log.error(err);
           throw fastify.httpErrors.internalServerError('Image rendering error');
         });
-  });
-};
-
+  }
+}
