@@ -14,13 +14,21 @@ body.short {
   --background: #0f1416;
   --background2: #161b1d;
   --bg-head-and-lvl: #090e10;
-  --border-color: #25262e
+  --border-color: #25262e;
+  --text-color: #c9cfd3;
+}
+.theme-light {
+  --background: #e9e9e9;
+  --background2: #d3d2d2;
+  --bg-head-and-lvl: #c4c4c4;
+  --border-color: #363636;
+  --text-color: #111111;
 }
 table {
   width: 100%;
   background: var(--background);
   border-spacing: 0;
-  color: #c9cfd3;
+  color: var(--text-color);
   text-align: center;
 }
 th, td {
