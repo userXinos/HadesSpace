@@ -161,6 +161,7 @@ function addStartsInfo(obj) {
     if (star === 'YS') return;
     Object.keys(obj)
         .filter((e) => config.starHeaders.includes(e))
+        .filter((e) => !Object.keys(obj).includes(e + star))
         .forEach((key) => {
           const matches = Object.keys(obj) // где-то есть "_", где-то нету...
               .filter((e) => new RegExp(key +'.+?' + star).test(e));
