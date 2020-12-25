@@ -1,6 +1,10 @@
 # Generate Game Data
-### Сгенерировать игровые данные из CSV
+> Сгенерировать игровые данные из CSV
 
 `npm install`
 
-`npm start`
+`node index.js`
+
+### Флаги
+`--type <type>` Тип гарнируемых файлов. Полный список в `config/fileTypes.js`
+`--no-wipe` Не очищать директорию сохранения

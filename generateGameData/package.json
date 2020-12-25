@@ -8,14 +8,13 @@
     "generateFrontendData": "node index.js -t js"
   },
   "devDependencies": {
-    "fs": "0.0.1-security",
-    "prettier": "^2.0.5",
-    "yaml": "^2.0.0-1"
+    "eslint": "^7.9.0",
+    "eslint-config-google": "^0.14.0"
   },
   "dependencies": {
     "commander": "^6.2.0",
-    "eslint": "^7.9.0",
-    "eslint-config-google": "^0.14.0"
+    "prettier": "^2.0.5",
+    "yaml": "^2.0.0-1"
   },
   "eslintConfig": {
     "env": {

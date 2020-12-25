@@ -19,7 +19,7 @@ let files;
 program
     .version('0.0.1')
     .option('-t, --type <type>', 'Type files')
-    .option('-w, --no-wipe', 'disable wipe dir before starting', false)
+    .option('--no-wipe', 'Disable wipe dir before starting', false)
     .parse(process.argv);
 
 if (!program.args.length) {
