@@ -205,7 +205,7 @@ const data = [
       {
         text: {
           locKey: 'switchAccs',
-          after: '(by Raerten)',
+          after: '(by Raerten) [up to Android 10]',
         },
         link: 'https://github.com/Raerten/HSAccs',
         icon: {

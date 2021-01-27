@@ -16,7 +16,7 @@
               </router-link>
             </template>
             <template v-else>
-              <a class="item-link" :href="page.link" target="_blank">
+              <a class="item-link blank" :href="page.link" target="_blank">
                 <item :text="page.text" :icon="page.icon"/>
               </a>
             </template>
@@ -70,6 +70,10 @@ export default {
 .item-link {
   display: contents;
 }
+.item-link.blank {
+    font-size: 80%;
+}
+
 
 @media screen and (max-width: 960px) {
   .main {
