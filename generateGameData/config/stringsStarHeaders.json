@@ -19,7 +19,8 @@
   "MaxDPSTime": [
     "_BS",
     "WS",
-    "BS"
+    "BS",
+    "_WS"
   ],
   "SalvageHullPercent": [
     "WS"
@@ -54,5 +55,13 @@
   ],
   "RelicLoad": [
     "WS"
+  ],
+  "DPS": [
+    "_BS",
+    "_WS"
+  ],
+  "MaxDPS": [
+    "_BS",
+    "_WS"
   ]
 }

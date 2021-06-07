@@ -312,6 +312,8 @@ TID_MODULE_FLAGSHIP_WEAPON: 达特炮塔
 TID_MODULE_FLAGSHIP_WEAPON_DESCR: 一种具有固定位置的独立武器，可经由星际集团旗舰进行部署。它会定期针对射程范围内的每艘敌舰发射一枚达特火箭。达特火箭仅攻击单体，且只有当目标抵达目的地时，位于其爆炸范围内才会造成伤害。
 TID_MODULE_FLAGSHIP_SHIELD: 悬浮护盾
 TID_MODULE_FLAGSHIP_SHIELD_DESCR: 一种具有固定位置的独立区域护盾，可经由星际集团旗舰进行部署。吸收效果范围内所有联盟船舰或火箭所受的伤害，包括运输舰和采掘舰。
+TID_MODULE_LASER_TURRET: 激光炮塔
+TID_MODULE_LASER_TURRET_DESCR: 一种在固定位置部署的独立武器。在短时间设置后，它将向射程内最多 3 个敌人发射激光束。每个目标的伤害会单独增加。\n\n在白星星际跳跃门存在的星区不可用。
 TID_CERB_STATION_HOME1: 脆弱冥犬基地
 TID_CERB_STATION_HOME2: 冥犬基地
 TID_CERB_STATION_HOME3: 强大冥犬基地
@@ -380,6 +382,8 @@ TID_WHITE_STAR: 白星
 TID_WHITE_STAR_INFO: 白星是圣物唯一的来源，故受到hades宇宙中各个星际集团的追寻。
 TID_BLUE_STAR: 蓝星
 TID_BLUE_STAR_INFO: 这种星系寿命很短，不断向内坍缩，非常危险。\n\n蓝星会对星区内所有的船舰造成直接伤害。
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: 服务器即将进行维护，您的蓝星排名比赛搜索已被取消。
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: 与服务器断开连接，您的蓝星搜索已被取消。
 TID_ACHIEVEMENT_SHIPMENTS: 送货到家
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: 运送总计N批货物
 TID_ACHIEVEMENT_UPGRADEPLANET: 星球升级
@@ -414,6 +418,8 @@ TID_ACHIEVEMENT_WS_REWARDS: 富可敌国
 TID_ACHIEVEMENT_WS_REWARDS_DESCR: 从白星任务中获得N星币奖励
 TID_ACHIEVEMENT_BS_WINS: 蓝星战士
 TID_ACHIEVEMENT_BS_WINS_DESCR: 赢得N次蓝星任务
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: 升级您的船舰和船舰模组，获取资格，等待参与排名比赛。
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: 您已经完成了今天的排名比赛。
 TID_HUD_CREDITS: 星币
 TID_HUD_HYDROGEN: 氢气
 TID_HUD_CRYSTALS: 水晶
@@ -421,6 +427,7 @@ TID_STATUS_LOADING_ARTIFACT: 正在装载神器
 TID_STATUS_DESTROYING_PLANET: 正在摧毁星球
 TID_STATUS_NOT_TRIGGERED: 未触发
 TID_STATUS_TRIGGERING: 触发中……
+TID_STATUS_TURRET_SETUP: <color>设置</color>
 TID_OBJ_ACTION_CANCEL_BUILD: 取消建造
 TID_OBJECT_ACTION_MOVE: 移动
 TID_OBJECT_ACTION_PLAYER_INFO: 玩家信息
@@ -438,7 +445,7 @@ TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS: 成就
 TID_MODULE_BLUEPRINTS_LOCKED_MODULE_INFO: 研究更多的N即有机会发现该模组
 TID_MODULE_BLUEPRINTS_INFO: 该界面显示了可用的模组。\n\n要发现新模组或升级已有模组，您需要研究从红巨星获得的神器以找到蓝图。\n\n您必须先研究新发现的模组才能将其安装在船舰上。
 TID_MODULE_LEVEL_0_DESCR: 解锁
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: 参加蓝星任务可赢得恒星碎片。您获得的恒星碎片越多，在每月蓝星排行榜上的排名就越高，并在每个蓝星赛季结束时100%获取水晶奖励。
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: 参加蓝星排名任务可获取蓝星点数。您获得的恒星碎片越多，在每月蓝星排行榜上的排名就越高，并在每个蓝星赛季结束时100%获取水晶奖励。
 TID_PLAYER_INFO_WS_POINTS_DESCR: 在白星任务中做出贡献，就能赚取白星点数。您获得的白星点数越多，在每月白星排行榜上的排名就越高，此外每个白星赛季结束时，保证能获取水晶奖励。
 TID_PRODUCTION_DLG_SHIPS: 船舰
 TID_PRODUCTION_DLG_STATIONS: 太空站
@@ -522,6 +529,7 @@ TID_REQUIRED_HYDROGEN: 需要氢气
 TID_MODULE_SWAP_TEXT: 互换
 TID_MODULE_RELIC_DRONE_CAPACITY: 圣物容量
 TID_MODULE_RELIC_DRONE_SPEED: 每圣物所需装载时间
+TID_JUMP_DLG_JUMP_BATTLESHIPS: 跳跃战斗舰
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: N后超新星爆炸
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: 任何人可加入该红巨星。
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: 只有星际集团成员可加入该红巨星。扫描将被发布至星际集团聊天页。
@@ -531,6 +539,9 @@ TID_RS_CROID_2X_EVENT_TITLE: 当前活动
 TID_RS_CROID_2X_EVENT_DESCR: 活动期间，生成的富足小行星带会带来双倍的星币奖励！\n\n活动结束倒计时：N
 TID_RELIC_DRONE_EVENT_ACTIVE: 圣物无人机活动
 TID_RELIC_DRONE_EVENT_DESCR: 活动期间，所有通过圣物无人机回收的圣物会为您的星际集团圣物收集总量做出双倍贡献。活动结束倒计时：N。
+TID_RS_LATE_JOIN_PLAYER_COUNT: N 名玩家
+TID_RS_IN_PROGRESS_LABEL: 正在进行
+TID_RS_IN_PROGRESS_TOOLTIP: 加入其他玩家，参与最近开始的红巨星活动。
 TID_BS_SHIP_JUMP_INFO: 发现蓝星时，您的船舰会自动进行星际跳跃。
 TID_BS_CREDIT_REWARD_DESCR: 星币奖励数量按照派遣至蓝星的战斗舰重建成本的N%计算。\n\n即便您的战舰在蓝星不幸损失，也总是可以获得奖励。每X的蓝星任务首胜也可获得奖励。
 TID_BS_HYDRO_REWARD_INFO: 氢气奖励的数量取决于您在蓝星任务中的最终排名与您帝国的氢气最大储存空间。每天能赢得的氢气最大量是有上限的。
@@ -538,6 +549,11 @@ TID_BS_FRAGMENTS_REWARD_PROGRESS: 您已参与过今日的N/X排名比赛。
 TID_BS_FRAGMENTS_REWARD_FULL: N之后，您便可以再次参与蓝星排名比赛。
 TID_BS_FRAGMENTS_UNRANKED_BOTS: 对于排名比赛而言，此场蓝星比赛含有过多独狼战舰。
 TID_BS_RANKED: 已排名
+TID_BS_WAIT_FOR_RANKED: 等待参与排名比赛：
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: 已消耗的搜索时间：
+TID_BS_2X_CREDIT_EVENT_ACTIVE: 双倍星币奖励活动
+TID_BS_2X_CREDIT_EVENT_TITLE: 当前活动
+TID_BS_2X_CREDIT_EVENT_DESCR: 您将从蓝星获得双倍星币奖励！\n\n活动结束倒计时
 TID_RELAY_DEACTIVATE_BUTTON: 解除
 TID_RELAY_CONFIRM_DEACTIVATE: 您确定要解除此星区的货运中继吗？
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: 外交关系建立于N之前，从该玩家活动中获得总收入：X星币
@@ -616,6 +632,7 @@ TID_MINER_AUTO_SECTORS: 采矿星区
 TID_MINER_AUTO_SECTORS_DESCR: 采矿舰在需要新命令之前自动进行采集的星区数量。
 TID_DRONE_LIFETIME: 寿命
 TID_DRONE_LIFETIME_DESCR: 无人舰寿命有限。时间耗尽后，无人舰将被摧毁。
+TID_TURRET_SETUP_TIME: 设置时间
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: 时间调制器加快时间流逝的速率。
 TID_TIME_MODULATOR_MAX_TIME: 最大时长
 TID_TIME_MODULATOR_MAX_TIME_DESCR: 时间调制器在需要充能之前能保持激活的最大时长。
@@ -645,7 +662,7 @@ TID_BLUESCANNER_HYDRO_COUNTDOWN: 氢气奖励可用
 TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: 显示您何时能从蓝星赢得氢气奖励。
 TID_INFO_REWARD_AVAILABLE_NOW: 现在
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: 排名比赛可用
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: 显示您何时能参加蓝星排名比赛。如果您在蓝星内遭遇了超过一艘的独狼战舰，那么您可能还不能进行排名比赛。
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: 显示您何时能参加蓝星排名比赛。
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: 名称
 TID_SHIP_STAT_XP_INFO: 在白星中损伤其他玩家战斗舰可获得经验。
 TID_INFLUENCE_DECAY_INFO: 此排行榜上的玩家如果连续三天未能在自己最高等级的红巨星中取胜，那么每三天会丧失自己3%的影响力。
@@ -816,3 +833,8 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+MaxDPSTime_WS: 最大伤害用时 (WS)
+DPS_BS: 每秒伤害 (BS)
+DPS_WS: 每秒伤害 (WS)
+MaxDPS_BS: 最大每秒伤害 (BS)
+MaxDPS_WS: 最大每秒伤害 (WS)

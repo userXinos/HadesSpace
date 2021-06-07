@@ -565,6 +565,11 @@ TID_MODULE_FLAGSHIP_SHIELD_DESCR: A stand-alone area shield with a fixed
   position that can be deployed from the corporation flagship. absorbs hull
   damage taken by any allied ship or rocket in the effect area, including
   transports and miners.
+TID_MODULE_LASER_TURRET: Laser turret
+TID_MODULE_LASER_TURRET_DESCR: A stand-alone weapon deployed at a fixed
+  position. after a short setup time it will fire a laser beam on up to 3
+  targets within range. damage will ramp up independently for each
+  target.\n\ndoes not work on sectors with jump gates on white stars.
 TID_CERB_STATION_HOME1: Weak cerberus base
 TID_CERB_STATION_HOME2: Cerberus base
 TID_CERB_STATION_HOME3: Strong cerberus base
@@ -646,6 +651,10 @@ TID_BLUE_STAR: Blue star
 TID_BLUE_STAR_INFO: This dangerous system has a very limited lifetime and
   collapses from the outside toward the star.\n\nthe star will do direct damage
   to any ship in its sector.
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: Your ranked blue star search has been
+  cancelled due to impending server maintenance.
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: Your blue star search has been cancelled
+  due to being disconnected from the server.
 TID_ACHIEVEMENT_SHIPMENTS: Shipment delivery
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: Deliver a total of N shipments
 TID_ACHIEVEMENT_UPGRADEPLANET: Planet upgrade
@@ -681,6 +690,8 @@ TID_ACHIEVEMENT_WS_REWARDS: Affluent
 TID_ACHIEVEMENT_WS_REWARDS_DESCR: Collect N credits in rewards from participating in white star missions
 TID_ACHIEVEMENT_BS_WINS: Blue star warrior
 TID_ACHIEVEMENT_BS_WINS_DESCR: Win N blue star matches
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: Upgrade your ship and ship's modules to be eligible to wait for a ranked match.
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: You have played your ranked matches for the day.
 TID_HUD_CREDITS: Credits
 TID_HUD_HYDROGEN: Hydrogen
 TID_HUD_CRYSTALS: Crystals
@@ -688,6 +699,7 @@ TID_STATUS_LOADING_ARTIFACT: Loading artifact
 TID_STATUS_DESTROYING_PLANET: Destroying planet
 TID_STATUS_NOT_TRIGGERED: Not triggered
 TID_STATUS_TRIGGERING: Triggering...
+TID_STATUS_TURRET_SETUP: <color>setting up</color>
 TID_OBJ_ACTION_CANCEL_BUILD: Cancel construction
 TID_OBJECT_ACTION_MOVE: Move
 TID_OBJECT_ACTION_PLAYER_INFO: Player info
@@ -712,10 +724,10 @@ TID_MODULE_BLUEPRINTS_INFO: This screen shows available modules.\n\nto discover
   researching artifacts retrieved in red stars.\n\nnewly discovered modules must
   be researched before you can install them on your ships.
 TID_MODULE_LEVEL_0_DESCR: Unlock
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Star fragments are earned by participating
-  in blue star missions. they can be used to climb the monthly blue star
-  leaderboards and to receive guaranteed crystal rewards at the end of each blue
-  star season.
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Blue star points are earned by
+  participating in ranked blue star missions. they can be used to climb the
+  monthly blue star leaderboards and to receive guaranteed crystal rewards at
+  the end of each blue star season.
 TID_PLAYER_INFO_WS_POINTS_DESCR: White star points are earned by contributing in
   white star missions. they can be used to climb the monthly white star
   leaderboards and to receive guaranteed crystal rewards at the end of each
@@ -805,6 +817,7 @@ TID_REQUIRED_HYDROGEN: Required hydrogen
 TID_MODULE_SWAP_TEXT: Swap
 TID_MODULE_RELIC_DRONE_CAPACITY: Relic capacity
 TID_MODULE_RELIC_DRONE_SPEED: Load time per relic
+TID_JUMP_DLG_JUMP_BATTLESHIPS: Jump battleships
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: Supernova in
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: Anyone can join this red star.
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: Only corporation members
@@ -818,6 +831,9 @@ TID_RS_CROID_2X_EVENT_DESCR: "Spawned rich asteroid fields award twice the
 TID_RELIC_DRONE_EVENT_ACTIVE: Relic drone event
 TID_RELIC_DRONE_EVENT_DESCR: While active, all relics retrieved by relic drone
   contribute twice to your corporation's total. event ends in N.
+TID_RS_LATE_JOIN_PLAYER_COUNT: N players
+TID_RS_IN_PROGRESS_LABEL: In progress
+TID_RS_IN_PROGRESS_TOOLTIP: Join other players in a red star that started recently.
 TID_BS_SHIP_JUMP_INFO: Your ship will jump automatically when the blue star is discovered.
 TID_BS_CREDIT_REWARD_DESCR: The credit reward is calculated as N% of the rebuild
   cost for the battleship sent to the blue star.\n\nyou will always receive the
@@ -831,6 +847,11 @@ TID_BS_FRAGMENTS_REWARD_FULL: You will be able to participate in ranked blue sta
 TID_BS_FRAGMENTS_UNRANKED_BOTS: There were too many lone battleships for this
   blue star match to be considered ranked.
 TID_BS_RANKED: Ranked
+TID_BS_WAIT_FOR_RANKED: Wait for ranked match
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: Elapsed search time
+TID_BS_2X_CREDIT_EVENT_ACTIVE: Double credit reward event
+TID_BS_2X_CREDIT_EVENT_TITLE: Active event
+TID_BS_2X_CREDIT_EVENT_DESCR: You will earn twice the credit reward from blue stars!\n\nevent ends in
 TID_RELAY_DEACTIVATE_BUTTON: Deactivate
 TID_RELAY_CONFIRM_DEACTIVATE: Are you sure you want to deactivate the shipment relay on this sector?
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "Diplomatic relations established N ago,
@@ -940,6 +961,7 @@ TID_MINER_AUTO_SECTORS_DESCR: The number of sectors the miner will automatically
 TID_DRONE_LIFETIME: Lifetime
 TID_DRONE_LIFETIME_DESCR: Drones have a limited life time. once the timer
   expires, the drone will be destroyed.
+TID_TURRET_SETUP_TIME: Setup time
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: Indicates the rate at which the time modulator increases passage of time.
 TID_TIME_MODULATOR_MAX_TIME: Max duration
 TID_TIME_MODULATOR_MAX_TIME_DESCR: The maximum amount of time the time modulator
@@ -975,9 +997,7 @@ TID_BLUESCANNER_HYDRO_COUNTDOWN: Hydrogen reward available
 TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: Indicates when you will be able to earn hydrogen rewards from a blue star.
 TID_INFO_REWARD_AVAILABLE_NOW: Now
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: Ranked match available
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indicates when you will be able to
-  participate in ranked blue star matches. you may still not get a ranked match
-  if you encounter more than one lone battleship in the blue star.
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indicates when you will be eligible to participate in ranked blue star matches.
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: Name
 TID_SHIP_STAT_XP_INFO: Xp is gained when doing damage to other player's battleships in white stars.
 TID_INFLUENCE_DECAY_INFO: Players on this leaderboard lose 3% of their influence
@@ -1178,3 +1198,8 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+MaxDPSTime_WS: Time to maximum damage (WS)
+DPS_BS: Damage per second (BS)
+DPS_WS: Damage per second (WS)
+MaxDPS_BS: Maximum damage per second (BS)
+MaxDPS_WS: Maximum damage per second (WS)

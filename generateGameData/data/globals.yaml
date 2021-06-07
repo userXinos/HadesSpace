@@ -120,7 +120,7 @@ ShipDockOffsetY: 200
 MaxAllianceMessageLength: 300
 LargeSystemTravelTimeModifier: 360
 LargeSystemCombatTurnModifier: 60
-ReplayVersion: 29
+ReplayVersion: 30
 CorporationScoreIntervals: 10!20!100
 CorporationScoreDividers: 2!4!10
 PlaceIncomingStargateInMiddleOfSector: 1
@@ -178,8 +178,6 @@ HardTouchZoomFactor: 50
 LeaderboardDlgChuckItems: 20
 PhoenixAIShipDirPositiveBonusPct: 80
 PhoenixAIShipDirNegativePenaltyPct: 60
-AppsFlyeriOS: 1
-AppsFlyerAndroid: 1
 OutpostMaxShipmentDestinations: 100
 WarpLaneAutoPath: 1
 WarpLaneAutoAbortMs: 100
@@ -245,3 +243,7 @@ FlagshipContribAmounts: 10000!100000!1000000!8000000
 CRAsteroidMineTicks: 600
 TutorialDialogImg: youtube/video1!youtube/video2!youtube/video3!youtube/video5
 TutorialDialogURL: https://www.youtube.com/watch?v=UPkk6yKzRnI!https://www.youtube.com/watch?v=Ajdg8jgBXVg!https://www.youtube.com/watch?v=U4zvvJqsaXc!https://www.youtube.com/watch?v=LrY853vumu8
+RSPublicLateJoin_TimeAvailable: 180
+RSPublicLateJoin_ClientCacheExpiry: 30
+RSPublicLateJoin_MinStarLevel: 5
+BSWaitForRankedMinShipScore: 2000

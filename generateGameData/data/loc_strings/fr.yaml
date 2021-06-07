@@ -650,6 +650,12 @@ TID_MODULE_FLAGSHIP_SHIELD_DESCR: Un bouclier zone autonome à position fixe qui
   peut être déployé à partir du vaisseau amiral de la corporation. absorbe les
   dégâts infligés aux coques de tous les vaisseaux ou roquettes alliés dans la
   zone d'effet, vaisseaux de transport et de forage inclus.
+TID_MODULE_LASER_TURRET: Tourelle laser
+TID_MODULE_LASER_TURRET_DESCR: Une arme autonome déployée sur une position fixe.
+  après une courte durée de préparation, elle tirera des rayons laser sur
+  jusqu'à 3 cibles à portée. les dégâts augmenteront indépendamment pour chaque
+  cible.\n\nne fonctionne pas dans les secteurs avec des portes de saut sur les
+  étoiles blanches.
 TID_CERB_STATION_HOME1: Base cerbère faible
 TID_CERB_STATION_HOME2: Base cerbère
 TID_CERB_STATION_HOME3: Base cerbère puissante
@@ -737,6 +743,10 @@ TID_BLUE_STAR_INFO: Ce dangereux système a une durée de vie très limitée et
   souffre d'un effondrement gravitationnel qui est initié à sa frontière et qui
   se dirige vers son étoile au centre.\n\nl'étoile infligera des dégâts directs
   à tous les vaisseaux se trouvant dans son secteur.
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: Votre recherche d'étoile bleue classée a
+  été annulée en raison de la maintenance imminente du serveur.
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: Votre recherche d'étoile bleue a été
+  annulée car la connexion avec le serveur a été perdue.
 TID_ACHIEVEMENT_SHIPMENTS: Livraison de cargaison
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: Livrer un total de N cargaisons
 TID_ACHIEVEMENT_UPGRADEPLANET: Amélioration de planète
@@ -774,6 +784,9 @@ TID_ACHIEVEMENT_WS_REWARDS_DESCR: Récupérez N crédits de récompense pour vos
   participations aux missions d'étoile blanche
 TID_ACHIEVEMENT_BS_WINS: Guerrier des étoiles bleues
 TID_ACHIEVEMENT_BS_WINS_DESCR: Remportez N compétitions d'étoile bleue
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: Améliorez votre vaisseau et ses modules
+  pour avoir le droit d'attendre une compétition classée.
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: Vous avez participé aux compétitions classées permises par jour.
 TID_HUD_CREDITS: Crédits
 TID_HUD_HYDROGEN: Hydrogène
 TID_HUD_CRYSTALS: Cristaux
@@ -781,6 +794,7 @@ TID_STATUS_LOADING_ARTIFACT: Chargement de l'artéfact
 TID_STATUS_DESTROYING_PLANET: Destruction planète
 TID_STATUS_NOT_TRIGGERED: Non activée
 TID_STATUS_TRIGGERING: Activation...
+TID_STATUS_TURRET_SETUP: <color>installation</color>
 TID_OBJ_ACTION_CANCEL_BUILD: Annuler construction
 TID_OBJECT_ACTION_MOVE: Déplacer
 TID_OBJECT_ACTION_PLAYER_INFO: Infos joueur
@@ -808,11 +822,11 @@ TID_MODULE_BLUEPRINTS_INFO: Cet écran montre les modules disponibles.\n\npour
   rouges.\n\nles modules nouvellement découverts doivent être recherchés avant
   de pouvoir être installés dans vos vaisseaux.
 TID_MODULE_LEVEL_0_DESCR: Débloquer
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Les fragments d'étoile peuvent être
-  obtenus en participant à des missions d'étoile bleue. ils peuvent être
-  utilisés pour grimper au sein des classements d'étoile bleue et pour obtenir,
-  à coup sûr, des récompenses de cristaux à la fin de chaque saison d'étoile
-  bleue.
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Les points d'étoile bleue peuvent être
+  obtenus en participant à des missions classées d'étoile bleue. ils peuvent
+  être utilisés pour grimper au sein des classements d'étoile bleue et pour
+  obtenir, à coup sûr, des récompenses de cristaux à la fin de chaque saison
+  d'étoile bleue.
 TID_PLAYER_INFO_WS_POINTS_DESCR: Les points d'étoile blanche s'obtiennent en
   participant à des missions d'étoile blanche. ils peuvent être utilisés pour
   grimper au sein des classements d'étoile blanche et pour obtenir, à coup sûr,
@@ -904,6 +918,7 @@ TID_REQUIRED_HYDROGEN: Hydrogène requis
 TID_MODULE_SWAP_TEXT: Échange
 TID_MODULE_RELIC_DRONE_CAPACITY: Capacité de reliques
 TID_MODULE_RELIC_DRONE_SPEED: Temps de chargement par relique
+TID_JUMP_DLG_JUMP_BATTLESHIPS: Téléportez les cuirassés
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: Supernova dans
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: Tout le monde peut rejoindre cette étoile rouge.
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: Seuls les membres de la
@@ -921,6 +936,9 @@ TID_RELIC_DRONE_EVENT_ACTIVE: Évènement de drone relique
 TID_RELIC_DRONE_EVENT_DESCR: "Durant cet évènement, toutes les reliques
   récupérées par le drone relique comptent deux fois pour le total de votre
   corporation. fin de l'évènement dans : N."
+TID_RS_LATE_JOIN_PLAYER_COUNT: N joueurs
+TID_RS_IN_PROGRESS_LABEL: En cours
+TID_RS_IN_PROGRESS_TOOLTIP: Rejoignez les autres joueurs sur une étoile rouge ayant récemment commencé.
 TID_BS_SHIP_JUMP_INFO: Votre vaisseau effectuera automatiquement un saut une
   fois l'étoile bleue découverte.
 TID_BS_CREDIT_REWARD_DESCR: La récompense de crédits s'élève à N % du coût de
@@ -938,6 +956,12 @@ TID_BS_FRAGMENTS_UNRANKED_BOTS: Il y avait trop de cuirassés isolés dans cette
   compétition d'étoile bleue pour qu'elle puisse être considérée comme
   compétition classée.
 TID_BS_RANKED: Classée
+TID_BS_WAIT_FOR_RANKED: Attendre une compétition classée
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: Temps de recherche écoulé
+TID_BS_2X_CREDIT_EVENT_ACTIVE: Évènement récompense de crédits doubles
+TID_BS_2X_CREDIT_EVENT_TITLE: Évènement actif
+TID_BS_2X_CREDIT_EVENT_DESCR: "Vous obtiendrez le double de récompense de
+  crédits d'étoiles bleues !\\n\\nfin de l'évènement dans :"
 TID_RELAY_DEACTIVATE_BUTTON: Désactiver
 TID_RELAY_CONFIRM_DEACTIVATE: Voulez-vous vraiment désactiver le relais de cargaison dans ce secteur ?
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "Relations diplomatiques établies il y a N,
@@ -1064,6 +1088,7 @@ TID_MINER_AUTO_SECTORS_DESCR: Nombre de secteurs dans lequel le vaisseau de
 TID_DRONE_LIFETIME: Durée de vie
 TID_DRONE_LIFETIME_DESCR: Les drones ont une durée de vie limitée. une fois le
   minuteur arrivé à zéro, le drone sera détruit.
+TID_TURRET_SETUP_TIME: Durée d'installation
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: Indique le taux d'accélération de l'écoulement du temps du modulateur temporel.
 TID_TIME_MODULATOR_MAX_TIME: Durée max
 TID_TIME_MODULATOR_MAX_TIME_DESCR: La durée maximum pendant laquelle le
@@ -1105,12 +1130,10 @@ TID_BLUESCANNER_CREDIT_COUNTDOWN_DESC: Indique quand vous pourrez gagner une
 TID_BLUESCANNER_HYDRO_COUNTDOWN: Récompense en hydrogène disponible
 TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: Indique quand vous pourrez gagner des
   récompenses en hydrogène bonus sur une étoile bleue.
-TID_INFO_REWARD_AVAILABLE_NOW: Maintenant
+TID_INFO_REWARD_AVAILABLE_NOW: Oui
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: Compétition classée disponible
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indique quand vous pourrez
-  participer à d'autres compétitions classées d'étoile bleue. il se peut que
-  vous n'entriez pas dans une compétition classée si vous rencontrez plus d'un
-  cuirassé isolé sur l'étoile bleue.
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indique quand vous aurez le droit de
+  participer à d'autres compétitions classées d'étoile bleue.
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: Nom
 TID_SHIP_STAT_XP_INFO: Vous gagnez de l'exp lorsque vous infligez des dégâts aux
   cuirassés des autres joueurs sur les étoiles blanches.
@@ -1335,3 +1358,8 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+MaxDPSTime_WS: Temps jusqu'aux dégâts max (WS)
+DPS_BS: Dégâts par seconde (BS)
+DPS_WS: Dégâts par seconde (WS)
+MaxDPS_BS: Dégâts max par seconde (BS)
+MaxDPS_WS: Dégâts max par seconde (WS)

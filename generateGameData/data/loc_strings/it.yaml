@@ -613,6 +613,12 @@ TID_MODULE_FLAGSHIP_SHIELD_DESCR: Uno scudo ad area autonomo in posizione fissa
   che può essere schierato tramite la nave ammiraglia della corporazione.
   assorbe i danni allo scafo inflitti da qualsiasi nave o razzo alleati
   nell'area di effetto, incluse le navi cargo e minerarie.
+TID_MODULE_LASER_TURRET: Torretta laser
+TID_MODULE_LASER_TURRET_DESCR: Un'arma autonoma schierata in posizione fissa.
+  dopo una breve preparazione, colpisce 3 nemici con un fascio laser nel suo
+  raggio di tiro. il danno aumenta in maniera indipendente per ogni
+  bersaglio.\n\nnon funziona nei settori con portali di salto sulle stelle
+  bianche.
 TID_CERB_STATION_HOME1: Base cerbero debole
 TID_CERB_STATION_HOME2: Base cerbero
 TID_CERB_STATION_HOME3: Base cerbero forte
@@ -697,6 +703,11 @@ TID_BLUE_STAR: Stella blu
 TID_BLUE_STAR_INFO: Questo pericoloso sistema ha un arco di vita limitato e
   collassa dall'esterno verso l'interno della stella.\n\nla stella danneggia
   qualsiasi nave presente nel settore.
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: La tua ricerca di una stella blu
+  classificata è stata annullata a causa delle imminenti operazioni di
+  manutenzione del server.
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: La tua ricerca di una stella blu è stata
+  annullata a causa della disconnessione dal server.
 TID_ACHIEVEMENT_SHIPMENTS: Consegna carichi
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: Consegna un totale di N carichi
 TID_ACHIEVEMENT_UPGRADEPLANET: Miglioramento pianeta
@@ -732,6 +743,9 @@ TID_ACHIEVEMENT_WS_REWARDS: Benestante
 TID_ACHIEVEMENT_WS_REWARDS_DESCR: Raccogli N crediti in ricompense partecipando a missioni stelle bianche
 TID_ACHIEVEMENT_BS_WINS: Guerriero della stella blu
 TID_ACHIEVEMENT_BS_WINS_DESCR: Vinci N partite nelle stelle blu
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: Potenzia la tua nave e i suoi moduli
+  per ottenere l'idoneità ad attendere una partita classificata.
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: Hai giocato tutte le partite classificate di oggi.
 TID_HUD_CREDITS: Crediti
 TID_HUD_HYDROGEN: Idrogeno
 TID_HUD_CRYSTALS: Cristalli
@@ -739,6 +753,7 @@ TID_STATUS_LOADING_ARTIFACT: Imbarco manufatto in corso
 TID_STATUS_DESTROYING_PLANET: Pianeta in distruzione
 TID_STATUS_NOT_TRIGGERED: Non innescata
 TID_STATUS_TRIGGERING: Innesco...
+TID_STATUS_TURRET_SETUP: <color>preparazione</color>
 TID_OBJ_ACTION_CANCEL_BUILD: Annulla costruzione
 TID_OBJECT_ACTION_MOVE: Sposta
 TID_OBJECT_ACTION_PLAYER_INFO: Info giocatore
@@ -765,10 +780,10 @@ TID_MODULE_BLUEPRINTS_INFO: Questa schermata mostra i moduli disponibili.\n\nper
   stelle rosse.\n\nper installare un modulo appena scoperto, dovrai prima
   avviare una ricerca.
 TID_MODULE_LEVEL_0_DESCR: Sblocca
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: I frammenti di stella si ottengono
-  partecipando alle missioni nelle stelle blu. possono essere usati per scalare
-  le classifiche mensili delle stelle blu e per ricevere ricompense di cristallo
-  al termine di ciascuna stagione delle stelle blu.
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: I punti stella blu si ottengono
+  partecipando alle missioni stella blu classificate. possono essere usati per
+  scalare le classifiche mensili delle stelle blu e per ricevere ricompense di
+  cristallo al termine di ciascuna stagione delle stelle blu.
 TID_PLAYER_INFO_WS_POINTS_DESCR: Per ricevere dei punti stella bianca dovrai
   dare un contributo nelle suddette missioni. possono essere usati per scalare
   le classifiche mensili della stella bianca e per ricevere ricompense di
@@ -859,6 +874,7 @@ TID_REQUIRED_HYDROGEN: Idrogeno richiesto
 TID_MODULE_SWAP_TEXT: Scambio
 TID_MODULE_RELIC_DRONE_CAPACITY: Capacità cimeli
 TID_MODULE_RELIC_DRONE_SPEED: Tempo caricamento per cimelio
+TID_JUMP_DLG_JUMP_BATTLESHIPS: Fai saltare navi da guerra
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: Supernova tra
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: Chiunque può unirsi a questa stella rossa.
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: Solo i membri della
@@ -875,6 +891,9 @@ TID_RELIC_DRONE_EVENT_ACTIVE: Evento drone da cimeli
 TID_RELIC_DRONE_EVENT_DESCR: Mentre è attivo, tutti i cimeli recuperati dal
   drone da cimeli contribuiranno il doppio al numero totale della tua
   corporazione. l'evento finisce in N.
+TID_RS_LATE_JOIN_PLAYER_COUNT: N giocatori
+TID_RS_IN_PROGRESS_LABEL: In corso
+TID_RS_IN_PROGRESS_TOOLTIP: Unisciti ad altri giocatori in una stella rossa che ha è appena iniziata.
 TID_BS_SHIP_JUMP_INFO: La tua nave salta automaticamente quando viene scoperta una stella blu.
 TID_BS_CREDIT_REWARD_DESCR: La ricompensa crediti viene calcolata in N% dei
   costi di ricostruzione per la nave da guerra inviata verso la stella
@@ -889,6 +908,11 @@ TID_BS_FRAGMENTS_REWARD_FULL: Potrai partecipare di nuovo alle partite stella bl
 TID_BS_FRAGMENTS_UNRANKED_BOTS: Erano presenti troppe navi da guerra solitarie
   per considerare questa partita stella blu come classificata.
 TID_BS_RANKED: Classificata
+TID_BS_WAIT_FOR_RANKED: Attendi partita classificata
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: Tempo di ricerca trascorso
+TID_BS_2X_CREDIT_EVENT_ACTIVE: Evento ricompensa crediti doppi
+TID_BS_2X_CREDIT_EVENT_TITLE: Evento attivo
+TID_BS_2X_CREDIT_EVENT_DESCR: Otterrai una ricompensa crediti doppia dalle stelle blu!\n\nl'evento finisce in
 TID_RELAY_DEACTIVATE_BUTTON: Disattiva
 TID_RELAY_CONFIRM_DEACTIVATE: Sei sicuro di voler disattivare il relè dei carichi in questo settore?
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "Relazioni diplomatiche stabilite N fa.
@@ -1006,6 +1030,7 @@ TID_MINER_AUTO_SECTORS_DESCR: Il numero dei settori da cui la nave mineraria
 TID_DRONE_LIFETIME: Durata di vita
 TID_DRONE_LIFETIME_DESCR: I droni hanno una durata di vita limitata. quando il
   tempo scade, il drone sarà distrutto.
+TID_TURRET_SETUP_TIME: Tempo di preparazione
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: Indica la velocità con cui il
   modulatore temporale aumenta lo scorrere del tempo.
 TID_TIME_MODULATOR_MAX_TIME: Durata max
@@ -1048,10 +1073,8 @@ TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: Indica il momento in cui potrai ottenere
   una ricompensa di idrogeno bonus da una stella blu.
 TID_INFO_REWARD_AVAILABLE_NOW: Ora
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: Partita classificata disponibile
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indica il momento in cui potrai
-  partecipare di nuovo alle partite stella blu classificate. potresti non
-  ricevere una partita classificata se incontrassi più di una nave da guerra
-  solitaria in una stella blu.
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indica il momento in cui otterrai
+  l'idoneità a partecipare alle partite stella blu classificate.
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: Nome
 TID_SHIP_STAT_XP_INFO: Quando danneggi le navi da guerra di un altro giocatore
   sulle stelle bianche, guadagnerai xp.
@@ -1266,3 +1289,8 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+MaxDPSTime_WS: Tempo per danno massimo (WS)
+DPS_BS: Danno al secondo (BS)
+DPS_WS: Danno al secondo (WS)
+MaxDPS_BS: Danno massimo al secondo (BS)
+MaxDPS_WS: Danno massimo al secondo (WS)
