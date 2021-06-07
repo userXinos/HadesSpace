@@ -19,8 +19,7 @@
   "MaxDPSTime": [
     "_BS",
     "WS",
-    "BS",
-    "_WS"
+    "BS"
   ],
   "SalvageHullPercent": [
     "WS"
@@ -55,6 +54,10 @@
   ],
   "RelicLoad": [
     "WS"
+  ],
+  "TurretSetupTime": [
+    "_WS",
+    "BS"
   ],
   "DPS": [
     "_BS",

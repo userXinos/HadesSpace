@@ -8,6 +8,7 @@ export const starHeaders = [
   'ProximityTriggerSec',
   'RelicLoad',
   'SpawnLifetime',
+  'TurretSetupTime',
 ];
 export const combineKeys = { // TODO
   FlagshipDartBarrage: 'FlagshipWeaponModule',

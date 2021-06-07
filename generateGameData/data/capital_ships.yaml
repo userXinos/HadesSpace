@@ -315,13 +315,7 @@ LaserTurret:
   TID: TID_MODULE_LASER_TURRET
   TID_Description: TID_MODULE_LASER_TURRET_DESCR
   Model: Turret_Laser01
-  NewModuleSlots: Weapon
-  BuildCost: 0
   HP: [4000, 4700, 5400, 6100, 6800, 7500, 8200, 8900, 9600, 10300, 11000, 11700]
-  InitialModule: LaserTurret_Laser
-  InitialModuleLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-  Speed: 0
   maxLevel: 12
-  MaxPerRS: 5
   TurretSetupTime: 5
-  TurretSetupTime_WS: 24
+  TurretSetupTime_WS: 14400

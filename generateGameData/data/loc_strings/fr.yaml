@@ -26,6 +26,8 @@ SpawnLifetimeBS: Durée de vie (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
+MaxDPS_BS: Dégâts max par seconde (BS)
+MaxDPS_WS: Dégâts max par seconde (WS)
 InitialModuleLevels: Module level
 RelicLoad: Load a relic
 RelicLoadWS: Load a relic (WS)
@@ -1358,8 +1360,7 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
-MaxDPSTime_WS: Temps jusqu'aux dégâts max (WS)
+TurretSetupTime_WS: Durée d'installation (WS)
+TurretSetupTimeBS: Durée d'installation (BS)
 DPS_BS: Dégâts par seconde (BS)
 DPS_WS: Dégâts par seconde (WS)
-MaxDPS_BS: Dégâts max par seconde (BS)
-MaxDPS_WS: Dégâts max par seconde (WS)

@@ -12,7 +12,7 @@ export default [
     (v) => v * 6,
   ],
   [
-    ['ActivationPrepWS', 'SpawnLifetime_WS'],
+    ['ActivationPrepWS', 'SpawnLifetime_WS', 'TurretSetupTime_WS'],
     (v) => v * 3600 / 6,
   ],
   [
@@ -384,4 +384,13 @@ export const hide = [
   'RelicDrone.DesignUpgradeCost',
   'RelicDrone.DesignUpgradeTime',
   'RelicDrone.MaxShipments',
+  'LaserTurret_Laser.Hide',
+  'LaserTurret_Laser.WeaponEffectType',
+  'LaserTurret.NewModuleSlots',
+  'LaserTurret.BuildCost',
+  'LaserTurret.InitialModule',
+  'LaserTurret.Speed',
+  'LaserTurret.InitialModuleLevels',
+  'LaserTurret.MaxPerRS',
+  'LaserTurret_Laser.MaxDPSTime_WS',
 ];

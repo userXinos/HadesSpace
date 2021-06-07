@@ -1428,29 +1428,27 @@ LaserTurret:
   ActivationDelay: 300
   ActivationDelayWS: 180000
   ActivationDelayBS: 600
+  EffectRadius: 120
+  DPS: 40
+  MaxDPS: [160, 175, 195, 210, 230, 255, 280, 300, 340, 360, 400, 480]
+  MaxDPSTime: 10
+  MaxDPSTimeWS: 6000
+  MaxDPSTimeBS: 20
+  MaxTargets: 3
   SpawnLifetime: 30
   SpawnLifetime_WS: 64800
   SpawnLifetimeBS: 60
+  MaxDPS_BS: [400, 440, 485, 530, 580, 640, 700, 750, 850, 900, 1000, 1200]
+  MaxDPS_WS: [400, 440, 485, 530, 580, 640, 700, 750, 850, 900, 1000, 1200]
+  HP: [4000, 4700, 5400, 6100, 6800, 7500, 8200, 8900, 9600, 10300, 11000, 11700]
   ActivationFuelCost: [3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100]
   BCCost: [15000, 16000, 17000, 18000, 20000, 22000, 24000, 26000, 28000, 30000, 32500, 35000]
   WhiteStarScore: [1500, 2000, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200]
   BSScore: [550, 600, 650, 700, 750, 800, 900, 1000, 1100, 1200, 1300, 1400]
   maxLevel: 12
-LaserTurret_Laser:
-  Name: LaserTurret_Laser
-  TID: TID_MODULE_LASER_TURRET
-  TID_Description: TID_MODULE_LASER_TURRET_DESCR
-  Icon: Mod_TurretLaser_Icon
-  SlotType: Weapon
-  EffectRadius: 120
-  DPS: 40
-  MaxDPS: [160, 175, 195, 210, 230, 255, 280, 300, 340, 360, 400, 480]
-  MaxDPSTime: 10
-  MaxDPSTimeBS: 20
-  MaxTargets: 3
-  maxLevel: 12
+  TurretSetupTime: 5
+  TurretSetupTime_WS: 14400
   DPS_BS: 100
   DPS_WS: 100
-  MaxDPS_BS: [400, 440, 485, 530, 580, 640, 700, 750, 850, 900, 1000, 1200]
-  MaxDPS_WS: [400, 440, 485, 530, 580, 640, 700, 750, 850, 900, 1000, 1200]
-  MaxDPSTime_WS: 48
+  TurretSetupTimeBS: 10
+LaserTurret_Laser: {}
