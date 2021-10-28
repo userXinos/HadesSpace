@@ -1,0 +1,28 @@
+{
+  "ignorePatterns": ["parser/dist"],
+  "extends": ["google", "plugin:vue/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "arrow-parens": ["error", "always"],
+    "no-unused-vars": ["warn"],
+    "prefer-destructuring": ["error"],
+    "indent": ["error", 4],
+    "object-curly-spacing": ["error", "always"],
+    "space-infix-ops": ["error"],
+    "prefer-template": ["error"],
+    "curly": ["error"],
+    "space-before-blocks": ["error", "always"],
+    "lines-between-class-members": ["error", "always"],
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/multiline-html-element-content-newline": "off",
+    "require-jsdoc": 0,
+    "inebreak-style": 0,
+    "max-len": 0
+  }
+}

@@ -27,29 +27,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11"
   },
-  "eslintConfig": {
-    "env": {
-      "node": true,
-      "commonjs": true,
-      "es6": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "google"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint",
-      "sourceType": "module"
-    },
-    "rules": {
-      "vue/no-use-v-if-with-v-for": 1,
-      "max-len": 0,
-      "require-jsdoc": 0,
-      "new-cap": 0,
-      "no-unused-vars": 1,
-      "linebreak-style": 0
-    }
-  },
+  "eslintIgnore": ["public"],
   "postcss": {
     "plugins": {
       "autoprefixer": {}

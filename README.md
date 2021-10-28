@@ -1,2 +1,6 @@
-# HadesStarData
-### Parsing CSV game data and reading as a web app or getting data via API
+# Web app for viewing game data
+# [SPA](https://ru.wikipedia.org/wiki/Одностраничное_приложение) на [Vue.js](https://vuejs.org/)
+
+`npm install`
+
+`npm run build`
