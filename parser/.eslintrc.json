@@ -1,0 +1,24 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": "google",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "arrow-parens": ["error", "always"],
+    "array-bracket-spacing": ["error", "always"],
+    "no-unused-vars": ["warn"],
+    "prefer-destructuring": ["error"],
+    "indent": ["error", 4],
+    "object-curly-spacing": ["error", "always"],
+    "space-infix-ops": ["error"],
+    "prefer-template": ["error"],
+    "curly": ["error"],
+    "space-before-blocks": ["error", "always"],
+    "lines-between-class-members": ["error", "always"],
+    "require-jsdoc": 0,
+    "inebreak-style": 0,
+    "max-len": 0
+  }
+}

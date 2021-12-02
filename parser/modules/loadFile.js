@@ -1,61 +1,30 @@
-import {join, relative} from 'path';
-import {readFileSync, readdirSync} from 'fs';
-import csvToJson from './csvToJson.js';
-
-const pathSave = join('./data');
-const pathCSVs = join('./rawData');
-const pluginsPath = join('./plugins');
-
-const plugins = readdirSync(pluginsPath)
-    .filter((e) => e.endsWith('.js'))
-    .map((e) => e.replace(/(.*)\..+/, '$1'));
+import { basename } from 'path';
+import { readFile } from 'fs/promises';
+import Runner from './Runner.js';
 
 /**
- * Загруженный файл обработать плагинами, если такие есть
- * @param  {String} fileName  Имя оригинального файла
- * @param  {String} data      Сырые данные
- * @return {Promise<Object>}  Готовый объект
+ * Загрузить файл и обработать ранерами
+ * @param {String} path         Путь к файлу
+ * @param {Array<Runner>} runners
+ * @return {Function<Runner>}  Заряженный раннер
  * @async
  */
-export default async function loadFile(fileName, data) {
-  const headers = (fileName.includes('loc_strings_')) ? ['key', 'value'] : undefined; // TODO избавиться от харкода
-  let json = csvToJson(data, headers);
-  let pluginName = fileName.replace(/.*\/(.+)\.csv/, '$1');
-  pluginName = plugins.find(((e) => pluginName.includes(e)));
+export default async function(path, runners) {
+    const metadata = { originalFile: path, runnerName: null };
+    const file = await readFile(path, 'utf-8');
+    const fileName = basename(path, '.csv');
+    const MyRunner = runners.find((e) => filter(e, fileName)) || Runner;
 
-  Object.defineProperty(json,
-      'metadata', { // скрытый объект от перебора
-        configurable: true,
-        writable: true,
-        value: {
-          originalFile: fileName,
-          saveAs: join(
-              pathSave,
-              relative(pathCSVs, fileName).replace(/csv$/, 'js'),
-          ),
-          pluginName: null,
-        },
-      });
+    return new MyRunner({ raw: file, metadata });
+}
 
-  if (pluginName) {
-    json = await import('../' + pluginsPath + '/' + pluginName + '.js')
-        .then((plugin) => plugin.default(json))
-        .then((json) => {
-          json.metadata.pluginName = pluginName;
-          return json;
-        })
-        .catch((err) => {
-          throw err;
-        });
-  }
-  return json;
+function filter({ config: { file } }, fileName) {
+    if (file.constructor === String && file === fileName) {
+        return true;
+    }
+    if (Array.isArray(file)) {
+        return file.includes(fileName);
+    }
+    return (file.constructor === RegExp && file.test(fileName));
 }
-/**
- * Загрузить не изменённый плагинами объект
- * @param  {String} file  Имя файла, в директории с сырыми данными
- * @return {Object}       Готовый объект
- */
-export function readCsv(file) {
-  const pathCsv = join(pathCSVs, '/', file) + '.csv';
-  return csvToJson(readFileSync(pathCsv, 'utf8'));
-}
+

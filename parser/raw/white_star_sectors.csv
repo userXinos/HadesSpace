@@ -1,0 +1,6 @@
+Name,PlanetTypes,AsteroidsMin,AsteroidsMax,HydrogenPerDay,AsteroidBeltAxis1Size,AsteroidBeltAxis2Size,CerbGroup,NumBases,BaseType
+EntryGate,,2,4,160,800,1400,,,
+HighYieldAsteroids,,2,8,3000,900,1500,,,
+LowYieldAsteroids,,3,5,350,900,1600,,,
+HighQualityPlanet,whitestar1,4,6,500,1100,1600,,,
+LowQualityPlanet,whitestar2,3,4,300,1100,1600,,,
