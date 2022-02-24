@@ -1,0 +1,10 @@
+{
+  TYPE_MOD_TRADE: '무역 모듈',
+  TYPE_MOD_MINING: '마이닝 모듈',
+  TYPE_MOD_WEAPON: '무기 모듈',
+  TYPE_MOD_SHIELD: '차폐 모듈',
+  TYPE_MOD_SUPPORT: '지원 모듈',
+  LVL: '수평',
+  HOME: 'Home',
+  CONTENT: '함유량'
+}

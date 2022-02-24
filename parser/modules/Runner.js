@@ -148,7 +148,7 @@ export default class Runner {
     /**
      * Заполнить пространство для соответствия индексам
      * @param  {Object} obj              Подопытный
-     * @param  {*} spaceSymbol          Символ для заполнения "пробелов"
+     * @param  {*} spaceSymbol           Символ для заполнения "пробелов"
      * @param  {Number} to               Нужный результат размера
      * @param  {Boolean} usePush=false   Метод заполнения, в начало или в конец
      * @return {Object}                  Результат

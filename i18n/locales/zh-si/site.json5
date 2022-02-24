@@ -1,0 +1,10 @@
+{
+  TYPE_MOD_TRADE: '交易模块',
+  TYPE_MOD_MINING: '采矿模块',
+  TYPE_MOD_WEAPON: '武器模块',
+  TYPE_MOD_SHIELD: ' Shield模块',
+  TYPE_MOD_SUPPORT: '支持模块',
+  LVL: '水平',
+  HOME: 'Home',
+  CONTENT: '内容'
+}

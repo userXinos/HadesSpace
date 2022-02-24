@@ -1,0 +1,11 @@
+{
+  UNLOCK_PRICE: 'Sblocca prezzo',
+  UNLOCK_BLUEPRINTS: 'Sblocca progetti',
+  UNLOCK_TIME: 'Sblocca tempo',
+  WS_SCORE: 'WS Punto',
+  BLS_SCORE: 'BS Punto',
+  HYD: 'hyd',
+  AU: 'AU',
+  WS: 'WS',
+  BS: 'BS'
+}

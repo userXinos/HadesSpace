@@ -1,0 +1,17 @@
+{
+  TYPE_MOD_TRADE: 'Модули торговли',
+  TYPE_MOD_MINING: 'Модули добычи',
+  TYPE_MOD_WEAPON: 'Оружейные модули',
+  TYPE_MOD_SHIELD: 'Модули щитов',
+  TYPE_MOD_SUPPORT: 'Модули поддержки',
+  LVL: 'ур',
+  HOME: 'На главную',
+  CONTENT: 'Содержание',
+  PLAN: 'План',
+  RESET_ALL: 'Сбросить всё',
+  RESET_PLAN: 'Сбросить план',
+  PLANETS_CALC: 'Калькулятор планет',
+  OTHER: 'Другое',
+  SWITCH_ACCS: 'Переключатель аккаунтов',
+  OPEN: 'Открыть'
+}

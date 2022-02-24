@@ -2,7 +2,7 @@ import prettier from 'prettier';
 import { existsSync, mkdirSync } from 'fs';
 import { dirname, resolve, parse, format, relative } from 'path';
 
-import { writeFile2 } from '../utils/dir.js';
+import { writeFile2 } from './dirUtils.js';
 // import NestedRawJson from './NestedRawJson.js';
 // import byTypes from '../config/byTypes.js';
 import CONFIG from '../config.js';

@@ -1,0 +1,15 @@
+{
+  UNLOCK_PRICE: 'Precio de desbloqueo',
+  UNLOCK_BLUEPRINTS: 'Desbloquear planos',
+  UNLOCK_TIME: 'Tiempo de desbloqueo',
+  WS_SCORE: 'WS Puntuación',
+  BLS_SCORE: 'BS Puntuación',
+  HYD: 'hyd',
+  AU: 'AU',
+  DAYS: 'd',
+  HOURS: 'h',
+  min: 'min',
+  SEC: 'sec',
+  WS: 'WS',
+  BS: 'BS'
+}

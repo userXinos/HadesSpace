@@ -1,19 +1,20 @@
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
 
-import { walkDir } from './utils/dir.js';
+import { walkDir } from './modules/dirUtils.js';
 import program from './modules/program.js';
 
 const PRETTIER_PRINT_WIDTH = 120; // чтоб массивы выстраивались в одну линию
 const PRETTIER_TAB_WIDTH = 4;
+const ROOT_DIR = dirname(import.meta.url.replace('file:///', ''));
 
 export default Object.freeze({
-    runnersPath: resolve('./runners'),
-    pathRaw: resolve('./raw'),
-    pathSave: resolve('./dist'),
+    runnersPath: resolve(ROOT_DIR, './runners'),
+    pathRaw: resolve(ROOT_DIR, './raw'),
+    pathSave: resolve(ROOT_DIR, './dist'),
     ignoreFiles: [ 'credits' ],
     get files() {
         const files = program.args
-            .map((f) => resolve(f));
+            .map((f) => resolve(ROOT_DIR, f));
 
         if (files.length) {
             return files;

@@ -1,0 +1,10 @@
+{
+  TYPE_MOD_TRADE: '取引モジュール',
+  TYPE_MOD_MINING: 'マイニングモジュール',
+  TYPE_MOD_WEAPON: '武器モジュール',
+  TYPE_MOD_SHIELD: 'シールドモジュール',
+  TYPE_MOD_SUPPORT: 'サポートモジュール',
+  LVL: 'レベル',
+  HOME: 'Home',
+  CONTENT: 'コンテンツ'
+}

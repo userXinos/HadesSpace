@@ -5,7 +5,7 @@ import Runner from './Runner.js';
 /**
  * Загрузить файл и обработать ранерами
  * @param {String} path         Путь к файлу
- * @param {Array<Runner>} runners
+ * @param {Function<Runner>[]} runners
  * @return {Function<Runner>}  Заряженный раннер
  * @async
  */

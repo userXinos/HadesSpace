@@ -1,0 +1,17 @@
+{
+  TYPE_MOD_TRADE: 'Trade modules',
+  TYPE_MOD_MINING: 'Mining modules',
+  TYPE_MOD_WEAPON: 'Weapon modules',
+  TYPE_MOD_SHIELD: 'Shield modules',
+  TYPE_MOD_SUPPORT: 'Support modules',
+  LVL: 'lvl',
+  HOME: 'Home',
+  CONTENT: 'Content',
+  PLAN: 'Plan',
+  RESET_ALL: 'Reset everything',
+  RESET_PLAN: 'Reset the plan',
+  PLANETS_CALC: 'Planet calculator',
+  OTHER: 'Other',
+  SWITCH_ACCS: 'Account switcher',
+  OPEN: 'Open',
+}

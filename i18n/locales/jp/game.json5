@@ -1,0 +1,11 @@
+{
+  UNLOCK_PRICE: '価格のロックを解除',
+  UNLOCK_BLUEPRINTS: 'ブループリントのロックを解除',
+  UNLOCK_TIME: 'ロック解除時間',
+  WS_SCORE: 'WS スコア',
+  BLS_SCORE: 'BS スコア',
+  HYD: 'hyd',
+  AU: 'AU',
+  WS: 'WS',
+  BS: 'BS'
+}

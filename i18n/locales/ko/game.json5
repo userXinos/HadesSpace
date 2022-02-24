@@ -1,0 +1,11 @@
+{
+  UNLOCK_PRICE: '가격 잠금 해제',
+  UNLOCK_BLUEPRINTS: '청사진 잠금 해제',
+  UNLOCK_TIME: '잠금 해제 시간',
+  WS_SCORE: 'WS 점수',
+  BLS_SCORE: 'BS 점수',
+  HYD: 'hyd',
+  AU: 'AU',
+  WS: 'WS',
+  BS: 'BS'
+}

@@ -1,0 +1,30 @@
+{
+  "name": "i18n",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xinos",
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.13.4",
+    "@babel/plugin-syntax-top-level-await": "^7.12.13",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.14.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "json5": "^2.2.0"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-syntax-top-level-await"
+    ]
+  },
+  "eslintIgnore": [
+    "dist"
+  ]
+}

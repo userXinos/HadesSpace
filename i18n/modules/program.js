@@ -6,8 +6,7 @@ const { version } = JSON.parse(await readFile(new URL('../package.json', import.
 
 program
     .version(version)
-    .option('-t, --type <type>', 'Type files', 'js')
-    .option('--no-wipe', 'Disable wipe dir before starting');
+    .option('-f, --full', 'all locale files');
 
 
 export default program;

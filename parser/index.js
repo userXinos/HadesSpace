@@ -4,10 +4,13 @@ import { basename, resolve } from 'path';
 
 import CONFIG from './config.js';
 import Timer from './modules/Timer.js';
-import loadSaveFile from './utils/loadSaveFile.js';
+import loadFile from './modules/loadFile.js';
+import saveFile from './modules/saveFile.js';
 import { validRunner } from './modules/Runner.js';
-import { options } from './modules/program.js';
-import { wipeDir } from './utils/dir.js';
+import program, { options } from './modules/program.js';
+import { wipeDir } from './modules/dirUtils.js';
+
+program.parse();
 
 const time = new Timer();
 const ignoreFiles = CONFIG.ignoreFiles || [];
@@ -46,6 +49,12 @@ await Promise.all(CONFIG.files
     .catch(err);
 
 console.log('\x1b[32m[✓] \x1b[0m Готово! (%s сек.)', time.final);
+
+
+async function loadSaveFile(file, runners) {
+    const data = await loadFile(file, runners);
+    return saveFile(data);
+}
 
 function err(error) {
     console.log('\x1b[31m[х]\x1b[0m', `Ошибки в выполнении.`, error, error.stack);

@@ -1,0 +1,11 @@
+{
+  UNLOCK_PRICE: '解锁价格',
+  UNLOCK_BLUEPRINTS: '解锁蓝图',
+  UNLOCK_TIME: '解锁时间',
+  WS_SCORE: 'WS 得分了',
+  BLS_SCORE: 'BS 得分了',
+  HYD: 'hyd',
+  AU: 'AU',
+  WS: 'WS',
+  BS: 'BS'
+}

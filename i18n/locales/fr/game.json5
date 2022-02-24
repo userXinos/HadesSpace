@@ -1,0 +1,11 @@
+{
+  UNLOCK_PRICE: 'Unlock price',
+  UNLOCK_BLUEPRINTS: 'Unlock blueprints',
+  UNLOCK_TIME: 'Unlock Time',
+  WS_SCORE: 'WS But',
+  BLS_SCORE: 'BS But',
+  HYD: 'hyd',
+  AU: 'AU',
+  WS: 'WS',
+  BS: 'BS'
+}
