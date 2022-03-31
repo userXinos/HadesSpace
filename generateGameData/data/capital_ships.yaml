@@ -310,3 +310,12 @@ FlagshipAreaShield:
   InitialModuleLevels: [1, 2, 3]
   Speed: 0
   maxLevel: 3
+LaserTurret:
+  Name: LaserTurret
+  TID: TID_MODULE_LASER_TURRET
+  TID_Description: TID_MODULE_LASER_TURRET_DESCR
+  Model: Turret_Laser01
+  HP: [4000, 4700, 5400, 6100, 6800, 7500, 8200, 8900, 9600, 10300, 11000, 11700]
+  maxLevel: 12
+  TurretSetupTime: 5
+  TurretSetupTime_WS: 14400

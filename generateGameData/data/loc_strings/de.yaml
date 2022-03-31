@@ -26,6 +26,8 @@ SpawnLifetimeBS: Laufzeit (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
+MaxDPS_BS: Maximaler schaden pro sekunde (BS)
+MaxDPS_WS: Maximaler schaden pro sekunde (WS)
 InitialModuleLevels: Module level
 RelicLoad: Load a relic
 RelicLoadWS: Load a relic (WS)
@@ -620,6 +622,12 @@ TID_MODULE_FLAGSHIP_SHIELD_DESCR: Ein eigenständig funktionierender
   eingesetzt werden kann. absorbiert durch verbündete schiffe, darunter
   transport- und bergbauschiffe, oder raketen erlittenen schaden innerhalb des
   bereichs des effekts.
+TID_MODULE_LASER_TURRET: Laserturm
+TID_MODULE_LASER_TURRET_DESCR: Eine eigenständig funktionierende waffe, die an
+  festen positionen eingesetzt wird. nach einer kurzen vorbereitungsphase
+  beschießt er bis zu 3 ziele in reichweite mit laserstrahlen. der schaden
+  erhöht sich für jedes ziel eigenständig.\n\nfunktioniert nicht in sektoren mit
+  sprungtoren auf weißen zwergen.
 TID_CERB_STATION_HOME1: Schwache cerberus-basis
 TID_CERB_STATION_HOME2: Cerberus-basis
 TID_CERB_STATION_HOME3: Starke cerberus-basis
@@ -704,6 +712,10 @@ TID_BLUE_STAR: Blauer riese
 TID_BLUE_STAR_INFO: Dieses gefährliche system hat eine begrenzte lebensdauer und
   zerfällt von außen nach innen.\n\nder stern fügt jedem schiff im sektor
   direkten schaden zu.
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: Deine suche nach br-ranglistenspielen wurde
+  wegen der bevorstehenden serverwartung abgebrochen.
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: Deine suche nach br-ranglistenspielen wurde
+  wegen eines verbindungsfehlers abgebrochen.
 TID_ACHIEVEMENT_SHIPMENTS: Warenlieferung
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: Transportiere insgesamt N waren.
 TID_ACHIEVEMENT_UPGRADEPLANET: Planetenaufwertung
@@ -740,6 +752,9 @@ TID_ACHIEVEMENT_WS_REWARDS: Wohlhabend
 TID_ACHIEVEMENT_WS_REWARDS_DESCR: Erhalte N credits als belohnung für wz-missionen
 TID_ACHIEVEMENT_BS_WINS: Br-krieger
 TID_ACHIEVEMENT_BS_WINS_DESCR: Gewinne N br-spiele
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: Werte dein schiff und deine
+  schiffsmodule auf, um an ranglistenspielen teilnehmen zu können.
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: Du hast an deinen täglichen ranglistenspielen teilgenommen.
 TID_HUD_CREDITS: Credits
 TID_HUD_HYDROGEN: Wasserstoff
 TID_HUD_CRYSTALS: Kristalle
@@ -747,6 +762,7 @@ TID_STATUS_LOADING_ARTIFACT: Artefakt wird eingeladen
 TID_STATUS_DESTROYING_PLANET: Planet wird zerstört
 TID_STATUS_NOT_TRIGGERED: Nicht gezündet
 TID_STATUS_TRIGGERING: Wird gezündet …
+TID_STATUS_TURRET_SETUP: <color>in vorbereitung</color>
 TID_OBJ_ACTION_CANCEL_BUILD: Bau abbrechen
 TID_OBJECT_ACTION_MOVE: Bewegen
 TID_OBJECT_ACTION_PLAYER_INFO: Spielerinfo
@@ -773,10 +789,10 @@ TID_MODULE_BLUEPRINTS_INFO: Dieses fenster zeigt alle verfügbaren module.\n\num
   roten riesen sammeln und erforschen.\n\nneu entdeckte module müssen erforscht
   werden, bevor du sie auf schiffen installieren kannst.
 TID_MODULE_LEVEL_0_DESCR: Freischalten
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Sternensplitter werden bei br-missionen
-  verdient. sie können für den aufstieg in der monatlichen br-rangliste
-  verwendet werden, sowie um am ende jeder br-saison garantierte
-  kristall-belohnungen zu erhalten.
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Br-punkte können bei
+  br-ranglistenmissionen verdient werden. sie können für den aufstieg in der
+  monatlichen br-rangliste verwendet werden, sowie um am ende jeder br-saison
+  garantierte kristall-belohnungen zu erhalten.
 TID_PLAYER_INFO_WS_POINTS_DESCR: Erhalte weißer-zwerg-punkte, indem du an
   wz-missionen teilnimmst. sie können für den aufstieg in der monatlichen
   wz-rangliste verwendet werden, sowie um am ende jeder wz-saison garantierte
@@ -866,6 +882,7 @@ TID_REQUIRED_HYDROGEN: Benötigter wasserstoff
 TID_MODULE_SWAP_TEXT: Tausch
 TID_MODULE_RELIC_DRONE_CAPACITY: Reliktkapazität
 TID_MODULE_RELIC_DRONE_SPEED: Zeitaufwand für das sammeln eines relikts
+TID_JUMP_DLG_JUMP_BATTLESHIPS: Sprung-schlachtschiffe
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: Supernova in
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: Jeder kann zu diesem roten riesen springen.
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: Nur mitglieder des konzerns
@@ -881,6 +898,9 @@ TID_RELIC_DRONE_EVENT_ACTIVE: Relikt-drohnen-ereignis
 TID_RELIC_DRONE_EVENT_DESCR: "Während des ereignisses zählen alle von deinen
   relikt-drohnen gesammelten relikte doppelt zum gesamtbestand deines konzerns.
   ereignis endet in: N."
+TID_RS_LATE_JOIN_PLAYER_COUNT: N spieler
+TID_RS_IN_PROGRESS_LABEL: Wird durchgeführt
+TID_RS_IN_PROGRESS_TOOLTIP: Tritt spielern in einem kürzlich gestarteten roten riesen bei.
 TID_BS_SHIP_JUMP_INFO: Dein schiff springt automatisch, wenn der blaue riese entdeckt wird.
 TID_BS_CREDIT_REWARD_DESCR: Die credit-belohnung errechnet sich aus N % der
   wiederherstellungskosten für das schlachtschiff, das zum blauen riesen
@@ -895,6 +915,12 @@ TID_BS_FRAGMENTS_REWARD_FULL: Du kannst in N wieder an br-ranglistenspielen teil
 TID_BS_FRAGMENTS_UNRANKED_BOTS: Es gibt zu viele einsame schlachtschiffe in
   diesem br-spiel, weshalb es nicht als ranglistenspiel gewertet werden kann.
 TID_BS_RANKED: Ranglistenspiel
+TID_BS_WAIT_FOR_RANKED: Warte auf ranglistenspiel
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: Dauer der suche
+TID_BS_2X_CREDIT_EVENT_ACTIVE: Doppel-credit-belohnungs-ereignis
+TID_BS_2X_CREDIT_EVENT_TITLE: Aktives ereignis
+TID_BS_2X_CREDIT_EVENT_DESCR: Erhalte doppelt so viele credit-belohnungen von
+  blauen riesen!\n\nereignis endet in N.
 TID_RELAY_DEACTIVATE_BUTTON: Deaktivieren
 TID_RELAY_CONFIRM_DEACTIVATE: Möchtest du die warenweiterleitung in diesem sektor wirklich deaktivieren?
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "Diplomatische beziehungen vor N begonnen,
@@ -1008,6 +1034,7 @@ TID_MINER_AUTO_SECTORS_DESCR: Die anzahl der sektoren, in denen das
 TID_DRONE_LIFETIME: Laufzeit
 TID_DRONE_LIFETIME_DESCR: Drohnen haben eine begrenzte laufzeit. wenn diese
   abläuft, wird die drohne zerstört.
+TID_TURRET_SETUP_TIME: Vorbereitungsphase
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: Zeigt an, mit welchem faktor der zeitmodulator den zeitablauf beschleunigt.
 TID_TIME_MODULATOR_MAX_TIME: Max. laufzeit
 TID_TIME_MODULATOR_MAX_TIME_DESCR: Zeigt die maximale laufzeit des
@@ -1048,10 +1075,7 @@ TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: Gibt an, wann eine
   bonus-wasserstoff-belohnung in einem blauen riesen verfügbar ist.
 TID_INFO_REWARD_AVAILABLE_NOW: Jetzt
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: Ranglistenspiel verfügbar
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Gib an, wann du an
-  br-ranglistenspielen teilnehmen kannst. es kann vorkommen, dass du trotzdem
-  nicht in einem ranglistenspiel landest, wenn sich mehr als ein einsames
-  schlachtschiff in einem blauen riesen aufhält.
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Gibt an, wann du berechtigt bist, an br-ranglistenspielen teilzunehmen.
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: Name
 TID_SHIP_STAT_XP_INFO: Du erhältst ep, wenn du den schlachtschiffen anderer
   spieler auf wz-missionen schaden zufügst.
@@ -1268,3 +1292,7 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+TurretSetupTime_WS: Vorbereitungsphase (WS)
+TurretSetupTimeBS: Vorbereitungsphase (BS)
+DPS_BS: Schaden pro sekunde (BS)
+DPS_WS: Schaden pro sekunde (WS)

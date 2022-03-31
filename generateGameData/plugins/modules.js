@@ -22,6 +22,7 @@ export default function(obj) {
         addProjectiles(obj[key], obj, key);
         addDrones(obj[key], obj, key);
         addMaxBonusDS(obj[key]);
+        addLaserTurret(obj[key], obj, key);
         fixBarrage(obj[key]);
         fixDestiny(obj[key]);
         fixWSStats(obj[key]);
@@ -104,6 +105,13 @@ function fixBarrage(obj) {
     const arr = obj.BarrageMaxAdditionalEnemies.split('!');
     obj.BarrageMaxAdditionalEnemies = Number(arr[0]);
     obj.BarrageMaxAdditionalEnemiesWS = Number(arr[1]);
+  }
+}
+function addLaserTurret(obj, generalObj, key) {
+  if (key === 'LaserTurret') {
+    generalObj[key].combineWith(shipsData.LaserTurret);
+    generalObj[key].combineWith({...generalObj.LaserTurret_Laser});
+    generalObj.LaserTurret_Laser = {};
   }
 }
 function fixDestiny(obj) {

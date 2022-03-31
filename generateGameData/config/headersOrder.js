@@ -113,6 +113,8 @@ export default [
   'ModelScale',
   'CanBeBuilt',
   'NewModuleSlots',
+  'MaxDPS_BS',
+  'MaxDPS_WS',
   'BuildCost',
   'DesignUpgradeCost',
   'DesignUpgradeTime',

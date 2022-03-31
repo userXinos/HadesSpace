@@ -28,6 +28,9 @@ RedStar:
   maxLevel: 12
   Lifetime: 900
   SafeInterceptorInPublicRS: 1
+  RSPublicLateJoin_TimeAvailable: 180
+  RSPublicLateJoin_ClientCacheExpiry: 30
+  RSPublicLateJoin_MinStarLevel: 5
 BlueStar:
   Name: BlueStar
   TID: TID_BLUE_STAR

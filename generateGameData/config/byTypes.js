@@ -4,7 +4,7 @@ export default {
     mining: ['MiningBoost', 'MineralStorageCapacity', 'Enrich', 'MassMining', 'HydrogenUpload', 'MiningUnity', 'Crunch', 'Genesis', 'HydroRocket', 'MiningDrone'],
     weapon: ['WeakBattery', 'Battery', 'Laser', 'MassBattery', 'DualLaser', 'Barrage', 'DartLauncher'],
     shield: ['WeakShield', 'StandardShield', 'PassiveShield', 'StrongShield', 'MirrorShield', 'BlastShield', 'AreaShield'],
-    support: ['EMP', 'Teleport', 'RedStarExtender', 'Repair', 'TimeWarp', 'Unity', 'Sanctuary', 'Stealth', 'Fortify', 'Impulse', 'AlphaRocket', 'Salvage', 'Supress', 'Destiny', 'Barrier', 'Vengeance', 'DeltaRocket', 'Leap', 'Bond', 'AlphaDrone', 'Suspend', 'OmegaRocket', 'RemoteBomb'],
+    support: ['EMP', 'Teleport', 'RedStarExtender', 'Repair', 'TimeWarp', 'Unity', 'Sanctuary', 'Stealth', 'Fortify', 'Impulse', 'AlphaRocket', 'Salvage', 'Supress', 'Destiny', 'Barrier', 'Vengeance', 'DeltaRocket', 'Leap', 'Bond', 'LaserTurret', 'AlphaDrone', 'Suspend', 'OmegaRocket', 'RemoteBomb'],
     cerberus: ['GuardianBattery', 'WeakBattery', 'InterceptorMBattery', 'ColossusLaser', 'DestroyerVengeance', 'BomberLauncher', 'PhoenixShield', 'DartBarrage', 'HydraBarrage'],
     flagship: ['Recoil', 'Immolation', 'EMPRocket', 'FlagshipDartBarrage', 'FlagshipAreaShield'],
   },

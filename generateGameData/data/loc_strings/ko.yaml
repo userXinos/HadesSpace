@@ -26,6 +26,8 @@ SpawnLifetimeBS: 수명 (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
+MaxDPS_BS: 초당 최대 피해량 (BS)
+MaxDPS_WS: 초당 최대 피해량 (WS)
 InitialModuleLevels: Module level
 RelicLoad: Load a relic
 RelicLoadWS: Load a relic (WS)
@@ -394,6 +396,9 @@ TID_MODULE_FLAGSHIP_WEAPON_DESCR: 위치가 고정된 독립형 무기로, 코�
 TID_MODULE_FLAGSHIP_SHIELD: 플로팅 실드
 TID_MODULE_FLAGSHIP_SHIELD_DESCR: 위치가 고정된 독립형 광역 실드로, 코퍼레이션 기함에 배치할 수 있습니다. 수송함과
   채굴기를 포함하여 영향권 내 동맹 함선이나 로켓에 받은 선체 피해를 흡수합니다.
+TID_MODULE_LASER_TURRET: 레이저 터렛
+TID_MODULE_LASER_TURRET_DESCR: 위치가 고정된 독립형 무기입니다. 잠깐의 설치 시간이 지나면 범위 내 최대 3개 목표에
+  레이저 광선을 발사합니다. 피해는 목표물마다 따로 증가합니다.\n\n백색성단의 점프게이트 섹터에는 적용되지 않습니다.
 TID_CERB_STATION_HOME1: 취약한 케르베로스 기지
 TID_CERB_STATION_HOME2: 케르베로스 기지
 TID_CERB_STATION_HOME3: 강력한 케르베로스 기지
@@ -464,6 +469,8 @@ TID_WHITE_STAR_INFO: 유일한 유적의 원천인 백색성단은 하데스 은
 TID_BLUE_STAR: 청색성단
 TID_BLUE_STAR_INFO: 매우 짧은 수명을 가진 청색성단은, 외부로부터 내부를 향해 끊임없이 붕괴하고 있는 위험 천만한
   항성계입니다.\n\n청색성단의 항성은 섹터 내의 모든 함선에 대해 직접적인 데미지를 입힙니다.
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: 곧 서버 점검이 시작될 예정이기 때문에 랭크 청색성단 검색이 취소되었습니다.
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: 서버 연결이 해제되어 청색성단 검색이 취소되었습니다.
 TID_ACHIEVEMENT_SHIPMENTS: 수송품 운반
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: 총 N개의 수송품을 운반하세요.
 TID_ACHIEVEMENT_UPGRADEPLANET: 행성 업그레이드
@@ -498,6 +505,8 @@ TID_ACHIEVEMENT_WS_REWARDS: 자산가
 TID_ACHIEVEMENT_WS_REWARDS_DESCR: 백색성단 임무 참여 보상으로 N 크레딧 수집
 TID_ACHIEVEMENT_BS_WINS: 청색성단 워리어
 TID_ACHIEVEMENT_BS_WINS_DESCR: 청색성단 게임을 N회 승리합니다.
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: 랭크 매치를 기다릴 자격을 얻을 수 있도록 함선과 함선 모듈을 업그레이드하세요.
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: 일일 랭크 매치를 플레이했습니다.
 TID_HUD_CREDITS: 크레딧
 TID_HUD_HYDROGEN: 수소
 TID_HUD_CRYSTALS: 크리스털
@@ -505,6 +514,7 @@ TID_STATUS_LOADING_ARTIFACT: 유물 적재 중
 TID_STATUS_DESTROYING_PLANET: 행성 파괴 중
 TID_STATUS_NOT_TRIGGERED: 발동 전
 TID_STATUS_TRIGGERING: 발동 중...
+TID_STATUS_TURRET_SETUP: <color>설정 중</color>
 TID_OBJ_ACTION_CANCEL_BUILD: 건설 취소
 TID_OBJECT_ACTION_MOVE: 이동
 TID_OBJECT_ACTION_PLAYER_INFO: 플레이어 정보
@@ -524,8 +534,8 @@ TID_MODULE_BLUEPRINTS_INFO: 이 화면에는 사용 가능한 모듈이 나와 �
   업그레이드하려면 적색성단에서 회수한 유물을 연구하여 도면을 찾아야 합니다.\n\n새로 발견한 모듈은 연구를 마쳐야 함선에 장착할 수
   있습니다.
 TID_MODULE_LEVEL_0_DESCR: 잠금 해제
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: 성단 파편은 청색성단 미션을 통해서 획득할 수 있습니다. 성단 파편은
-  청색성단 리더보드에서의 랭킹 상승과 청색성단 시즌 종료와 함께 지급되는 크리스털 보상 확보를 위해 필요합니다.
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: 청색성단 포인트는 청색성단 랭크 미션을 통해서 획득할 수 있습니다. 성단
+  파편은 청색성단 리더보드에서의 랭킹 상승과 청색성단 시즌 종료와 함께 지급되는 크리스털 보상 확보를 위해 필요합니다.
 TID_PLAYER_INFO_WS_POINTS_DESCR: 백색성단 미션으로 백색성단 포인트를 얻을 수 있습니다. 백색성단 포인트는 백색성단
   리더보드 내 랭킹 상승과 백색성단 시즌 종료와 함께 지급되는 크리스털 보상 확보를 위해 필요합니다.
 TID_PRODUCTION_DLG_SHIPS: 함선
@@ -610,6 +620,7 @@ TID_REQUIRED_HYDROGEN: 필요 수소
 TID_MODULE_SWAP_TEXT: 교체
 TID_MODULE_RELIC_DRONE_CAPACITY: 유물 용량
 TID_MODULE_RELIC_DRONE_SPEED: 유물당 적재 소요 시간
+TID_JUMP_DLG_JUMP_BATTLESHIPS: 전함 점프
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: N 후 초신성으로 변신
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: 누구나 이 적색성단에 들어올 수 있습니다.
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: 코퍼레이션 멤버만 이 적색성단에 들어올 수 있습니다. 스캔은 코퍼레이션 채팅 페이지에 게시됩니다.
@@ -619,6 +630,9 @@ TID_RS_CROID_2X_EVENT_TITLE: 활성 이벤트
 TID_RS_CROID_2X_EVENT_DESCR: "생성된 풍족한 소행성 지대의 크레딧 보상이 이벤트가 활성화되어 있는 동안 두 배가 됩니다!\\n\\n이벤트 종료까지:"
 TID_RELIC_DRONE_EVENT_ACTIVE: 유물 드론 이벤트
 TID_RELIC_DRONE_EVENT_DESCR: 활성화된 동안, 유물 드론이 회수한 모든 유물이 코퍼레이션에 두 배로 기여됩니다. N 후 종료됩니다.
+TID_RS_LATE_JOIN_PLAYER_COUNT: 플레이어 N명
+TID_RS_IN_PROGRESS_LABEL: 진행 중
+TID_RS_IN_PROGRESS_TOOLTIP: 방금 시작한 적색성단에 다른 플레이어가 합류합니다.
 TID_BS_SHIP_JUMP_INFO: 청색성단이 발견되는 동시에 플레이어의 전함이 자동적으로 점프됩니다.
 TID_BS_CREDIT_REWARD_DESCR: 크레딧 보상은 청색성단에 보내진 전함의 재건조 비용의 N%로 산정됩니다.\n\n청색성단에서
   전함을 잃으면 항상 보상이 지급됩니다. 매 X 마다의 청색성단 첫승에 대해서도 보상이 지급됩니다.
@@ -628,6 +642,11 @@ TID_BS_FRAGMENTS_REWARD_PROGRESS: 오늘 랭크 매치에 N/X회 참여했습니
 TID_BS_FRAGMENTS_REWARD_FULL: N 후 청색성단 랭크 매치에 다시 참여할 수 있습니다.
 TID_BS_FRAGMENTS_UNRANKED_BOTS: 외톨이 전함이 너무 많아 청색성단 랭크 매치로 간주되지 않았습니다.
 TID_BS_RANKED: 랭크
+TID_BS_WAIT_FOR_RANKED: 랭크 매치 대기 중
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: 검색 경과 시간
+TID_BS_2X_CREDIT_EVENT_ACTIVE: 크레딧 두 배 보상 이벤트
+TID_BS_2X_CREDIT_EVENT_TITLE: 활성 이벤트
+TID_BS_2X_CREDIT_EVENT_DESCR: "청색성단에서 받는 크레딧 보상이 두 배가 됩니다!\\n\\n이벤트 종료까지:"
 TID_RELAY_DEACTIVATE_BUTTON: 중지
 TID_RELAY_CONFIRM_DEACTIVATE: 정말로 이 섹터의 수송품 릴레이를 중지하시겠습니까?
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: N 전에 외교 관계를 수립했으며, 이 플레이어의 활동에 의해 징수된 총 세금은 X cr입니다.
@@ -707,6 +726,7 @@ TID_MINER_AUTO_SECTORS: 채굴 섹터
 TID_MINER_AUTO_SECTORS_DESCR: 새 주문을 요청하기 전에 채굴함이 자동으로 채굴하는 섹터의 수입니다.
 TID_DRONE_LIFETIME: 수명
 TID_DRONE_LIFETIME_DESCR: 드론은 수명이 한정적입니다. 수명이 만료되면 드론은 파괴됩니다.
+TID_TURRET_SETUP_TIME: 설치 시간
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: 시간 모듈레이터가 시간 진행을 가속화하는 비율을 나타냅니다.
 TID_TIME_MODULATOR_MAX_TIME: 최대 지속 시간
 TID_TIME_MODULATOR_MAX_TIME_DESCR: 시간 모듈레이터가 지속 가동할 수 있는 최대 지속 시간입니다. 이 시간이 지나면 충전이 필요합니다.
@@ -736,8 +756,7 @@ TID_BLUESCANNER_HYDRO_COUNTDOWN: 다음 수소 보상까지
 TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: 청색성단에서 수소 보상을 언제 획득할 수 있는지 표시합니다.
 TID_INFO_REWARD_AVAILABLE_NOW: 지금
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: 다음 랭크 매치까지
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: 청색성단 랭크 매치에 언제 참여할 수 있는지 표시합니다.
-  청색성단에서 둘 이상의 외톨이 전함을 발견하면 랭크 매치에 참여하지 못할 수 있습니다.
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: 청색성단 랭크 매치에 언제 참여할 자격을 얻을 수 있는지 표시합니다.
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: 이름
 TID_SHIP_STAT_XP_INFO: Xp는 백색성단에서 다른 플레이어의 전함에 피해를 주면 획득합니다.
 TID_INFLUENCE_DECAY_INFO: 리더보드 상의 플레이어들은 최대 레벨 적색성단에서 3일마다 최소 1회 이상 승리를 기록하지 못할 경우 보유 명성의 3%를 잃습니다.
@@ -912,3 +931,7 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+TurretSetupTime_WS: 설치 시간 (WS)
+TurretSetupTimeBS: 설치 시간 (BS)
+DPS_BS: 초당 피해량 (BS)
+DPS_WS: 초당 피해량 (WS)

@@ -138,3 +138,6 @@ ShipmentRelay:
   FragmentCapacity: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
   TeleportShipmentMaxSectors: [1, 2, 3, 4, 5, 6, 8, 11, 14, 18]
   TSHydroCost: [50, 100, 250, 500, 750, 1000, 2000, 3000, 4000, 5000]
+DSS:
+  Name: DSS
+  maxLevel: 1

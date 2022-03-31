@@ -263,6 +263,7 @@ WeakBattery:
   SlotType: Weapon
   EffectRadius: 120
   DPS: 80
+  BSScore: 1000
   maxLevel: 1
 Battery:
   Name: Battery
@@ -1282,9 +1283,9 @@ Suspend:
   ActivationDelayWS: 180000
   ActivationDelayBS: 600
   EffectRadius: [120, 140, 160, 180, 200, 220, 230, 240, 250, 260, 270, 280]
-  EffectDurationx10: [54, 51.1, 48.1, 45.7, 43.9, 42.1, 40.3, 39.1, 37.9, 36.7, 35.5, 34.3]
-  EffectDurationx10WS: [32400, 30660, 28860, 27420, 26340, 25260, 24180, 23460, 22740, 22020, 21300, 20580]
-  EffectDurationx10BS: [108, 102.2, 96.2, 91.4, 87.8, 84.2, 80.6, 78.2, 75.8, 73.4, 71, 68.6]
+  EffectDurationx10: [54, 54, 54, 54, 54, 50.5, 46.9, 43.3, 39.7, 37.3, 34.9, 33.1]
+  EffectDurationx10WS: [32400, 32400, 32400, 32400, 32400, 30300, 28140, 25980, 23820, 22380, 20940, 19860]
+  EffectDurationx10BS: [108, 108, 108, 108, 108, 101, 93.8, 86.6, 79.4, 74.6, 69.8, 66.2]
   TimeWarpFactor: [0.9, 0.9, 0.9, 0.9, 0.9, 0.84, 0.78, 0.72, 0.66, 0.62, 0.58, 0.55]
   TimeWarpSuppression: [20, 40, 60, 80, 100, 100, 100, 100, 100, 100, 100, 100]
   ActivationFuelCost: [500, 600, 720, 850, 1000, 1250, 1500, 1800, 2150, 2500, 2750, 3000]
@@ -1387,7 +1388,7 @@ RelicDrone:
 FlagshipDartBarrage:
   Name: FlagshipDartBarrage
   TID: TID_MODULE_FLAGSHIP_WEAPON
-  TID_Description: TID_MODULE_FLAGSHIP_WEAPON_DESCR
+  TID_Description: T
   AwardLevel: 0
   Icon: Mod_DroneDartLauncher_Icon
   SlotType: Weapon
@@ -1413,3 +1414,41 @@ FlagshipAreaShield:
   ShieldStrength: [15000, 25000, 35000]
   SpawnLifetime_WS: 180000
   maxLevel: 3
+LaserTurret:
+  Name: LaserTurret
+  TID: TID_MODULE_LASER_TURRET
+  TID_Description: TID_MODULE_LASER_TURRET_DESCR
+  TID_Artifact: TID_TRADEITEM_ARTIFACT_SUPPORT_8
+  AwardLevel: 6
+  Icon: Mod_TurretLaser_Icon
+  UnlockBlueprints: [1, 25, 100, 250, 1000, 2000, 3500, 6000, 8000, 10000, 12500, 15000]
+  UnlockPrice: [1000000, 1500000, 2000000, 2500000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 10000000, 12000000]
+  UnlockTime: [172800, 259200, 345600, 432000, 518400, 604800, 604800, 604800, 604800, 604800, 864000, 864000]
+  SlotType: Support
+  ActivationDelay: 300
+  ActivationDelayWS: 180000
+  ActivationDelayBS: 600
+  EffectRadius: 120
+  DPS: 40
+  MaxDPS: [160, 175, 195, 210, 230, 255, 280, 300, 340, 360, 400, 480]
+  MaxDPSTime: 10
+  MaxDPSTimeWS: 6000
+  MaxDPSTimeBS: 20
+  MaxTargets: 3
+  SpawnLifetime: 30
+  SpawnLifetime_WS: 64800
+  SpawnLifetimeBS: 60
+  MaxDPS_BS: [400, 440, 485, 530, 580, 640, 700, 750, 850, 900, 1000, 1200]
+  MaxDPS_WS: [400, 440, 485, 530, 580, 640, 700, 750, 850, 900, 1000, 1200]
+  HP: [4000, 4700, 5400, 6100, 6800, 7500, 8200, 8900, 9600, 10300, 11000, 11700]
+  ActivationFuelCost: [3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100]
+  BCCost: [15000, 16000, 17000, 18000, 20000, 22000, 24000, 26000, 28000, 30000, 32500, 35000]
+  WhiteStarScore: [1500, 2000, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200]
+  BSScore: [550, 600, 650, 700, 750, 800, 900, 1000, 1100, 1200, 1300, 1400]
+  maxLevel: 12
+  TurretSetupTime: 5
+  TurretSetupTime_WS: 14400
+  DPS_BS: 100
+  DPS_WS: 100
+  TurretSetupTimeBS: 10
+LaserTurret_Laser: {}

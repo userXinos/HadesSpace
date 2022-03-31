@@ -26,6 +26,8 @@ SpawnLifetimeBS: 存続期間 (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
+MaxDPS_BS: 1秒あたりダメージ最大値 (BS)
+MaxDPS_WS: 1秒あたりダメージ最大値 (WS)
 InitialModuleLevels: Module level
 RelicLoad: Load a relic
 RelicLoadWS: Load a relic (WS)
@@ -312,6 +314,8 @@ TID_MODULE_FLAGSHIP_WEAPON: ダーツタレット
 TID_MODULE_FLAGSHIP_WEAPON_DESCR: コーポレーションフラグシップから展開できる独立型武装です。範囲内の各敵船に、周期的にダーツロケットを発射します。ダーツロケットは単独ターゲット、かつ目的地に到達したときにターゲットが爆発範囲内に入っていなければダメージを与えられません。
 TID_MODULE_FLAGSHIP_SHIELD: 浮遊シールド
 TID_MODULE_FLAGSHIP_SHIELD_DESCR: コーポレーションフラグシップから展開できる独立型エリアシールドです。効果範囲内にいる、輸送船と採掘船を含む全ての艦船あるいはロケットが受ける船体ダメージを吸収します。
+TID_MODULE_LASER_TURRET: レーザータレット
+TID_MODULE_LASER_TURRET_DESCR: 固定位置で展開する独立型武装。セットアップ時間は短く、範囲内に最大3発のレーザービームを発射する。ダメージは各ターゲットに対して個別に増加する。\n\nホワイトスター行きのジャンプゲートがあるセクターでは使えない。
 TID_CERB_STATION_HOME1: 脆弱なケルベロスの基地
 TID_CERB_STATION_HOME2: ケルベロスの基地
 TID_CERB_STATION_HOME3: 強固なケルベロスの基地
@@ -380,6 +384,8 @@ TID_WHITE_STAR: ホワイトスター
 TID_WHITE_STAR_INFO: レリックの唯一の源泉であるホワイトスターは、ハデス銀河中のコーポレーションにとって垂涎の的である。
 TID_BLUE_STAR: ブルースター
 TID_BLUE_STAR_INFO: この危険な恒星系は、存続期間が非常に短く、外側から恒星に向かって崩壊していく。\n\n恒星は、セクター内にいる艦船に対して直接ダメージを与える。
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: サーバーメンテナンスが開始されため、ランクマッチ・ブルースター探査が中止されました。
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: サーバーとの接続が切断されたため、ブルースター探査が中止されました。
 TID_ACHIEVEMENT_SHIPMENTS: 貨物輸送
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: 貨物を合計N回輸送する
 TID_ACHIEVEMENT_UPGRADEPLANET: 惑星アップグレード
@@ -414,6 +420,8 @@ TID_ACHIEVEMENT_WS_REWARDS: リッチ
 TID_ACHIEVEMENT_WS_REWARDS_DESCR: ホワイトスター・ミッションに参加し、その報酬としてNクレジット獲得する
 TID_ACHIEVEMENT_BS_WINS: ブルースター・ウォーリアー
 TID_ACHIEVEMENT_BS_WINS_DESCR: ブルースターでの戦いにN回勝利する
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: 艦船や艦船モジュールをアップグレードして、ランクマッチ待機の権利を獲得しましょう。
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: 今日のランクマッチはプレイ済みです。
 TID_HUD_CREDITS: クレジット
 TID_HUD_HYDROGEN: 水素
 TID_HUD_CRYSTALS: クリスタル
@@ -421,6 +429,7 @@ TID_STATUS_LOADING_ARTIFACT: アーティファクトの積み込み中
 TID_STATUS_DESTROYING_PLANET: 惑星を破壊中
 TID_STATUS_NOT_TRIGGERED: 未起爆
 TID_STATUS_TRIGGERING: 起爆中…
+TID_STATUS_TURRET_SETUP: <color>セットアップ中</color>
 TID_OBJ_ACTION_CANCEL_BUILD: 建設をキャンセル
 TID_OBJECT_ACTION_MOVE: 移動
 TID_OBJECT_ACTION_PLAYER_INFO: プレーヤー情報
@@ -438,7 +447,7 @@ TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS: 実績
 TID_MODULE_BLUEPRINTS_LOCKED_MODULE_INFO: このモジュールを発見するには、さらに多くの「N」アーティファクトを研究する必要があります
 TID_MODULE_BLUEPRINTS_INFO: この画面には利用可能なモジュールが表示されています。\n\n新たなモジュールを発見したり、モジュールをアップグレードしたりするためには、レッドスターから持ち帰ったアーティファクトを研究する必要があります。\n\n新たに発見されたモジュールは、艦船にインストールする前に研究する必要があります。
 TID_MODULE_LEVEL_0_DESCR: アンロック
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: スターフラグメントは、ブルースターのミッションに参加することで入手できる。スターフラグメントを使うことで月間ブルースター順位表における順位を上げることができ、また、各ブルースター・シーズンの終わりにクリスタル報酬を確実に受け取ることができる。
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: ブルースター・ポイントは、ブルースターのランクマッチ・ミッションに参加することで入手できます。ブルースター・ポイントを使うことで月間ブルースター順位表における順位を上げることができます。また、各ブルースター・シーズンの終わりにクリスタル報酬を確実に受け取ることができます。
 TID_PLAYER_INFO_WS_POINTS_DESCR: ホワイトスターポイントは、ホワイトスターミッションに貢献することで獲得される。ホワイトスター月間順位表の上位に上がり、ホワイトスターの各シーズン終了時にクリスタル報酬を受け取るために使用される。
 TID_PRODUCTION_DLG_SHIPS: 宇宙船
 TID_PRODUCTION_DLG_STATIONS: 宇宙ステーション
@@ -522,6 +531,7 @@ TID_REQUIRED_HYDROGEN: 所要水素
 TID_MODULE_SWAP_TEXT: 交換
 TID_MODULE_RELIC_DRONE_CAPACITY: レリック積載量
 TID_MODULE_RELIC_DRONE_SPEED: レリックごとの積載所要時間
+TID_JUMP_DLG_JUMP_BATTLESHIPS: 戦艦をジャンプ
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: スーパーノヴァまで：N
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: 誰もがこのレッドスター・ミッションに参加できます。
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: このレッドスター・ミッションにはコーポレーションのメンバーだけが参加できます。スキャンはコーポレーションのチャットページに通知されます。
@@ -531,6 +541,9 @@ TID_RS_CROID_2X_EVENT_TITLE: 開催中のイベント
 TID_RS_CROID_2X_EVENT_DESCR: "イベント開催中、生産した豊穣の小惑星帯から、2倍のクレジット報酬をゲット！\\n\\n終了まであと:"
 TID_RELIC_DRONE_EVENT_ACTIVE: レリックドローンイベント
 TID_RELIC_DRONE_EVENT_DESCR: 開催中、レリックドローンが回収したレリックは、2倍としてコーポレーション所有の合計に計上されます。イベントはNに終了します。
+TID_RS_LATE_JOIN_PLAYER_COUNT: プレイヤー：N名
+TID_RS_IN_PROGRESS_LABEL: 進行中
+TID_RS_IN_PROGRESS_TOOLTIP: 直近にスタートしたレッドスターにいる他のプレイヤーに加わりましょう。
 TID_BS_SHIP_JUMP_INFO: 船はブルースター発見時に自動でジャンプします。
 TID_BS_CREDIT_REWARD_DESCR: クレジット報酬は、ブルースターに送られた戦艦の再建コストのN%になります。\n\nブルースターで船を失った場合、必ずこの報酬を獲得できます。また、X毎のブルースターでの最初の勝利に同じ報酬を獲得できます。
 TID_BS_HYDRO_REWARD_INFO: 受け取る水素の量は、ブルースターの最終成績と、帝国のストレージ容量によって決まります。また、一日に獲得できる水素の量には上限があります。
@@ -538,6 +551,11 @@ TID_BS_FRAGMENTS_REWARD_PROGRESS: 今日参加したランクマッチの数は 
 TID_BS_FRAGMENTS_REWARD_FULL: N で再びブルースター・ランクマッチに参加できるようになります。
 TID_BS_FRAGMENTS_UNRANKED_BOTS: このブルースターマッチには多数の単独戦艦が登場したため、ランクマッチとは見なされませんでした。
 TID_BS_RANKED: ランクマッチ
+TID_BS_WAIT_FOR_RANKED: ランクマッチを待機：
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: 探査の経過時間：
+TID_BS_2X_CREDIT_EVENT_ACTIVE: クレジット報酬倍増イベント
+TID_BS_2X_CREDIT_EVENT_TITLE: 開催中のイベント
+TID_BS_2X_CREDIT_EVENT_DESCR: ブルースターで獲得できるクレジット報酬が2倍になります！\n\n終了まであと
 TID_RELAY_DEACTIVATE_BUTTON: 停止
 TID_RELAY_CONFIRM_DEACTIVATE: 本当にこのセクターの貨物リレーを停止しますか？
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: ""
@@ -616,6 +634,7 @@ TID_MINER_AUTO_SECTORS: 採掘セクター数
 TID_MINER_AUTO_SECTORS_DESCR: この採掘船が1回の指令で自動的に採掘するセクターの数。
 TID_DRONE_LIFETIME: 存続期間
 TID_DRONE_LIFETIME_DESCR: ドローンの存続期間は限られている。タイマーの期限が切れると、ドローンは破壊される。
+TID_TURRET_SETUP_TIME: セットアップ時間
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: タイムモジュレーターが時間の経過を増加する速度を示してくれます。
 TID_TIME_MODULATOR_MAX_TIME: 最大持続時間
 TID_TIME_MODULATOR_MAX_TIME_DESCR: タイムモジュレーターを再チャージする必要になるまでの最大持続時間です。
@@ -645,7 +664,7 @@ TID_BLUESCANNER_HYDRO_COUNTDOWN: 水素報酬 獲得可能
 TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: ブルースターから水素報酬を獲得できるようになる時間を示しています。
 TID_INFO_REWARD_AVAILABLE_NOW: 獲得可能
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: ランクマッチ参戦可能
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: 再びブルースター・ランクマッチに参加できるようになる時間を示しています。ブルースターで2隻以上の単独戦艦に遭遇した場合は、ランクマッチとしてカウントされない場合があります。
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: 再びブルースター・ランクマッチに参加できるようになる時間を示しています。
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: 名前
 TID_SHIP_STAT_XP_INFO: Xpはホワイトスター内で他のプレーヤーの戦艦にダメージを与えることで獲得できます。
 TID_INFLUENCE_DECAY_INFO: このランキングに入っているプレイヤーは、最大レベルのレッドスターで勝利しない場合、、3日ごとに影響力の3％を失います。
@@ -817,3 +836,7 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+TurretSetupTime_WS: セットアップ時間 (WS)
+TurretSetupTimeBS: セットアップ時間 (BS)
+DPS_BS: 1秒あたりダメージ (BS)
+DPS_WS: 1秒あたりダメージ (WS)

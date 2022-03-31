@@ -26,6 +26,8 @@ SpawnLifetimeBS: Esperanza de vida (BS)
 DroneShipmentBonusMax: Max. bonus
 Model: Model
 NewModuleSlots: Type of additional new slot
+MaxDPS_BS: Daño máx. por segundo (BS)
+MaxDPS_WS: Daño máx. por segundo (WS)
 InitialModuleLevels: Module level
 RelicLoad: Load a relic
 RelicLoadWS: Load a relic (WS)
@@ -606,6 +608,11 @@ TID_MODULE_FLAGSHIP_SHIELD_DESCR: Un escudo de área autónomo y con una posici�
   fija que se puede desplegar desde la nave insignia de la corporación. absorbe
   el daño infligido al casco de las naves o los misiles aliados en el área de
   efecto, incluidas las naves de transporte y las naves mineras.
+TID_MODULE_LASER_TURRET: Torreta láser
+TID_MODULE_LASER_TURRET_DESCR: Un arma autónoma que se despliega en una posición
+  fija. tras una breve demora, dispara un rayo láser a hasta 3 objetivos a su
+  alcance. el daño aumentará de forma independiente contra cada objetivo.\n\nno
+  funciona en sectores con portales de salto en estrellas blancas.
 TID_CERB_STATION_HOME1: Base cerbero débil
 TID_CERB_STATION_HOME2: Base cerbero
 TID_CERB_STATION_HOME3: Base cerbero fuerte
@@ -691,6 +698,10 @@ TID_BLUE_STAR: Estrella azul
 TID_BLUE_STAR_INFO: Este peligroso sistema tiene una esperanza de vida muy
   limitada e implosiona desde el exterior hacia la estrella.\n\nla estrella
   infligirá daños directos a cualquier nave en su sector.
+TID_BLUE_STAR_SEARCH_CANCELLED_MAIL: Se ha cancelado tu búsqueda de estrella
+  azul clasificatoria debido al inminente mantenimiento del servidor.
+TID_BLUE_STAR_SEARCH_TIMED_OUT_MAIL: Se ha cancelado tu búsqueda de estrella
+  azul debido a una desconexión del servidor.
 TID_ACHIEVEMENT_SHIPMENTS: Entrega de envíos
 TID_ACHIEVEMENT_SHIPMENTS_DESCR: Entrega un total de N envíos.
 TID_ACHIEVEMENT_UPGRADEPLANET: Mejora de planetas
@@ -728,6 +739,9 @@ TID_ACHIEVEMENT_WS_REWARDS_DESCR: Recoge N créditos en recompensas por
   participar en misiones de estrellas blancas.
 TID_ACHIEVEMENT_BS_WINS: Guerrero de estrella azul
 TID_ACHIEVEMENT_BS_WINS_DESCR: Gana N partidas de estrellas azules.
+TID_HUD_MSG_BLS_TOO_LOW_TO_WAIT_FOR_BLS: Mejora tu nave y sus módulos para poder
+  participar en una partida clasificatoria.
+TID_HUD_MSG_BLS_TO_NO_RANKED_MATCHES_LEFT: Ya has jugado tus partidas clasificatorias de hoy.
 TID_HUD_CREDITS: Créditos
 TID_HUD_HYDROGEN: Hidrógeno
 TID_HUD_CRYSTALS: Cristales
@@ -735,6 +749,7 @@ TID_STATUS_LOADING_ARTIFACT: Cargando artefacto
 TID_STATUS_DESTROYING_PLANET: Destruyendo planeta
 TID_STATUS_NOT_TRIGGERED: Sin activar
 TID_STATUS_TRIGGERING: Activando...
+TID_STATUS_TURRET_SETUP: <color>preparando</color>
 TID_OBJ_ACTION_CANCEL_BUILD: Cancelar construcción
 TID_OBJECT_ACTION_MOVE: Mover
 TID_OBJECT_ACTION_PLAYER_INFO: Datos del jugador
@@ -762,10 +777,10 @@ TID_MODULE_BLUEPRINTS_INFO: Esta pantalla muestra los módulos
   rojas.\n\ndebes investigar los módulos recién descubiertos antes de
   instalarlos en tus naves.
 TID_MODULE_LEVEL_0_DESCR: Desbloquear
-TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Ganarás fragmentos de estrella al
-  participar en misiones de estrella azul. úsalos para subir en los marcadores
-  mensuales de aquellas y recibir recompensas garantizadas de cristales al final
-  de cada temporada de estrellas azules.
+TID_PLAYER_INFO_STAR_FRAGMENTS_DESCR: Los puntos de estrella azul se obtienen
+  participando en misiones clasificatorias de estrella azul. úsalos para subir
+  en los marcadores mensuales de aquellas y recibir recompensas garantizadas de
+  cristales al final de cada temporada de estrellas azules.
 TID_PLAYER_INFO_WS_POINTS_DESCR: Puedes ganar puntos de estrellas blancas
   participando en misiones de estrellas blancas. úsalos para subir en los
   marcadores mensuales de las mismas y recibir recompensas garantizadas de
@@ -856,6 +871,7 @@ TID_REQUIRED_HYDROGEN: Hidrógeno necesario
 TID_MODULE_SWAP_TEXT: Cambiar
 TID_MODULE_RELIC_DRONE_CAPACITY: Capacidad para reliquias
 TID_MODULE_RELIC_DRONE_SPEED: Tiempo de carga por reliquia
+TID_JUMP_DLG_JUMP_BATTLESHIPS: Hacer saltar naves de combate
 TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER: Supernova en
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PUBLIC_DESCR: Cualquiera puede unirse a esta estrella roja.
 TID_MISSIONS_DLG_RED_STAR_SEARCH_TYPE_PRIVATE_DESCR: Solo los miembros de la
@@ -872,6 +888,9 @@ TID_RELIC_DRONE_EVENT_ACTIVE: Evento de dron de reliquias
 TID_RELIC_DRONE_EVENT_DESCR: Mientras esté activo, todas las reliquias que
   recupera un dron de reliquias contribuyen el doble al total de tu corporación.
   el evento termina en N.
+TID_RS_LATE_JOIN_PLAYER_COUNT: N jugadores
+TID_RS_IN_PROGRESS_LABEL: En curso
+TID_RS_IN_PROGRESS_TOOLTIP: Únete a otros jugadores en una estrella roja empezada hace poco.
 TID_BS_SHIP_JUMP_INFO: Tu nave saltará automáticamente al descubrirse una estrella azul.
 TID_BS_CREDIT_REWARD_DESCR: La recompensa de créditos equivale a un N % del
   coste de reconstrucción de la nave de combate enviada a la estrella
@@ -887,6 +906,12 @@ TID_BS_FRAGMENTS_REWARD_FULL: Podrás volver a participar en partidas
 TID_BS_FRAGMENTS_UNRANKED_BOTS: Había demasiadas naves solitarias como para
   incluir esta partida de estrellas azules en las partidas clasificatorias.
 TID_BS_RANKED: Clasificatoria
+TID_BS_WAIT_FOR_RANKED: Espera para partida clasificatoria
+TID_MISSIONS_DLG_ELAPSED_SEARCH_TIME: Tiempo de búsqueda transcurrido
+TID_BS_2X_CREDIT_EVENT_ACTIVE: Evento de doble recompensa de créditos
+TID_BS_2X_CREDIT_EVENT_TITLE: Evento activo
+TID_BS_2X_CREDIT_EVENT_DESCR: ¡recibirás el doble de recompensa de créditos de
+  las estrellas azules!\n\nel evento termina en
 TID_RELAY_DEACTIVATE_BUTTON: Desactivar
 TID_RELAY_CONFIRM_DEACTIVATE: ¿seguro que quieres desactivar el relé de envíos de este sector?
 TID_PLAYER_DIPLOMACY_DLG_TRADE_INFO: "Relaciones diplomáticas establecidas hace
@@ -999,6 +1024,7 @@ TID_MINER_AUTO_SECTORS_DESCR: El número de sectores en los que la nave minera
 TID_DRONE_LIFETIME: Esperanza de vida
 TID_DRONE_LIFETIME_DESCR: Los drones tienen una esperanza de vida corta. cuando
   se acabe el tiempo, el dron se destruirá.
+TID_TURRET_SETUP_TIME: Tiempo de preparación
 TID_TIME_MODULATOR_SPEEDUP_FACTOR_DESCR: Indica la velocidad a la que el modulador temporal acelera el paso del tiempo.
 TID_TIME_MODULATOR_MAX_TIME: Duración máxima
 TID_TIME_MODULATOR_MAX_TIME_DESCR: El tiempo máximo que el modulador temporal
@@ -1038,10 +1064,7 @@ TID_BLUESCANNER_HYDRO_COUNTDOWN: Recompensa de hidrógeno disponible
 TID_BLUESCANNER_HYDRO_COUNTDOWN_DESC: Indica cuándo podrás ganar recompensas de hidrógeno en una estrella azul.
 TID_INFO_REWARD_AVAILABLE_NOW: Ya
 TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN: Partida clasificatoria disponible
-TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indica cuándo podrás participar en
-  partidas clasificatorias de estrellas azules. puede que no consigas una
-  partida clasificatoria si te encuentras más de una nave solitaria en la
-  estrella azul.
+TID_BLUESCANNER_RANKEDMATCH_COUNTDOWN_DESC: Indica cuándo serás elegible para partidas clasificatorias de estrellas azules.
 TID_LEADERBOARDS_DIALOG_COLUMN_NAME: Nombre
 TID_SHIP_STAT_XP_INFO: La exp se obtiene al infligir daño a las naves de combate
   de otro jugador en las estrellas blancas.
@@ -1262,3 +1285,7 @@ planetscalc: Planet calculator
 other: Other
 switchAccs: Account switcher
 open: Open
+TurretSetupTime_WS: Tiempo de preparación (WS)
+TurretSetupTimeBS: Tiempo de preparación (BS)
+DPS_BS: Daño por segundo (BS)
+DPS_WS: Daño por segundo (WS)
