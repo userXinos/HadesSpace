@@ -1,41 +1,45 @@
 {
-  "name": "frontend",
-  "private": true,
-  "type": "module",
+  "name": "hades-space",
+  "author": "Xinos",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vue build ./index.js",
-    "dev": "vue serve"
+    "build": "vue-cli-service build ./src/main.js",
+    "dev": "vue-cli-service serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-google": "^0.14.0",
-    "vue": "^2.6.11",
-    "vue-analytics": "^5.22.1",
-    "vue-i18n": "^8.20.0",
-    "vue-meta": "^2.4.0",
-    "vue-progressbar": "^0.7.5",
-    "vue-router": "^3.4.0"
+    "@aacassandra/vue3-progressbar": "^1.0.3",
+    "@intlify/vue-i18n-extensions": "^3.0.0",
+    "@vue/cli": "^5.0.1",
+    "@vue/compat": "^3.1.0",
+    "@vueuse/head": "^0.7.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "sass": "^1.50.0",
+    "sass-loader": "^12.6.0",
+    "vue": "^3.1.0",
+    "vue-gtag": "^1.11.0",
+    "vue-i18n": "^9.1.9",
+    "vue-router": "^4.0.12",
+    "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/cli": "^4.4.6",
-    "@vue/cli-plugin-babel": "^4.4.6",
-    "@vue/cli-service": "^4.4.6",
-    "babel-core": "^6.26.3",
+    "@vue/cli-plugin-eslint": "^5.0.1",
+    "@vue/cli-service": "~5.0.1",
     "babel-eslint": "^10.1.0",
-    "babel-plugin-async-import": "^2.1.0",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-vue": "^8.5.0",
+    "@vue/compiler-sfc": "^3.1.0"
   },
-  "eslintIgnore": ["public"],
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+  "bugs": {
+    "url": "https://github.com/userXinos/HadesSpace/issues"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "eslintIgnore": [
+    "public"
+  ],
+  "homepage": "https://github.com/userXinos/HadesSpace#readme",
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE V3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/userXinos/HadesSpace.git"
+  }
 }

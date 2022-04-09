@@ -1,56 +1,46 @@
 <template>
   <div>
-    <h1 id="title">{{ title }}</h1>
-    <img
-        class="portrait"
-        src="../img/portraits/ships.png"
-        alt="ships"
+    <Page
+      title-loc-key="TID_PRODUCTION_DLG_SHIPS"
+      :content-args="{data: ships, iconDir: 'game/Ships'}"
+      :portrait="{src: img, alt: 'ships'}"
     />
 
-    <v-content
-      v-bind:args="{
-       data: promise,
-       category: 'player',
-       dontFixTables: ['Transport', 'Miner', 'Battleship'],
-       iconDir: 'Ships'
-      }"
-    >
-    </v-content>
-
-    <div class="title title-heading" id="FlagshipModules">
-      <h1>
-        <a href="#FlagshipModules">
-          {{ $t('flagshipModules') }}
-        </a>
+    <div>
+      <h1
+        id="FlagshipModules"
+        class="topic"
+      >
+        <a
+          v-t="'FLAGSHIP_MODULES'"
+          href="#FlagshipModules"
+          class="link-topic"
+        />
       </h1>
+
+      <v-content :args="{data: modules, iconDir: 'game/Modules'}" />
     </div>
-    <v-content
-       v-bind:args="{
-         data: promise2,
-         category: 'flagship',
-         iconDir: 'Modules'
-    }"
-    >
-    </v-content>
+
   </div>
 </template>
 
 <script>
+import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
+import ships from '@Data/capital_ships.js';
+import modules from '@Data/modules.js';
+import filterByType from '@Scripts/filterByType.js';
+
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-capital_ships"*/ '../../../generateGameData/data/capital_ships'),
-      promise2: import(/* webpackChunkName: "data-modules"*/ '../../../generateGameData/data/modules'),
-      title: this.$t('TID_PRODUCTION_DLG_SHIPS'),
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
+    components: { Page, VContent },
+    data() {
+        return {
+            ships: filterByType(ships, 'capital_ships.player'),
+            modules: filterByType(modules, 'modules.flagship'),
+            img: require(`@Img/game/portraits/ships.png`),
+        };
+    },
 };
 </script>
+<style scoped src="../css/page.css"></style>

@@ -1,24 +1,30 @@
 <template>
   <div class="container">
-    <div class="btn-langs"
-         @click="swithHide"
-         v-click-outside="hide"
-         :style="{color:(isShow) ? '#5fdba7' : ''}"
+    <div
+      v-click-outside="hide"
+      class="btn-languages"
+      :style="{color:(isShow) ? '#5fdba7' : ''}"
+      @click="switchHide"
     >
       <template
-          v-if="isMinMode"
+        v-if="isMinMode"
       >
         {{ currentLang }}
       </template>
     </div>
-    <ul class="langs"
-        v-if="isShow"
+    <ul
+      v-if="isShow"
+      class="languages"
     >
-      <li v-for="(value, key) in langs" :key="key">
-        <button class="btn"
-                @click="swithLang(key)"
+      <li
+        v-for="{Code, UnityLocale} of languages"
+        :key="Code"
+      >
+        <button
+          class="btn"
+          @click="switchLang(Code)"
         >
-          {{ value }}
+          {{ UnityLocale }}
         </button>
       </li>
     </ul>
@@ -26,54 +32,42 @@
 </template>
 
 <script>
-import {loadLanguageAsync} from '../js/modules/i18n';
-
-const langs = {
-  'en': 'English',
-  'ru': 'Pусский',
-  'fr': 'Français',
-  'de': 'Deutsch',
-  'es': 'Español',
-  'it': 'Italiano',
-  'pt': 'Português',
-  'ko': '한국어',
-  'jp': '日本語',
-  'zh-si': '简体中文',
-};
+import { setI18nLanguage } from '@Scripts/Vue/i18n.js';
+import languages from '@Data/languages.js';
 
 export default {
-  name: 'Langs',
-  props: {
-    isMinMode: {type: Boolean},
-  },
-  data() {
-    return {
-      isShow: false,
-      currentLang: localStorage.getItem('language'),
-      langs,
-    };
-  },
-  methods: {
-    swithLang(languageKey) {
-      localStorage.setItem('language', languageKey);
-      loadLanguageAsync(languageKey);
-      this.currentLang = languageKey;
-      this.swithHide();
+    name: 'LanguagesButton',
+    props: {
+        isMinMode: { type: Boolean },
     },
-    swithHide() {
-      this.isShow = !this.isShow;
+    data() {
+        return {
+            isShow: false,
+            currentLang: localStorage.getItem('language'),
+            languages,
+        };
     },
-    hide() {
-      this.isShow = false;
+    methods: {
+        switchLang(code) {
+            localStorage.setItem('language', code);
+            setI18nLanguage(code);
+            this.currentLang = code;
+            this.switchHide();
+        },
+        switchHide() {
+            this.isShow = !this.isShow;
+        },
+        hide() {
+            this.isShow = false;
+        },
     },
-  },
 };
 </script>
 
 <style scoped>
-.btn-langs {
+.btn-languages {
   background-image: url(../img/icons/lang.svg);
-  background-size: 70%;
+  background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
   padding: 23px 26px;
@@ -84,14 +78,14 @@ export default {
   right: 2%;
   width: 50px;
 }
-.langs {
+.languages {
   top: var(--header-height);
   z-index: 1;
   position: absolute;
   list-style-type: none;
   right: 1%;
 }
-.langs li .btn {
+.languages li .btn {
   border: none;
   background-color: var(--bnt-color);
   color: white;
@@ -101,7 +95,7 @@ export default {
   cursor: pointer;
   width: 100%;
 }
-.langs li .btn:hover {
+.languages li .btn:hover {
   background-color: var(--btn-hover-color);
 }
 
@@ -110,17 +104,17 @@ export default {
     height: 100%;
     padding-top: 10%;
   }
-  .btn-langs {
+  .btn-languages {
     background-image: none;
     color: white;
     text-align: center;
     width: 100%;
   }
-  .btn-langs {
+  .btn-languages {
     left: 2%;
     position: static;
   }
-  .langs {
+  .languages {
     position: inherit;
   }
 }

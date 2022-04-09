@@ -53,6 +53,7 @@
   MAX_RS_LEVEL: 'Max. level RS',
   MODULE: 'Module',
   INT_PARAM: 'Value X',
+  ARTIFACT: 'Artifact',
   MOVE_UPDATE_SEC: 'Move delay',
   BLS_CR_REWARD_RATE: 'Compensation from the cost of the battleship',
   BLS_CR_REWARD_WIN_LIMIT_PERIOD: 'Cooldown rewards',

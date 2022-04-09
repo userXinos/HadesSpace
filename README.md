@@ -1,6 +1,7 @@
 # Web app for viewing game data
-# [SPA](https://ru.wikipedia.org/wiki/Одностраничное_приложение) на [Vue.js](https://vuejs.org/)
+Site for displaying data received from a raw data
 
+### Build
 `npm install`
 
 `npm run build`

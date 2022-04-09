@@ -1,83 +1,116 @@
 <template>
   <div class="main">
-    <div>
-      <!-- eslint-disable vue/require-v-for-key, vue/valid-v-for -->
-      <template v-for="(contName, index) of data">
-        <p class="container-name">
-          {{ $t(contName.text.locKey) }}
-        </p>
+    <div class="bg">
+      <div
+        v-for="(section, i) of sections"
+        :key="i"
+        class="section"
+      >
+        <span class="name">
+          {{ $t(section.text.locKey) }}
+        </span>
+
         <div class="container">
-
-          <template v-for="page of data[index].childrens">
-
-            <template v-if="page.link.router">
-              <router-link class="item-link" :to="page.link.router">
-                <item :text="page.text" :icon="page.icon"/>
+          <div
+            v-for="(item, itemIndex) of section.children"
+            :key="itemIndex"
+            class="item"
+          >
+            <template v-if="item.link.type == 'router'">
+              <router-link
+                class="link"
+                :to="item.link.path"
+              >
+                <item
+                  :text="item.text"
+                  :icon="item.icon"
+                />
               </router-link>
             </template>
-            <template v-else>
-              <a class="item-link blank" :href="page.link" target="_blank">
-                <item :text="page.text" :icon="page.icon"/>
+            <template v-else-if="item.link.type == 'external'">
+              <a
+                class="link blank"
+                :href="item.link.path"
+                target="_blank"
+              >
+                <item
+                  :text="item.text"
+                  :icon="item.icon"
+                />
               </a>
             </template>
-
-          </template>
+          </div>
         </div>
-      </template>
+
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import CatalogItem from '../components/CatalogItem';
+import Item from '../components/CatalogItem';
 
 export default {
-  name: 'Catalog',
-  components: {
-    Item: CatalogItem,
-  },
-  props: {
-    data: {
-      type: Array,
-      request: true,
+    name: 'Catalog',
+    components: { Item },
+    props: {
+        sections: {
+            type: Array,
+            request: true,
+            default: () => [],
+        },
     },
-  },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../css/vars";
+
+$mw: 960px;
+
 .main {
-  padding: 5% 10% 10%;
-}
-.main > div {
-  background-color: #161b1d;
-  box-shadow: 0 0 10px 5px #20282b;
-}
-.container-name {
-  color: white;
-  font-size: 180%;
-  padding: 2%;
-  text-align: left;
-  font-weight: bold;
-}
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  clear: both;
-}
-.item-link {
-  display: contents;
-}
-.item-link.blank {
-    font-size: 80%;
-}
+  padding: 0 12%;
+    margin-top: 3%;
 
+    .bg {
+        padding: 2%;
+        background-color: #161b1d;
+        box-shadow: 0 0 10px 5px #20282b;
+    }
 
-@media screen and (max-width: 960px) {
-  .main {
-    padding: 60px 0;
-  }
+    @media screen and (max-width: $mw) {
+        padding: 0;
+    }
+}
+.section {
+    .name {
+        color: white;
+        font-size: 180%;
+        padding: 2%;
+        text-align: left;
+        font-weight: bold;
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        clear: both;
+        padding-bottom: 2%;
+
+        .item {
+            display: inline-block;
+            position: relative;
+            width: 20%;
+
+            @media screen and (max-width: $mw) {
+                width: 100%;
+            }
+        }
+
+        .link {
+            display: contents;
+        }
+    }
 }
 </style>

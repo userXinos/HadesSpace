@@ -1,92 +1,60 @@
 <template>
   <div>
-    <h1 id="title">{{ title }}</h1>
-    <img
-        class="portrait"
-        src="../img/portraits/yellowStar.png"
-        alt="yellowStar"
+    <Page
+      title-loc-key="TID_YELLOW_STAR"
+      :content-args="{data: stars, iconDir: 'game/Stars'}"
+      :portrait="{src: img, alt: 'yellowStar'}"
     />
 
-    <v-content
-      v-bind:args="{
-       data: promise,
-       single: 'YellowStar',
-       iconDir: 'Stars'
-      }"
-    >
-    </v-content>
+    <v-content :args="{data: sectors, tableOpts}" />
+    <v-content :args="{data: levels}" />
+    <v-content :args="{data: planets, tableOpts}" />
+    <v-content :args="{data: prices, tableOpts}" />
 
-    <div class="title title-heading" id="Sectors">
-      <a href="#Sectors">
-        {{ $t('sectors') }}
-      </a>
-    </div>
-    <v-content
-       v-bind:args="{
-         data: promise2,
-         lvlColKey: '№',
-    }"
-    >
-    </v-content>
-      <div class="title title-heading" id="LvlsPlanets">
-        <a href="#LvlsPlanets">
-          {{ $t('lvlsPlanets') }}
-        </a>
-      </div>
-    <v-content
-       v-bind:args="{
-         data: promise3
-    }"
-    >
-    </v-content>
-    <div class="title title-heading" id="Planets">
-      <a href="#Planets">
-        {{ $t('planets') }}
-      </a>
-    </div>
-    <v-content
-       v-bind:args="{
-         data: promise4,
-         single: 'yellowstarTable',
-         dontFixTables: true,
-         lvlColKey: '№',
-    }"
-    >
-    </v-content>
-      <div class="title title-heading" id="ColonizationPlanets">
-        <a href="#ColonizationPlanets">
-          {{ $t('colonizationPlanets') }}
-        </a>
-      </div>
-    <v-content
-       v-bind:args="{
-         data: promise5,
-         lvlColKey: '№',
-    }"
-    >
-    </v-content>
   </div>
 </template>
 
 <script>
+import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
+import stars from '@Data/stars.js';
+import sectors from '@Data/yellow_star_sectors.js';
+import levels from '@Data/planet_levels.js';
+import planets from '@Data/planets.js';
+import prices from '@Data/colonize_prices.js';
+
+import compileOne from '@Scripts/compileOne.js';
+
+const star = { ...stars.YellowStar };
+delete star.Models;
+
+const planetsYS = compileOne(planets, { filterByType: { path: 'planets.yellowstar' } });
+delete planetsYS.ModelFolders;
+planetsYS.TID2 = planetsYS.TID;
+planetsYS.TID = 'PLANETS';
+planetsYS.Name = 'Planets';
+
+const colonizationPrices = {
+    TID: 'COLONIZATION_PLANETS',
+    TID2: planetsYS.TID2,
+    null: [0, ...prices],
+};
+
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-stars"*/ '../../../generateGameData/data/stars'),
-      promise2: import(/* webpackChunkName: "data-yellow_star_sectors"*/ '../../../generateGameData/data/yellow_star_sectors'),
-      promise3: import(/* webpackChunkName: "data-planet_levels"*/ '../../../generateGameData/data/planet_levels'),
-      promise4: import(/* webpackChunkName: "data-planets"*/ '../../../generateGameData/data/planets'),
-      promise5: import(/* webpackChunkName: "data-colonize_prices"*/ '../../../generateGameData/data/colonize_prices'),
-      title: this.$t('TID_YELLOW_STAR'),
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
+    components: { Page, VContent },
+    data() {
+        return {
+            stars: { star },
+            sectors: { sectors: { TID: 'SECTORS', ...sectors } },
+            levels: { levels: { TID: 'LVLS_PLANETS', ...levels } },
+            planets: { planetsYS },
+            prices: { colonizationPrices },
+
+            tableOpts: { lvlColKey: '№' },
+            img: require(`@Img/game/portraits/yellowStar.png`),
+        };
+    },
 };
 </script>
+<style scoped src="../css/page.css"></style>

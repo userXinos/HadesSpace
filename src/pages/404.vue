@@ -10,11 +10,9 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
+<script></script>
 
-<style scoped>
+<style scoped src="../css/page.css">
 .container {
   color: #a2a7aa;
   text-align: center;

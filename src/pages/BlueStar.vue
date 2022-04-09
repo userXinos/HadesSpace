@@ -1,39 +1,26 @@
 <template>
-  <div>
-    <h1 id="title">{{ title }}</h1>
-    <img
-        class="portrait"
-        src="../img/portraits/blueStars.png"
-        alt="blueStars"
-    />
-
-    <v-content
-      v-bind:args="{
-       data: promise,
-       single: 'BlueStar',
-       lvlColKey: '№',
-       iconDir: 'Stars'
-      }"
-    >
-    </v-content>
-  </div>
+  <Page
+    title-loc-key="TID_BLUE_STAR"
+    :content-args="{
+      data,
+      iconDir: 'game/Stars',
+      tableOpts: { lvlColKey: '№' }
+    }"
+    :portrait="{src: img, alt: 'BlueStar'}"
+  />
 </template>
 
 <script>
-import VContent from '../components/Content.vue';
+import Page from '@/components/Page.vue';
+import stars from '@Data/stars.js';
 
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-stars"*/ '../../../generateGameData/data/stars'),
-      title: this.$t('TID_BLUE_STAR'),
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
+    components: { Page },
+    data() {
+        return {
+            data: { BlueStar: stars.BlueStar },
+            img: require(`@Img/game/portraits/blueStar.png`),
+        };
+    },
 };
 </script>

@@ -1,38 +1,29 @@
 <template>
-  <div>
-    <h1 id="title">{{ title }}</h1>
-    <img
-        class="portrait"
-        src="../img/portraits/spacebuildings.png"
-        alt="spacebuildings"
-    />
-
-    <v-content
-      v-bind:args="{
-       data: promise,
-       category: 'player',
-       iconDir: 'SpaceBuildings'
-      }"
-    >
-    </v-content>
-  </div>
+  <Page
+    title-loc-key="TID_PRODUCTION_DLG_STATIONS"
+    :content-args="{data, iconDir: 'game/SpaceBuildings'}"
+    :portrait="{src: img, alt: 'spacebuildings'}"
+  />
 </template>
 
+<!--suppress JSUnresolvedVariable -->
 <script>
-import VContent from '../components/Content.vue';
+import Page from '@/components/Page.vue';
+
+import CustomIcon from '@Scripts/CustomIcon.js';
+import filterByType from '@Scripts/filterByType.js';
+import spaceBuildings from '@Data/spacebuildings.js';
+
+spaceBuildings.WarpLaneHub.Model = new CustomIcon('WarpLane');
+spaceBuildings.TimeModulator.Model = new CustomIcon('TimeModulator');
 
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-spacebuildings"*/ '../../../generateGameData/data/spacebuildings'),
-      title: this.$t('TID_PRODUCTION_DLG_STATIONS'),
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
+    components: { Page },
+    data() {
+        return {
+            data: filterByType(spaceBuildings, `spacebuildings.player`),
+            img: require(`@Img/game/portraits/spacebuildings.png`),
+        };
+    },
 };
 </script>

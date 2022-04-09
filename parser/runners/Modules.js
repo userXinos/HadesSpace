@@ -1,6 +1,5 @@
 import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
-import * as config from '../../config/modules.js';
 
 // noinspection SpellCheckingInspection
 /* eslint-disable prefer-destructuring */
@@ -128,7 +127,7 @@ export default class Modules extends Runner {
                     }
                 });
             } else {
-                config.starsOrder.forEach((e) => _addStarInfo(value, e));
+                CONFIG.starsOrder.forEach((e) => _addStarInfo(value, e));
             }
             keysRemove.push('AllowedStarTypes');
             keysRemove.forEach((e) => delete value[e]);

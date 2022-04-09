@@ -1,32 +1,22 @@
 <template>
-  <div>
-    <h1 id="title">{{ title }}</h1>
-
-    <v-content
-      v-bind:args="{
-        data: promise,
-        category: 'fixed',
-      }"
-    >
-    </v-content>
-  </div>
+  <Page
+    :content-args="{data}"
+    title-loc-key="TID_EMPIRE_OBJECTIVES"
+  />
 </template>
 
 <script>
-import VContent from '../components/Content.vue';
+import Page from '@/components/Page.vue';
+
+import filterByType from '@Scripts/filterByType.js';
+import goals from '@Data/player_goals.js';
 
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-player_goals"*/ '../../../generateGameData/data/player_goals'),
-      title: this.$t('TID_EMPIRE_OBJECTIVES'),
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
+    components: { Page },
+    data: () => {
+        return {
+            data: filterByType(goals, 'player_goals.fixed'),
+        };
+    },
 };
 </script>

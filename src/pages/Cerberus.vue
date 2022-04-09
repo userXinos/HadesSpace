@@ -1,65 +1,53 @@
 <template>
   <div>
-    <h1 id="title">{{ title }}</h1>
-    <img
-        class="portrait"
-        src="../img/portraits/cerberus.png"
-        alt="cerberus"
+    <Page
+      title-loc-key="CERBERUS"
+      :content-args="{data: ships, iconDir: 'game/Ships'}"
+      :portrait="{src: cerberusPortrait, alt: 'cerberus'}"
     />
 
-    <v-content
-      v-bind:args="{
-       data: promise,
-       category: 'cerberus',
-       iconDir: 'Ships',
-       cerberusModules
-      }"
-    >
-    </v-content>
-
-    <div class="title title-heading" id="CerberusStations">
-      <h1>
-        <a href="#CerberusStations">
-          {{ $t('TID_CERB_STATION_HOME2') }}
-        </a>
+    <div>
+      <h1
+        id="CerberusStations"
+        class="topic"
+      >
+        <a
+          v-t="'TID_CERB_STATION_HOME2'"
+          href="#CerberusStations"
+          class="link-topic"
+        />
       </h1>
+      <img
+        class="portrait"
+        :src="stationPortrait"
+        alt="cerberus station"
+      >
+
+      <v-content :args="{data: stations, iconDir: 'game/SpaceBuildings'}" />
     </div>
-    <v-content
-       v-bind:args="{
-       data: promise2,
-       category: 'default',
-    }"
-    >
-    </v-content>
+
   </div>
 </template>
 
 <script>
+import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
+import filterByType from '@Scripts/filterByType.js';
+import ships from '@Data/capital_ships.js';
+import stations from '@Data/cerberus_stations.js';
+
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-capital_ships"*/ '../../../generateGameData/data/capital_ships'),
-      promise2: import(/* webpackChunkName: "data-cerberus_stations"*/ '../../../generateGameData/data/cerberus_stations'),
-      title: this.$t('cerberus'),
-      cerberusModules: {},
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
-  created() {
-    import(/* webpackChunkName: "data-modules"*/ '../../../generateGameData/data/modules')
-        .then((raw) => {
-          raw['byTypes'].cerberus.forEach((e) => {
-            this.$set(this.cerberusModules, e, raw.data[e]);
-          });
-        })
-        .catch(console.error);
-  },
+    components: { Page, VContent },
+    data() {
+        return {
+            ships: filterByType(ships, 'capital_ships.cerberus'),
+            stations: stations,
+            cerberusPortrait: require(`@Img/game/portraits/cerberus.png`),
+            stationPortrait: require(`@Img/game/portraits/cerberusStation.png`),
+        };
+    },
 };
 </script>
+
+<style scoped src="../css/page.css"></style>

@@ -1,22 +1,23 @@
 <template>
-  <catalog :data="pages"/>
+  <div>
+    <Head><title>{{ 'HadesSpace' }}</title></Head>
+
+    <catalog :sections="sections" />
+  </div>
 </template>
 
 <script>
-import {pages} from '../js/pages';
+import { Head } from '@vueuse/head';
 import Catalog from '../components/Catalog';
 
+import { getSectionsPages } from '@Scripts/parsePages.js';
+
 export default {
-  components: {Catalog},
-  data() {
-    return {
-      pages,
-    };
-  },
-  metaInfo() {
-    return {
-      title: 'Hades\' Star Data',
-    };
-  },
+    components: { Head, Catalog },
+    data() {
+        return {
+            sections: getSectionsPages(),
+        };
+    },
 };
 </script>

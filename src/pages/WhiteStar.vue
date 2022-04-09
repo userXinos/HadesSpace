@@ -1,53 +1,52 @@
 <template>
   <div>
-    <h1 id="title">{{ title }}</h1>
-    <img
-        class="portrait"
-        src="../img/portraits/whiteStars.png"
-        alt="whiteStars"
+    <Page
+      title-loc-key="TID_WHITE_STAR"
+      :content-args="{data: stars, iconDir: 'game/Stars'}"
+      :portrait="{src: img, alt: 'whiteStars'}"
     />
 
-    <v-content
-      v-bind:args="{
-       data: promise,
-       single: 'WhiteStar',
-       iconDir: 'Stars'
-      }"
-    >
-    </v-content>
+    <div>
+      <h1
+        id="Planets"
+        class="topic"
+      >
+        <a
+          v-t="'PLANETS'"
+          href="#Planets"
+          class="link-topic"
+        />
+      </h1>
 
-    <div class="title title-heading" id="Planets">
-      <a href="#Planets">
-        {{ $t('planets') }}
-      </a>
+      <v-content
+        :args="{
+          data: planets,
+          tableOpts: {lvlColKey: '№'}
+        }"
+      />
     </div>
-    <v-content
-       v-bind:args="{
-         data: promise2,
-         single: 'whitestarTable',
-         lvlColKey: '№',
-    }"
-    >
-    </v-content>
+
   </div>
 </template>
 
 <script>
+import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
+import stars from '@Data/stars.js';
+import planets from '@Data/planets.js';
+import filterByType from '@Scripts/filterByType.js';
+
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-stars"*/ '../../../generateGameData/data/stars'),
-      promise2: import(/* webpackChunkName: "data-planets"*/ '../../../generateGameData/data/planets'),
-      title: this.$t('TID_WHITE_STAR'),
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
+    components: { Page, VContent },
+    data() {
+        return {
+            stars: { WhiteStar: stars.WhiteStar },
+            planets: filterByType(planets, 'planets.whitestar'),
+            img: require(`@Img/game/portraits/whiteStars.png`),
+
+        };
+    },
 };
 </script>
+<style scoped src="../css/page.css"></style>

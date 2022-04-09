@@ -1,34 +1,39 @@
 <template>
   <div class="container">
     <nav class="nav">
-      <ul class="list" v-click-outside="hideAll">
-        <li v-for="(heading, key) of nav" :key="key"
-            @click="swith(heading)"
+      <ul
+        v-click-outside="hideAll"
+        class="list"
+      >
+        <li
+          v-for="(section, key) of sections"
+          :key="key"
+          @click="switchSection(section)"
         >
           <div>
-            <h2 class="name"
-                :style="{color:(heading.isShow) ? '#5fdba7' : ''}"
+            <h2
+              class="name"
+              :style="{color:(section.isShow) ? '#5fdba7' : ''}"
+            >{{ $t(section.text.locKey) }}</h2>
+            <ul
+              v-if="section.isShow"
+              class="sublist"
             >
-              {{ $t(heading.text.locKey) }}
-            </h2>
-            <ul class="sublist"
-                v-if="heading.isShow"
-            >
-              <li v-for="(child, key1) of heading.childrens" :key="key1">
-                <template v-if="child.link.router">
-                  <router-link :to="child.link.router">
-                    <h2 class="name">
-                      {{ $t(child.text.locKey) }}
-                      {{ child.text.after }}
-                    </h2>
+              <li
+                v-for="(child, key1) of section.children"
+                :key="key1"
+              >
+                <template v-if="child.link.type == 'router'">
+                  <router-link :to="child.link.path">
+                    <h2 class="name">{{ $t(child.text.locKey) }}</h2>
                   </router-link>
                 </template>
-                <template v-else>
-                  <a :href="child.link" target="_blank">
-                    <h2 class="name">
-                      {{ $t(child.text.locKey) }}
-                      {{ child.text.after }}
-                    </h2>
+                <template v-if="child.link.type == 'external'">
+                  <a
+                    :href="child.link.path"
+                    target="_blank"
+                  >
+                    <h2 class="name">{{ $t(child.text.locKey) }}</h2>
                   </a>
                 </template>
               </li>
@@ -41,27 +46,26 @@
 </template>
 
 <script>
-import {pages} from '../js/pages';
+import { getSectionsPages } from '@Scripts/parsePages.js';
 
-pages.forEach((e) => e.isShow = false); // модифицировать пути
+const sections = getSectionsPages();
+sections.forEach((e) => e.isShow = false);
 
 export default {
-  name: 'Nav',
-  data() {
-    return {
-      nav: pages,
-    };
-  },
-  methods: {
-    hideAll() {
-      this.nav.forEach((e) => e.isShow = false);
+    name: 'Nav',
+    data() {
+        return { sections };
     },
-    swith(obj) {
-      const result = !obj.isShow;
-      this.hideAll();
-      obj.isShow = result;
+    methods: {
+        hideAll() {
+            this.sections.forEach((e) => e.isShow = false);
+        },
+        switchSection(obj) {
+            const result = !obj.isShow;
+            this.hideAll();
+            obj.isShow = result;
+        },
     },
-  },
 };
 </script>
 
@@ -91,6 +95,7 @@ export default {
 .name {
   color: white;
   padding-top: 25%;
+    text-align: left;
 }
 .sublist {
   position: absolute;
@@ -100,7 +105,7 @@ export default {
   font-size: 10px;
 }
 .sublist .name {
-  padding: 5% 0;
+  padding: 5% 10%;
 }
 .nav .sublist li {
   background-color: var(--bnt-color);

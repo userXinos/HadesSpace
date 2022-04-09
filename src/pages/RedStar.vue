@@ -1,82 +1,100 @@
 <template>
   <div>
-    <h1 id="title">{{ title }}</h1>
-    <img
-        class="portrait"
-        src="../img/portraits/redStar.png"
-        alt="redStar"
+    <Page
+      title-loc-key="TID_RED_STAR"
+      :content-args="{
+        data: star,
+        iconDir: 'game/Stars',
+        tableOpts: {colLvlStartAt: 0}
+      }"
+      :portrait="{src: img, alt: 'RedStar'}"
     />
 
-    <v-content
-      v-bind:args="{
-       data: promise,
-       single: 'RedStar',
-       iconDir: 'Stars',
-       collvlStartAt: 0,
-      }"
+    <h1
+      id="Artifacts"
+      class="topic"
     >
-    </v-content>
+      <a
+        v-t="'TID_OBJECT_ACTION_ARTIFACTS'"
+        href="#Artifacts"
+        class="art-title"
+      />
+    </h1>
 
-    <div class="title title-heading" id="Artifacts">
-      <h1>
-        <a href="#Artifacts">
-          {{ $t('TID_OBJECT_ACTION_ARTIFACTS') }}
-        </a>
-      </h1>
-    </div>
-    <div v-for="art of ['Combat', 'Utility', 'Support']" :key="art">
-        <div class="title title-heading art-title" :id="art">
-          <a :href="'#' + art">
-            {{ $t(art + 'Art') }}
-          </a>
-        </div>
-      <v-content
-       v-bind:args="{
-           data: promise2,
-           single: art,
-           lvlColKey: '№',
-           collvlStartAt: (art == 'Support') ? 2 : 1
-    }"
+    <div
+      v-for="(_, name) in ARTS"
+      :key="name"
+    >
+      <div
+        v-for="args in getArt(name)"
+        :key="`${name}${args.data.a.Name}`"
       >
-      </v-content>
-      <div class="title title-heading">
-        {{ $t('blueprints') }}
+        <v-content :args="args" />
       </div>
-      <v-content
-       v-bind:args="{
-           data: promise2,
-           single: 'blueprints' + art,
-           lvlColKey: '№',
-           collvlStartAt: (art == 'Support') ? 2 : 1,
-           dontFixTables: true
-    }"
-      >
-      </v-content>
+
     </div>
   </div>
 </template>
 
 <script>
 import VContent from '../components/Content.vue';
+import Page from '@/components/Page.vue';
+
+import stars from '@Data/stars.js';
+import artifacts from '@Data/artifacts.js';
+
+const ARTS = {
+    Combat: 'COMBAT_ART',
+    Utility: 'UTILITY_ART',
+    Support: 'SUPPORT_ART',
+};
 
 export default {
-  components: {VContent},
-  data() {
-    return {
-      promise: import(/* webpackChunkName: "data-stars"*/ '../../../generateGameData/data/stars'),
-      promise2: import(/* webpackChunkName: "data-artifacts"*/ '../../../generateGameData/data/artifacts'),
-      title: this.$t('TID_RED_STAR'),
-    };
-  },
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
+    components: { Page, VContent },
+    data() {
+        return {
+            ARTS,
+            artifacts,
+            star: { RedStar: stars.RedStar },
+            img: require(`@Img/game/portraits/redStar.png`),
+        };
+    },
+    methods: {
+        getArt(name) {
+            const tableOpts = {
+                lvlColKey: 'N',
+                colLvlStartAt: (name == 'Support') ? 2 : 1,
+            };
+
+            return [
+                {
+                    data: { a: {
+                        ...this.artifacts[name],
+                        TID2: this.artifacts[name].TID,
+                        TID: ARTS[name],
+                    } },
+                    tableOpts,
+                },
+                {
+                    data: { a: {
+                        TID: 'BLUEPRINTS',
+                        ...this.artifacts[`${name}Blueprints`],
+                    } },
+                    tableOpts,
+                },
+            ];
+        },
+    },
 };
 </script>
-<style>
+<style scoped lang="scss">
+@import "../css/vars";
+
+$mw: 900px;
+
 .art-title {
-  padding: 2%;
+    padding: 0;
+    color: $text-color;
 }
+
 </style>
