@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 export default {
     // by i18n/locale
     UnlockBlueprints: 'UNLOCK_BLUEPRINTS',

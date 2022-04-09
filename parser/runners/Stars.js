@@ -18,9 +18,9 @@ export default class Stars extends Runner {
     }
 
     run(rawData) {
-        const SSGD = Runner.readCsv( 'solar_system_gen_data' );
+        const SSGData = Runner.readCsv( 'solar_system_gen_data' );
         const data = Object.fromEntries(
-            Object.entries(Runner.combineObjects(rawData, SSGD)).map(([ key, value ]) => {
+            Object.entries(Runner.combineObjects(rawData, SSGData)).map(([ key, value ]) => {
                 if (key in CONFIG.globalKeys) {
                     value = Runner.combineObjects(value, Globals.getGlobalsBy(CONFIG.globalKeys[key]));
                 }

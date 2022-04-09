@@ -6,12 +6,13 @@
       <div class="list">
         <ol>
           <li
-            v-for="(_,key) of args.data"
-            :key="key"
+            v-for="{Name, TID} of args.data"
+            :key="Name"
           >
-            <a :href="`#${key}`">
-              {{ $t(args.data[key].TID) }}
-            </a>
+            <a
+              v-t="TID"
+              :href="`#${key}`"
+            />
           </li>
         </ol>
       </div>

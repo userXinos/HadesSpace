@@ -122,13 +122,14 @@ export default class Runner {
 
     /**
      * Из объекта с маленькими объектами в один общий
-     * @param  {Object} obj  Объект
+     * @param  {Object.<String, Object>} obj  Объект
      * @return {Object}      Результат
      */
     static compileOne(obj) {
         const res = {};
 
         Object.values(obj).forEach((e) => {
+            // noinspection DuplicatedCode
             Object.entries(e).forEach(([ key, value ]) => {
                 if (key in res) {
                     if (Array.isArray(res[key])) {

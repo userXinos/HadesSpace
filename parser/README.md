@@ -19,10 +19,10 @@ parser
 Takes paths to raw files and dirs as arguments
 
 #### Flags
-| Name            | Description                | Default |
-| --------------- |:-------------------------: | -----:  |
+| Name            |        Description         | Default |
+|-----------------|:--------------------------:|--------:|
 | `--no-wipe`     | Do not wipe the output dir |         |
-| `--type <type>` | Output file type           |   js    |
+| `--type <type>` |      Output file type      |      js |
 
 ### Requirements 
 - [Node](https://nodejs.org) v15+

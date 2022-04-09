@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <Head><title>HadesSpace</title></Head>
+
+    <!--suppress HtmlUnknownTag -->
     <vue-progress-bar />
     <the-header />
 
@@ -32,10 +34,7 @@ export default {
                 if (to.fullPath === from.fullPath) {
                     return next();
                 }
-                if (to.meta.progress !== undefined) {
-                    const meta = to.meta.progress;
-                    this.$Progress.parseMeta(meta);
-                }
+
                 this.$Progress.start();
                 next();
             });

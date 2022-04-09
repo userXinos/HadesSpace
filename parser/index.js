@@ -10,7 +10,7 @@ import { validRunner } from './modules/Runner.js';
 import program, { options } from './modules/program.js';
 import { wipeDir } from './modules/dirUtils.js';
 
-program.parse();
+program.parse(process.argv);
 
 const time = new Timer();
 const ignoreFiles = CONFIG.ignoreFiles || [];

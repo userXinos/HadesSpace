@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import sec2str from '@Scripts/sec2str.js';
 import locKeys from '@Regulation/locKeys.js';
 

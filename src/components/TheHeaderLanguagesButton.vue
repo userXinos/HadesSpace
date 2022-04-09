@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .btn-languages {
-  background-image: url(../img/icons/lang.svg);
+  background-image: url(../img/icons/language.svg);
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;

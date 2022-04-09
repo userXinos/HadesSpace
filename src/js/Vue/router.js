@@ -3,7 +3,7 @@ import { getRoutes } from '../parsePages.js';
 
 const router = createRouter({
     history: createWebHistory(),
-    base: process.env.BASE_URL,
+    // base: process.env.BASE_URL,
     routes: getRoutes(),
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {

@@ -61,7 +61,7 @@ export default class StarSectors extends Runner {
 
 /**
  * Улучшенная версия Runner.compileOne способная правильно обработать недостающие ключи/значения
- * @param {Object} obj
+ * @param {Object.<String, Object>} obj
  * @return {Object}
  */
 function customCompileOne(obj) {

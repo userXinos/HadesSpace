@@ -21,6 +21,7 @@
       />
     </h1>
 
+    <!--suppress JSUnusedLocalSymbols -->
     <div
       v-for="(_, name) in ARTS"
       :key="name"

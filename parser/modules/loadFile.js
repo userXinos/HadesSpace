@@ -5,7 +5,7 @@ import Runner from './Runner.js';
 /**
  * Загрузить файл и обработать ранерами
  * @param {String} path         Путь к файлу
- * @param {Function<Runner>[]} runners
+ * @param {Runner[]} runners
  * @return {Function<Runner>}  Заряженный раннер
  * @async
  */
@@ -18,7 +18,9 @@ export default async function(path, runners) {
     return new MyRunner({ raw: file, metadata });
 }
 
-function filter({ config: { file } }, fileName) {
+function filter(runner, fileName) {
+    const { config: { file } } = runner;
+
     if (file.constructor === String && file === fileName) {
         return true;
     }

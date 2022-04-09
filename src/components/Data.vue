@@ -10,7 +10,7 @@
       v-if="table != null"
 
       :data="table"
-      :merge-cells="tableOpts.mergeCells"
+      :merge-cells="!!tableOpts.mergeCells"
       :col-lvl-start-at="tableOpts.colLvlStartAt"
       :lvl-col-key="tableOpts.lvlColKey"
     >

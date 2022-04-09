@@ -5,22 +5,8 @@ import Modules from './Modules.js';
 import loadFile from '../modules/loadFile.js';
 import CONFIG from '../config.js';
 
+// noinspection JSCheckFunctionSignatures
 const { data: modules } = await loadFile(join(CONFIG.pathRaw, 'modules.csv'), [ Modules ]).then((e) => e.render());
-
-// cerberus: [
-//     'CerberusSentinel',
-//     'CerberusGuardian',
-//     'CerberusInterceptor',
-//     'CerberusColossus',
-//     'CerberusDestroyer',
-//     'CerberusBomber',
-//     'CerberusPhoenix',
-//     'CerberusStorm',
-//     'CerberusGhosts',
-//     'CerberusHydra',
-//     'Hydraling1',
-//     'Hydraling2',
-// ]
 
 export default class CapitalShips extends Runner {
     static config = {

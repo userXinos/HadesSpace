@@ -42,7 +42,7 @@ export default {
     data() {
         return {
             ships: filterByType(ships, 'capital_ships.cerberus'),
-            stations: stations,
+            stations,
             cerberusPortrait: require(`@Img/game/portraits/cerberus.png`),
             stationPortrait: require(`@Img/game/portraits/cerberusStation.png`),
         };

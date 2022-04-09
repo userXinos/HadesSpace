@@ -269,12 +269,11 @@ export default {
                 Object.keys(obj.plan).forEach((item) => {
                     if (obj.plan[item] == 0) return;
                     Object.keys(resultTotal).forEach((key) => {
-                        let num1 = 0;
-                        let num2 = 0;
                         const PlanIndexLvl = obj.plan[item] - 1;
                         const ActuallyIndexLvl = (obj.actually[item] || 0) - 1;
+                        const num1 = (resultTotal[key] == undefined) ? 0 : resultTotal[key];
+                        let num2 = 0;
 
-                        num1 = (resultTotal[key] == undefined) ? 0 : resultTotal[key];
                         for (let level = ActuallyIndexLvl; PlanIndexLvl > level; level++) {
                             let data = levels[key][level + 1] || 0;
 

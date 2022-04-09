@@ -1,7 +1,7 @@
 /**
  * using array methods with an object
  * @param {Object} obj
- * @param {Object.<String, Function>} callbacks - where key - function name from Array.prototype
+ * @param {Object.<String, Function>} callbacks - where key - function name from [Array.prototype]
  * @return {Object}
  */
 export default function(obj, callbacks) {
