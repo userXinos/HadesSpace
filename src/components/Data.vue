@@ -26,6 +26,8 @@
 import VTable from './DataTable.vue';
 import VTitle from './DataHead.vue';
 
+import ignoringKeys from '@Regulation/ignoringKeys.js';
+
 export default {
     name: 'Data',
     components: { VTable, VTitle },
@@ -54,18 +56,20 @@ export default {
             title: {},
         };
     },
-    computed: {
-    },
     created() {
-        this.generateTable(this.data);
+        this.packagingData(this.data);
     },
     methods: {
-        generateTable(obj, category = 'default') {
+        packagingData(obj, category = 'default') {
             const { table: { head, body }, title } = this;
+            const { Name } = this.data;
 
             Object.entries(obj).forEach(([key, value]) => {
+                if (ignoringKeys.global.includes(key) || ignoringKeys.byPath.includes(`${Name}.${key}`)) {
+                    return;
+                }
                 if (value.constructor === Object) {
-                    this.generateTable(value, key);
+                    this.packagingData(value, key);
                 } else if (Array.isArray(value)) {
                     if (Array.isArray(head[category])) {
                         head[category].push(key);
@@ -90,11 +94,6 @@ export default {
 </script>
 <style scoped lang="scss">
 .container {
-  margin: 5% 3% 5% 3%;
-}
-@media screen and (max-width: 900px) {
-  .container {
-    margin: 0 3% 5% 3%;
-  }
+  margin: 5% 0;
 }
 </style>

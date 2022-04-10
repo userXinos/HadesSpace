@@ -11,7 +11,7 @@
           >
             <a
               v-t="TID"
-              :href="`#${key}`"
+              :href="`#${Name}`"
             />
           </li>
         </ol>
@@ -58,19 +58,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .list {
-  padding: 0 5% 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-.list ol {
-  border: 5px outset #586066;
-  list-style-type: none;
-  columns: 200px auto;
-  font-size: 125%;
-}
-.list li {
-  text-align: center;
+    ol {
+        border: 5px solid #586066;
+        list-style-type: none;
+        columns: 200px auto;
+        font-size: 125%;
+    }
+    li {
+        text-align: center;
+    }
 }
 </style>
