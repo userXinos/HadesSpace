@@ -3,64 +3,92 @@ export default function({ head, body }) {
     const newBody = [];
 
     Object.entries(head)
-        .forEach(([key, value]) => {
-            headMask([key, value], newHead);
-            bodyMask([key, body[key]], newBody);
+        .forEach(([category, keys]) => {
+            headMask(category, keys, newHead);
+            bodyMask(category, keys, body[category], newBody);
         });
 
     return {
         head: newHead,
-        body: rotateMatrix(newBody),
+        body: newBody,
     };
 }
 
-function headMask([key, value], head) {
-    if (key === 'default') {
-        head[0].push(...value.map((e) => ({
+function headMask(category, keys, out) {
+    if (category === 'default') {
+        out[0].push(...keys.map((e) => ({
             value: e,
-            rowspan: value.length,
+            rowspan: keys.length,
         })));
     } else {
-        head[1] = [];
+        out[1] = [];
 
-        head[0].push({
-            value: key,
-            colspan: value.length,
+        out[0].push({
+            value: category,
+            colspan: keys.length,
         });
-        head[1].push(...value
+        out[1].push(...keys
             .map((value) => ({ value })),
         );
     }
 }
 
-// TODO рефакторинг без rotateMatrix и ключами hide
-function bodyMask([key, value], body) {
-    body.push(...value.map((e) => (
-        e.map((value, index, arr) => {
-            let rowspan = 1;
-            let i = index + 1;
+function bodyMask(category, keys, srcBody, out) {
+    srcBody = rotateMatrix(srcBody);
+    const hideByRow = [];
+    // const colZero = [];
 
-            while (value && arr[i] === value) {
-                arr[i] = undefined;
-                rowspan++;
-                i++;
+    if (category === 'default') {
+        out.push(...srcBody.map(runRow));
+    } else {
+        out.forEach((_, index) => {
+            out[index].push(...runRow(srcBody[index], index, out));
+        });
+    }
+
+
+    function rotateMatrix(matrix) {
+        return matrix[0]
+            .map((value, column) => matrix
+                .map((row) => row[column]),
+            );
+    }
+
+    function runRow(e, rowIndex, arr) {
+        return e.map((value, elemIndex) => {
+            const hideByR = hideByRow.includes(`${rowIndex}>${elemIndex}`);
+            // const hideByC = colZero.includes(`${rowIndex}>${elemIndex}`);
+            let rowspan = 1;
+            const colspan = 1;
+
+            if (!hideByR) {
+                let r = rowIndex + 1;
+                while (r < arr.length && value === arr[r][elemIndex]) {
+                    hideByRow.push(`${r}>${elemIndex}`);
+                    rowspan++;
+                    r++;
+                }
             }
 
+            // // TODO фикс багованая рень
+            // // сделать скрытие сложнее прямоугольника (2 точки) по типу буквы P (3 точки)
+
+            // if (!hideByC) {
+            //     let c = elemIndex + 1;
+            //     while (c < arr[rowIndex].length && value === arr[rowIndex][c]) {
+            //         colZero.push(`${rowIndex}>${c}`);
+            //         colspan++;
+            //         c++;
+            //     }
+            // }
+
             return {
-                key,
+                key: keys[elemIndex],
                 value,
                 rowspan,
+                colspan,
+                hide: hideByR,
             };
-        })
-    )));
-}
-function rotateMatrix(matrix) {
-    return matrix[0]
-        .map((value, column) => matrix
-            .map((row) => ({
-                value: row[column]?.value,
-                key: row[column]?.key,
-                rowspan: row[column]?.rowspan,
-            })),
-        );
+        });
+    }
 }

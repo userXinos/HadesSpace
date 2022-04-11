@@ -54,7 +54,7 @@
           <div class="text-side">
             <div
               v-if="args.default.TID"
-              :id="`#${args.default.Name}-${name}`"
+              :id="`${args.default.Name}-${name}`"
               class="title"
             >
               <a :href="`#${args.default.Name}-${name}`">{{ formatKey(name) }}</a>
@@ -233,39 +233,4 @@ $mw: 900px;
         flex-direction: column;
     }
 }
-
-//.general {
-//  display: flex;
-//  justify-content: space-between;
-//  height: 100%;
-//  padding-bottom: 1%;
-//}
-//
-//.other {
-//  display: flex;
-//  justify-content: space-between;
-//
-//  @media screen and (max-width: $mw) {
-//    flex-direction: column;
-//  }
-//
-//  .characteristics {
-//    background-color: #2b2b2b;
-//    margin: 0 10px;
-//    width: 100%;
-//    padding: 15px;
-//
-//    @media screen and (max-width: $mw) {
-//      width: auto;
-//      margin: 0 0 10px;
-//
-//      &:last-child {
-//        margin: 0;
-//      }
-//    }
-//    .line {
-//      padding: 4px 0;
-//    }
-//  }
-//}
 </style>

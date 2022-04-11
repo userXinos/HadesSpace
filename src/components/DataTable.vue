@@ -33,10 +33,11 @@
             <th class="lvl-col">{{ i + colLvlStartAt }}</th>
 
             <td
-              v-for="({key, value, rowspan}, index2) in row"
-              v-show="value !== undefined"
-              :key="key + index2"
+              v-for="({key, value, rowspan, colspan, hide}, index2) in row"
+              v-show="!hide"
+              :key="index2 + key"
               :rowspan="rowspan"
+              :colspan="colspan"
             >{{ formatValue(key, value) }}</td>
 
             <slot
