@@ -1548,7 +1548,6 @@ export default {
             MaxPerStarSystem: 50,
         },
         ActivationDelayWS: 144000,
-        MiningSpeed: [29.1, 33.3, 37.5, 41.7, 45.8, 52.2, 58.8, 65.2, 74.1, 85.7],
     },
     BomberLauncher: {
         Name: "BomberLauncher",
@@ -1982,7 +1981,6 @@ export default {
     FlagshipDartBarrage: {
         Name: "FlagshipDartBarrage",
         TID: "TID_MODULE_FLAGSHIP_WEAPON",
-        TID_Description: "T",
         AwardLevel: 0,
         Icon: "Mod_DroneDartLauncher_Icon",
         Hide: 1,

@@ -46,8 +46,8 @@ export default class Modules extends Runner {
         data['TimeWarp']['Icon'] = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
         data['MiningBoost']['WhiteStarScore'].unshift(0); // ошибка в таблице, не хватает "0"
         data['Destiny']['WhiteStarScore'].unshift(0); // ошибка в таблице, не хватает "0"
-        data['MiningDrone']['MiningSpeed'] = [ 29.1, 33.3, 37.5, 41.7, 45.8, 52.2, 58.8, 65.2, 74.1, 85.7 ]; // хз как считать это
         data['FlagshipDartBarrage']['TID_Description'] = data['FlagshipDartBarrage']['TID_Description'][0]; // какие-то буквы лишние в таблице
+        delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
 
         return data;
 

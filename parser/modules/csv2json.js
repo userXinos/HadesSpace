@@ -15,7 +15,7 @@ export default function csv2json(csv) {
     if (headers.length <= 1) {
         return simpleArray(data);
     }
-    data.forEach((string) => {
+    data.forEach((string, stringIndex) => {
         if (string[0]) {
             subName = string[0].trim();
             obj[subName] = {};
@@ -31,7 +31,13 @@ export default function csv2json(csv) {
                 subObj[header] = value;
             } else if (Array.isArray(stockValue)) {
                 if (Array.isArray(value) && !stockValue.some(Array.isArray)) {
-                    subObj[header] = [ stockValue, value ];
+                    const prevStringValue = fixValue(data[stringIndex - 1][i]);
+
+                    if (Array.isArray(prevStringValue)) {
+                        subObj[header] = [ stockValue, value ];
+                    } else {
+                        subObj[header] = [ ...stockValue, value ];
+                    }
                 } else {
                     stockValue.push(value);
                 }

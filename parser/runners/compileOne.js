@@ -9,7 +9,7 @@ export default class compileOne extends Runner {
     run(rawData) {
         const data = Object.fromEntries(
             Object.entries(Runner.compileOne(rawData)).map(([ k, v ]) => [
-                k.replaceAll(' ', ''),
+                k.replace(/\s/g, ''),
                 v,
             ]),
         );

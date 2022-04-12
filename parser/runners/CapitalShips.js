@@ -122,7 +122,7 @@ function fixModulesShipsData(obj, Modules, ModuleLevels) {
     delete obj[Modules];
     delete obj[ModuleLevels];
 
-    Object.entries(Runner.fillSpace(res, 0, maxIndex))
+    Object.entries(Runner.fillSpace(res, 0, maxIndex + 1))
         .forEach(([ k, v ]) => {
             if (!obj.modules) {
                 obj.modules = {};
