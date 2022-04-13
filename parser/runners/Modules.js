@@ -23,6 +23,13 @@ const CONFIG = Object.freeze({
     },
     starsOrder: [ 'YS', 'RS', 'WS', 'BS' ],
     excludeKeysStringStar: [ 'NoCerbBondTeleportPRS' ],
+    allowedSpriteNamesMiningDrone: [
+        'MiningDrone_lv1',
+        'MiningDrone_lv2-3',
+        'MiningDrone_lv4-6',
+        'MiningDrone_lv7-9',
+        'MiningDrone_lv10',
+    ],
 });
 
 export default class Modules extends Runner {
@@ -106,6 +113,25 @@ export default class Modules extends Runner {
             // добавить LaserTurret данные
             if (key === 'LaserTurret') {
                 Runner.combineObjects(value.LaserTurret_Laser, capitalShips.LaserTurret);
+            }
+
+            // разрешить спрайты майниг дрона
+            if (key === 'MiningDrone') {
+                const pattern = 'MiningDrone_lv';
+                const ranges = CONFIG.allowedSpriteNamesMiningDrone
+                    .map((e) => e.replace(pattern, ''))
+                    .map((e) => e.split('-').map(Number));
+
+                value.drone.Model = value.drone.Model.map((e) => {
+                    const number = Number(e.replace(pattern, ''));
+                    const i = ranges.findIndex(([ start, end ]) => {
+                        if (!end) {
+                            return (number === start);
+                        }
+                        return (number >= start && number <= end);
+                    });
+                    return CONFIG.allowedSpriteNamesMiningDrone[i];
+                });
             }
 
             // добавить/удалить данные звёзд
