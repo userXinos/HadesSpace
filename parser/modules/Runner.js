@@ -123,7 +123,7 @@ export default class Runner {
     /**
      * Из объекта с маленькими объектами в один общий
      * @param  {Object.<String, Object>} obj  Объект
-     * @return {Object}      Результат
+     * @return {Object}                       Результат
      */
     static compileOne(obj) {
         const res = {};
@@ -165,6 +165,46 @@ export default class Runner {
                 return [ k, v ];
             }),
         );
+    }
+
+    /**
+     * Сгруппировать значения stataMIN[] stataMAX[] в общий массив stata[[]]
+     * @param {Object} obj
+     */
+    static combineMinMax(obj) {
+        const keys = Object.keys(obj);
+
+        keys.forEach((MinKey) => {
+            if (MinKey.endsWith('Min') || MinKey.startsWith('Min')) {
+                const newKey = MinKey.match(/(Min)?(.+?)_?(Min)?$/)[2]; // eslint-disable-line prefer-destructuring
+                const MaxKey = keys.find((e) => e !== MinKey && new RegExp(`(Max)?${newKey}_?(Max)?`).test(e));
+
+                if (MaxKey) {
+                    const isArr = Array.isArray(obj[MinKey]);
+                    const len = isArr ? obj[MinKey].length : 1;
+                    const arr = [];
+
+                    if (isArr !== Array.isArray(obj[MaxKey])) {
+                        return;
+                    }
+
+                    for (let i = 0; i < len; i++) {
+                        const min = isArr ? obj[MinKey][i] : obj[MinKey];
+                        const max = isArr ? obj[MaxKey][i] : obj[MaxKey];
+
+                        if (min === max) {
+                            arr.push(min);
+                        } else {
+                            arr.push([ min, max ]);
+                        }
+                    }
+
+                    obj[newKey] = (arr.length === 1) ? arr.flat() : arr;
+                    delete obj[MinKey];
+                    delete obj[MaxKey];
+                }
+            }
+        });
     }
 }
 

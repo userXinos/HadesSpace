@@ -28,28 +28,18 @@ export default class Stars extends Runner {
                     const matrix = CONFIG.thresholdsKeys.map((e) => value[e]);
                     value.Thresholds = Runner.transposeMatrix(matrix);
                     CONFIG.thresholdsKeys.forEach((e) => delete value[e]);
+
+                    [
+                        'ExtraAsteroidSpawnTick',
+                        'ExtraAsteroidSpawnRingDistance',
+                        'ExtraAsteroidSpawnAmt',
+                    ].forEach((k) => value[k][2] = value[k][1]);
                 }
                 if (key === 'RedStar') {
                     value = Runner.fillSpace(value, null, value.Models.length);
                 }
 
-                // столкнуть массивы диапазонов
-                const oKeys = Object.keys(value);
-                oKeys.forEach((MinKey) => {
-                    if (MinKey.endsWith('Min') || MinKey.startsWith('Min')) {
-                        const newKey = MinKey.match(/(Min)?(.+?)_?(Min)?$/)[2]; // eslint-disable-line prefer-destructuring
-                        const MaxKey = oKeys.find((e) => e !== MinKey && new RegExp(`(Max)?${newKey}_?(Max)?`).test(e));
-                        if (MaxKey) {
-                            const arr = [];
-                            for (let i = 0; i < value[MinKey].length; i++) {
-                                arr.push([ value[MinKey][i], value[MaxKey][i] ]);
-                            }
-                            value[newKey] = arr;
-                            delete value[MinKey];
-                            delete value[MaxKey];
-                        }
-                    }
-                });
+                Runner.combineMinMax(value);
                 return [ key, value ];
             }),
         );

@@ -8,19 +8,12 @@ const CONFIG = Object.freeze({
 export default class Artifacts extends Runner {
     prettierConfig = {
         printWidth: 120,
-        // parser: Artifacts.prettierParser,
     }
 
     static config = {
         file: 'artifacts',
         runner: CONFIG,
     }
-
-    // static prettierParser(text, { babel }) {
-    //     const res = babel(text);
-    //     res.program;
-    //     return res;
-    // }
 
     run(rawData) {
         const result = {};
@@ -39,6 +32,7 @@ export default class Artifacts extends Runner {
             result[BPName] = { Name: BPName, ...genBPData(one) };
 
             [ 'BlueprintsMin', 'BlueprintsMax' ].forEach((e) => delete result[Name][e]);
+            Runner.combineMinMax(result[Name]);
         });
 
         return result;

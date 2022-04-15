@@ -9,7 +9,7 @@
     "arrow-parens": ["error", "always"],
     "array-bracket-spacing": ["error", "always"],
     "no-unused-vars": ["warn"],
-    "prefer-destructuring": ["error"],
+    "prefer-destructuring": ["error", {"object": true, "array": false}],
     "indent": ["error", 4],
     "object-curly-spacing": ["error", "always"],
     "space-infix-ops": ["error"],
