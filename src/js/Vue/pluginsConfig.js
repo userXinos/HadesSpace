@@ -12,4 +12,7 @@ export default {
         location: 'top',
         inverse: false,
     },
+    VueGtag: {
+        config: { id: 'G-Q3X19N7LEN' },
+    },
 };

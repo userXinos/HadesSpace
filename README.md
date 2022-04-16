@@ -1,7 +1,22 @@
-# Web app for viewing game data
-Site for displaying data received from a raw data
+# HadesSpace
+Parsing and displaying game data
 
 ### Build
-`npm install`
 
-`npm run build`
+Install dependencies
+- `npm install`
+
+Install dependencies in modules
+- `npm run postinstall` 
+
+Build
+- `npm run build`
+
+### Build and run
+- `npm run dev`
+
+
+### Modules
+
+- [parser](/parser) - The main module that works with raw game data
+- [i18n](/i18n) - Module that build data for localization
