@@ -12,6 +12,8 @@
   RESET_PLAN: 'Reset the plan',
   PLANETS_CALC: 'Planet calculator',
   OTHER: 'Other',
-  SWITCH_ACCS: 'Account switcher',
+  SWITCH_ACCS: 'Account switcher {0} [{1}]',
   OPEN: 'Open',
+  YES: 'Yes',
+  NO: 'No'
 }

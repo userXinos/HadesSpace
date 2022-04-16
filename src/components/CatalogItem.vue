@@ -8,10 +8,7 @@
           :name="icon.name"
         />
       </div>
-      <span
-        v-t="text.locKey"
-        class="text"
-      />
+      <span class="text"> {{ $t(text.locKey, text.params) }} </span>
     </div>
   </div>
 </template>
@@ -87,15 +84,14 @@ $mw: 960px;
         }
     }
     .text {
-        font-size: 130%;
+        // https://stackoverflow.com/a/39269074
+        font-size: calc((13vw - 3rem) / 7);
         text-align: center;
         color: $text-color;
         padding: 30px 5px;
 
         @media screen and (max-width: $mw) {
-            //position: static;
-            //width: 60%;
-            //padding: 0;
+            font-size: 130%;
         }
     }
 
@@ -108,28 +104,4 @@ $mw: 960px;
         margin: 5px;
     }
 }
-
-//@media screen and (max-width: 960px) {
-//  .item-icon > .icon-background,  .item-icon > .not-icon-background {
-//    width: 50px;
-//    height: 50px;
-//    background-size: auto 40px;
-//  }
-//  .item-icon > .icon-background > .icon {
-//    width: 42%;
-//    height: 42%;
-//  }
-//  .item-icon {
-//    position: absolute;
-//    top: 20%;
-//    left: 10%;
-//    width: 0;
-//    height: 0;
-//  }
-//  .item-icon > .not-icon-background > span {
-//    width: 45px;
-//    height: 45px;
-//    background-size: auto 45px;
-//  }
-//}
 </style>

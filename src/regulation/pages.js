@@ -201,7 +201,7 @@ export default [
             {
                 text: {
                     locKey: 'SWITCH_ACCS',
-                    params: ['(by Raerten) [up to Android 10]'],
+                    params: ['by Raerten', 'up to Android 10'],
                 },
                 path: { externalLink: 'https://github.com/Raerten/HSAccs' },
                 icon: {
