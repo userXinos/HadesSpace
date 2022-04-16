@@ -1,27 +1,21 @@
-import Runner from '../../parser/modules/Runner.js';
 import Modules from '../../parser/Runners/Modules.js';
 
 const config = Modules.config.runner;
+const STAR_REGEX = new RegExp(`(.+?)(_?(${ config.starsOrder.join('|') }))$`, 'm');
 
-export default function genStringsStarHeaders(data) {
-    const res = {};
-
+export default function genStringsStarHeaders(data, res = {}) {
     Object.entries(data)
         .map(([ key, value ]) => {
             if (value.constructor === Object) {
-                Runner.combineObjects(res, genStringsStarHeaders(value));
+                genStringsStarHeaders(value, res);
             }
             return key;
         })
-        .filter((k) => {
-            const regex = new RegExp(`${'.+?_?' + '('}${ config.starsOrder.join('|') })$`, 'm');
-            return regex.test(k) && !config.excludeKeysStringStar.includes(k);
-        })
+        .filter((k) => STAR_REGEX.test(k) && !config.excludeKeysStringStar.includes(k))
         .forEach((k) => {
-            const key = k.replace(/(.+?)_?\w\w$/m, '$1');
-            const [ star ] = /(_?\w\w$)/.exec(k);
+            const [ , key, star ] = STAR_REGEX.exec(k);
 
-            if (!Object.keys(res).includes(key)) {
+            if (!(key in res)) {
                 res[key] = [];
             }
             if (!res[key].includes(star)) {

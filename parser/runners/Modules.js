@@ -171,7 +171,7 @@ export default class Modules extends Runner {
                     .filter((e) => !Object.keys(obj).includes(e + star))
                     .forEach((key) => {
                         const matches = Object.keys(obj) // где-то есть "_", где-то нету...
-                            .filter((e) => new RegExp(`${key }.+?${ star}`).test(e));
+                            .filter((e) => new RegExp(`${key}.+?${star}`).test(e));
                         if (!matches.length) {
                             const newKey = key + star;
                             const value = obj[key];
