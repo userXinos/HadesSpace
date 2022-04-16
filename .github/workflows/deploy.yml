@@ -20,10 +20,7 @@ jobs:
           npm run build
 
       - name: Deploy to gh-pages
-        run: |
-          cd $GITHUB_WORKSPACE/dist
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git commit -m "gh-pages $ACTIONS_DEPLOY_KEY" || true   # do not error if nothing to commit
-          git push
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        with:
+          branch: gh-pages
+          folder: dist
