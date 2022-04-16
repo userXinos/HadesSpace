@@ -1,4 +1,4 @@
-import { resolve, dirname } from 'path';
+import { join, dirname } from 'path';
 
 import { walkDir } from './modules/dirUtils.js';
 import program from './modules/program.js';
@@ -8,13 +8,13 @@ const PRETTIER_TAB_WIDTH = 4;
 const ROOT_DIR = dirname(import.meta.url.replace('file:///', ''));
 
 export default Object.freeze({
-    runnersPath: resolve(ROOT_DIR, './runners'),
-    pathRaw: resolve(ROOT_DIR, './raw'),
-    pathSave: resolve(ROOT_DIR, './dist'),
+    runnersPath: join(ROOT_DIR, './runners'),
+    pathRaw: join(ROOT_DIR, './raw'),
+    pathSave: join(ROOT_DIR, './dist'),
     ignoreFiles: [ 'credits' ],
     get files() {
         const files = program.args
-            .map((f) => resolve(ROOT_DIR, f));
+            .map((f) => join(ROOT_DIR, f));
 
         if (files.length) {
             return files;
