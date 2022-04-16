@@ -26,5 +26,7 @@
       "@babel/plugin-proposal-class-properties"
     ]
   },
-  "eslintIgnore": ["dist"]
+  "eslintIgnore": [
+    "dist"
+  ]
 }

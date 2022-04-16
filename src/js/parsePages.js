@@ -1,7 +1,17 @@
 import pages from '@Regulation/pages.js';
+import NotFound from '@/pages/404.vue';
+
+const notFoundPage = {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound,
+};
 
 export function getRoutes() {
-    return pages.reduce(reduceFn, []);
+    return [
+        ...pages.reduce(reduceFn, []),
+        notFoundPage,
+    ];
 
     function reduceFn(acc, { name, path, component, children }) {
         if (component) {

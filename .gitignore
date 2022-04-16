@@ -11,7 +11,10 @@ node_modules
 node_modules/
 .cache/
 .directory
-/frontend/dist/
+
+#psd
+src/img/logo.psd
+public/favicon.psd
 
 # Папка с собранными файлами проекта
-# build/
+dist/

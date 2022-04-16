@@ -2,13 +2,19 @@
   "name": "hades-space",
   "author": "Xinos",
   "scripts": {
-    "build": "vue-cli-service build ./src/main.js",
     "dev": "vue-cli-service serve",
+    "postinstall": "(cd parser && npm install && cd ..) && (cd i18n && npm install && cd ..)",
+    "install-prod": "npm install --production && (cd parser && npm install --production && cd ..) && (cd i18n && npm install --production && cd ..)",
+    "parser": "cd parser && npm run start",
+    "i18n": "cd i18n && npm run start",
+    "i18n:full": "cd i18n && npm run start -- --full",
+    "build": "npm run parser && npm run i18n:full && vue-cli-service build ./src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@aacassandra/vue3-progressbar": "^1.0.3",
     "@vue/cli": "^5.0.1",
+    "@vue/cli-service": "^5.0.4",
     "@vueuse/head": "^0.7.5",
     "babel-core": "^7.0.0-bridge.0",
     "sass": "^1.50.0",
@@ -20,12 +26,11 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "^5.0.1",
-    "@vue/cli-service": "~5.0.1",
+    "@vue/compiler-sfc": "^3.1.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.9.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-vue": "^8.5.0",
-    "@vue/compiler-sfc": "^3.1.0"
+    "eslint-plugin-vue": "^8.5.0"
   },
   "bugs": {
     "url": "https://github.com/userXinos/HadesSpace/issues"
