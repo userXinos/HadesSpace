@@ -1,11 +1,12 @@
 import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 import { walkDir } from './modules/dirUtils.js';
 import program from './modules/program.js';
 
 const PRETTIER_PRINT_WIDTH = 120; // чтоб массивы выстраивались в одну линию
 const PRETTIER_TAB_WIDTH = 4;
-const ROOT_DIR = dirname(import.meta.url.replace('file:///', ''));
+const ROOT_DIR = dirname(fileURLToPath(import.meta.url));
 
 export default Object.freeze({
     runnersPath: join(ROOT_DIR, './runners'),

@@ -1,9 +1,10 @@
 import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 import string from './configKeys/string.js';
 import upperCase from './configKeys/upperCase.js';
 
-const ROOT_DIR = dirname(import.meta.url.replace('file:///', ''));
+const ROOT_DIR = dirname(fileURLToPath(import.meta.url));
 
 export default Object.freeze({
     defaultLang: 'en',
