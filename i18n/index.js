@@ -2,7 +2,7 @@ import { dirname, join } from 'path';
 import { existsSync, mkdirSync, readdirSync } from 'fs';
 
 import Timer from '../parser/modules/Timer.js';
-import Modules from '../parser/Runners/Modules.js';
+import Modules from '../parser/runners/Modules.js';
 import { writeFile2 } from '../parser/modules/dirUtils.js';
 
 import CONFIG from './config.js';

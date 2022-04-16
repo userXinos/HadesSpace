@@ -1,4 +1,4 @@
-import Modules from '../../parser/Runners/Modules.js';
+import Modules from '../../parser/runners/Modules.js';
 
 const config = Modules.config.runner;
 const STAR_REGEX = new RegExp(`(.+?)(_?(${ config.starsOrder.join('|') }))$`, 'm');
