@@ -62,7 +62,10 @@
           v-for="type in ['actually', 'plan']"
           :key="type"
         >
-          <select @change="changeLvl(type, planets.Name[row], $event.target.value)">
+          <select
+            class="select"
+            @change="changeLvl(type, planets.Name[row], $event.target.value)"
+          >
             <option
               v-for="(i, index) in (planets.MaxUpgradeLevel[row] + 1)"
               :key="type + i"
@@ -139,7 +142,7 @@ export default {
                 localStorage.removeItem(LOCAL_STORAGE_KEY);
             }
         }
-        this.formatterOpts = {
+        this.formatOpts = {
             $t: this.$t.bind(this),
             $te: this.$te.bind(this),
         };
@@ -153,17 +156,17 @@ export default {
                 const result = {};
                 ROWS.forEach((e) => (result[e] = 0));
 
-                this.$set(this.output.calculated, key, result);
+                this.output.calculated[key] = result;
             });
             KEYS_TOTAL.forEach((key) => {
-                this.$set(this.output.total, key, 0);
+                this.output.total[key] = 0;
             });
         },
-        formatKey(...args) {
-            return key(...args, this.formatterOpts);
+        formatKey(k) {
+            return key(k, this.formatOpts);
         },
-        formatValue(...args) {
-            return value(...args, this.formatterOpts);
+        formatValue(k, v) {
+            return value(k, v, planetsYS.Name, this.formatOpts);
         },
         isSelected(type, keyIndex, value) {
             const key = planets.Name[keyIndex];
@@ -207,7 +210,7 @@ export default {
         changeLvl(type, key, value) {
             value = parseInt(value);
 
-            this.$set(this.storage[type], key, parseInt(value));
+            this.storage[type][key] = value;
             this.updateOutput();
             return value;
         },
@@ -309,8 +312,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../css/page.css";
+@use "sass:map";
 
+@import "../css/page.css";
+@import "../css/vars";
+
+.select {
+    background-color: map.get($table, "background");
+    border-color: map.get($table, "background");
+}
 .planetsCalc {
   border: 1px solid #424547;
   border-spacing: 0;

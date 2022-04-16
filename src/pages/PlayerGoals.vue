@@ -11,6 +11,12 @@ import Page from '@/components/Page.vue';
 import filterByType from '@Scripts/filterByType.js';
 import goals from '@Data/player_goals.js';
 
+// const PARAMS = { // TODO что-то сделать с этим бордаком
+//     SalvageArtifacts: ['Y', 'X'],
+//     DeliverShipmentsBatch: ['Y', 'X'],
+//     DestroySentinels: ['StringParam', 'X'],
+// };
+
 export default {
     components: { Page },
     data: () => {

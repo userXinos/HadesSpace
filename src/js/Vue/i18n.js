@@ -9,7 +9,7 @@ const browserLang = window.navigator.language.slice(0, 2);
 
 const i18n = createI18n({
     locale: userLang || ((browserLang in SUPPORT_LOCALES) ? browserLang : DEFAULT_LANG),
-    fallbackLocale: DEFAULT_LANG,
+    // fallbackLocale: DEFAULT_LANG, - уже скомпилировано с замещением
     availableLocales: SUPPORT_LOCALES,
 });
 

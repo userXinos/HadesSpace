@@ -2,47 +2,50 @@
   <div>
     <Page
       title-loc-key="TID_WHITE_STAR"
-      :content-args="{data: stars, iconDir: 'game/Stars'}"
+      :content-args="{data: stars, iconDir: 'game/Stars', tableOpts: {lvlColKey: '№'} }"
       :portrait="{src: img, alt: 'whiteStars'}"
     />
 
-    <div>
-      <h1
-        id="Planets"
-        class="topic"
-      >
-        <a
-          v-t="'PLANETS'"
-          href="#Planets"
-          class="link-topic"
-        />
-      </h1>
-
-      <v-content
-        :args="{
-          data: planets,
-          tableOpts: {lvlColKey: '№'}
-        }"
-      />
-    </div>
+    <v-data
+      :data="planets"
+      :table-opts="{lvlColKey: '№'}"
+    />
 
   </div>
 </template>
 
 <script>
 import Page from '@/components/Page.vue';
-import VContent from '../components/Content.vue';
+import VData from '@/components/Data.vue';
 
 import stars from '@Data/stars.js';
 import planets from '@Data/planets.js';
-import filterByType from '@Scripts/filterByType.js';
+import compileOne from '@Scripts/compileOne.js';
+
+const ws = stars.WhiteStar;
+ws.Lifetime = ws.Lifetime * ws.TimeSlowdownFactor;
+
+const planetsWS = compileOne(planets, { filterByType: { path: 'planets.whitestar' } });
+planetsWS.TID = 'PLANETS';
+planetsWS.Name = 'Planets';
+[
+    'CreditIncomeModifier',
+    'CreditShipmentModifier',
+    'CreditStorageModifier',
+    'FuelIncomeModifier',
+    'FuelShipmentModifier',
+    'FuelStorageModifier',
+    'MaxUpgradeLevel',
+    'ShipmentsPerHour',
+    'ConceptImage',
+].forEach((k) => delete planetsWS[k]);
 
 export default {
-    components: { Page, VContent },
+    components: { Page, VData },
     data() {
         return {
-            stars: { WhiteStar: stars.WhiteStar },
-            planets: filterByType(planets, 'planets.whitestar'),
+            stars: { ws },
+            planets: planetsWS,
             img: require(`@Img/game/portraits/whiteStars.png`),
 
         };

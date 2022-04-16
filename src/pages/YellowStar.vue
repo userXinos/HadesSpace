@@ -2,21 +2,21 @@
   <div>
     <Page
       title-loc-key="TID_YELLOW_STAR"
-      :content-args="{data: stars, iconDir: 'game/Stars'}"
+      :content-args="{data: {stars}, iconDir: 'game/Stars'}"
       :portrait="{src: img, alt: 'yellowStar'}"
     />
 
-    <v-content :args="{data: sectors, tableOpts}" />
-    <v-content :args="{data: levels}" />
-    <v-content :args="{data: planets, tableOpts}" />
-    <v-content :args="{data: prices, tableOpts}" />
+    <v-data v-bind="{data: sectors, tableOpts}" />
+    <v-data v-bind="{data: levels}" />
+    <v-data v-bind="{data: planets, tableOpts}" />
+    <v-data v-bind="{data: prices, tableOpts}" />
 
   </div>
 </template>
 
 <script>
 import Page from '@/components/Page.vue';
-import VContent from '../components/Content.vue';
+import VData from '../components/Data.vue';
 
 import stars from '@Data/stars.js';
 import sectors from '@Data/yellow_star_sectors.js';
@@ -31,25 +31,33 @@ delete star.Models;
 
 const planetsYS = compileOne(planets, { filterByType: { path: 'planets.yellowstar' } });
 delete planetsYS.ModelFolders;
+delete planetsYS.ConceptImage;
 planetsYS.TID2 = planetsYS.TID;
 planetsYS.TID = 'PLANETS';
 planetsYS.Name = 'Planets';
 
 const colonizationPrices = {
+    Name: 'colonize_prices',
     TID: 'COLONIZATION_PLANETS',
     TID2: planetsYS.TID2,
-    null: [0, ...prices],
+    _: [0, ...prices],
 };
 
 export default {
-    components: { Page, VContent },
+    components: { Page, VData },
     data() {
         return {
-            stars: { star },
-            sectors: { sectors: { TID: 'SECTORS', ...sectors } },
-            levels: { levels: { TID: 'LVLS_PLANETS', ...levels } },
-            planets: { planetsYS },
-            prices: { colonizationPrices },
+            stars: star,
+            sectors: {
+                Name2: sectors.Name,
+                ...sectors,
+                BaseType: sectors.BaseType.map((v, i) => v ? ({ ...v, NumBases: sectors.NumBases[i] }) : null),
+                TID: 'SECTORS',
+                Name: 'yellow_star_sectors',
+            },
+            levels: { TID: 'LVLS_PLANETS', ...levels },
+            planets: planetsYS,
+            prices: colonizationPrices,
 
             tableOpts: { lvlColKey: '№' },
             img: require(`@Img/game/portraits/yellowStar.png`),

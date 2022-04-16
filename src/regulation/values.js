@@ -1,11 +1,16 @@
 // noinspection SpellCheckingInspection
 
+import Icon from '@/components/Icon.vue';
 import sec2str from '@Scripts/sec2str.js';
 import locKeys from '@Regulation/locKeys.js';
 
+const numberFormat = new Intl.NumberFormat('ru-RU').format;
+
 export default [
     [
-        ['JobPayoutIncreasePercent',
+        [
+            'TimeWarpSuppression',
+            'JobPayoutIncreasePercent',
             'DamageReductionPct',
             'TradeStationDeliverReward',
             'DroneShipmentBonus',
@@ -17,7 +22,6 @@ export default [
             'HydroUploadPct',
             'SpeedIncreasePerShipment',
             'SalvageHullPercent',
-            'IncreaseSectorHydroPct',
             'CreditIncomeModifier',
             'FuelIncomeModifier',
             'CreditStorageModifier',
@@ -30,18 +34,21 @@ export default [
             'BlueStar_MaxHydroPerDayPct',
             'DroneShipmentBonusMax',
             'SpeedIncrDuringActivation',
-            'TimeWarpSuppression'],
+            'TimeWarpSuppression',
+            'UnityMaxDamageIncreasePct',
+            'BlueStar_SPFactor',
+        ],
         (v) => `${v}%`,
     ],
     [
-        ['UnlockTime',
+        [
+            'UnlockTime',
             'SpawnLifetime',
             'ActivationDelay',
             'ActivationPrep',
             'RedStarLifeExtention',
             'TimeToFullyRegen',
             'ShieldRegenDelay',
-            'EffectDurationx10',
             'DesignUpgradeTime',
             'MaxDPSTime',
             'DockedObjectDestroyTime',
@@ -69,13 +76,53 @@ export default [
             'ShieldRegenTimeAfterDamage',
             'SectorEnrichCooldownSeconds',
             'TurretSetupTime',
-            'TurretSetupTime_WS',
-            'TurretSetupTimeBS',
-            'RelicLoad'],
+            'RelicLoad',
+            'RSPublicLateJoin_TimeAvailable',
+        ],
         (v, opts) => sec2str(opts.$t, v),
     ],
     [
+        [
+            'DeactivateOnJump',
+            'PreventUseOnWsJumpgate',
+            'StopCountdownOnDisable',
+            'IsAreaShield',
+            'BSOnly',
+            'IsStealth',
+            'DisableActivationDuringPrep',
+            'DestinyBreaksBond',
+            'BondOverridesBarrier',
+            'IgnoreBarrier',
+            'LeapBreaksBond',
+            'BondBreaksBond',
+            'PubRSEMPReqEnemies',
+            'ApplyAOEDamageOnDestroy',
+            'RequiresEmptySector',
+            'CanCancelBuild',
+            'AllowMoveInSameSectorOnly',
+            'BuyInPairs',
+            'RequiresStarSector',
+            'SafeInterceptorInPublicRS',
+            'NoCerbBondTeleportP', // так надо
+        ],
+        (v, { $t }) => v ? $t('YES') : $t('NO'),
+    ],
+    [
+        [
+            'EffectRadius',
+            'DamageRange',
+            'DamageRangeWhenNeutralized',
+            'AttackRange',
+            'CollapseAreaSize',
+        ],
+        (v, { $t }) => `${v / 10} ${$t('AU')}`,
+    ],
+    [
         ['APTPIOTTP'],
+        (v, opts) => sec2str(opts.$t, v / 5),
+    ],
+    [
+        ['EffectDurationx10'],
         (v, opts) => sec2str(opts.$t, v / 5),
     ],
     [
@@ -83,59 +130,16 @@ export default [
         (v) => `${v / 10}%`,
     ],
     [
-        ['EffectRadius',
-            'DamageRange',
-            'DamageRangeWhenNeutralized',
-            'AttackRange'],
-        (v, { $t }) => `${v} ${$t('AU')}`,
-    ],
-    [
-        ['UnlockBlueprints',
-            'UnlockPrice',
-            'BCCost',
-            'BuildCost',
-            'DesignUpgradeCost',
-            'HP',
-            'WhiteStarScore',
-            'BSScore',
-            'ActivationFuelCost',
-            'AOEDamage',
-            'Damage',
-            'Cost',
-            'HydrogenPerDay',
-            'CreditStorage',
-            'FuelStorage',
-            'ShipmentsCRValuePerDay',
-            'array',
-            'SalvageCRReward',
-            'PriceInCrystals',
-            'XP',
-            'SalvageHydroReward',
-            'SectorUnlockCost',
-            'TotalShipmentCRPerDay',
-            'GoalTarget',
-            'CRReward',
-            'FuelReward',
-            'UnlockAmount',
-            'PCReward',
-            'XPReward',
-            'RelicsRequired',
-            'Score1Thresholds',
-            'Score2Thresholds',
-            'Score3Thresholds',
-            'CRAsteroidAmt',
-            'MaxHP',
-            'MaxShield',
-            'ShieldStrength'],
-        (v) => v.toLocaleString(),
-    ],
-    [
         ['MoveHydrogenCostPerSector', 'TSHydroCost'],
-        (v, { $t }) => `${v.toLocaleString()} ${$t('HYD')}.`,
+        (v, { $t }) => `${numberFormat(v)} ${$t('HYD')}.`,
     ],
     [
-        ['MiningSpeed'],
-        (v, { $t }) => `${v}/${$t('min')}`,
+        ['SecurityRating'],
+        (v, { $t }) => $t(`TID_SECURITY_RATING_${v}`),
+    ],
+    [
+        ['BSAnomaly'],
+        (v) => v ? '✓' : '',
     ],
     [
         ['FuelUseIncrease', 'FuelUsePer5000Distance'],
@@ -154,32 +158,89 @@ export default [
         (v) => `x${v / 10000}`,
     ],
     [
-        ['TID',
-            'TID_Description',
-            'BaseType',
-            'TID_Artifact',
-            'InitialModule'],
+        ['TID', 'TID2', 'TID_Description', 'TID_Artifact'],
         (v, { $t }) => $t(v),
     ],
     [
-        // ['Model'],
-        [''],
-        (v, opts) => {
-            const src = require(`@Img/${opts.iconDir}/${v}.png`);
-            return `<img class="ships" src="${src}" alt="${v}">`;
-        },
-
+        ['BaseType'],
+        (v, { $t }) => v ? `${v.NumBases} ${$t(v.TID)}` : '',
     ],
     [
-        ['PlanetTypes', 'Name'],
+        ['MiningPeriod'],
+        (v, { $t }) => `${(60 * (100 / v)).toFixed(1)}/${$t('TID_MINUTE_ABBREVIATION')}`,
+    ],
+    [
+        ['GhostSpawnSecs'],
+        (v, opts) => v.map((e) => sec2str(opts.$t, e)).join(', '),
+    ],
+    [
+        ['InitialModule', 'ShipToSpawn', 'Name'],
+        (v, { $t }) => $t(locKeys[v] || v),
+    ],
+    [
+        ['PassiveIncomeModifier'],
+        (v) => `+${v - 100}%`,
+    ],
+    [
+        ['TicksPerRelic', 'ExtraAsteroidSpawnTick'],
+        (v, opts) => sec2str(opts.$t, v * 120),
+    ],
+    [
+        ['TargetSwitchTicks', 'CycleTicks'],
+        (v, opts) => sec2str(opts.$t, v / 5),
+    ],
+    [
+        ['PreparationTimeHours'],
+        (v, { $t }) => `${v} ${ $t('TID_HOUR_ABBREVIATION')}`,
+    ],
+    [
+        ['HealRate'],
+        (v) => v / 200,
+    ],
+    [
+        ['Speed'],
+        (v, { $t }) => `${v * 6} ${$t('AU')}/${$t('TID_MINUTE_ABBREVIATION')}`,
+    ],
+    [
+        ['MinScannerLevel'],
+        (v) => v + 1,
+    ],
+    [
+        ['SlotsUsed'],
+        (v, { $t }) => $t('TID_TRADE_DLG_ITEM_WEIGHT', [v]),
+    ],
+    [
+        ['*'],
+        (v) => (v.length) ? v.join('-') : '',
+        ['CombatBlueprints', 'UtilityBlueprints', 'SupportBlueprints'],
+    ],
+    [
+        ['Thresholds'],
+        (v) => v.map(numberFormat).join(' -> '),
+    ],
+    [
+        ['CerbGroup'],
+        (v, { $t }) => (v === null) ? '' : Object.entries(v)
+            .filter(([k]) => k !== 'Name') //                          NumCERBER_NAMEs
+            .map(([k, v]) => `${$t(locKeys[k.replace(/^Num(.+?)s?$/, '$1')])}: ${v}`)
+            .join(', '),
+    ],
+    [
+        ['Model'],
+        (v) => (createElement) => createElement(Icon, {
+            name: v,
+            dir: 'game/Ships',
+        }),
+    ],
+    [
+        ['PlanetTypes'],
         (v, { $t }) => {
-            return v
-                .split('!')
-                .filter((e) => e !== ' ')
+            return (Array.isArray(v) ? v : [v])
+                .filter((e) => e !== null)
                 .map((e) => {
-                    const elem = e.split('_');
-                    if (elem.length === 1) return elem[0];
-                    return `${$t(elem[0])} ${$t('LVL')}. ${elem[1].slice(-1)}`;
+                    const [name, lvl] = e.split('_');
+                    if (!lvl) return name;
+                    return `${$t(locKeys[name])} ${$t('LVL')}. ${lvl.slice(-1)}`;
                 })
                 .join(', ');
         },
@@ -187,24 +248,10 @@ export default [
     [
         ['NewModuleSlots'],
         (v, { $t }) => {
-            return v
-                .split('!')
+            return (Array.isArray(v) ? v : [v])
                 .map((e) => $t(locKeys[e] || e))
                 .join(', ');
         },
-    ],
-    [
-        ['GhostSpawnSecs'],
-        (v, opts) => {
-            return v
-                .split('!')
-                .map((e) => sec2str(opts.$t, e))
-                .join(', ');
-        },
-    ],
-    [
-        ['StringParam', 'ShipToSpawn'],
-        (v, { $t }) => $t(v.replace(/Cerberus(.*)/, '$1')),
     ],
     [
         ['module'],
@@ -214,77 +261,19 @@ export default [
         },
     ],
     [
-        ['UnityMaxDamageIncreasePct'],
-        (v) => `+${v}%`,
-    ],
-    [
-        ['PassiveIncomeModifier'],
-        (v) => `+${v - 100}%`,
-    ],
-    [
-        ['Hydrogen',
-            'Credits',
+        [
+            'Influence',
             'RegularInfuenceRange',
             'InfluenceAwardThreshold',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            '10',
-            '11'],
-        (v) => {
-            const arr = String(v)
-                .split('!')
-                .map((e) => {
-                    if (e !== ' ') {
-                        return Number(e).toLocaleString();
-                    } else {
-                        return null;
-                    }
-                });
-            return `${arr[0] || ''}-${arr[1] || ''}`;
-        },
+            'Credits',
+            'Hydrogen',
+            'RSLevel',
+        ],
+        (v) => v ? (
+            Array.isArray(v) ? v
+                .filter((e) => e)
+                .map(numberFormat)
+                .join('-') : v
+        ) : '',
     ],
-    [
-        ['TicksPerRelic'],
-        (v, opts) => sec2str(opts.$t, v * 120),
-    ],
-    [
-        ['TargetSwitchTicks'],
-        (v, opts) => sec2str(opts.$t, v / 5),
-    ],
-    [
-        ['PreparationTimeHours'],
-        (v, { $t }) => `${v} ${ $t('HOURS')}`,
-    ],
-    [
-        ['HealRate'],
-        (v) => v / 200,
-    ],
-    [
-        ['Speed'],
-        (v, { $t }) => `${v * 6} ${$t('AU')}`,
-    ],
-    // [
-    //     ['ActivationPrepWS', 'SpawnLifetime_WS', 'TurretSetupTime_WS'],
-    //     (v) => v * 3600 / 6,
-    // ],
-    // [
-    //     ['EffectRadiusWS',
-    //         'EffectRadiusBS',
-    //         'EffectRadius',
-    //         'DamageRange',
-    //         'DamageRangeWhenNeutralized',
-    //         'ShipmentsPerHour',
-    //         'EffectDurationx10',
-    //         'EffectDurationx10BS',
-    //         'RadiusMax',
-    //         'AttackRange'],
-    //     (v) => v / 10,
-    // ],
 ];

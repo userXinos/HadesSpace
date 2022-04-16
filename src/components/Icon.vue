@@ -47,6 +47,7 @@ export default {
         return {
             isCustom: this.name.constructor === CustomIcon,
             isCerberus: this.name.includes('Cerberus'),
+            isProjectiles: this.name.includes('projectiles/'),
             type: TYPES[this.dir] || null,
 
             bgClasses: {},
@@ -80,7 +81,7 @@ export default {
     },
     created() {
         this.bgClasses = {
-            'module-bg': this.type === 'Module',
+            'module-bg': this.type === 'Module' && !this.isProjectiles,
             'space-building-bg': this.type === 'SpaceBuilding' && !this.isCerberus,
             'round-bg': this.type === 'Star' || ['TimeModulator'].includes(this.customType),
             'art-bg': this.name === 'art',
@@ -91,7 +92,7 @@ export default {
         };
         this.iconClasses = {
             'ship': this.type === 'Ship',
-            'cerberus': this.isCerberus,
+            'cerberus': this.isCerberus || this.isProjectiles,
             'warp-line-body': this.customType == 'WarpLane',
         };
     },

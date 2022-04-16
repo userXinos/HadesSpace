@@ -2,7 +2,8 @@
   <div class="container">
 
     <v-title
-      :args="title"
+      :data="title"
+      :format="format"
       :icon-dir="iconDir"
     />
 
@@ -10,11 +11,10 @@
       v-if="table != null"
 
       :data="table"
-      :merge-cells="!!tableOpts.mergeCells"
-      :col-lvl-start-at="tableOpts.colLvlStartAt"
-      :lvl-col-key="tableOpts.lvlColKey"
+      :format="format"
+      v-bind="tableOpts"
     >
-      <!--  eslint-disable vue/max-attributes-per-line      -->
+      <!--         eslint-disable vue/max-attributes-per-line         -->
       <template #head="p"><slot name="table-head" v-bind="p" /></template>
       <template #body="p"><slot name="table-body" v-bind="p" /></template>
     </v-table>
@@ -26,6 +26,9 @@
 import VTable from './DataTable.vue';
 import VTitle from './DataHead.vue';
 
+import key from '@Handlers/key.js';
+import value from '@Handlers/value.js';
+
 import ignoringKeys from '@Regulation/ignoringKeys.js';
 
 export default {
@@ -34,13 +37,12 @@ export default {
     props: {
         data: {
             type: Object,
-            default: () => ({}),
+            default: undefined,
             request: true,
         },
         tableOpts: {
             type: Object,
             default: () => ({}),
-            request: false,
         },
         iconDir: {
             type: String,
@@ -54,10 +56,18 @@ export default {
                 body: {},
             },
             title: {},
+            format: {
+                key: (k) => key(k, this.formatOpts),
+                value: (k, v) => value(k, v, this.title.default.Name, this.formatOpts),
+            },
         };
     },
     created() {
         this.packagingData(this.data);
+        this.formatOpts = {
+            $t: this.$t.bind(this),
+            $te: this.$te.bind(this),
+        };
     },
     methods: {
         packagingData(obj, category = 'default') {
@@ -65,18 +75,22 @@ export default {
             const { Name } = this.data;
 
             Object.entries(obj).forEach(([key, value]) => {
-                if (ignoringKeys.global.includes(key) || ignoringKeys.byPath.includes(`${Name}.${key}`)) {
-                    return;
-                }
                 if (value.constructor === Object) {
                     this.packagingData(value, key);
                 } else if (Array.isArray(value)) {
-                    if (Array.isArray(head[category])) {
-                        head[category].push(key);
-                        body[category].push(value);
+                    if (ignoringKeys.forceTitle.includes(key)) {
+                        title[key] = value;
                     } else {
-                        head[category] = [key];
-                        body[category] = [value];
+                        if (ignoringKeys.global.includes(key) || ignoringKeys.byPath.includes(`${Name}.${key}`)) {
+                            return; // в Head ещё один фильтр для углублённой сортировки, в таблицах - проще сразу тут
+                        }
+                        if (Array.isArray(head[category])) {
+                            head[category].push(key);
+                            body[category].push(value);
+                        } else {
+                            head[category] = [key];
+                            body[category] = [value];
+                        }
                     }
                 } else {
                     if (!title[category]) {

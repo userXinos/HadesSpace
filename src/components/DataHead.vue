@@ -5,27 +5,28 @@
       <div class="body">
         <div class="text-side">
           <div
-            v-if="args.default.TID"
-            :id="args.default.Name"
+            v-if="data.default.TID"
+            :id="data.default.Name"
             class="title"
           >
             <a
-              v-t="args.default.TID"
-              :href="`#${args.default.Name}`"
+              v-t="data.default.TID"
+              :href="`#${data.default.Name}`"
             />
           </div>
           <p
-            v-if="args.default.TID_Description"
-            v-t="args.default.TID_Description"
+            v-if="data.default.TID_Description"
             class="description"
-          />
+          >
+            {{ formatDescr(data.default.TID_Description) }}
+          </p>
           <ul class="characteristics">
             <li
-              v-for="(value, key) in getCharacteristics(args.default)"
+              v-for="(value, key) in getCharacteristics(data.default)"
               :key="key"
               class="line"
             >
-              <b>{{ formatKey(key) }}</b>: {{ formatValue(key, value) }}
+              <b>{{ format.key(key) }}</b>: {{ format.value(key, value) }}
             </li>
           </ul>
         </div>
@@ -34,7 +35,7 @@
           class="icon"
         >
           <icon
-            :name="args.default.Icon || args.default.Model"
+            :name="data.default.Icon || data.default.Model"
             :dir="iconDir"
           />
         </div>
@@ -53,33 +54,133 @@
         <div class="body">
           <div class="text-side">
             <div
-              v-if="args.default.TID"
-              :id="`${args.default.Name}-${name}`"
+              :id="`${data.default.Name}-${name}`"
               class="title"
             >
-              <a :href="`#${args.default.Name}-${name}`">{{ formatKey(name) }}</a>
+              <a :href="`#${data.default.Name}-${name}`">{{ format.key(name) }}</a>
             </div>
-            <p
-              v-if="args[name].TID_Description && args[name].TID_Description != args.default.TID_Description"
-              v-t="args[name].TID_Description"
-              class="description"
-            />
-            <ul class="characteristics">
-              <li
-                v-for="(value, key) in getCharacteristics(item)"
-                :key="key"
-                class="line"
-              >
-                <b>{{ formatKey(key) }}</b>: {{ formatValue(key, value) }}
-              </li>
-            </ul>
+
+            <div
+              v-if="Array.isArray(item)"
+              class="sub-item"
+            >
+              <template v-if="item.every((e) => typeof e === 'object' && e !== null)">
+                <div
+                  v-for="(subItem, subName) of item"
+                  :key="subName"
+                  class="item"
+                >
+                  <div class="body">
+                    <div class="text-side">
+                      <div
+                        :id="`${data.default.Name}-${name}-${subName}`"
+                        class="title"
+                      >
+                        <a :href="`#${data.default.Name}-${name}-${subName}`">{{
+                          format.key(subItem.TID)
+                        }}</a>
+                      </div>
+                      <p
+                        v-if="subItem.TID_Description"
+                        v-t="subItem.TID_Description"
+                        class="description"
+                      />
+                      <ul class="characteristics">
+                        <li
+                          v-for="(value, key) in getCharacteristics(subItem)"
+                          :key="key"
+                          class="line"
+                        >
+
+                          <div
+                            v-if="value.constructor == Object"
+                            class="sub-item"
+                          >
+                            <div class="item">
+                              <div class="body">
+                                <div class="text-side">
+                                  <div
+                                    :id="`${data.default.Name}-${name}-${subName}-${key}`"
+                                    class="title"
+                                  >
+                                    <a :href="`#${data.default.Name}-${name}-${subName}-${key}`">{{
+                                      format.key(subItem.TID)
+                                    }}</a>
+                                  </div>
+                                  <p
+                                    v-if="value.TID_Description"
+                                    v-t="value.TID_Description"
+                                    class="description"
+                                  />
+                                  <ul class="characteristics">
+                                    <li
+                                      v-for="(v, k) in getCharacteristics(value)"
+                                      :key="k"
+                                      class="line"
+                                    >
+                                      <b>{{ format.key(k) }}</b>: {{ format.value(k, v) }}
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div
+                                  v-if="value.Icon || value.Model"
+                                  class="icon"
+                                >
+                                  <icon
+                                    :name="value.Icon || value.Model"
+                                    dir="game/Modules"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <template v-else>
+                            <b>{{ format.key(key) }}</b>: {{ format.value(key, value) }}
+                          </template>
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      v-if="subItem.Icon || subItem.Model"
+                      class="icon"
+                    >
+                      <icon
+                        :name="subItem.Icon || subItem.Model"
+                        dir="game/Modules"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </template>
+              <template v-else>
+                {{ format.value(name, item) }}
+              </template>
+            </div>
+
+            <template v-else>
+              <p
+                v-if="data[name].TID_Description && data[name].TID_Description != data.default.TID_Description"
+                v-t="data[name].TID_Description"
+                class="description"
+              />
+              <ul class="characteristics">
+                <li
+                  v-for="(value, key) in getCharacteristics(item)"
+                  :key="key"
+                  class="line"
+                >
+                  <b>{{ format.key(key) }}</b>: {{ format.value(key, value) }}
+                </li>
+              </ul>
+            </template>
           </div>
           <div
-            v-if="(args[name].Icon || args[name].Model) && name in iconDirList"
+            v-if="(data[name].Icon || data[name].Model) && name in iconDirList"
             class="icon"
           >
             <icon
-              :name="args[name].Icon || args[name].Model"
+              :name="data[name].Icon || data[name].Model"
               :dir="iconDirList[name]"
             />
           </div>
@@ -93,21 +194,27 @@
 <script>
 import Icon from './Icon.vue';
 
-import value from '@Handlers/value.js';
-import key from '@Handlers/key.js';
+import objectArrayify from '@Scripts/objectArrayify.js';
 import ignoringKeys from '@Regulation/ignoringKeys.js';
 
 const ICON_DIR_LIST = {
     drone: 'game/Ships',
+    modules: 'game/Modules',
 };
 
 export default {
     name: 'Head',
     components: { Icon },
     props: {
-        args: {
+        data: {
             type: Object,
+            requested: true,
             default: () => ({ default: {} }),
+        },
+        format: {
+            type: Object,
+            requested: true,
+            default: () => ({ key: () => null, value: () => null }),
         },
         iconDir: {
             type: String,
@@ -126,20 +233,28 @@ export default {
             $te: this.$te.bind(this),
         };
 
-        this.other = { ...this.args };
+        this.other = { ...this.data };
         delete this.other.default;
     },
     methods: {
         getCharacteristics(d) {
-            const res = { ...d };
-            ignoringKeys.meta.forEach((k) => delete res[k]);
+            const res = objectArrayify(d, {
+                filter: ([k]) => (
+                    !ignoringKeys.global.includes(k) &&
+                    !ignoringKeys.byPath.includes(`${d.Name}.${k}`) &&
+                    !ignoringKeys.meta.includes(k)
+                ),
+            });
+
+            if (d.projectile) { // перенести вниз
+                const { projectile } = res;
+                delete res.projectile;
+                res.projectile = projectile;
+            }
             return res;
         },
-        formatKey(...args) {
-            return key(...args, this.formatterOpts);
-        },
-        formatValue(...args) {
-            return value(...args, this.formatterOpts);
+        formatDescr(key) {
+            return this.$t(key, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
         },
     },
 };
@@ -155,6 +270,7 @@ $mw: 900px;
         flex: 7;
 
         .title {
+            margin-bottom: 1%;
             font-size: 200%;
 
             @media screen and (max-width: $mw) {
@@ -166,7 +282,7 @@ $mw: 900px;
         }
         .description {
             font-size: 150%;
-            margin: 1% 0;
+            margin: 0 0 1%;
 
             @media screen and (max-width: $mw) {
                 font-size: 100%;
@@ -179,6 +295,10 @@ $mw: 900px;
                 font-size: 130%;
                 white-space: nowrap;
                 padding: 4px 0;
+
+                .description {
+                    white-space: normal;
+                }
 
                 @media screen and (max-width: $mw) {
                     font-size: 90%;
@@ -203,13 +323,12 @@ $mw: 900px;
 
 }
 
-.other {
+.other, .sub-item {
     margin-top: 2%;
     display: flex;
-    gap: 3%;
+    gap: 2%;
 
-    .item {
-        padding: 2%;
+    .item  {
         background-color: #2b2b2b;
         width: 100%;
 
@@ -217,13 +336,37 @@ $mw: 900px;
             width: auto;
             margin-top: 3%;
         }
+
+        .sub-item {
+            flex-wrap: wrap;
+
+            .item {
+                margin-bottom: 1%;
+
+                .body {
+                    background-color: #171717;
+
+                    .text-side {
+                        padding: 1%;
+
+                        .title {
+                            font-size: 130%;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .item .body .text-side {
+        padding: 2%;
+
         .title {
             font-size: 170%;
         }
-        .description {}
+        .description {
+            font-size: 120%;
+        }
         .characteristics .line {
             font-size: 100%;
         }

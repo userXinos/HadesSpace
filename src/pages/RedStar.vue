@@ -28,9 +28,9 @@
     >
       <div
         v-for="args in getArt(name)"
-        :key="`${name}${args.data.a.Name}`"
+        :key="`${name}${args.data.Name}`"
       >
-        <v-content :args="args" />
+        <v-data v-bind="args" />
       </div>
 
     </div>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import VContent from '../components/Content.vue';
+import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';
 
 import stars from '@Data/stars.js';
@@ -50,37 +50,53 @@ const ARTS = {
     Support: 'SUPPORT_ART',
 };
 
+const { RedStar } = stars;
+
+const USELESS_STATS = [
+    'GhostSpawnSecs',
+    'Models',
+    'LowerPlanetsMinLevel',
+    'MaxPlanetBomberCoverage',
+    'MaxPlanetBomberCoverage',
+    'GhostSpawner',
+    'NumLowerPlanets',
+    'MedRiskMining',
+    'HighRiskMining',
+];
+
+USELESS_STATS.forEach((k) => delete RedStar[k]);
+
 export default {
-    components: { Page, VContent },
+    components: { Page, VData },
     data() {
         return {
             ARTS,
             artifacts,
-            star: { RedStar: stars.RedStar },
+            star: { RedStar },
             img: require(`@Img/game/portraits/redStar.png`),
         };
     },
     methods: {
         getArt(name) {
             const tableOpts = {
-                lvlColKey: 'N',
+                lvlColKey: '№',
                 colLvlStartAt: (name == 'Support') ? 2 : 1,
             };
 
             return [
                 {
-                    data: { a: {
+                    data: {
                         ...this.artifacts[name],
                         TID2: this.artifacts[name].TID,
                         TID: ARTS[name],
-                    } },
+                    },
                     tableOpts,
                 },
                 {
-                    data: { a: {
+                    data: {
                         TID: 'BLUEPRINTS',
                         ...this.artifacts[`${name}Blueprints`],
-                    } },
+                    },
                     tableOpts,
                 },
             ];

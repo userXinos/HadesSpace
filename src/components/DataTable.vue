@@ -19,7 +19,7 @@
               :key="k"
               :rowspan="rowspan"
               :colspan="colspan"
-            >{{ formatKey(value) }}</th>
+            >{{ format.key(value) }}</th>
 
             <slot name="head" />
           </tr>
@@ -31,14 +31,20 @@
             :key="i"
           >
             <th class="lvl-col">{{ i + colLvlStartAt }}</th>
-
             <td
               v-for="({key, value, rowspan, colspan, hide}, index2) in row"
               v-show="!hide"
               :key="index2 + key"
               :rowspan="rowspan"
               :colspan="colspan"
-            >{{ formatValue(key, value) }}</td>
+            >
+              <template v-if="typeof format.value(key, value) === 'function'">
+                <v-node :render="format.value(key, value)" />
+              </template> <template v-else>
+                {{ format.value(key, value) }}
+              </template>
+
+            </td>
 
             <slot
               name="body"
@@ -53,16 +59,29 @@
 </template>
 
 <script>
+import { h } from 'vue';
+
 import tableMask from '@Scripts/tableMask.js';
-import value from '@Handlers/value.js';
-import key from '@Handlers/key.js';
+
+function VNode({ render }) {
+    return render(h);
+}
 
 export default {
     name: 'Table',
+    components: {
+        VNode,
+    },
     props: {
         data: {
             type: Object,
-            default: () => {},
+            requested: true,
+            default: () => ({}),
+        },
+        format: {
+            type: Object,
+            requested: true,
+            default: () => ({ key: () => null, value: () => null }),
         },
         mergeCells: {
             type: Boolean,
@@ -90,18 +109,6 @@ export default {
     },
     created() {
         this.tableMask = tableMask({ ...this.data });
-        this.formatterOpts = {
-            $t: this.$t.bind(this),
-            $te: this.$te.bind(this),
-        };
-    },
-    methods: {
-        formatKey(...args) {
-            return key(...args, this.formatterOpts);
-        },
-        formatValue(...args) {
-            return value(...args, this.formatterOpts);
-        },
     },
 };
 </script>
@@ -147,8 +154,9 @@ $mw: 900px;
         line-height: 16px;
         text-align: center;
         font-size: 80%;
-        user-select: none;
+        // user-select: none;
         border-top: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
     }
 }
 </style>

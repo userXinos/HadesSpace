@@ -41,6 +41,10 @@ function bodyMask(category, keys, srcBody, out) {
     if (category === 'default') {
         out.push(...srcBody.map(runRow));
     } else {
+        if (!out.length) {
+            out.push(...srcBody.map(runRow));
+            return;
+        }
         out.forEach((_, index) => {
             out[index].push(...runRow(srcBody[index], index, out));
         });
