@@ -40,7 +40,7 @@ export default class Modules extends Runner {
     }
 
     run(rawData) {
-        const [ capitalShips, projectiles, artifacts ] = Runner.multiReadCsv([
+        const [ capitalShips, projectiles, artifacts ] = this.multiReadCsv([
             'capital_ships',
             'projectiles',
             'artifacts',

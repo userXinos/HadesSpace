@@ -15,7 +15,7 @@ export default class CapitalShips extends Runner {
     }
 
     run(rawData) {
-        const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = Runner.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);
+        const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = this.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);
 
         const data = Object.fromEntries(
             Object.entries(rawData)

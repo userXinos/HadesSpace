@@ -28,7 +28,7 @@ export default class StarSectors extends Runner {
     }
 
     run(rawData) {
-        const [ cerbGroups, cerberusStations ] = Runner.multiReadCsv([ 'cerb_groups', 'cerberus_stations' ]);
+        const [ cerbGroups, cerberusStations ] = this.multiReadCsv([ 'cerb_groups', 'cerberus_stations' ]);
 
         return customCompileOne(
             Object.fromEntries(

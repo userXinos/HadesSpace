@@ -48,7 +48,7 @@ await Promise.all(CONFIG.files
 )
     .catch(err);
 
-console.log('\x1b[32m[✓] \x1b[0m Готово! (%s сек.)', time.final);
+console.log('\x1b[32m[✓] \x1b[0m Done! (%s сек.)', time.final);
 
 
 async function loadSaveFile(file, runners) {
@@ -57,7 +57,7 @@ async function loadSaveFile(file, runners) {
 }
 
 function err(error) {
-    console.log('\x1b[31m[х]\x1b[0m', `Ошибки в выполнении.`, error, error.stack);
+    console.log('\x1b[31m[х]\x1b[0m', `Execution errors.`, error, error.stack);
     process.exit(-1);
 }
 

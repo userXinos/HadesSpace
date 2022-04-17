@@ -24,3 +24,5 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
+          git-config-name: "GitHub Actions"
+          git-config-email: "actions@github.com"

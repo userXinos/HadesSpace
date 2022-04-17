@@ -22,7 +22,7 @@ const files = readdirSync(CONFIG.additionalContent).map(handler);
 
 
 await Promise.all(files);
-console.log('\x1b[32m[✓] \x1b[0m Готово! (%s сек.)', time.final);
+console.log('\x1b[32m[✓] \x1b[0m Done! (%s сек.)', time.final);
 
 
 async function handler(locale) {
@@ -34,5 +34,5 @@ async function handler(locale) {
     }
 
     await writeFile2(path, JSON.stringify(data, null, 2));
-    console.log('Файл', `"\x1b[32m${path}\x1b[0m"`, 'создан');
+    console.log('File', `"\x1b[32m${path}\x1b[0m"`, 'created');
 }

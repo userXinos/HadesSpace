@@ -1,8 +1,11 @@
-import JsonRaw from './JsonRaw.js';
-import csv2json from './csv2json.js';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+
+import JsonRaw from './JsonRaw.js';
+import csv2json from './csv2json.js';
+
 import CONFIG from '../config.js';
+
 
 export default class Runner {
     /**
@@ -48,6 +51,7 @@ export default class Runner {
         this.args = args;
         this.metadata = this.args.metadata || {};
         this.metadata.runnerName = this.constructor.name;
+        this.metadata.usedFiles = [];
     }
 
     run(rawData) {
@@ -62,6 +66,16 @@ export default class Runner {
             this.prettierConfig.printWidth = 5;
         }
         return this._newJson(data);
+    }
+
+    multiReadCsv(fileNames) {
+        this.metadata.usedFiles.push( ...fileNames);
+        return Runner.multiReadCsv(fileNames);
+    }
+
+    readCsv(fileName) {
+        this.metadata.usedFiles.push(fileName);
+        return Runner.readCsv(fileName);
     }
 
     _newJson(...args) {
