@@ -22,7 +22,7 @@
         :key="key"
         class="total"
       >
-        <td>{{ $t(key) }}</td>
+        <td>{{ formatKey(key) }}</td>
         <td colspan="3">
           {{ formatValue(key, value) }}
         </td>

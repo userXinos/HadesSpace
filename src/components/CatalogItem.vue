@@ -76,28 +76,27 @@ $mw: 960px;
         padding-top: 30%;
 
         @media screen and (max-width: $mw) {
-            justify-content: center;
             padding-top: 0;
-            width: 42px;
-            position: absolute;
-            left: 5%;
+            padding-left: 5%;
+            margin-right: -5%;
+            width: 50px;
         }
     }
     .text {
         // https://stackoverflow.com/a/39269074
         font-size: calc((13vw - 3rem) / 7);
+
         text-align: center;
         color: $text-color;
         padding: 30px 5px;
 
         @media screen and (max-width: $mw) {
             font-size: 130%;
+            width: 100%;
         }
     }
 
     @media screen and (max-width: $mw) {
-        justify-content: center;
-        width: 100%;
         height: 80px;
         flex-direction: row;
         position: relative;

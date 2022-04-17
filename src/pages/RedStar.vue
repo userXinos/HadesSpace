@@ -115,3 +115,11 @@ $mw: 900px;
 }
 
 </style>
+
+<!--suppress CssUnusedSymbol -->
+<style>
+#CombatBlueprints, #UtilityBlueprints, #SupportBlueprints {
+    font-size: 130%;
+    margin-top: 2%;
+}
+</style>

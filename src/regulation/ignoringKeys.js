@@ -11,6 +11,8 @@ export default {
     forceTitle: [
         'modules',
         'GhostSpawnSecs',
+        'DestinyDisableTimes',
+        'BarrageMaxAdditionalEnemies',
     ],
     global: [
         'NumMoons',
@@ -82,6 +84,7 @@ export default {
         'GoogleID',
         'ModuleReq',
         'UnlockType',
+        'SpawnedShip',
     ],
     byPath: [
 
@@ -324,6 +327,29 @@ export default {
         // Ships.FlagmanModules
         'Recoil.IsTeleport',
         'Recoil.IsRecoil',
+        'Recoil.ActivationPrepBS',
+        'Recoil.ActivationPrep',
+        'Recoil.ActivationDelayBS',
+        'Recoil.ActivationDelay',
+        'Immolation.ActivationDelay',
+        'Immolation.ActivationDelayBS',
+        'EMPRocket.ActivationDelayBS',
+        'EMPRocket.ActivationDelay',
+        'FlagshipDartBarrage.AdditionalWaypoint',
+        'FlagshipDartBarrage.ActivationDelayBS',
+        'FlagshipDartBarrage.ActivationDelay',
+        'FlagshipWeaponModule.ActivationDelayBS',
+        'FlagshipWeaponModule.SpawnLifetimeBS',
+        'FlagshipWeaponModule.ActivationDelay',
+        'FlagshipWeaponModule.SpawnLifetime',
+        'FlagshipAreaShield.ActivationDelayBS',
+        'FlagshipAreaShield.EffectDurationx10BS',
+        'FlagshipAreaShield.ActivationDelay',
+        'FlagshipAreaShield.EffectDurationx10',
+        'FlagshipShieldModule.SpawnLifetimeBS',
+        'FlagshipShieldModule.ActivationDelayBS',
+        'FlagshipShieldModule.SpawnLifetime',
+        'FlagshipShieldModule.ActivationDelay',
         'Immolation.IsImmolation',
 
         // RedStar
@@ -441,6 +467,8 @@ export default {
         'Stealth.IsStealth',
         'Fortify.IsTaunt',
         'AlphaRocket.AdditionalWaypoint',
+        'OmegaRocket.AdditionalWaypoint',
+        'RemoteBomb.AdditionalWaypoint',
         'Supress.IsSupress',
         'Destiny.ReqEnemyShipsInSector',
         'Barrier.IsBarrier',

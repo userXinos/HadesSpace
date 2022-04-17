@@ -57,7 +57,7 @@ export default {
             },
             title: {},
             format: {
-                key: (k) => key(k, this.formatOpts),
+                key: (k) => key(k, this.$route.name, this.formatOpts),
                 value: (k, v) => value(k, v, this.title.default.Name, this.formatOpts),
             },
         };

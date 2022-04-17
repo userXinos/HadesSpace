@@ -1,8 +1,8 @@
 <template>
-  <a
-    href="#"
+  <div
     :class="{'show': show}"
     class="btn"
+    @click="scrollToTop"
   />
 </template>
 
@@ -20,6 +20,9 @@ export default {
         document.removeEventListener('scroll', this.scroll);
     },
     methods: {
+        scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
         scroll() {
             this.show = (window.scrollY > 300);
         },
@@ -29,7 +32,7 @@ export default {
 <style scoped lang="scss">
 .btn {
   position: fixed;
-  right: 50px;
+  right: 20px;
   bottom: -100px;
   width: 55px;
   height: 55px;

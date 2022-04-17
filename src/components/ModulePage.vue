@@ -20,10 +20,17 @@ export default {
             requested: true,
             default: null,
         },
+        postFilter: {
+            type: Function,
+            requested: false,
+            default: ((e) => e),
+        },
     },
     data() {
+        const data = filterByType(modulesData, `modules.${this.type}`);
+
         return {
-            data: filterByType(modulesData, `modules.${this.type}`),
+            data: this.postFilter(data),
             img: require(`@Img/game/portraits/${this.type}.png`),
             locKey: `TYPE_MOD_${this.type.toUpperCase()}`,
         };

@@ -15,5 +15,6 @@
   SWITCH_ACCS: 'Account switcher {0} [{1}]',
   OPEN: 'Open',
   YES: 'Yes',
-  NO: 'No'
+  NO: 'No',
+  VALUE: 'Value {0}'
 }

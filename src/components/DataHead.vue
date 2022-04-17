@@ -267,7 +267,7 @@ $mw: 900px;
     display: flex;
 
     .text-side {
-        flex: 7;
+        flex: 9;
 
         .title {
             margin-bottom: 1%;
@@ -281,7 +281,7 @@ $mw: 900px;
             }
         }
         .description {
-            font-size: 150%;
+            font-size: 140%;
             margin: 0 0 1%;
 
             @media screen and (max-width: $mw) {
@@ -293,7 +293,7 @@ $mw: 900px;
 
             li.line {
                 font-size: 130%;
-                white-space: nowrap;
+                // white-space: nowrap;
                 padding: 4px 0;
 
                 .description {
@@ -315,9 +315,11 @@ $mw: 900px;
     .icon {
         flex: 1;
         margin: 2%;
+        max-width: 140px;
 
         @media screen and (max-width: $mw) {
             flex: 2;
+            max-width: none;
         }
     }
 

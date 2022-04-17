@@ -21,7 +21,6 @@ export default [
             'IncreaseSectorHydroPct',
             'HydroUploadPct',
             'SpeedIncreasePerShipment',
-            'SalvageHullPercent',
             'CreditIncomeModifier',
             'FuelIncomeModifier',
             'CreditStorageModifier',
@@ -59,7 +58,6 @@ export default [
             'TimeToLoad',
             'Lifetime',
             'ConstructionTime',
-            'TeleportShipmentsDurationHr',
             'TimeSpeedupMaxSeconds',
             'TimeSpeedupRegenPerDay',
             'SpawnDelay',
@@ -71,7 +69,6 @@ export default [
             'WSJumpOtherTimeCooldown',
             'ProximityTriggerSec',
             'EMPResist',
-            'DestinyDisableTimes',
             'SpawnFleetIntervalSeconds',
             'ShieldRegenTimeAfterDamage',
             'SectorEnrichCooldownSeconds',
@@ -130,7 +127,7 @@ export default [
         (v) => `${v / 10}%`,
     ],
     [
-        ['MoveHydrogenCostPerSector', 'TSHydroCost'],
+        ['MoveHydrogenCostPerSector', 'TSHydroCost', 'ActivationFuelCost'],
         (v, { $t }) => `${numberFormat(v)} ${$t('HYD')}.`,
     ],
     [
@@ -190,7 +187,7 @@ export default [
         (v, opts) => sec2str(opts.$t, v / 5),
     ],
     [
-        ['PreparationTimeHours'],
+        ['PreparationTimeHours', 'TeleportShipmentsDurationHr'],
         (v, { $t }) => `${v} ${ $t('TID_HOUR_ABBREVIATION')}`,
     ],
     [
@@ -215,8 +212,25 @@ export default [
         ['CombatBlueprints', 'UtilityBlueprints', 'SupportBlueprints'],
     ],
     [
+        ['RS', 'WS', 'BS'],
+        (v) => `${v}%`,
+        ['Salvage'],
+    ],
+    [
         ['Thresholds'],
         (v) => v.map(numberFormat).join(' -> '),
+    ],
+    [
+        ['DestinyDisableTimes'],
+        ([rs, ws], { $t }) => `${$t('RS')}: ${sec2str($t, rs)} | ${$t('WS')}: ${sec2str($t, ws * 600)}`,
+    ],
+    [
+        ['BarrageMaxAdditionalEnemies'],
+        ([rs, ws], { $t }) => `${$t('RS')}: ${rs} | ${$t('WS')}: ${ws}`,
+    ],
+    [
+        ['SalvageHullPercent'],
+        ([rs, ws], { $t }) => `${$t('RS')}: ${rs}% / ${$t('WS')}: ${ws}%`,
     ],
     [
         ['CerbGroup'],
@@ -269,11 +283,23 @@ export default [
             'Hydrogen',
             'RSLevel',
         ],
-        (v) => v ? (
-            Array.isArray(v) ? v
-                .filter((e) => e)
-                .map(numberFormat)
-                .join('-') : v
-        ) : '',
+        formatMixMax,
+    ],
+    [
+        ['valueZ'],
+        formatMixMax,
+        ['EntrustArtifacts'],
+    ],
+    [
+        ['valueX'],
+        (v, { $t }) => $t(locKeys[v.replace(/^Cerberus(.+?)s?$/, '$1')]),
+        ['DestroySentinels', 'DestroyGuardians', 'DestroyColossus', 'DestroyInterceptor', 'DestroyPhoenix'],
     ],
 ];
+
+function formatMixMax(v) {
+    if (!v) return '';
+    if (!Array.isArray(v)) return v;
+
+    return v.filter((e) => e).map(numberFormat).join('-');
+}

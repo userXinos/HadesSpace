@@ -30,15 +30,16 @@ export default {
         progressBar() {
             this.$Progress.start();
 
-            this.$router.beforeEach((to, from, next) => {
+            this.$router.beforeEach(async (to, from, next) => {
                 if (to.fullPath === from.fullPath) {
                     return next();
                 }
 
                 this.$Progress.start();
+                this.$Progress.set(30);
                 next();
             });
-            this.$router.afterEach(() => {
+            this.$router.afterEach(async () => {
                 this.$Progress.finish();
             });
         },

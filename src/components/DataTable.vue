@@ -37,6 +37,7 @@
               :key="index2 + key"
               :rowspan="rowspan"
               :colspan="colspan"
+              :cell-key="key"
             >
               <template v-if="typeof format.value(key, value) === 'function'">
                 <v-node :render="format.value(key, value)" />
@@ -150,13 +151,17 @@ $mw: 900px;
         }
     }
     th, td, :slotted(td), :slotted(th) {
-        padding: 8px 10px 8px;
+        padding: 10px;
         line-height: 16px;
         text-align: center;
-        font-size: 80%;
+        font-size: 90%;
         // user-select: none;
         border-top: 1px solid var(--border-color);
         border-right: 1px solid var(--border-color);
+    }
+
+    td[cell-key="TID_Description"] {
+        font-size: 70%;
     }
 }
 </style>

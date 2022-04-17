@@ -11,17 +11,44 @@ import Page from '@/components/Page.vue';
 import filterByType from '@Scripts/filterByType.js';
 import goals from '@Data/player_goals.js';
 
-// const PARAMS = { // TODO что-то сделать с этим бордаком
-//     SalvageArtifacts: ['Y', 'X'],
-//     DeliverShipmentsBatch: ['Y', 'X'],
-//     DestroySentinels: ['StringParam', 'X'],
-// };
+const INDEXES = ['X', 'Y', 'Z'];
+const VALUE_BY_INDEX = {
+    SalvageArtifacts: ['StringParam', 'GoalTarget'],
+    DeliverShipmentsBatch: ['IntParam', 'GoalTarget'],
+    DestroySentinels: ['StringParam', 'GoalTarget'],
+    DestroyGuardians: ['StringParam', 'GoalTarget'],
+    DestroyColossus: ['StringParam', 'GoalTarget'],
+    DestroyInterceptor: ['StringParam', 'GoalTarget'],
+    DestroyPhoenix: ['StringParam', 'GoalTarget'],
+    EntrustArtifacts: ['GoalTarget', 'IntParam', 'RSLevel'],
+    UseDestinyNoSanct: ['GoalTarget', 'IntParam'],
+    WinBSWithModule: ['Name'],
+};
+const DEFAULT_INDEX = 'GoalTarget';
+
+const fixed = filterByType(goals, 'player_goals.fixed', {
+    map: ([key, v]) => {
+        if (key in VALUE_BY_INDEX) {
+            VALUE_BY_INDEX[key].forEach((k, i) => {
+                v[`value${INDEXES[i]}`] = v[k];
+                delete v[k];
+            });
+        } else if (DEFAULT_INDEX in v) {
+            v[`value${INDEXES[0]}`] = v[DEFAULT_INDEX];
+            delete v[DEFAULT_INDEX];
+        }
+
+        return [key, v];
+    },
+});
+
+fixed.WinBSWithModule.Name = 'WinBSWithModule';
 
 export default {
     components: { Page },
     data: () => {
         return {
-            data: filterByType(goals, 'player_goals.fixed'),
+            data: fixed,
         };
     },
 };

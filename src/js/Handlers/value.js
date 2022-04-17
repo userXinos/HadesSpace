@@ -1,4 +1,4 @@
-import values from '@Regulation/values.js';
+import rules from '@Regulation/formatValueRules.js';
 
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 
@@ -8,11 +8,11 @@ export default function(key, value, dataName, opts) {
     if (value === undefined) {
         return;
     }
-    for (const [keys, func, dataNames = []] of values) {
-        if (dataNames.includes(dataName) && ((keys[0] === '*' ) ? true : keys.includes(fixedKey))) {
+    for (const [keys, func, dataNames = []] of rules) {
+        if (dataNames.includes(dataName) && ((keys[0] === '*' ) ? true : keys.includes(fixedKey || key))) {
             return func(value, opts);
         }
-        if (keys.includes(fixedKey)) {
+        if (!dataNames.length && keys.includes(fixedKey || key)) {
             return func(value, opts);
         }
     }

@@ -43,7 +43,7 @@ export default {
     data() {
         return {
             isShow: false,
-            currentLang: localStorage.getItem('language'),
+            currentLang: this.$i18n.locale,
             languages,
         };
     },
@@ -106,7 +106,6 @@ export default {
   }
   .btn-languages {
     background-image: none;
-    color: white;
     text-align: center;
     width: 100%;
   }
