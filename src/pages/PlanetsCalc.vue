@@ -163,7 +163,7 @@ export default {
             });
         },
         formatKey(k) {
-            return key(k, this.formatOpts);
+            return key(k, this.$route.name, this.formatOpts);
         },
         formatValue(k, v) {
             return value(k, v, planetsYS.Name, this.formatOpts);
