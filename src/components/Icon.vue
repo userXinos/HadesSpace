@@ -92,7 +92,7 @@ export default {
         };
         this.iconClasses = {
             'ship': this.type === 'Ship',
-            'cerberus': this.isCerberus || this.isProjectiles,
+            'cerberus': this.isCerberus,
             'warp-line-body': this.customType == 'WarpLane',
         };
     },
