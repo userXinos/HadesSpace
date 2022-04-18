@@ -23,6 +23,8 @@ const TYPES = {
     'game/Ships': 'Ship',
     'game/SpaceBuildings': 'SpaceBuilding',
     'game/Stars': 'Star',
+    'game/Distinctions': 'Distinction',
+    'icons': 'specialIcon',
 };
 const CUSTOM_TYPES = {
     WarpLane: [],
@@ -83,7 +85,7 @@ export default {
         this.bgClasses = {
             'module-bg': this.type === 'Module' && !this.isProjectiles,
             'space-building-bg': this.type === 'SpaceBuilding' && !this.isCerberus,
-            'round-bg': this.type === 'Star' || ['TimeModulator'].includes(this.customType),
+            'round-bg': this.type === 'Star' || 'TimeModulator' === this.customType,
             'art-bg': this.name === 'art',
             'warp-line-bg': this.customType == 'WarpLane',
         };
@@ -94,6 +96,7 @@ export default {
             'ship': this.type === 'Ship',
             'cerberus': this.isCerberus,
             'warp-line-body': this.customType == 'WarpLane',
+            'big-size': this.type == 'Distinction' || (this.type === 'specialIcon' && this.name !== 'art'),
         };
     },
 };
@@ -141,17 +144,13 @@ export default {
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px #6bd7ff);
 }
 .cerberus {
-    // width: 45px;
-    // transform: rotate(45deg);
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
-
-    // img {
-    //    padding: 50% 30% 0 0;
-    //    width: 100%;
-    //    height: auto;
-    //}
 }
 
+.big-size {
+    height: 80%;
+    width: 80%;
+}
 .module-bg {
     background-image: url(../img/game/background/Module.png);
 }

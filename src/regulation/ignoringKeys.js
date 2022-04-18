@@ -85,6 +85,9 @@ export default {
         'ModuleReq',
         'UnlockType',
         'SpawnedShip',
+        'GroupName',
+        'GroupPriority',
+        'ShowOnPlayerBadge',
     ],
     byPath: [
 

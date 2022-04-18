@@ -8,7 +8,7 @@ parser
 ├─── dist - Parsed data
 ├─── modules - Main modules of the program
 ├─── raw - Game raw data
-└───  runners - Scripts that finely control the generation of parsing for some files
+└─── runners - Scripts that finely control the generation of parsing for some files
 ```
 
 ### Run

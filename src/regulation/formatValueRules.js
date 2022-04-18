@@ -100,6 +100,7 @@ export default [
             'BuyInPairs',
             'RequiresStarSector',
             'SafeInterceptorInPublicRS',
+            'ShowDurationInTopSpot',
             'NoCerbBondTeleportP', // так надо
         ],
         (v, { $t }) => v ? $t('YES') : $t('NO'),

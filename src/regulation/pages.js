@@ -116,7 +116,7 @@ export default [
                 path: '/alliancelevels',
                 component: () => import(/* webpackChunkName: "AllianceLevels" */ '../pages/AllianceLevels.vue'),
                 icon: {
-                    name: 'relic_icon',
+                    name: 'relic',
                     dir: 'icons',
                 },
             },
@@ -126,7 +126,8 @@ export default [
                 path: '/playergoals',
                 component: () => import(/* webpackChunkName: "PlayerGoals" */ '../pages/PlayerGoals.vue'),
                 icon: {
-                    img: null,
+                    name: 'influence',
+                    dir: 'icons',
                 },
             },
             {
@@ -135,7 +136,18 @@ export default [
                 path: '/achievements',
                 component: () => import(/* webpackChunkName: "Achievements" */ '../pages/Achievements.vue'),
                 icon: {
-                    img: null,
+                    name: 'Leaderboards',
+                    dir: 'icons',
+                },
+            },
+            {
+                name: 'Distinctions',
+                text: { locKey: 'TID_PLAYER_INFO_SECTION_BADGES' },
+                path: '/distinctions',
+                component: () => import(/* webpackChunkName: "Achievements" */ '../pages/Distinctions.vue'),
+                icon: {
+                    name: 'Distinction_Emperor',
+                    dir: 'game/Distinctions',
                 },
             },
         ],
