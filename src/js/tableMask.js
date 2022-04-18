@@ -3,6 +3,7 @@ export default function({ head, body }) {
     const newBody = [];
 
     Object.entries(head)
+        .sort((_, [b]) => (b === 'default') ? 1 : -1)
         .forEach(([category, keys]) => {
             headMask(category, keys, newHead);
             bodyMask(category, keys, body[category], newBody);

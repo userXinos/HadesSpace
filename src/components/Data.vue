@@ -30,6 +30,7 @@ import key from '@Handlers/key.js';
 import value from '@Handlers/value.js';
 
 import ignoringKeys from '@Regulation/ignoringKeys.js';
+import headersOrder from '@Regulation/headersOrder.js';
 
 export default {
     name: 'Data',
@@ -71,34 +72,53 @@ export default {
     },
     methods: {
         packagingData(obj, category = 'default') {
-            const { table: { head, body }, title } = this;
-            const { Name } = this.data;
+            const preTable = [];
+            const preTitle = [];
 
             Object.entries(obj).forEach(([key, value]) => {
                 if (value.constructor === Object) {
                     this.packagingData(value, key);
                 } else if (Array.isArray(value)) {
                     if (ignoringKeys.forceTitle.includes(key)) {
-                        title[key] = value;
+                        this.title[key] = value;
                     } else {
-                        if (ignoringKeys.global.includes(key) || ignoringKeys.byPath.includes(`${Name}.${key}`)) {
-                            return; // в Head ещё один фильтр для углублённой сортировки, в таблицах - проще сразу тут
-                        }
-                        if (Array.isArray(head[category])) {
-                            head[category].push(key);
-                            body[category].push(value);
-                        } else {
-                            head[category] = [key];
-                            body[category] = [value];
-                        }
+                        preTable.push([key, value]);
                     }
                 } else {
-                    if (!title[category]) {
-                        title[category] = {};
-                    }
-                    title[category][key] = value;
+                    preTitle.push([key, value]);
                 }
             });
+            this.buildTitle(category, preTitle);
+            this.buildTable(category, preTable);
+        },
+        buildTitle(category, pre) {
+            // TODO перенести фильтры из Head сюда
+            const { title } = this;
+
+            pre.forEach(([k, v]) => {
+                if (!title[category]) {
+                    title[category] = {};
+                }
+                title[category][k] = v;
+            });
+        },
+        buildTable(category, pre) {
+            const { table: { head, body } } = this;
+            const { Name } = this.data;
+
+            pre
+                .filter(([k]) => !ignoringKeys.global.includes(k) && !ignoringKeys.byPath.includes(`${Name}.${k}`))
+                .sort(([a], [b]) => headersOrder.indexOf(a) - headersOrder.indexOf(b))
+                .forEach(([key, value]) => {
+                    if (Array.isArray(head[category])) {
+                        head[category].push(key);
+                        body[category].push(value);
+                    } else {
+                        head[category] = [key];
+                        body[category] = [value];
+                    }
+                });
+
             if (category === 'default' && Object.keys(head).length === 0) {
                 this.table = null;
             }
