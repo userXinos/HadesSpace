@@ -1,13 +1,14 @@
-
 import types from './types.js';
+import languages from '@Data/languages.js';
+import { setI18nLanguage } from '@Scripts/Vue/i18n.js';
 
-import { setI18nLanguage, SUPPORT_LOCALES, DEFAULT_LANG } from '@Scripts/Vue/i18n.js';
-
-const isDev = (process.env.NODE_ENV === 'development');
 const LOCAL_STORAGE_KEY = 'settings';
-const settings = getSettings(LOCAL_STORAGE_KEY);
+const SUPPORT_LOCALES = Object.values(languages).map((l) => l.Code);
+const DEFAULT_LANG = 'en';
 
+const settings = getSettings(LOCAL_STORAGE_KEY);
 const browserLang = window.navigator.language.slice(0, 2);
+const isDev = (process.env.NODE_ENV === 'development');
 
 export default {
     namespaced: false,

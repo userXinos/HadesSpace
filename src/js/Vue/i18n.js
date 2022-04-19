@@ -2,15 +2,11 @@ import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n';
 
 import store from '@Store';
-import languages from '@Data/languages.js';
-
-export const SUPPORT_LOCALES = Object.values(languages).map((l) => l.Code);
-export const DEFAULT_LANG = 'en';
 
 const i18n = createI18n({
     locale: store.state.userSettings.language,
     // fallbackLocale: DEFAULT_LANG, - уже скомпилировано с замещением
-    availableLocales: SUPPORT_LOCALES,
+    // availableLocales: SUPPORT_LOCALES,
 });
 
 // noinspection JSIgnoredPromiseFromCall
