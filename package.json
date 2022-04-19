@@ -13,19 +13,20 @@
   },
   "dependencies": {
     "@aacassandra/vue3-progressbar": "^1.0.3",
-    "@vue/cli": "^5.0.1",
-    "@vue/cli-service": "^5.0.4",
-    "@vueuse/head": "^0.7.5",
+    "@vue/cli": "^5.0.4",
     "@vue/cli-plugin-eslint": "^5.0.1",
+    "@vue/cli-service": "^5.0.4",
     "@vue/compiler-sfc": "^3.1.0",
+    "@vueuse/head": "^0.7.5",
     "babel-core": "^7.0.0-bridge.0",
     "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
-    "vue": "^3.1.0",
+    "vue": "^3.2.33",
     "vue-gtag": "^2.0.1",
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.0.12",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

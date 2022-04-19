@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import { setI18nLanguage } from '@Scripts/Vue/i18n.js';
 import languages from '@Data/languages.js';
+import userSettings from '@/store/modules/userSettings/types.js';
 
 export default {
     name: 'LanguagesButton',
@@ -43,15 +43,17 @@ export default {
     data() {
         return {
             isShow: false,
-            currentLang: this.$i18n.locale,
             languages,
         };
     },
+    computed: {
+        currentLang() {
+            return this.$store.state.userSettings.language;
+        },
+    },
     methods: {
         switchLang(code) {
-            localStorage.setItem('language', code);
-            setI18nLanguage(code);
-            this.currentLang = code;
+            this.$store.commit(userSettings.setLanguage, code);
             this.switchHide();
         },
         switchHide() {

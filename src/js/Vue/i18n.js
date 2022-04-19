@@ -1,14 +1,14 @@
 import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n';
 
-const SUPPORT_LOCALES = ['en'];
-const DEFAULT_LANG = 'en';
+import store from '@Store';
+import languages from '@Data/languages.js';
 
-const userLang = localStorage.getItem('language');
-const browserLang = window.navigator.language.slice(0, 2);
+export const SUPPORT_LOCALES = Object.values(languages).map((l) => l.Code);
+export const DEFAULT_LANG = 'en';
 
 const i18n = createI18n({
-    locale: userLang || ((browserLang in SUPPORT_LOCALES) ? browserLang : DEFAULT_LANG),
+    locale: store.state.userSettings.language,
     // fallbackLocale: DEFAULT_LANG, - уже скомпилировано с замещением
     availableLocales: SUPPORT_LOCALES,
 });

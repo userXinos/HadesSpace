@@ -15,7 +15,7 @@
 <script>
 import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
-import TheHeader from './TheHeader';
+import TheHeader from '@/components/TheHeader.vue';
 
 export default {
     name: 'App',
