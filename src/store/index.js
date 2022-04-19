@@ -10,7 +10,5 @@ export default createStore({
     modules: {
         userSettings: userSettingsModule,
     },
-    plugins: [
-        (isDev) ? createLogger() : null,
-    ],
+    plugins: (isDev) ? [createLogger()] : [],
 });
