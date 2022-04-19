@@ -69,8 +69,8 @@ export default {
 
             }),
             stations,
-            cerberusPortrait: require(`@Img/game/portraits/cerberus.png`),
-            stationPortrait: require(`@Img/game/portraits/cerberusStation.png`),
+            cerberusPortrait: require(`@Img/game/portraits/portrait_CerberusDestroyer.png`),
+            stationPortrait: require(`@Img/game/portraits/portrait_CerberusStation.png`),
         };
     },
 };

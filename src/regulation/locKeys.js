@@ -103,6 +103,7 @@ export default {
     BlueStar_SPFactor: 'BLS_SP_FACTOR',
     BlueStar_HydroPctPerPos: 'BLS_HYDRO_PCT_PER_POS',
     BlueStar_Fragments: 'BLS_FRAGMENTS',
+    ConceptImage: 'PORTRAIT',
 
     StarSectorDPS: 'STAR_SECTOR_DPS',
     MaxRSLevel: 'TID_REDSCANNER_MAX_STAR_LEVEL',

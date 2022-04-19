@@ -1,5 +1,8 @@
 <template>
-  <ModulePage :type="'mining'" />
+  <ModulePage
+    type="mining"
+    portrait="portrait_Asteroids_cr"
+  />
 </template>
 
 <script>

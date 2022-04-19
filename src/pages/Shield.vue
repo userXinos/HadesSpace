@@ -1,5 +1,8 @@
 <template>
-  <ModulePage :type="'shield'" />
+  <ModulePage
+    type="shield"
+    portrait="news_Update02"
+  />
 </template>
 
 <script>

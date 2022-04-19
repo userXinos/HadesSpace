@@ -38,7 +38,7 @@ export default {
         return {
             ships: filterByType(ships, 'capital_ships.player'),
             modules: filterByType(modules, 'modules.flagship'),
-            img: require(`@Img/game/portraits/ships.png`),
+            img: require(`@Img/game/portraits/portrait_CorpFlagship.png`),
         };
     },
 };

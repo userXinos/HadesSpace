@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             data: { BlueStar: stars.BlueStar },
-            img: require(`@Img/game/portraits/blueStar.png`),
+            img: require(`@Img/game/portraits/portrait_BlueStar.png`),
         };
     },
 };

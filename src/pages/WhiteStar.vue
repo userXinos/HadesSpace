@@ -46,7 +46,7 @@ export default {
         return {
             stars: { ws },
             planets: planetsWS,
-            img: require(`@Img/game/portraits/whiteStars.png`),
+            img: require(`@Img/game/portraits/portrait_PlanetWhiteStar.png`),
 
         };
     },

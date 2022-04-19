@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             data: filterByType(spaceBuildings, `spacebuildings.player`),
-            img: require(`@Img/game/portraits/spacebuildings.png`),
+            img: require(`@Img/game/portraits/BlackCitadel.png`),
         };
     },
 };

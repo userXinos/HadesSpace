@@ -248,6 +248,16 @@ export default [
         }),
     ],
     [
+        ['ConceptImage'],
+        (v, { $t }) => (createElement) => createElement('a', {
+            href: require(`@Img/game/portraits/${v}.png`),
+            target: '_blank',
+        }, [
+            $t('OPEN'),
+            createElement('img', { src: require('@Img/icons/outbound.svg') }),
+        ]),
+    ],
+    [
         ['PlanetTypes'],
         (v, { $t }) => {
             return (Array.isArray(v) ? v : [v])

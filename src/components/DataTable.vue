@@ -39,9 +39,11 @@
               :colspan="colspan"
               :cell-key="key"
             >
-              <template v-if="typeof format.value(key, value) === 'function'">
-                <v-node :render="format.value(key, value)" />
-              </template> <template v-else>
+              <v-node
+                v-if="typeof format.value(key, value) === 'function'"
+                :render="format.value(key, value)"
+              />
+              <template v-else>
                 {{ format.value(key, value) }}
               </template>
 
@@ -70,9 +72,7 @@ function VNode({ render }) {
 
 export default {
     name: 'Table',
-    components: {
-        VNode,
-    },
+    components: { VNode },
     props: {
         data: {
             type: Object,

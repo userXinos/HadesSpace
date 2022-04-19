@@ -25,7 +25,14 @@
               :key="key"
               class="line"
             >
-              <b>{{ format.key(key) }}</b>: {{ format.value(key, value) }}
+              <b>{{ format.key(key) }}</b>:
+              <v-node
+                v-if="typeof format.value(key, value) === 'function'"
+                :render="format.value(key, value)"
+              />
+              <template v-else>
+                {{ format.value(key, value) }}
+              </template>
             </li>
           </ul>
         </div>
@@ -61,11 +68,16 @@ import Stats from '@/components/DataHeadStats.vue';
 
 import objectArrayify from '@Scripts/objectArrayify.js';
 import ignoringKeys from '@Regulation/ignoringKeys.js';
+import { h } from 'vue';
+
+function VNode({ render }) {
+    return render(h);
+}
 
 // TODO избавится от дублирования логики с Stats
 export default {
     name: 'Head',
-    components: { Icon, Stats },
+    components: { Icon, Stats, VNode },
     props: {
         data: {
             type: Object,

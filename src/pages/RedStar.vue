@@ -73,7 +73,7 @@ export default {
             ARTS,
             artifacts,
             star: { RedStar },
-            img: require(`@Img/game/portraits/redStar.png`),
+            img: require(`@Img/game/portraits/portrait_RedStar.png`),
         };
     },
     methods: {

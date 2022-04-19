@@ -112,5 +112,6 @@
   RS_PUBLIC_LATE_JOIN_MIN_STAR_LEVEL: 'Минимальный уровень звезды КЗ паблик',
   EXTRA_ASTEROID_SPAWN: 'Спавн дополнительных астероидов',
   EXTRA_ASTEROID_SPAWN_RING_DISTANCE: 'Кольцо спавна дополнительных астероидов',
-  EXTRA_ASTEROID_SPAWN_AMT: 'Количество водорода дополнительных астероидов'
+  EXTRA_ASTEROID_SPAWN_AMT: 'Количество водорода дополнительных астероидов',
+  PORTRAIT: 'Изображение'
 }

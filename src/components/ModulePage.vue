@@ -20,6 +20,11 @@ export default {
             requested: true,
             default: null,
         },
+        portrait: {
+            type: String,
+            requested: true,
+            default: null,
+        },
         postFilter: {
             type: Function,
             requested: false,
@@ -31,7 +36,7 @@ export default {
 
         return {
             data: this.postFilter(data),
-            img: require(`@Img/game/portraits/${this.type}.png`),
+            img: require(`@Img/game/portraits/${this.portrait}.png`),
             locKey: `TYPE_MOD_${this.type.toUpperCase()}`,
         };
     },

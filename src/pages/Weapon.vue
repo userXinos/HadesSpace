@@ -1,5 +1,8 @@
 <template>
-  <ModulePage :type="'weapon'" />
+  <ModulePage
+    type="weapon"
+    portrait="portrait_WhiteStar"
+  />
 </template>
 
 <script>

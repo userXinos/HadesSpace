@@ -60,7 +60,7 @@ export default {
             prices: colonizationPrices,
 
             tableOpts: { lvlColKey: '№' },
-            img: require(`@Img/game/portraits/yellowStar.png`),
+            img: require(`@Img/game/portraits/portrait_YellowStar.png`),
         };
     },
 };

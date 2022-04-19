@@ -1,5 +1,8 @@
 <template>
-  <ModulePage :type="'trade'" />
+  <ModulePage
+    type="trade"
+    portrait="portrait_ShipmentDrone"
+  />
 </template>
 
 <script>

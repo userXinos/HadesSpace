@@ -59,7 +59,16 @@
     </template>
 
     <template v-else>
-      <b>{{ format.key(itemKey) }}</b>: {{ format.value(itemKey, items) }}
+      <b>{{ format.key(itemKey) }}</b>:
+
+      <v-node
+        v-if="typeof format.value(itemKey, items) === 'function'"
+        :render="format.value(itemKey, items)"
+      />
+      <template v-else>
+        {{ format.value(itemKey, items) }}
+      </template>
+
     </template>
 
   </div>
@@ -67,9 +76,11 @@
 
 <script>
 import Icon from '@/components/Icon.vue';
+import { h } from 'vue';
 
 import objectArrayify from '@Scripts/objectArrayify.js';
 import ignoringKeys from '@Regulation/ignoringKeys.js';
+
 
 const ICON_DIR_LIST = {
     drone: 'game/Ships',
@@ -77,9 +88,13 @@ const ICON_DIR_LIST = {
     default: 'game/Modules',
 };
 
+function VNode({ render }) {
+    return render(h);
+}
+
 export default {
     name: 'Stats',
-    components: { Icon },
+    components: { Icon, VNode },
     props: {
         items: {
             type: null,

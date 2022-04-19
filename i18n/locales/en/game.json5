@@ -112,5 +112,6 @@
   RS_PUBLIC_LATE_JOIN_MIN_STAR_LEVEL: 'RS Public minimum star level',
   EXTRA_ASTEROID_SPAWN: 'Spawn additional asteroids',
   EXTRA_ASTEROID_SPAWN_RING_DISTANCE: 'Spawn ring of additional asteroids',
-  EXTRA_ASTEROID_SPAWN_AMT: 'Amount of hydro additional asteroids'
+  EXTRA_ASTEROID_SPAWN_AMT: 'Amount of hydro additional asteroids',
+  PORTRAIT: 'Portrait'
 }
