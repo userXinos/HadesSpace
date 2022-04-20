@@ -1,12 +1,32 @@
+<!--suppress HtmlUnknownAttribute -->
+<!--suppress HtmlUnknownTag -->
+
 <template>
   <div id="app">
     <Head><title>HadesSpace</title></Head>
-
-    <!--suppress HtmlUnknownTag -->
     <vue-progress-bar />
-    <the-header />
 
-    <router-view />
+    <Sidebar
+      v-if="isMinMode"
+      v-touch:swipe="swipeHandler"
+      :is-open="sideBarIsOpen"
+    />
+
+    <div
+      v-touch:swipe="swipeHandler"
+      :class="{'mute': sideBarIsOpen}"
+      @click.self="setShowSidebar(false)"
+    >
+      <div>
+
+        <the-header
+          :is-min-mode="isMinMode"
+          :open-sidebar="() => setShowSidebar(true)"
+        />
+        <router-view />
+
+      </div>
+    </div>
 
     <go-top />
   </div>
@@ -16,15 +36,31 @@
 import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
+import Sidebar from '@/components/Sidebar.vue';
+
+const MAX_WIDTH = 1000;
 
 export default {
     name: 'App',
-    components: { Head, GoTop, TheHeader },
+    components: { Head, GoTop, TheHeader, Sidebar },
+    data() {
+        return {
+            isMinMode: (window.innerWidth < MAX_WIDTH),
+            sideBarIsOpen: false,
+        };
+    },
     mounted() {
         this.$Progress.finish();
+        window.addEventListener('resize', this.resize);
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.resize);
     },
     created() {
         this.progressBar();
+        this.$router.beforeEach(() => {
+            this.setShowSidebar(false);
+        });
     },
     methods: {
         progressBar() {
@@ -43,6 +79,40 @@ export default {
                 this.$Progress.finish();
             });
         },
+        resize() {
+            this.isMinMode = (window.innerWidth < MAX_WIDTH);
+            if (!this.isMinMode) {
+                this.setShowSidebar(false);
+            }
+        },
+
+        swipeHandler(direction) {
+            if (direction === 'right' && this.isMinMode) {
+                this.setShowSidebar(true);
+            }
+            if (direction === 'left') {
+                this.setShowSidebar(false);
+            }
+        },
+        setShowSidebar(bool) {
+            if (this.sideBarIsOpen !== bool) {
+                this.sideBarIsOpen = bool;
+                document.documentElement.style.overflow = (bool) ? 'hidden' : 'auto';
+            }
+        },
     },
 };
 </script>
+<style scoped lang="scss">
+.mute {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+    transition: 1s;
+
+    > div {
+        pointer-events: none;
+    }
+}
+</style>

@@ -1,12 +1,14 @@
 
 $background: #131313;
+$background-elements: #0f1416;
 $text-color: #c2cdd4;
 
 $header-height: 80px;
+$border-color: #202a22;
 
 $table: (
-  "background": #0f1416,
+  "background": $background-elements,
   "background2": #090e10,
   "hover": #1d2326,
-  "border": #25262e,
+  "border": $border-color,
 )

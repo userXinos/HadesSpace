@@ -1,30 +1,24 @@
 <template>
   <div class="offset">
     <header class="header">
-      <div
-        v-if="isMinMode"
-      >
-        <div
-          class="btn-sidebar"
-          @click="isShowSidebar = true"
-        />
-        <div
-          v-show="isShowSidebar"
-          class="bg-sidebar"
-          @click.self="hideSidebar"
-        />
-        <div
-          class="sidebar"
-          :class="{'show-sidebar': isShowSidebar}"
-        >
-          <v-nav />
-          <languages :is-min-mode="true" />
-        </div>
+
+
+      <div class="buttons">
+
+        <template v-if="isMinMode">
+          <div
+            class="sidebar"
+            @click="openSidebar"
+          />
+        </template>
+
+        <template v-else>
+          <navigation />
+          <settings />
+        </template>
+
       </div>
-      <template v-else>
-        <v-nav />
-        <languages />
-      </template>
+
       <div class="logo">
         <router-link to="/">
           <img
@@ -33,37 +27,29 @@
           >
         </router-link>
       </div>
+
     </header>
   </div>
 </template>
 
 <script>
-import VNav from './TheHeaderNavigation';
+import Navigation from './Navigation.vue';
+import Settings from '@/components/Settings.vue';
 import Languages from './TheHeaderLanguagesButton';
 
 export default {
     name: 'Header',
-    components: { VNav, Languages },
-    data() {
-        return {
-            isMinMode: (window.innerWidth < 960),
-            isShowSidebar: false,
-        };
-    },
-    watch: {
-        isShowSidebar: function(val) {
-            if (!this.isMinMode) return;
-            document.body.style.overflow = (val) ? 'hidden' : 'auto';
+    components: { Navigation, Settings },
+    props: {
+        isMinMode: {
+            type: Boolean,
+            requested: true,
+            default: null,
         },
-    },
-    mounted() {
-        window.addEventListener('resize', () => {
-            this.isMinMode = (window.innerWidth < 960);
-        });
-    },
-    methods: {
-        hideSidebar() {
-            this.isShowSidebar = false;
+        openSidebar: {
+            type: Function,
+            requested: true,
+            default: null,
         },
     },
 };
@@ -72,61 +58,50 @@ export default {
 <style scoped lang="scss">
 @import "../css/vars";
 
+$mw: 1000px;
+
 .offset {
     height: $header-height;
 }
 .header {
-  --header-height: 80px;
-  --bnt-color: #101415;
-  --btn-hover-color: #242e2f;
+    background: $background-elements;
+    width: 100%;
+    height: $header-height;
+    border-bottom: 2px solid $border-color;
+    z-index: 1;
+    position: fixed;
+    left: 0;
 
-  background: #101415;
-  position: fixed;
-  width: 100%;
-  height: $header-height;
-  top: 0;
-  z-index: 1;
-  left: 0;
-  border-bottom: 2px solid #20282b;
-  transition: top 0.2s ease-in-out;
-  display: flex;
-  justify-content: center;
-}
-.logo img {
-  height: $header-height;
-}
-.logo a {
-  display: contents;
-}
-.bg-sidebar{
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.4;
-  z-index: 10;
-}
-.btn-sidebar {
-  background-image: url("../img/icons/menu.svg");
-  background-size: 100%;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  left: 20px;
-  top: 30%;
-  cursor: pointer;
-}
-.sidebar {
-  background-color: #161b1d;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  left: 0;
-  z-index: 11;
-  overflow-x: auto;
-  transition: 0.5s;
-}
-.show-sidebar {
-  width: 80%;
+    .logo {
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        pointer-events: none;
+
+        img {
+            height: $header-height;
+        }
+        a {
+            pointer-events: all;
+            display: contents;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 1%;
+
+        .sidebar {
+            background: url("@Img/icons/menu.svg") round center;
+            padding: calc(#{$header-height} / 5) 30px;
+            display: block;
+            cursor: pointer;
+        }
+    }
 }
 </style>

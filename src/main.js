@@ -7,6 +7,7 @@ import store from '@Store';
 
 import VueProgressBar from '@aacassandra/vue3-progressbar';
 import VueGtag from 'vue-gtag';
+import Vue3TouchEvents from 'vue3-touch-events';
 import { createHead } from '@vueuse/head';
 
 import pluginsConfig from '@Scripts/Vue/pluginsConfig.js';
@@ -19,6 +20,7 @@ createApp(App)
 
     .use(VueProgressBar, pluginsConfig.VueProgressBar)
     .use(VueGtag, pluginsConfig.VueGtag, router)
+    .use(Vue3TouchEvents)
 
     .directive('click-outside', clickOutside)
 
