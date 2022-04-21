@@ -1,26 +1,34 @@
 <template>
   <nav class="container">
     <ul
-      v-click-outside="hideAll"
+      v-click-outside="() => select(null)"
       class="sections"
     >
       <li
-        v-for="(section, key) of sections"
-        :key="key"
-        @click="switchSection(section)"
+        v-for="(section, index) of sections"
+        :key="index"
+        class="section"
+        @click="() => select(index)"
       >
         <div>
-          <h2
-            :class="['name', (section.isShow) ? 'selected' : '']"
-          >{{ $t(section.text.locKey) }}</h2>
-          <ul
-            v-if="section.isShow"
+          <div :class="{'selected': (selected === index) }">
+            <div class="icon" />
+            <h2 class="name">{{ $t(section.text.locKey) }}</h2>
+          </div>
+
+          <TransitionGroup
+            name="list"
+            tag="ul"
             class="list"
+            :style="{ '--total': section.children.length }"
           >
             <li
-              v-for="(child, key1) of section.children"
-              :key="key1"
+              v-for="(child, i) of section.children"
+              v-if="selected === index"
+              :key="i"
+              :style="{'--i': i + 1}"
             >
+
               <template v-if="child.link.type == 'router'">
                 <router-link :to="child.link.path">
                   <h2 class="name">{{ $t(child.text.locKey, child.text.params) }}</h2>
@@ -34,8 +42,9 @@
                   <h2 class="name">{{ $t(child.text.locKey, child.text.params) }}</h2>
                 </a>
               </template>
+
             </li>
-          </ul>
+          </TransitionGroup>
         </div>
       </li>
     </ul>
@@ -45,22 +54,26 @@
 <script>
 import { getSectionsPages } from '@Scripts/parsePages.js';
 
-const sections = getSectionsPages();
-sections.forEach((e) => e.isShow = false);
-
 export default {
-    name: 'Nav',
+    name: 'Navigation',
     data() {
-        return { sections };
+        return {
+            sections: getSectionsPages(),
+            selected: null,
+        };
+    },
+    created() {
+        this.$router.afterEach(() => {
+            this.select(null);
+        });
     },
     methods: {
-        hideAll() {
-            this.sections.forEach((e) => e.isShow = false);
-        },
-        switchSection(obj) {
-            const result = !obj.isShow;
-            this.hideAll();
-            obj.isShow = result;
+        select(i) {
+            if (this.selected === i) {
+                this.selected = null;
+                return;
+            }
+            this.selected = i;
         },
     },
 };
@@ -89,20 +102,53 @@ $selected-color: #5fdba7;
         cursor: pointer;
         user-select: none;
         // user-drag: none; - "Unknown CSS property 'user-drag'"
-    }
-    .sections > li {
-        display: inline-block;
-        margin: 0 10px;
 
-        @media screen and (max-width: $mv) {
-            display: block;
-            margin: 0;
-        }
+        .section {
+            display: inline-block;
+            margin: 10px;
 
-        .selected {
-            color: $selected-color;
+            @media screen and (max-width: $mv) {
+                display: block;
+                margin: 0;
+            }
+
+            > div {
+                > div {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    @media screen and (max-width: $mv) {
+                        justify-content: left;
+                    }
+
+                    .icon {
+                        margin-right: 5%;
+                        width: 18px;
+                        height: 20px;
+                        background: url(http://localhost:8080/img/arrow.f223a946.svg) no-repeat right/100%;
+                        transition: 0.5s;
+
+                        @media screen and (max-width: $mv) {
+                            margin-right: 0;
+                            margin-left: 3%;
+                            background-position: right;
+                        }
+                    }
+                }
+
+                .selected {
+                    .name {
+                        color: $selected-color;
+                    }
+                    .icon {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
         }
     }
+
     .name {
         padding: 0;
         line-height: $header-height;
@@ -143,6 +189,29 @@ $selected-color: #5fdba7;
             text-align: left;
         }
 
+        // animation
+        // https://codepen.io/shshaw/pen/YLmdxz
+        &-enter-active {
+            transition: all 0.3s cubic-bezier(.36,-0.64,.34,1.76);
+            transition-delay: calc( 0.1s * var(--i) );
+        }
+
+        &-leave-active {
+            transition: all 0.3s;
+            transition-delay: calc( 0.1s * (var(--total) - var(--i)) );
+        }
+
+        &-enter-active, &-leave-active {
+            max-height: calc( 70px * var(--i) );
+        }
+        &-enter-from, &-leave-to {
+            opacity: 0;
+            max-height: 0;
+        }
+
+        &-enter-from {
+            transform: rotateY(-90deg);
+        }
     }
 }
 </style>
