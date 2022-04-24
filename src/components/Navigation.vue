@@ -95,6 +95,7 @@ $selected-color: #5fdba7;
         position: revert;
         width: 100%;
         display: inline-block;
+        margin-bottom: 3%;
     }
     .sections {
         height: 100%;

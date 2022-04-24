@@ -3,13 +3,12 @@ import { getRoutes } from '../parsePages.js';
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
-    // base: process.env.BASE_URL,
     routes: getRoutes(),
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition;
         }
-        if (to.hash) {
+        if (to.hash && to.hash !== '#modal') {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve({

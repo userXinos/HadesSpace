@@ -5,16 +5,18 @@
       :class="{'show-sidebar': isOpen}"
     >
       <navigation />
+      <settings />
     </div>
   </div>
 </template>
 
 <script>
 import Navigation from './Navigation.vue';
+import Settings from '@/components/Settings.vue';
 
 export default {
     name: 'Sidebar',
-    components: { Navigation },
+    components: { Navigation, Settings },
     props: {
         isOpen: {
             type: Boolean,

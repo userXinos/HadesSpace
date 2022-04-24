@@ -67,12 +67,10 @@ export default {
             this.$Progress.start();
 
             this.$router.beforeEach(async (to, from, next) => {
-                if (to.fullPath === from.fullPath) {
-                    return next();
+                if (to.path !== from.path) {
+                    this.$Progress.start();
+                    this.$Progress.set(30);
                 }
-
-                this.$Progress.start();
-                this.$Progress.set(30);
                 next();
             });
             this.$router.afterEach(async () => {
