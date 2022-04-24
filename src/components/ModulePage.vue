@@ -8,9 +8,16 @@
 
 <script>
 import Page from '@/components/Page.vue';
-
-import filterByType from '@Scripts/filterByType.js';
 import modulesData from '@Data/modules.js';
+import objectArrayify from '@Scripts/objectArrayify.js';
+
+const sortByAwardLevel = objectArrayify(modulesData, {
+    filter: ([, v]) => !v.Hide,
+    sort: (([, a], [, b]) => a.AwardLevel - b.AwardLevel),
+});
+const getBySlotType = (SlotType) => objectArrayify(sortByAwardLevel, {
+    filter: ([, v]) => v.SlotType === SlotType,
+});
 
 export default {
     components: { Page },
@@ -32,10 +39,8 @@ export default {
         },
     },
     data() {
-        const data = filterByType(modulesData, `modules.${this.type}`);
-
         return {
-            data: this.postFilter(data),
+            data: this.postFilter(getBySlotType(this.type)),
             img: require(`@Img/game/portraits/${this.portrait}.png`),
             locKey: `TYPE_MOD_${this.type.toUpperCase()}`,
         };

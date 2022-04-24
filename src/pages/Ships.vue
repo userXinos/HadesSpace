@@ -31,13 +31,16 @@ import VContent from '../components/Content.vue';
 import ships from '@Data/capital_ships.js';
 import modules from '@Data/modules.js';
 import filterByType from '@Scripts/filterByType.js';
+import objectArrayify from '@Scripts/objectArrayify.js';
 
 export default {
     components: { Page, VContent },
     data() {
         return {
             ships: filterByType(ships, 'capital_ships.player'),
-            modules: filterByType(modules, 'modules.flagship'),
+            modules: objectArrayify(modules, {
+                filter: ([k]) => k in ships.CorpFlagship.modules,
+            }),
             img: require(`@Img/game/portraits/portrait_CorpFlagship.png`),
         };
     },

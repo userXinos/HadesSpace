@@ -1,6 +1,6 @@
 <template>
   <ModulePage
-    type="shield"
+    type="Shield"
     portrait="news_Update02"
   />
 </template>

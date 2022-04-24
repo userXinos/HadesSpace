@@ -1,6 +1,6 @@
 <template>
   <ModulePage
-    type="mining"
+    type="Mining"
     portrait="portrait_Asteroids_cr"
   />
 </template>

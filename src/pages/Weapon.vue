@@ -1,6 +1,6 @@
 <template>
   <ModulePage
-    type="weapon"
+    type="Weapon"
     portrait="portrait_WhiteStar"
   />
 </template>

@@ -1,6 +1,6 @@
 <template>
   <ModulePage
-    type="trade"
+    type="Trade"
     portrait="portrait_ShipmentDrone"
   />
 </template>
