@@ -30,6 +30,9 @@ const CONFIG = Object.freeze({
         'MiningDrone_lv7-9',
         'MiningDrone_lv10',
     ],
+    timeToWS: [
+        'ActivationPrep',
+    ],
 });
 
 export default class Modules extends Runner {
@@ -134,28 +137,33 @@ export default class Modules extends Runner {
                 });
             }
 
+            // исправить название статы скачка
+            if (key === 'Leap') {
+                value.DisableTime = value.EffectDurationx10 / 10;
+                delete value.EffectDurationx10;
+            }
+
             // добавить/удалить данные звёзд
-            const keysRemove = [];
-            if (value.AllowedStarTypes !== undefined) {
+            const keysRemove = [ 'AllowedStarTypes' ];
+            const ast = value.AllowedStarTypes;
+            const hasSeparateBLSValues = (e) => /_?BS$/.test(e);
+
+            if (ast !== undefined) {
                 CONFIG.starsOrder.forEach((star, starIndex) => {
-                    if (Array.isArray(value.AllowedStarTypes)) {
-                        if (value.AllowedStarTypes.includes(starIndex)) {
-                            _addStarInfo(value, star);
-                        } else {
-                            _removeStarInfo(value, star);
-                        }
+                    if (Array.isArray(ast) ? ast.includes(starIndex) : ast === starIndex) {
+                        _addStarInfo(value, star);
                     } else {
-                        if (value.AllowedStarTypes === starIndex) {
-                            _addStarInfo(value, star);
-                        } else {
-                            _removeStarInfo(value, star);
-                        }
+                        _removeStarInfo(value, star);
                     }
                 });
             } else {
-                CONFIG.starsOrder.forEach((e) => _addStarInfo(value, e));
+                CONFIG.starsOrder.forEach((e) => {
+                    if (e === 'BS' && Object.keys(value).some(hasSeparateBLSValues)) {
+                        return;
+                    }
+                    _addStarInfo(value, e);
+                });
             }
-            keysRemove.push('AllowedStarTypes');
             keysRemove.forEach((e) => delete value[e]);
 
             function _addStarInfo(obj, star) {
@@ -164,22 +172,22 @@ export default class Modules extends Runner {
                     if (star === 'BS') return v * 2;
                     return v;
                 };
+                const getKeyPostfix = (k) => new RegExp(`${k}_?${star}$`);
 
                 if (star === 'YS') return;
-                Object.keys(obj)
-                    .filter((e) => CONFIG.starHeaders.includes(e))
-                    .filter((e) => !Object.keys(obj).includes(e + star))
-                    .forEach((key) => {
-                        const matches = Object.keys(obj) // где-то есть "_", где-то нету...
-                            .filter((e) => new RegExp(`${key}.+?${star}`).test(e));
-                        if (!matches.length) {
+                Object.entries(obj)
+                    .filter(([ k ]) => CONFIG.starHeaders.includes(k))
+                    .forEach(([ key, value ]) => {
+                        const keyPostfix = getKeyPostfix(key);
+                        const keyWithPostfix = Object.keys(obj).find((k) => keyPostfix.test(k));
+
+                        if (!keyWithPostfix) {
                             const newKey = key + star;
-                            const value = obj[key];
                             let newValue;
                             let isEqual;
 
                             if (Array.isArray(value)) {
-                                newValue = value.map((e) => coefficient(e));
+                                newValue = value.map(coefficient);
                                 isEqual = newValue[0] === value[0];
                             } else {
                                 newValue = coefficient(value);
@@ -187,6 +195,15 @@ export default class Modules extends Runner {
                             }
                             if (keysRemove.includes(key) || !isEqual) { // дубликаты RS == YS
                                 obj[newKey] = newValue;
+                            }
+                        } else if (!obj.Hide && CONFIG.timeToWS.includes(key) && star === 'WS') {
+                            key = keyWithPostfix;
+                            value = obj[keyWithPostfix];
+
+                            if (Array.isArray(value)) {
+                                obj[key] = value.map(coefficient);
+                            } else {
+                                obj[key] = coefficient(value);
                             }
                         }
                     });
@@ -200,7 +217,7 @@ export default class Modules extends Runner {
                         if (star === 'YS') {
                             regex = new RegExp(key);
                         } else {
-                            regex = new RegExp(`${key }.+?${ star}`);
+                            regex = new RegExp(`${key}.+?${star}`);
                         }
                         const matches = Object.keys(obj)
                             .filter((e) => regex.test(e));

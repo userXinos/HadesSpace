@@ -112,7 +112,6 @@ export default {
         EffectDurationx10WS: [
             180000, 198000, 216000, 228000, 240000, 252000, 264000, 276000, 288000, 300000, 312000, 324000,
         ],
-        ActivationDelayBS: 576,
     },
     Repair: {
         Name: "Repair",
@@ -141,7 +140,6 @@ export default {
         EffectDurationx10WS: [
             180000, 210000, 240000, 270000, 300000, 330000, 360000, 390000, 420000, 480000, 540000, 600000,
         ],
-        ActivationDelayBS: 2400,
     },
     WeakShield: {
         Name: "WeakShield",
@@ -237,7 +235,7 @@ export default {
         SlotType: "Support",
         ActivationType: "Activated",
         ActivationPrep: 5,
-        ActivationPrepWS: 24,
+        ActivationPrepWS: 14400,
         ActivationPrepBS: 5,
         ClientActivationFx: "Module_ChargeUp_white",
         ActivateFX: "Teleport_activate",
@@ -254,7 +252,6 @@ export default {
         NoCerbBondTeleportPRS: 1,
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_2",
         ActivationDelayWS: 216000,
-        ActivationDelayBS: 720,
     },
     TimeWarp: {
         Name: "TimeWarp",
@@ -397,7 +394,6 @@ export default {
         BSScore: [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000],
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_4",
         ActivationDelayWS: 180000,
-        ActivationDelayBS: 600,
     },
     MineralStorageCapacity: {
         Name: "MineralStorageCapacity",
@@ -488,7 +484,6 @@ export default {
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_4",
         ActivationDelayWS: 216000,
         EffectDurationx10WS: 720000,
-        ActivationDelayBS: 720,
     },
     Salvage: {
         Name: "Salvage",
@@ -541,8 +536,6 @@ export default {
         BSScore: [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000],
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_5",
         ActivationDelayWS: 216000,
-        ActivationDelayBS: 720,
-        EffectDurationx10BS: [60, 80, 100, 120, 140, 180, 220, 260, 320, 400, 440, 480],
     },
     ShipmentDrone: {
         Name: "ShipmentDrone",
@@ -620,7 +613,6 @@ export default {
         DestinyBreaksBond: 1,
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_6",
         ActivationDelayWS: 180000,
-        ActivationDelayBS: 600,
     },
     PassiveShield: {
         Name: "PassiveShield",
@@ -818,7 +810,6 @@ export default {
         EffectDurationx10WS: [
             180000, 210000, 240000, 270000, 300000, 330000, 360000, 390000, 420000, 450000, 480000, 510000,
         ],
-        ActivationDelayBS: 720,
     },
     Impulse: {
         Name: "Impulse",
@@ -846,7 +837,6 @@ export default {
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_4",
         ActivationDelayWS: 144000,
         EffectDurationx10WS: [18000, 22200, 27000, 31200, 36000, 40200, 45000, 51600, 58200, 67200, 78000, 90000],
-        ActivationDelayBS: 480,
     },
     Barrage: {
         Name: "Barrage",
@@ -909,11 +899,10 @@ export default {
         ActivationType: "Activated",
         ActivationPrep: 5,
         DisableActivationDuringPrep: 1,
-        ActivationPrepWS: [36, 33, 30, 27, 24, 21, 18, 15, 12, 9],
+        ActivationPrepWS: [21600, 19800, 18000, 16200, 14400, 12600, 10800, 9000, 7200, 5400],
         ActivationPrepBS: 5,
         ClientActivationFx: "Module_ChargeUp_blue",
         ActivationDelay: 600,
-        EffectDurationx10: 120,
         TeleportToClosestCombat: 1,
         ActivationFuelCost: [1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000],
         BCCost: [20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000, 45000],
@@ -921,10 +910,9 @@ export default {
         BSScore: [300, 350, 400, 450, 500, 600, 700, 800, 900, 1000],
         LeapBreaksBond: 1,
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_8",
+        DisableTime: 12,
         ActivationDelayWS: 360000,
-        EffectDurationx10WS: 72000,
-        ActivationDelayBS: 1200,
-        EffectDurationx10BS: 240,
+        DisableTimeWS: 7200,
     },
     Vengeance: {
         Name: "Vengeance",
@@ -940,7 +928,7 @@ export default {
         SlotType: "Support",
         ActivationType: "Passive",
         ActivationPrep: 5,
-        ActivationPrepWS: 24,
+        ActivationPrepWS: 14400,
         ActivationPrepBS: 10,
         ActivateFX: "Destiny_activate",
         ActivateFXStaysInPlace: 1,
@@ -959,7 +947,6 @@ export default {
         BSOnly: 1,
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_7",
         ActivationDelayWS: 180000,
-        ActivationDelayBS: 600,
     },
     ShipmentBeam: {
         Name: "ShipmentBeam",
@@ -1358,7 +1345,6 @@ export default {
         EffectDurationx10WS: [
             90000, 108000, 132000, 156000, 186000, 222000, 264000, 318000, 384000, 450000, 510000, 570000,
         ],
-        ActivationDelayBS: 720,
     },
     DeltaRocket: {
         Name: "DeltaRocket",

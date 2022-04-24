@@ -25,6 +25,16 @@ export default class CapitalShips extends Runner {
                     addModulesStats(value);
                     fixModulesShipsData(value, 'InitialModule', 'InitialModuleLevels');
                     fixModulesShipsData(value, 'FlagshipModules', 'FlagshipModuleLevels');
+
+                    // исправить имена уникальных модулей флагмана
+                    if (key === 'CorpFlagship') {
+                        Object.entries(Modules.config.runner.combineKeys).forEach(([ fixedName, name ]) => {
+                            if (value.modules[name]) {
+                                value.modules[fixedName] = value.modules[name];
+                                delete value.modules[name];
+                            }
+                        });
+                    }
                     return [ key, value ];
                 }),
         );

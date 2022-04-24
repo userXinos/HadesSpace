@@ -771,8 +771,8 @@ export default {
             Recoil: [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             Stealth: [0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
             EMPRocket: [0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8],
-            FlagshipShieldModule: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3],
-            FlagshipWeaponModule: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 3],
+            FlagshipDartBarrage: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 3],
+            FlagshipAreaShield: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3],
         },
     },
     Hydraling2: {
