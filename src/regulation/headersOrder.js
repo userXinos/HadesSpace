@@ -55,6 +55,7 @@ export default [
     'ShieldStrength',
     'SpeedIncrDuringActivation',
     'MirrorDamagePct',
+    'ActivationPrepWS',
     // ------------------
     'FuelUseIncrease',
     'ActivationFuelCost',

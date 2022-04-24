@@ -121,7 +121,7 @@ export default [
     ],
     [
         ['EffectDurationx10'],
-        (v, opts) => sec2str(opts.$t, v / 5),
+        (v, opts) => sec2str(opts.$t, v / 10),
     ],
     [
         ['BlueStar_HydroPctPerPos'],
