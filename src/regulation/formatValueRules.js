@@ -76,7 +76,7 @@ export default [
             'RelicLoad',
             'RSPublicLateJoin_TimeAvailable',
         ],
-        (v, opts) => sec2str(opts.$t, v),
+        (v) => sec2str(v),
     ],
     [
         [
@@ -117,11 +117,11 @@ export default [
     ],
     [
         ['APTPIOTTP'],
-        (v, opts) => sec2str(opts.$t, v / 5),
+        (v) => sec2str(v / 5),
     ],
     [
         ['EffectDurationx10'],
-        (v, opts) => sec2str(opts.$t, v / 10),
+        (v) => sec2str(v / 10),
     ],
     [
         ['BlueStar_HydroPctPerPos'],
@@ -169,7 +169,7 @@ export default [
     ],
     [
         ['GhostSpawnSecs'],
-        (v, opts) => v.map((e) => sec2str(opts.$t, e)).join(', '),
+        (v) => v.map((e) => sec2str(e)).join(', '),
     ],
     [
         ['InitialModule', 'ShipToSpawn', 'Name'],
@@ -181,11 +181,11 @@ export default [
     ],
     [
         ['TicksPerRelic', 'ExtraAsteroidSpawnTick'],
-        (v, opts) => sec2str(opts.$t, v * 120),
+        (v) => sec2str(v * 120),
     ],
     [
         ['TargetSwitchTicks', 'CycleTicks'],
-        (v, opts) => sec2str(opts.$t, v / 5),
+        (v) => sec2str(v / 5),
     ],
     [
         ['PreparationTimeHours', 'TeleportShipmentsDurationHr'],
@@ -223,7 +223,7 @@ export default [
     ],
     [
         ['DestinyDisableTimes'],
-        ([rs, ws], { $t }) => `${$t('RS')}: ${sec2str($t, rs)} | ${$t('WS')}: ${sec2str($t, ws * 600)}`,
+        ([rs, ws], { $t }) => `${$t('RS')}: ${sec2str(rs)} | ${$t('WS')}: ${sec2str(ws * 600)}`,
     ],
     [
         ['BarrageMaxAdditionalEnemies'],
