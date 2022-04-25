@@ -500,5 +500,6 @@ export default {
         'LaserTurret.Speed',
         'LaserTurret.InitialModuleLevels',
         'LaserTurret.MaxPerRS',
+        'DeltaRocket.PreventUseOnWsJumpgate',
     ],
 };

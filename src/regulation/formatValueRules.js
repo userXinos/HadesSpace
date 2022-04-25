@@ -75,6 +75,7 @@ export default [
             'TurretSetupTime',
             'RelicLoad',
             'RSPublicLateJoin_TimeAvailable',
+            'SectorGenesisCooldownSeconds',
         ],
         (v) => sec2str(v),
     ],
@@ -276,13 +277,6 @@ export default [
             return (Array.isArray(v) ? v : [v])
                 .map((e) => $t(locKeys[e] || e))
                 .join(', ');
-        },
-    ],
-    [
-        ['module'],
-        (v, { $t }) => {
-            const arr = v.split('!');
-            return `${$t(arr[0])} ${arr[1]}`;
         },
     ],
     [
