@@ -11,16 +11,20 @@
           <div class="body">
             <div class="text-side">
               <div
-                :id="`${parentId}-${name}`"
+                v-if="name || item.TID"
+                :id="parentId ? `${parentId}-${name}` : item.Name"
                 class="title"
               >
-                <a :href="`#${parentId}-${name}`">{{ format.key(name || item.TID) }}</a>
+                <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
+                  {{ format.key(name || item.TID) }}
+                </a>
               </div>
               <p
                 v-if="item.TID_Description"
-                v-t="item.TID_Description"
                 class="description"
-              />
+              >
+                {{ formatDescr(item.TID_Description) }}
+              </p>
 
               <template v-if="Array.isArray(item) && item.every((e) => e !== Object(e))">
                 {{ format.value(name, item) }}
@@ -49,7 +53,7 @@
             >
               <icon
                 :name="item.Icon || item.Model"
-                :dir="iconDirList[name] || iconDirList.default"
+                :dir="iconDir || iconDirList[name] || iconDirList.default"
               />
             </div>
           </div>
@@ -116,6 +120,10 @@ export default {
             requested: true,
             default: () => ({ key: () => null, value: () => null }),
         },
+        iconDir: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -152,6 +160,9 @@ export default {
                 res.projectile = projectile;
             }
             return res;
+        },
+        formatDescr(key) {
+            return this.$t(key, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
         },
     },
 };
