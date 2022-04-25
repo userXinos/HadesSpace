@@ -5,7 +5,7 @@
       @click="open"
     >
       <div class="icon" />
-      <span>Settings</span>
+      <span class="name">Settings</span>
     </div>
 
     <Modal
@@ -17,9 +17,10 @@
       <template #body>
 
         <div class="select">
-          <p> {{ $t('TID_SETTINGS_DLG_LANGUAGE') }} </p>
+          <p class="name"> {{ $t('TID_SETTINGS_DLG_LANGUAGE') }} </p>
           <select
             v-model="languageCode"
+            class="select"
             @change="changeLanguage"
           >
             <option
@@ -30,6 +31,24 @@
               {{ language.Name }}
             </option>
           </select>
+        </div>
+
+        <div class="switch">
+          <div>
+            <p class="name"> Disable filters </p>
+            <p class="description">Disable all characteristic filters used to hide unimportant information</p>
+          </div>
+          <input
+            id="disable-filters"
+            class="checkbox"
+            type="checkbox"
+            :checked="$store.state.userSettings.disableFilters"
+            @change="switchDisableFilters"
+          >
+          <label
+            for="disable-filters"
+            class="label"
+          />
         </div>
 
       </template>
@@ -76,6 +95,9 @@ export default {
         changeLanguage() {
             this.$store.commit(types.setLanguage, this.languageCode);
         },
+        switchDisableFilters() {
+            this.$store.commit(types.switchDisableFilters);
+        },
     },
 };
 </script>
@@ -85,6 +107,11 @@ export default {
 @import "../css/vars";
 
 $mv: 1000px;
+
+.name {
+    font-size: 120%;
+    padding-bottom: 2%;
+}
 
 .button {
     cursor: pointer;
@@ -100,7 +127,7 @@ $mv: 1000px;
             padding: 10px 20px;
         }
     }
-     span {
+     .name {
          display: none;
          font-size: 140%;
 
@@ -112,11 +139,9 @@ $mv: 1000px;
 }
 
 .select {
-    p {
-        font-size: 120%;
-        padding-bottom: 2%;
-    }
-    select {
+    margin-bottom: 7%;
+
+    .select {
         width: 100%;
         background: $background-elements;
         border: $border-color solid 2px;
@@ -125,6 +150,53 @@ $mv: 1000px;
         //option:hover {
         //    background-color: map.get($table, hover) !important;
         //}
+    }
+}
+
+.switch { // credits:  https://codepen.io/mburnette/pen/LxNxNg
+    $size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .label {
+        cursor: pointer;
+        width: $size * 4;
+        height: $size + 10px;
+        border: red solid 1px;
+        display: block;
+        border-radius: 100px;
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: $size;
+            height: $size;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+        &:active:after {
+            width: $size * 2;
+        }
+    }
+
+    .checkbox {
+        &[type=checkbox] {
+            visibility: hidden;
+        }
+        &:checked + .label {
+            background: #9fe5ff;
+            border-color: #9fe5ff;
+        }
+        &:checked + .label:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
     }
 }
 </style>

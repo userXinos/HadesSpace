@@ -34,9 +34,9 @@
                 class="characteristics"
               >
                 <li
-                  v-for="(value, key) in getCharacteristics(item)"
+                  v-for="([value, filtered], key) in getCharacteristics(item)"
                   :key="key"
-                  class="line"
+                  :class="{'line': true, filtered}"
                 >
                   <Stats
                     :item-key="key"
@@ -83,7 +83,7 @@ import Icon from '@/components/Icon.vue';
 import { h } from 'vue';
 
 import objectArrayify from '@Scripts/objectArrayify.js';
-import ignoringKeys from '@Regulation/ignoringKeys.js';
+import ik from '@Regulation/ignoringKeys.js';
 
 
 const ICON_DIR_LIST = {
@@ -147,10 +147,15 @@ export default {
         },
         getCharacteristics(d) {
             const res = objectArrayify(d, {
-                filter: ([k]) => (
-                    !ignoringKeys.global.includes(k) &&
-                    !ignoringKeys.byPath.includes(`${d.Name}.${k}`) &&
-                    !ignoringKeys.meta.includes(k)
+                map: ([k, value]) => [
+                    k,
+                    [
+                        value,
+                        ik.global.includes(k) || ik.byPath.includes(`${d.Name}.${k}`),
+                    ],
+                ],
+                filter: ([k, [, remove]]) => (
+                    ik.meta.includes(k) ? false : (this.$store.state.userSettings.disableFilters ? true : !remove)
                 ),
             });
 
@@ -229,6 +234,9 @@ $mw: 900px;
 
                         @media screen and (max-width: $mw) {
                             font-size: 90%;
+                        }
+                        &.filtered {
+                            background-color: rgba(220,20,60, 0.2);
                         }
                     }
                 }

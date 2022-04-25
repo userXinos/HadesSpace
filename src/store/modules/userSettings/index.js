@@ -16,12 +16,18 @@ export default {
 
     state: {
         language: settings.language || ((browserLang in SUPPORT_LOCALES) ? browserLang : DEFAULT_LANG),
+        disableFilters: settings.disableFilters || false,
     },
     mutations: {
         [types.setLanguage](state, code) {
             state.language = code;
             setSettings(LOCAL_STORAGE_KEY, state);
             return setI18nLanguage(code);
+        },
+        [types.switchDisableFilters](state) {
+            state.disableFilters = !state.disableFilters;
+            setSettings(LOCAL_STORAGE_KEY, state);
+            return state.disableFilters;
         },
     },
 };

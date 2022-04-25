@@ -190,7 +190,7 @@ $selected-color: #5fdba7;
         }
 
         // animation
-        // https://codepen.io/shshaw/pen/YLmdxz
+        // credits: https://codepen.io/shshaw/pen/YLmdxz
         &-enter-active {
             transition: all 0.3s cubic-bezier(.36,-0.64,.34,1.76);
             transition-delay: calc( 0.1s * var(--i) );
