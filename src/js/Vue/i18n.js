@@ -22,11 +22,7 @@ export async function setI18nLanguage(locale) {
 async function loadLocaleMessages(locale) {
     document.querySelector('html').setAttribute('lang', locale);
 
-    const message = await import(/* webpackChunkName: "locale-[request]" */ `@i18n/${locale}.json`)
-        .then((m) => m.default);
-
-    // fix for "json parser" by import()
-    Object.entries(message).forEach(([k, v]) => message[k] = v.replaceAll('\\n', '\n'));
+    const message = await import(`@i18n/${locale}.json`).then((m) => m.default);
 
     i18n.global.setLocaleMessage(locale, message);
     return nextTick();

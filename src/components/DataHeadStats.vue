@@ -161,8 +161,12 @@ export default {
             }
             return res;
         },
-        formatDescr(key) {
-            return this.$t(key, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
+        formatDescr(descrKey) {
+            const customDescrKey = descrKey.replace('_DESCR', '_CUSTOM_DESCR');
+            const descr = this.$t(descrKey, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
+            const customDescr = this.$te(customDescrKey) ? this.$t(customDescrKey) : null;
+
+            return (customDescr) ? `${descr}\n\n${customDescr}` : descr;
         },
     },
 };
@@ -208,6 +212,7 @@ $mw: 900px;
                     }
                 }
                 .description {
+                    white-space: pre-line;
                     font-size: 120%;
                     margin: 0 0 1%;
 

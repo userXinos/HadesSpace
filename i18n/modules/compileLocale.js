@@ -26,6 +26,8 @@ function fixWords(data) {
     );
 
     function string(rawStr) {
+        rawStr = rawStr.replace(/\\n(\\n)?/g, '\n');
+
         if (rawStr !== rawStr.toUpperCase()) {
             return rawStr;
         }
@@ -48,18 +50,6 @@ function fixWords(data) {
         }
         return result;
     }
-
-
-    // function regexFix(str) {
-    //     return str
-    //         .replace(/(\s\(?<\w+>).*?(<\/\w+>(\s.{2}\.\))?)/g, '') // BBCode eng/ru "<color>N</color>"/"(<color>N</color> шт.)"
-    //         .replace(/\\<(\w+)[^\]]*](.*?)\[\/\1>/g, '')
-    //         .replace(/:\s?$/, '')
-    //         .replace(/\s({0\})$/, '')
-    //         .replace(/({\d})(.+?)({\d})(.+?)({\d})/, 'N$2X$4Y')
-    //         .replace(/({\d})(.+?)({\d})/, 'N$2X')
-    //         .replace(/({\d})/, 'N');
-    // }
 }
 
 /**

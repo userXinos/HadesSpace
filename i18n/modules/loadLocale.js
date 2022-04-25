@@ -28,15 +28,16 @@ export default async function loadLocale(lang) {
     return files.reduce((acc, value, index) => {
         const fileName = basename(filesNames[index], '.json5');
         if (fileName === fileName.toUpperCase()) {
-            postfixKeys(value, fileName);
-            return acc;
+            value = postfixKeys(value, fileName);
         }
         return { ...acc, ...value };
     }, {});
 }
 
 function postfixKeys(file, postfixKey) {
-    Object.entries(file).forEach(([ key, value ]) => {
-        file[`${key}_${postfixKey}`] = value;
-    });
+    return Object.fromEntries(
+        Object.entries(file).map(([ key, value ]) => (
+            [ `${key}_${postfixKey}`, value ]
+        )),
+    );
 }

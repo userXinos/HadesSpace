@@ -126,7 +126,7 @@ export default {
     },
 };
 </script>
-<style scoped lang="scss">
+<style scoped>
 .container {
   margin: 5% 0;
 }
