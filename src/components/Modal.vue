@@ -112,13 +112,9 @@ $mv: 1000px;
 
         &.size {
             &-MEDIUM {
-                width: 40%;
+                width: 90%;
                 height: 80%;
-
-                @media screen and (max-width: $mv) {
-                    width: 90%;
-                    height: 80%;
-                }
+                max-width: 500px;
             }
         }
 

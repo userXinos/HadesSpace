@@ -8,7 +8,8 @@ const router = createRouter({
         if (savedPosition) {
             return savedPosition;
         }
-        if (to.hash && to.hash !== '#modal') {
+        if (to.hash === '#modal') return;
+        if (to.hash) {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve({

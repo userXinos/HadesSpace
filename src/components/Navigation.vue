@@ -23,8 +23,7 @@
             :style="{ '--total': section.children.length }"
           >
             <li
-              v-for="(child, i) of section.children"
-              v-if="selected === index"
+              v-for="(child, i) of (selected === index) ? section.children : []"
               :key="i"
               :style="{'--i': i + 1}"
             >

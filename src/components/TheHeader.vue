@@ -35,7 +35,6 @@
 <script>
 import Navigation from './Navigation.vue';
 import Settings from '@/components/Settings.vue';
-import Languages from './TheHeaderLanguagesButton';
 
 export default {
     name: 'Header',
