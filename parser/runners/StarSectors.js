@@ -31,8 +31,8 @@ export default class StarSectors extends Runner {
         const [ cerbGroups, cerberusStations ] = this.multiReadCsv([ 'cerb_groups', 'cerberus_stations' ]);
 
         return customCompileOne(
-            Object.fromEntries(
-                Object.entries(rawData).map(([ _, value ]) => {
+            Runner.objectArrayify(rawData, {
+                map: ([ _, value ]) => {
                     if (value.BaseType) {
                         value.BaseType = cerberusStations[value.BaseType] || null;
                     }
@@ -53,8 +53,8 @@ export default class StarSectors extends Runner {
                         }
                     });
                     return [ _, value ];
-                }),
-            ),
+                },
+            }),
         );
     }
 }

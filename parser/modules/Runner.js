@@ -220,6 +220,24 @@ export default class Runner {
             }
         });
     }
+
+    /**
+     * Использовать функции массива на объекте
+     * @param {Object} obj
+     * @param {Object.<String, Function>} callbacks - где key - имя функции из [Array.prototype]
+     * @return {Object}
+     */
+    static objectArrayify(obj, callbacks) {
+        let entries = Object.entries(obj);
+
+        for (const key in callbacks) {
+            if (Object.prototype.hasOwnProperty.call(callbacks, key)) {
+                entries = Array.prototype[key].call(entries, callbacks[key]);
+            }
+        }
+
+        return Object.fromEntries(entries);
+    }
 }
 
 export function validRunner(config) {

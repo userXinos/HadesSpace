@@ -14,12 +14,12 @@ export default class SpaceBuildings extends Runner {
     }
 
     run(rawData) {
-        const data = Object.fromEntries(
-            Object.entries(rawData).map(([ key, value ]) => {
+        const data = Runner.objectArrayify(rawData, {
+            map: ([ key, value ]) => {
                 fixConstructionTime(value);
                 return [ key, value ];
-            }),
-        );
+            },
+        });
 
         data.TimeModulator.Model = 'TimeModulator'; // нету
         return data;

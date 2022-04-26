@@ -17,27 +17,26 @@ export default class CapitalShips extends Runner {
     run(rawData) {
         const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = this.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);
 
-        const data = Object.fromEntries(
-            Object.entries(rawData)
-                .filter(([ k ]) => !k.endsWith('Drone')) // => Modules Runner
-                .filter(([ k ]) => !Object.keys(Modules.config.runner.combineKeys).includes(k)) // => Modules Runner
-                .map(([ key, value ]) => {
-                    addModulesStats(value);
-                    fixModulesShipsData(value, 'InitialModule', 'InitialModuleLevels');
-                    fixModulesShipsData(value, 'FlagshipModules', 'FlagshipModuleLevels');
+        const data = Runner.objectArrayify(rawData, {
+            //  => Modules Runner
+            filter: ([ k ]) => !k.endsWith('Drone') && !Object.keys(Modules.config.runner.combineKeys).includes(k),
+            map: ([ key, value ]) => {
+                addModulesStats(value);
+                fixModulesShipsData(value, 'InitialModule', 'InitialModuleLevels');
+                fixModulesShipsData(value, 'FlagshipModules', 'FlagshipModuleLevels');
 
-                    // исправить имена уникальных модулей флагмана
-                    if (key === 'CorpFlagship') {
-                        Object.entries(Modules.config.runner.combineKeys).forEach(([ fixedName, name ]) => {
-                            if (value.modules[name]) {
-                                value.modules[fixedName] = value.modules[name];
-                                delete value.modules[name];
-                            }
-                        });
-                    }
-                    return [ key, value ];
-                }),
-        );
+                // исправить имена уникальных модулей флагмана
+                if (key === 'CorpFlagship') {
+                    Object.entries(Modules.config.runner.combineKeys).forEach(([ fixedName, name ]) => {
+                        if (value.modules[name]) {
+                            value.modules[fixedName] = value.modules[name];
+                            delete value.modules[name];
+                        }
+                    });
+                }
+                return [ key, value ];
+            },
+        });
 
         data.CerberusGhosts.shipSpawners = shipSpawners['Ghosts'];
         data.CerberusGhosts.GhostSpawnSecs = GhostSpawnSecs;
@@ -82,15 +81,15 @@ function addModulesStats(obj) {
 
     function getModuleByLvl(name, lvl) {
         if (name in modules) {
-            return Object.fromEntries(
-                Object.entries(modules[name]).map(([ key, value ]) => [
+            return Runner.objectArrayify(modules[name], {
+                map: ([ key, value ]) => [
                     key,
                     (!Array.isArray(value)) ? value :
                         (value.every(Array.isArray) ? value.map((e) => e[lvl]) :
                             value[lvl]
                         ),
-                ]),
-            );
+                ],
+            });
         }
         return null;
     }

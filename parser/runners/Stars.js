@@ -19,8 +19,8 @@ export default class Stars extends Runner {
 
     run(rawData) {
         const SSGData = this.readCsv( 'solar_system_gen_data' );
-        const data = Object.fromEntries(
-            Object.entries(Runner.combineObjects(rawData, SSGData)).map(([ key, value ]) => {
+        const data = Runner.objectArrayify(Runner.combineObjects(rawData, SSGData), {
+            map: ([ key, value ]) => {
                 if (key in CONFIG.globalKeys) {
                     value = Runner.combineObjects(value, Globals.getGlobalsBy(CONFIG.globalKeys[key]));
                 }
@@ -41,8 +41,8 @@ export default class Stars extends Runner {
 
                 Runner.combineMinMax(value);
                 return [ key, value ];
-            }),
-        );
+            },
+        });
 
         data.YellowStar = Runner.combineObjects(data.Home, data.YellowStar);
         delete data.Home;

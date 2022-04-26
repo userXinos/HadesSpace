@@ -10,18 +10,16 @@ export default class Globals extends Runner {
     }
 
     run(rawData) {
-        return Object.fromEntries(
-            Object.entries(rawData)
-                .map(([ key, { Value } ]) => [ key, Value ]),
-        );
+        return Runner.objectArrayify(rawData, {
+            map: ([ key, { Value } ]) => [ key, Value ],
+        });
     }
 
     static getGlobalsBy(str) {
         const data = Runner.readCsv(Globals.config.file);
-        return Object.fromEntries(
-            Object.entries(data)
-                .filter(([ key, { Value } ]) => key.includes(str))
-                .map(([ key, { Value } ]) => [ key, Value ]),
-        );
+        return Runner.objectArrayify(data, {
+            filter: ([ key ]) => key.includes(str),
+            map: ([ key, { Value } ]) => [ key, Value ],
+        });
     }
 }

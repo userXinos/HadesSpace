@@ -7,12 +7,9 @@ export default class compileOne extends Runner {
     }
 
     run(rawData) {
-        const data = Object.fromEntries(
-            Object.entries(Runner.compileOne(rawData)).map(([ k, v ]) => [
-                k.replace(/\s/g, ''),
-                v,
-            ]),
-        );
+        const data = Runner.objectArrayify(Runner.compileOne(rawData), {
+            map: ([ k, v ]) => [ k.replace(/\s/g, ''), v ],
+        });
         data.Name = basename(this.metadata.originalFile, '.csv');
 
         return data;

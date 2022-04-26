@@ -22,9 +22,10 @@ export default class Artifacts extends Runner {
             const Name = type;
             const BPName = `${Name}Blueprints`;
 
-            const obj = Object.fromEntries(
-                Object.entries(rawData).filter(([ k ]) => k.startsWith(type)),
-            );
+            const obj = Runner.objectArrayify(rawData, {
+                filter: ([ k ]) => k.startsWith(type),
+            });
+
             const one = Runner.compileOne(obj);
             one.Name = Name;
 

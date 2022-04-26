@@ -12,6 +12,7 @@ export default Object.freeze({
     parsedContent: join(ROOT_DIR, '../parser/dist/loc_strings'),
     additionalContent: join(ROOT_DIR, './locales'),
 
+    excludeFromStringsStarHeaders: [ 'NoCerbBondTeleportPRS' ],
     upperCaseKeys: upperCase,
     stringKeys: string,
 });

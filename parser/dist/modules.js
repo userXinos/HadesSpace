@@ -579,7 +579,6 @@ export default {
             AIUpdateIntervalSeconds: 5,
             MaxPerStarSystem: 8,
         },
-        DroneShipmentBonusMax: [9, 20, 28, 40, 45, 60, 72, 84, 105, 128, 153, 180],
     },
     Destiny: {
         Name: "Destiny",
