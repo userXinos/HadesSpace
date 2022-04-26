@@ -221,6 +221,16 @@ export default [
                     dir: 'icons',
                 },
             },
+            {
+                name: 'About',
+                text: { locKey: 'ABOUT' },
+                path: '/about',
+                component: () => import(/* webpackChunkName: "About" */ '../pages/About.vue'),
+                icon: {
+                    name: 'info',
+                    dir: 'icons',
+                },
+            },
         ],
     },
 ];

@@ -16,5 +16,6 @@
   OPEN: 'Open',
   YES: 'Yes',
   NO: 'No',
-  VALUE: 'Value {0}'
+  VALUE: 'Value {0}',
+  ABOUT: 'About project'
 }
