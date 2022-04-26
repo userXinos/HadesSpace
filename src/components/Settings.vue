@@ -162,7 +162,7 @@ $mv: 1000px;
 
     .label {
         cursor: pointer;
-        width: $size * 4;
+        width: $size * 5;
         height: $size + 10px;
         border: red solid 1px;
         display: block;

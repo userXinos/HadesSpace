@@ -1,24 +1,15 @@
-// @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
-
-:root { // TODO переписать на SCSS переменные
-    --bg: #131313;
-    --text-color: #c2cdd4;
-    --table-bg: #0f1416;
-    --table-bg2: #090e10;
-    --table-hover: #1d2326;
-    --border-color: #25262e;
-}
+@import "./vars";
 
 * {
     margin: 0;
     padding: 0;
     font-family: 'Fira Sans', sans-serif;
-    color: var(--text-color);
+    color: $text-color;
 }
 
 body, html {
-    background-color: var(--bg);
+    background: $background;
     font-family: 'Fira Sans', sans-serif;
     overflow-x: hidden;
     margin: 0 2%;

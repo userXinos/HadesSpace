@@ -126,7 +126,7 @@ $selected-color: #5fdba7;
                         margin-right: 5%;
                         width: 18px;
                         height: 20px;
-                        background: url(http://localhost:8080/img/arrow.f223a946.svg) no-repeat right/100%;
+                        background: url(@Img/icons/arrow.svg) no-repeat right/100%;
                         transition: 0.5s;
 
                         @media screen and (max-width: $mv) {

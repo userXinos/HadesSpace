@@ -116,10 +116,13 @@ export default {
 
 
 <style scoped lang="scss">
+@use "sass:map";
+@import "../css/vars";
+
 $mw: 900px;
 
 .table-bg {
-    background-color: var(--table-bg);
+    background: map.get($table, background);
     margin-top: 1%;
 
 .wrapper {
@@ -129,8 +132,8 @@ $mw: 900px;
 }
 .table {
     width: 100%;
-    border-bottom: 1px solid var(--border-color);
-    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid map.get($table, border);
+    border-left: 1px solid map.get($table, border);
 
     .lvl-col {
         position: sticky;
@@ -138,7 +141,7 @@ $mw: 900px;
         width: 1%;
     }
     th, :slotted(th) {
-        background-color: var(--table-bg2);
+        background-color: map.get($table, background2);
         font-weight: bold;
 
         @media screen and (max-width: $mw) {
@@ -147,7 +150,7 @@ $mw: 900px;
     }
     .body {
         tr:hover, :slotted(tr):hover {
-            background-color: var(--table-hover);
+            background-color: map.get($table, hover);
         }
     }
     th, td, :slotted(td), :slotted(th) {
@@ -156,8 +159,8 @@ $mw: 900px;
         text-align: center;
         font-size: 90%;
         // user-select: none;
-        border-top: 1px solid var(--border-color);
-        border-right: 1px solid var(--border-color);
+        border-top: 1px solid map.get($table, border);
+        border-right: 1px solid map.get($table, border);
     }
 
     td[cell-key="TID_Description"] {
