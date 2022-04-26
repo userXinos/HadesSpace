@@ -3,17 +3,34 @@ Parsing and displaying game data
 
 ### Build
 
-Install dependencies
-- `npm install`
+```bash
+# install dependencies
+npm install
 
-Install dependencies in modules
-- `npm run postinstall` 
+# install dependencies in modules
+npm run postinstall
 
-Build
-- `npm run build`
+npm run build
+```
 
-### Build and run
-- `npm run dev`
+### Build a developer build 
+
+```bash
+npm install
+npm run postinstall
+
+# parse game data
+npm run parser
+
+# generate localization strings
+npm run i18n:full
+
+# deploy local server
+npm run dev
+```
+
+### Requirements
+- Latest LTS version of [NodeJS](https://nodejs.org)
 
 
 ### Modules
