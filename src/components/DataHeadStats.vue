@@ -83,7 +83,7 @@ import Icon from '@/components/Icon.vue';
 import { h } from 'vue';
 
 import objectArrayify from '@Scripts/objectArrayify.js';
-import ik from '@Regulation/ignoringKeys.js';
+import hk from '@Regulation/hideKeys.js';
 
 
 const ICON_DIR_LIST = {
@@ -151,11 +151,11 @@ export default {
                     k,
                     [
                         value,
-                        ik.global.includes(k) || ik.byPath.includes(`${d.Name}.${k}`),
+                        hk.global.includes(k) || hk.byPath.includes(`${d.Name}.${k}`),
                     ],
                 ],
                 filter: ([k, [, remove]]) => (
-                    ik.meta.includes(k) ? false : (this.$store.state.userSettings.disableFilters ? true : !remove)
+                    hk.meta.includes(k) ? false : (this.$store.state.userSettings.disableFilters ? true : !remove)
                 ),
             });
 

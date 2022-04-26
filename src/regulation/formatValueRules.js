@@ -235,6 +235,10 @@ export default [
         ([rs, ws], { $t }) => `${$t('RS')}: ${rs}% / ${$t('WS')}: ${ws}%`,
     ],
     [
+        ['ActivationType'],
+        (v, { $t }) => v === 'Passive' ? $t('TID_MODULE_TYPE_PASSIVE') : (v === 'Activated' ? $t('TID_MODULE_TYPE_ACTIVATED') : v),
+    ],
+    [
         ['CerbGroup'],
         (v, { $t }) => (v === null) ? '' : Object.entries(v)
             .filter(([k]) => k !== 'Name') //                          NumCERBER_NAMEs

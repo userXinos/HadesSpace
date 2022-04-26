@@ -105,6 +105,7 @@ export default {
     BlueStar_Fragments: 'BLS_FRAGMENTS',
     ConceptImage: 'PORTRAIT',
 
+    ActivationType: 'TID_MODULE_TYPE',
     StarSectorDPS: 'STAR_SECTOR_DPS',
     MaxRSLevel: 'TID_REDSCANNER_MAX_STAR_LEVEL',
     RSLevel: 'TID_RED_STAR',

@@ -25,7 +25,6 @@ export default {
         'ScaleEffectsWithZoom',
         'TID_UPGRADE',
         'HideSelection',
-        'ActivationType',
         'MoonDistance',
         'MoonSize',
         'MinPlanetDistanceFromCenter',
@@ -501,5 +500,6 @@ export default {
         'LaserTurret.InitialModuleLevels',
         'LaserTurret.MaxPerRS',
         'DeltaRocket.PreventUseOnWsJumpgate',
+        'Impulse.MaxImpulse',
     ],
 };
