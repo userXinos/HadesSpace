@@ -337,6 +337,8 @@ export default {
         'Immolation.ActivationDelayBS',
         'EMPRocket.ActivationDelayBS',
         'EMPRocket.ActivationDelay',
+        'EMPRocket.DisableTimeBS',
+        'EMPRocket.DisableTime',
         'FlagshipDartBarrage.AdditionalWaypoint',
         'FlagshipDartBarrage.ActivationDelayBS',
         'FlagshipDartBarrage.ActivationDelay',

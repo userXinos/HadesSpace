@@ -309,6 +309,8 @@ export default {
     MirrorDamagePct: 'TID_MODULE_MIRROR_DAMAGE_STAT',
     RedStarLifeExtention: 'TID_MODULE_RED_STAR_EXTENSION_STAT',
     FlagshipDartBarrage: 'TID_MODULE_FLAGSHIP_SHIELD',
+    FlagshipWeaponModule: 'TID_MODULE_FLAGSHIP_WEAPON',
     FlagshipAreaShield: 'TID_MODULE_FLAGSHIP_WEAPON',
+    FlagshipShieldModule: 'TID_MODULE_FLAGSHIP_SHIELD',
     TurretSetupTime: 'TID_TURRET_SETUP_TIME',
 };
