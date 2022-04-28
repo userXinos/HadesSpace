@@ -28,5 +28,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #e0e8ee;
+
+    @media screen and (max-width: 1000px) {
+      font-size: 250%;
+      white-space: nowrap;
+    }
   }
 }
