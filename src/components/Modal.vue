@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../css/vars";
+@import "../style/vars";
 
 $mv: 1000px;
 

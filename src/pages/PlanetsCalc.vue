@@ -314,8 +314,8 @@ export default {
 <style scoped lang="scss">
 @use "sass:map";
 
-@import "../css/page.css";
-@import "../css/vars";
+@import "../style/page";
+@import "../style/vars";
 
 .select {
     background-color: map.get($table, "background");

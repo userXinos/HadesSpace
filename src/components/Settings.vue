@@ -104,7 +104,7 @@ export default {
 
 <style scoped lang="scss">
 @use "sass:map";
-@import "../css/vars";
+@import "../style/vars";
 
 $mv: 1000px;
 

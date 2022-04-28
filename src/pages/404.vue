@@ -19,7 +19,7 @@ export default { components: { Head } };
 </script>
 
 <style scoped lang="scss">
-@import "../css/page.css";
+@import "../style/page";
 
 .container {
     font-size: 200%;

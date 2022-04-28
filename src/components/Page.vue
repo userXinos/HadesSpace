@@ -1,14 +1,16 @@
 <template>
   <div>
     <Head><title>{{ title }}</title></Head>
-    <h1 class="topic"> {{ title }} </h1>
 
-    <img
-      v-if="portrait"
-      class="portrait"
-      :src="portrait.src"
-      :alt="portrait.alt"
-    >
+    <div class="portrait-container">
+      <img
+        v-if="portrait"
+        class="portrait"
+        :src="portrait.src"
+        :alt="portrait.alt"
+      >
+      <h1 class="topic"> {{ title }} </h1>
+    </div>
 
     <v-content :args="contentArgs" />
   </div>
@@ -46,4 +48,4 @@ export default {
 };
 </script>
 
-<style scoped src="../css/page.css"></style>
+<style scoped src="../style/page.scss" lang="scss"></style>

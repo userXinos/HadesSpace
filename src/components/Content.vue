@@ -60,6 +60,8 @@ export default {
 
 <style scoped lang="scss">
 .list {
+    margin: 0 3%;
+
     ol {
         border: 5px solid #586066;
         list-style-type: none;

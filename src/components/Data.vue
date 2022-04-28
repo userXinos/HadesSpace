@@ -128,6 +128,6 @@ export default {
 </script>
 <style scoped>
 .container {
-  margin: 5% 0;
+  margin: 5% 3%;
 }
 </style>

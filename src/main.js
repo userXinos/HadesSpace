@@ -13,7 +13,7 @@ import { createHead } from '@vueuse/head';
 import pluginsConfig from '@Scripts/Vue/pluginsConfig.js';
 import clickOutside from '@Scripts/Vue/clickOutside.js';
 
-import '@/css/style.scss';
+import '@/style/main.scss';
 
 createApp(App)
     .use(createHead())

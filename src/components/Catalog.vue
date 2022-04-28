@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../css/vars";
+@import "../style/vars";
 
 $mw: 960px;
 

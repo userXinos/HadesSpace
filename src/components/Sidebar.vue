@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../css/vars";
+@import "../style/vars";
 
 $sidebar-size: 80%;
 $border-size: 3px;

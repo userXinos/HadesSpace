@@ -76,4 +76,4 @@ export default {
 };
 </script>
 
-<style scoped src="../css/page.css"></style>
+<style scoped src="../style/page.scss"  lang="scss"></style>
