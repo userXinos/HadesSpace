@@ -10,7 +10,7 @@
     </p>
     <br><br><br>
     <p class="min-text">
-      made with ❤️ on <Link text="GitHub" :to="gh" />
+      made with ❤️ on GitHub
     </p>
   </div>
 </template>

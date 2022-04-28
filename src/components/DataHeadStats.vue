@@ -243,7 +243,7 @@ $mw: 900px;
             }
             .icon {
                 flex: 2;
-                margin: 2%;
+                margin: 1%;
                 max-width: 140px;
 
                 @media screen and (max-width: $mw) {

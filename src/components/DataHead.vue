@@ -94,7 +94,7 @@ $mw: 900px;
                 }
                 > .icon {
                     flex: 1;
-                    margin: 2%;
+                    margin: 10px 0 0;
                     max-width: 140px;
 
                     @media screen and (max-width: $mw) {
