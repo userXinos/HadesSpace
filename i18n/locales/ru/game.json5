@@ -96,7 +96,7 @@
   STARS: 'Звёзды',
   DRONE: 'Дрон',
   PROJECTILE: 'Снаряд',
-  PREVENT_USE_ON_WS_JUMPGATE: 'Запретить использование на вратах WS',
+  PREVENT_USE_ON_WS_JUMPGATE: 'Запретить использование на вратах БЗ',
   SECTOR_ENRICH_COOLDOWN_SECONDS: 'Перезарядка сектора после обогащения',
   SECTOR_GENESIS_COOLDOWN_SECONDS: 'КД сектора после генезиса ',
   STOP_COUNTDOWN_ON_DISABLE: 'Остановить перезарядку во время отключения',
