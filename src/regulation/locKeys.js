@@ -104,6 +104,7 @@ export default {
     BlueStar_HydroPctPerPos: 'BLS_HYDRO_PCT_PER_POS',
     BlueStar_Fragments: 'BLS_FRAGMENTS',
     ConceptImage: 'PORTRAIT',
+    AIUpdateIntervalSeconds: 'AI_UPDATE_INTERVAL',
 
     ActivationType: 'TID_MODULE_TYPE',
     StarSectorDPS: 'STAR_SECTOR_DPS',

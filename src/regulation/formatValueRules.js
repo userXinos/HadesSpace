@@ -76,6 +76,7 @@ export default [
             'RelicLoad',
             'RSPublicLateJoin_TimeAvailable',
             'SectorGenesisCooldownSeconds',
+            'AIUpdateIntervalSeconds',
         ],
         (v) => sec2str(v),
     ],

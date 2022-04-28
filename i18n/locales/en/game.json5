@@ -113,5 +113,6 @@
   EXTRA_ASTEROID_SPAWN: 'Spawn additional asteroids',
   EXTRA_ASTEROID_SPAWN_RING_DISTANCE: 'Spawn ring of additional asteroids',
   EXTRA_ASTEROID_SPAWN_AMT: 'Amount of hydro additional asteroids',
-  PORTRAIT: 'Portrait'
+  PORTRAIT: 'Portrait',
+  AI_UPDATE_INTERVAL: 'Bot update interval'
 }

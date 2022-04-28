@@ -113,5 +113,6 @@
   EXTRA_ASTEROID_SPAWN: 'Спавн дополнительных астероидов',
   EXTRA_ASTEROID_SPAWN_RING_DISTANCE: 'Кольцо спавна дополнительных астероидов',
   EXTRA_ASTEROID_SPAWN_AMT: 'Количество водорода дополнительных астероидов',
-  PORTRAIT: 'Изображение'
+  PORTRAIT: 'Изображение',
+  AI_UPDATE_INTERVAL: 'Интервал обновления бота'
 }
