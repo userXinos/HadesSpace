@@ -23,7 +23,7 @@ export default {
         ShipyardCapacity: [4, 5, 7, 8, 10, 12, 13, 14, 15, 16],
         BuildNotifMode: 0,
         ShowInStarLinks: 1,
-        ConstructionTime: [3600, 28800, 86400, 172800, 259200, 345600, 432000],
+        ConstructionTime: [5, 60, 1800, 3600, 28800, 86400, 172800, 259200, 345600, 432000],
     },
     ShortRangeScanner: {
         Name: "ShortRangeScanner",
@@ -49,7 +49,7 @@ export default {
         MaxPerSector: 1,
         CanScanSectors: 1,
         BuildNotifMode: 2,
-        ConstructionTime: [14400, 43200, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400],
+        ConstructionTime: [60, 14400, 43200, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400],
     },
     RedStarScanner: {
         Name: "RedStarScanner",
@@ -71,7 +71,7 @@ export default {
         StargateModel: "JumpGate",
         BuildNotifMode: 1,
         ShowInStarLinks: 1,
-        ConstructionTime: [14400, 86400, 172800, 259200, 345600, 432000, 518400, 604800, 864000],
+        ConstructionTime: [3, 1800, 14400, 86400, 172800, 259200, 345600, 432000, 518400, 604800, 864000],
     },
     ResearchStation: {
         Name: "ResearchStation",
@@ -241,8 +241,8 @@ export default {
         BuildNotifMode: 1,
         ShowInStarLinks: 1,
         ConstructionTime: [
-            3600, 28800, 172800, 345600, 432000, 518400, 604800, 691200, 777600, 864000, 864000, 864000, 864000, 864000,
-            864000,
+            600, 3600, 28800, 172800, 345600, 432000, 518400, 604800, 691200, 777600, 864000, 864000, 864000, 864000,
+            864000, 864000,
         ],
         Model: "TimeModulator",
     },

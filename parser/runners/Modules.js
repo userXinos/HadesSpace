@@ -49,10 +49,12 @@ export default class Modules extends Runner {
         });
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
-        data['TimeWarp']['Icon'] = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
-        data['MiningBoost']['WhiteStarScore'].unshift(0); // ошибка в таблице, не хватает "0"
-        data['Destiny']['WhiteStarScore'].unshift(0); // ошибка в таблице, не хватает "0"
-        data['FlagshipDartBarrage']['TID_Description'] = data['FlagshipDartBarrage']['TID_Description'][0]; // какие-то буквы лишние в таблице
+        data.TimeWarp.Icon = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
+        data.MiningBoost.WhiteStarScore.unshift(0); // ошибка в таблице, не хватает "0"
+        data.Destiny.WhiteStarScore.unshift(0); // ошибка в таблице, не хватает "0"
+        data.FlagshipDartBarrage.TID_Description = data.FlagshipDartBarrage.TID_Description[0]; // какие-то буквы лишние в таблице
+        data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * 600; // ...
+        data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * 600; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
 
         return data;
@@ -171,6 +173,12 @@ function addInfoByStarType(key, value) {
         });
     }
     keysRemove.forEach((e) => delete value[e]);
+
+    Object.entries(value).forEach(([ k, v ]) => {
+        if (typeof v === 'object' && !Array.isArray(v)) {
+            addInfoByStarType(k, v);
+        }
+    });
 
 
     function addStarInfo(obj, star) {
