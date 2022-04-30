@@ -20,6 +20,13 @@ module.exports = {
                 { 'src': 'favicon/favicon-512x512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable' },
             ],
         },
+        iconPaths: {
+            favicon32: './favicon/favicon-32x32.png',
+            favicon16: './favicon/favicon-16x16.png',
+            appleTouchIcon: './favicon/apple-touch-icon.png',
+            maskIcon: './favicon/safari-pinned-tab.svg',
+            msTileImage: './favicon/mstile-150x150',
+        },
     },
     configureWebpack,
 };
