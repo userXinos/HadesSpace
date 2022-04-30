@@ -2,13 +2,13 @@
   "name": "hades-space",
   "author": "Xinos",
   "scripts": {
+    "build": "npm run parser && npm run i18n:full && vue-cli-service build ./src/main.js",
     "dev": "vue-cli-service serve",
-    "postinstall": "(cd parser && npm install && cd ..) && (cd i18n && npm install && cd ..)",
-    "install-prod": "npm install --production && (cd parser && npm install --production && cd ..) && (cd i18n && npm install --production && cd ..)",
-    "parser": "cd parser && npm run start",
     "i18n": "cd i18n && npm run start",
     "i18n:full": "cd i18n && npm run start -- --full",
-    "build": "npm run parser && npm run i18n:full && vue-cli-service build ./src/main.js",
+    "install-prod": "npm install --production && (cd parser && npm install --production && cd ..) && (cd i18n && npm install --production && cd ..)",
+    "parser": "cd parser && npm run start",
+    "postinstall": "(cd parser && npm install && cd ..) && (cd i18n && npm install && cd ..)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@vue/compiler-sfc": "^3.1.0",
     "@vueuse/head": "^0.7.5",
     "babel-core": "^7.0.0-bridge.0",
+    "register-service-worker": "^1.7.2",
     "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
     "vue": "^3.2.33",
@@ -30,6 +31,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@vue/cli-plugin-pwa": "~5.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.9.0",
     "eslint-config-google": "^0.14.0",

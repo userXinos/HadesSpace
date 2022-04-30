@@ -3,7 +3,7 @@
 
 <template>
   <div id="app">
-    <Head><title>HadesSpace</title></Head>
+    <Head><title>Hades Space</title></Head>
     <vue-progress-bar />
 
     <Sidebar
@@ -37,6 +37,7 @@ import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
 import Sidebar from '@/components/Sidebar.vue';
+import PWAPrompt from '@/components/PWAPrompt.vue';
 
 const MAX_WIDTH = 1000;
 

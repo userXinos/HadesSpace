@@ -337,7 +337,7 @@ export default {
         font-size: 80%;
     }
 }
-.planetsCalc >>> td {
+.planetsCalc > td {
   padding: 8px 10px 8px;
   line-height: 16px;
   text-align: center;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head><title>{{ 'HadesSpace' }}</title></Head>
+    <Head><title>Hades Space</title></Head>
 
     <catalog :sections="sections" />
   </div>

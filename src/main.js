@@ -14,6 +14,7 @@ import pluginsConfig from '@Scripts/Vue/pluginsConfig.js';
 import clickOutside from '@Scripts/Vue/clickOutside.js';
 
 import '@/style/main.scss';
+import './registerServiceWorker';
 
 createApp(App)
     .use(createHead())
