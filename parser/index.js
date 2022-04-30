@@ -48,7 +48,7 @@ await Promise.all(CONFIG.files
 )
     .catch(err);
 
-console.log('\x1b[32m[✓] \x1b[0m Done! (%s сек.)', time.final);
+console.log('\x1b[32m[✓] \x1b[0m Done! (%s sec.)', time.final);
 
 
 async function loadSaveFile(file, runners) {

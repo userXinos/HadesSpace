@@ -2,6 +2,7 @@ import { join } from 'path';
 
 import CONFIG from '../../parser/config.js';
 import loadFile from '../../parser/modules/loadFile.js';
+import { options } from './program.js';
 
 /**
  * Загрузить и распарсить через ранер файл
@@ -10,8 +11,7 @@ import loadFile from '../../parser/modules/loadFile.js';
  * @return {Promise<Object>}
  */
 export default async function(file, runner) {
-    const path = join(CONFIG.pathRaw, file);
-    // noinspection JSCheckFunctionSignatures
+    const path = join(options.rawContent ? options.rawContent : CONFIG.pathRaw, file);
     const { data } = await loadFile(path, [ runner ]).then((e) => e.render());
 
     return data;

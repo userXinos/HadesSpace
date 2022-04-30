@@ -19,6 +19,7 @@ i18n
 Accepts filenames with strings to be added to output files as arguments
 
 #### Flags
-| Name     |                      Description                       | Default |
-|----------|:------------------------------------------------------:|--------:|
-| `--full` | Add all possible strings from which locale to the file |         |
+| Name                   |                      Description                       |             Default                |
+|------------------------|:------------------------------------------------------:|-----------------------------------:|
+| `--full`               | Add all possible strings from which locale to the file |                                    |
+| `--raw-content <path>` | Path to raw csv                                        | raw path from parser module        |

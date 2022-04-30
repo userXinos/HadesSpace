@@ -19,7 +19,7 @@ export default async function loadLocale(lang) {
         if (existsSync(path)) {
             return JSON5.parse(await readFile(path, 'utf-8'));
         }
-        console.warn('\x1b[33m[⚠️]\x1b[0m Файл "%s" отсутствует', path);
+        console.warn('\x1b[33m[⚠]\x1b[0m File "%s" is absent', path);
         return {};
     });
 
