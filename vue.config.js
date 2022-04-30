@@ -26,6 +26,7 @@ module.exports = {
             appleTouchIcon: 'favicon/apple-touch-icon.png',
             maskIcon: 'favicon/safari-pinned-tab.svg',
             msTileImage: 'favicon/mstile-150x150',
+            faviconSVG: null,
         },
     },
     configureWebpack,
