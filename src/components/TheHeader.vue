@@ -67,7 +67,7 @@ $mw: 1000px;
     width: 100%;
     height: $header-height;
     border-bottom: 2px solid $border-color;
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     left: 0;
 
@@ -97,7 +97,7 @@ $mw: 1000px;
 
         .sidebar {
             background: url("@Img/icons/menu.svg") round center;
-            padding: calc(#{$header-height} / 5) 30px;
+            padding: calc(#{$header-height} / 4) 29px;
             display: block;
             cursor: pointer;
         }

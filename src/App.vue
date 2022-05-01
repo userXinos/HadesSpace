@@ -6,6 +6,7 @@
     <Head><title>Hades Space</title></Head>
     <vue-progress-bar />
 
+
     <Sidebar
       v-if="isMinMode"
       v-touch:swipe="swipeHandler"
@@ -23,6 +24,8 @@
           :is-min-mode="isMinMode"
           :open-sidebar="() => setShowSidebar(true)"
         />
+        <div class="target-wrap"><div id="table-head-target" /></div>
+
         <router-view />
 
       </div>
@@ -87,7 +90,7 @@ export default {
 
         swipeHandler(direction) {
             if (direction === 'right' && this.isMinMode) {
-                this.setShowSidebar(true);
+                // this.setShowSidebar(true);
             }
             if (direction === 'left') {
                 this.setShowSidebar(false);
@@ -112,6 +115,16 @@ export default {
 
     > div {
         pointer-events: none;
+    }
+}
+
+.target-wrap {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+
+    #table-head-target {
+        margin: -1% 3% 0;
     }
 }
 </style>

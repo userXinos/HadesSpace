@@ -1,7 +1,50 @@
 <template>
   <div class="table-bg">
-    <div class="wrapper">
+    <div
+      ref="table"
+      class="wrapper"
+      @scroll="onTableScroll"
+    >
       <table class="table">
+
+        <teleport
+          v-if="pinHead"
+          to="#table-head-target"
+          :disabled="!pinHead"
+        >
+          <div class="table-bg">
+            <div
+              ref="teleTable"
+              class="wrapper pinned"
+            ><table class="table">
+
+              <thead class="head">
+                <tr
+                  v-for="(array, i) in tableMask.head"
+                  :key="i"
+                >
+                  <th
+                    v-if="i === 0"
+                    v-t="lvlColKey"
+                    :style="{width: `${$refs.th[0].clientWidth - TH_PADDING}px`}"
+                    :rowspan="tableMask.head.length"
+                    class="lvl-col"
+                  />
+                  <th
+                    v-for="({value, rowspan, colspan}, k) in array"
+                    :key="k"
+                    :style="{width: `${$refs.th[k + 1].clientWidth - TH_PADDING}px`}"
+                    :rowspan="rowspan"
+                    :colspan="colspan"
+                  >{{ format.key(value) }}
+                  </th>
+
+                  <slot name="head" />
+                </tr>
+              </thead>
+
+            </table></div></div>
+        </teleport>
 
         <thead class="head">
           <tr
@@ -10,6 +53,7 @@
           >
             <th
               v-if="i === 0"
+              ref="th"
               v-t="lvlColKey"
               :rowspan="tableMask.head.length"
               class="lvl-col"
@@ -17,6 +61,7 @@
             <th
               v-for="({value, rowspan, colspan}, k) in array"
               :key="k"
+              ref="th"
               :rowspan="rowspan"
               :colspan="colspan"
             >{{ format.key(value) }}</th>
@@ -70,6 +115,9 @@ function VNode({ render }) {
     return render(h);
 }
 
+const HEIGHT_HEADER = 80;
+const TH_PADDING = 20;
+
 export default {
     name: 'Table',
     components: { VNode },
@@ -100,16 +148,46 @@ export default {
     data() {
         return {
             headStatsInfoData: {},
-            statsInfo: {
-                header: '',
-                description: '',
-                show: false,
-            },
             tableMask: {},
+            pinHead: false,
+            TH_PADDING,
         };
+    },
+
+    updated() {
+        if (this.pinHead && this.$refs.teleTable) {
+            this.$refs.teleTable.scrollLeft = this.$refs.table.scrollLeft;
+        }
     },
     created() {
         this.tableMask = tableMask({ ...this.data });
+    },
+    mounted() {
+        window.addEventListener('scroll', this.onScroll);
+    },
+    unmounted() {
+        window.removeEventListener('scroll', this.onScroll);
+    },
+    methods: {
+        onScroll() {
+            this.pinHead = this.isInViewport(this.$refs.table);
+        },
+        isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= (HEIGHT_HEADER - 20) && rect.bottom >= (HEIGHT_HEADER + 200);
+            //                                  ^                                       ^
+            //   убирать/показывать прямо когда сролл на таблице
+        },
+
+        onTableScroll(e) {
+            if (!this.manualScroll) {
+                if (this.$refs.teleTable) {
+                    this.manualScroll = true;
+                    this.$refs.teleTable.scrollLeft = e.target.scrollLeft;
+                }
+                this.manualScroll = false;
+            }
+        },
     },
 };
 </script>
@@ -125,10 +203,22 @@ $mw: 900px;
     background: map.get($table, background);
     margin-top: 1%;
 
-.wrapper {
-    position: relative;
-    overflow: auto;
-}
+    .wrapper {
+        position: relative;
+        overflow: auto;
+    }
+    .pinned {
+        overflow: hidden;
+
+        .table .head tr {
+            white-space: nowrap;
+
+            th {
+                display: inline-block;
+                white-space: pre-wrap;
+            }
+        }
+    }
 }
 .table {
     width: 100%;
