@@ -44,6 +44,7 @@ export default {
 
     .text {
         font-size: 130%;
+        margin: 0 6%;
     }
     .min-text {
         font-size: 80%;

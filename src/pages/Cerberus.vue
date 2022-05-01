@@ -7,21 +7,23 @@
     />
 
     <div>
-      <h1
-        id="CerberusStations"
-        class="topic"
-      >
-        <a
-          v-t="'TID_CERB_STATION_HOME2'"
-          href="#CerberusStations"
-          class="link-topic"
-        />
-      </h1>
-      <img
-        class="portrait"
-        :src="stationPortrait"
-        alt="cerberus station"
-      >
+      <div class="portrait-container">
+        <img
+          class="portrait"
+          :src="stationPortrait"
+          alt="cerberus station"
+        >
+        <h1
+          id="CerberusStations"
+          class="topic"
+        >
+          <a
+            v-t="'TID_CERB_STATION_HOME2'"
+            href="#CerberusStations"
+            class="link-topic"
+          />
+        </h1>
+      </div>
 
       <v-content :args="{data: stations, iconDir: 'game/SpaceBuildings'}" />
     </div>
@@ -76,4 +78,10 @@ export default {
 };
 </script>
 
-<style scoped src="../style/page.scss"  lang="scss"></style>
+<style scoped lang="scss">
+@import "../style/page";
+
+.portrait-container {
+    padding-top: 5%;
+}
+</style>

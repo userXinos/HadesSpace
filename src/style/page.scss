@@ -8,18 +8,27 @@
   color: #ccd7de;
 }
 .portrait-container {
-  margin-top: 2%;
+  margin-top: 5%;
   padding-bottom: 1%;
   position: relative;
   text-align: center;
 
+  @media screen and (max-width: 600px) {
+    margin-top: 15%;
+  }
+
   .portrait {
+    margin-top: -4%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     opacity: 0.9;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 40%, transparent 100%);
+
+    @media screen and (max-width: 600px) {
+      margin-top: -10%;
+    }
   }
   .topic {
     font-size: 300%;
@@ -28,6 +37,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #e0e8ee;
+    text-shadow: 5px 5px 0 #000d2f;
 
     @media screen and (max-width: 1000px) {
       font-size: 250%;
