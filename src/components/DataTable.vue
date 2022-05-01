@@ -26,14 +26,14 @@
                   <th
                     v-if="i === 0"
                     v-t="lvlColKey"
-                    :style="{width: `${$refs.th[0].clientWidth - TH_PADDING}px`}"
+                    :style="getPinnedTableCellStyle(0)"
                     :rowspan="tableMask.head.length"
                     class="lvl-col"
                   />
                   <th
                     v-for="({value, rowspan, colspan}, k) in array"
                     :key="k"
-                    :style="{width: `${$refs.th[k + 1].clientWidth - TH_PADDING}px`}"
+                    :style="getPinnedTableCellStyle(k + 1, i)"
                     :rowspan="rowspan"
                     :colspan="colspan"
                   >{{ format.key(value) }}
@@ -150,7 +150,6 @@ export default {
             headStatsInfoData: {},
             tableMask: {},
             pinHead: false,
-            TH_PADDING,
         };
     },
 
@@ -188,6 +187,17 @@ export default {
                 this.manualScroll = false;
             }
         },
+        getPinnedTableCellStyle(index, strIndex = 0) {
+            if (strIndex > 0) {
+                return {};
+            }
+
+            const width = this.$refs.th[index].clientWidth - TH_PADDING;
+            return {
+                minWidth: `${width}px`,
+                maxWidth: `${width}px`,
+            };
+        },
     },
 };
 </script>
@@ -209,15 +219,6 @@ $mw: 900px;
     }
     .pinned {
         overflow: hidden;
-
-        .table .head tr {
-            white-space: nowrap;
-
-            th {
-                display: inline-block;
-                white-space: pre-wrap;
-            }
-        }
     }
 }
 .table {

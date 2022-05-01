@@ -90,7 +90,7 @@ export default {
 
         swipeHandler(direction) {
             if (direction === 'right' && this.isMinMode) {
-                // this.setShowSidebar(true);
+                this.setShowSidebar(true);
             }
             if (direction === 'left') {
                 this.setShowSidebar(false);
