@@ -40,7 +40,7 @@ $border-size: 3px;
     width: $sidebar-size;
     position: fixed;
     left: calc( (#{$sidebar-size} + #{$border-size}) * -1 );
-    z-index: 2;
+    z-index: 3;
     transition: 0.5s;
     border-right: $border-color solid $border-size;
     padding-top: $header-height;

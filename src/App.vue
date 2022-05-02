@@ -43,6 +43,7 @@ import Sidebar from '@/components/Sidebar.vue';
 import PWAPrompt from '@/components/PWAPrompt.vue';
 
 const MAX_WIDTH = 1000;
+const ENABLE_SWIPE_PRESENT = 60;
 
 export default {
     name: 'App',
@@ -50,6 +51,7 @@ export default {
     data() {
         return {
             isMinMode: (window.innerWidth < MAX_WIDTH),
+            ignoreSwipeUp: window.innerWidth * ENABLE_SWIPE_PRESENT / 100,
             sideBarIsOpen: false,
         };
     },
@@ -83,13 +85,14 @@ export default {
         },
         resize() {
             this.isMinMode = (window.innerWidth < MAX_WIDTH);
+            this.ignoreSwipeUp = window.innerWidth * ENABLE_SWIPE_PRESENT / 100;
             if (!this.isMinMode) {
                 this.setShowSidebar(false);
             }
         },
 
-        swipeHandler(direction) {
-            if (direction === 'right' && this.isMinMode) {
+        swipeHandler(direction, event) {
+            if (direction === 'right' && this.isMinMode && event.changedTouches[0].clientX <= this.ignoreSwipeUp) {
                 this.setShowSidebar(true);
             }
             if (direction === 'left') {

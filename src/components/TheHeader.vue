@@ -22,7 +22,7 @@
       <div class="logo">
         <router-link to="/">
           <img
-            src="../img/logo.png"
+            src="@Img/logo.png"
             alt="logo"
           >
         </router-link>
