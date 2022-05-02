@@ -3,7 +3,7 @@
 
 
 export default {
-    beforeMount: function(el, binding) {
+    beforeMount(el, binding) {
         const ourClickEventHandler = (event) => {
             if (!el.contains(event.target) && el !== event.target) {
                 binding.value(event);
@@ -13,7 +13,7 @@ export default {
 
         document.addEventListener('click', ourClickEventHandler);
     },
-    unmounted: function(el) {
+    unmounted(el) {
         document.removeEventListener('click', el.__vueClickEventHandler__);
     },
 };

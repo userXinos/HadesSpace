@@ -36,7 +36,7 @@ export default class Modules extends Runner {
         file: 'modules',
         ignoreFiles: [ 'projectiles' ],
         runner: CONFIG,
-    }
+    };
 
     run(rawData) {
         const dataTables = this.multiReadCsv([

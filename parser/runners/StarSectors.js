@@ -25,7 +25,7 @@ export default class StarSectors extends Runner {
         file: /\w+_star_sectors/,
         ignoreFiles: [ 'cerb_groups' ],
         runner: CONFIG,
-    }
+    };
 
     run(rawData) {
         const [ cerbGroups, cerberusStations ] = this.multiReadCsv([ 'cerb_groups', 'cerberus_stations' ]);

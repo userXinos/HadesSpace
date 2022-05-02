@@ -1,4 +1,4 @@
-# Hades Space parser
+# HadesSpace parser
 Parse raw game data
 
 ### Project Structure
@@ -23,6 +23,3 @@ Takes paths to raw files and dirs as arguments
 |-----------------|:--------------------------:|--------:|
 | `--no-wipe`     | Do not wipe the output dir |         |
 | `--type <type>` |      Output file type      |      js |
-
-### Requirements 
-- [Node](https://nodejs.org) v15+

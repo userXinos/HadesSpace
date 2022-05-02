@@ -42,7 +42,7 @@ import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
 import Sidebar from '@/components/Sidebar.vue';
-import PWAPrompt from '@/components/PWAPrompt.vue';
+// import PWAPrompt from '@/components/PWAPrompt.vue';
 
 import appSidebar from '@/composables/appSidebar.js';
 

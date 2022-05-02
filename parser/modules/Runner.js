@@ -19,7 +19,7 @@ export default class Runner {
         file: undefined,
         ignoreFiles: [],
         runner: {},
-    }
+    };
 
     /**
      * Runner args
@@ -38,14 +38,14 @@ export default class Runner {
             saveAs: null,
         },
         raw: {},
-    }
+    };
 
     /**
      * Prettier parser config
      * @namespace
      * @property {Object} prettierConfig
      */
-    prettierConfig = {}
+    prettierConfig = {};
 
     constructor(args) {
         this.args = args;

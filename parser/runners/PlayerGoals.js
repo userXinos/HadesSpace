@@ -4,11 +4,11 @@ import { removeDupsFromArrays } from '../modules/csv2json.js';
 export default class PlayerGoals extends Runner {
     static config = {
         file: 'player_goals',
-    }
+    };
 
     prettierConfig = {
         printWidth: 230,
-    }
+    };
 
     run(rawData) {
         let WinBSWithModule = {};

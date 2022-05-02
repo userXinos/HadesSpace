@@ -1,8 +1,7 @@
 {
-  "ignorePatterns": ["parser/dist"],
-  "extends": ["google", "plugin:vue/recommended"],
+  "extends": ["eslint:recommended", "google", "plugin:vue/recommended"],
   "parserOptions": {
-    "ecmaVersion": 2021,
+    "ecmaVersion": 2022,
     "sourceType": "module"
   },
   "env": {

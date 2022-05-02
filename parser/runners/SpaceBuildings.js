@@ -12,7 +12,7 @@ export default class SpaceBuildings extends Runner {
     static config = {
         file: 'spacebuildings',
         runner: CONFIG,
-    }
+    };
 
     run(rawData) {
         const data = Runner.objectArrayify(rawData, {

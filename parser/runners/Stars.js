@@ -15,7 +15,7 @@ export default class Stars extends Runner {
         file: 'stars',
         runner: CONFIG,
         ignoreFiles: [ 'solar_system_gen_data' ],
-    }
+    };
 
     run(rawData) {
         const SSGData = this.readCsv( 'solar_system_gen_data' );

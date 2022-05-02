@@ -11,6 +11,7 @@ import loadFile from '../../parser/modules/loadFile.js';
  */
 export default async function(file, runner) {
     const path = join(CONFIG.pathRaw, file);
+    // noinspection JSCheckFunctionSignatures
     const { data } = await loadFile(path, [ runner ]).then((e) => e.render());
 
     return data;

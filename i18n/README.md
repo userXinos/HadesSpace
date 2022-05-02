@@ -1,4 +1,4 @@
-# Hades Space generate i18n 
+# HadesSpace i18n module
 Standalone submodule for generating locale files based on game locale files and additional strings
 
 ### Project Structure
@@ -22,6 +22,3 @@ Accepts filenames with strings to be added to output files as arguments
 | Name     |                      Description                       | Default |
 |----------|:------------------------------------------------------:|--------:|
 | `--full` | Add all possible strings from which locale to the file |         |
-
-### Requirements 
-- [Node](https://nodejs.org) v15+

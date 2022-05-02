@@ -1,8 +1,8 @@
 {
-  "parser": "@babel/eslint-parser",
-  "extends": "google",
+  "ignorePatterns": ["dist"],
+  "extends": ["eslint:recommended", "google"],
   "parserOptions": {
-    "ecmaVersion": 2021,
+    "ecmaVersion": 2022,
     "sourceType": "module"
   },
   "rules": {

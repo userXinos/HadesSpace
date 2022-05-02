@@ -12,7 +12,7 @@ export default class CapitalShips extends Runner {
     static config = {
         file: 'capital_ships',
         ignoreFiles: [ 'ship_spawners' ],
-    }
+    };
 
     run(rawData) {
         const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = this.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);

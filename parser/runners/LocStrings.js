@@ -3,11 +3,11 @@ import Runner from '../modules/Runner.js';
 export default class LocStrings extends Runner {
     prettierConfig = {
         printWidth: 80085,
-    }
+    };
 
     static config = {
         file: /loc_strings_\w+/,
-    }
+    };
 
     static parse(csv) {
         return Object.fromEntries(

@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn global add @vue/cli-service-global
-          npm run install-prod
+          npm install --production
 
       - name: Build
         run: |

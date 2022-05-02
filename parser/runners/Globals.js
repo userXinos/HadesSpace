@@ -3,11 +3,11 @@ import Runner from '../modules/Runner.js';
 export default class Globals extends Runner {
     static config = {
         file: 'globals',
-    }
+    };
 
     prettierConfig = {
         printWidth: 1000,
-    }
+    };
 
     run(rawData) {
         return Runner.objectArrayify(rawData, {

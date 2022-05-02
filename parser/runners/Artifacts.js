@@ -8,12 +8,12 @@ const CONFIG = Object.freeze({
 export default class Artifacts extends Runner {
     prettierConfig = {
         printWidth: 120,
-    }
+    };
 
     static config = {
         file: 'artifacts',
         runner: CONFIG,
-    }
+    };
 
     run(rawData) {
         const result = {};
@@ -63,5 +63,5 @@ export default class Artifacts extends Runner {
 
             return Runner.fillSpace(res, [], maxIndex + 1, true);
         }
-    };
+    }
 }

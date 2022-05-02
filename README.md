@@ -7,17 +7,15 @@ Parsing and displaying game data
 # install dependencies
 npm install
 
-# install dependencies in modules
-npm run postinstall
-
+# build
 npm run build
 ```
 
 ### Build a developer build 
 
 ```bash
+# install dependencies if not already installed
 npm install
-npm run postinstall
 
 # parse game data
 npm run parser
