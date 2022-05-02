@@ -10,12 +10,12 @@
     <Sidebar
       v-if="isMinMode"
       v-touch:swipe="swipeHandler"
-      :is-open="sideBarIsOpen"
+      :is-open="sidebarIsOpen"
     />
 
     <div
       v-touch:swipe="swipeHandler"
-      :class="{'mute': sideBarIsOpen}"
+      :class="{'mute': sidebarIsOpen}"
       @click.self="setShowSidebar(false)"
     >
       <div>
@@ -36,23 +36,32 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
 import Sidebar from '@/components/Sidebar.vue';
 import PWAPrompt from '@/components/PWAPrompt.vue';
 
+import appSidebar from '@/composables/appSidebar.js';
+
 const MAX_WIDTH = 1000;
-const ENABLE_SWIPE_PRESENT = 60;
 
 export default {
     name: 'App',
     components: { Head, GoTop, TheHeader, Sidebar },
-    data() {
+    setup() {
+        const isMinMode = ref(window.innerWidth < MAX_WIDTH);
+
+        const { setShow, swipeHandler, onResize, isOpen } = appSidebar(isMinMode);
+
         return {
-            isMinMode: (window.innerWidth < MAX_WIDTH),
-            ignoreSwipeUp: window.innerWidth * ENABLE_SWIPE_PRESENT / 100,
-            sideBarIsOpen: false,
+            isMinMode,
+            setShowSidebar: setShow,
+            sidebarIsOpen: isOpen,
+            swipeHandler,
+            onResize,
         };
     },
     mounted() {
@@ -83,27 +92,9 @@ export default {
                 this.$Progress.finish();
             });
         },
-        resize() {
+        resize(event) {
             this.isMinMode = (window.innerWidth < MAX_WIDTH);
-            this.ignoreSwipeUp = window.innerWidth * ENABLE_SWIPE_PRESENT / 100;
-            if (!this.isMinMode) {
-                this.setShowSidebar(false);
-            }
-        },
-
-        swipeHandler(direction, event) {
-            if (direction === 'right' && this.isMinMode && event.changedTouches[0].clientX <= this.ignoreSwipeUp) {
-                this.setShowSidebar(true);
-            }
-            if (direction === 'left') {
-                this.setShowSidebar(false);
-            }
-        },
-        setShowSidebar(bool) {
-            if (this.sideBarIsOpen !== bool) {
-                this.sideBarIsOpen = bool;
-                document.documentElement.style.overflow = (bool) ? 'hidden' : 'auto';
-            }
+            this.onResize(event);
         },
     },
 };
