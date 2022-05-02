@@ -1,8 +1,14 @@
 {
-  "extends": ["eslint:recommended", "google", "plugin:vue/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "google",
+    "plugin:vue/recommended",
+    "@vue/typescript"
+  ],
   "parserOptions": {
     "ecmaVersion": 2022,
-    "sourceType": "module"
+    "sourceType": "module",
+    "parser": "@typescript-eslint/parser"
   },
   "env": {
     "node": true

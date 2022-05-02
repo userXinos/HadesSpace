@@ -12,6 +12,6 @@ module.exports = {
             '@Store': path('src/store/index.js'),
             '@Handlers': path('src/js/Handlers'),
         },
-        extensions: ['.js'],
+        extensions: ['.js', '.ts'],
     },
 };
