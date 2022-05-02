@@ -20,7 +20,7 @@
                 </a>
               </div>
               <p
-                v-if="item.TID_Description"
+                v-if="item.TID_Description && (parent.TID_Description ? parent.TID_Description !== item.TID_Description : true)"
                 class="description"
               >
                 {{ formatDescr(item.TID_Description) }}
@@ -43,6 +43,7 @@
                     :items="value"
                     :format="format"
                     :parent-id="`${parentId}-${name}`"
+                    :parent="item"
                   />
                 </li>
               </ul>
@@ -115,6 +116,11 @@ export default {
             requested: true,
             default: null,
         },
+        parent: {
+            type: Object,
+            requested: false,
+            default: () => ({ TID_Description: null }),
+        },
         format: {
             type: Object,
             requested: true,
@@ -167,9 +173,9 @@ export default {
             return res;
         },
         formatDescr(descrKey) {
-            const customDescrKey = descrKey.replace('_DESCR', '_CUSTOM_DESCR');
+            const customDescrKey = descrKey.endsWith('_DESCR') ? descrKey.replace('_DESCR', '_CUSTOM_DESCR') : null;
             const descr = this.$t(descrKey, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
-            const customDescr = this.$te(customDescrKey) ? this.$t(customDescrKey) : null;
+            const customDescr = (customDescrKey && this.$te(customDescrKey)) ? this.$t(customDescrKey) : null;
 
             return (customDescr) ? `${descr}\n\n${customDescr}` : descr;
         },
@@ -210,7 +216,7 @@ $mw: 900px;
                     font-size: 170%;
 
                     @media screen and (max-width: $mw) {
-                        font-size: 180%;
+                        font-size: 140%;
                     }
                     a {
                         color: #ccd7de;
@@ -222,7 +228,7 @@ $mw: 900px;
                     margin: 0 0 1%;
 
                     @media screen and (max-width: $mw) {
-                        font-size: 100%;
+                        font-size: 90%;
                     }
                 }
                 .characteristics {

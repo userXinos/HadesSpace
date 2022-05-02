@@ -40,8 +40,9 @@
     text-shadow: 5px 5px 0 #000d2f;
 
     @media screen and (max-width: 1000px) {
-      font-size: 250%;
-      white-space: nowrap;
+      padding-top: 15%;
+      font-size: 230%;
+      white-space: normal;
     }
   }
 }

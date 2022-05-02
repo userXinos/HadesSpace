@@ -14,6 +14,7 @@
     >
       <stats
         :parent-id="data.default.Name"
+        :parent="data.default"
         :items="other"
         :format="format"
       />

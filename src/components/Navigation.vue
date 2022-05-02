@@ -152,11 +152,13 @@ $selected-color: #5fdba7;
     .name {
         padding: 0;
         line-height: $header-height;
+        font-size: 140%;
 
         @media screen and (max-width: $mv) {
             padding: 15px 0 15px 6%;
             line-height: normal;
             text-align: left;
+            font-size: 180%;
         }
     }
 
