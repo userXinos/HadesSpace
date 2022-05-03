@@ -9,9 +9,9 @@ module.exports = {
             '@Regulation': path('src/regulation'),
             '@Img': path('src/img'),
             '@Scripts': path('src/js'),
-            '@Store': path('src/store/index.js'),
+            '@Store': path('src/store'),
             '@Handlers': path('src/js/Handlers'),
         },
-        extensions: ['.js', '.ts'],
+        extensions: ['.js'],
     },
 };

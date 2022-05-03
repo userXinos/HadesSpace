@@ -1,4 +1,4 @@
-import i18n from '@Scripts/Vue/i18n.js';
+import i18n from '@Scripts/Vue/i18n.ts';
 
 const { t } = i18n.global;
 

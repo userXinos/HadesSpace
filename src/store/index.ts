@@ -2,9 +2,13 @@ import { createStore, createLogger } from 'vuex';
 
 const isDev = (process.env.NODE_ENV === 'development');
 
-import userSettingsModule from '@/store/modules/userSettings/index.js';
+import userSettingsModule from '@Store/modules/userSettings/index';
 
-export default createStore({
+interface RootState {
+    userSettings: UserSettings;
+}
+
+export default createStore<RootState>({
     strict: isDev,
 
     modules: {

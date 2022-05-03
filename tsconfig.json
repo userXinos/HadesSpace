@@ -17,13 +17,13 @@
       "webpack-env"
     ],
     "paths": {
-      "@/*": ["src/*"],
       "@Data/*": ["parser/dist/*"],
       "@i18n/*": ["i18n/dist/*"],
       "@Regulation/*": ["src/regulation/*"],
       "@Scripts/*": ["src/js/*"],
-      "@Store": ["src/store/index.js"],
+      "@Store/*": ["src/store/*"],
       "@Handlers/*": ["src/js/Handlers/*"],
+      "@/*": ["src/*"]
     },
     "lib": [
       "esnext",

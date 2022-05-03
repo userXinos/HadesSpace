@@ -60,7 +60,7 @@
 
 <script>
 import Modal from '@/components/Modal.vue';
-import types from '@/store/modules/userSettings/types.js';
+import types from '@Store/modules/userSettings/types';
 
 import languages from '@Data/languages.js';
 
