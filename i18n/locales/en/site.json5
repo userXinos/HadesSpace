@@ -17,5 +17,6 @@
   YES: 'Yes',
   NO: 'No',
   VALUE: 'Value {0}',
-  ABOUT: 'About project'
+  ABOUT: 'About project',
+  INPUT_VALUES: 'Input values'
 }

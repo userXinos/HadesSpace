@@ -48,7 +48,7 @@
 
 
     <v-data
-      :data="{TID: 'Input values', Name: 'Input', TID2: planets.TID}"
+      :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: planets.TID}"
       :table-opts="{lvlColKey: '№', mergeCells: false}"
       :max-width="1000"
     >
@@ -294,12 +294,12 @@ table.planetsCalc {
 .reset-buttons {
     display: flex;
     justify-content: end;
-    gap: 1%;
+    gap: 10px;
 
     // source: https://codepen.io/alticreation/pen/zBZwOP
 
     button {
-        padding: 0.7% 1%;
+        padding: 10px;
         color: #fff;
         text-transform: uppercase;
         font-size: 100%;
@@ -351,6 +351,10 @@ table.planetsCalc {
 .select {
     background-color: map.get($table, "background");
     border-color: map.get($table, "background");
+
+    option:disabled {
+        color: #0e1315;
+    }
 }
 
 </style>
