@@ -1,4 +1,4 @@
-export default function({ head, body }) {
+export default function({ head, body }, mergeCells) {
     const newHead = [[]];
     const newBody = [];
 
@@ -6,7 +6,7 @@ export default function({ head, body }) {
         .sort((_, [b]) => (b === 'default') ? 1 : -1)
         .forEach(([category, keys]) => {
             headMask(category, keys, newHead);
-            bodyMask(category, keys, body[category], newBody);
+            bodyMask(category, keys, body[category], mergeCells, newBody);
         });
 
     return {
@@ -34,7 +34,7 @@ function headMask(category, keys, out) {
     }
 }
 
-function bodyMask(category, keys, srcBody, out) {
+function bodyMask(category, keys, srcBody, mergeCells, out) {
     srcBody = rotateMatrix(srcBody);
     const hideByRow = [];
     // const colZero = [];
@@ -66,7 +66,7 @@ function bodyMask(category, keys, srcBody, out) {
             let rowspan = 1;
             const colspan = 1;
 
-            if (!hideByR) {
+            if (!hideByR && mergeCells) {
                 let r = rowIndex + 1;
                 while (r < arr.length && value === arr[r][elemIndex]) {
                     hideByRow.push(`${r}>${elemIndex}`);

@@ -1,24 +1,29 @@
 <template>
-  <div class="container">
-
-    <v-title
-      :data="title"
-      :format="format"
-      :icon-dir="iconDir"
-    />
-
-    <v-table
-      v-if="table != null"
-
-      :data="table"
-      :format="format"
-      v-bind="tableOpts"
+  <div class="container-wrap">
+    <div
+      class="container"
+      :style="{maxWidth: maxWidth ? `${maxWidth}px` : null}"
     >
-      <!--         eslint-disable vue/max-attributes-per-line         -->
-      <template #head="p"><slot name="table-head" v-bind="p" /></template>
-      <template #body="p"><slot name="table-body" v-bind="p" /></template>
-    </v-table>
 
+      <v-title
+        :data="title"
+        :format="format"
+        :icon-dir="iconDir"
+      />
+
+      <v-table
+        v-if="table != null"
+
+        :data="table"
+        :format="format"
+        v-bind="tableOpts"
+      >
+        <!--         eslint-disable vue/max-attributes-per-line         -->
+        <template #head="p"><slot name="table-head" v-bind="p" /></template>
+        <template #body="p"><slot name="table-body" v-bind="p" /></template>
+      </v-table>
+
+    </div>
   </div>
 </template>
 
@@ -48,6 +53,10 @@ export default {
         iconDir: {
             type: String,
             default: '',
+        },
+        maxWidth: {
+            type: Number,
+            default: 0,
         },
     },
     data() {
@@ -126,8 +135,14 @@ export default {
     },
 };
 </script>
-<style scoped>
-.container {
-  margin: 5% 3%;
+<style scoped lang="scss">
+.container-wrap {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+
+    .container {
+        width: 100%;
+    }
 }
 </style>

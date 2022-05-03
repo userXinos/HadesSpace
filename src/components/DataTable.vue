@@ -159,7 +159,7 @@ export default {
         }
     },
     created() {
-        this.tableMask = tableMask({ ...this.data });
+        this.tableMask = tableMask({ ...this.data }, this.mergeCells);
     },
     mounted() {
         window.addEventListener('scroll', this.onScroll);
@@ -169,7 +169,7 @@ export default {
     },
     methods: {
         onScroll() {
-            this.pinHead = this.isInViewport(this.$refs.table);
+            this.pinHead = !this.$slots && this.isInViewport(this.$refs.table);
         },
         isInViewport(element) {
             const rect = element.getBoundingClientRect();
