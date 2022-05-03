@@ -1,21 +1,23 @@
 {
+  "parser": "vue-eslint-parser",
   "extends": [
     "eslint:recommended",
     "google",
     "plugin:vue/recommended",
-    "@vue/typescript"
+    "@vue/typescript",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
-    "parser": "@typescript-eslint/parser"
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"]
   },
   "env": {
     "node": true
   },
   "rules": {
     "arrow-parens": ["error", "always"],
-    "no-unused-vars": ["warn"],
     "prefer-destructuring": ["error"],
     "indent": ["error", 4],
     "object-curly-spacing": ["error", "always"],
@@ -24,6 +26,8 @@
     "curly": ["error"],
     "space-before-blocks": ["error", "always"],
     "lines-between-class-members": ["error", "always"],
+
+    "@typescript-eslint/no-unused-vars": ["error"],
 
     "vue/singleline-html-element-content-newline": "off",
     "vue/multiline-html-element-content-newline": "off",

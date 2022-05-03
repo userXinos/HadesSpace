@@ -14,7 +14,7 @@
           :key="key + itemKey"
           :class="outputClassesTable(itemKey, key)"
         >
-          {{ item.toLocaleString() }}
+          {{ item.toLocaleString('ru-RU') }}
         </td>
       </tr>
       <tr
@@ -29,28 +29,28 @@
       </tr>
     </table>
 
-    <div class="btn-warp">
-      <div class="btn-reset">
+    <div class="margin-wrap">
+      <div class="reset-buttons">
         <button
           name="plan"
-          @click="reset"
+          @click="onReset"
         >
-          {{ $t("RESET_PLAN") }}
+          {{ $t('RESET_PLAN') }}
         </button>
         <button
-          class="btn-reset-all"
           name="all"
-          @click="reset"
+          @click="onReset"
         >
-          {{ $t("RESET_ALL") }}
+          {{ $t('RESET_ALL') }}
         </button>
       </div>
     </div>
 
 
     <v-data
-      :data="{TID: '', TID2: planets.TID}"
-      :table-opts="{lvlColKey: '№'}"
+      :data="{TID: 'Input values', Name: 'Input', TID2: planets.TID}"
+      :table-opts="{lvlColKey: '№', mergeCells: false}"
+      :max-width="1000"
     >
 
       <template #table-head>
@@ -59,12 +59,12 @@
 
       <template #table-body="{ row }">
         <td
-          v-for="type in ['actually', 'plan']"
+          v-for="type in Object.keys(input)"
           :key="type"
         >
           <select
             class="select"
-            @change="changeLvl(type, planets.Name[row], $event.target.value)"
+            @change="onChangeLvl(type, planets.Name[row], $event.target.value)"
           >
             <option
               v-for="(i, index) in (planets.MaxUpgradeLevel[row] + 1)"
@@ -81,216 +81,133 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
 import { Head } from '@vueuse/head';
 import VData from '@/components/Data.vue';
 
+import planetsCalcLogic, { Data, Input, InputKeys, ColNames, RowKeys } from '../composables/planetsCalcLogic';
+
 import planetsData from '@Data/planets.js';
-import levels from '@Data/planet_levels.js';
 import spaceBuildings from '@Data/spacebuildings.js';
 
 import key from '@Handlers/key.js';
 import value from '@Handlers/value.js';
 import compileOne from '@Scripts/compileOne.js';
 
+const LOCAL_STORAGE_KEY = 'planetsCalc';
+
 const { TradingStation } = spaceBuildings;
-const planetsYS = compileOne(planetsData, { filterByType: { path: 'planets.yellowstar' } });
+const planetsYS = compileOne(planetsData, { filterByType: { path: 'planets.yellowstar' } }) as Data;
 
 const planets = {
-    TID: planetsYS.TID,
-    Name: planetsYS.Name,
-    MaxUpgradeLevel: planetsYS.MaxUpgradeLevel,
-};
-
-const LOCAL_STORAGE_KEY = 'planetsCalc';
-const KEYS = ['CreditStorage', 'FuelStorage', 'CreditsPerHour', 'FuelPerHour', 'ShipmentsCRValuePerDay'];
-const KEYS_MODIFIERS = ['CreditStorageModifier', 'FuelStorageModifier', 'CreditIncomeModifier', 'FuelIncomeModifier', 'CreditShipmentModifier'];
-const KEYS_TOTAL = ['Cost', 'TimeToUpgrade'];
-const ROWS = ['actually', 'plan', 'result'];
-const KEYS_ALIASES_TS = {
-    ShipmentsCRValuePerDay: 'TotalShipmentCRPerDay',
-    Cost: 'Cost',
-    TimeToUpgrade: 'ConstructionTime',
+    TID: planetsYS.TID as string[],
+    Name: planetsYS.Name as string[],
+    MaxUpgradeLevel: planetsYS.MaxUpgradeLevel as number[],
 };
 
 
 // добавить торги к таблице
 for (let i = 0; TradingStation.MaxOnOwnSolarSystem > i; i++) {
-    planets.Name.push(`${TradingStation.Name }_${i}`);
+    planets.Name.push(`${TradingStation.Name}_${i}`);
     planets.MaxUpgradeLevel.push(TradingStation.Cost.length);
     planets.TID.push(TradingStation.TID);
 }
 
-export default {
+export default defineComponent({
     components: { Head, VData },
+    setup() {
+        const { output, update } = planetsCalcLogic(planetsYS as Data, TradingStation as any, planets.Name as string[]);
+
+        return {
+            output,
+            logicUpdateOutput: update,
+        };
+    },
     data() {
         return {
             title: this.$t('PLANETS_CALC'),
             planets,
-            output: {
-                calculated: {},
-                total: {},
+            input: { actually: {}, plan: {} } as Input,
+            updateOutput: () => this.logicUpdateOutput(this.input),
+
+            formatOpts: {
+                $t: this.$t.bind(this),
+                $te: this.$te.bind(this),
             },
-            storage: { actually: {}, plan: {} },
         };
     },
     created() {
         if (localStorage.getItem(LOCAL_STORAGE_KEY)) {
-            try {
-                this.storage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-            } catch (e) {
-                localStorage.removeItem(LOCAL_STORAGE_KEY);
-            }
+            this.input = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}');
         }
-        this.formatOpts = {
-            $t: this.$t.bind(this),
-            $te: this.$te.bind(this),
-        };
     },
     mounted() {
         this.updateOutput();
     },
     methods: {
-        createCells() {
-            KEYS.forEach((key) => {
-                const result = {};
-                ROWS.forEach((e) => (result[e] = 0));
-
-                this.output.calculated[key] = result;
-            });
-            KEYS_TOTAL.forEach((key) => {
-                this.output.total[key] = 0;
-            });
-        },
-        formatKey(k) {
+        formatKey(k: string) {
             return key(k, this.$route.name, this.formatOpts);
         },
-        formatValue(k, v) {
+        formatValue(k: string, v: string|number) {
             return value(k, v, planetsYS.Name, this.formatOpts);
         },
-        isSelected(type, keyIndex, value) {
+
+        isSelected(type: InputKeys, keyIndex: number, value: number): boolean {
             const key = planets.Name[keyIndex];
-            let current = this.storage.plan[key] || 0;
-            const min = this.storage.actually[key];
+            let current = this.input.plan[key] || 0;
+            const min = this.input.actually[key];
 
             if (min > current) {
-                current = this.changeLvl('plan', key, min);
+                current = this.onChangeLvl('plan', key, min);
             }
             if (type == 'plan') {
                 return (value == current);
             }
-            return (this.storage[type][key] == value);
+            return (this.input[type][key] == value);
         },
-        isDisabled(type, keyIndex, value) {
+        isDisabled(type: InputKeys, keyIndex: number, value: number): boolean {
             const key = planets.Name[keyIndex];
 
-            if (type != 'plan') return;
-            if (!this.storage.actually) return;
-            return (value < this.storage.actually[key]);
+            if (type != 'plan' || !this.input.actually) {
+                return false;
+            }
+            return (value < this.input.actually[key]);
         },
-        reset(event) {
-            if (event.target.name == 'all') {
+        onReset(event: Event): void {
+            if ((event.target as HTMLButtonElement).name == 'all') {
                 const msg = confirm('Reset all? Ar u serious ?');
                 if (msg) {
-                    this.storage = { actually: {}, plan: {} };
+                    this.input = { actually: {}, plan: {} } as Input;
                 } else {
                     return;
                 }
             } else {
-                if (this.storage.plan) {
-                    Object.keys(this.storage.plan).forEach((key) => {
-                        this.storage.plan[key] = this.storage.actually[key];
-                    });
+                if (this.input.plan) {
+                    for (const key of Object.keys(this.input.plan)) {
+                        this.input.plan[key] = this.input.actually[key];
+                    }
                 } else {
-                    this.storage.plan = {};
+                    this.input.plan = {};
                 }
             }
             this.updateOutput();
+            this.updateStorage();
         },
-        changeLvl(type, key, value) {
-            value = parseInt(value);
+        onChangeLvl(type: InputKeys, key: string, value: string|number): number {
+            value = (typeof value === 'string') ? parseInt(value) : value;
 
-            this.storage[type][key] = value;
+            this.input[type][key] = value;
             this.updateOutput();
+            this.updateStorage();
             return value;
         },
-        updateStorage() {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.storage));
+
+        updateStorage(): void {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.input));
         },
-        updateOutput() {
-            const result = this.output.calculated;
-            const resultTotal = this.output.total;
-
-            this.createCells(); // вайпнуть значения
-            this.updateStorage(); // синхронизировать хранилище
-
-            Object.keys(this.storage).forEach((key) => {
-                if (!Object.keys(this.storage[key]).length) return;
-
-                updateCol(key, this.storage[key]);
-            });
-
-            Object.keys(result).forEach((key) => { // вычислить прирост плана
-                result[key].plan = (result[key].plan - result[key].actually);
-            });
-            updateCol('result', this.storage.plan);
-            calculateTotal(this.storage);
-
-            function updateCol(mode, obj) {
-                Object.keys(obj).forEach((item) => {
-                    const itemLvl = obj[item] - 1;
-                    const itemIndex = planets.Name.indexOf(item);
-
-                    if (!obj[item]) return;
-                    Object.keys(result).forEach((key, index) => {
-                        let num1;
-                        let num2;
-
-                        if (mode == 'result') { // обновить результат
-                            num1 = result[key].plan;
-                            num2 = result[key].actually;
-                        } else {
-                            num1 = result[key][mode] || 0;
-                            if (KEYS_MODIFIERS[index]) {
-                                num2 = (levels[key][itemLvl] * planetsYS[KEYS_MODIFIERS[index]][itemIndex]) / 100;
-
-                                if (item.includes('TradingStation')) {
-                                    num2 = 0;
-                                    if (key in KEYS_ALIASES_TS) {
-                                        num2 = TradingStation[KEYS_ALIASES_TS[key]][itemLvl];
-                                    }
-                                }
-                            } else {
-                                num2 = levels[key][itemLvl];
-                            }
-                        }
-                        result[key][mode] = num1 + num2;
-                    });
-                });
-            }
-            function calculateTotal(obj) {
-                Object.keys(obj.plan).forEach((item) => {
-                    if (obj.plan[item] == 0) return;
-                    Object.keys(resultTotal).forEach((key) => {
-                        const PlanIndexLvl = obj.plan[item] - 1;
-                        const ActuallyIndexLvl = (obj.actually[item] || 0) - 1;
-                        const num1 = (resultTotal[key] == undefined) ? 0 : resultTotal[key];
-                        let num2 = 0;
-
-                        for (let level = ActuallyIndexLvl; PlanIndexLvl > level; level++) {
-                            let data = levels[key][level + 1] || 0;
-
-                            if (item.includes('TradingStation') && key in KEYS_ALIASES_TS) {
-                                data = TradingStation[KEYS_ALIASES_TS[key]][level + 1] || 0;
-                            }
-                            num2 = num2 + data;
-                        }
-                        resultTotal[key] = num1 + num2;
-                    });
-                });
-            }
-        },
-        outputClassesTable(type, key) {
+        outputClassesTable(type: ColNames, key: RowKeys): object {
             if (type == 'plan') {
                 return {
                     'plan-plus': this.output.calculated[key].plan,
@@ -299,16 +216,17 @@ export default {
             }
             if (type == 'result') {
                 const isGrowth = (this.output.calculated[key].actually < this.output.calculated[key].result);
-                const isHide = !this.output.total[Object.keys(this.output.total)[0]];
+                const isHide = this.output.total.TimeToUpgrade == 0;
                 return {
                     'result-growth': isGrowth,
                     'result-not-growth': !isGrowth,
                     'hide': isHide,
                 };
             }
+            return {};
         },
     },
-};
+});
 </script>
 
 <style scoped lang="scss">
@@ -317,98 +235,122 @@ export default {
 @import "../style/page";
 @import "../style/vars";
 
-.select {
-    background-color: map.get($table, "background");
-    border-color: map.get($table, "background");
-}
-.planetsCalc {
-  border: 1px solid #424547;
-  border-spacing: 0;
-  color: #aab2b6;
+$reset-button-colors: (
+    "all": #a90000,
+    "plan": #cca814,
+);
 
-  width: 90%;
-  max-width: 450px;
-  margin: 15px auto;
+.margin-wrap {
+    margin: 0 3%;
+}
+
+table.planetsCalc {
+    border: 1px solid #424547;
+    border-spacing: 0;
+    color: #aab2b6;
+
+    width: 90%;
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 15px;
 
     td {
         padding: 8px 10px 8px;
         line-height: 16px;
         text-align: center;
-        font-size: 80%;
+        font-size: 90%;
+
+        &:first-child {
+            text-align: left;
+            padding-right: 5%;
+        }
+    }
+
+    .total {
+        background-color: rgba(9, 12, 12, 0.99);
+        font-weight: bold;
+    }
+    .hide {
+        visibility: collapse;
+    }
+    .plan-plus {
+        color: #fff19f;
+        white-space: nowrap;
+
+        &:before {
+            content: "+";
+        }
+    }
+    .result-growth {
+        color: #1e7e34;
+    }
+    .result-not-growth{
+        opacity: 0.5;
     }
 }
-.planetsCalc > td {
-  padding: 8px 10px 8px;
-  line-height: 16px;
-  text-align: center;
-  font-size: 75%;
-  border: none;
-}
-.planetsCalc td:first-child {
-  text-align: left;
-}
-.planetsCalc tr.total {
-  background-color: rgba(9, 12, 12, 0.99);
-  font-weight: bold;
+
+
+.reset-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 1%;
+
+    // source: https://codepen.io/alticreation/pen/zBZwOP
+
+    button {
+        padding: 0.7% 1%;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 100%;
+        transition: all 0.3s;
+        position: relative;
+        border: none;
+        z-index: 1;
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            transition: all 0.3s;
+            z-index: -1;
+        }
+
+        &:hover:before {
+            width: 100%;
+        }
+
+
+        @each $name, $color in $reset-button-colors {
+            &[name="#{$name}"] {
+                &:after {
+                    background-color: $color
+                }
+
+                &:before {
+                    background-color: darken($color, 15%);
+                }
+            }
+        }
+    }
 }
 
-.hide {
-  visibility: collapse;
+.select {
+    background-color: map.get($table, "background");
+    border-color: map.get($table, "background");
 }
-.plan-plus {
-  color: #fff19f;
-  white-space: nowrap;
-}
-.plan-plus:before {
-  content: "+";
-}
-.result-growth {
-  color: #1e7e34;
-}
-.result-not-growth{
-  opacity: 0.5;
-}
-.btn-warp {
-  display: flex;
-}
-.btn-reset {
-  margin-left: auto;
-  padding-right: 3%;
-}
-.btn-reset button {
-  color: #fff;
-  cursor: pointer;
-  background-color: Transparent;
-  position: relative;
-  border: 1px solid #f7ca18;
-  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  padding: 10px 10px;
-  margin-left: 5px;
-}
-.btn-reset button:hover {
-  color: #000;
-  background-color: transparent;
-}
-.btn-reset button:hover:before {
-  left: 0;
-  right: auto;
-  width: 100%;
-}
-.btn-reset button:before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 0;
-  z-index: -1;
-  content: "";
-  background: #f7ca18;
-  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-}
-.btn-reset-all {
-  border: 1px solid #c90000 !important;
-}
-.btn-reset-all:before {
-  background: #c90000 !important;
-}
+
 </style>
