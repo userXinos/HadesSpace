@@ -151,7 +151,7 @@ $selected-color: #5fdba7;
 
     .name {
         padding: 0;
-        line-height: $header-height;
+        line-height: $header-default-height;
         font-size: 140%;
 
         @media screen and (max-width: $mv) {

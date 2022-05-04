@@ -43,7 +43,7 @@ $border-size: 3px;
     z-index: 3;
     transition: 0.5s;
     border-right: $border-color solid $border-size;
-    padding-top: $header-height;
+    padding-top: 80px;
     overflow: auto;
 }
 .show-sidebar {
