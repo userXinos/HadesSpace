@@ -118,6 +118,7 @@ for (let i = 0; TradingStation.MaxOnOwnSolarSystem > i; i++) {
 export default defineComponent({
     components: { Head, VData },
     setup() {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const { output, update } = planetsCalcLogic(planetsYS as Data, TradingStation as any, planets.Name as string[]);
 
         return {

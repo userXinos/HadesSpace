@@ -9,12 +9,12 @@
 }
 .portrait-container {
   margin-top: 5%;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
   position: relative;
   text-align: center;
 
-  @media screen and (max-width: 600px) {
-    margin-top: 15%;
+  @media screen and (max-width: 1000px) {
+    margin-top: 10%;
   }
 
   .portrait {
@@ -33,14 +33,14 @@
   .topic {
     font-size: 300%;
     position: absolute;
-    top: 15%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #e0e8ee;
     text-shadow: 5px 5px 0 #000d2f;
 
     @media screen and (max-width: 1000px) {
-      padding-top: 15%;
+      top: 50%;
       font-size: 230%;
       white-space: normal;
     }

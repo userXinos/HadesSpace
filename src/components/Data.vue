@@ -19,8 +19,8 @@
         v-bind="tableOpts"
       >
         <!--         eslint-disable vue/max-attributes-per-line         -->
-        <template #head="p"><slot name="table-head" v-bind="p" /></template>
-        <template #body="p"><slot name="table-body" v-bind="p" /></template>
+        <template v-if="$slots['table-head']" #head="p"><slot name="table-head" v-bind="p" /></template>
+        <template v-if="$slots['table-body']" #body="p"><slot name="table-body" v-bind="p" /></template>
       </v-table>
 
     </div>
@@ -66,6 +66,10 @@ export default {
                 body: {},
             },
             title: {},
+            formatOpts: {
+                $t: this.$t.bind(this),
+                $te: this.$te.bind(this),
+            },
             format: {
                 key: (k) => key(k, this.$route.name, this.formatOpts),
                 value: (k, v) => value(k, v, this.title.default.Name, this.formatOpts),
@@ -74,10 +78,6 @@ export default {
     },
     created() {
         this.packagingData(this.data);
-        this.formatOpts = {
-            $t: this.$t.bind(this),
-            $te: this.$te.bind(this),
-        };
     },
     methods: {
         packagingData(obj, category = 'default') {

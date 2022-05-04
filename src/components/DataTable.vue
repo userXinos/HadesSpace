@@ -152,6 +152,11 @@ export default {
             pinHead: false,
         };
     },
+    computed: {
+        hasSlots() {
+            return this.$slots.head && this.$slots.body;
+        },
+    },
 
     updated() {
         if (this.pinHead && this.$refs.teleTable) {
@@ -169,7 +174,7 @@ export default {
     },
     methods: {
         onScroll() {
-            this.pinHead = !this.$slots && this.isInViewport(this.$refs.table);
+            this.pinHead = !this.hasSlots && this.isInViewport(this.$refs.table);
         },
         isInViewport(element) {
             const rect = element.getBoundingClientRect();
