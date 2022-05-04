@@ -86,6 +86,7 @@ $mw: 1000px;
                 background: url("../img/logo.png") round center;
                 padding-top: $height;
                 padding-left: calc(#{$height} * 2);
+                background-position: inherit;
 
                 @media screen and (max-width: $mw) {
                     background-image: url("../img/mini-logo.png");
