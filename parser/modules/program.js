@@ -7,7 +7,8 @@ const { version } = JSON.parse(await readFile(new URL('../package.json', import.
 program
     .version(version)
     .option('-t, --type <type>', 'Type files', 'js')
-    .option('--no-wipe', 'Disable wipe dir before starting');
+    .option('--no-wipe', 'Disable wipe dir before starting')
+    .option('--ts-types', 'Create TypeScript types');
 
 
 export default program;

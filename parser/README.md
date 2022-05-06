@@ -22,4 +22,5 @@ Takes paths to raw files and dirs as arguments
 | Name            |        Description         | Default |
 |-----------------|:--------------------------:|--------:|
 | `--no-wipe`     | Do not wipe the output dir |         |
-| `--type <type>` |      Output file type      |      js |
+| `--type <type>` | Output file type           |      js |
+|`--ts-types`     | Create TypeScript types    |         |

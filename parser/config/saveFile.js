@@ -1,6 +1,8 @@
 import path from 'path';
 import CONFIG from '../config.js';
 
+import jsonToTSType from 'json-to-ts';
+
 const relativePath = (p) => {
     const root = path.join(CONFIG.pathRaw, '..');
     const relative = path.relative(root, p);
@@ -17,7 +19,7 @@ export default [
     {
         name: 'JavaScript',
         opts: { ...DEFAULT_OPTS, trailingComma: 'all', parser: 'babel' },
-        extensions: [ '.js', '._js', '.bones', '.es', '.es6', '.frag', '.gs', '.jake', '.jsb', '.jscad', '.jsfl', '.jsm', '.jss', '.mjs', '.njs', '.pac', '.sjs', '.ssjs', '.xsjs', '.xsjslib' ],
+        extensions: [ '.js', '._js', '.jsm', '.mjs' ],
 
         formatting(content, { runnerName, originalFile, usedFiles }) {
             const head = [];
@@ -41,11 +43,20 @@ export default [
     },
     {
         name: 'JSON',
-        extensions: [ '.json', '.avsc', '.geojson', '.gltf', '.JSON-tmLanguage', '.jsonl', '.tfstate', '.tfstate.backup', '.topojson', '.webapp', '.webmanifest' ],
-        opts: { ...DEFAULT_OPTS, trailingComma: 'es6', parser: 'json' },
+        extensions: [ '.json' ],
+        opts: { ...DEFAULT_OPTS, trailingComma: 'es5', parser: 'json' },
 
         formatting(content) {
             return JSON.stringify(content);
+        },
+    },
+    {
+        name: 'TypeScriptType',
+        opts: { ...DEFAULT_OPTS, trailingComma: 'none', parser: 'typescript' },
+        extensions: [ '.ts' ],
+
+        formatting(content) {
+            return jsonToTSType(content).reduce((acc, e) => `${e}\n${acc}`, '');
         },
     },
 ];
