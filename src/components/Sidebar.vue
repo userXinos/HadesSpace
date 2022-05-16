@@ -1,30 +1,47 @@
 <template>
-  <div>
-    <div
-      class="sidebar"
-      :class="{'show-sidebar': isOpen}"
-    >
-      <navigation />
-      <settings />
-    </div>
-  </div>
+  <modal v-model:open="propModel">
+    <transition>
+      <div
+        v-if="open"
+        v-touch:swipe="swipeHandler"
+        class="sidebar"
+      >
+        <navigation />
+        <settings />
+      </div>
+    </transition>
+  </modal>
 </template>
 
-<script>
+<script lang="js">
+import { defineComponent } from 'vue';
+
 import Navigation from './Navigation.vue';
+import Modal from '@/components/Modal.vue';
 import Settings from '@/components/Settings.vue';
 
-export default {
+export default defineComponent({
     name: 'Sidebar',
-    components: { Navigation, Settings },
+    components: { Navigation, Settings, Modal },
     props: {
-        isOpen: {
-            type: Boolean,
-            requested: true,
-            default: false,
+        open: Boolean,
+        swipeHandler: {
+            type: Function,
+            default: undefined,
         },
     },
-};
+    emits: ['update:open'],
+    computed: {
+        propModel: {
+            get() {
+                return this.open;
+            },
+            set(value) {
+                this.$emit('update:open', value);
+            },
+        },
+    },
+});
 </script>
 
 <style scoped lang="scss">
@@ -34,19 +51,23 @@ $sidebar-size: 80%;
 $border-size: 3px;
 
 .sidebar {
-    background-color: #161b1d;
-    opacity: 1;
-    height: 100%;
-    width: $sidebar-size;
     position: fixed;
-    left: calc( (#{$sidebar-size} + #{$border-size}) * -1 );
-    z-index: 3;
-    transition: 0.5s;
-    border-right: $border-color solid $border-size;
+    background-color: #161b1d;
+    height: 100%;
+    width: 80%;
+    border-right: #202a22 solid 3px;
     padding-top: 80px;
     overflow: auto;
+    top: 0;
+    z-index: 5;
 }
-.show-sidebar {
+
+.v-enter-active, .v-leave-active {
     left: 0;
+    transition: 700ms ease, left 350ms
+}
+.v-enter-from, .v-leave-to {
+    left: calc( (#{$sidebar-size} + #{$border-size}) * -1 );
+    transition: 550ms ease, left 300ms;
 }
 </style>

@@ -9,14 +9,12 @@
 
     <Sidebar
       v-if="isMinMode"
-      v-touch:swipe="swipeHandler"
-      :is-open="sidebarIsOpen"
+      v-model:open="sidebarIsOpen"
+      :swipe-handler="swipeHandler"
     />
 
     <div
       v-touch:swipe="swipeHandler"
-      :class="{'mute': sidebarIsOpen}"
-      @click.self="setShowSidebar(false)"
     >
       <div>
 
@@ -35,8 +33,8 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 
 import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
@@ -44,11 +42,11 @@ import TheHeader from '@/components/TheHeader.vue';
 import Sidebar from '@/components/Sidebar.vue';
 // import PWAPrompt from '@/components/PWAPrompt.vue';
 
-import appSidebar from '@/composables/appSidebar.js';
+import appSidebar from '@/composables/appSidebar';
 
 const MAX_WIDTH = 1000;
 
-export default {
+export default defineComponent({
     name: 'App',
     components: { Head, GoTop, TheHeader, Sidebar },
     setup() {
@@ -92,25 +90,14 @@ export default {
                 this.$Progress.finish();
             });
         },
-        resize(event) {
+        resize() {
             this.isMinMode = (window.innerWidth < MAX_WIDTH);
-            this.onResize(event);
+            this.onResize();
         },
     },
-};
+});
 </script>
 <style scoped lang="scss">
-.mute {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.4;
-    transition: 1s;
-
-    > div {
-        pointer-events: none;
-    }
-}
 
 .target-wrap {
     position: fixed;

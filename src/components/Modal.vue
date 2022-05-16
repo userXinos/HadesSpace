@@ -9,6 +9,7 @@
         <div
           v-if="open"
           class="background fixed"
+          @click="onClose"
         />
       </transition>
     </teleport>
@@ -17,14 +18,13 @@
       :disabled="!open"
       to="#modals"
     >
-      <transition name="content-wrapper">
-        <div
-          v-if="open"
-          class="content-wrapper fixed"
-          @click.self="onClose"
-        >
+      <slot name="default">
 
-          <slot name="default">
+        <transition name="content-wrapper">
+          <div
+            v-if="open"
+            class="content-wrapper fixed"
+          >
             <div :class="['content', `size-${size}`]">
 
               <div class="head">
@@ -42,10 +42,11 @@
               </div>
 
             </div>
-          </slot>
 
-        </div>
-      </transition>
+          </div>
+        </transition>
+
+      </slot>
     </teleport>
 
   </div>
@@ -54,22 +55,18 @@
 <script>
 
 export const SIZES = {
-    small: 'SMALL',
-    medium: 'MEDIUM',
-    large: 'LARGE',
+    SMALL: 'small',
+    MEDIUM: 'medium',
+    LARGE: 'large',
 };
 
 export default {
     name: 'Modal',
     props: {
-        open: {
-            type: Boolean,
-            requested: true,
-            default: false,
-        },
+        open: Boolean,
         size: {
             type: String,
-            default: SIZES.medium,
+            default: SIZES.MEDIUM,
         },
         title: {
             type: String,
@@ -138,15 +135,17 @@ $border-color: #aee3fc;
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
 
     .content {
         background: $background;
         border: $border-color solid 3px;
         justify-self: center;
         border-radius: 5px;
+        pointer-events: all;
 
         &.size {
-            &-MEDIUM {
+            &-medium {
                 width: 90%;
                 height: 80%;
                 max-width: 500px;

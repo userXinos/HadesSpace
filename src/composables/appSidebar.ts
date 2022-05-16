@@ -1,8 +1,10 @@
-import { ref } from 'vue';
+import { ref, Ref } from 'vue';
 
 const ENABLE_SWIPE_PRESENT = 60;
 
-export default function appSidebar(isMinMode) {
+type direction = 'right'|'left'|'top'|'bottom'
+
+export default function appSidebar(isMinMode: Ref<boolean>) {
     const isOpen = ref(false);
     const ignoreSwipeUp = ref(window.innerWidth * ENABLE_SWIPE_PRESENT / 100);
 
@@ -19,13 +21,10 @@ export default function appSidebar(isMinMode) {
             setShow(false);
         }
     }
-    function setShow(bool) {
-        if (isOpen.value !== bool) {
-            isOpen.value = bool;
-            document.documentElement.style.overflow = (bool) ? 'hidden' : 'auto';
-        }
+    function setShow(bool: boolean) {
+        isOpen.value = bool;
     }
-    function swipeHandler(direction, event) {
+    function swipeHandler(direction: direction, event: TouchEvent) {
         if (direction === 'right' && isMinMode && event.changedTouches[0].clientX <= ignoreSwipeUp.value) {
             setShow(true);
         }
