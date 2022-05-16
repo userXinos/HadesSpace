@@ -33,6 +33,7 @@
     "vue/multiline-html-element-content-newline": "off",
     "vue/multi-word-component-names": "off",
     "vue/no-unused-vars": ["error", {"ignorePattern": "^_"}],
+    "vue/no-v-model-argument": "off",
 
     "require-jsdoc": 0,
     "inebreak-style": 0,
