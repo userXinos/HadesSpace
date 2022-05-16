@@ -2,18 +2,16 @@
   <div>
     <div
       class="button"
-      @click="open"
+      @click="isOpenModal = true"
     >
       <div class="icon" />
       <span class="name">Settings</span>
     </div>
 
     <Modal
-      :is-open="isOpenModal"
-      :on-close="close"
+      v-model:open="isOpenModal"
+      :title="$t('TID_SETTINGS_DLG_TITLE')"
     >
-      <template #head> {{ $t('TID_SETTINGS_DLG_TITLE') }} </template>
-
       <template #body>
 
         <div class="select">
@@ -75,23 +73,7 @@ export default {
             languageCode: this.$store.state.userSettings.language,
         };
     },
-    created() {
-        this.$router.afterEach((to, form) => {
-            if (form.hash === '#modal') {
-                this.isOpenModal = false;
-            }
-        });
-    },
     methods: {
-        close() {
-            this.isOpenModal = false;
-            this.$router.back();
-        },
-        open() {
-            this.isOpenModal = true;
-            this.$route.hash !== '#modal' ? this.$router.push('#modal') : (this.isOpenModal = true);
-        },
-
         changeLanguage() {
             this.$store.commit(types.setLanguage, this.languageCode);
         },
@@ -120,16 +102,21 @@ $mv: 1000px;
     align-items: center;
 
     .icon {
-        background: url("../img/icons/settings.svg") no-repeat center;
-        padding: 23px 26px;
+        background: url("../img/icons/settings.svg") no-repeat;
+        width: 40px;
+        height: 40px;
 
         @media screen and (max-width: $mv) {
-            padding: 10px 20px;
+            width: 28px;
+            height: 28px;
+            padding-bottom: 2%;
+            margin-left: 3%;
         }
     }
      .name {
          display: none;
          font-size: 140%;
+         padding-left: 15px;
 
          @media screen and (max-width: $mv) {
              display: block;
@@ -162,7 +149,8 @@ $mv: 1000px;
 
     .label {
         cursor: pointer;
-        width: $size * 5;
+        flex-shrink: 0;
+        width: $size * 3;
         height: $size + 10px;
         border: red solid 1px;
         display: block;
