@@ -1,7 +1,7 @@
 import { reactive } from 'vue';
 
 import { InputRecord, OutputRecord, InputKeys, OutputKeys, Level } from '@/typings/calculators';
-import modules from '@Data/modules';
+import { getBySlotType } from '@/components/ModulePage.vue';
 import { getCharsWithHideStatus } from '@/components/DataHeadStats.vue';
 import objectArrayify from '@Scripts/objectArrayify';
 
@@ -16,7 +16,7 @@ export type Module = {
 
     UnlockPrice: number|number[],
     UnlockTime: number|number[],
-    [key: string]: number|number[]
+    [key: string]: number|number[]|{[k: string]: number[]}
 }
 export interface Output extends OutputRecord {
     actually: {[key: string]: Module}
@@ -31,6 +31,8 @@ export {
     OutputKeys,
 };
 
+type mapFnArgs = Parameters<(args: [string, unknown], i: number, arr: [string, unknown][]) => number>
+
 export default function modulesCalcLogic() {
     const output = reactive({
         actually: {},
@@ -42,22 +44,21 @@ export default function modulesCalcLogic() {
     return {
         output,
         update,
+        getModulesBySlotType,
     };
 
     function update(input: InputRecord, name?: string) {
-        const planMapFn = (name: string, level: number, [k]: [string, unknown]) => [
-            k, calcDiffChars(name, k, input.actually[name], level),
-        ];
-        const actuallyMapFn = (name: string, level: number, [k, v]: [string, unknown]) => [
-            k, Array.isArray(v) ? v[level - 1] : v,
-        ];
+        const planMapFn = (name: string, level: number, ...args: mapFnArgs) =>
+            mapFnWrap(([k], i, arr) => calcDiffChars(Object.fromEntries(arr), k, input.actually[name], level), name, ...args);
+        const actuallyMapFn = (name: string, level: number, ...args: mapFnArgs) =>
+            mapFnWrap(([, v]) => Array.isArray(v) ? v[level - 1] : v, name, ...args);
 
         Object.keys(output.total)
             .forEach((k) => output.total[k as keyof Output['total']] = 0);
 
         if (name) {
-            calcModule(output.plan, name, (...args) => planMapFn(name, input.plan[name], ...args));
-            calcModule(output.actually, name, (...args) => actuallyMapFn(name, input.actually[name], ...args));
+            calcModule(output.plan, name, (...args: mapFnArgs) => planMapFn(name, input.plan[name], ...args));
+            calcModule(output.actually, name, (...args: mapFnArgs) => actuallyMapFn(name, input.actually[name], ...args));
         } else {
             calcInput(input.plan, output.plan, planMapFn);
             calcInput(input.actually, output.actually, actuallyMapFn);
@@ -74,13 +75,21 @@ export default function modulesCalcLogic() {
             }
         }
     }
-    function calcModule(target: {[k: string]: Module}, name: string, map: ([k, v]: [string, number[]]) => (string | number)[]) {
-        if (!modulesChars[name]) {
-            modulesChars[name] = getChars((modules as {[k: string]: object})[name] as Module);
+    function mapFnWrap(mapFnElement: (...args: mapFnArgs) => number, name: string, ...args: mapFnArgs) {
+        const [[key]] = args;
+
+        if (isObject(modulesChars[name][key])) {
+            const obj = objectArrayify(modulesChars[name][key], {
+                map: (...args : mapFnArgs) => [args[0][0], mapFnElement(...args)],
+            }) as number; // <- тсс
+            return [key, obj];
         }
+        return [key, mapFnElement(...args)];
+    }
+    function calcModule(target: {[k: string]: Module}, name: string, map: (...args: mapFnArgs) => (string | number)[]) {
         target[name] = objectArrayify(modulesChars[name], { map }) as Module;
     }
-    function calcInput(entries: Level, target: {[k: string]: Module}, moduleMapFn: (name: string, level: number, [k]: [string, unknown]) => (string | number)[]) {
+    function calcInput(entries: Level, target: {[k: string]: Module}, moduleMapFn: (name: string, level: number, ...args: mapFnArgs) => (string | number)[]) {
         if (Object.keys(entries).length) {
             for (const [n, lvl] of Object.entries(entries)) {
                 if (!lvl) {
@@ -95,13 +104,16 @@ export default function modulesCalcLogic() {
             }
         }
     }
-    function calcDiffChars(name: string, key: string, levelOne: number, levelTwo: number) {
-        const char = modulesChars[name][key] as number[];
+    function calcDiffChars(obj: {[k: string]: unknown}, key: string, levelOne: number, levelTwo: number) {
+        const char = obj[key] as number[];
         const one = ((levelOne > 0) ? char[levelOne - 1] : 0);
         let two = char[levelTwo - 1];
 
         if (!Array.isArray(char)) {
-            return char;
+            if (!levelOne && levelTwo) {
+                return char;
+            }
+            return 0;
         }
 
         if (STACK_CHARS.includes(key)) {
@@ -115,7 +127,25 @@ export default function modulesCalcLogic() {
         return two - one;
     }
 
-    function getChars(module: Module) {
+    function getModulesBySlotType(type: string) {
+        const modules = getBySlotType(type) as { [k: string]: Module };
+
+        return Object.entries(modules).map(([name, module]) => {
+            let maxLevel = 1;
+
+            for (const [, value] of Object.entries(module)) {
+                if (Array.isArray(value) && value.length > maxLevel) {
+                    maxLevel = value.length;
+                }
+            }
+
+            modulesChars[name] = getChars((modules as {[k: string]: object})[name] as Module, maxLevel);
+
+            return [module, maxLevel];
+        });
+    }
+
+    function getChars(module: Module, maxLevel: number) {
             type ObjAndVisible = [object, boolean];
 
             const raw = getCharsWithHideStatus(module);
@@ -131,15 +161,19 @@ export default function modulesCalcLogic() {
                         const value = (typeof oav[1] == 'boolean') ? oav[0] : oav;
 
                         if (isObject(value)) {
-                            removeNotArrayChars(value as {[key: string]: object});
-                            if (!Object.keys(value).length) {
+                            const subChars = getChars(value as Module, maxLevel);
+
+                            if (Object.keys(subChars).length) {
+                                obj[key] = subChars;
+                            } else {
                                 delete obj[key];
                             }
                             continue;
-                        }
-                        if (!Array.isArray(value) && !STACK_CHARS.includes(key)) {
-                            delete obj[key];
-                            continue;
+                        } else {
+                            if (!(Array.isArray(value) && value.length == maxLevel) && !STACK_CHARS.includes(key)) {
+                                delete obj[key];
+                                continue;
+                            }
                         }
                         if (typeof oav[1] == 'boolean') {
                             obj[key] = value;

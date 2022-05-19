@@ -59,7 +59,7 @@
           <h3> {{ format.key(type) }} </h3>
           <ul>
             <li
-              v-for="([module, maxLevel]) of getType(type)"
+              v-for="([module, maxLevel]) of getModulesBySlotType(type)"
               :key="module.Name"
               class="module"
             >
@@ -72,8 +72,12 @@
                   dir="game/Modules"
                 />
                 <div class="levels">
-                  <span> {{ input.actually[module.Name] ? input.actually[module.Name] : '' }} </span>
-                  <span> {{ input.plan[module.Name] ? input.plan[module.Name] : '' }} </span>
+                  <span>
+                    {{ input.actually[module.Name] ? input.actually[module.Name] : '' }}
+                  </span>
+                  <span>
+                    {{ (input.plan[module.Name] && input.plan[module.Name] != input.actually[module.Name])? input.plan[module.Name] : '' }}
+                  </span>
                 </div>
               </div>
             </li>
@@ -114,7 +118,7 @@
             />
           </div>
 
-          <ul class="stats">
+          <ul class="chars">
             <li
               v-for="type in Object.keys(input)"
               :key="type"
@@ -138,7 +142,7 @@
             <li
               v-for="(_, key) in output.plan[modalOpts.data.key]"
               :key="key"
-              class="output"
+              :class="{'output': true, 'sub-chars': typeof output.plan?.[modalOpts.data.key]?.[key] == 'object'}"
             >
               <b>{{ format.key(key) }}</b>
               <div>
@@ -147,9 +151,34 @@
                   :key="type"
                   :class="outputClasses(type, key)"
                 >
-                  <template v-if="output[type][modalOpts.data.key]">
-                    {{ format.value(key, output[type][modalOpts.data.key][key]) }}
+
+                  <template v-if="typeof output[type]?.[modalOpts.data.key]?.[key] === 'object'">
+                    <ul>
+                      <li
+                        v-for="(_, k1) in output[type][modalOpts.data.key][key]"
+                        :key="k1"
+                        class="output"
+                      >
+                        <b>{{ format.key(k1) }}</b>
+                        <div>
+                          <span
+                            v-for="type1 of Object.keys(input)"
+                            :key="type1"
+                            :class="outputClasses(type1, k1)"
+                          >
+                            <template v-if="output[type1][modalOpts.data.key][key]">
+                              {{ format.value(k1, output[type1][modalOpts.data.key][key][k1]) }}
+                            </template>
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
                   </template>
+
+                  <template v-else>
+                    {{ format.value(key, output[type]?.[modalOpts.data.key]?.[key]) }}
+                  </template>
+
                 </span>
               </div>
             </li>
@@ -172,24 +201,22 @@ import Confirm from '@/components/TheConfirm.vue';
 import value from '@Handlers/value';
 import key from '@Handlers/key';
 import modulesCalcLogic, { STACK_CHARS, Input, OutputKeys, Module, Output } from '@/composables/modulesCalcLogic';
-import { getBySlotType } from '@/components/ModulePage.vue';
 import { InputKeys } from '../composables/planetsCalcLogic.js';
 import { sec2crystals } from '@Scripts/crystalConverter';
 
 const LOCAL_STORAGE_KEY = 'modulesCalc';
 const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
 
-// {"plan":{"Recall":1,"RelicDrone":12,"TransportCapacity":12,"ShipmentComputer":12,"Trader":12,"Rush":12,"TradeBurst":12,"ShipmentDrone":12,"Offload":10,"ShipmentBeam":12,"Entrust":12,"Dispatch":10,"MiningBoost":12,"MineralStorageCapacity":10,"Enrich":12,"MassMining":10,"HydrogenUpload":12,"MiningUnity":10,"Crunch":12,"Genesis":12,"HydroRocket":12,"MiningDrone":10,"WeakBattery":1,"Battery":12,"Laser":12,"MassBattery":12,"DualLaser":12,"Barrage":12,"DartLauncher":12,"WeakShield":5,"StandardShield":12,"PassiveShield":12,"StrongShield":12,"MirrorShield":12,"BlastShield":12,"AreaShield":12,"EMP":12,"Teleport":12,"RedStarExtender":10,"Repair":12,"TimeWarp":12,"Unity":12,"Sanctuary":1,"Stealth":12,"Fortify":12,"Impulse":12,"AlphaRocket":12,"Salvage":12,"Supress":12,"Destiny":12,"Barrier":12,"Vengeance":12,"DeltaRocket":12,"Leap":10,"Bond":12,"LaserTurret":12,"AlphaDrone":12,"Suspend":12,"OmegaRocket":12,"RemoteBomb":12}}
-
 export default defineComponent({
     name: 'ModulesCalc',
     components: { Head, Icon, Modal, Confirm },
     setup() {
-        const { output, update } = modulesCalcLogic();
+        const { output, update, getModulesBySlotType } = modulesCalcLogic();
 
         return {
             output,
             logicUpdateOutput: update,
+            getModulesBySlotType,
         };
     },
     data() {
@@ -239,22 +266,6 @@ export default defineComponent({
         this.updateOutput();
     },
     methods: {
-        getType(type: string): [Module, number][] {
-            const modules = getBySlotType(type) as { [k: string]: Module };
-
-            // noinspection TypeScriptUnresolvedFunction
-            return Object.entries(modules).map(([, module]) => {
-                let maxLevel = 1;
-
-                // noinspection TypeScriptUnresolvedFunction
-                for (const [, value] of Object.entries(module)) {
-                    if (Array.isArray(value) && value.length > maxLevel) {
-                        maxLevel = value.length;
-                    }
-                }
-                return [module, maxLevel];
-            });
-        },
         isSelected(type: InputKeys, value: number): boolean {
             const { key } = this.modalOpts.data;
             let current = this.input.plan[key] || 0;
@@ -318,7 +329,7 @@ export default defineComponent({
                 this.input[type][key] = value;
             }
 
-            this.updateOutput();
+            this.updateOutput(key);
             this.updateStorage();
             return value;
         },
@@ -331,10 +342,12 @@ export default defineComponent({
             const { key } = this.modalOpts.data;
 
             if (type == 'plan') {
+                const char = this.output[type][key][charName];
+
                 return {
                     'plan': this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true,
                     'plus': !STACK_CHARS.includes(charName),
-                    'hide': this.input.plan[key] == this.input.actually[key],
+                    'hide': this.input.plan[key] == this.input.actually[key] || typeof char === 'object',
                 };
             }
             if (type == 'actually') {
@@ -477,7 +490,7 @@ $plan-color: #ded45a;
     }
 }
 
-.stats {
+.chars {
     li {
         display: flex;
         justify-content: space-between;
@@ -485,6 +498,14 @@ $plan-color: #ded45a;
 
         &.output {
             font-size: 90%;
+        }
+        &.sub-chars {
+            margin-top: 4%;
+            flex-direction: column;
+
+            > div {
+                margin-top: 2%;
+            }
         }
 
         .select {

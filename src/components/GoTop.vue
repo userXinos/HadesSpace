@@ -12,11 +12,13 @@
 export default {
     data() {
         return {
-            open: false,
-            hide: this.debounce(() => this.show = false),
+            show: false,
         };
     },
     created() {
+        this.hide = this.debounce(() => this.show = false);
+    },
+    mounted() {
         document.addEventListener('scroll', this.scroll);
     },
     unmounted() {
@@ -27,10 +29,13 @@ export default {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         scroll() {
-            this.show = (window.scrollY > 300);
-            this.hide();
+            const show = (window.scrollY > 300);
+            if (this.show != show) {
+                this.show = show;
+                this.hide();
+            }
         },
-        debounce(func, timeout = 2000) {
+        debounce(func, timeout = 4000) {
             let timer;
             return (...args) => {
                 clearTimeout(timer);
