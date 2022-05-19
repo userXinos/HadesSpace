@@ -132,11 +132,6 @@ export default defineComponent({
             planets,
             input: { actually: {}, plan: {} } as Input,
             updateOutput: () => this.logicUpdateOutput(this.input),
-
-            formatOpts: {
-                $t: this.$t.bind(this),
-                $te: this.$te.bind(this),
-            },
         };
     },
     created() {
@@ -149,10 +144,10 @@ export default defineComponent({
     },
     methods: {
         formatKey(k: string) {
-            return key(k, this.$route.name, this.formatOpts);
+            return key(k, this.$route.name);
         },
         formatValue(k: string, v: string|number) {
-            return value(k, v, planetsYS.Name, this.formatOpts);
+            return value(k, v, planetsYS.Name);
         },
 
         isSelected(type: InputKeys, keyIndex: number, value: number): boolean {

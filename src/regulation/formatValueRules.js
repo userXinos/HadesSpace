@@ -1,9 +1,11 @@
 // noinspection SpellCheckingInspection
 
+import i18n from '@/js/Vue/i18n';
 import Icon from '@/components/Icon.vue';
 import sec2str from '@Scripts/sec2str.js';
 import locKeys from '@Regulation/locKeys.js';
 
+const { t } = i18n.global;
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 
 export default [
@@ -105,7 +107,7 @@ export default [
             'ShowDurationInTopSpot',
             'NoCerbBondTeleportP', // так надо
         ],
-        (v, { $t }) => v ? $t('YES') : $t('NO'),
+        (v) => v ? t('YES') : t('NO'),
     ],
     [
         [
@@ -115,7 +117,7 @@ export default [
             'AttackRange',
             'CollapseAreaSize',
         ],
-        (v, { $t }) => `${v / 10} ${$t('AU')}`,
+        (v) => `${v / 10} ${t('AU')}`,
     ],
     [
         ['APTPIOTTP'],
@@ -131,11 +133,11 @@ export default [
     ],
     [
         ['MoveHydrogenCostPerSector', 'TSHydroCost', 'ActivationFuelCost'],
-        (v, { $t }) => `${numberFormat(v)} ${$t('HYD')}.`,
+        (v) => `${numberFormat(v)} ${t('HYD')}.`,
     ],
     [
         ['SecurityRating'],
-        (v, { $t }) => $t(`TID_SECURITY_RATING_${v}`),
+        (v) => t(`TID_SECURITY_RATING_${v}`),
     ],
     [
         ['BSAnomaly'],
@@ -143,7 +145,7 @@ export default [
     ],
     [
         ['FuelUseIncrease', 'FuelUsePer5000Distance'],
-        (v, { $t }) => `${v / 5}/100${$t('AU')}`,
+        (v) => `${v / 5}/100${t('AU')}`,
     ],
     [
         ['TimeSlowdownFactor'],
@@ -159,15 +161,15 @@ export default [
     ],
     [
         ['TID', 'TID2', 'TID_Description', 'TID_Artifact'],
-        (v, { $t }) => $t(v),
+        (v) => t(v),
     ],
     [
         ['BaseType'],
-        (v, { $t }) => v ? `${v.NumBases} ${$t(v.TID)}` : '',
+        (v) => v ? `${v.NumBases} ${t(v.TID)}` : '',
     ],
     [
         ['MiningPeriod'],
-        (v, { $t }) => `${(60 * (100 / v)).toFixed(1)}/${$t('TID_MINUTE_ABBREVIATION')}`,
+        (v) => `${(60 * (100 / v)).toFixed(1)}/${t('TID_MINUTE_ABBREVIATION')}`,
     ],
     [
         ['GhostSpawnSecs'],
@@ -175,7 +177,7 @@ export default [
     ],
     [
         ['InitialModule', 'ShipToSpawn', 'Name'],
-        (v, { $t }) => $t(locKeys[v] || v),
+        (v) => t(locKeys[v] || v),
     ],
     [
         ['PassiveIncomeModifier'],
@@ -191,7 +193,7 @@ export default [
     ],
     [
         ['PreparationTimeHours', 'TeleportShipmentsDurationHr'],
-        (v, { $t }) => `${v} ${ $t('TID_HOUR_ABBREVIATION')}`,
+        (v) => `${v} ${ t('TID_HOUR_ABBREVIATION')}`,
     ],
     [
         ['HealRate'],
@@ -199,7 +201,7 @@ export default [
     ],
     [
         ['Speed'],
-        (v, { $t }) => `${v * 6} ${$t('AU')}/${$t('TID_MINUTE_ABBREVIATION')}`,
+        (v) => `${v * 6} ${t('AU')}/${t('TID_MINUTE_ABBREVIATION')}`,
     ],
     [
         ['MinScannerLevel'],
@@ -207,7 +209,7 @@ export default [
     ],
     [
         ['SlotsUsed'],
-        (v, { $t }) => $t('TID_TRADE_DLG_ITEM_WEIGHT', [v]),
+        (v) => t('TID_TRADE_DLG_ITEM_WEIGHT', [v]),
     ],
     [
         ['*'],
@@ -225,25 +227,25 @@ export default [
     ],
     [
         ['DestinyDisableTimes'],
-        ([rs, ws], { $t }) => `${$t('RS')}: ${sec2str(rs)} | ${$t('WS')}: ${sec2str(ws * 600)}`,
+        ([rs, ws]) => `${t('RS')}: ${sec2str(rs)} | ${t('WS')}: ${sec2str(ws * 600)}`,
     ],
     [
         ['BarrageMaxAdditionalEnemies'],
-        ([rs, ws], { $t }) => `${$t('RS')}: ${rs} | ${$t('WS')}: ${ws}`,
+        ([rs, ws]) => `${t('RS')}: ${rs} | ${t('WS')}: ${ws}`,
     ],
     [
         ['SalvageHullPercent'],
-        ([rs, ws], { $t }) => `${$t('RS')}: ${rs}% / ${$t('WS')}: ${ws}%`,
+        ([rs, ws]) => `${t('RS')}: ${rs}% / ${t('WS')}: ${ws}%`,
     ],
     [
         ['ActivationType'],
-        (v, { $t }) => v === 'Passive' ? $t('TID_MODULE_TYPE_PASSIVE') : (v === 'Activated' ? $t('TID_MODULE_TYPE_ACTIVATED') : v),
+        (v) => v === 'Passive' ? t('TID_MODULE_TYPE_PASSIVE') : (v === 'Activated' ? t('TID_MODULE_TYPE_ACTIVATED') : v),
     ],
     [
         ['CerbGroup'],
-        (v, { $t }) => (v === null) ? '' : Object.entries(v)
+        (v) => (v === null) ? '' : Object.entries(v)
             .filter(([k]) => k !== 'Name') //                          NumCERBER_NAMEs
-            .map(([k, v]) => `${$t(locKeys[k.replace(/^Num(.+?)s?$/, '$1')])}: ${v}`)
+            .map(([k, v]) => `${t(locKeys[k.replace(/^Num(.+?)s?$/, '$1')])}: ${v}`)
             .join(', '),
     ],
     [
@@ -255,32 +257,32 @@ export default [
     ],
     [
         ['ConceptImage'],
-        (v, { $t }) => (createElement) => createElement('a', {
+        (v) => (createElement) => createElement('a', {
             href: require(`@Img/game/portraits/${v}.png`),
             target: '_blank',
         }, [
-            $t('OPEN'),
+            t('OPEN'),
             createElement('img', { src: require('@Img/icons/outbound.svg') }),
         ]),
     ],
     [
         ['PlanetTypes'],
-        (v, { $t }) => {
+        (v) => {
             return (Array.isArray(v) ? v : [v])
                 .filter((e) => e !== null)
                 .map((e) => {
                     const [name, lvl] = e.split('_');
                     if (!lvl) return name;
-                    return `${$t(locKeys[name])} ${$t('LVL')}. ${lvl.slice(-1)}`;
+                    return `${t(locKeys[name])} ${t('LVL')}. ${lvl.slice(-1)}`;
                 })
                 .join(', ');
         },
     ],
     [
         ['NewModuleSlots'],
-        (v, { $t }) => {
+        (v) => {
             return (Array.isArray(v) ? v : [v])
-                .map((e) => $t(locKeys[e] || e))
+                .map((e) => t(locKeys[e] || e))
                 .join(', ');
         },
     ],
@@ -302,7 +304,7 @@ export default [
     ],
     [
         ['valueX'],
-        (v, { $t }) => $t(locKeys[v.replace(/^Cerberus(.+?)s?$/, '$1')]),
+        (v) => t(locKeys[v.replace(/^Cerberus(.+?)s?$/, '$1')]),
         ['DestroySentinels', 'DestroyGuardians', 'DestroyColossus', 'DestroyInterceptor', 'DestroyPhoenix'],
     ],
 ];

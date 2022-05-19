@@ -247,13 +247,9 @@ export default defineComponent({
                 },
             },
 
-            formatOpts: {
-                $t: this.$t.bind(this),
-                $te: this.$te.bind(this),
-            },
             format: {
-                key: (k: string) => key(k, this.$route.name, this.formatOpts),
-                value: (k: string, v: string | number) => value(k, v, null, this.formatOpts),
+                key: (k: string) => key(k, this.$route.name),
+                value: (k: string, v: string | number) => value(k, v, null),
             },
         };
     },
