@@ -106,6 +106,7 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../style/vars";
+@import "../style/page";
 
 $mw: 900px;
 

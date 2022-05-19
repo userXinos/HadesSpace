@@ -2,7 +2,7 @@
 <!--suppress HtmlUnknownTag -->
 
 <template>
-  <div id="app">
+  <div>
     <Head><title>Hades Space</title></Head>
     <vue-progress-bar />
 
@@ -39,7 +39,7 @@ import { defineComponent, ref } from 'vue';
 import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
-import Sidebar from '@/components/Sidebar.vue';
+import Sidebar from '@/components/TheSidebar.vue';
 // import PWAPrompt from '@/components/PWAPrompt.vue';
 
 import appSidebar from '@/composables/appSidebar';

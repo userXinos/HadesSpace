@@ -1,5 +1,5 @@
 <template>
-  <div class="cont">
+  <div class="container">
 
     <template v-if="Object.keys(args.data).length > 1">
       <h2>{{ $t("CONTENT") }}</h2>
@@ -51,7 +51,7 @@ export default {
         args: {
             /** @type {args} */
             type: Object,
-            default: () => {},
+            default: () => ({}),
             required: true,
         },
     },
@@ -59,17 +59,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.list {
-    margin: 0 3%;
-
-    ol {
-        border: 5px solid #586066;
-        list-style-type: none;
-        columns: 200px auto;
-        font-size: 125%;
-    }
-    li {
+.container {
+    h2 {
         text-align: center;
+        margin: 30px;
+    }
+
+    .list {
+        margin: 0 3%;
+
+        ol {
+            border: 5px solid #586066;
+            list-style-type: none;
+            columns: 200px auto;
+            font-size: 125%;
+        }
+        li {
+            text-align: center;
+        }
     }
 }
 </style>

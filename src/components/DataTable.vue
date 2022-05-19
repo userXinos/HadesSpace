@@ -148,7 +148,6 @@ export default {
     data() {
         return {
             headStatsInfoData: {},
-            tableMask: {},
             pinHead: false,
         };
     },
@@ -156,15 +155,15 @@ export default {
         hasSlots() {
             return this.$slots.head && this.$slots.body;
         },
+        tableMask() {
+            return tableMask({ ...this.data }, this.mergeCells);
+        },
     },
 
     updated() {
         if (this.pinHead && this.$refs.teleTable) {
             this.$refs.teleTable.scrollLeft = this.$refs.table.scrollLeft;
         }
-    },
-    created() {
-        this.tableMask = tableMask({ ...this.data }, this.mergeCells);
     },
     mounted() {
         window.addEventListener('scroll', this.onScroll);

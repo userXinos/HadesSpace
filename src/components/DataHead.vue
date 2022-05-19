@@ -45,14 +45,12 @@ export default {
             default: '',
         },
     },
-    data() {
-        return {
-            other: {},
-        };
-    },
-    created() {
-        this.other = { ...this.data };
-        delete this.other.default;
+    computed: {
+        other() {
+            const res = { ...this.data };
+            delete res.default;
+            return res;
+        },
     },
 };
 </script>

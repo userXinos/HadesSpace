@@ -16,7 +16,7 @@
 <script lang="js">
 import { defineComponent } from 'vue';
 
-import Navigation from './Navigation.vue';
+import Navigation from './TheNavigation.vue';
 import Modal from '@/components/Modal.vue';
 import Settings from '@/components/Settings.vue';
 

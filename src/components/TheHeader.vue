@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Navigation from './Navigation.vue';
+import Navigation from './TheNavigation.vue';
 import Settings from '@/components/Settings.vue';
 
 export default {

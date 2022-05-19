@@ -16,8 +16,8 @@ body, html {
 }
 
 html[no-scroll] {
-    overflow: hidden;
-    padding-right: var(--scroll-bar-width);
+    // overflow: hidden;
+    // margin-right: var(--scroll-bar-width);
 }
 
 a {
@@ -30,15 +30,4 @@ a {
         color: #029be0;
         text-decoration: underline;
     }
-}
-
-h1 {
-    color: #a2a7aa;
-    text-align: center;
-    font-size: 250%;
-}
-h2 {
-    padding: 30px 0 1%;
-    color: #ccd7de;
-    text-align: center;
 }

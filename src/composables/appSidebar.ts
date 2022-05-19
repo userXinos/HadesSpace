@@ -25,6 +25,9 @@ export default function appSidebar(isMinMode: Ref<boolean>) {
         isOpen.value = bool;
     }
     function swipeHandler(direction: direction, event: TouchEvent) {
+        if (!window.TouchEvent || event.type !== 'touchend') {
+            return;
+        }
         if (direction === 'right' && isMinMode && event.changedTouches[0].clientX <= ignoreSwipeUp.value) {
             setShow(true);
         }
