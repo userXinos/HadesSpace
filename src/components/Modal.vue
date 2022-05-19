@@ -63,7 +63,6 @@ export const SIZES = {
 export default {
     name: 'Modal',
     props: {
-        open: Boolean,
         size: {
             type: String,
             default: SIZES.MEDIUM,
@@ -72,6 +71,7 @@ export default {
             type: String,
             default: undefined,
         },
+        open: Boolean,
     },
     emits: ['update:open'],
     watch: {
@@ -122,7 +122,7 @@ $border-color: #aee3fc;
     background-color: rgba(0, 0, 0, 0.6);
 
     &-enter-active, &-leave-active {
-        transition: background-color 0.5s linear;
+        transition: background-color 300ms linear;
     }
 
     &-enter-from, &-leave-to {
@@ -139,16 +139,19 @@ $border-color: #aee3fc;
 
     .content {
         background: $background;
-        border: $border-color solid 3px;
-        justify-self: center;
+        border: $border-color solid 1px;
         border-radius: 5px;
         pointer-events: all;
+        height: 80%;
+        width: 90%;
 
         &.size {
             &-medium {
-                width: 90%;
-                height: 80%;
                 max-width: 500px;
+            }
+            &-small {
+                max-width: 450px;
+                max-height: 700px;
             }
         }
 
@@ -160,13 +163,13 @@ $border-color: #aee3fc;
                 position: absolute;
                 right: 0;
                 background: url(../img/icons/close.svg) no-repeat;
-                width: 62px;
-                height: 40px;
-                margin-top: -2px;
+                width: 52px;
+                height: 35px;
                 cursor: pointer;
             }
             h2 {
                 padding-top: 15px;
+                text-align: center;
             }
         }
 
@@ -180,12 +183,9 @@ $border-color: #aee3fc;
         transition: 700ms ease, transform 350ms
     }
     &-enter-from, &-leave-to {
-        transform: scale(0.6);
-        transition: 550ms ease, transform 300ms;
-    }
-    &-leave-to {
         opacity: 0;
-        transition: 550ms ease, opacity 200ms;
+        transform: scale(0.6);
+        transition: 550ms ease, transform 300ms, opacity 200ms;
     }
 }
 </style>
