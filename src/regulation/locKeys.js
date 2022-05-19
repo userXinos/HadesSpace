@@ -105,6 +105,7 @@ export default {
     BlueStar_Fragments: 'BLS_FRAGMENTS',
     ConceptImage: 'PORTRAIT',
     AIUpdateIntervalSeconds: 'AI_UPDATE_INTERVAL',
+    ReqBank: 'REQ_BANK',
 
     ActivationType: 'TID_MODULE_TYPE',
     StarSectorDPS: 'STAR_SECTOR_DPS',

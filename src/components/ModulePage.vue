@@ -15,7 +15,7 @@ const sortByAwardLevel = objectArrayify(modulesData, {
     filter: ([, v]) => !v.Hide,
     sort: (([, a], [, b]) => a.AwardLevel - b.AwardLevel),
 });
-const getBySlotType = (SlotType) => objectArrayify(sortByAwardLevel, {
+export const getBySlotType = (SlotType) => objectArrayify(sortByAwardLevel, {
     filter: ([, v]) => v.SlotType === SlotType,
 });
 

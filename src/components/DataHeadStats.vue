@@ -80,8 +80,9 @@
 </template>
 
 <script>
-import Icon from '@/components/Icon.vue';
 import { h } from 'vue';
+import Icon from '@/components/Icon.vue';
+import Store from '@Store/index';
 
 import objectArrayify from '@Scripts/objectArrayify.js';
 import hk from '@Regulation/hideKeys.js';
@@ -95,6 +96,27 @@ const ICON_DIR_LIST = {
 
 function VNode({ render }) {
     return render(h);
+}
+export function getCharsWithHideStatus(d) {
+    const res = objectArrayify(d, {
+        map: ([k, value]) => [
+            k,
+            [
+                value,
+                hk.global.includes(k) || hk.byPath.includes(`${d.Name}.${k}`),
+            ],
+        ],
+        filter: ([k, [, remove]]) => (
+            hk.meta.includes(k) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+        ),
+    });
+
+    if (d.projectile) { // перенести вниз
+        const { projectile } = res;
+        delete res.projectile;
+        res.projectile = projectile;
+    }
+    return res;
 }
 
 export default {
@@ -134,6 +156,7 @@ export default {
     data() {
         return {
             iconDirList: ICON_DIR_LIST,
+            getCharacteristics: getCharsWithHideStatus,
         };
     },
     computed: {
@@ -150,27 +173,6 @@ export default {
     methods: {
         isObject(o) {
             return (typeof o === 'object' && !Array.isArray(o) && o !== null);
-        },
-        getCharacteristics(d) {
-            const res = objectArrayify(d, {
-                map: ([k, value]) => [
-                    k,
-                    [
-                        value,
-                        hk.global.includes(k) || hk.byPath.includes(`${d.Name}.${k}`),
-                    ],
-                ],
-                filter: ([k, [, remove]]) => (
-                    hk.meta.includes(k) ? false : (this.$store.state.userSettings.disableFilters ? true : !remove)
-                ),
-            });
-
-            if (d.projectile) { // перенести вниз
-                const { projectile } = res;
-                delete res.projectile;
-                res.projectile = projectile;
-            }
-            return res;
         },
         formatDescr(descrKey) {
             const customDescrKey = descrKey.endsWith('_DESCR') ? descrKey.replace('_DESCR', '_CUSTOM_DESCR') : null;

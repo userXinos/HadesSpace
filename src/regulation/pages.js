@@ -206,7 +206,17 @@ export default [
                 path: '/planetscalc',
                 component: () => import(/* webpackChunkName: "PlanetsCalc" */ '../pages/PlanetsCalc.vue'),
                 icon: {
-                    name: 'calc',
+                    name: 'planets-calc',
+                    dir: 'icons',
+                },
+            },
+            {
+                name: 'ModulesCalc',
+                text: { locKey: 'MODULES_CALC' },
+                path: '/modulescalc',
+                component: () => import(/* webpackChunkName: "ModulesCalc" */ '../pages/ModulesCalc.vue'),
+                icon: {
+                    name: 'modules-calc',
                     dir: 'icons',
                 },
             },
