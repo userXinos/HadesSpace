@@ -1,55 +1,16 @@
 <template>
   <div>
-    <Head><title>{{ title }}</title></Head>
-    <h1 class="topic"> {{ title }} </h1>
+    <div class="container">
 
-    <table class="total">
-      <tr
-        v-for="(value, key) of output.total"
-        :key="key"
-        class="total"
-      >
-        <td>{{ format.key(key) }}</td>
-        <td
-          colspan="3"
-          :class="outputClasses('total', key)"
-        >
-          {{ format.value(key, value) }}
-          <!--          <template v-if="key == 'UnlockTime' && value > 0">-->
-          <!--            &nbsp;&nbsp; (-->
-          <!--            <img-->
-          <!--              class="crystal"-->
-          <!--              src="../img/icons/crystal.png"-->
-          <!--            > {{ Math.floor(sec2crystals(value)) }}-->
-          <!--            )-->
-          <!--          </template>-->
-        </td>
-      </tr>
-    </table>
+      <calculator
+        v-model:input="input"
+        :update-output="logicUpdateOutput"
+        local-storage-key="modulesCalc"
+        :output="output"
+        title-key="MODULES_CALC"
+        @setup="setupCalculator"
+      />
 
-    <div class="margin-wrap">
-      <div class="reset-buttons">
-        <button
-          name="plan"
-          @click="onReset"
-        >
-          {{ $t('RESET_PLAN') }}
-        </button>
-        <button
-          name="all"
-          @click="onReset"
-        >
-          {{ $t('RESET_ALL') }}
-        </button>
-      </div>
-    </div>
-
-    <confirm
-      text="Reset all ? Are you serious ?"
-      @setShow="(func) => resetConfirm = func"
-    />
-
-    <div class="margin-wrap">
       <div class="sections-input">
         <section
           v-for="type of types"
@@ -188,56 +149,55 @@
 </template>
 
 <script lang="ts">
-
 import { defineComponent } from 'vue';
 
-import { Head } from '@vueuse/head';
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
-import Confirm from '@/components/TheConfirm.vue';
+import Calculator, { Setup } from '@/components/Calculator.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
-import modulesCalcLogic, { STACK_CHARS, Input, OutputKeys, Module, Output } from '@/composables/modulesCalcLogic';
-import { InputKeys } from '../composables/planetsCalcLogic.js';
-import { sec2crystals } from '@Scripts/crystalConverter';
+import calculator, { Input, Output, Element, getElementsCB, ElementsStore } from '../composables/calculator';
+import { getBySlotType } from '../components/ModulePage.vue';
 
-const LOCAL_STORAGE_KEY = 'modulesCalc';
+const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
 const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
 
 export default defineComponent({
     name: 'ModulesCalc',
-    components: { Head, Icon, Modal, Confirm },
+    components: { Icon, Modal, Calculator },
     setup() {
-        const { output, update, getModulesBySlotType } = modulesCalcLogic();
+        const { output, update, provideGetterElements } = calculator(STACK_CHARS, calcTotal);
 
         return {
             output,
             logicUpdateOutput: update,
-            getModulesBySlotType,
+            getModulesBySlotType: (type: string) =>
+                provideGetterElements((...p) => getModulesBySlotType.apply(null, [type, ...p])),
         };
     },
     data() {
         return {
-            title: this.$t('MODULES_CALC'),
-
-            input: { actually: {}, plan: {} } as Input,
             inputLocKeys: {
                 actually: 'CURRENT_LVL',
                 plan: 'PLAN_LVL',
             },
-            updateOutput: (key?: string) => this.logicUpdateOutput(this.input, key),
-            resetConfirm: () => (new Promise(() => null)) as Promise<void>,
-
+            format: {
+                key: (k: string) => key(k, this.$route.name),
+                value: (k: string, v: string | number) => value(k, v, null),
+            },
             types: TYPES_ORDER,
-            sec2crystals,
+
+            calc: {} as Setup,
+            input: { actually: {}, plan: {} } as Input,
+            resetConfirm: () => (new Promise(() => null)) as Promise<void>,
 
             openModal: false,
             modalOpts: {
                 size: SIZES.SMALL,
                 title: this.$t('TID_TECH_DLG_TITLE'),
                 data: {
-                    module: {} as Module,
+                    module: {} as Element,
                     maxLevel: 0,
                     get key() {
                         return this.module.Name;
@@ -245,41 +205,20 @@ export default defineComponent({
                 },
             },
 
-            format: {
-                key: (k: string) => key(k, this.$route.name),
-                value: (k: string, v: string | number) => value(k, v, null),
-            },
         };
     },
-    created() {
-        if (localStorage.getItem(LOCAL_STORAGE_KEY)) {
-            this.input = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}');
-        }
-    },
-    mounted() {
-        this.updateOutput();
-    },
     methods: {
-        isSelected(type: InputKeys, value: number): boolean {
-            const { key } = this.modalOpts.data;
-            let current = this.input.plan[key] || 0;
-            const min = this.input.actually[key];
-
-            if (min > current) {
-                current = this.onChangeLvl('plan', min);
-            }
-            if (type == 'plan') {
-                return (value == current);
-            }
-            return (this.input[type][key] == value);
+        setupCalculator(v: Setup) {
+            this.calc = v;
         },
-        isDisabled(type: InputKeys, value: number): boolean {
-            const { key } = this.modalOpts.data;
-
-            if (type != 'plan' || !this.input.actually) {
-                return false;
-            }
-            return (value < this.input.actually[key]);
+        onChangeLvl(type: keyof Input, value: number|string) {
+            return this.calc.onChangeLvl(type, this.modalOpts.data.key, value);
+        },
+        isSelected(type: keyof Input, value: number): boolean {
+            return this.calc.isSelected(type, this.modalOpts.data.key, value);
+        },
+        isDisabled(type: keyof Input, value: number): boolean {
+            return this.calc.isDisabled(type, this.modalOpts.data.key, value);
         },
         async onReset(event: Event): Promise<void> {
             if (this.openModal) {
@@ -289,50 +228,10 @@ export default defineComponent({
                 } else {
                     this.onChangeLvl('plan', 0);
                 }
-                return;
             }
-
-            if ((event.target as HTMLButtonElement).name == 'all') {
-                await this.resetConfirm()
-                    .then(() => {
-                        this.input = { actually: {}, plan: {} } as Input;
-                    })
-                    .catch(() => undefined);
-            } else {
-                if (this.input.plan) {
-                    for (const key in this.input.plan) {
-                        if (key in this.input.plan) {
-                            this.input.plan[key] = this.input.actually[key];
-                        }
-                    }
-                } else {
-                    this.input.plan = {};
-                }
-            }
-            this.updateOutput();
-            this.updateStorage();
-        },
-        onChangeLvl(type: InputKeys, value: number): number {
-            const key = this.modalOpts.data.module.Name;
-            value = (typeof value === 'string') ? parseInt(value) : value;
-
-            if (value == 0) {
-                delete this.input[type][key];
-                delete this.output[type][key];
-            } else {
-                this.input[type][key] = value;
-            }
-
-            this.updateOutput(key);
-            this.updateStorage();
-            return value;
         },
 
-        updateStorage(): void {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.input));
-        },
-
-        outputClasses(type: OutputKeys, charName: string): object {
+        outputClasses(type: keyof Output, charName: string): object {
             const { key } = this.modalOpts.data;
 
             if (type == 'plan') {
@@ -349,20 +248,44 @@ export default defineComponent({
                     'hide': STACK_CHARS.includes(charName),
                 };
             }
-            if (type === 'total') {
-                return {
-                    'hide': this.output.total[charName as keyof Output['total']] == 0,
-                };
-            }
             return {};
         },
-        openModuleInfo(module: Module, maxLevel: number) {
+        openModuleInfo(module: Element, maxLevel: number) {
             this.modalOpts.data.module = module;
             this.modalOpts.data.maxLevel = maxLevel;
             this.openModal = true;
         },
     },
 });
+
+function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<getElementsCB>) {
+    const modules = getBySlotType(type) as { [k: string]: Element };
+
+    return Object.entries(modules).map(([name, module]) => {
+        let maxLevel = 1;
+
+        for (const [, value] of Object.entries(module)) {
+            if (Array.isArray(value) && value.length > maxLevel) {
+                maxLevel = value.length;
+            }
+        }
+
+        elements[name] = getChars((modules as {[k: string]: object})[name] as Element, maxLevel);
+
+        return [module, maxLevel];
+    });
+}
+function calcTotal(store: ElementsStore, output: Output) {
+    const val = output.total;
+    val.result['ReqBank'] = 0;
+
+    return function(name: string, input: Input) {
+        const UnlockPrices = store[name].UnlockPrice;
+        const UnlockPrice = (Array.isArray(UnlockPrices)) ? UnlockPrices[input.plan[name] - 1] : UnlockPrices as number;
+
+        val.result.ReqBank = (UnlockPrice > val.result.ReqBank) ? UnlockPrice : val.result.ReqBank;
+    };
+}
 </script>
 
 <style scoped lang="scss">
@@ -370,36 +293,12 @@ export default defineComponent({
 
 @import "../style/page";
 @import "../style/vars";
+@import "../style/calculator";
 
 $actually-color: #92cee5;
 $plan-color: #ded45a;
 
-.total {
-    background-color: rgba(9, 12, 12, 0.99);
-    font-weight: bold;
-}
-.hide {
-    display: none;
-}
-.plan {
-    color: #fff19f;
-    white-space: nowrap;
-
-    &.plus {
-        &:before {
-            content: " + ";
-        }
-    }
-
-}
-.result-growth {
-    color: #1e7e34;
-}
-.result-not-growth{
-    opacity: 0.5;
-}
-
-.margin-wrap {
+.container {
     margin: 0 10%;
 
     @media screen and (max-width: 960px){
@@ -553,96 +452,4 @@ $plan-color: #ded45a;
         }
     }
 }
-$reset-button-colors: (
-    "all": #a90000,
-    "plan": #cca814,
-);
-
-table.total {
-    border: 1px solid #424547;
-    border-spacing: 0;
-    color: #aab2b6;
-
-    width: 90%;
-    max-width: 500px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 15px;
-    font-size: 130%;
-
-    td {
-        padding: 8px 10px 8px;
-        line-height: 16px;
-        text-align: center;
-        font-size: 90%;
-
-        &:first-child {
-            text-align: left;
-            padding-right: 5%;
-        }
-    }
-    .crystal {
-        width: 11px;
-    }
-}
-
-
-.reset-buttons {
-    display: flex;
-    justify-content: end;
-    gap: 10px;
-    font-size: 90%;
-
-    // source: https://codepen.io/alticreation/pen/zBZwOP
-
-    button {
-        padding: 10px;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 100%;
-        transition: all 0.3s;
-        position: relative;
-        border: none;
-        z-index: 1;
-
-        &:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-        }
-
-        &:before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            transition: all 0.3s;
-            z-index: -1;
-        }
-
-        &:hover:before {
-            width: 100%;
-        }
-
-
-        @each $name, $color in $reset-button-colors {
-            &[name="#{$name}"] {
-                &:after {
-                    background-color: $color
-                }
-
-                &:before {
-                    background-color: darken($color, 15%);
-                }
-            }
-        }
-    }
-}
-
 </style>

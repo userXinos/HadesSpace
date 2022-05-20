@@ -1,9 +1,6 @@
 <template>
   <div class="container-wrap">
-    <div
-      class="container"
-      :style="{maxWidth: maxWidth ? `${maxWidth}px` : null}"
-    >
+    <div class="container">
 
       <v-title
         :data="title"
@@ -53,10 +50,6 @@ export default {
         iconDir: {
             type: String,
             default: '',
-        },
-        maxWidth: {
-            type: Number,
-            default: 0,
         },
     },
     data() {
