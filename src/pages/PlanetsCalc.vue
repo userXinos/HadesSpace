@@ -8,7 +8,7 @@
         v-for="(value, key) of output.calculated"
         :key="key"
       >
-        <td>{{ formatKey(key) }}</td>
+        <td>{{ format.key(key) }}</td>
         <td
           v-for="(item, itemKey) of value"
           :key="key + itemKey"
@@ -22,9 +22,9 @@
         :key="key"
         class="total"
       >
-        <td>{{ formatKey(key) }}</td>
+        <td>{{ format.key(key) }}</td>
         <td colspan="3">
-          {{ formatValue(key, value) }}
+          {{ format.value(key, value) }}
         </td>
       </tr>
     </table>
@@ -132,6 +132,11 @@ export default defineComponent({
             planets,
             input: { actually: {}, plan: {} } as Input,
             updateOutput: () => this.logicUpdateOutput(this.input),
+
+            format: {
+                key: (k: string) => key(k, this.$route.name),
+                value: (k: string, v: unknown) => value(k, v, null),
+            },
         };
     },
     created() {
@@ -143,12 +148,6 @@ export default defineComponent({
         this.updateOutput();
     },
     methods: {
-        formatKey(k: string) {
-            return key(k, this.$route.name);
-        },
-        formatValue(k: string, v: string|number) {
-            return value(k, v, planetsYS.Name);
-        },
 
         isSelected(type: InputKeys, keyIndex: number, value: number): boolean {
             const key = planets.Name[keyIndex];

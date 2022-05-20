@@ -66,13 +66,10 @@ export default {
                 body: {},
             },
             title: {},
-            formatOpts: {
-                $t: this.$t.bind(this),
-                $te: this.$te.bind(this),
-            },
+
             format: {
-                key: (k) => key(k, this.$route.name, this.formatOpts),
-                value: (k, v) => value(k, v, this.title.default.Name, this.formatOpts),
+                key: (k) => key(k, this.$route.name),
+                value: (k, v) => value(k, v, this.title.default.Name),
             },
         };
     },
