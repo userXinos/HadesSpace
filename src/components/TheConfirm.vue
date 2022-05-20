@@ -88,8 +88,11 @@ $accent-color: #aee3fc;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     pointer-events: none;
+
+    @media screen and (max-width: 1000px){
+        align-items: center;
+    }
 
     .container {
         background: $background;
@@ -99,11 +102,13 @@ $accent-color: #aee3fc;
         height: 15%;
         width: 80%;
         max-width: 450px;
+        max-height: 120px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         padding: 20px 20px;
         font-size: 20px;
+        margin-top: 10%;
 
         .buttons {
             display: flex;

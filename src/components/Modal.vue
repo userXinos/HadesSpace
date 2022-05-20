@@ -134,7 +134,6 @@ $border-color: #aee3fc;
 .content-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
     pointer-events: none;
 
     .content {
@@ -144,6 +143,7 @@ $border-color: #aee3fc;
         pointer-events: all;
         height: 80%;
         width: 90%;
+        margin-top: 5%;
 
         &.size {
             &-medium {
