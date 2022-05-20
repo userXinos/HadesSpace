@@ -140,7 +140,7 @@
 
             <br>
             <li
-              v-for="(_, key) in output.plan[modalOpts.data.key]"
+              v-for="key in Object.keys(output.plan[modalOpts.data.key] || {})"
               :key="key"
               :class="{'output': true, 'sub-chars': typeof output.plan?.[modalOpts.data.key]?.[key] == 'object'}"
             >
@@ -155,7 +155,7 @@
                   <template v-if="typeof output[type]?.[modalOpts.data.key]?.[key] === 'object'">
                     <ul>
                       <li
-                        v-for="(_, k1) in output[type][modalOpts.data.key][key]"
+                        v-for="k1 in Object.keys(output[type][modalOpts.data.key][key] || {})"
                         :key="k1"
                         class="output"
                       >
@@ -166,9 +166,7 @@
                             :key="type1"
                             :class="outputClasses(type1, k1)"
                           >
-                            <template v-if="output[type1][modalOpts.data.key][key]">
-                              {{ format.value(k1, output[type1][modalOpts.data.key][key][k1]) }}
-                            </template>
+                            {{ format.value(k1, output[type1]?.[modalOpts.data.key]?.[key]?.[k1]) }}
                           </span>
                         </div>
                       </li>
@@ -341,9 +339,9 @@ export default defineComponent({
                 const char = this.output[type][key][charName];
 
                 return {
-                    'plan': this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true,
+                    'plan': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
                     'plus': !STACK_CHARS.includes(charName),
-                    'hide': this.input.plan[key] == this.input.actually[key] || typeof char === 'object',
+                    'hide': this.input.plan[key] == this.input.actually[key],
                 };
             }
             if (type == 'actually') {
@@ -375,6 +373,31 @@ export default defineComponent({
 
 $actually-color: #92cee5;
 $plan-color: #ded45a;
+
+.total {
+    background-color: rgba(9, 12, 12, 0.99);
+    font-weight: bold;
+}
+.hide {
+    display: none;
+}
+.plan {
+    color: #fff19f;
+    white-space: nowrap;
+
+    &.plus {
+        &:before {
+            content: " + ";
+        }
+    }
+
+}
+.result-growth {
+    color: #1e7e34;
+}
+.result-not-growth{
+    opacity: 0.5;
+}
 
 .margin-wrap {
     margin: 0 10%;
@@ -427,18 +450,26 @@ $plan-color: #ded45a;
     max-width: 1500px;
     --module-size: 90px;
 
-    @media screen and (max-width: 1600px){
-        max-height: 1050px;
-        max-width: 950px;
-    }
     @media screen and (max-width: 1800px){
         --module-size: 80px;
     }
-    @media screen and (max-width: 960px){
-        max-height: none;
-        max-width: 290px;
-        --module-size: 60px
+    @media screen and (max-width: 1600px){
+        --module-size: 75px;
     }
+    @media screen and (max-width: 1500px){
+        --module-size: 80px;
+        max-height: 1000px;
+        max-width: 920px;
+    }
+    @media screen and (max-width: 1024px){
+        max-height: none;
+        max-width: 420px;
+    }
+    @media screen and (max-width: 960px){
+        --module-size: 60px;
+        max-width: 290px;
+    }
+
 
     .type {
         width: calc((var(--module-size) + 24px)  * 4);
@@ -501,6 +532,13 @@ $plan-color: #ded45a;
 
             > div {
                 margin-top: 2%;
+
+                > span:first-child {
+                    display: none;
+                }
+                > span:last-child {
+                    display: block;
+                }
             }
         }
 
@@ -515,32 +553,6 @@ $plan-color: #ded45a;
         }
     }
 }
-
-.total {
-    background-color: rgba(9, 12, 12, 0.99);
-    font-weight: bold;
-}
-.hide {
-    display: none;
-}
-.plan {
-    color: #fff19f;
-    white-space: nowrap;
-
-    &.plus {
-        &:before {
-            content: " + ";
-        }
-    }
-
-}
-.result-growth {
-    color: #1e7e34;
-}
-.result-not-growth{
-    opacity: 0.5;
-}
-
 $reset-button-colors: (
     "all": #a90000,
     "plan": #cca814,
