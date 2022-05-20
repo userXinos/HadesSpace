@@ -210,7 +210,7 @@ export default defineComponent({
 
             if (type == 'plan') {
                 return {
-                    'plan plus': val.plan,
+                    'yellow-color plus': val.plan,
                     'hide': val.plan == 0,
                 };
             }
@@ -218,8 +218,8 @@ export default defineComponent({
                 const isGrowth = (val.sum > val.actually);
 
                 return {
-                    'result-growth': isGrowth,
-                    'result-not-growth': !isGrowth,
+                    'green-color ': isGrowth,
+                    'muffle': !isGrowth,
                     'hide': val.sum == 0,
                 };
             }
@@ -232,11 +232,6 @@ export default defineComponent({
 <style scoped lang="scss">
 @import "../style/page";
 @import "../style/calculator";
-
-$reset-button-colors: (
-    "all": #a90000,
-    "plan": #cca814,
-);
 
 .total-table {
     border: 2px solid #424547;

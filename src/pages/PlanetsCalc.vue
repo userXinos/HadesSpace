@@ -169,17 +169,17 @@ function calcTotal(store: ElementsStore, output: Output) {
 <style scoped lang="scss">
 @use "sass:map";
 
-@import "../style/page";
 @import "../style/vars";
 
 .wrap {
     display: flex;
     justify-content: center;
     margin: 0 2%;
-}
-.container {
-    width: 100%;
-    max-width: 1000px;
+
+    .container {
+        width: 100%;
+        max-width: 1000px;
+    }
 }
 
 .select {

@@ -59,14 +59,13 @@ $reset-button-colors: (
   }
 }
 
-.total {
-  background-color: rgba(9, 12, 12, 0.99);
-  font-weight: bold;
-}
 .hide {
   visibility: hidden;
 }
-.plan {
+.none {
+  display: none;
+}
+.yellow-color {
   color: #fff19f;
   white-space: nowrap;
 
@@ -77,9 +76,9 @@ $reset-button-colors: (
   }
 
 }
-.result-growth {
+.green-color {
   color: #1e7e34;
 }
-.result-not-growth{
+.muffle {
   opacity: 0.5;
 }

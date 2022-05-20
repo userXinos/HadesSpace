@@ -136,6 +136,10 @@ $border-color: #aee3fc;
     justify-content: center;
     pointer-events: none;
 
+    @media screen and (max-width: 1000px){
+        align-items: center;
+    }
+
     .content {
         background: $background;
         border: $border-color solid 1px;
@@ -150,8 +154,8 @@ $border-color: #aee3fc;
                 max-width: 500px;
             }
             &-small {
-                max-width: 450px;
-                max-height: 700px;
+                max-width: 500px;
+                max-height: 750px;
             }
         }
 

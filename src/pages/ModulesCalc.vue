@@ -238,14 +238,14 @@ export default defineComponent({
                 const char = this.output[type][key][charName];
 
                 return {
-                    'plan': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
+                    'yellow-color': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
                     'plus': !STACK_CHARS.includes(charName),
-                    'hide': this.input.plan[key] == this.input.actually[key],
+                    'none': this.input.plan[key] == this.input.actually[key],
                 };
             }
             if (type == 'actually') {
                 return {
-                    'hide': STACK_CHARS.includes(charName),
+                    'none': STACK_CHARS.includes(charName),
                 };
             }
             return {};
@@ -335,6 +335,45 @@ $plan-color: #ded45a;
             }
         }
     }
+
+    .chars li {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2%;
+
+        &.output {
+            font-size: 100%;
+
+            @media screen and (max-width: 960px){
+                font-size: 80%;
+            }
+        }
+        &.sub-chars {
+            margin-top: 4%;
+            flex-direction: column;
+
+            > div {
+                margin-top: 2%;
+
+                > span:first-child {
+                    display: none;
+                }
+                > span:last-child {
+                    display: block;
+                }
+            }
+        }
+
+        .select {
+            font-size: 110%;
+            background-color: map.get($table, "background");
+            border-color: map.get($table, "background");
+
+            option:disabled {
+                color: #0e1315;
+            }
+        }
+    }
 }
 .sections-input {
     display: flex;
@@ -411,43 +450,6 @@ $plan-color: #ded45a;
                         color: $plan-color;
                     }
                 }
-            }
-        }
-    }
-}
-
-.chars {
-    li {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 2%;
-
-        &.output {
-            font-size: 90%;
-        }
-        &.sub-chars {
-            margin-top: 4%;
-            flex-direction: column;
-
-            > div {
-                margin-top: 2%;
-
-                > span:first-child {
-                    display: none;
-                }
-                > span:last-child {
-                    display: block;
-                }
-            }
-        }
-
-        .select {
-            font-size: 110%;
-            background-color: map.get($table, "background");
-            border-color: map.get($table, "background");
-
-            option:disabled {
-                color: #0e1315;
             }
         }
     }
