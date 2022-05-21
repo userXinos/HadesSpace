@@ -1,5 +1,4 @@
 import { existsSync, readdirSync, statSync, unlinkSync, lstatSync, rmdirSync } from 'fs';
-import { writeFile } from 'fs/promises';
 import { join } from 'path';
 
 /**
@@ -38,18 +37,4 @@ export function wipeDir(dir) {
         });
         rmdirSync(dir);
     }
-}
-
-/**
- * Сохранение файла с нормализацией переноса строк CRLF
- * @param {String} path
- * @param {String} content
- * @return {Promise<void>}
- * @abstract
- */
-export function writeFile2(path, content) {
-    content = content
-        .replace(/\r\n/gm, '\n') // normalize
-        .replace(/\n/gm, '\r\n'); // CR+LF  -  Windows EOL
-    return writeFile(path, content);
 }

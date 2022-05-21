@@ -1,9 +1,9 @@
 import { existsSync, mkdirSync } from 'fs';
+import { writeFile } from 'fs/promises';
 import { dirname, resolve, parse, format, relative, join } from 'path';
 
 import prettier from 'prettier';
 
-import { writeFile2 } from './dirUtils.js';
 import CONFIG from '../config.js';
 import { options } from './program.js';
 
@@ -32,7 +32,7 @@ export default async function(raw) {
         `);
     }
 
-    await writeFile(path, prettier.format(
+    await createFile(path, prettier.format(
         language.formatting(data, metadata),
         { ...language.opts, ...raw.prettierConfig },
     ));
@@ -59,7 +59,7 @@ function saveTSType(json, pathJSFile) {
     const language = CONFIG.saveFile.find(( e) => e.name === 'TypeScriptType');
 
     if (!Array.isArray(json)) {
-        return writeFile(pathTS, prettier.format(
+        return createFile(pathTS, prettier.format(
             language.formatting(json),
             language.opts,
         ));
@@ -72,11 +72,11 @@ function saveTSType(json, pathJSFile) {
  * @param {string} data
  * @return {Promise<void>}
  */
-function writeFile(path, data) {
+function createFile(path, data) {
     if (!existsSync(dirname(path))) {
         mkdirSync(dirname(path));
     }
 
-    return writeFile2(path, data)
+    return writeFile(path, data)
         .then(() => console.log('File', `"\x1b[32m${path}\x1b[0m"`, 'created'));
 }
