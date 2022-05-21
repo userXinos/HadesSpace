@@ -4,23 +4,23 @@
 
       <calculator
         v-model:input="input"
-        :update-output="logicUpdateOutput"
+        :stack-chars="stackChars"
+        :calc-total="calcTotal"
         local-storage-key="modulesCalc"
-        :output="output"
         title-key="MODULES_CALC"
         @setup="setupCalculator"
       />
 
       <div class="sections-input">
         <section
-          v-for="type of types"
-          :key="type"
+          v-for="(type, typeName) of modules"
+          :key="typeName"
           class="type"
         >
-          <h3> {{ format.key(type) }} </h3>
+          <h3> {{ format.key(typeName) }} </h3>
           <ul>
             <li
-              v-for="([module, maxLevel]) of getModulesBySlotType(type)"
+              v-for="([module, maxLevel]) of type"
               :key="module.Name"
               class="module"
             >
@@ -101,9 +101,9 @@
 
             <br>
             <li
-              v-for="key in Object.keys(output.plan[modalOpts.data.key] || {})"
+              v-for="key in Object.keys(calc.output.plan[modalOpts.data.key] || {})"
               :key="key"
-              :class="{'output': true, 'sub-chars': typeof output.plan?.[modalOpts.data.key]?.[key] == 'object'}"
+              :class="{'output': true, 'sub-chars': typeof calc.output.plan?.[modalOpts.data.key]?.[key] == 'object'}"
             >
               <b>{{ format.key(key) }}</b>
               <div>
@@ -113,10 +113,10 @@
                   :class="outputClasses(type, key)"
                 >
 
-                  <template v-if="typeof output[type]?.[modalOpts.data.key]?.[key] === 'object'">
+                  <template v-if="typeof calc.output[type]?.[modalOpts.data.key]?.[key] === 'object'">
                     <ul>
                       <li
-                        v-for="k1 in Object.keys(output[type][modalOpts.data.key][key] || {})"
+                        v-for="k1 in Object.keys(calc.output[type][modalOpts.data.key][key] || {})"
                         :key="k1"
                         class="output"
                       >
@@ -127,7 +127,7 @@
                             :key="type1"
                             :class="outputClasses(type1, k1)"
                           >
-                            {{ format.value(k1, output[type1]?.[modalOpts.data.key]?.[key]?.[k1]) }}
+                            {{ format.value(k1, calc.output[type1]?.[modalOpts.data.key]?.[key]?.[k1]) }}
                           </span>
                         </div>
                       </li>
@@ -135,7 +135,7 @@
                   </template>
 
                   <template v-else>
-                    {{ format.value(key, output[type]?.[modalOpts.data.key]?.[key]) }}
+                    {{ format.value(key, calc.output[type]?.[modalOpts.data.key]?.[key]) }}
                   </template>
 
                 </span>
@@ -157,7 +157,7 @@ import Calculator, { Setup } from '@/components/Calculator.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
-import calculator, { Input, Output, Element, getElementsCB, ElementsStore } from '../composables/calculator';
+import { Input, Output, Element, getElementsCB, ElementsStore } from '../composables/calculator';
 import { getBySlotType } from '../components/ModulePage.vue';
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
@@ -166,16 +166,6 @@ const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
 export default defineComponent({
     name: 'ModulesCalc',
     components: { Icon, Modal, Calculator },
-    setup() {
-        const { output, update, provideGetterElements } = calculator(STACK_CHARS, calcTotal);
-
-        return {
-            output,
-            logicUpdateOutput: update,
-            getModulesBySlotType: (type: string) =>
-                provideGetterElements((...p) => getModulesBySlotType.apply(null, [type, ...p])),
-        };
-    },
     data() {
         return {
             inputLocKeys: {
@@ -187,7 +177,9 @@ export default defineComponent({
                 value: (k: string, v: string | number) => value(k, v, null),
             },
             types: TYPES_ORDER,
+            stackChars: STACK_CHARS,
 
+            modules: {} as {[k: string]: unknown},
             calc: {} as Setup,
             input: { actually: {}, plan: {} } as Input,
             resetConfirm: () => (new Promise(() => null)) as Promise<void>,
@@ -210,6 +202,9 @@ export default defineComponent({
     methods: {
         setupCalculator(v: Setup) {
             this.calc = v;
+            for (const type of TYPES_ORDER) {
+                this.modules[type] = v.provideGetterElements((...p) => getModulesBySlotType.apply(null, [type, ...p]));
+            }
         },
         onChangeLvl(type: keyof Input, value: number|string) {
             return this.calc.onChangeLvl(type, this.modalOpts.data.key, value);
@@ -239,6 +234,18 @@ export default defineComponent({
             this.modalOpts.data.maxLevel = maxLevel;
             this.openModal = true;
         },
+
+        calcTotal(store: ElementsStore, output: Output) {
+            const val = output.total;
+            val.result['ReqBank'] = 0;
+
+            return function(name: string, input: Input) {
+                const UnlockPrices = store[name].UnlockPrice;
+                const UnlockPrice = (Array.isArray(UnlockPrices)) ? UnlockPrices[input.plan[name] - 1] : UnlockPrices as number;
+
+                val.result.ReqBank = (UnlockPrice > val.result.ReqBank) ? UnlockPrice : val.result.ReqBank;
+            };
+        },
     },
 });
 
@@ -258,17 +265,6 @@ function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<
 
         return [module, maxLevel];
     });
-}
-function calcTotal(store: ElementsStore, output: Output) {
-    const val = output.total;
-    val.result['ReqBank'] = 0;
-
-    return function(name: string, input: Input) {
-        const UnlockPrices = store[name].UnlockPrice;
-        const UnlockPrice = (Array.isArray(UnlockPrices)) ? UnlockPrices[input.plan[name] - 1] : UnlockPrices as number;
-
-        val.result.ReqBank = (UnlockPrice > val.result.ReqBank) ? UnlockPrice : val.result.ReqBank;
-    };
 }
 </script>
 

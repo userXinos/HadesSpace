@@ -59,22 +59,46 @@ import { defineComponent } from 'vue';
 
 import { Head } from '@vueuse/head';
 import Confirm from '@/components/TheConfirm.vue';
+import Modal, { SIZES } from '@/components/Modal.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
-import { Input, Output } from '@/composables/calculator';
+import calculator, { Input, Output, getElementsCB } from '@/composables/calculator';
+import calculatorConfig from '@/composables/calculatorConfig.js';
 
 export interface Setup {
     onChangeLvl: (type: keyof Input, key: string, value: number|string) => number,
     isSelected: (type: keyof Input, key: string, value: number) => boolean
     isDisabled: (type: keyof Input, key: string, value: number) => boolean
-    outputClasses: (type: keyof Output, key: string, charName?: string) => object
+    outputClasses: (type: keyof Output, key: string, charName?: string) => object,
+    provideGetterElements: (callback: getElementsCB) => unknown,
+    output: Output
 }
 
 export default defineComponent({
     name: 'Calculator',
-    components: { Head, Confirm },
+    components: { Head, Confirm, Modal },
+    emits: ['update:input', 'setup'],
+    setup({ stackChars, calcTotal }) {
+        const { provideGetterElements, output, update } = calculator(stackChars, calcTotal);
+        // const {} = calculatorConfig();
+
+        return {
+            output,
+            updateOutput: update,
+            provideGetterElements,
+        };
+    },
     props: {
+        stackChars: {
+            type: Object as () => Parameters<typeof calculator>[0],
+            required: true,
+        },
+        calcTotal: {
+            type: Object as () => Parameters<typeof calculator>[1],
+            required: true,
+        },
+
         titleKey: {
             type: String,
             required: true,
@@ -83,21 +107,11 @@ export default defineComponent({
             type: Object as () => Input,
             required: true,
         },
-        output: {
-            type: Object as () => Output,
-            required: true,
-        },
         localStorageKey: {
             type: String,
             required: true,
         },
-
-        updateOutput: {
-            type: Function,
-            required: true,
-        },
     },
-    emits: ['update:input', 'setup'],
     data() {
         return {
             resetConfirm: () => (new Promise(() => null)) as Promise<void>,
@@ -125,6 +139,8 @@ export default defineComponent({
             isSelected: this.isSelected,
             isDisabled: this.isDisabled,
             outputClasses: this.outputClasses,
+            provideGetterElements: this.provideGetterElements,
+            output: this.output,
         });
     },
     mounted() {
@@ -167,6 +183,31 @@ export default defineComponent({
                 this.updateStorage();
             });
         },
+        updateStorage(): void {
+            localStorage.setItem(this.localStorageKey, JSON.stringify(this.input));
+        },
+
+        totalTableClasses(type: string, key: string): object {
+            const val = this.output.total.intermediate[key];
+
+            if (type == 'plan') {
+                return {
+                    'yellow-color plus': val.plan,
+                    'hide': val.plan == 0,
+                };
+            }
+            if (type == 'sum') {
+                const isGrowth = (val.sum > val.actually);
+
+                return {
+                    'green-color ': isGrowth,
+                    'muffle': !isGrowth,
+                    'hide': val.sum == 0,
+                };
+            }
+            return {};
+        },
+
         onChangeLvl(type: keyof Input, key: string, value: number|string): number {
             value = (typeof value === 'string') ? parseInt(value) : value;
 
@@ -206,30 +247,6 @@ export default defineComponent({
             }
             return (value < this.input.actually[key]);
         },
-        updateStorage(): void {
-            localStorage.setItem(this.localStorageKey, JSON.stringify(this.input));
-        },
-
-        totalTableClasses(type: string, key: string): object {
-            const val = this.output.total.intermediate[key];
-
-            if (type == 'plan') {
-                return {
-                    'yellow-color plus': val.plan,
-                    'hide': val.plan == 0,
-                };
-            }
-            if (type == 'sum') {
-                const isGrowth = (val.sum > val.actually);
-
-                return {
-                    'green-color ': isGrowth,
-                    'muffle': !isGrowth,
-                    'hide': val.sum == 0,
-                };
-            }
-            return {};
-        },
         outputClasses(type: keyof Output, key: string, charName?: string): object {
             if (type == 'actually') {
                 return {
@@ -263,7 +280,7 @@ export default defineComponent({
     max-width: 600px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 3%;
+    margin-bottom: 25px;
     border-collapse: collapse;
 
     td {

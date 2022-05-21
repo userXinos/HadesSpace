@@ -4,9 +4,9 @@
 
       <calculator
         v-model:input="input"
-        :update-output="logicUpdateOutput"
+        :stack-chars="stackChars"
+        :calc-total="calcTotal"
         local-storage-key="planetsCalc"
-        :output="output"
         title-key="PLANETS_CALC"
         @setup="setupCalculator"
       />
@@ -32,7 +32,7 @@
               @change="calc.onChangeLvl(type, planetValues[row].Name, $event.target.value)"
             >
               <option
-                v-for="(i, index) in (Object.values(planets)[row].MaxUpgradeLevel + 1)"
+                v-for="(i, index) in (planetValues[row].MaxUpgradeLevel + 1)"
                 :key="type + i"
                 :selected="calc.isSelected(type, planetValues[row].Name, index)"
                 :disabled="calc.isDisabled(type, planetValues[row].Name, index)"
@@ -74,9 +74,9 @@
               </div>
             </li>
             <li
-              v-for="key in Object.keys(output.plan[modalOpts.data.key] || {}).filter(k => !hideKeys.includes(k))"
+              v-for="key in Object.keys(calc.output.plan[modalOpts.data.key] || {}).filter(k => !hideKeys.includes(k))"
               :key="key"
-              class="output"
+              class="calc.output"
             >
               <b>{{ format.key(key) }}</b>
               <div>
@@ -85,7 +85,7 @@
                   :key="type"
                   :class="outputClasses(type, key)"
                 >
-                  {{ format.value(key, Math.trunc(output[type]?.[modalOpts.data.key]?.[key]) || undefined) }}
+                  {{ format.value(key, Math.trunc(calc.output[type]?.[modalOpts.data.key]?.[key]) || undefined) }}
                 </span>
               </div>
             </li>
@@ -107,7 +107,7 @@ import Calculator, { Setup } from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 
-import calculator, { Input, Element, getElementsCB, ElementsStore, Output } from '../composables/calculator';
+import { Input, Element, getElementsCB, ElementsStore, Output } from '../composables/calculator';
 import key from '@Handlers/key.js';
 import value from '@Handlers/value.js';
 import objectArrayify from '@/js/objectArrayify';
@@ -132,20 +132,14 @@ const TOTAL_KEYS = Object.keys(levels)
 
 export default defineComponent({
     components: { Calculator, VData, Modal },
-    setup() {
-        const { output, update, provideGetterElements } = calculator(STACK_CHARS, calcTotal);
-
-        return {
-            output,
-            logicUpdateOutput: update,
-            planets: provideGetterElements(getPlanets) as object,
-        };
-    },
     data() {
         return {
             input: { actually: {}, plan: {} } as Input,
             calc: {} as Setup,
             hideKeys: HIDE_LVL_CHARS,
+            stackChars: STACK_CHARS,
+            planets: {},
+
             openModal: false,
             modalOpts: {
                 size: SIZES.SMALL,
@@ -172,7 +166,9 @@ export default defineComponent({
     methods: {
         setupCalculator(v: Setup) {
             this.calc = v;
+            this.planets = v.provideGetterElements(getPlanets as getElementsCB) as object;
         },
+
         openModuleInfo(planet: Element) {
             this.modalOpts.title = this.$t(planet.TID as string) + ((/_\d$/.test(planet.Name)) ? planet.Name.replace(/.+?_(\d)$/, ' $1') : '');
             this.modalOpts.data.planet = planet;
@@ -180,6 +176,24 @@ export default defineComponent({
         },
         outputClasses(type: keyof Output, charName?: string): object {
             return this.calc.outputClasses(type, this.modalOpts.data.key, charName);
+        },
+
+        calcTotal(store: ElementsStore, output: Output) {
+            for (const k of TOTAL_KEYS) {
+                output.total.intermediate[k] = {
+                    actually: 0,
+                    plan: 0,
+                    sum: 0,
+                };
+            }
+
+            return function(name: string) {
+                for (const k of TOTAL_KEYS) {
+                    output.total.intermediate[k].actually += output.actually[name]?.[k] as number || 0;
+                    output.total.intermediate[k].plan += output.plan[name]?.[k] as number || 0;
+                    output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
+                }
+            };
         },
     },
 });
@@ -222,23 +236,6 @@ function getPlanets(...[getChars, elements]: Parameters<getElementsCB>) {
     }
 
     return planets;
-}
-function calcTotal(store: ElementsStore, output: Output) {
-    for (const k of TOTAL_KEYS) {
-        output.total.intermediate[k] = {
-            actually: 0,
-            plan: 0,
-            sum: 0,
-        };
-    }
-
-    return function(name: string) {
-        for (const k of TOTAL_KEYS) {
-            output.total.intermediate[k].actually += output.actually[name]?.[k] as number || 0;
-            output.total.intermediate[k].plan += output.plan[name]?.[k] as number || 0;
-            output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
-        }
-    };
 }
 </script>
 

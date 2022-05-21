@@ -66,6 +66,14 @@ export default {
             },
         };
     },
+    watch: {
+        data() {
+            this.table = { head: {}, body: {} };
+            this.title = {};
+
+            this.packagingData(this.data);
+        },
+    },
     created() {
         this.packagingData(this.data);
     },

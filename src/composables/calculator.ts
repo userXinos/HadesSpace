@@ -33,7 +33,7 @@ export type getElementsCB = (getChars: <Type extends object>(element: Type, maxL
 
 type mapFnArgs = Parameters<(elem: [string, unknown], i: number, arr: [string, unknown][]) => number>
 
-export default function planetsCalcLogic(stackChars: string[], initCalcTotal: (store: ElementsStore, output: Output) => (name: string, input: Input) => void) {
+export default function calculator(stackChars: string[], initCalcTotal: (store: ElementsStore, output: Output) => (name: string, input: Input) => void) {
     const output = reactive({
         actually: {},
         plan: {},
