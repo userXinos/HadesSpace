@@ -433,6 +433,8 @@ export default {
         'RelicDrone.DesignUpgradeCost',
         'RelicDrone.DesignUpgradeTime',
         'RelicDrone.MaxShipments',
+        'RelicDrone.RelicLoadTicks',
+        'RelicDrone.RelicLoadTicksBS',
 
         // Mining
         'HydroRocket.AdditionalWaypoint',

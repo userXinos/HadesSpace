@@ -184,7 +184,7 @@ export default [
         (v) => `+${v - 100}%`,
     ],
     [
-        ['TicksPerRelic', 'ExtraAsteroidSpawnTick'],
+        ['TicksPerRelic', 'ExtraAsteroidSpawnTick', 'RelicLoadTicks'],
         (v) => sec2str(v * 120),
     ],
     [

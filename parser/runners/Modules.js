@@ -15,6 +15,7 @@ const CONFIG = Object.freeze({
         'RelicLoad',
         'SpawnLifetime',
         'TurretSetupTime',
+        'RelicLoadTicks',
     ],
     combineKeys: {
         FlagshipDartBarrage: 'FlagshipWeaponModule',
@@ -97,7 +98,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     // фикс БЗ стат
     if (value.EffectDurationx10WS) {
         value.EffectDurationx10WS.forEach((e, i, arr) => {
-            arr[i] = e * 60;
+            arr[i] = e * 600;
         });
     }
     if (value.ActivationPrepWS && !value.Hide) {
@@ -143,6 +144,13 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     if (key === 'Leap') {
         value.DisableTime = value.EffectDurationx10 / 10;
         delete value.EffectDurationx10;
+    }
+
+    // исправить загрузку реликвии
+    if (key === 'RelicDrone') {
+        value.drone.RelicLoadTicks.forEach((e, i, arr) => {
+            arr[i] = e / 600;
+        });
     }
 
     // добавить/удалить данные звёзд
