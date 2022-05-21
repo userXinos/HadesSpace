@@ -231,24 +231,8 @@ export default defineComponent({
             }
         },
 
-        outputClasses(type: keyof Output, charName: string): object {
-            const { key } = this.modalOpts.data;
-
-            if (type == 'plan') {
-                const char = this.output[type][key][charName];
-
-                return {
-                    'yellow-color': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
-                    'plus': !STACK_CHARS.includes(charName),
-                    'none': this.input.plan[key] == this.input.actually[key],
-                };
-            }
-            if (type == 'actually') {
-                return {
-                    'none': STACK_CHARS.includes(charName),
-                };
-            }
-            return {};
+        outputClasses(type: keyof Output, charName?: string): object {
+            return this.calc.outputClasses(type, this.modalOpts.data.key, charName);
         },
         openModuleInfo(module: Element, maxLevel: number) {
             this.modalOpts.data.module = module;

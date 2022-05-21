@@ -172,7 +172,7 @@ $border-color: #aee3fc;
                 cursor: pointer;
             }
             h2 {
-                padding-top: 15px;
+                padding: 15px 52px 0;
                 text-align: center;
             }
         }

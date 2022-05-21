@@ -68,6 +68,7 @@ export interface Setup {
     onChangeLvl: (type: keyof Input, key: string, value: number|string) => number,
     isSelected: (type: keyof Input, key: string, value: number) => boolean
     isDisabled: (type: keyof Input, key: string, value: number) => boolean
+    outputClasses: (type: keyof Output, key: string, charName?: string) => object
 }
 
 export default defineComponent({
@@ -111,6 +112,9 @@ export default defineComponent({
         title() {
             return this.$t(this.titleKey);
         },
+        totalResultKeys() {
+            return Object.keys(this.output.total.result);
+        },
     },
     created() {
         if (localStorage.getItem(this.localStorageKey)) {
@@ -120,6 +124,7 @@ export default defineComponent({
             onChangeLvl: this.onChangeLvl,
             isSelected: this.isSelected,
             isDisabled: this.isDisabled,
+            outputClasses: this.outputClasses,
         });
     },
     mounted() {
@@ -221,6 +226,23 @@ export default defineComponent({
                     'green-color ': isGrowth,
                     'muffle': !isGrowth,
                     'hide': val.sum == 0,
+                };
+            }
+            return {};
+        },
+        outputClasses(type: keyof Output, key: string, charName?: string): object {
+            if (type == 'actually') {
+                return {
+                    'none': charName && this.totalResultKeys.includes(charName),
+                };
+            }
+            if (type == 'plan') {
+                const char = charName ? this.output[type][key][charName] : undefined;
+
+                return {
+                    'yellow-color': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
+                    'plus': !charName || (charName && !this.totalResultKeys.includes(charName)),
+                    'none': this.input.plan[key] == this.input.actually[key],
                 };
             }
             return {};

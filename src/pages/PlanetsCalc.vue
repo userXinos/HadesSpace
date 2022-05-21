@@ -12,13 +12,14 @@
       />
 
       <v-data
-        :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: Object.values(planets).map((e) => e.TID)}"
+        :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: planetValues.map((e) => e.TID)}"
         :table-opts="{lvlColKey: '№', mergeCells: false}"
       >
 
         <template #table-head>
           <th v-t="'CURRENT_LVL'" />
           <th v-t="'PLAN_LVL'" />
+          <th />
         </template>
 
         <template #table-body="{ row }">
@@ -39,11 +40,59 @@
               </option>
             </select>
           </td>
+          <td>
+            <div @click="() => openModuleInfo(planetValues[row])">
+              <img
+                src="../img/icons/info.png"
+                class="open-info"
+              >
+            </div>
+          </td>
         </template>
 
       </v-data>
 
     </div>
+
+    <modal
+      v-model:open="openModal"
+      v-bind="modalOpts"
+    >
+      <template #body>
+        <div class="modal-module">
+          <ul class="chars">
+            <li class="output">
+              <b>{{ $t('TID_PLANET_LEVEL_DESCR') }}</b>
+              <div>
+                <span
+                  v-for="type of Object.keys(input)"
+                  :key="type"
+                  :class="outputClasses(type, null)"
+                >
+                  {{ input[type]?.[modalOpts.data.key] }}
+                </span>
+              </div>
+            </li>
+            <li
+              v-for="key in Object.keys(output.plan[modalOpts.data.key] || {}).filter(k => !hideKeys.includes(k))"
+              :key="key"
+              class="output"
+            >
+              <b>{{ format.key(key) }}</b>
+              <div>
+                <span
+                  v-for="type of Object.keys(input)"
+                  :key="type"
+                  :class="outputClasses(type, key)"
+                >
+                  {{ format.value(key, Math.trunc(output[type]?.[modalOpts.data.key]?.[key]) || undefined) }}
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -56,6 +105,7 @@ import spaceBuildings from '@Data/spacebuildings.js';
 
 import Calculator, { Setup } from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
+import Modal, { SIZES } from '@/components/Modal.vue';
 
 import calculator, { Input, Element, getElementsCB, ElementsStore, Output } from '../composables/calculator';
 import key from '@Handlers/key.js';
@@ -75,12 +125,13 @@ const KEYS_ALIASES_TS: Record<string, string> = {
     Cost: 'Cost',
     ConstructionTime: 'TimeToUpgrade',
 };
-const STACK_CHARS = ['Cost', 'TimeToUpgrade'];
+const STACK_CHARS = ['XPAward', 'Cost', 'TimeToUpgrade'];
+const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name', 'ShipmentsHydroValuePerDay'];
 const TOTAL_KEYS = Object.keys(levels)
-    .filter((k) => ![...STACK_CHARS, 'CrystalsWeight', 'Name', 'ShipmentsHydroValuePerDay'].includes(k));
+    .filter((k) => ![...STACK_CHARS, ...HIDE_LVL_CHARS].includes(k));
 
 export default defineComponent({
-    components: { Calculator, VData },
+    components: { Calculator, VData, Modal },
     setup() {
         const { output, update, provideGetterElements } = calculator(STACK_CHARS, calcTotal);
 
@@ -94,6 +145,18 @@ export default defineComponent({
         return {
             input: { actually: {}, plan: {} } as Input,
             calc: {} as Setup,
+            hideKeys: HIDE_LVL_CHARS,
+            openModal: false,
+            modalOpts: {
+                size: SIZES.SMALL,
+                title: 'name',
+                data: {
+                    planet: {} as Element,
+                    get key() {
+                        return this.planet.Name;
+                    },
+                },
+            },
 
             format: {
                 key: (k: string) => key(k, this.$route.name),
@@ -110,6 +173,14 @@ export default defineComponent({
         setupCalculator(v: Setup) {
             this.calc = v;
         },
+        openModuleInfo(planet: Element) {
+            this.modalOpts.title = this.$t(planet.TID as string) + ((/_\d$/.test(planet.Name)) ? planet.Name.replace(/.+?_(\d)$/, ' $1') : '');
+            this.modalOpts.data.planet = planet;
+            this.openModal = true;
+        },
+        outputClasses(type: keyof Output, charName?: string): object {
+            return this.calc.outputClasses(type, this.modalOpts.data.key, charName);
+        },
     },
 });
 
@@ -117,16 +188,16 @@ function getPlanets(...[getChars, elements]: Parameters<getElementsCB>) {
     type TS = {
         Name: string,
         MaxUpgradeLevel: number,
-        Cost: number[],
         MaxOnOwnSolarSystem: number
     }
+    let tsMaxLvl = 0;
 
     const planets = objectArrayify(filterByType(planetsData, 'planets.yellowstar'), {
         map: ([name, planet]: [string, Element]) => {
             elements[name] = objectArrayify(levels, {
                 filter: ([, v]: [string, unknown]) => Array.isArray(v),
                 map: ([k, v]: [string, number[]]) => [
-                    k, v.map((e) => e * ((k in CHARS_MODIFIERS) ? planet[CHARS_MODIFIERS[k]] as number : 1)),
+                    k, v.map((e) => e * ((k in CHARS_MODIFIERS) ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1)),
                 ],
             }) as Element;
 
@@ -134,15 +205,20 @@ function getPlanets(...[getChars, elements]: Parameters<getElementsCB>) {
         },
     }) as {[k: string]: unknown};
     const TradingStation = objectArrayify(spaceBuildings.TradingStation, {
-        map: ([k, v]: [string, unknown]) => [(k in KEYS_ALIASES_TS) ? KEYS_ALIASES_TS[k] : k, v],
+        map: ([k, v]: [string, unknown]) => {
+            if (Array.isArray(v) && v.length > tsMaxLvl) {
+                tsMaxLvl = v.length;
+            }
+            return [(k in KEYS_ALIASES_TS) ? KEYS_ALIASES_TS[k] : k, v];
+        },
     }) as TS;
-    TradingStation.MaxUpgradeLevel = TradingStation.Cost.length;
+    TradingStation.MaxUpgradeLevel = tsMaxLvl;
 
     for (let i = 0; TradingStation.MaxOnOwnSolarSystem > i; i++) {
-        const name = `${TradingStation.Name}_${i}`;
+        const ts = { ...TradingStation, Name: `${TradingStation.Name}_${i}` };
 
-        planets[name] = TradingStation;
-        elements[name] = getChars(TradingStation, TradingStation.MaxUpgradeLevel);
+        planets[ts.Name] = ts;
+        elements[ts.Name] = getChars(ts, tsMaxLvl);
     }
 
     return planets;
@@ -158,8 +234,8 @@ function calcTotal(store: ElementsStore, output: Output) {
 
     return function(name: string) {
         for (const k of TOTAL_KEYS) {
-            output.total.intermediate[k].actually += (output.actually[name]?.[k] as number) / 100 || 0;
-            output.total.intermediate[k].plan += (output.plan[name]?.[k] as number) / 100 || 0;
+            output.total.intermediate[k].actually += output.actually[name]?.[k] as number || 0;
+            output.total.intermediate[k].plan += output.plan[name]?.[k] as number || 0;
             output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
         }
     };
@@ -170,6 +246,7 @@ function calcTotal(store: ElementsStore, output: Output) {
 @use "sass:map";
 
 @import "../style/vars";
+@import "../style/calculator";
 
 .wrap {
     display: flex;
@@ -189,6 +266,25 @@ function calcTotal(store: ElementsStore, output: Output) {
 
     option:disabled {
         color: #0e1315;
+    }
+}
+.open-info {
+    width: 25px;
+    cursor: pointer;
+}
+.modal-module {
+    .chars li {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2%;
+
+        &.output {
+            font-size: 100%;
+
+            @media screen and (max-width: 960px){
+                font-size: 80%;
+            }
+        }
     }
 }
 
