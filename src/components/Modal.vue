@@ -96,6 +96,9 @@ export default {
             }
         },
     },
+    unmounted() {
+        this.$store.dispatch(types.MODAL_CLOSE, this.modalKey);
+    },
     created() {
         this.$router.beforeResolve( () => {
             if (this.modalActive) {
@@ -131,7 +134,7 @@ $border-color: #aee3fc;
     background-color: rgba(0, 0, 0, 0.6);
 
     &-enter-active, &-leave-active {
-        transition: background-color 300ms linear;
+        transition: background-color 400ms linear;
     }
 
     &-enter-from, &-leave-to {
@@ -154,17 +157,21 @@ $border-color: #aee3fc;
         border: $border-color solid 1px;
         border-radius: 5px;
         pointer-events: all;
-        height: 80%;
+        height: max-content;
         width: 90%;
         margin-top: 5%;
 
         &.size {
             &-medium {
                 max-width: 500px;
+                min-height: 50%;
+
+                @media screen and (max-width: 1000px){
+                    min-height: 80%;
+                }
             }
             &-small {
                 max-width: 450px;
-                max-height: 750px;
             }
         }
 

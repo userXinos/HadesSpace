@@ -14,11 +14,14 @@ const state = {
     modals: [] as RootState['modals'],
 } as RootState;
 const mutations = <MutationTree<RootState>> {
-    [types.MODAL_OPEN](state, payload) {
-        state.modals.push(payload);
+    [types.MODAL_OPEN](state, key) {
+        state.modals.push(key);
     },
-    [types.MODAL_CLOSE](state, payload) {
-        state.modals.splice(state.modals.indexOf(payload), 1);
+    [types.MODAL_CLOSE](state, key) {
+        const i = state.modals.indexOf(key);
+        if (i != -1) {
+            state.modals.splice(i, 1);
+        }
     },
 };
 const actions = <ActionTree<RootState, unknown>> {
@@ -46,5 +49,5 @@ export default createStore<RootState>({
     modules: {
         userSettings: userSettingsModule,
     },
-    plugins: (isDev) ? [logger] : [],
+    // plugins: (isDev) ? [logger] : [],
 });
