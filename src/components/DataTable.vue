@@ -25,11 +25,10 @@
                 >
                   <th
                     v-if="i === 0"
-                    v-t="lvlColKey"
                     :style="getPinnedTableCellStyle(0)"
                     :rowspan="tableMask.head.length"
                     class="lvl-col"
-                  />
+                  > {{ lvlColName }} </th>
                   <th
                     v-for="({value, rowspan, colspan}, k) in array"
                     :key="k"
@@ -54,10 +53,9 @@
             <th
               v-if="i === 0"
               ref="th"
-              v-t="lvlColKey"
               :rowspan="tableMask.head.length"
               class="lvl-col"
-            />
+            > {{ lvlColName }} </th>
             <th
               v-for="({value, rowspan, colspan}, k) in array"
               :key="k"
@@ -157,6 +155,9 @@ export default {
         },
         tableMask() {
             return tableMask({ ...this.data }, this.mergeCells);
+        },
+        lvlColName() {
+            return this.$te(this.lvlColKey) ? this.$t(this.lvlColKey) : this.lvlColKey;
         },
     },
 

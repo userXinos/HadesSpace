@@ -13,7 +13,7 @@
         <div>
           <div :class="{'selected': (selected === index) }">
             <div class="icon" />
-            <h2 class="name">{{ $t(section.text.locKey) }}</h2>
+            <h2 class="name">{{ $te(section.text.locKey) ? $t(section.text.locKey) : '' }}</h2>
           </div>
 
           <TransitionGroup
