@@ -22,5 +22,13 @@
   NO: 'No',
   VALUE: 'Value {0}',
   ABOUT: 'About project',
-  INPUT_VALUES: 'Input values'
+  INPUT_VALUES: 'Input values',
+  CONFIG: 'Configuration',
+  COPY: 'Copy',
+  COPIED: 'Copied',
+  CREATE: 'Create',
+  LIST: 'List',
+  ADD: 'Add',
+  FROM_TEXT_FORMAT: 'From text format (optional)',
+  REMOVE_CONFIG: 'Delete "{0}" configuration ?'
 }

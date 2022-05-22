@@ -60,12 +60,14 @@
               <div class="reset-buttons">
                 <button
                   name="plan"
+                  class="button yellow"
                   @click="onReset"
                 >
                   {{ $t('RESET_PLAN') }}
                 </button>
                 <button
                   name="all"
+                  class="button red"
                   @click="onReset"
                 >
                   {{ $t('RESET_ALL') }}
@@ -87,7 +89,7 @@
             >
               <span v-t="inputLocKeys[type]" />
               <select
-                class="select"
+                class="select-lvl"
                 @change="onChangeLvl(type, $event.target.value)"
               >
                 <option
@@ -153,11 +155,12 @@ import { defineComponent } from 'vue';
 
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
-import Calculator, { Setup } from '@/components/Calculator.vue';
+import Calculator from '@/components/Calculator.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
-import { Input, Output, Element, getElementsCB, ElementsStore } from '../composables/calculator';
+import type { Input, Output, Element, ElementsStore } from '../composables/calculator';
+import type { Setup, ProvideGetterElementsCB } from '../components/Calculator.vue';
 import { getBySlotType } from '../components/ModulePage.vue';
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
@@ -249,7 +252,7 @@ export default defineComponent({
     },
 });
 
-function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<getElementsCB>) {
+function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Parameters<ProvideGetterElementsCB>) {
     const modules = getBySlotType(type) as { [k: string]: Element };
 
     return Object.entries(modules).map(([name, module]) => {
@@ -262,6 +265,7 @@ function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<
         }
 
         elements[name] = getChars((modules as {[k: string]: object})[name] as Element, maxLevel);
+        TIDs[name] = module.TID;
 
         return [module, maxLevel];
     });
@@ -274,6 +278,7 @@ function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<
 @import "../style/page";
 @import "../style/vars";
 @import "../style/calculator";
+@import "../style/userInput";
 
 $actually-color: #92cee5;
 $plan-color: #ded45a;
@@ -287,6 +292,8 @@ $plan-color: #ded45a;
 }
 
 .modal-module {
+    min-height: 500px;
+
     .title {
         display: flex;
         justify-content: space-between;
@@ -344,7 +351,7 @@ $plan-color: #ded45a;
             }
         }
 
-        .select {
+        .select-lvl {
             font-size: 110%;
             background-color: map.get($table, "background");
             border-color: map.get($table, "background");

@@ -103,11 +103,12 @@ import levels from '@Data/planet_levels.js';
 import planetsData from '@Data/planets.js';
 import spaceBuildings from '@Data/spacebuildings.js';
 
-import Calculator, { Setup } from '@/components/Calculator.vue';
+import Calculator from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 
-import { Input, Element, getElementsCB, ElementsStore, Output } from '../composables/calculator';
+import type { Input, Element, getElementsCB, ElementsStore, Output } from '../composables/calculator';
+import type { ProvideGetterElementsCB, Setup } from '@/components/Calculator.vue';
 import key from '@Handlers/key.js';
 import value from '@Handlers/value.js';
 import objectArrayify from '@/js/objectArrayify';
@@ -166,7 +167,7 @@ export default defineComponent({
     methods: {
         setupCalculator(v: Setup) {
             this.calc = v;
-            this.planets = v.provideGetterElements(getPlanets as getElementsCB) as object;
+            this.planets = v.provideGetterElements(getPlanets as ProvideGetterElementsCB) as object;
         },
 
         openModuleInfo(planet: Element) {
@@ -198,7 +199,7 @@ export default defineComponent({
     },
 });
 
-function getPlanets(...[getChars, elements]: Parameters<getElementsCB>) {
+function getPlanets(...[TIDs, getChars, elements]: Parameters<ProvideGetterElementsCB>) {
     type TS = {
         Name: string,
         MaxUpgradeLevel: number,
@@ -214,6 +215,7 @@ function getPlanets(...[getChars, elements]: Parameters<getElementsCB>) {
                     k, v.map((e) => e * ((k in CHARS_MODIFIERS) ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1)),
                 ],
             }) as Element;
+            TIDs[name] = planet.TID;
 
             return [name, planet];
         },

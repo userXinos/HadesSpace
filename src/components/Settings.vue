@@ -18,7 +18,6 @@
           <p class="name"> {{ $t('TID_SETTINGS_DLG_LANGUAGE') }} </p>
           <select
             v-model="languageCode"
-            class="select"
             @change="changeLanguage"
           >
             <option
@@ -87,6 +86,7 @@ export default {
 <style scoped lang="scss">
 @use "sass:map";
 @import "../style/vars";
+@import "../style/userInput";
 
 $mv: 1000px;
 
@@ -123,68 +123,5 @@ $mv: 1000px;
          }
      }
 
-}
-
-.select {
-    margin-bottom: 7%;
-
-    .select {
-        width: 100%;
-        background: $background-elements;
-        border: $border-color solid 2px;
-        padding: 2%;
-
-        //option:hover {
-        //    background-color: map.get($table, hover) !important;
-        //}
-    }
-}
-
-.switch { // credits:  https://codepen.io/mburnette/pen/LxNxNg
-    $size: 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .label {
-        cursor: pointer;
-        flex-shrink: 0;
-        width: $size * 3;
-        height: $size + 10px;
-        border: red solid 1px;
-        display: block;
-        border-radius: 100px;
-        position: relative;
-
-        &:after {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            width: $size;
-            height: $size;
-            background: #fff;
-            border-radius: 90px;
-            transition: 0.3s;
-        }
-        &:active:after {
-            width: $size * 2;
-        }
-    }
-
-    .checkbox {
-        &[type=checkbox] {
-            visibility: hidden;
-        }
-        &:checked + .label {
-            background: #9fe5ff;
-            border-color: #9fe5ff;
-        }
-        &:checked + .label:after {
-            left: calc(100% - 5px);
-            transform: translateX(-100%);
-        }
-    }
 }
 </style>

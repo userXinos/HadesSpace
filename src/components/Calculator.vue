@@ -32,30 +32,130 @@
       </tr>
     </table>
 
-    <div class="reset-buttons">
+    <div class="buttons">
       <button
-        name="plan"
-        @click="onReset"
-      >
-        {{ $t('RESET_PLAN') }}
-      </button>
-      <button
-        name="all"
-        @click="onReset"
-      >
-        {{ $t('RESET_ALL') }}
-      </button>
+        class="settings"
+        @click="settingsModal = true"
+      />
+
+      <div class="reset-buttons">
+        <button
+          class="button yellow"
+          name="plan"
+          @click="onReset"
+        >
+          {{ $t('RESET_PLAN') }}
+        </button>
+        <button
+          class="button red"
+          name="all"
+          @click="onReset"
+        >
+          {{ $t('RESET_ALL') }}
+        </button>
+      </div>
     </div>
-    <confirm
-      text="Reset all ? Are you serious ?"
-      @setShow="setShowConfirm"
-    />
+
+    <modal
+      v-model:open="settingsModal"
+      :title="$t('CALCULATOR_SETTINGS') + ' (Alpha)'"
+      :size="modalSizes.MEDIUM"
+      @update:open="() => ConfigManager.save()"
+    >
+
+      <template #body>
+        <div class="settings-modal">
+          <div class="config-category">
+            <p v-t="'CONFIG'" />
+
+            <div class="flex-end">
+              <button
+                :class="`button ${buttonCopy.color}`"
+                @click="copyConfig"
+              > {{ buttonCopy.text }} </button>
+              <button
+                v-t="'CREATE'"
+                class="button green"
+                @click="newModal = true"
+              />
+            </div>
+          </div>
+
+          <div class="select">
+            <p
+              v-t="'LIST'"
+              class="name"
+            />
+            <select
+              v-model="ConfigManager.value.selected"
+              @change="fullUpdate()"
+            >
+              <option
+                v-for="(value, index) in ConfigManager.value.configs"
+                :key="index"
+                :value="index"
+              >
+                {{ value.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="input">
+            <p
+              v-t="'TID_CHANGE_NAME_TITLE'"
+              class="name"
+            />
+            <input
+              v-model="ConfigManager.value.configs[ConfigManager.value.selected].name"
+              :placeholder="$t('TID_CORP_NAME_LABEL')"
+            >
+          </div>
+
+          <div class="flex-end margin-bottom">
+            <button
+              v-t="'TID_INBOX_DELETE_MESSAGE'"
+              class="button red"
+              @click="removeConfig"
+            />
+          </div>
+
+        </div>
+      </template>
+
+    </modal>
+
+    <confirm @setShow="setShowConfirm" />
+
+    <modal
+      v-model:open="newModal"
+      :title="$t('CREATE')"
+      :size="modalSizes.SMALL"
+    >
+      <template #body>
+        <div class="input">
+          <p
+            v-t="'FROM_TEXT_FORMAT'"
+            class="name"
+          />
+          <input v-model="newConfigFromText">
+        </div>
+
+        <div class="flex-end margin-bottom">
+          <button
+            v-t="'ADD'"
+            class="button green"
+            @click="createConfig"
+          />
+        </div>
+      </template>
+    </modal>
 
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 
 import { Head } from '@vueuse/head';
 import Confirm from '@/components/TheConfirm.vue';
@@ -63,58 +163,62 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
-import calculator, { Input, Output, getElementsCB } from '@/composables/calculator';
-import calculatorConfig from '@/composables/calculatorConfig.js';
+import calculator from '@/composables/calculator';
+import CalculatorConfig from '@/composables/calculatorConfig';
+import type { Input, Output, getElementsCB } from '@/composables/calculator';
 
-export interface Setup {
+export declare interface Setup {
     onChangeLvl: (type: keyof Input, key: string, value: number|string) => number,
     isSelected: (type: keyof Input, key: string, value: number) => boolean
     isDisabled: (type: keyof Input, key: string, value: number) => boolean
     outputClasses: (type: keyof Output, key: string, charName?: string) => object,
-    provideGetterElements: (callback: getElementsCB) => unknown,
+    provideGetterElements: (callback: ProvideGetterElementsCB) => unknown,
     output: Output
 }
+export declare type ProvideGetterElementsCB = (TIDs: CalculatorConfig['TIDs'], ...args: Parameters<getElementsCB>) => unknown
+
+type calculatorArgs = Parameters<typeof calculator>
+type configArgs = ConstructorParameters<typeof CalculatorConfig>
+
 
 export default defineComponent({
     name: 'Calculator',
     components: { Head, Confirm, Modal },
     emits: ['update:input', 'setup'],
-    setup({ stackChars, calcTotal }) {
+    setup({ stackChars, calcTotal, localStorageKey }) {
         const { provideGetterElements, output, update } = calculator(stackChars, calcTotal);
-        // const {} = calculatorConfig();
+        const ConfigManager = new CalculatorConfig(localStorageKey);
+        const wrapCalcProvide = (cb: ProvideGetterElementsCB) =>
+            provideGetterElements.apply(null, [(...a) => cb(ConfigManager.TIDs, ...a)]);
 
         return {
             output,
-            updateOutput: update,
-            provideGetterElements,
+            updateLogicOutput: update,
+            provideGetterElements: (cb: ProvideGetterElementsCB) => wrapCalcProvide(cb),
+
+            ConfigManager,
         };
     },
     props: {
-        stackChars: {
-            type: Object as () => Parameters<typeof calculator>[0],
-            required: true,
-        },
-        calcTotal: {
-            type: Object as () => Parameters<typeof calculator>[1],
-            required: true,
-        },
+        stackChars: { type: Array as PropType<calculatorArgs[0]>, required: true },
+        calcTotal: { type: Function as PropType<calculatorArgs[1]>, required: true },
+        localStorageKey: { type: String as PropType<configArgs[0]>, required: true },
 
-        titleKey: {
-            type: String,
-            required: true,
-        },
-        input: {
-            type: Object as () => Input,
-            required: true,
-        },
-        localStorageKey: {
-            type: String,
-            required: true,
-        },
+        titleKey: { type: String, required: true },
+        input: { type: Object as () => Input, required: true },
     },
     data() {
         return {
-            resetConfirm: () => (new Promise(() => null)) as Promise<void>,
+            resetConfirm: (() => Promise.prototype) as (q: string) => Promise<void>,
+            modalSizes: SIZES,
+            settingsModal: false,
+
+            newModal: false,
+            newConfigFromText: '',
+            buttonCopy: {
+                text: this.$t('COPY'),
+                color: 'yellow',
+            },
 
             format: {
                 key: (k: string) => key(k, this.$route.name),
@@ -129,11 +233,17 @@ export default defineComponent({
         totalResultKeys() {
             return Object.keys(this.output.total.result);
         },
+        currentUrl() {
+            return `${location.origin}${location.pathname}`;
+        },
     },
     created() {
-        if (localStorage.getItem(this.localStorageKey)) {
-            this.$emit('update:input', JSON.parse(localStorage.getItem(this.localStorageKey) || '{}'));
+        if (this.$route.query.m) {
+            this.ConfigManager.parseUrl(this.$route.query.m as string);
+            this.$router.push(this.currentUrl);
         }
+
+        this.fullUpdate();
         this.$emit('setup', {
             onChangeLvl: this.onChangeLvl,
             isSelected: this.isSelected,
@@ -142,49 +252,77 @@ export default defineComponent({
             provideGetterElements: this.provideGetterElements,
             output: this.output,
         });
-    },
-    mounted() {
-        this.updateOutput(this.input);
+        delete this.$route.query.m;
     },
     methods: {
         setShowConfirm(func: () => Promise<void>) {
             this.resetConfirm = func;
         },
+        updateInput() {
+            this.$emit('update:input', this.ConfigManager.selectedConfig);
+        },
+        updateOutput(key?: string) {
+            this.$nextTick(() => {
+                this.updateLogicOutput(this.input, key);
+            });
+        },
+        fullUpdate() {
+            this.updateInput();
+            this.updateOutput();
+        },
         async onReset(event: Event): Promise<void> {
-            const newInput = {} as Input;
-
             if ((event.target as HTMLButtonElement).name == 'all') {
-                await this.resetConfirm()
+                await this.resetConfirm('Reset all ? Are you serious ?')
                     .then(() => {
                         for (const key in this.input) {
                             if (key in this.input) {
-                                newInput[key as keyof Input] = {};
+                                this.ConfigManager.selectedConfig[key as keyof Input] = {};
                             }
                         }
-                        this.$emit('update:input', newInput);
                     })
                     .catch(() => undefined);
             } else {
-                newInput.plan = {};
-
                 if (this.input.plan) {
                     for (const key in this.input.plan) {
                         if (key in this.input.plan) {
-                            newInput.plan[key] = this.input.actually[key];
+                            this.ConfigManager.selectedConfig.plan[key] = this.input.actually[key];
                         }
                     }
                 }
-                this.$emit('update:input', { ...this.input, ...newInput });
             }
 
-            // noinspection ES6MissingAwait
-            this.$nextTick(() => {
-                this.updateOutput(this.input);
-                this.updateStorage();
-            });
+            this.updateOutput();
+            this.ConfigManager.save();
         },
-        updateStorage(): void {
-            localStorage.setItem(this.localStorageKey, JSON.stringify(this.input));
+
+        async removeConfig() {
+            const { name } = this.ConfigManager.value.configs[this.ConfigManager.value.selected];
+            await this.resetConfirm(this.$t('REMOVE_CONFIG', [name]))
+                .then(() => {
+                    this.ConfigManager.removeSelected();
+                    this.fullUpdate();
+                })
+                .catch(() => undefined);
+        },
+        createConfig() {
+            const parsed = (this.newConfigFromText) ? this.ConfigManager.parseString(this.newConfigFromText) : {};
+            this.ConfigManager.add({ actually: parsed, plan: parsed });
+            this.newConfigFromText = '';
+            this.newModal = false;
+            this.fullUpdate();
+        },
+        copyConfig() {
+            const m = this.ConfigManager.stringifyUrl();
+
+            navigator.clipboard.writeText(`${this.currentUrl}?m=${m}`).then(() => {
+                this.buttonCopy.text = this.$t('COPIED');
+                this.buttonCopy.color = 'green';
+
+                setTimeout(() => {
+                    this.buttonCopy.text = this.$t('COPY');
+                    this.buttonCopy.color = 'yellow';
+                }, 2000);
+            });
         },
 
         totalTableClasses(type: string, key: string): object {
@@ -215,17 +353,12 @@ export default defineComponent({
                 delete this.input[type][key];
                 delete this.output[type][key];
             } else {
-                this.$emit('update:input', { ...this.input,
-                    [type]: { ...this.input[type],
-                        [key]: value,
-                    },
-                });
+                this.ConfigManager.selectedConfig[type][key] = value;
             }
 
-            this.$nextTick(() => {
-                this.updateOutput(this.input, key);
-                this.updateStorage();
-            });
+            this.updateInput();
+            this.updateOutput(key);
+            this.ConfigManager.save();
 
             return value;
         },
@@ -271,6 +404,7 @@ export default defineComponent({
 <style scoped lang="scss">
 @import "../style/page";
 @import "../style/calculator";
+@import "../style/userInput";
 
 .total-table {
     border: 2px solid #424547;
@@ -316,6 +450,46 @@ export default defineComponent({
     }
     .crystal {
         width: 11px;
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+
+    .settings {
+        cursor: pointer;
+        width: 38px;
+        height: 38px;
+        background: url("../img/icons/settings.svg") no-repeat;
+        border: none;
+
+        &:hover {
+            opacity: .9;
+            transition-duration: 800ms;
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.flex-end {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+.margin-bottom {
+    margin-bottom: 5%;
+}
+
+.settings-modal {
+    .config-category {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 5%;
+
+        p {
+            font-size: 140%;
+        }
     }
 }
 </style>

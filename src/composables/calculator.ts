@@ -4,7 +4,7 @@ import objectArrayify from '@/js/objectArrayify';
 import { getCharsWithHideStatus } from '@/components/DataHeadStats.vue';
 
 type InputKeys = 'actually'|'plan';
-export type Element = {
+export declare type Element = {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     Name: string,
@@ -14,9 +14,9 @@ export type Element = {
 
     [key: string]: number|number[]|{[k: string]: number[]}
 }
-export interface Level {[key: string]: number}
-export type Input = Record<InputKeys, Level>
-export interface Output extends Record<InputKeys|'total', unknown> {
+export declare interface Level {[key: string]: number}
+export declare type Input = Record<InputKeys, Level>
+export declare interface Output extends Record<InputKeys|'total', unknown> {
     actually: {[key: string]: Element}
     plan: {[key: string]: Element}
     total: {
@@ -28,8 +28,8 @@ export interface Output extends Record<InputKeys|'total', unknown> {
         result: {[key: string]: number}
     }
 }
-export type ElementsStore = { [key: string]: Element }
-export type getElementsCB = (getChars: <Type extends object>(element: Type, maxLevel: number) => Element, elementsStore: ElementsStore) => unknown
+export declare type ElementsStore = { [key: string]: Element }
+export declare type getElementsCB = (getChars: <Type extends object>(element: Type, maxLevel: number) => Element, elementsStore: ElementsStore) => unknown
 
 type mapFnArgs = Parameters<(elem: [string, unknown], i: number, arr: [string, unknown][]) => number>
 
