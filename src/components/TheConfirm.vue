@@ -13,12 +13,12 @@
           {{ text }}
           <div class="buttons">
             <button
-              v-t="'TID_OK'"
-              @click="close(confirm)"
-            />
-            <button
               v-t="'TID_CANCEL'"
               @click="close(defeat)"
+            />
+            <button
+              v-t="'TID_OK'"
+              @click="close(confirm)"
             />
           </div>
         </div>
@@ -34,15 +34,10 @@ import Modal from '@/components/Modal.vue';
 export default defineComponent({
     name: 'Confirm',
     components: { Modal },
-    props: {
-        text: {
-            type: String,
-            default: undefined,
-        },
-    },
     emits: ['setShow'],
     data() {
         return {
+            text: '',
             show: false,
             confirm: (() => null) as (value: unknown) => void|null,
             defeat: (() => null) as () => void|null,
@@ -55,8 +50,9 @@ export default defineComponent({
         modalUpdate() {
             this.close(this.defeat);
         },
-        open() {
+        open(text: string) {
             this.show = true;
+            this.text = text;
 
             return new Promise(((resolve, reject) => {
                 this.confirm = resolve;
@@ -124,14 +120,14 @@ $accent-color: #aee3fc;
                 border-style: solid;
 
                 &:first-child {
-                    background-color: $accent-color;
-                    border-color: $accent-color;
-                    color: $background;
-                }
-                &:last-child {
                     background: none;
                     border-color: $accent-color;
                     color: $accent-color;
+                }
+                &:last-child {
+                    background-color: $accent-color;
+                    border-color: $accent-color;
+                    color: $background;
                 }
             }
         }
