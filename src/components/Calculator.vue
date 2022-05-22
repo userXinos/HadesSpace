@@ -142,7 +142,7 @@
 
         <div class="flex-end margin-bottom">
           <button
-            v-t="'ADD'"
+            v-t="'TID_OK'"
             class="button green"
             @click="createConfig"
           />
@@ -314,15 +314,21 @@ export default defineComponent({
         copyConfig() {
             const m = this.ConfigManager.stringifyUrl();
 
-            navigator.clipboard.writeText(`${this.currentUrl}?m=${m}`).then(() => {
-                this.buttonCopy.text = this.$t('COPIED');
-                this.buttonCopy.color = 'green';
+            navigator.clipboard.writeText(`${this.currentUrl}?m=${m}`)
+                .then(() => {
+                    this.buttonCopy.text = this.$t('COPIED');
+                    this.buttonCopy.color = 'green';
 
-                setTimeout(() => {
-                    this.buttonCopy.text = this.$t('COPY');
-                    this.buttonCopy.color = 'yellow';
-                }, 2000);
-            });
+                    setTimeout(() => {
+                        this.buttonCopy.text = this.$t('COPY');
+                        this.buttonCopy.color = 'yellow';
+                    }, 2000);
+                })
+                .catch((err) => {
+                    this.buttonCopy.text = this.$t('Error');
+                    this.buttonCopy.color = 'red';
+                    console.error(err);
+                });
         },
 
         totalTableClasses(type: string, key: string): object {
@@ -487,8 +493,17 @@ export default defineComponent({
         justify-content: space-between;
         padding-bottom: 5%;
 
+        @media screen and (max-width: 500px){
+            flex-direction: column;
+        }
+
         p {
             font-size: 140%;
+
+            @media screen and (max-width: 500px){
+                padding-bottom: 20px;
+            }
+
         }
     }
 }

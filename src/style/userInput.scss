@@ -111,6 +111,7 @@ $button-colors: (
   position: relative;
   border: none;
   z-index: 1;
+  min-width: 70px;
 
   &:after {
     content: '';

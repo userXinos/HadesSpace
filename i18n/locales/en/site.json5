@@ -28,7 +28,6 @@
   COPIED: 'Copied',
   CREATE: 'Create',
   LIST: 'List',
-  ADD: 'Add',
   FROM_TEXT_FORMAT: 'From text format (optional)',
   REMOVE_CONFIG: 'Delete "{0}" configuration ?'
 }
