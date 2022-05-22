@@ -13,13 +13,13 @@ const settings = getSettings(LOCAL_STORAGE_KEY);
 const browserLang = window.navigator.language.slice(0, 2);
 const isDev = (process.env.NODE_ENV === 'development');
 
-const mutations = <MutationTree<UserSettings>>{
-    [types.setLanguage](state, code) {
+const mutations = <MutationTree<UserSettings>> {
+    [types.SET_LANGUAGE](state, code) {
         state.language = code;
         setSettings(LOCAL_STORAGE_KEY, state);
         return setI18nLanguage(code);
     },
-    [types.switchDisableFilters](state) {
+    [types.SWITCH_DISABLE_FILTERS](state) {
         state.disableFilters = !state.disableFilters;
         setSettings(LOCAL_STORAGE_KEY, state);
         return state.disableFilters;

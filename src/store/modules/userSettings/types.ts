@@ -1,4 +1,4 @@
 export default Object.freeze({
-    setLanguage: 'SET_LANGUAGE',
-    switchDisableFilters: 'SWITCH_DISABLE_FILTERS',
+    SET_LANGUAGE: 'SetLanguage',
+    SWITCH_DISABLE_FILTERS: 'SwitchDisableFilters',
 });

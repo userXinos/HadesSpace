@@ -2,12 +2,12 @@
   <div>
 
     <teleport
-      :disabled="!open"
+      :disabled="!modalActive"
       to="#modals"
     >
       <transition name="background">
         <div
-          v-if="open"
+          v-if="modalActive"
           class="background fixed"
           @click="onClose"
         />
@@ -15,14 +15,14 @@
     </teleport>
 
     <teleport
-      :disabled="!open"
+      :disabled="!modalActive"
       to="#modals"
     >
       <slot name="default">
 
         <transition name="content-wrapper">
           <div
-            v-if="open"
+            v-if="modalActive"
             class="content-wrapper fixed"
           >
             <div :class="['content', `size-${size}`]">
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import types from '@Store/types';
 
 export const SIZES = {
     SMALL: 'small',
@@ -74,22 +75,30 @@ export default {
         open: Boolean,
     },
     emits: ['update:open'],
+    data() {
+        return {
+            modalKey: 0,
+        };
+    },
+    computed: {
+        modalActive() {
+            return this.open && (this.$store.state.modals.at(- 1) == this.modalKey);
+        },
+    },
     watch: {
         open() {
             if (this.open) {
-                const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
-
-                document.documentElement.setAttribute('no-scroll', '');
-                document.documentElement.style.setProperty('--scroll-bar-width', `${scrollBarWidth}px`);
+                this.$store.dispatch(types.MODAL_OPEN).then((key) => {
+                    this.modalKey = key;
+                });
             } else {
-                document.documentElement.removeAttribute('no-scroll');
-                document.documentElement.style.removeProperty('--scroll-bar-width');
+                this.$store.dispatch(types.MODAL_CLOSE, this.modalKey);
             }
         },
     },
     created() {
         this.$router.beforeResolve( () => {
-            if (this.open) {
+            if (this.modalActive) {
                 this.onClose();
                 return false;
             }
@@ -154,7 +163,7 @@ $border-color: #aee3fc;
                 max-width: 500px;
             }
             &-small {
-                max-width: 500px;
+                max-width: 450px;
                 max-height: 750px;
             }
         }

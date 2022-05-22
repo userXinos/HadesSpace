@@ -75,10 +75,10 @@ export default {
     },
     methods: {
         changeLanguage() {
-            this.$store.commit(types.setLanguage, this.languageCode);
+            this.$store.commit(types.SET_LANGUAGE, this.languageCode);
         },
         switchDisableFilters() {
-            this.$store.commit(types.switchDisableFilters);
+            this.$store.commit(types.SWITCH_DISABLE_FILTERS);
         },
     },
 };
