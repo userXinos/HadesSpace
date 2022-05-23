@@ -89,7 +89,6 @@
   UNITY_MAX_DAMAGE_INCREASE_PCT: 'Max. damage',
   MAX_SHIPS: 'Max. ships',
   SHIP_TO_SPAWN: 'Ship spawn',
-  RELIC_LOAD: 'Load a relic',
   TIME_WARP_SUPPRESSION: 'Suppression Time Warp',
   PLANETS: 'Planets',
   ARTIFACT: 'Artifact',

@@ -89,7 +89,6 @@
   UNITY_MAX_DAMAGE_INCREASE_PCT: 'Макс. урон',
   MAX_SHIPS: 'Макс. кораблей',
   SHIP_TO_SPAWN: 'Спавн корабля',
-  RELIC_LOAD: 'Загрузка реликвии',
   TIME_WARP_SUPPRESSION: 'Подавление Искажения времени',
   PLANETS: 'Планеты',
   ARTIFACT: 'Артефакт',

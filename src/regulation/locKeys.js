@@ -18,7 +18,6 @@ export default {
     MaxPerStarSystem: 'MAX_PER_STAR_SYSTEM',
     DroneShipmentBonusMax: 'DRONE_SHIPMENT_BONUS_MAX',
     PreventUseOnWsJumpgate: 'PREVENT_USE_ON_WS_JUMPGATE',
-    RelicLoadTicks: 'RELIC_LOAD',
     SectorEnrichCooldownSeconds: 'SECTOR_ENRICH_COOLDOWN_SECONDS',
     SectorGenesisCooldownSeconds: 'SECTOR_GENESIS_COOLDOWN_SECONDS',
     BarrageMaxAdditionalEnemies: 'BARRAGE_MAX_ADDITIONAL_ENEMIES',
@@ -107,6 +106,7 @@ export default {
     AIUpdateIntervalSeconds: 'AI_UPDATE_INTERVAL',
     ReqBank: 'REQ_BANK',
 
+    RelicLoadTicks: 'TID_MODULE_RELIC_DRONE_SPEED',
     ActivationType: 'TID_MODULE_TYPE',
     StarSectorDPS: 'STAR_SECTOR_DPS',
     MaxRSLevel: 'TID_REDSCANNER_MAX_STAR_LEVEL',
