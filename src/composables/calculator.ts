@@ -3,7 +3,6 @@ import { reactive } from 'vue';
 import objectArrayify from '@/js/objectArrayify';
 import { getCharsWithHideStatus } from '@/components/DataHeadStats.vue';
 
-type InputKeys = 'actually'|'plan';
 export declare type Element = {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -14,9 +13,9 @@ export declare type Element = {
 
     [key: string]: number|number[]|{[k: string]: number[]}
 }
-export declare interface Level {[key: string]: number}
-export declare type Input = Record<InputKeys, Level>
-export declare interface Output extends Record<InputKeys|'total', unknown> {
+export declare type Level = Record<string, number>
+export declare type Input = Record<'actually'|'plan', Level>
+export declare interface Output {
     actually: {[key: string]: Element}
     plan: {[key: string]: Element}
     total: {
@@ -159,7 +158,7 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
                     const value = (typeof oav[1] == 'boolean') ? oav[0] : oav;
 
                     if (isObject(value)) {
-                        const subChars = getChars(value as Type, maxLevel);
+                        const subChars = getChars(value, maxLevel);
 
                         if (Object.keys(subChars).length) {
                             obj[key] = subChars;

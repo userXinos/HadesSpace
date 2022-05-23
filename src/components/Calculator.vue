@@ -239,7 +239,9 @@ export default defineComponent({
     },
     created() {
         if (this.$route.query.m) {
-            this.ConfigManager.parseUrl(this.$route.query.m as string);
+            const parsed = this.ConfigManager.parseUrl(this.$route.query.m as string);
+
+            this.ConfigManager.add({ actually: parsed, plan: parsed }, { temporary: true });
             this.$router.push(this.currentUrl);
         }
 
@@ -252,7 +254,6 @@ export default defineComponent({
             provideGetterElements: this.provideGetterElements,
             output: this.output,
         });
-        delete this.$route.query.m;
     },
     methods: {
         setShowConfirm(func: () => Promise<void>) {
@@ -304,8 +305,17 @@ export default defineComponent({
                 })
                 .catch(() => undefined);
         },
-        createConfig() {
-            const parsed = (this.newConfigFromText) ? this.ConfigManager.parseString(this.newConfigFromText) : {};
+        async createConfig() {
+            let parsed = {};
+
+            if (this.newConfigFromText) {
+                await this.ConfigManager.parseString(this.newConfigFromText)
+                    .then((data) => parsed = data)
+                    .catch((err) => {
+                        alert(err.message);
+                        console.error(err);
+                    });
+            }
             this.ConfigManager.add({ actually: parsed, plan: parsed });
             this.newConfigFromText = '';
             this.newModal = false;
@@ -325,8 +335,9 @@ export default defineComponent({
                     }, 2000);
                 })
                 .catch((err) => {
-                    this.buttonCopy.text = this.$t('Error');
+                    this.buttonCopy.text = 'Error';
                     this.buttonCopy.color = 'red';
+                    alert(err.message);
                     console.error(err);
                 });
         },

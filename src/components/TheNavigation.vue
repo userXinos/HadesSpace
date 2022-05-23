@@ -82,7 +82,6 @@ export default {
 @import "../style/vars";
 
 $mv: 1000px;
-$color: #101415;
 $hover-color: #242e2f;
 $selected-color: #5fdba7;
 
@@ -126,8 +125,9 @@ $selected-color: #5fdba7;
                         margin-right: 5%;
                         width: 18px;
                         height: 20px;
-                        background: url(@Img/icons/arrow.svg) no-repeat right/100%;
+                        background: url(../img/icons/arrow.svg) no-repeat right/100%;
                         transition: 0.5s;
+                        transform: rotate(90deg);
 
                         @media screen and (max-width: $mv) {
                             margin-right: 0;
@@ -142,7 +142,7 @@ $selected-color: #5fdba7;
                         color: $selected-color;
                     }
                     .icon {
-                        transform: rotate(90deg);
+                        transform: rotate(270deg);
                     }
                 }
             }
@@ -168,8 +168,10 @@ $selected-color: #5fdba7;
         min-width: 250px;
         font-size: 10px;
         list-style-type: none;
+        border: $border-color solid 4px;
 
         @media screen and (max-width: $mv) {
+            border: none;
             position: inherit;
         }
 
@@ -179,7 +181,7 @@ $selected-color: #5fdba7;
             text-decoration: none;
         }
         li {
-            background-color: $color;
+            background-color: $background-elements;
 
             &:hover {
                 background-color: $hover-color;

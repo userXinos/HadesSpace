@@ -1,10 +1,8 @@
 import { reactive } from 'vue';
-import i18n from '@Scripts/Vue/i18n';
+import i18n, { loadLocaleMessages } from '@Scripts/Vue/i18n';
 import JSONCrush from 'jsoncrush';
 
-import { Input } from '@/composables/calculator';
-
-const { t } = i18n.global;
+import type { Input, Level } from '@/composables/calculator';
 
 interface Config {
     configs: { name: string, temporary?: boolean, value: Input }[],
@@ -12,6 +10,7 @@ interface Config {
 }
 
 const NAME_ZERO = 'new entry';
+const STRING_FORMAT_LOCALE = 'en';
 
 export default class CalculatorConfig {
     public readonly value: Config;
@@ -86,12 +85,16 @@ export default class CalculatorConfig {
         }
     }
 
-    public parseString(text: string) {
+    public async parseString(text: string) {
         const entries: [string, number][] = [];
 
+        if (!i18n.global.availableLocales.includes(STRING_FORMAT_LOCALE)) {
+            await loadLocaleMessages(STRING_FORMAT_LOCALE);
+        }
+
         for (const [key, TID] of Object.entries(this.TIDs)) {
-            const name = t(TID, 'en');
-            const regex = new RegExp(`${name}\\s+?(\\d+?)\\s`, 'mi');
+            const name = i18n.global.t(TID, STRING_FORMAT_LOCALE);
+            const regex = new RegExp(`${name}\\s+?(\\d+?)\\s?`, 'mi'); // EMP       99
             const [, lvl] = text.match(regex) || [undefined, '0'];
 
             entries.push([key, parseInt(lvl as string)]);
@@ -105,13 +108,6 @@ export default class CalculatorConfig {
     }
 
     public parseUrl(text: string) {
-        if (text) {
-            const parsed = JSON.parse(JSONCrush.uncrush(text));
-
-            this.add({
-                actually: parsed,
-                plan: parsed,
-            }, { temporary: true });
-        }
+        return JSON.parse(JSONCrush.uncrush(text)) as Level;
     }
 }
