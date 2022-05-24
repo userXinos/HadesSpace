@@ -11,7 +11,7 @@
         @click="() => select(index)"
       >
         <div>
-          <div :class="{'selected': (selected === index) }">
+          <div :class="{'selected': (selected == index) }">
             <div class="icon" />
             <h2 class="name">{{ $te(section.text.locKey) ? $t(section.text.locKey) : '' }}</h2>
           </div>
@@ -166,9 +166,8 @@ $selected-color: #5fdba7;
         padding-top: 1%;
         position: absolute;
         min-width: 250px;
-        font-size: 10px;
+        font-size: 12px;
         list-style-type: none;
-        border: $border-color solid 4px;
 
         @media screen and (max-width: $mv) {
             border: none;
@@ -182,6 +181,9 @@ $selected-color: #5fdba7;
         }
         li {
             background-color: $background-elements;
+            border-color: $border-color;
+            border-style: solid;
+            border-width: 1px 3px 1px 3px;
 
             &:hover {
                 background-color: $hover-color;
