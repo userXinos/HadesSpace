@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import CustomIcon from '@Scripts/CustomIcon.js';
+import CustomIcon from '@/js/CustomIcon';
 
 const TYPES = {
     'game/Modules': 'Module',

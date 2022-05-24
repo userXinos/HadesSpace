@@ -7,13 +7,17 @@ const notFoundPage = {
     component: NotFound,
 };
 
+type ReduceElem = { name: string, path: object, component?: () => unknown, children?: ReduceElem[] }
+type MapElem = {text: string, path: {externalLink: string}, icon: object, children: MapElem[]}
+
 export function getRoutes() {
     return [
+        // @ts-ignore
         ...pages.reduce(reduceFn, []),
         notFoundPage,
     ];
 
-    function reduceFn(acc, { name, path, component, children }) {
+    function reduceFn(acc: ReduceElem[], { name, path, component, children }: ReduceElem) {
         if (component) {
             acc.push({ name, path, component });
         }
@@ -27,9 +31,9 @@ export function getRoutes() {
 export function getSectionsPages() {
     return pages
         .filter((p) => p.children)
-        .map(mapFn);
+        .map((e: unknown) => mapFn(e as MapElem));
 
-    function mapFn({ text, path, icon, children }) {
+    function mapFn({ text, path, icon, children }: MapElem): object {
         return {
             text,
             icon,

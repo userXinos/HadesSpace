@@ -1,5 +1,7 @@
 export default class CustomIcon {
-    constructor(name) {
+    private readonly _name: string;
+
+    constructor(name: string) {
         this._name = name;
     }
 

@@ -30,14 +30,14 @@ import VContent from '../components/Content.vue';
 
 import ships from '@Data/capital_ships.js';
 import modules from '@Data/modules.js';
-import filterByType from '@Scripts/filterByType.js';
-import objectArrayify from '@Scripts/objectArrayify.js';
+import getFilterByType from '@Scripts/getFilterByType';
+import objectArrayify from '@Scripts/objectArrayify';
 
 export default {
     components: { Page, VContent },
     data() {
         return {
-            ships: filterByType(ships, 'capital_ships.player'),
+            ships: objectArrayify(ships, getFilterByType('capital_ships.player')),
             modules: objectArrayify(modules, {
                 filter: ([k]) => k in ships.CorpFlagship.modules,
             }),

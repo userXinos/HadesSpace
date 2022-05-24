@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { getSectionsPages } from '@Scripts/parsePages.js';
+import { getSectionsPages } from '@/js/parsePages';
 
 export default {
     name: 'Navigation',

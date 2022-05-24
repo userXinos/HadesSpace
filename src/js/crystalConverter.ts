@@ -2,15 +2,17 @@ import globals from '@Data/globals';
 
 const NUM_GLOBALS = 4;
 
-const timeToPremiumCurrencyTimeValues = [];
-const timeToPremiumCurrencyCosts = [];
+type gKey = keyof typeof globals
+
+const timeToPremiumCurrencyTimeValues: number[] = [];
+const timeToPremiumCurrencyCosts: number[] = [];
 
 for (let i = 0; i < NUM_GLOBALS; i++) {
-    timeToPremiumCurrencyTimeValues[i] = globals[`PremiumCurrencyTimeValue${i}`];
-    timeToPremiumCurrencyCosts[i] = globals[`PremiumCurrencyToTimePrice${i}`];
+    timeToPremiumCurrencyTimeValues[i] = globals[`PremiumCurrencyTimeValue${i}` as gKey] as number;
+    timeToPremiumCurrencyCosts[i] = globals[`PremiumCurrencyToTimePrice${i}` as gKey] as number;
 }
 
-export function sec2crystals(sec) {
+export function sec2crystals(sec: number) {
     if (sec <= 0) {
         return 0;
     }

@@ -107,7 +107,7 @@
 <script>
 import { h } from 'vue';
 
-import tableMask from '@Scripts/tableMask.js';
+import tableMask from '@Scripts/tableMask';
 
 function VNode({ render }) {
     return render(h);

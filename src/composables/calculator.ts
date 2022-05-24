@@ -1,7 +1,8 @@
 import { reactive } from 'vue';
 
-import objectArrayify from '@/js/objectArrayify';
+import objectArrayify from '@Scripts/objectArrayify';
 import { getCharsWithHideStatus } from '@/components/DataHeadStats.vue';
+import type { Callback as mapFn } from '@Scripts/objectArrayify';
 
 export declare type Element = {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -30,8 +31,6 @@ export declare interface Output {
 export declare type ElementsStore = { [key: string]: Element }
 export declare type getElementsCB = (getChars: <Type extends object>(element: Type, maxLevel: number) => Element, elementsStore: ElementsStore) => unknown
 
-type mapFnArgs = Parameters<(elem: [string, unknown], i: number, arr: [string, unknown][]) => number>
-
 export default function calculator(stackChars: string[], initCalcTotal: (store: ElementsStore, output: Output) => (name: string, input: Input) => void) {
     const output = reactive({
         actually: {},
@@ -55,14 +54,14 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
         return callback(getChars, elementsCharsStore);
     }
     function update(input: Input, name?: string) {
-        const planMapFn = (name: string, level: number, ...args: mapFnArgs) =>
+        const planMapFn = (name: string, level: number, ...args: Parameters<mapFn>) =>
             mapFnWrap(([k], i, arr) => calcDiffChars(Object.fromEntries(arr), k, input.actually[name], level), name, ...args);
-        const actuallyMapFn = (name: string, level: number, ...args: mapFnArgs) =>
+        const actuallyMapFn = (name: string, level: number, ...args: Parameters<mapFn>) =>
             mapFnWrap(([, v]) => Array.isArray(v) ? v[level - 1] : v, name, ...args);
 
         if (name) {
-            calcElement(output.plan, name, (...args: mapFnArgs) => planMapFn(name, input.plan[name], ...args));
-            calcElement(output.actually, name, (...args: mapFnArgs) => actuallyMapFn(name, input.actually[name], ...args));
+            calcElement(output.plan, name, (...args) => planMapFn(name, input.plan[name], ...args));
+            calcElement(output.actually, name, (...args) => actuallyMapFn(name, input.actually[name], ...args));
         } else {
             calcInput(input.plan, output.plan, planMapFn);
             calcInput(input.actually, output.actually, actuallyMapFn);
@@ -79,21 +78,21 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
             }
         }
     }
-    function mapFnWrap(mapFnElement: (...args: mapFnArgs) => number, name: string, ...args: mapFnArgs) {
+    function mapFnWrap(mapFnElement: (...args: Parameters<mapFn>) => number, name: string, ...args: Parameters<mapFn>): [string, number] {
         const [[key]] = args;
 
         if (isObject(elementsCharsStore[name][key])) {
-            const obj = objectArrayify(elementsCharsStore[name][key], {
-                map: (...args : mapFnArgs) => [args[0][0], mapFnElement(...args)],
-            }) as number; // <- тсс
+            const obj = objectArrayify(elementsCharsStore[name][key] as object, {
+                map: (...args: Parameters<mapFn>) => [args[0][0], mapFnElement(...args)],
+            }) as unknown as number; // <- тсс
             return [key, obj];
         }
         return [key, mapFnElement(...args)];
     }
-    function calcElement(target: {[k: string]: Element}, name: string, map: (...args: mapFnArgs) => (string | number)[]) {
+    function calcElement(target: {[k: string]: Element}, name: string, map: mapFn) {
         target[name] = objectArrayify(elementsCharsStore[name], { map }) as Element;
     }
-    function calcInput(entries: Level, target: {[k: string]: Element}, elementMapFn: (name: string, level: number, ...args: mapFnArgs) => (string | number)[]) {
+    function calcInput(entries: Level, target: {[k: string]: Element}, elementMapFn: (name: string, level: number, ...args: Parameters<mapFn>) => [string, number]) {
         if (Object.keys(entries).length) {
             for (const [n, lvl] of Object.entries(entries)) {
                 if (!lvl) {

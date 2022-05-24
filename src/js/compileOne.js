@@ -16,7 +16,7 @@ export default function(obj, { filterByType: { path } }) {
         .filter(([name]) => (list) ? list.includes(name) : true)
         .sort(([a], [b]) => (list) ? (list.indexOf(a) - list.indexOf(b)) : 0)
 
-        .forEach(([_, e]) => {
+        .forEach(([, e]) => {
             // noinspection DuplicatedCode
             Object.entries(e)
                 .forEach(([key, value]) => {

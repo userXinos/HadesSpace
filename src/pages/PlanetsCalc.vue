@@ -107,12 +107,13 @@ import Calculator from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 
-import type { Input, Element, getElementsCB, ElementsStore, Output } from '../composables/calculator';
+import type { Input, Element, ElementsStore, Output } from '../composables/calculator';
 import type { ProvideGetterElementsCB, Setup } from '@/components/Calculator.vue';
+import type { Callbacks } from '@Scripts/objectArrayify';
 import key from '@Handlers/key.js';
 import value from '@Handlers/value.js';
-import objectArrayify from '@/js/objectArrayify';
-import filterByType from '@Scripts/filterByType';
+import objectArrayify from '../js/objectArrayify';
+import getFilterByType from '../js/getFilterByType';
 
 const CHARS_MODIFIERS: Record<string, string> = {
     CreditStorage: 'CreditStorageModifier',
@@ -207,7 +208,8 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<ProvideGetterEleme
     }
     let tsMaxLvl = 0;
 
-    const planets = objectArrayify(filterByType(planetsData, 'planets.yellowstar'), {
+    const planets = objectArrayify(planetsData, {
+        ...getFilterByType('planets.yellowstar'),
         map: ([name, planet]: [string, Element]) => {
             elements[name] = objectArrayify(levels, {
                 filter: ([, v]: [string, unknown]) => Array.isArray(v),

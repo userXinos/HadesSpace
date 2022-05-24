@@ -2,7 +2,7 @@
 
 import i18n from '@/js/Vue/i18n';
 import Icon from '@/components/Icon.vue';
-import sec2str from '@Scripts/sec2str.js';
+import sec2str from '@/js/sec2str';
 import locKeys from '@Regulation/locKeys.js';
 
 const { t } = i18n.global;

@@ -84,7 +84,7 @@ import { h } from 'vue';
 import Icon from '@/components/Icon.vue';
 import Store from '@Store/index';
 
-import objectArrayify from '@Scripts/objectArrayify.js';
+import objectArrayify from '@/js/objectArrayify';
 import hk from '@Regulation/hideKeys.js';
 
 

@@ -9,7 +9,7 @@
 <script>
 import Page from '@/components/Page.vue';
 import modulesData from '@Data/modules.js';
-import objectArrayify from '@Scripts/objectArrayify.js';
+import objectArrayify from '@Scripts/objectArrayify';
 
 const sortByAwardLevel = objectArrayify(modulesData, {
     filter: ([, v]) => !v.Hide,

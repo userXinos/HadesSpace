@@ -10,7 +10,7 @@
 import { Head } from '@vueuse/head';
 import Catalog from '../components/Catalog';
 
-import { getSectionsPages } from '@Scripts/parsePages.js';
+import { getSectionsPages } from '@Scripts/parsePages.ts';
 
 export default {
     components: { Head, Catalog },

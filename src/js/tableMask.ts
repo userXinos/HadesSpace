@@ -1,6 +1,13 @@
-export default function({ head, body }, mergeCells) {
-    const newHead = [[]];
-    const newBody = [];
+
+type Raw = { head: Record<string, string[]>, body: Record<string, unknown[][]> }
+type Out = {
+    head: {value: string, rowspan?: number, colspan?: number}[][],
+    body: {key: string, value: unknown, rowspan?: number, colspan?: number, hide: boolean}[][]
+}
+
+export default function({ head, body }: Raw, mergeCells: boolean) {
+    const newHead: Out['head'] = [[]];
+    const newBody: Out['body'] = [];
 
     Object.entries(head)
         .sort((_, [b]) => (b === 'default') ? 1 : -1)
@@ -15,7 +22,7 @@ export default function({ head, body }, mergeCells) {
     };
 }
 
-function headMask(category, keys, out) {
+function headMask(category: string, keys: string[], out: Out['head']) {
     if (category === 'default') {
         out[0].push(...keys.map((e) => ({
             value: e,
@@ -34,9 +41,9 @@ function headMask(category, keys, out) {
     }
 }
 
-function bodyMask(category, keys, srcBody, mergeCells, out) {
-    srcBody = rotateMatrix(srcBody);
-    const hideByRow = [];
+function bodyMask(category: string, keys: string[], srcBody: unknown[][], mergeCells: boolean, out: Out['body']) {
+    srcBody = rotateMatrix(srcBody as [][]);
+    const hideByRow: string[] = [];
     // const colZero = [];
 
     if (category === 'default') {
@@ -46,20 +53,20 @@ function bodyMask(category, keys, srcBody, mergeCells, out) {
             out.push(...srcBody.map(runRow));
             return;
         }
-        out.forEach((_, index) => {
+        out.forEach((_: unknown, index: number) => {
             out[index].push(...runRow(srcBody[index], index, out));
         });
     }
 
 
-    function rotateMatrix(matrix) {
+    function rotateMatrix(matrix: [][]) {
         return matrix[0]
             .map((value, column) => matrix
                 .map((row) => row[column]),
             );
     }
 
-    function runRow(e, rowIndex, arr) {
+    function runRow(e: unknown[], rowIndex: number, arr: unknown[][]) {
         return e.map((value, elemIndex) => {
             const hideByR = hideByRow.includes(`${rowIndex}>${elemIndex}`);
             // const hideByC = colZero.includes(`${rowIndex}>${elemIndex}`);

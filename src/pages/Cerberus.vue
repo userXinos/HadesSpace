@@ -35,8 +35,8 @@
 import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
-import filterByType from '@Scripts/filterByType.js';
-import objectArrayify from '@Scripts/objectArrayify.js';
+import getFilterByType from '@Scripts/getFilterByType';
+import objectArrayify from '@Scripts/objectArrayify';
 import ships from '@Data/capital_ships.js';
 import stations from '@Data/cerberus_stations.js';
 
@@ -59,7 +59,8 @@ export default {
     components: { Page, VContent },
     data() {
         return {
-            ships: filterByType(ships, 'capital_ships.cerberus', {
+            ships: objectArrayify(ships, {
+                ...getFilterByType('capital_ships.cerberus'),
                 map: ([k, v]) => {
                     if (v.modules) {
                         v.modules = v.modules.map((e) => objectArrayify(e, {

@@ -8,7 +8,8 @@
 <script>
 import Page from '@/components/Page.vue';
 
-import filterByType from '@Scripts/filterByType.js';
+import getFilterByType from '@Scripts/getFilterByType';
+import objectArrayify from '@Scripts/objectArrayify';
 import goals from '@Data/player_goals.js';
 
 const INDEXES = ['X', 'Y', 'Z'];
@@ -26,7 +27,8 @@ const VALUE_BY_INDEX = {
 };
 const DEFAULT_INDEX = 'GoalTarget';
 
-const fixed = filterByType(goals, 'player_goals.fixed', {
+const fixed = objectArrayify(goals, {
+    ...getFilterByType('player_goals.fixed'),
     map: ([key, v]) => {
         if (key in VALUE_BY_INDEX) {
             VALUE_BY_INDEX[key].forEach((k, i) => {

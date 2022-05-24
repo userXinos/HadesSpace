@@ -10,8 +10,9 @@
 <script>
 import Page from '@/components/Page.vue';
 
-import CustomIcon from '@Scripts/CustomIcon.js';
-import filterByType from '@Scripts/filterByType.js';
+import CustomIcon from '@Scripts/CustomIcon';
+import objectArrayify from '@Scripts/objectArrayify';
+import getFilterByType from '@Scripts/getFilterByType';
 import spaceBuildings from '@Data/spacebuildings.js';
 
 spaceBuildings.WarpLaneHub.Model = new CustomIcon('WarpLane');
@@ -21,7 +22,7 @@ export default {
     components: { Page },
     data() {
         return {
-            data: filterByType(spaceBuildings, `spacebuildings.player`),
+            data: objectArrayify(spaceBuildings, getFilterByType(`spacebuildings.player`)),
             img: require(`@Img/game/portraits/BlackCitadel.png`),
         };
     },
