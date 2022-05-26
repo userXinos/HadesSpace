@@ -1,3 +1,7 @@
 Name,TID,TID_Description,ConceptImage,ModelToSpawn,NumToSpawn,SpawnDelay,RadiusMin,RadiusMax,SpawnFx,MoveUpdateSec
 Ghosts,TID_GHOST_SPAWNER,TID_GHOST_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusGhosts,14,40,80,900,SentinelSpawn_Fx,5
 Ghosts11,TID_GHOST_SPAWNER,TID_GHOST_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusGhosts,16,40,80,900,SentinelSpawn_Fx,5
+Ghosts12,TID_GHOST_SPAWNER,TID_GHOST_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusGhosts,20,40,80,900,SentinelSpawn_Fx,5
+Colossus1,TID_COLOSSUS_SPAWNER,TID_COLOSSUS_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusColossus,3,80,80,1600,SentinelSpawn_Fx,0
+Sentinels1,TID_SENTINEL_SPAWNER,TID_SENTINEL_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusSentinel,3,10,80,900,SentinelSpawn_Fx,0
+Bombers1,TID_BOMBER_SPAWNER,TID_BOMBER_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusBomber,1,10,80,1600,SentinelSpawn_Fx,0
