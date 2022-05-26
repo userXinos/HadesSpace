@@ -9,7 +9,7 @@ module.exports = {
             '@Data': isNebulaBuild ? path('parser/dist/Nebula') : path('parser/dist'),
             '@i18n': path('i18n/dist'),
             '@Regulation': path('src/regulation'),
-            '@Img': path('src/img'),
+            '@Img': isNebulaBuild ? path('src/img/Nebula') : path('src/img'),
             '@Scripts': path('src/js'),
             '@Store': path('src/store'),
             '@Handlers': path('src/js/Handlers'),
