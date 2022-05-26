@@ -30,7 +30,11 @@ export default class Artifacts extends Runner {
             one.Name = Name;
 
             result[Name] = removeDupsFromArrays(one);
-            result[BPName] = { Name: BPName, ...genBPData(one) };
+
+            if (!this.isNebulaBuild) {
+                result[BPName] = { Name: BPName, ...genBPData(one) };
+            }
+
 
             [ 'BlueprintsMin', 'BlueprintsMax' ].forEach((e) => delete result[Name][e]);
             Runner.combineMinMax(result[Name]);

@@ -38,6 +38,7 @@ export default class Runner {
             saveAs: null,
         },
         raw: {},
+        isNebulaBuild: false,
     };
 
     /**
@@ -50,6 +51,7 @@ export default class Runner {
     constructor(args) {
         this.args = args;
         this.metadata = this.args.metadata || {};
+        this.isNebulaBuild = this.args.isNebulaBuild;
         this.metadata.runnerName = this.constructor.name;
         this.metadata.usedFiles = [];
     }

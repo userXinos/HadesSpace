@@ -36,7 +36,7 @@ export default class Stars extends Runner {
                     ].forEach((k) => value[k][2] = value[k][1]);
                 }
                 if (key === 'RedStar') {
-                    value = Runner.fillSpace(value, null, value.Models.length);
+                    value = Runner.fillSpace(value, null, value.Models?.length || value.AppearanceModels.length);
                 }
 
                 Runner.combineMinMax(value);

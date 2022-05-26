@@ -53,6 +53,13 @@ function addModulesStats(obj) {
     const mod = [ ...getAsArray(obj.InitialModule) ];
     const lvl = [ ...getAsArray(obj.InitialModuleLevels) ];
 
+    if (lvl.length < mod.length) {
+        const lvl1 = lvl[0];
+        for (let i = 0; i < mod.length; i++) {
+            lvl[i] = lvl1;
+        }
+    }
+
     if (mod) {
         if (!mod?.some(Array.isArray)) {
             for (let i = 0; i < mod.length; i++) {
@@ -72,7 +79,12 @@ function addModulesStats(obj) {
                         delete obj.InitialModuleLevels;
                     } else {
                         obj.InitialModule.splice(obj.InitialModule.indexOf(modName), 1);
-                        obj.InitialModuleLevels.splice(obj.InitialModuleLevels.indexOf(modLvlIndex), 1);
+
+                        if (Array.isArray(obj.InitialModuleLevels)) {
+                            obj.InitialModuleLevels.splice(obj.InitialModuleLevels.indexOf(modLvlIndex), 1);
+                        } else {
+                            delete obj.InitialModuleLevels;
+                        }
                     }
                 }
             }
