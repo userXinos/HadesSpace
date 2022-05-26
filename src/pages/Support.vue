@@ -15,12 +15,14 @@ export default {
         postFilter(data) {
             const Salvage = { ...data.Salvage };
 
-            Salvage.SalvageHullPercent = {
-                RS: Salvage.SalvageHullPercent[0],
-                WS: Salvage.SalvageHullPercent[1],
-                // BS: Salvage.SalvageHullPercent[2], // тоже самое, что и в КЗ
-            };
-            data.Salvage = Salvage;
+            if (Salvage.SalvageHullPercent) {
+                Salvage.SalvageHullPercent = {
+                    RS: Salvage.SalvageHullPercent[0],
+                    WS: Salvage.SalvageHullPercent[1],
+                    // BS: Salvage.SalvageHullPercent[2], // тоже самое, что и в КЗ
+                };
+                data.Salvage = Salvage;
+            }
 
             return data;
         },

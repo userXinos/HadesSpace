@@ -67,6 +67,9 @@ function bodyMask(category: string, keys: string[], srcBody: unknown[][], mergeC
     }
 
     function runRow(e: unknown[], rowIndex: number, arr: unknown[][]) {
+        if (!e) {
+            return [];
+        }
         return e.map((value, elemIndex) => {
             const hideByR = hideByRow.includes(`${rowIndex}>${elemIndex}`);
             // const hideByC = colZero.includes(`${rowIndex}>${elemIndex}`);

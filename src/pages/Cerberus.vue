@@ -42,7 +42,11 @@ import stations from '@Data/cerberus_stations.js';
 
 // eslint-disable-next-line prefer-destructuring
 ships.CerberusGhosts.GhostSpawnSecs = ships.CerberusGhosts.GhostSpawnSecs[0];
-ships.CerberusColossus.modules[1].SalvageHullPercent.pop();
+
+if (ships.CerberusColossus.modules[1]) {
+    ships.CerberusColossus.modules[1].SalvageHullPercent.pop();
+}
+
 
 const UNNECESSARY_MODULE_STATS = [
     'BSScore',

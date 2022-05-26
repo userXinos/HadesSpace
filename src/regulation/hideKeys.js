@@ -391,6 +391,7 @@ export default {
         'YellowStar.IsHome',
         'YellowStar.Star',
         'YellowStar.Lifetime',
+        'YellowStar.AppearanceModels',
 
         // BlueStar
         'BlueStar.Models',

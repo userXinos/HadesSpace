@@ -140,7 +140,7 @@ export default [
         (v) => t(`TID_SECURITY_RATING_${v}`),
     ],
     [
-        ['BSAnomaly'],
+        ['BSAnomaly', 'DSAnomaly'],
         (v) => v ? '✓' : '',
     ],
     [
