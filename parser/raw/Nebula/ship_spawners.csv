@@ -1,0 +1,3 @@
+Name,TID,TID_Description,ConceptImage,ModelToSpawn,NumToSpawn,SpawnDelay,RadiusMin,RadiusMax,SpawnFx,MoveUpdateSec
+Ghosts,TID_GHOST_SPAWNER,TID_GHOST_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusGhosts,14,40,80,900,SentinelSpawn_Fx,5
+Ghosts11,TID_GHOST_SPAWNER,TID_GHOST_SPAWNER_DESCR,portrait_CerberusSwarm,CerberusGhosts,16,40,80,900,SentinelSpawn_Fx,5

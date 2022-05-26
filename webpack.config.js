@@ -1,10 +1,12 @@
 const { resolve } = require('path');
 const path = (...p) => resolve(__dirname, ...p);
 
+const isNebulaBuild = process.env.NEBULA_BUILD;
+
 module.exports = {
     resolve: {
         alias: {
-            '@Data': path('parser/dist'),
+            '@Data': isNebulaBuild ? path('parser/dist/Nebula') : path('parser/dist'),
             '@i18n': path('i18n/dist'),
             '@Regulation': path('src/regulation'),
             '@Img': path('src/img'),

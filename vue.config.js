@@ -1,11 +1,13 @@
 const configureWebpack = require('./webpack.config.js');
 
 const isDev = (process.env.NODE_ENV === 'development');
+const isNebulaBuild = process.env.NEBULA_BUILD;
 
 module.exports = {
-    publicPath: isDev ? '/' : '/HadesSpace/',
+    publicPath: (isDev ? '/' : '/HadesSpace/') + (isNebulaBuild ? 'Nebula' : ''),
     productionSourceMap: isDev,
     lintOnSave: isDev,
+    outputDir: isNebulaBuild ? './dist/Nebula/' : './dist',
     css: {
         sourceMap: isDev,
     },
