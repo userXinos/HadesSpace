@@ -6,7 +6,7 @@ const STAR_REGEX = new RegExp(`(.+?)(_?(${ Modules.config.runner.starsOrder.join
 export default function genStringsStarHeaders(data, res = {}) {
     Object.entries(data)
         .map(([ key, value ]) => {
-            if (value.constructor === Object) {
+            if (value?.constructor === Object) {
                 genStringsStarHeaders(value, res);
             }
             return key;
