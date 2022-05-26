@@ -7,7 +7,7 @@ module.exports = {
     publicPath: (isDev ? '/' : '/HadesSpace/') + (isNebulaBuild ? 'Nebula' : ''),
     productionSourceMap: isDev,
     lintOnSave: isDev,
-    outputDir: isNebulaBuild ? './dist/Nebula/' : './dist',
+    // outputDir: isNebulaBuild ? './dist/Nebula/' : './dist',
     css: {
         sourceMap: isDev,
     },

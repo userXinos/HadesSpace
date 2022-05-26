@@ -3,7 +3,7 @@
   "author": "Xinos",
   "scripts": {
     "build": "npm run parser && npm run i18n:full && vue-cli-service build",
-    "build-nebula": "set NEBULA_BUILD=true && npm run i18n-nebula:full && vue-cli-service build",
+    "build-nebula": "set NEBULA_BUILD=true && npm run i18n-nebula:full && vue-cli-service build --dest ./dist/Nebula",
     "dev": "vue-cli-service serve",
     "dev-nebula": "set NEBULA_BUILD=true && vue-cli-service serve",
     "i18n": "cd i18n && npm run start",
