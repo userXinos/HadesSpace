@@ -73,9 +73,7 @@ function saveTSType(json, pathJSFile) {
  * @return {Promise<void>}
  */
 function createFile(path, data) {
-    if (!existsSync(dirname(path))) {
-        mkdirSync(dirname(path));
-    }
+    mkdirSync(dirname(path), { recursive: true });
 
     return writeFile(path, data)
         .then(() => console.log('File', `"\x1b[32m${path}\x1b[0m"`, 'created'));
