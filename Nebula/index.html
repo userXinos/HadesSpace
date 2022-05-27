@@ -3,8 +3,8 @@
           let NEBULA_DIR = '/Nebula/';
 
           if (redirect) {
-              if (redirect.includes(NEBULA_DIR && !location.href.includes(NEBULA_DIR))) {
-                  window.location.href = window.location.href + NEBULA_DIR;
+              if (redirect.includes(NEBULA_DIR) && !location.href.includes(NEBULA_DIR)) {
+                  location.href = location.href + NEBULA_DIR;
               }
 
               delete sessionStorage.redirect;
