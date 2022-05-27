@@ -30,11 +30,11 @@ export default class Artifacts extends Runner {
             one.Name = Name;
 
             result[Name] = removeDupsFromArrays(one);
+            const BP = genBPData(one);
 
-            if (!this.isNebulaBuild) {
-                result[BPName] = { Name: BPName, ...genBPData(one) };
+            if (BP) {
+                result[BPName] = { Name: BPName, ...BP };
             }
-
 
             [ 'BlueprintsMin', 'BlueprintsMax' ].forEach((e) => delete result[Name][e]);
             Runner.combineMinMax(result[Name]);
@@ -49,6 +49,9 @@ export default class Artifacts extends Runner {
             const res = {};
             let maxIndex = 0;
 
+            if (!minArr || !maxArr) {
+                return;
+            }
             for (let i = 0; i < minArr.length; i++) {
                 const lvl = i + ((src.Name === 'Support') ? 2 : 1);
                 const arr = [];

@@ -5,8 +5,7 @@ import Modules from './Modules.js';
 import loadFile from '../modules/loadFile.js';
 import CONFIG from '../config.js';
 
-// noinspection JSCheckFunctionSignatures
-const { data: modules } = await loadFile(join(CONFIG.pathRaw, 'modules.csv'), [ Modules ]).then((e) => e.render());
+let modules;
 
 export default class CapitalShips extends Runner {
     static config = {
@@ -14,8 +13,10 @@ export default class CapitalShips extends Runner {
         ignoreFiles: [ 'ship_spawners' ],
     };
 
-    run(rawData) {
+    async run(rawData) {
         const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = this.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);
+        const path = join(CONFIG.pathRaw, this.isNebulaBuild ? '/Nebula' : '/', 'modules.csv');
+        modules = await loadFile(path, [ Modules ]).then((e) => e.render());
 
         const data = Runner.objectArrayify(rawData, {
             //  => Modules Runner
@@ -33,6 +34,19 @@ export default class CapitalShips extends Runner {
                             delete value.modules[name];
                         }
                     });
+                }
+                if (key === 'CorpFlagship') {
+                    Object.entries(Modules.config.runner.combineKeys).forEach(([ fixedName, name ]) => {
+                        if (value.modules[name]) {
+                            value.modules[fixedName] = value.modules[name];
+                            delete value.modules[name];
+                        }
+                    });
+                }
+                // исключение
+                if (key === 'Battleship' && this.isNebulaBuild) {
+                    const { NewModuleSlots } = value;
+                    value.NewModuleSlots = [ [ NewModuleSlots.shift(), NewModuleSlots.shift() ], ...NewModuleSlots ];
                 }
                 return [ key, value ];
             },
@@ -54,7 +68,7 @@ function addModulesStats(obj) {
     const lvl = [ ...getAsArray(obj.InitialModuleLevels) ];
 
     if (lvl.length < mod.length) {
-        const lvl1 = lvl[0];
+        const [ lvl1 ] = lvl;
         for (let i = 0; i < mod.length; i++) {
             lvl[i] = lvl1;
         }
@@ -73,27 +87,14 @@ function addModulesStats(obj) {
                     }
                     const level = (modLvlIndex) ? modLvlIndex + 1 : undefined;
                     obj.modules.push({ level, ...module });
-
-                    if (typeof obj.InitialModule === 'string') {
-                        delete obj.InitialModule;
-                        delete obj.InitialModuleLevels;
-                    } else {
-                        obj.InitialModule.splice(obj.InitialModule.indexOf(modName), 1);
-
-                        if (Array.isArray(obj.InitialModuleLevels)) {
-                            obj.InitialModuleLevels.splice(obj.InitialModuleLevels.indexOf(modLvlIndex), 1);
-                        } else {
-                            delete obj.InitialModuleLevels;
-                        }
-                    }
                 }
             }
         }
     }
 
     function getModuleByLvl(name, lvl) {
-        if (name in modules) {
-            return Runner.objectArrayify(modules[name], {
+        if (name in modules.data) {
+            return Runner.objectArrayify(modules.data[name], {
                 map: ([ key, value ]) => [
                     key,
                     (!Array.isArray(value)) ? value :

@@ -22,7 +22,7 @@ export default class Stars extends Runner {
         const data = Runner.objectArrayify(Runner.combineObjects(rawData, SSGData), {
             map: ([ key, value ]) => {
                 if (key in CONFIG.globalKeys) {
-                    value = Runner.combineObjects(value, Globals.getGlobalsBy(CONFIG.globalKeys[key]));
+                    value = Runner.combineObjects(value, Globals.getGlobalsBy(CONFIG.globalKeys[key], this.readCsv.bind(this)));
                 }
                 if (key === 'WhiteStar') {
                     const matrix = CONFIG.thresholdsKeys.map((e) => value[e]);

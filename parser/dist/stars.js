@@ -1,7 +1,7 @@
 /**
  * @GeneratedBy Stars.js runner
  * @OriginalFile raw/stars.csv
- * @UsedFiles solar_system_gen_data.csv
+ * @UsedFiles solar_system_gen_data.csv, globals.csv
  */
 
 export default {

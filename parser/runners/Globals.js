@@ -15,8 +15,8 @@ export default class Globals extends Runner {
         });
     }
 
-    static getGlobalsBy(str) {
-        const data = Runner.readCsv(Globals.config.file);
+    static getGlobalsBy(str, readCsv) {
+        const data = readCsv(Globals.config.file);
         return Runner.objectArrayify(data, {
             filter: ([ key ]) => key.includes(str),
             map: ([ key, { Value } ]) => [ key, Value ],

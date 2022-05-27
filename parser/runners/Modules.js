@@ -45,8 +45,9 @@ export default class Modules extends Runner {
             'projectiles',
             'artifacts',
         ]);
+        const getGlobalsBy = (k) => Globals.getGlobalsBy(k, this.readCsv.bind(this));
         const data = Runner.objectArrayify(rawData, {
-            map: (...args) => dataMapCallback(...args, dataTables),
+            map: (...args) => dataMapCallback(...args, dataTables, getGlobalsBy, this.isNebulaBuild),
         });
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
@@ -65,7 +66,7 @@ export default class Modules extends Runner {
     }
 }
 
-function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, artifacts ]) {
+function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, artifacts ], getGlobalsBy, isNebulaBuild) {
     // слить подобные вместе
     if (key in CONFIG.combineKeys) {
         const k = CONFIG.combineKeys[key];
@@ -73,7 +74,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // добавить глобальные
-    const glob = Globals.getGlobalsBy(key);
+    const glob = getGlobalsBy(key);
     Runner.combineObjects(value, glob);
 
     // добавить уровень артефакта
@@ -125,7 +126,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // разрешить спрайты майниг дрона
-    if (key === 'MiningDrone') {
+    if (key === 'MiningDrone' && !isNebulaBuild) {
         const pattern = 'MiningDrone_lv';
         const ranges = CONFIG.allowedSpriteNamesMiningDrone
             .map((e) => e.replace(pattern, ''))

@@ -70,14 +70,24 @@ export default class Runner {
         return this._newJson(data);
     }
 
-    multiReadCsv(fileNames) {
-        this.metadata.usedFiles.push( ...fileNames);
-        return Runner.multiReadCsv(fileNames);
+    multiReadCsv(names) {
+        return names.map(this.readCsv.bind(this));
     }
 
+    /**
+     * Загрузить не изменённый ранерами объект
+     * @param  {String} fileName  Имя файла, в директории с сырыми данными
+     * @return {Object}           Готовый объект
+     */
     readCsv(fileName) {
-        this.metadata.usedFiles.push(fileName);
-        return Runner.readCsv(fileName);
+        const path = `${join(CONFIG.pathRaw, (this.isNebulaBuild) ? '/Nebula' : '/', fileName)}.csv`;
+        const file = readFileSync(path, 'utf8');
+
+        if (!this.metadata.usedFiles.includes(fileName)) {
+            this.metadata.usedFiles.push(fileName);
+        }
+
+        return csv2json(file);
     }
 
     _newJson(...args) {
@@ -88,22 +98,8 @@ export default class Runner {
     //              STATIC
     // ===============================
 
-    static multiReadCsv(names) {
-        return names.map(Runner.readCsv);
-    }
-
     static parse(s) {
         return csv2json(s);
-    }
-
-    /**
-     * Загрузить не изменённый ранерами объект
-     * @param  {String} fileName  Имя файла, в директории с сырыми данными
-     * @return {Object}           Готовый объект
-     */
-    static readCsv(fileName) {
-        const file = readFileSync(`${join(CONFIG.pathRaw, fileName)}.csv`, 'utf8');
-        return csv2json(file);
     }
 
     /**
