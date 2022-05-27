@@ -1,10 +1,10 @@
 <!doctype html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hades Space</title><!--[if IE]><link rel="icon" href="/HadesSpace/Nebula/favicon/favicon.png"><![endif]--><meta property="og:site_name" content="Hades Space"><meta property="og:type" content="website"><meta property="og:image" content="/HadesSpace/Nebula/meta-image.png"><meta property="og:title" content="Index"><meta property="og:url" content="index.html"><meta property="og:description" content="Current information about the game Hades' star"><script>(function(){
           let redirect = sessionStorage.redirect;
-          let NEBULA_DIR = '/Nebula/';
 
           if (redirect) {
-              if (redirect.includes(NEBULA_DIR && !location.href.includes(NEBULA_DIR))) {
-                  window.location.href = window.location.href + NEBULA_DIR;
+              if (redirect.includes('/Nebula/') && !location.href.includes('/Nebula/')) {
+                  location.href = location.href + 'Nebula/';
+                  return;
               }
 
               delete sessionStorage.redirect;
