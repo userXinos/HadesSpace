@@ -18,9 +18,17 @@
   <script type="text/javascript">
       (function(){
           let redirect = sessionStorage.redirect;
-          delete sessionStorage.redirect;
-          if (redirect && redirect != location.href) {
-              history.replaceState(null, null, redirect);
+          let NEBULA_DIR = '/Nebula/';
+
+          if (redirect) {
+              if (redirect.includes(NEBULA_DIR && !location.href.includes(NEBULA_DIR))) {
+                  window.location.href = window.location.href + NEBULA_DIR;
+              }
+
+              delete sessionStorage.redirect;
+              if (redirect != location.href) {
+                  history.replaceState(null, null, redirect);
+              }
           }
       })();
   </script>

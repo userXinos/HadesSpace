@@ -5,9 +5,17 @@ const isNebulaBuild = process.env.NEBULA_BUILD;
 
 module.exports = {
     publicPath: (isDev ? '/' : '/HadesSpace/') + (isNebulaBuild ? 'Nebula/' : ''),
+    outputDir: isNebulaBuild ? './dist/Nebula/' : './dist',
     productionSourceMap: isDev,
     lintOnSave: isDev,
-    outputDir: isNebulaBuild ? './dist/Nebula/' : './dist',
+    chainWebpack: (config) => {
+        config.plugin('copy').tap(([options]) => {
+            if (isNebulaBuild) {
+                options.patterns[0].from = `${options.patterns[0].from}-nebula`;
+            }
+            return [options];
+        });
+    },
     css: {
         sourceMap: isDev,
     },
