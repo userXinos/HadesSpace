@@ -8,6 +8,8 @@ import locKeys from '@Regulation/locKeys.js';
 const { t } = i18n.global;
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 
+const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
+
 export default [
     [
         [
@@ -226,11 +228,11 @@ export default [
         (v) => v.map(numberFormat).join(' -> '),
     ],
     [
-        ['DestinyDisableTimes'],
+        [isNebulaBuild ? '' : 'DestinyDisableTimes'],
         ([rs, ws]) => `${t('RS')}: ${sec2str(rs)} | ${t('WS')}: ${sec2str(ws * 600)}`,
     ],
     [
-        ['BarrageMaxAdditionalEnemies'],
+        [isNebulaBuild ? '' : 'BarrageMaxAdditionalEnemies'],
         ([rs, ws]) => `${t('RS')}: ${rs} | ${t('WS')}: ${ws}`,
     ],
     [
@@ -260,10 +262,7 @@ export default [
         (v) => (createElement) => createElement('a', {
             href: require(`@Img/game/portraits/${v}.png`),
             target: '_blank',
-        }, [
-            t('OPEN'),
-            createElement('img', { src: require('@Img/icons/outbound.svg') }),
-        ]),
+        }, t('OPEN')),
     ],
     [
         ['PlanetTypes'],

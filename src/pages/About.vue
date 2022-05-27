@@ -23,7 +23,7 @@ function Link({ text, to }) {
     return h('a', {
         href: to,
         target: '_blank',
-    }, [text, h('img', { src: require('@Img/icons/outbound.svg') })]);
+    }, text);
 }
 
 export default {

@@ -1,3 +1,6 @@
+
+const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
+
 export default [
     {
         name: 'Index',
@@ -13,7 +16,7 @@ export default [
                 path: '/trade',
                 component: () => import(/* webpackChunkName: "Trade" */ '../pages/Trade.vue'),
                 icon: {
-                    name: 'Mod_TransportAutopilot_Icon',
+                    name: isNebulaBuild ? 'Mod_ArtifactBoost_Icon' : 'Mod_TransportAutopilot_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -23,7 +26,7 @@ export default [
                 path: '/mining',
                 component: () => import(/* webpackChunkName: "Mining" */ '../pages/Mining.vue'),
                 icon: {
-                    name: 'Mod_MiningBoost_Icon',
+                    name: isNebulaBuild ? 'Mod_Enrich_Icon' : 'Mod_MiningBoost_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -33,7 +36,7 @@ export default [
                 path: '/weapon',
                 component: () => import(/* webpackChunkName: "Weapon" */ '../pages/Weapon.vue'),
                 icon: {
-                    name: 'Mod_Barrage_Icon',
+                    name: isNebulaBuild ? 'Mod_ChainRay_Icon' : 'Mod_Barrage_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -53,7 +56,7 @@ export default [
                 path: '/support',
                 component: () => import(/* webpackChunkName: "Support" */ '../pages/Support.vue'),
                 icon: {
-                    name: 'Mod_Destiny_Icon',
+                    name: isNebulaBuild ? 'Mod_DeltaDrone_Icon' : 'Mod_Destiny_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -77,7 +80,7 @@ export default [
                 path: '/ships',
                 component: () => import(/* webpackChunkName: "Ships" */ '../pages/Ships.vue'),
                 icon: {
-                    name: 'Miner_lv6',
+                    name: isNebulaBuild ? 'Transport_DrkNeb_lv5' : 'Miner_lv6',
                     dir: 'game/Ships',
                 },
             },
@@ -87,7 +90,7 @@ export default [
                 path: '/cerberus',
                 component: () => import(/* webpackChunkName: "Cerberus" */ '../pages/Cerberus.vue'),
                 icon: {
-                    name: 'Fighter_Cerberus6_lv1',
+                    name: isNebulaBuild ? 'Fighter_DrkNeb_Cerberus5_lv1' : 'Fighter_Cerberus6_lv1',
                     dir: 'game/Ships',
                 },
             },

@@ -44,14 +44,13 @@ import Page from '@/components/Page.vue';
 import stars from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
 
+const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
 const ARTS = {
     Combat: 'COMBAT_ART',
     Utility: 'UTILITY_ART',
     Support: 'SUPPORT_ART',
 };
-
 const { RedStar } = stars;
-
 const USELESS_STATS = [
     'GhostSpawnSecs',
     'Models',
@@ -82,24 +81,20 @@ export default {
                 lvlColKey: '№',
                 colLvlStartAt: (name == 'Support') ? 2 : 1,
             };
+            const res = [];
 
-            return [
-                {
-                    data: {
-                        ...this.artifacts[name],
-                        TID2: this.artifacts[name].TID,
-                        TID: ARTS[name],
-                    },
+            res[0] = {
+                data: { ...this.artifacts[name], TID2: this.artifacts[name].TID, TID: ARTS[name] },
+                tableOpts,
+            };
+            if (!isNebulaBuild) {
+                res[1] = {
+                    data: { TID: 'BLUEPRINTS', ...this.artifacts[`${name}Blueprints`] },
                     tableOpts,
-                },
-                {
-                    data: {
-                        TID: 'BLUEPRINTS',
-                        ...this.artifacts[`${name}Blueprints`],
-                    },
-                    tableOpts,
-                },
-            ];
+                };
+            }
+
+            return res;
         },
     },
 };

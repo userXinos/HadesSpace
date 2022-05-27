@@ -3,8 +3,7 @@
 export default {
     capital_ships: {
         player: ['Transport', 'Miner', 'Battleship', 'CorpFlagship'],
-        cerberus: ['CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts', 'CerberusHydra', 'Hydraling1', 'Hydraling2'],
-        drones: ['ShipmentDrone', 'MiningDrone', 'AlphaDrone', 'RelicDrone'],
+        cerberus: ['CerberusSentinel', 'CerberusGuardian', 'CerberusInterceptor', 'CerberusColossus', 'CerberusDestroyer', 'CerberusBomber', 'CerberusPhoenix', 'CerberusStorm', 'CerberusGhosts', 'CerberusHydra', 'Hydraling1', 'Hydraling2', 'CerberusCarrier'],
     },
     planets: {
         yellowstar: ['desert_lv1', 'lava_lv1', 'water_lv1', 'terran_lv1', 'gas_lv1', 'terran_lv2', 'lava_lv2', 'water_lv2', 'gas_lv2', 'desert_lv2', 'lava_lv3', 'desert_lv3', 'water_lv3', 'terran_lv3', 'ice_variation1', 'ice_variation2'],

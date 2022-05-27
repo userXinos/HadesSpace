@@ -18,6 +18,8 @@
 <script>
 import CustomIcon from '@/js/CustomIcon';
 
+const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
+
 const TYPES = {
     'game/Modules': 'Module',
     'game/Ships': 'Ship',
@@ -71,6 +73,20 @@ export default {
                 }
                 name = this.customType;
             }
+
+            if (isNebulaBuild) {
+                if (this.isProjectiles && !name.includes('_DrkNeb')) {
+                    name += '_DrkNeb';
+                }
+                if (this.isCerberus) {
+                    if (name.includes('_lv1')) {
+                        name = name.replace('_lv1', '');
+                    } else if (!name.startsWith('Battleship') && !name.startsWith('CerberusStation') && !name.endsWith('Carrier')) {
+                        name += '_lv1';
+                    }
+                }
+            }
+
             return require(`@Img/${dir}/${name}.png`);
         },
         customType() {

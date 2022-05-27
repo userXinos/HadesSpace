@@ -40,10 +40,12 @@ import objectArrayify from '@Scripts/objectArrayify';
 import ships from '@Data/capital_ships.js';
 import stations from '@Data/cerberus_stations.js';
 
-// eslint-disable-next-line prefer-destructuring
-ships.CerberusGhosts.GhostSpawnSecs = ships.CerberusGhosts.GhostSpawnSecs[0];
+if (ships.CerberusGhosts.GhostSpawnSecs) {
+    // eslint-disable-next-line prefer-destructuring
+    ships.CerberusGhosts.GhostSpawnSecs = ships.CerberusGhosts.GhostSpawnSecs[0];
+}
 
-if (ships.CerberusColossus.modules[1]) {
+if (ships.CerberusColossus.modules[1].SalvageHullPercent) {
     ships.CerberusColossus.modules[1].SalvageHullPercent.pop();
 }
 
