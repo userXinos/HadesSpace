@@ -24,7 +24,7 @@ export default [
             'UnityBoostPercent',
             'IncreaseSectorHydroPct',
             'HydroUploadPct',
-            'SpeedIncreasePerShipment',
+            'SpeedIncreasePerShipment', // устарело
             'CreditIncomeModifier',
             'FuelIncomeModifier',
             'CreditStorageModifier',
@@ -40,6 +40,13 @@ export default [
             'TimeWarpSuppression',
             'UnityMaxDamageIncreasePct',
             'BlueStar_SPFactor',
+            'MaxRelicSpeedIncrease',
+            'ArtifactBoostPct',
+            'HydroClonePct',
+            'LinkDPSBoostPct',
+            'SolitudeDPSBoost',
+            'DmgReduceImmobilize',
+            'SpeedSlowdownFactor',
         ],
         (v) => `${v}%`,
     ],
@@ -81,6 +88,10 @@ export default [
             'RSPublicLateJoin_TimeAvailable',
             'SectorGenesisCooldownSeconds',
             'AIUpdateIntervalSeconds',
+            'HydroCloneLifetimeSec',
+            'WSLostShipTimeCooldown',
+            'WSDisbandCooldown',
+            // 'ActivationDelayBLS', // хз какой там кооф
         ],
         (v) => sec2str(v),
     ],
@@ -108,6 +119,7 @@ export default [
             'SafeInterceptorInPublicRS',
             'ShowDurationInTopSpot',
             'NoCerbBondTeleportP', // так надо
+            'DronesIgnoreBarrier',
         ],
         (v) => v ? t('YES') : t('NO'),
     ],
@@ -118,6 +130,8 @@ export default [
             'DamageRangeWhenNeutralized',
             'AttackRange',
             'CollapseAreaSize',
+            'LinkWeaponRange',
+            'ImpulseRange',
         ],
         (v) => `${v / 10} ${t('AU')}`,
     ],
@@ -136,6 +150,18 @@ export default [
     [
         ['MoveHydrogenCostPerSector', 'TSHydroCost', 'ActivationFuelCost'],
         (v) => `${numberFormat(v)} ${t('HYD')}.`,
+    ],
+    [
+        ['SpeedIncreasePerShipment'],
+        (v) => t('TID_MODULE_RUSH_SPEED_INCR_VAL_PER_SHIPMENT', [v]),
+    ],
+    [
+        ['SpeedIncreasePerArtifact'],
+        (v) => t('TID_MODULE_RUSH_SPEED_INCR_VAL_PER_SHIPMENT_RS', [v]),
+    ],
+    [
+        ['SpeedIncreasePerRelic'],
+        (v) => t('TID_MODULE_RUSH_SPEED_INCR_VAL_PER_SHIPMENT_WS', [v]),
     ],
     [
         ['SecurityRating'],
@@ -162,7 +188,7 @@ export default [
         (v) => `x${v / 10000}`,
     ],
     [
-        ['TID', 'TID2', 'TID_Description', 'TID_Artifact'],
+        ['TID', 'TID2', 'TID_Description', 'TID_Artifact', 'TID_Description_BLS'],
         (v) => t(v),
     ],
     [

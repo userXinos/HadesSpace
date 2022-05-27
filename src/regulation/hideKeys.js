@@ -87,6 +87,11 @@ export default {
         'GroupName',
         'GroupPriority',
         'ShowOnPlayerBadge',
+        'PreviewLevel',
+        'ActivationTargetFX',
+        'SortLayer',
+        'AllowBuildOnYS',
+        'UISortOrder',
     ],
     byPath: [
 
@@ -290,6 +295,7 @@ export default {
         'CerberusDestroyer.ApplyModuleOnDockedObjectDestroy',
         'CerberusDestroyer.OnDestroySpawnMinRadius',
         'CerberusDestroyer.OnDestroySpawnMaxRadius',
+        'CerberusDestroyer.PlanetDamagePerSecFP', // временно ?
         'CerberusBomber.ApplyModuleOnDockedObjectDestroy',
         'CerberusBomber.OnDestroySpawnMinRadius',
         'CerberusBomber.OnDestroySpawnMaxRadius',
@@ -311,6 +317,8 @@ export default {
         'Hydraling2.ApplyModuleOnDockedObjectDestroy',
         'Hydraling2.OnDestroySpawnMinRadius',
         'Hydraling2.OnDestroySpawnMaxRadius',
+        'CerberusCarrier.BuildCost',
+        'CerberusCarrier.NewModuleSlots',
 
         // Ships
         'Battleship.BSPenaltyPerSec', // статы для ГЗ бота
@@ -355,6 +363,7 @@ export default {
         'FlagshipShieldModule.SpawnLifetime',
         'FlagshipShieldModule.ActivationDelay',
         'Immolation.IsImmolation',
+        'FlagshipDroneSwarm.SpawnedShipOffsets',
 
         // RedStar
         'RedStar.Star',
@@ -364,6 +373,7 @@ export default {
         'RedStar.DisableRSSearchDuringTutorial',
         'RedStar.WarnOnSRSPlacementMinNumNeighbors',
         'RedStar.PrivateRSEventClientDisplayMode',
+        'RedStar.AppearanceModels',
 
         // RedStar.artifacts
         'Combat.Model',
@@ -405,6 +415,10 @@ export default {
         'BlueStar.MaxBattleshipsPerPlayer',
         'BlueStar.BlueStar_HydroPctPerMatch',
         'BlueStar.BlueStar_CRRewardWinLimit',
+        'BlueStar.CollapsePeriod', // времено ?
+        'BlueStar.SpeedModifierPct', // времено ?
+        'BlueStar.CycleEndTimes',
+        'BlueStar.CycleEndCollapseAreaSize',
 
         // WhiteStar
         'WhiteStar.Star',
@@ -422,6 +436,8 @@ export default {
         'WhiteStar.WSHQAsteroidsPerBucket',
         'WhiteStar.WSShipEventTopBrackets',
         'WhiteStar.WSShipEventCRRewards',
+        'WhiteStar.AppearanceModels',
+        'WhiteStar.SpeedModifierPct', // времено ?
 
         // Trade
         'Recall.TeleportToTradeStation',
@@ -436,6 +452,10 @@ export default {
         'RelicDrone.MaxShipments',
         'RelicDrone.RelicLoadTicks',
         'RelicDrone.RelicLoadTicksBS',
+        'PreventUseOnWsJumpgate.PreventUseOnWsJumpgate',
+        'Dispatch.APTPIOTTPYS', // неизвестная единица измерения
+        'CargoRocket.IsCargoRocket',
+        'CargoRocket.AdditionalWaypoint',
 
         // Mining
         'HydroRocket.AdditionalWaypoint',
@@ -447,6 +467,7 @@ export default {
         'HydrogenUpload.WhiteStarScore',
         'MiningDrone.NewModuleSlots',
         'MiningDrone.JobCapacity',
+        'HydroStorageCapacity.FuelUseIncrease',
 
         // Weapons
         'DartLauncher.AdditionalWaypoint',
@@ -461,10 +482,12 @@ export default {
         'WeakBattery.Install',
         'WeakBattery.BCCost',
         'WeakBattery.FuelUseIncrease',
+        'PlayerRocketLauncher.MinEffectRadius', // хз что это
 
         // Shields
         'BlastShield.IsAOEOnlyShield',
         'WeakShield.WhiteStarScore',
+        'AlphaShield.AlphaShield',
 
         // Support
         'EMP.IsEMP',
@@ -506,5 +529,7 @@ export default {
         'LaserTurret.MaxPerRS',
         'DeltaRocket.PreventUseOnWsJumpgate',
         'Impulse.MaxImpulse',
+        'DroneSquad.SpawnedShipOffsets',
+        'DeltaDrones.SpawnedShipOffsets',
     ],
 };
