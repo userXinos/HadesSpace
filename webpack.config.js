@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const path = (...p) => resolve(__dirname, ...p);
 
-const isNebulaBuild = process.env.NEBULA_BUILD;
+const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
 
 module.exports = {
     resolve: {

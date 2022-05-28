@@ -8,7 +8,7 @@ import locKeys from '@Regulation/locKeys.js';
 const { t } = i18n.global;
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 
-const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
+const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 export default [
     [

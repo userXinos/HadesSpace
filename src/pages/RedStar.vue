@@ -44,7 +44,7 @@ import Page from '@/components/Page.vue';
 import stars from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
 
-const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
+const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const ARTS = {
     Combat: 'COMBAT_ART',
     Utility: 'UTILITY_ART',

@@ -18,7 +18,7 @@
 <script>
 import CustomIcon from '@/js/CustomIcon';
 
-const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
+const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 const TYPES = {
     'game/Modules': 'Module',

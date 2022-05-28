@@ -1,9 +1,7 @@
 const configureWebpack = require('./webpack.config.js');
 
 const isDev = (process.env.NODE_ENV === 'development');
-const isNebulaBuild = process.env.NEBULA_BUILD;
-
-process.env.VUE_APP_NEBULA_BUILD = isNebulaBuild;
+const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 module.exports = {
     publicPath: (isDev ? '/' : `/HadesSpace/${isNebulaBuild ? 'Nebula/' : ''}`),

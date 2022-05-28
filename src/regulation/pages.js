@@ -1,5 +1,4 @@
-
-const isNebulaBuild = process.env.VUE_APP_NEBULA_BUILD;
+const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 export default [
     {
