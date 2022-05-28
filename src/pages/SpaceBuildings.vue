@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             data: objectArrayify(spaceBuildings, {
-                filter: ([k, v]) => !k.startsWith('#') && v?.CanBeBuilt,
+                filter: ([k, v]) => !k.startsWith('#') && v?.CanBeBuilt || v?.AllowBuildOnYS || v?.AllowBuildOnDS,
             }),
             img: require(`@Img/game/portraits/BlackCitadel.png`),
         };
