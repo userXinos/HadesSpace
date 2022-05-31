@@ -1,6 +1,8 @@
 import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
 
+import { removeDupsFromArrays } from '../modules/csv2json.js';
+
 const CONFIG = Object.freeze({
     globalKeys: {
         RedStar: 'RS',
@@ -20,6 +22,7 @@ export default class Stars extends Runner {
     run(rawData) {
         const SSGData = this.readCsv( 'solar_system_gen_data' );
         const data = Runner.objectArrayify(Runner.combineObjects(rawData, SSGData), {
+            filter: ([ k ]) => !k.startsWith('#'),
             map: ([ key, value ]) => {
                 if (key in CONFIG.globalKeys) {
                     value = Runner.combineObjects(value, Globals.getGlobalsBy(CONFIG.globalKeys[key], this.readCsv.bind(this)));
@@ -28,15 +31,23 @@ export default class Stars extends Runner {
                     const matrix = CONFIG.thresholdsKeys.map((e) => value[e]);
                     value.Thresholds = Runner.transposeMatrix(matrix);
                     CONFIG.thresholdsKeys.forEach((e) => delete value[e]);
-
                     [
                         'ExtraAsteroidSpawnTick',
                         'ExtraAsteroidSpawnRingDistance',
                         'ExtraAsteroidSpawnAmt',
-                    ].forEach((k) => value[k][2] = value[k][1]);
+                    ]
+                        .forEach((k) => value[k][2] = value[k][1]);
                 }
                 if (key === 'RedStar') {
-                    value = Runner.fillSpace(value, null, value.Models?.length || value.AppearanceModels.length);
+                    if (this.isNebulaBuild) {
+                        const allRSs = Runner.objectArrayify(rawData, {
+                            filter: ([ k ]) => k.startsWith('#RS'),
+                        });
+
+                        value = removeDupsFromArrays(Runner.compileOne({ value, ...allRSs }));
+                        value.Name = key;
+                    }
+                    value = Runner.fillSpace(value, null, value.Models?.length || value.AppearanceModels.length + 1);
                 }
 
                 Runner.combineMinMax(value);
