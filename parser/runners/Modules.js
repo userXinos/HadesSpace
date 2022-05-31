@@ -33,6 +33,10 @@ const CONFIG = Object.freeze({
 });
 
 export default class Modules extends Runner {
+    prettierConfig = {
+        printWidth: 150,
+    };
+
     static config = {
         file: 'modules',
         ignoreFiles: [ 'projectiles' ],
@@ -83,8 +87,10 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
             if (!art.BlueprintTypes) {
                 return;
             }
-            if (art.MaxModuleLevelToAward === value.AwardLevel && art.BlueprintTypes.includes(value.SlotType)) {
-                value.TID_Artifact = art.TID;
+            if (!isNebulaBuild) {
+                if (art.MaxModuleLevelToAward === value.AwardLevel && art.BlueprintTypes.includes(value.SlotType)) {
+                    value.TID_Artifact = art.TID;
+                }
             }
         });
     }
