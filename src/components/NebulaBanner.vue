@@ -14,7 +14,7 @@
         </p>
         <p v-else>
           This version serves data for <a
-            :href="links[0]"
+            :href="links[1]"
             target="_blank"
           >Hades' Star</a>,
           data for Hades' Star: DARK NEBULA is located at this address: <a :href="links[3]">HadesSpace/Nebula/</a>

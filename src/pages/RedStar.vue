@@ -46,9 +46,9 @@ import artifacts from '@Data/artifacts.js';
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const ARTS = {
-    Combat: 'COMBAT_ART',
-    Utility: 'UTILITY_ART',
-    Support: 'SUPPORT_ART',
+    Combat: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_COMBAT' : 'COMBAT_ART',
+    Utility: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_UTILITY' : 'UTILITY_ART',
+    Support: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_SUPPORT' : 'SUPPORT_ART',
 };
 const { RedStar } = stars;
 const USELESS_STATS = [
