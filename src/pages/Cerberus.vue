@@ -4,7 +4,38 @@
       title-loc-key="CERBERUS"
       :content-args="{data: ships, iconDir: 'game/Ships'}"
       :portrait="{src: cerberusPortrait, alt: 'cerberus'}"
-    />
+    >
+      <div class="container">
+        <h2>{{ 'Categories' }}</h2>
+        <div class="list">
+          <ol>
+            <li v-if="isNebulaBuild"><a href="#DarkCerberus">Dark cerberus</a></li>
+            <li><a href="#CerberusStations">Cerberus stations</a></li>
+          </ol>
+        </div>
+      </div>
+    </Page>
+
+    <div v-if="isNebulaBuild">
+      <div class="portrait-container">
+        <img
+          class="portrait"
+          :src="darkCerberusPortrait"
+          alt="dark cerberus"
+        >
+        <h1
+          id="DarkCerberus"
+          class="topic"
+        >
+          <a
+            href="#DarkCerberus"
+            class="link-topic"
+          > {{ 'Dark ' + $t('CERBERUS') }} </a>
+        </h1>
+      </div>
+
+      <v-content :args="{data: darkShips, iconDir: 'game/Ships'}" />
+    </div>
 
     <div>
       <div class="portrait-container">
@@ -65,8 +96,19 @@ export default {
     components: { Page, VContent },
     data() {
         return {
-            ships: objectArrayify(ships, {
-                ...getFilterByType('capital_ships.cerberus'),
+            isNebulaBuild: !!process.env.VUE_APP_NEBULA_BUILD,
+            ships: this.getShips('capital_ships.cerberus'),
+            darkShips: this.getShips('capital_ships.darkCerberus'),
+            stations,
+            cerberusPortrait: require(`@Img/game/portraits/portrait_CerberusDestroyer.png`),
+            darkCerberusPortrait: require( `@Img/game/portraits/${process.env.VUE_APP_NEBULA_BUILD ? 'portrait_CerberusCarrier' : 'portrait_CerberusDestroyer'}.png`),
+            stationPortrait: require(`@Img/game/portraits/portrait_CerberusStation.png`),
+        };
+    },
+    methods: {
+        getShips(path) {
+            return objectArrayify(ships, {
+                ...getFilterByType(path),
                 map: ([k, v]) => {
                     if (v.modules) {
                         v.modules = v.modules.map((e) => objectArrayify(e, {
@@ -76,11 +118,8 @@ export default {
                     return [k, v];
                 },
 
-            }),
-            stations,
-            cerberusPortrait: require(`@Img/game/portraits/portrait_CerberusDestroyer.png`),
-            stationPortrait: require(`@Img/game/portraits/portrait_CerberusStation.png`),
-        };
+            });
+        },
     },
 };
 </script>
@@ -90,5 +129,25 @@ export default {
 
 .portrait-container {
     padding-top: 5%;
+}
+
+.container {
+    h2 {
+        text-align: center;
+        margin: 30px;
+    }
+
+    .list {
+        margin: 0 3%;
+
+        ol {
+            border: 5px solid #586066;
+            list-style-type: none;
+            font-size: 150%;
+        }
+        li {
+            text-align: center;
+        }
+    }
 }
 </style>

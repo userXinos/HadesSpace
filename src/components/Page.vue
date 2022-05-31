@@ -12,6 +12,8 @@
       <h1 class="topic"> {{ title }} </h1>
     </div>
 
+    <slot />
+
     <v-content :args="contentArgs" />
   </div>
 </template>
