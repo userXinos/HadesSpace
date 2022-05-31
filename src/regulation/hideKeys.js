@@ -50,7 +50,6 @@ export default {
         'CShipmentSizeMin',
         'CShipmentSizeMax',
         'HideModulesOnHUD',
-        'RushCostModifier',
         'GoalRushCostMultiplier',
         'SlotType',
         'WeaponEffectType',
@@ -92,6 +91,8 @@ export default {
         'SortLayer',
         'AllowBuildOnYS',
         'UISortOrder',
+        'AppearanceModels',
+        'RSLevel',
     ],
     byPath: [
 
@@ -320,6 +321,41 @@ export default {
         'CerberusCarrier.BuildCost',
         'CerberusCarrier.NewModuleSlots',
 
+        // Dark Cerberus
+        'DarkSentinel.NewModuleSlots',
+        'DarkSentinel.BuildCost',
+        'DarkSentinel.AggressiveAI',
+        'DarkSentinel.BSPenaltyPerSec',
+        'DarkGuardian.NewModuleSlots',
+        'DarkGuardian.BuildCost',
+        'DarkGuardian.AggressiveAI',
+        'DarkGuardian.BSPenaltyPerSec',
+        'DarkInterceptor.NewModuleSlots',
+        'DarkInterceptor.BuildCost',
+        'DarkInterceptor.AggressiveAI',
+        'DarkInterceptor.BSPenaltyPerSec',
+        'DarkColossus.NewModuleSlots',
+        'DarkColossus.BuildCost',
+        'DarkColossus.AggressiveAI',
+        'DarkColossus.BSPenaltyPerSec',
+        'DarkDestroyer.NewModuleSlots',
+        'DarkDestroyer.BuildCost',
+        'DarkDestroyer.AggressiveAI',
+        'DarkDestroyer.BSPenaltyPerSec',
+        'DarkDestroyer.ApplyModuleOnDockedObjectDestroy',
+        'DarkDestroyer.PlanetDamagePerSecFP',
+        'DarkBomber.NewModuleSlots',
+        'DarkBomber.BuildCost',
+        'DarkBomber.AggressiveAI',
+        'DarkBomber.BSPenaltyPerSec',
+        'DarkBomber.BSPenaltyPerSecOnSector',
+        'DarkPhoenix.NewModuleSlots',
+        'DarkPhoenix.BuildCost',
+        'DarkPhoenix.AggressiveAI',
+        'DarkPhoenix.BSPenaltyPerSec',
+        'DarkPhoenix.OnDestroySpawnMinRadius',
+        'DarkPhoenix.OnDestroySpawnMaxRadius',
+
         // Ships
         'Battleship.BSPenaltyPerSec', // статы для ГЗ бота
         'Transport.HP',
@@ -373,7 +409,6 @@ export default {
         'RedStar.DisableRSSearchDuringTutorial',
         'RedStar.WarnOnSRSPlacementMinNumNeighbors',
         'RedStar.PrivateRSEventClientDisplayMode',
-        'RedStar.AppearanceModels',
 
         // RedStar.artifacts
         'Combat.Model',
@@ -401,7 +436,6 @@ export default {
         'YellowStar.IsHome',
         'YellowStar.Star',
         'YellowStar.Lifetime',
-        'YellowStar.AppearanceModels',
 
         // BlueStar
         'BlueStar.Models',
@@ -416,9 +450,9 @@ export default {
         'BlueStar.BlueStar_HydroPctPerMatch',
         'BlueStar.BlueStar_CRRewardWinLimit',
         'BlueStar.CollapsePeriod', // времено ?
-        'BlueStar.SpeedModifierPct', // времено ?
         'BlueStar.CycleEndTimes',
         'BlueStar.CycleEndCollapseAreaSize',
+        'BlueStar.InitialCollapseAreaSize', // не так важно
 
         // WhiteStar
         'WhiteStar.Star',
@@ -436,8 +470,8 @@ export default {
         'WhiteStar.WSHQAsteroidsPerBucket',
         'WhiteStar.WSShipEventTopBrackets',
         'WhiteStar.WSShipEventCRRewards',
-        'WhiteStar.AppearanceModels',
         'WhiteStar.SpeedModifierPct', // времено ?
+        'WhiteStar.BarrageMaxAdditionalEnemies_WS',
 
         // Trade
         'Recall.TeleportToTradeStation',
@@ -487,7 +521,7 @@ export default {
         // Shields
         'BlastShield.IsAOEOnlyShield',
         'WeakShield.WhiteStarScore',
-        'AlphaShield.AlphaShield',
+        'AlphaShield.IsAlphaShield',
 
         // Support
         'EMP.IsEMP',

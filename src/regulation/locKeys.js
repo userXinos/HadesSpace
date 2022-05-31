@@ -79,9 +79,9 @@ export default {
     WSMaxBSPerPlayer: 'WS_MAX_BS_PER_PLAYER',
     WSMaxOtherPerPlayer: 'WS_MAX_OTHER_PER_PLAYER',
     WSLostBSTimeCooldown: 'WS_LOST_BS_TIME_COOLDOWN',
-    WSLostOtherTimeCooldown: 'WS_LOST_OTHER_TIME_COOLDOWN',
-    WSJumpBSTimeCooldown: 'WS_JUMP_BS_TIME_COOLDOWN',
-    WSJumpOtherTimeCooldown: 'WS_JUMP_OTHER_TIME_COOLDOWN',
+    WSLostOtherTimeCooldown: 'WS_LOST_OTHER_TIME_COOLDOWN', // устарело
+    WSJumpBSTimeCooldown: 'WS_JUMP_BS_TIME_COOLDOWN', // устарело
+    WSJumpOtherTimeCooldown: 'WS_JUMP_OTHER_TIME_COOLDOWN', // устарело
     WSScoreDamageModifier: 'WS_SCORE_DAMAGE_MODIFIER',
     WSScoreMiningModifier: 'WS_SCORE_MINING_MODIFIER',
     WSScoreTransportModifier: 'WS_SCORE_TRANSPORT_MODIFIER',
@@ -106,6 +106,7 @@ export default {
     AIUpdateIntervalSeconds: 'AI_UPDATE_INTERVAL',
     ReqBank: 'REQ_BANK',
     DronesIgnoreBarrier: 'DRONES_IGNORE_BARRIER',
+    RushCostModifier: 'RUSH_COST_MODIFIER',
 
     ArtifactBoostPct: 'TID_MODULE_ARTIFACT_BOOST_BONUS',
     MaxRelicSpeedIncrease: 'TID_MODULE_RUSH_MAX_WS',

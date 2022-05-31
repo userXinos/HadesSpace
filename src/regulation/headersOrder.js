@@ -95,6 +95,7 @@ export default [
     'DSAnomaly',
     'BaseType',
 
+    'YSCommonVariations',
     'MaxUpgradeLevel',
     'CreditIncomeModifier',
     'FuelIncomeModifier',
@@ -114,6 +115,7 @@ export default [
     'TimeToResearch',
     'XP',
     'PriceInCrystals',
+    'RushCostModifier',
     'DRSPoints',
     'InfluencePoints',
 

@@ -47,6 +47,8 @@ export default [
             'SolitudeDPSBoost',
             'DmgReduceImmobilize',
             'SpeedSlowdownFactor',
+            'SpeedModifierPct',
+            'BlueStar_CreditPctPerPos',
         ],
         (v) => `${v}%`,
     ],
