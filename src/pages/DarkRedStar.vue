@@ -36,7 +36,7 @@ export default {
     data() {
         return {
             data: { DarkRedStar: objectArrayify(DarkRedStar, {
-                map: ([k, v]) => [k, Array.isArray(v) ? v.slice(6) : v],
+                map: ([k, v]) => [k, Array.isArray(v) ? v.slice(5) : v],
             }) },
             img: require(`@Img/game/portraits/portrait_Asteroids.png`),
         };
