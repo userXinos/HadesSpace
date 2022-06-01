@@ -199,6 +199,7 @@ export default defineComponent({
             ConfigManager,
         };
     },
+    // eslint-disable-next-line vue/order-in-components
     props: {
         stackChars: { type: Array as PropType<calculatorArgs[0]>, required: true },
         calcTotal: { type: Function as PropType<calculatorArgs[1]>, required: true },
@@ -491,7 +492,7 @@ export default defineComponent({
 
 .flex-end {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 10px;
 }
 .margin-bottom {

@@ -1,4 +1,4 @@
-import { createStore, createLogger, MutationTree, ActionTree } from 'vuex';
+import { createStore, MutationTree, ActionTree } from 'vuex';
 
 const isDev = (process.env.NODE_ENV === 'development');
 
@@ -35,10 +35,6 @@ const actions = <ActionTree<RootState, unknown>> {
     },
 };
 
-const logger = createLogger({
-    logActions: false,
-});
-
 export default createStore<RootState>({
     strict: isDev,
 
@@ -49,5 +45,4 @@ export default createStore<RootState>({
     modules: {
         userSettings: userSettingsModule,
     },
-    // plugins: (isDev) ? [logger] : [],
 });

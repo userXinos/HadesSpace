@@ -109,7 +109,6 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 
 import type { Input, Element, ElementsStore, Output } from '../composables/calculator';
 import type { ProvideGetterElementsCB, Setup } from '@/components/Calculator.vue';
-import type { Callbacks } from '@Scripts/objectArrayify';
 import key from '@Handlers/key.js';
 import value from '@Handlers/value.js';
 import objectArrayify from '../js/objectArrayify';

@@ -4,7 +4,7 @@
 import { DirectiveBinding } from '@vue/runtime-core';
 
 interface ClickOutsideElement extends HTMLElement {
-    __vueClickEventHandler__: any
+    __vueClickEventHandler__: (event: MouseEvent) => void
 }
 
 export default {

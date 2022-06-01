@@ -108,7 +108,7 @@ $accent-color: #aee3fc;
 
         .buttons {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
 
             button {
                 height: 40px;

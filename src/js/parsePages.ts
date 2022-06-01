@@ -1,3 +1,4 @@
+import type { RouteRecordRaw } from 'vue-router';
 import pages from '@Regulation/pages.js';
 import NotFound from '@/pages/404.vue';
 
@@ -7,17 +8,16 @@ const notFoundPage = {
     component: NotFound,
 };
 
-type ReduceElem = { name: string, path: object, component?: () => unknown, children?: ReduceElem[] }
+type ReduceElem = { name: string, path: string, component?: () => unknown, children?: ReduceElem[] }
 type MapElem = {text: string, path: {externalLink: string}, icon: object, children: MapElem[]}
 
-export function getRoutes() {
+export function getRoutes(): RouteRecordRaw[] {
     return [
-        // @ts-ignore
-        ...pages.reduce(reduceFn, []),
+        ...(pages as ReduceElem[]).reduce(reduceFn, []),
         notFoundPage,
     ];
 
-    function reduceFn(acc: ReduceElem[], { name, path, component, children }: ReduceElem) {
+    function reduceFn(acc: RouteRecordRaw[], { name, path, component, children }: ReduceElem) {
         if (component) {
             acc.push({ name, path, component });
         }
