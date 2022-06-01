@@ -22,7 +22,7 @@ export function getRoutes(): RouteRecordRaw[] {
             acc.push({ name, path, component });
         }
         if (children) {
-            acc.push(...children.reduce(reduceFn, []));
+            acc.push(...children.filter(Boolean).reduce(reduceFn, []));
         }
         return acc;
     }
@@ -37,7 +37,7 @@ export function getSectionsPages() {
         return {
             text,
             icon,
-            children: (children) ? children.map(mapFn) : undefined,
+            children: (children) ? children.filter(Boolean).map(mapFn) : undefined,
             link: {
                 path: path?.externalLink || path,
                 type: (path?.externalLink) ? 'external' : 'router',

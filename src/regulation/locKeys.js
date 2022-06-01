@@ -152,6 +152,7 @@ export default {
     SpawnFleetIntervalSeconds: 'TID_CERBERUS_STATION_SPAWNING_IN',
     AttackRange: 'TID_MODULE_ATTACK_RANGE_DESCR',
     CRAsteroidAmt: 'TID_CR_ASTEROID_FIELD',
+    CroidAmt: 'TID_CR_ASTEROID_FIELD',
     EMPResist: 'TID_EMP_RESIST',
     TargetSwitchTicks: 'TID_MODULE_DESCR_TARGET_SWITCH_DELAY',
     ProximityTriggerSec: 'TID_MODULE_TRIGGER_TIME',

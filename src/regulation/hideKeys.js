@@ -427,6 +427,15 @@ export default {
         'Utility.BlueprintTypes',
         'Support.BlueprintTypes',
 
+        // DarkRedStar
+        'DarkRedStar.Star',
+        'DarkRedStar.RSPublicLateJoin_ClientCacheExpiry',
+        'DarkRedStar.MaxGateBomberCoverage',
+        'DarkRedStar.DontAllowUseOfEnemyWSGate',
+        'DarkRedStar.DisableRSSearchDuringTutorial',
+        'DarkRedStar.WarnOnSRSPlacementMinNumNeighbors',
+        'DarkRedStar.PrivateRSEventClientDisplayMode',
+
         // YellowStar
         'planet_levels.ShipmentsHydroValuePerDay',
         'yellow_star_sectors.AsteroidsMin',

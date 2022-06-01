@@ -49,6 +49,17 @@ export default class Stars extends Runner {
                     }
                     value = Runner.fillSpace(value, null, value.Models?.length || value.AppearanceModels.length + 1);
                 }
+                if (key === 'DarkRedStar') {
+                    if (this.isNebulaBuild) {
+                        const allRSs = Runner.objectArrayify(rawData, {
+                            filter: ([ k ]) => k.startsWith('#DRS'),
+                        });
+
+                        value = removeDupsFromArrays(Runner.compileOne({ value, ...allRSs }));
+                        value.Name = key;
+                    }
+                    value = Runner.fillSpace(value, null, value.Models?.length || value.AppearanceModels.length + 1);
+                }
 
                 Runner.combineMinMax(value);
                 return [ key, value ];
