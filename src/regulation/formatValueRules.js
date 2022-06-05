@@ -3,7 +3,10 @@
 import i18n from '@/js/Vue/i18n';
 import Icon from '@/components/Icon.vue';
 import sec2str from '@/js/sec2str';
+
 import locKeys from '@Regulation/locKeys.js';
+import globals from '@Data/globals.js';
+import stars from '@Data/stars.js';
 
 const { t } = i18n.global;
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
@@ -48,7 +51,6 @@ export default [
             'DmgReduceImmobilize',
             'SpeedSlowdownFactor',
             'SpeedModifierPct',
-            'BlueStar_CreditPctPerPos',
         ],
         (v) => `${v}%`,
     ],
@@ -147,7 +149,11 @@ export default [
     ],
     [
         ['BlueStar_HydroPctPerPos'],
-        (v) => `${v / 10}%`,
+        (v) => `${v / (isNebulaBuild ? 100 : 10)}%`,
+    ],
+    [
+        ['BlueStar_CreditPctPerPos'],
+        (v) => `${v / 2}%`,
     ],
     [
         ['MoveHydrogenCostPerSector', 'TSHydroCost', 'ActivationFuelCost'],
@@ -218,8 +224,8 @@ export default [
         (v) => sec2str(v * 120),
     ],
     [
-        ['TargetSwitchTicks', 'CycleTicks'],
-        (v) => sec2str(v / 5),
+        ['TargetSwitchTicks'],
+        (v) => sec2str(v / globals.TicksPerSecond),
     ],
     [
         ['PreparationTimeHours', 'TeleportShipmentsDurationHr'],
@@ -257,7 +263,7 @@ export default [
     ],
     [
         [isNebulaBuild ? '' : 'DestinyDisableTimes'],
-        ([rs, ws]) => `${t('RS')}: ${sec2str(rs)} | ${t('WS')}: ${sec2str(ws * 600)}`,
+        ([rs, ws]) => `${t('RS')}: ${sec2str(rs)} | ${t('WS')}: ${sec2str(ws * stars.WhiteStar.TimeSlowdownFactor)}`,
     ],
     [
         [isNebulaBuild ? '' : 'BarrageMaxAdditionalEnemies'],
