@@ -29,7 +29,9 @@ function headMask(category: string, keys: string[], out: Out['head']) {
             rowspan: keys.length,
         })));
     } else {
-        out[1] = [];
+        if (!out[1]) {
+            out[1] = [];
+        }
 
         out[0].push({
             value: category,
