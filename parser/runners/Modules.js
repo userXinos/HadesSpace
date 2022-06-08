@@ -1,6 +1,8 @@
 import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
 
+import { fixModulesShipsData } from './CapitalShips.js';
+
 // noinspection SpellCheckingInspection
 /* eslint-disable prefer-destructuring */
 const CONFIG = Object.freeze({
@@ -102,7 +104,11 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
     // добавить данные дронов
     if (key.includes('Drone')) {
-        value.drone = capitalShips[value.Name];
+        value.drone = capitalShips[value.Name] || capitalShips[`${value.Name}Ship`];
+
+        if (value.drone) {
+            fixModulesShipsData(value.drone);
+        }
     }
 
     // фикс БЗ стат

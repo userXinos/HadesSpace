@@ -5,8 +5,6 @@ import Modules from './Modules.js';
 import loadFile from '../modules/loadFile.js';
 import CONFIG from '../config.js';
 
-let modules;
-
 export default class CapitalShips extends Runner {
     static config = {
         file: 'capital_ships',
@@ -16,14 +14,14 @@ export default class CapitalShips extends Runner {
     async run(rawData) {
         const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = this.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);
         const path = join(CONFIG.pathRaw, this.isNebulaBuild ? '/Nebula' : '/', 'modules.csv');
-        modules = await loadFile(path, [ Modules ]).then((e) => e.render());
+        const modules = await loadFile(path, [ Modules ]).then((e) => e.render());
 
         const data = Runner.objectArrayify(rawData, {
             //  => Modules Runner
-            filter: ([ k ]) => !k.endsWith('Drone') && !Object.keys(Modules.config.runner.combineKeys).includes(k),
+            filter: ([ k ]) => !k.includes('Drone') && !Object.keys(Modules.config.runner.combineKeys).includes(k),
             map: ([ key, value ]) => {
-                addModulesStats(value);
-                fixModulesShipsData(value, 'InitialModule', 'InitialModuleLevels');
+                addModulesStats(value, modules);
+                fixModulesShipsData(value);
                 fixModulesShipsData(value, 'FlagshipModules', 'FlagshipModuleLevels');
 
                 // исправить имена уникальных модулей флагмана
@@ -63,7 +61,7 @@ function getAsArray(e) {
     return (Array.isArray(e)) ? e : [ e ];
 }
 
-function addModulesStats(obj) {
+function addModulesStats(obj, modules) {
     const mod = [ ...getAsArray(obj.InitialModule) ];
     const lvl = [ ...getAsArray(obj.InitialModuleLevels) ];
 
@@ -109,7 +107,7 @@ function addModulesStats(obj) {
 }
 
 // из "{key:[module1!module2], key2:[1!2]}" в "{module1:[1], module2:[2]}"
-function fixModulesShipsData(obj, Modules, ModuleLevels) {
+export function fixModulesShipsData(obj, Modules = 'InitialModule', ModuleLevels = 'InitialModuleLevels') {
     const res = { };
     let maxIndex = 0;
 
