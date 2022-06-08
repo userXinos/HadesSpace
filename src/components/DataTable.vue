@@ -120,32 +120,14 @@ export default {
     name: 'Table',
     components: { VNode },
     props: {
-        data: {
-            type: Object,
-            requested: true,
-            default: () => ({}),
-        },
-        format: {
-            type: Object,
-            requested: true,
-            default: () => ({ key: () => null, value: () => null }),
-        },
-        mergeCells: {
-            type: Boolean,
-            default: true,
-        },
-        colLvlStartAt: {
-            type: Number,
-            default: 1,
-        },
-        lvlColKey: {
-            type: String,
-            default: 'LVL',
-        },
+        data: { type: Object, required: true },
+        format: { type: Object, required: true },
+        mergeCells: { type: Boolean, default: true },
+        colLvlStartAt: { type: Number, default: 1 },
+        lvlColKey: { type: String, default: 'LVL' },
     },
     data() {
         return {
-            headStatsInfoData: {},
             pinHead: false,
         };
     },

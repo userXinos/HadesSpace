@@ -10,10 +10,7 @@
 
       <v-table
         v-if="table != null"
-
-        :data="table"
-        :format="format"
-        v-bind="tableOpts"
+        v-bind="Object.assign(tableOpts, {data: table, format})"
       >
         <!--         eslint-disable vue/max-attributes-per-line         -->
         <template v-if="$slots['table-head']" #head="p"><slot name="table-head" v-bind="p" /></template>

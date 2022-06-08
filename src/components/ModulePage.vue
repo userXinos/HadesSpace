@@ -1,7 +1,7 @@
 <template>
   <Page
     :title-loc-key="locKey"
-    :content-args="{data, iconDir: 'game/Modules'}"
+    :content-args="{data, iconDir: 'game/Modules', tableOpts}"
     :portrait="{src: img, alt: `${type} modules`}"
   />
 </template>
@@ -9,7 +9,10 @@
 <script>
 import Page from '@/components/Page.vue';
 import modulesData from '@Data/modules.js';
+import globals from '@Data/globals.js';
 import objectArrayify from '@Scripts/objectArrayify';
+
+const { MaxModuleLevel } = globals;
 
 const NEBULA_BUILD = !!process.env.VUE_APP_NEBULA_BUILD;
 const TID_ART_BY_SLOT = {
@@ -41,6 +44,35 @@ export default {
             img: require(`@Img/game/portraits/${this.portrait}.png`),
             locKey: `TYPE_MOD_${this.type.toUpperCase()}`,
         };
+    },
+    computed: {
+        tableOpts() {
+            const maxModulesLvl = new Map();
+
+            return {
+                get colLvlStartAt() {
+                    if (NEBULA_BUILD && this.data?.body?.default) {
+                        const k = this.data.body.default;
+
+                        if (!maxModulesLvl.has(k)) {
+                            maxModulesLvl.set(k, 0);
+                        }
+
+                        const maxLvl = maxModulesLvl.get(k);
+                        if (maxLvl < 1) {
+                            let max = 0;
+                            for (const e of this.data.body.default) {
+                                max = (max < e.length) ? e.length - 1 : max;
+                            }
+                            maxModulesLvl.set(k, max);
+                            return MaxModuleLevel - max;
+                        }
+                        return MaxModuleLevel - maxLvl;
+                    }
+                    return 1;
+                },
+            };
+        },
     },
     methods: {
         addArtifactName(obj) {
