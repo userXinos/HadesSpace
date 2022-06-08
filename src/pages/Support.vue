@@ -8,6 +8,7 @@
 
 <script>
 import ModulePage from '@/components/ModulePage.vue';
+import modules from '@Data/modules.js';
 
 export default {
     components: { ModulePage },
@@ -22,6 +23,22 @@ export default {
                     // BS: Salvage.SalvageHullPercent[2], // тоже самое, что и в КЗ
                 };
                 data.Salvage = Salvage;
+            }
+
+            for (const [k, module] of Object.entries(data)) {
+                if (module.Name.includes('Drone')) {
+                    const DroneModule = { ...module };
+
+                    if (DroneModule?.drone?.modules) {
+                        for (const droneModName in DroneModule.drone.modules) {
+                            if ((droneModName in DroneModule.drone.modules) && (droneModName in modules)) {
+                                DroneModule[droneModName] = modules[droneModName];
+                                delete DroneModule.drone.modules[droneModName];
+                            }
+                        }
+                        data[k] = DroneModule;
+                    }
+                }
             }
 
             return data;
