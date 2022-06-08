@@ -108,6 +108,8 @@ export default {
     DronesIgnoreBarrier: 'DRONES_IGNORE_BARRIER',
     RushCostModifier: 'RUSH_COST_MODIFIER',
 
+    AlphaDroneBattery: 'TID_MODULE_BATTERY',
+    DroneSquadBattery: 'TID_MODULE_BATTERY',
     ArtifactBoostPct: 'TID_MODULE_ARTIFACT_BOOST_BONUS',
     MaxRelicSpeedIncrease: 'TID_MODULE_RUSH_MAX_WS',
     SpeedIncreasePerArtifact: 'TID_MODULE_RUSH_SPEED_INCR',

@@ -93,6 +93,10 @@ export default {
         'UISortOrder',
         'AppearanceModels',
         'RSLevel',
+
+        // временно ?
+        'ActivationDelayBLS',
+        'BSPenaltyPerSec',
     ],
     byPath: [
 

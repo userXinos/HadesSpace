@@ -32,8 +32,11 @@ export default {
                     if (DroneModule?.drone?.modules) {
                         for (const droneModName in DroneModule.drone.modules) {
                             if ((droneModName in DroneModule.drone.modules) && (droneModName in modules)) {
-                                DroneModule[droneModName] = modules[droneModName];
+                                DroneModule[droneModName] = { ...modules[droneModName] };
                                 delete DroneModule.drone.modules[droneModName];
+
+                                delete DroneModule[droneModName].FuelUseIncrease;
+                                delete DroneModule[droneModName].BCCost;
                             }
                         }
                         data[k] = DroneModule;
