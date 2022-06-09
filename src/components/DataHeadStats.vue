@@ -238,7 +238,7 @@ $mw: 900px;
 
                     .line {
                         font-size: 100%;
-                        padding: 4px 0;
+                        padding: 2px 0;
 
                         @media screen and (max-width: $mw) {
                             font-size: 90%;
