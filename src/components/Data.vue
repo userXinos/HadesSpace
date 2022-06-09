@@ -35,19 +35,9 @@ export default {
     name: 'Data',
     components: { VTable, VTitle },
     props: {
-        data: {
-            type: Object,
-            default: undefined,
-            request: true,
-        },
-        tableOpts: {
-            type: Object,
-            default: () => ({}),
-        },
-        iconDir: {
-            type: String,
-            default: '',
-        },
+        data: { type: Object, required: true },
+        tableOpts: { type: Object, default: () => ({}) },
+        iconDir: { type: String, default: '' },
     },
     data() {
         return {

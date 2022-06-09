@@ -6,10 +6,10 @@
       :portrait="{src: img, alt: 'yellowStar'}"
     />
 
-    <v-data v-bind="{data: sectors, tableOpts}" />
+    <v-data v-bind="{data: sectors, tableOpts: { lvlColKey: '№' }}" />
     <v-data v-bind="{data: levels}" />
-    <v-data v-bind="{data: planets, tableOpts}" />
-    <v-data v-bind="{data: prices, tableOpts}" />
+    <v-data v-bind="{data: planets, tableOpts: { lvlColKey: '№' }}" />
+    <v-data v-bind="{data: prices, tableOpts: { lvlColKey: '№' }}" />
 
   </div>
 </template>
@@ -59,7 +59,6 @@ export default {
             planets: planetsYS,
             prices: colonizationPrices,
 
-            tableOpts: { lvlColKey: '№' },
             img: require(`@Img/game/portraits/portrait_YellowStar.png`),
         };
     },
