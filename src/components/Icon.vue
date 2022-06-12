@@ -98,15 +98,18 @@ export default {
         },
     },
     created() {
+        const nebulaSpaceBuildsNoBG = ['station_ShortRangeScanner', 'warpLaneHub', 'timeModulator'];
+
         this.bgClasses = {
             'module-bg': this.type === 'Module' && !this.isProjectiles,
-            'space-building-bg': this.type === 'SpaceBuilding' && !this.isCerberus,
+            'space-building-bg': this.type === 'SpaceBuilding' && !this.isCerberus && (isNebulaBuild ? !nebulaSpaceBuildsNoBG.includes(this.name) : true),
             'round-bg': this.type === 'Star' || 'TimeModulator' === this.customType,
             'art-bg': this.name === 'art',
             'warp-line-bg': this.customType == 'WarpLane',
         };
         this.iconStyle = {
             backgroundImage: `url('${this.url}')`,
+            width: (this.type === 'SpaceBuilding' && isNebulaBuild) ? '70%' : null,
         };
         this.iconClasses = {
             'ship': this.type === 'Ship',
@@ -171,7 +174,7 @@ export default {
     background-image: url(../img/game/background/Module.png);
 }
 .space-building-bg {
-    background-image: url(../img/game/background/SpaceBuilding.png);
+    background-image: url(@Img/game/background/SpaceBuilding.png);
 }
 .round-bg {
     background-image: url(../img/game/SpaceBuildings/TimeModulatorBackground.png);

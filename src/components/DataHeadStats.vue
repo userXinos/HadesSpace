@@ -49,11 +49,11 @@
               </ul>
             </div>
             <div
-              v-if="item.Icon || item.Model"
+              v-if="item.PrefabModel || item.Icon || item.Model"
               class="icon"
             >
               <icon
-                :name="item.Icon || item.Model"
+                :name="item.PrefabModel || item.Icon || item.Model"
                 :dir="iconDir || iconDirList[name] || iconDirList.default"
               />
             </div>

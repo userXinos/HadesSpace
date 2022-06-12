@@ -99,7 +99,7 @@ export default [
                 path: '/spacebuildings',
                 component: () => import(/* webpackChunkName: "SpaceBuildings" */ '../pages/SpaceBuildings.vue'),
                 icon: {
-                    name: 'shipyard',
+                    name: 'station_trade',
                     dir: 'game/SpaceBuildings',
                 },
             },
