@@ -18,6 +18,7 @@ export default {
 
             ShipmentDrone.DroneShipmentBonusMax = ShipmentDrone.DroneShipmentBonus
                 .map((e, i) => (ShipmentDrone.SpawnCapacity[i] - 1) * e);
+            delete ShipmentDrone.PreventUseOnWsJumpgate;
             data.ShipmentDrone = ShipmentDrone;
 
             return data;

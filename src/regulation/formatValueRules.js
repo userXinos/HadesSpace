@@ -51,6 +51,7 @@ export default [
             'DmgReduceImmobilize',
             'SpeedSlowdownFactor',
             'SpeedModifierPct',
+            'MirrorDamageAsAOE',
         ],
         (v) => `${v}%`,
     ],
@@ -224,7 +225,7 @@ export default [
         (v) => sec2str(v * 120),
     ],
     [
-        ['TargetSwitchTicks'],
+        ['TargetSwitchTicks', 'MirrorShieldTickPeriod'],
         (v) => sec2str(v / globals.TicksPerSecond),
     ],
     [
