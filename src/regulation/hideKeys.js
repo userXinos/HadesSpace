@@ -529,7 +529,8 @@ export default {
         'WeakBattery.Install',
         'WeakBattery.BCCost',
         'WeakBattery.FuelUseIncrease',
-        'PlayerRocketLauncher.MinEffectRadius', // хз что это
+        'PlayerRocketLauncher.MinEffectRadius',
+        'ChainRay.MaxIncomingLinks', // хз что это
 
         // Shields
         'BlastShield.IsAOEOnlyShield',

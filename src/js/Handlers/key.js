@@ -1,6 +1,6 @@
 import i18n from '@/js/Vue/i18n';
 import rules from '@Regulation/formatKeyRules.js';
-import locKeys from '@Regulation/locKeys.js';
+import locKeys from '@Regulation/locKeys.mjs';
 
 const { t, te } = i18n.global;
 

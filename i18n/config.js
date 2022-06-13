@@ -1,8 +1,8 @@
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import string from './configKeys/string.js';
 import upperCase from './configKeys/upperCase.js';
+import { gameCharsLocKeys } from '../src/regulation/locKeys.mjs';
 
 const ROOT_DIR = dirname(fileURLToPath(import.meta.url));
 
@@ -13,5 +13,5 @@ export default Object.freeze({
 
     excludeFromStringsStarHeaders: [ 'NoCerbBondTeleportPRS' ],
     upperCaseKeys: upperCase,
-    stringKeys: string,
+    stringKeys: gameCharsLocKeys,
 });
