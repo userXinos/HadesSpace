@@ -1,6 +1,8 @@
-Name,PlanetTypes,AsteroidsMin,AsteroidsMax,HydrogenPerDay,AsteroidBeltAxis1Size,AsteroidBeltAxis2Size,CerbGroup,NumBases,BaseType
-EntryGate,,2,4,160,800,1400,,,
-HighYieldAsteroids,,2,8,3000,900,1500,,,
-LowYieldAsteroids,,3,5,350,900,1600,,,
-HighQualityPlanet,whitestar1,4,6,500,1100,1600,,,
-LowQualityPlanet,whitestar2,3,4,300,1100,1600,,,
+Name,PlanetTypes,AsteroidsMin,AsteroidsMax,HydrogenPerDay,ExtraAsteroidSpawnTick,ExtraAsteroidsNumber,ExtraAsteroidHydroAmount,AsteroidBeltAxis1Size,AsteroidBeltAxis2Size,CerbGroup,NumBases,BaseType
+EntryGate,,2,4,160,,,,800,1400,,,
+HighYieldAsteroids,,2,8,2000,,,,900,1500,WS_HY,,
+LowYieldAsteroids,,3,6,350,,,,900,1600,,,
+HighQualityPlanet,whitestar1,4,6,700,,,,1100,1600,WS_HQ,,
+LowQualityPlanet,whitestar2,3,4,400,,,,1100,1600,WS_LQ,,
+RefreshAsteroids1,,3,5,1200,3200,6,1200,900,1600,WS_HY,,
+RefreshAsteroids2,,3,5,800,6800,2,800,900,1600,WS_HY,,

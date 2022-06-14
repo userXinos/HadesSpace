@@ -71,7 +71,7 @@ WarpLaneHub,1,,,,,1,1,1,2000,,TID_BUILDING_WARPLANE_HUB,TID_BUILDING_WARPLANE_HU
 ,,,,,,,,,,,,,,,,,,,,,,8000000,,,,,,240,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Stargate,0,,,,,,,,,,TID_BUILDING_STARGATE,TID_BUILDING_STARGATE_DESCR,TID_BUILDING_STARGATE_DESCR,,,portrait_JumpGate,,,,,,,,,,,,,,,,1,,,0,,,,,,,,1000000,JumpGate02,,,,,,,,,,,,,
 OrangeStarScanner,0,,,,,,,,1000,,TID_BUILDING_ORANGESTAR_SCANNER,TID_BUILDING_ORANGESTAR_SCANNER_DESCR,TID_BUILDING_ORANGESTAR_SCANNER_INFO,,,portrait_JumpGate,redStarScanner,,,5,5,40000,,,,,,24,,,,,,,1,,1,1,1,,,,,JumpGate,,,,,,,,,,,,,
-WhiteStarScanner,1,,,,,,,,1000,,TID_BLD_WHITESTAR_SCANNER,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_REDSTAR_UPGRADE,,portrait_JumpGate,,station_WhiteStarScanner,station_WhiteStarScanner_ui,10,11,25000,,,,,,,,1,,,,,1,,1,1,,,,,,JumpGateWhiteStar,,,,,,,,1,1,,,,
+WhiteStarScanner,1,,,,,,,,1000,,TID_BLD_WHITESTAR_SCANNER,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_REDSTAR_UPGRADE,,portrait_JumpGate,,station_WhiteStarScanner,station_WhiteStarScanner_ui,1,0,1,,,,,,,,1,,,,,0,,1,1,,,,,,JumpGateWhiteStar,,,,,,,,1,1,,,,
 TimeModulator,1,,,,,,,,1000,1,TID_BLD_TIME_MODULATOR,TID_BLD_TIME_MODULATOR_DESCR,TID_BLD_TIME_MODULATOR_INFO,,,portrait_SpaceBuilding,,timeModulator,timeModulator_ui,6,6,1000,15000,600,1200,,,,10,,,,,,,1,1,1,,,,,,,,,,,,,,0,1,,,,
 ,,,,,,,,,,,,,,,,,,,,,,4000,17500,600,1200,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,10000,20000,600,1200,,,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
