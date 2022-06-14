@@ -1016,10 +1016,10 @@ export default {
         GoalType: "WinBSWithModule",
         TimeLimitDays: 1,
         ModuleReq: [4, 4, 4, 5, 5, 5, 10, 15, 15, 19, 19, 20, 20, 21, 21, 32, 32, 41, 41, 23, 36, 51, 31, 49, 50, 53],
-        MaxRSLevel: [4, 5, 4, 5, 5, 5, 5, 5, 5, 5, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+        MaxRSLevel: [4, 5, 4, 5, null, null, 5, null, 5, null, 5, null, 5, null, 5, null, 5, null, null, null, null, null, null, null, null, null],
         GoalTarget: 1,
         CRRewardPerDay: [10000, 20000, 40000, 10000, 20000, 40000, 40000, 20000, 40000, 20000, 40000, 20000, 40000, 20000, 40000, 20000, 40000, 20000, 40000, 40000, 40000, 40000, 40000, 40000, 40000, 40000],
         FuelRewardPerDay: [1000, 2500, 5000, 1000, 2500, 5000, 5000, 2500, 5000, 2500, 5000, 2500, 5000, 2500, 5000, 2500, 5000, 2500, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000],
-        MinRSLevel: [5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+        MinRSLevel: [5, 6, null, 5, 6, 6, null, 6, null, 6, null, 6, null, 6, null, 6, null, 6, null, null, null, null, null, null, null, null],
     },
 };

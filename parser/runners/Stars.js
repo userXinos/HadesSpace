@@ -36,6 +36,7 @@ export default class Stars extends Runner {
                         'ExtraAsteroidSpawnRingDistance',
                         'ExtraAsteroidSpawnAmt',
                     ]
+                        .filter((k) => k in value)
                         .forEach((k) => value[k][2] = value[k][1]);
                 }
                 if (key === 'RedStar') {

@@ -1,7 +1,7 @@
 /**
  * @GeneratedBy Modules.js runner
  * @OriginalFile raw/modules.csv
- * @UsedFiles capital_ships.csv, projectiles.csv, artifacts.csv, globals.csv
+ * @UsedFiles capital_ships.csv, projectiles.csv, artifacts.csv, stars.csv, globals.csv
  */
 
 export default {

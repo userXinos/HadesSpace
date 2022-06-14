@@ -50,16 +50,18 @@ export default class Modules extends Runner {
             'capital_ships',
             'projectiles',
             'artifacts',
+            'stars',
         ]);
         const getGlobalsBy = (k) => Globals.getGlobalsBy(k, this.readCsv.bind(this));
         const data = Runner.objectArrayify(rawData, {
             map: (...args) => dataMapCallback(...args, dataTables, getGlobalsBy, this.isNebulaBuild),
         });
+        const TIME_SLOWDOWN_FACTOR_WS = dataTables[3].WhiteStar.TimeSlowdownFactor;
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
         data.FlagshipDartBarrage.TID_Description = data.FlagshipDartBarrage.TID_Description[0]; // какие-то буквы лишние в таблице
-        data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * 600; // ...
-        data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * 600; // ...
+        data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
+        data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
 
         if (data.TimeWarp) {
@@ -75,7 +77,9 @@ export default class Modules extends Runner {
     }
 }
 
-function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, artifacts ], getGlobalsBy, isNebulaBuild) {
+function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, artifacts, stars ], getGlobalsBy, isNebulaBuild) {
+    const TIME_SLOWDOWN_FACTOR_WS = stars.WhiteStar.TimeSlowdownFactor;
+
     // слить подобные вместе
     if (key in CONFIG.combineKeys) {
         const k = CONFIG.combineKeys[key];
@@ -115,18 +119,22 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // фикс БЗ стат
-    if (value.EffectDurationx10WS && Array.isArray(value.EffectDurationx10WS)) {
-        value.EffectDurationx10WS.forEach((e, i, arr) => {
-            arr[i] = e * 600;
-        });
+    if (value.EffectDurationx10WS) {
+        if (Array.isArray(value.EffectDurationx10WS)) {
+            value.EffectDurationx10WS.forEach((e, i, arr) => {
+                arr[i] = e * TIME_SLOWDOWN_FACTOR_WS;
+            });
+        } else {
+            value.EffectDurationx10WS = value.EffectDurationx10WS * TIME_SLOWDOWN_FACTOR_WS;
+        }
     }
     if (value.ActivationPrepWS && !value.Hide) {
         if (Array.isArray(value.ActivationPrepWS)) {
             value.ActivationPrepWS.forEach((e, i, arr) => {
-                arr[i] = e * 600;
+                arr[i] = e * TIME_SLOWDOWN_FACTOR_WS;
             });
         } else {
-            value.ActivationPrepWS = value.ActivationPrepWS * 600;
+            value.ActivationPrepWS = value.ActivationPrepWS * TIME_SLOWDOWN_FACTOR_WS;
         }
     }
 
@@ -168,17 +176,17 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     // исправить загрузку реликвии
     if (key === 'RelicDrone') {
         value.drone.RelicLoadTicks.forEach((e, i, arr) => {
-            arr[i] = e / 600;
+            arr[i] = e / TIME_SLOWDOWN_FACTOR_WS;
         });
     }
 
     // добавить/удалить данные звёзд
-    addInfoByStarType(key, value);
+    addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS);
 
     return [ key, value ];
 }
 
-function addInfoByStarType(key, value) {
+function addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS) {
     const keysRemove = [ 'AllowedStarTypes' ];
     const ast = value.AllowedStarTypes;
     const hasSeparateBLSValues = (e) => /_?BS$/.test(e);
@@ -203,14 +211,14 @@ function addInfoByStarType(key, value) {
 
     Object.entries(value).forEach(([ k, v ]) => {
         if (typeof v === 'object' && !Array.isArray(v)) {
-            addInfoByStarType(k, v);
+            addInfoByStarType(k, v, TIME_SLOWDOWN_FACTOR_WS);
         }
     });
 
 
     function addStarInfo(obj, star) {
         const coefficient = (v) => {
-            if (star === 'WS') return v * 600;
+            if (star === 'WS') return v * TIME_SLOWDOWN_FACTOR_WS;
             if (star === 'BS') return v * 2;
             return v;
         };

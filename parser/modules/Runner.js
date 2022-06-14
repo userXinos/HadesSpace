@@ -139,6 +139,7 @@ export default class Runner {
      */
     static compileOne(obj) {
         const res = {};
+        let maxIndex = 0;
 
         Object.values(obj).forEach((e) => {
             // noinspection DuplicatedCode
@@ -146,13 +147,22 @@ export default class Runner {
                 if (key in res) {
                     if (Array.isArray(res[key])) {
                         res[key].push(value);
+                        maxIndex = (res[key].length > maxIndex) ? res[key].length - 1 : maxIndex;
                     } else {
                         res[key] = [ res[key], value ];
+
+                        if (maxIndex > 0) {
+                            while (res[key].length < maxIndex) {
+                                res[key].unshift(null);
+                            }
+                        }
                     }
                 } else {
                     res[key] = value;
                 }
             });
+
+            Runner.fillSpace(res, null, maxIndex, true);
         });
 
         return res;
