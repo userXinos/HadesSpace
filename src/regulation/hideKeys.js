@@ -97,6 +97,7 @@ export default {
         // временно ?
         'ActivationDelayBLS',
         'BSPenaltyPerSec',
+        'AllowForWSEarlyAccess',
     ],
     byPath: [
 

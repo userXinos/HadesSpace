@@ -4,6 +4,8 @@ export const gameCharsLocKeys = {
     // by i18n/locale
     BarrageMaxAdditionalEnemies: 'BARRAGE_MAX_ADDITIONAL_ENEMIES',
 
+    LeapAOEAmt: 'TID_DESTROYER_AREADAMAGE',
+    DamageAmplifyFactor: 'TID_MODULE_DAMAGE_AMPLIFY_STAT',
     LinkDPSBoostPct: 'TID_MODULE_SUPPORT_ADDITIONAL_DPS',
     MirrorDamageAsAOE: 'TID_MODULE_MIRROR_DAMAGE_STAT',
     AlphaDroneBattery: 'TID_MODULE_BATTERY',

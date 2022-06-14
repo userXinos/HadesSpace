@@ -189,7 +189,7 @@ export default [
         (v) => `x${v}`,
     ],
     [
-        ['TimeWarpFactor', 'MiningSpeedModifierPct'],
+        ['TimeWarpFactor', 'MiningSpeedModifierPct', 'DamageAmplifyFactor'],
         (v) => `x${v / 100}`,
     ],
     [
@@ -221,7 +221,7 @@ export default [
         (v) => `+${v - 100}%`,
     ],
     [
-        ['TicksPerRelic', 'ExtraAsteroidSpawnTick', 'RelicLoadTicks'],
+        ['TicksPerRelic', 'ExtraAsteroidSpawnTick', 'RelicLoadTicks', 'DispatchActivTicks'],
         (v) => sec2str(v * 120),
     ],
     [
