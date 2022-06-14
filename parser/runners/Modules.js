@@ -57,11 +57,14 @@ export default class Modules extends Runner {
         });
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
-        data.TimeWarp.Icon = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
         data.FlagshipDartBarrage.TID_Description = data.FlagshipDartBarrage.TID_Description[0]; // какие-то буквы лишние в таблице
         data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * 600; // ...
         data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * 600; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
+
+        if (data.TimeWarp) {
+            data.TimeWarp.Icon = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
+        }
 
         if (!this.isNebulaBuild) {
             data.MiningBoost.WhiteStarScore.unshift(0); // ошибка в таблице, не хватает "0"
@@ -112,7 +115,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // фикс БЗ стат
-    if (value.EffectDurationx10WS) {
+    if (value.EffectDurationx10WS && Array.isArray(value.EffectDurationx10WS)) {
         value.EffectDurationx10WS.forEach((e, i, arr) => {
             arr[i] = e * 600;
         });

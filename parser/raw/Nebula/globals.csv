@@ -26,7 +26,7 @@ CrystalCostForHydrogen_10000,400
 CrystalCostForHydrogen_100000,2000
 CrystalCostForHydrogen_1000000,10000
 FleetDepartTimeInSeconds,9
-FleetDepartTimeInSeconds_WS,60
+FleetDepartTimeInSeconds_WS,120
 StartingPlayerBCAmount,0
 StartingPlayerFuelAmount,100
 MaxPlayerNameLength,16
@@ -55,7 +55,7 @@ MinDistanceBetweenBuildingsAndAsteroids,600
 MinDistanceBetweenPlanetsAndAsteroids,2000
 MinDistanceBetweenStarAndBuildings,1200
 MinDistanceBetweenAsteroids,350
-AlliancesUnlockLevel,4
+AlliancesUnlockLevel,0
 ClosestAllowedDistanceBetweenRandomSites,3500
 DynamicCSVUpdates,1
 CompressCSVUpdates,1
@@ -83,7 +83,7 @@ RedStarHintsCount,15
 BlueStarHintsCount,5
 RedStarHintTimer,12
 NumSecondsBeforeSupernovaToSendNotification,120
-CorporationCreationCost,10000
+CorporationCreationCost,100
 TimeToTravelActiveWarpLaneSegmentTicks,2
 DistanceToWarpGatePriceFactor,9
 WarpLaneActivationTimeHrs,24
@@ -101,11 +101,11 @@ ShipDockOffsetY,200
 MaxSendInboxMessageLength,300
 LargeSystemTravelTimeModifier,360
 LargeSystemCombatTurnModifier,60
-ReplayVersion,31
+ReplayVersion,32
 CorporationScoreIntervals,10!20!100
 CorporationScoreDividers,2!4!10
 PlaceIncomingStargateInMiddleOfSector,1
-ShipmentAllowOverloadFactor,200
+ShipmentAllowOverloadFactor,100
 MinDestroyerSpawnTime,90
 MaxDestroyerSpawnTime,120
 AsteroidDisplaySizes,50!200
@@ -120,7 +120,7 @@ RelicModel,artifacts/Relic01
 RelicSize,4
 RelicTID,TID_RELIC
 MineralTID,TID_MINERAL_ITEM
-RelicLoadTicks,120
+RelicLoadTicks,480
 CorpMaxMinInfluence,20000
 CorpMinInfuenceIncrements,100!500
 CorpMinInfluenceDiv,1000
@@ -145,11 +145,9 @@ UnityMaxDamageIncreasePct,200
 MaxScheduledOrders,12
 MaxTimeMachineFutureSeconds,172800
 WSBucketSizes,6!12
-WSHQAsteroidsPerBucket,4!6!8
 TimeMachineRewindIntervalSeconds,43200
 InterceptorPrioritizeTriggerer,1
 MaxAsteroidsInSector,14
-DestinyDisableTimes,0!0
 DontAllowUseOfEnemyWSGate,1
 BarrageMaxAdditionalEnemies_Base,10
 BarrageMaxAdditionalEnemies_BLS,2
@@ -188,7 +186,6 @@ SmoothBarTimeSec,60
 NewAutoShipmentSameOutpostWeightFactor,10
 BondOverridesBarrier,1
 LeapBreaksBond,1
-DestinyBreaksBond,1
 TeleportBreaksBond,1
 BondBreaksBond,1
 TimeModulationFxSpeedup,300
@@ -227,8 +224,8 @@ BSAI_EndGameSOCount,60
 BSAI_MaxMoveWeight,1000000
 BSAI_EG_StarPenalty,0
 BSAI_EG_KZPenalty,500
-STPeriodTicks,300
-MaxBSShipDesigns,4
+STPeriodTicks,1200
+MaxRebuildShipDesignsPerType,3
 RefreshWeaponFxOnSelect,0
 InfluenceDecayPct,3000
 InfluenceDecayPeriod,259200
@@ -237,7 +234,7 @@ WSScoreMiningModifier,5
 WSScoreTransportModifier,800
 NewsletterURL,http://eepurl.com/cal8yD
 FlagshipContribAmounts,10000!100000!1000000!8000000
-CRAsteroidMineTicks,600
+CRAsteroidMineTicks,2400
 TutorialDialogImg,youtube/video1!youtube/video2!youtube/video3!youtube/video5
 TutorialDialogURL,https://www.youtube.com/watch?v=UPkk6yKzRnI!https://www.youtube.com/watch?v=Ajdg8jgBXVg!https://www.youtube.com/watch?v=U4zvvJqsaXc!https://www.youtube.com/watch?v=LrY853vumu8
 RSPublicLateJoin_MaxTimeAvailable,300 
@@ -262,10 +259,12 @@ SP2PlanetUpgradeTimeDiscountPct,10
 AllianceInactivityMailDays,7
 SecondResearchSlotPrice,100000
 ClonedAsteroidDistances,250!350
-MirrorShieldTickPeriod,10
+MirrorShieldTickPeriod,40
 DRSArtifactBonus,50
 MaxBlockedPlayers, 20
 PermissionExpireDays,7
 DronesIgnoreBarrier,1
 MaxModuleLevel,15
 DiploHydroCapPct,25
+MassMiningMinAsteroids,3
+MirrorApplyToProjectiles,1
