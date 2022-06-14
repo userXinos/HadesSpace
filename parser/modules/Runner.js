@@ -177,16 +177,16 @@ export default class Runner {
      * @return {Object}                  Результат
      */
     static fillSpace(obj, spaceSymbol, to, usePush = false) {
-        return Object.fromEntries(
-            Object.entries(obj).map(([ k, v ]) => {
+        return Runner.objectArrayify(obj, {
+            map: ([ k, v ]) => {
                 if (Array.isArray(v)) {
                     while (v.length < to) {
                         (usePush) ? v.push(spaceSymbol) : v.unshift(spaceSymbol);
                     }
                 }
                 return [ k, v ];
-            }),
-        );
+            },
+        });
     }
 
     /**

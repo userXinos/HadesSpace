@@ -6,6 +6,7 @@ import { removeDupsFromArrays } from '../modules/csv2json.js';
 const CONFIG = Object.freeze({
     globalKeys: {
         RedStar: 'RS',
+        DarkRedStar: 'DRS',
         WhiteStar: 'WS',
         BlueStar: 'BlueStar_',
     },
@@ -43,6 +44,10 @@ export default class Stars extends Runner {
                     if (this.isNebulaBuild) {
                         const allRSs = Runner.objectArrayify(rawData, {
                             filter: ([ k ]) => k.startsWith('#RS'),
+                            map: ([ k, v ]) => { // @todo надо улучшить парсер
+                                delete v.GhostSpawnSecs;
+                                return [ k, v ];
+                            },
                         });
 
                         value = removeDupsFromArrays(Runner.compileOne({ value, ...allRSs }));
@@ -54,6 +59,10 @@ export default class Stars extends Runner {
                     if (this.isNebulaBuild) {
                         const allRSs = Runner.objectArrayify(rawData, {
                             filter: ([ k ]) => k.startsWith('#DRS'),
+                            map: ([ k, v ]) => {
+                                delete v.GhostSpawnSecs;
+                                return [ k, v ];
+                            },
                         });
 
                         value = removeDupsFromArrays(Runner.compileOne({ value, ...allRSs }));
