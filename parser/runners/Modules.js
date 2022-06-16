@@ -180,6 +180,14 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         });
     }
 
+    // посчитать саппорт урон для Луча
+    if (key === 'ChainRay') {
+        const { LinkDPSBoostPct } = value;
+
+        value.LinkDPSBoost = value.DPS.map((e) => e * (100 + LinkDPSBoostPct) / 100);
+        value.LinkDPSBoostWS = value.DPS_WS.map((e) => Math.floor(e * (3600 / TIME_SLOWDOWN_FACTOR_WS) * (100 + LinkDPSBoostPct) / 100));
+    }
+
     // добавить/удалить данные звёзд
     addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS);
 

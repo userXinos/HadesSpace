@@ -2212,6 +2212,8 @@ export default {
         TargetSwitchTicks: 20,
         PreviewLevel: 9,
         AllowForWSEarlyAccess: 1,
+        LinkDPSBoost: [225, 255, 291, 336, 390, 450, 516, 591, 681, 786],
+        LinkDPSBoostWS: [1157, 1311, 1504, 1735, 2018, 2314, 2661, 3047, 3535, 4050],
     },
     OmegaDrone: {
         Name: "OmegaDrone",
