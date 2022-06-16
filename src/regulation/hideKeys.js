@@ -93,6 +93,7 @@ export default {
         'UISortOrder',
         'AppearanceModels',
         'RSLevel',
+        'LinkDPSBoostPct', // перевёл в урон на парсере
 
         // временно ?
         'ActivationDelayBLS',

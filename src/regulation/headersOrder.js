@@ -84,6 +84,9 @@ export default [
     'SpeedSlowdownFactor',
     'WSDispatchAOEAmt',
     'LeapAOEAmt',
+    'LinkDPSBoost',
+    'LinkDPSBoostWS',
+    'AdditionalRangesPerLink',
     // ------------------
     'FuelUseIncrease',
     'ActivationFuelCost',
