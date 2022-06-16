@@ -98,7 +98,7 @@ export default {
         },
     },
     created() {
-        const nebulaSpaceBuildsNoBG = ['station_ShortRangeScanner', 'warpLaneHub', 'timeModulator'];
+        const nebulaSpaceBuildsNoBG = ['warpLaneHub', 'timeModulator'];
 
         this.bgClasses = {
             'module-bg': this.type === 'Module' && !this.isProjectiles,
