@@ -147,13 +147,6 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         delete value.EffectDurationx10;
     }
 
-    // исправить загрузку реликвии
-    if (key === 'RelicDrone') {
-        value.drone.RelicLoadTicks.forEach((e, i, arr) => {
-            arr[i] = e / TIME_SLOWDOWN_FACTOR_WS;
-        });
-    }
-
     // посчитать саппорт урон для Луча
     if (key === 'ChainRay') {
         const LinkDPSBoostPct = value.LinkDPSBoostPct + 100;
@@ -166,7 +159,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS);
 
     // добавить/удалить данные звёзд
-    addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS);
+    addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS);
 
     return [ key, value ];
 }
@@ -180,8 +173,8 @@ function fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS) {
     for (const k in value) {
         if (k in value) {
             if (!Array.isArray(value[k]) && typeof value[k] == 'object') {
-                fixWSChats(value[k]);
-                return;
+                fixWSChats(value[k], TIME_SLOWDOWN_FACTOR_WS);
+                continue;
             }
             if (k.endsWith('WS') && CONFIG.timeCharacteristics.includes(k.replace(/_?WS/, ''))) {
                 applyCoefficient(value, k);
@@ -197,9 +190,8 @@ function fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS) {
         }
     }
 }
-function addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS) {
+function addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, ast = value.AllowedStarTypes) {
     const keysRemove = [ 'AllowedStarTypes' ];
-    const ast = value.AllowedStarTypes;
     const hasSeparateBLSValues = (e) => /_?BS$/.test(e);
 
     if (ast !== undefined) {
@@ -220,9 +212,9 @@ function addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS) {
     }
     keysRemove.forEach((e) => delete value[e]);
 
-    Object.entries(value).forEach(([ k, v ]) => {
+    Object.values(value).forEach((v) => {
         if (typeof v === 'object' && !Array.isArray(v)) {
-            addInfoByStarType(k, v, TIME_SLOWDOWN_FACTOR_WS);
+            addInfoByStarType(v, TIME_SLOWDOWN_FACTOR_WS, ast);
         }
     });
 
@@ -241,6 +233,9 @@ function addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS) {
             .forEach(([ key, value ]) => {
                 const keyPostfix = getKeyPostfix(key);
                 const keyWithPostfix = Object.keys(obj).find((k) => keyPostfix.test(k));
+                if (key === 'RelicLoadTicks') {
+                    console.log('e');
+                }
 
                 if (!keyWithPostfix) {
                     const newKey = key + star;
