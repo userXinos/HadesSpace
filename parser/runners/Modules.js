@@ -2,23 +2,17 @@ import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
 
 import { fixModulesShipsData } from './CapitalShips.js';
+import formatValueRulesTime from '../../src/regulation/formatValueRulesTime.mjs';
+
+const EXCLUDE_KEYS_FROM_TIME = [ 'UnlockTime' ];
 
 // noinspection SpellCheckingInspection
 /* eslint-disable prefer-destructuring */
+
 const CONFIG = Object.freeze({
-    starHeaders: [
-        'EffectDurationx10',
-        'ActivationDelay',
-        'ActivationPrep',
-        'MaxDPSTime',
-        'APTPIOTTP',
-        'DisableTime',
-        'ProximityTriggerSec',
-        'RelicLoad',
-        'SpawnLifetime',
-        'TurretSetupTime',
-        'RelicLoadTicks',
-    ],
+    timeCharacteristics: formatValueRulesTime
+        .map(([ keys ]) => keys.filter((k) => !EXCLUDE_KEYS_FROM_TIME.includes(k)))
+        .flat(),
     combineKeys: {
         FlagshipDartBarrage: 'FlagshipWeaponModule',
         FlagshipAreaShield: 'FlagshipShieldModule',
@@ -118,26 +112,6 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         }
     }
 
-    // фикс БЗ стат
-    if (value.EffectDurationx10WS) {
-        if (Array.isArray(value.EffectDurationx10WS)) {
-            value.EffectDurationx10WS.forEach((e, i, arr) => {
-                arr[i] = e * TIME_SLOWDOWN_FACTOR_WS;
-            });
-        } else {
-            value.EffectDurationx10WS = value.EffectDurationx10WS * TIME_SLOWDOWN_FACTOR_WS;
-        }
-    }
-    if (value.ActivationPrepWS && !value.Hide) {
-        if (Array.isArray(value.ActivationPrepWS)) {
-            value.ActivationPrepWS.forEach((e, i, arr) => {
-                arr[i] = e * TIME_SLOWDOWN_FACTOR_WS;
-            });
-        } else {
-            value.ActivationPrepWS = value.ActivationPrepWS * TIME_SLOWDOWN_FACTOR_WS;
-        }
-    }
-
     // опрокинуть Salvage
     if (value.SalvageHullPercent) {
         value.SalvageHullPercent = Runner.transposeMatrix(value.SalvageHullPercent);
@@ -182,11 +156,14 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
     // посчитать саппорт урон для Луча
     if (key === 'ChainRay') {
-        const { LinkDPSBoostPct } = value;
+        const LinkDPSBoostPct = value.LinkDPSBoostPct + 100;
 
-        value.LinkDPSBoost = value.DPS.map((e) => e * (100 + LinkDPSBoostPct) / 100);
-        value.LinkDPSBoostWS = value.DPS_WS.map((e) => Math.floor(e * (3600 / TIME_SLOWDOWN_FACTOR_WS) * (100 + LinkDPSBoostPct) / 100));
+        value.LinkDPSBoost = value.DPS.map((e) => e * LinkDPSBoostPct / 100);
+        value.LinkDPSBoostWS = value.DPS_WS.map((e) => Math.floor(e * (3600 / TIME_SLOWDOWN_FACTOR_WS) * LinkDPSBoostPct / 100));
     }
+
+    // фикс БЗ стат
+    fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS);
 
     // добавить/удалить данные звёзд
     addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS);
@@ -194,6 +171,32 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     return [ key, value ];
 }
 
+
+function fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS) {
+    if (value.Hide) {
+        return;
+    }
+
+    for (const k in value) {
+        if (k in value) {
+            if (!Array.isArray(value[k]) && typeof value[k] == 'object') {
+                fixWSChats(value[k]);
+                return;
+            }
+            if (k.endsWith('WS') && CONFIG.timeCharacteristics.includes(k.replace(/_?WS/, ''))) {
+                applyCoefficient(value, k);
+            }
+        }
+    }
+
+    function applyCoefficient(body, key, factor = TIME_SLOWDOWN_FACTOR_WS) {
+        if (Array.isArray(body[key])) {
+            body[key].forEach((e, i, arr) => arr[i] = e * factor);
+        } else {
+            body[key] = body[key] * factor;
+        }
+    }
+}
 function addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS) {
     const keysRemove = [ 'AllowedStarTypes' ];
     const ast = value.AllowedStarTypes;
@@ -234,7 +237,7 @@ function addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS) {
 
         if (star === 'YS') return;
         Object.entries(obj)
-            .filter(([ k ]) => CONFIG.starHeaders.includes(k))
+            .filter(([ k ]) => CONFIG.timeCharacteristics.includes(k))
             .forEach(([ key, value ]) => {
                 const keyPostfix = getKeyPostfix(key);
                 const keyWithPostfix = Object.keys(obj).find((k) => keyPostfix.test(k));
@@ -259,7 +262,7 @@ function addInfoByStarType(key, value, TIME_SLOWDOWN_FACTOR_WS) {
     }
     function removeStarInfo(obj, star) {
         Object.keys(obj)
-            .filter((e) => CONFIG.starHeaders.includes(e))
+            .filter((e) => CONFIG.timeCharacteristics.includes(e))
             .forEach((key) => {
                 let regex;
 

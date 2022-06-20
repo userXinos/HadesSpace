@@ -5,6 +5,7 @@ import Icon from '@/components/Icon.vue';
 import sec2str from '@/js/sec2str';
 
 import locKeys from '@Regulation/locKeys.mjs';
+import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';
 import globals from '@Data/globals.js';
 import stars from '@Data/stars.js';
 
@@ -14,6 +15,9 @@ const numberFormat = new Intl.NumberFormat('ru-RU').format;
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 export default [
+
+    ...formatValueRulesTime.map(([keys, formatter]) => [keys, (v) => sec2str(formatter(v, globals))]),
+
     [
         [
             'TimeWarpSuppression',
@@ -58,51 +62,6 @@ export default [
     ],
     [
         [
-            'UnlockTime',
-            'SpawnLifetime',
-            'ActivationDelay',
-            'ActivationPrep',
-            'RedStarLifeExtention',
-            'TimeToFullyRegen',
-            'ShieldRegenDelay',
-            'DesignUpgradeTime',
-            'MaxDPSTime',
-            'DockedObjectDestroyTime',
-            'DisableTime',
-            'SectorUnlockTime',
-            'TimeToUpgrade',
-            'TimeToResearch',
-            'TimeToLoad',
-            'Lifetime',
-            'ConstructionTime',
-            'TimeSpeedupMaxSeconds',
-            'TimeSpeedupRegenPerDay',
-            'SpawnDelay',
-            'MoveUpdateSec',
-            'BlueStar_CRRewardWinLimitPeriod',
-            'WSLostBSTimeCooldown',
-            'WSLostOtherTimeCooldown',
-            'WSJumpBSTimeCooldown',
-            'WSJumpOtherTimeCooldown',
-            'ProximityTriggerSec',
-            'EMPResist',
-            'SpawnFleetIntervalSeconds',
-            'ShieldRegenTimeAfterDamage',
-            'SectorEnrichCooldownSeconds',
-            'TurretSetupTime',
-            'RelicLoad',
-            'RSPublicLateJoin_TimeAvailable',
-            'SectorGenesisCooldownSeconds',
-            'AIUpdateIntervalSeconds',
-            'HydroCloneLifetimeSec',
-            'WSLostShipTimeCooldown',
-            'WSDisbandCooldown',
-            // 'ActivationDelayBLS', // хз какой там кооф
-        ],
-        (v) => sec2str(v),
-    ],
-    [
-        [
             'DeactivateOnJump',
             'PreventUseOnWsJumpgate',
             'StopCountdownOnDisable',
@@ -139,17 +98,9 @@ export default [
             'LinkWeaponRange',
             'ImpulseRange',
             'AdditionalRangesPerLink',
-            'AdditionalRangesPerLink',
+            'WSDispatchAOERange',
         ],
         (v) => `${v / 10} ${t('AU')}`,
-    ],
-    [
-        ['APTPIOTTP'],
-        (v) => sec2str(v / 5),
-    ],
-    [
-        ['EffectDurationx10'],
-        (v) => sec2str(v / 10),
     ],
     [
         ['BlueStar_HydroPctPerPos'],
@@ -224,12 +175,8 @@ export default [
         (v) => `+${v - 100}%`,
     ],
     [
-        ['TicksPerRelic', 'ExtraAsteroidSpawnTick', 'RelicLoadTicks', 'DispatchActivTicks'],
+        ['TicksPerRelic', 'ExtraAsteroidSpawnTick'],
         (v) => sec2str(v * 120),
-    ],
-    [
-        ['TargetSwitchTicks', 'MirrorShieldTickPeriod'],
-        (v) => sec2str(v / globals.TicksPerSecond),
     ],
     [
         ['PreparationTimeHours', 'TeleportShipmentsDurationHr'],
