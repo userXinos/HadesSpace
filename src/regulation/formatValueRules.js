@@ -99,6 +99,7 @@ export default [
             'ImpulseRange',
             'AdditionalRangesPerLink',
             'WSDispatchAOERange',
+            'LeapAOERange',
         ],
         (v) => `${v / 10} ${t('AU')}`,
     ],
