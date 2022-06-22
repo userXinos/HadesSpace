@@ -248,7 +248,7 @@ export default {
         WSMaxBSPerPlayer: 1,
         WSMaxOtherPerPlayer: 1,
         WSLostShipTimeCooldown: 64800,
-        WSDisbandCooldown: 86400,
+        WSDisbandCooldown: 259200,
         WSJumpBSTimeCooldown: 7200,
         WSJumpOtherTimeCooldown: 7200,
         WSBucketSizes: [6, 12],

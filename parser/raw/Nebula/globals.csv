@@ -85,7 +85,7 @@ RedStarHintTimer,12
 NumSecondsBeforeSupernovaToSendNotification,120
 CorporationCreationCost,100
 TimeToTravelActiveWarpLaneSegmentTicks,2
-DistanceToWarpGatePriceFactor,9
+DistanceToWarpGatePriceFactor,3
 WarpLaneActivationTimeHrs,24
 MinShipLevelThatSupportsRename,1
 FacebookURL,https://facebook.com/hadesstar
@@ -101,7 +101,7 @@ ShipDockOffsetY,200
 MaxSendInboxMessageLength,300
 LargeSystemTravelTimeModifier,360
 LargeSystemCombatTurnModifier,60
-ReplayVersion,32
+ReplayVersion,33
 CorporationScoreIntervals,10!20!100
 CorporationScoreDividers,2!4!10
 PlaceIncomingStargateInMiddleOfSector,1
@@ -138,7 +138,7 @@ SectorGenesisCooldownSeconds,720
 WSMaxBSPerPlayer,1
 WSMaxOtherPerPlayer,1
 WSLostShipTimeCooldown,64800
-WSDisbandCooldown,86400
+WSDisbandCooldown,259200
 WSJumpBSTimeCooldown,7200
 WSJumpOtherTimeCooldown,7200
 UnityMaxDamageIncreasePct,200
@@ -266,5 +266,5 @@ PermissionExpireDays,7
 DronesIgnoreBarrier,1
 MaxModuleLevel,15
 DiploHydroCapPct,25
-MassMiningMinAsteroids,3
+MassMiningMinAsteroids,0
 MirrorApplyToProjectiles,1

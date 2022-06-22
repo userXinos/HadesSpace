@@ -301,7 +301,7 @@ export default {
         Cost: [5000, 6000, 8000, 15000, 25000, 50000, 100000, 200000, 400000, 800000],
         MaxOnOwnSolarSystem: 1,
         MaxPerSector: 1,
-        RelayBonusPct: [3, 6, 9, 12, 15, 18, 21, 25, 30, 35],
+        RelayBonusPct: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
         TeleportShipmentsPerHr: 10,
         TeleportShipmentsDurationHr: 24,
         TeleportShipmentActivationFragments: [5, 5, 4, 4, 3, 3, 3, 2, 2, 2],

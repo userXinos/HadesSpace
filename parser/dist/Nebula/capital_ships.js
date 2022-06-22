@@ -1272,7 +1272,7 @@ export default {
                 WeaponEffectType: "pulse",
                 ActivateFX: "Pulse_activate",
                 ActivationDelay: 5,
-                EffectRadius: 1200,
+                EffectRadius: 1350,
                 DPS: 200,
                 StopCountdownOnDisable: 1,
                 ActivationDelayWS: 4200,

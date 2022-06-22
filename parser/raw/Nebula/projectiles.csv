@@ -1,5 +1,5 @@
 Name,TID,TID_Description,Speed,ProximityTriggerSec,HP,Damage,DamageWhenNeutralized,DisableTime,DamageRange,DamageRangeWhenNeutralized,AdditionalWaypoint,Model,ImpactFX,DestroyedFX,LaunchFX,IgnoreBarrier,SingleTarget
-Alpha,TID_MODULE_ALPHAROCKET,TID_MODULE_ALPHAROCKET_DESCR,220,,200,2000,,,900,,0,projectiles/AlphaRocket_DrkNeb,projectiles/AlphaRocketHit_FX,projectiles/AlphaRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,
+Alpha,TID_MODULE_ALPHAROCKET,TID_MODULE_ALPHAROCKET_DESCR,180,,200,2000,,,900,,0,projectiles/AlphaRocket_DrkNeb,projectiles/AlphaRocketHit_FX,projectiles/AlphaRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,
 ,,,,,220,2200,,,900,,,,,,,,
 ,,,,,240,2420,,,900,,,,,,,,
 ,,,,,260,2662,,,900,,,,,,,,
@@ -22,7 +22,7 @@ EMPRocket,TID_MODULE_EMP_ROCKET,TID_MODULE_EMP_ROCKET_DESCR,200,,200,,,20,900,,0
 ,,,,,700,,,40,900,,,,,,,,
 ,,,,,800,,,44,900,,,,,,,,
 ,,,,,1000,,,48,900,,,,,,,,
-Delta,TID_MODULE_DELTAROCKET,TID_MODULE_DELTAROCKET_DESCR,300,,100,1500,,,900,,1,projectiles/DeltaRocket_DrkNeb,projectiles/AlphaRocketHit_FX,projectiles/AlphaRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,1,
+Delta,TID_MODULE_DELTAROCKET,TID_MODULE_DELTAROCKET_DESCR,250,,100,1500,,,900,,1,projectiles/DeltaRocket_DrkNeb,projectiles/AlphaRocketHit_FX,projectiles/AlphaRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,1,
 ,,,,,120,1650,,,900,,,,,,,,
 ,,,,,140,1815,,,900,,,,,,,,
 ,,,,,160,1996,,,900,,,,,,,,
@@ -64,7 +64,7 @@ Dart,TID_DART_MISSILE,TID_DART_MISSILE_DESCR,140,,250,4100,,,600,,0,projectiles/
 ,,,,,250,14000,,,600,,,,,,,,
 ,,,,,250,16000,,,600,,,,,,,,
 DartBarrage,TID_DART_MISSILE,TID_DART_MISSILE_DESCR,300,,350,2500,,,800,,0,projectiles/DartRocket_DrkNeb,projectiles/DartRocketHit_FX,projectiles/DartRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,1
-HydroRocket,TID_MODULE_HYDRO_ROCKET,TID_HYDRO_ROCKET_DESCR,230,,500,7000,,,1200,,0,projectiles/HydrogenRocket,projectiles/HydroRocketHit_FX,projectiles/HydroRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,
+HydroRocket,TID_MODULE_HYDRO_ROCKET,TID_HYDRO_ROCKET_DESCR,230,,500,7000,,,1200,,0,projectiles/HydrogenRocket_DrkNeb,projectiles/HydroRocketHit_FX,projectiles/HydroRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,
 ,,,,,550,7700,,,1200,,,,,,,,
 ,,,,,600,8470,,,1200,,,,,,,,
 ,,,,,650,9317,,,1200,,,,,,,,
@@ -118,7 +118,7 @@ FlagshipClusterRocket,TID_CLUSTER_ROCKET,TID_CLUSTER_ROCKET_DESCR,120,,1000,4000
 ,,,,,1704,11408,,,1400,,,,,,,,
 ,,,,,1789,12548,,,1400,,,,,,,,
 ,,,,,1878,13802,,,1400,,,,,,,,
-CargoRocket,TID_MODULE_CARGO_ROCKET,TID_CARGO_ROCKET_DESCR,230,,500,8000,,,1200,,0,projectiles/CargoRocket,projectiles/HydroRocketHit_FX,projectiles/HydroRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,
+CargoRocket,TID_MODULE_CARGO_ROCKET,TID_CARGO_ROCKET_DESCR,160,,500,8000,,,1200,,0,projectiles/CargoRocket,projectiles/HydroRocketHit_FX,projectiles/HydroRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,
 ,,,,,550,10000,,,1200,,,,,,,,
 ,,,,,600,12000,,,1200,,,,,,,,
 ,,,,,650,14000,,,1200,,,,,,,,

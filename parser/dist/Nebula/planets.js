@@ -492,7 +492,7 @@ export default {
         MaxShipments: 12,
         ShipmentsPerHour: 0,
         RelicHydroStages: [3, 10],
-        RelicHydroAmounts: [100, 600, 1200],
+        RelicHydroAmounts: [100, 800, 1600],
     },
     destroyed08: {
         Name: "destroyed08",
@@ -569,7 +569,7 @@ export default {
         MaxShipments: 12,
         ShipmentsPerHour: 0,
         RelicHydroStages: [3, 10],
-        RelicHydroAmounts: [100, 800, 1500],
+        RelicHydroAmounts: [100, 1200, 2500],
     },
     destroyed11: {
         Name: "destroyed11",
