@@ -44,10 +44,6 @@ export default class Stars extends Runner {
                     if (this.isNebulaBuild) {
                         const allRSs = Runner.objectArrayify(rawData, {
                             filter: ([ k ]) => k.startsWith('#RS'),
-                            map: ([ k, v ]) => { // @todo надо улучшить парсер
-                                delete v.GhostSpawnSecs;
-                                return [ k, v ];
-                            },
                         });
 
                         value = removeDupsFromArrays(Runner.compileOne({ value, ...allRSs }));

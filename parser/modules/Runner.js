@@ -139,17 +139,27 @@ export default class Runner {
      */
     static compileOne(obj) {
         const res = {};
+        const mergedKeys = [];
         let maxIndex = 0;
 
         Object.values(obj).forEach((e) => {
             // noinspection DuplicatedCode
             Object.entries(e).forEach(([ key, value ]) => {
                 if (key in res) {
-                    if (Array.isArray(res[key])) {
+                    if (Array.isArray(res[key]) && !Array.isArray(value)) {
                         res[key].push(value);
                         maxIndex = (res[key].length > maxIndex) ? res[key].length - 1 : maxIndex;
                     } else {
-                        res[key] = [ res[key], value ];
+                        if (Array.isArray(res[key])) {
+                            if (mergedKeys.includes(key)) {
+                                res[key] = [ ...res[key], value ];
+                            } else {
+                                res[key] = [ res[key].filter((e) => e != null), value ];
+                                mergedKeys.push(key);
+                            }
+                        } else {
+                            res[key] = [ res[key], value ];
+                        }
 
                         if (maxIndex > 0) {
                             while (res[key].length < maxIndex) {
@@ -249,7 +259,7 @@ export default class Runner {
 }
 
 export function validRunner(config) {
-    if (config) { // TODO мб норм валидатор
+    if (config) {
         return true;
     }
 }

@@ -66,10 +66,27 @@ export function removeDupsFromArrays(obj) {
     return Object.fromEntries(
         Object.entries(obj).map(([ key, value ]) => [
             key,
-            (((value.constructor === Object) ? removeDupsFromArrays(value) :
-                ((Array.isArray(value) && value.every((v) => v === value[0]))) ? value[0] : value)),
+            (value.constructor === Object) ? removeDupsFromArrays(value) : fixArray(value),
         ]),
     );
+
+    function fixArray(value) {
+        if (Array.isArray(value)) {
+            const firstElem = value[0];
+
+            if (value.every((e) => everyCB(e, firstElem))) {
+                return firstElem;
+            }
+        }
+        return value;
+
+        function everyCB(elem, match) {
+            if (Array.isArray(elem) && Array.isArray(match)) {
+                return elem.every((e, i) => everyCB(e, match[i]));
+            }
+            return elem === match;
+        }
+    }
 }
 
 /**
