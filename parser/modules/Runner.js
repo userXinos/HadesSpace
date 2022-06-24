@@ -142,9 +142,9 @@ export default class Runner {
         const mergedKeys = [];
         let maxIndex = 0;
 
-        Object.values(obj).forEach((e) => {
+        for (const e of Object.values(obj)) {
             // noinspection DuplicatedCode
-            Object.entries(e).forEach(([ key, value ]) => {
+            for (const [ key, value ] of Object.entries(e)) {
                 if (key in res) {
                     if (Array.isArray(res[key]) && !Array.isArray(value)) {
                         res[key].push(value);
@@ -170,10 +170,10 @@ export default class Runner {
                 } else {
                     res[key] = value;
                 }
-            });
+            }
 
             Runner.fillSpace(res, null, maxIndex, true);
-        });
+        }
 
         return res;
     }
@@ -206,7 +206,7 @@ export default class Runner {
     static combineMinMax(obj) {
         const keys = Object.keys(obj);
 
-        keys.forEach((MinKey) => {
+        for (const MinKey of keys) {
             if (MinKey.endsWith('Min') || MinKey.startsWith('Min')) {
                 const newKey = MinKey.match(/(Min)?(.+?)_?(Min)?$/)[2]; // eslint-disable-line prefer-destructuring
                 const MaxKey = keys.find((e) => e !== MinKey && new RegExp(`(Max)?${newKey}_?(Max)?`).test(e));
@@ -236,7 +236,7 @@ export default class Runner {
                     delete obj[MaxKey];
                 }
             }
-        });
+        }
     }
 
     /**

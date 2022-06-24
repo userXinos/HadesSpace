@@ -18,7 +18,7 @@ export default class Artifacts extends Runner {
     run(rawData) {
         const result = {};
 
-        CONFIG.types.forEach((type) => {
+        for (const type of CONFIG.types) {
             const Name = type;
             const BPName = `${Name}Blueprints`;
 
@@ -38,7 +38,7 @@ export default class Artifacts extends Runner {
 
             [ 'BlueprintsMin', 'BlueprintsMax' ].forEach((e) => delete result[Name][e]);
             Runner.combineMinMax(result[Name]);
-        });
+        }
 
         return result;
 

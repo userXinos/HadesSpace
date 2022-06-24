@@ -13,7 +13,7 @@ export default class PlayerGoals extends Runner {
     run(rawData) {
         let WinBSWithModule = {};
 
-        Object.entries(rawData).forEach(([ key, value ]) => {
+        for (const [ key, value ] of Object.entries(rawData)) {
             if (value.GoalType === 'WinBSWithModule') {
                 WinBSWithModule[key] = value;
                 delete rawData[key];
@@ -23,7 +23,7 @@ export default class PlayerGoals extends Runner {
             if (Array.isArray(value.CRRewardPerDay)) {
                 rawData[key] = Runner.fillSpace(value, null, value.CRRewardPerDay.length, true);
             }
-        });
+        }
 
 
         WinBSWithModule = removeDupsFromArrays(Runner.compileOne(WinBSWithModule));

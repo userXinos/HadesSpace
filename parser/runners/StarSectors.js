@@ -69,7 +69,7 @@ function customCompileOne(obj) {
     const getSymbol = (k) => (CONFIG.customCompileOne.zeroSymbol.includes(k)) ? 0 : null;
 
     Object.values(obj).forEach((e, index) => {
-        Object.entries(e).forEach(([ key, value ]) => {
+        for (const [ key, value ] of Object.entries(e)) {
             if (key in res) {
                 if (Array.isArray(res[key]) && index > 1) {
                     res[key].push(value);
@@ -85,7 +85,7 @@ function customCompileOne(obj) {
                     res[key] = value;
                 }
             }
-        });
+        }
 
         Object.keys(res) // добавить недостающие ключи, если не было значений
             .filter((k) => !Object.keys(e).includes(k))

@@ -46,7 +46,7 @@ function fixConstructionTime(obj) {
         return;
     }
 
-    Object.keys(CONFIG.timeModifiers).forEach(( key ) => {
+    for (const key of Object.keys(CONFIG.timeModifiers)) {
         if (key in obj) {
             if (Array.isArray(obj[key])) {
                 obj.ConstructionTime.push(...obj[key].map((t) => t * tm[key]));
@@ -55,7 +55,7 @@ function fixConstructionTime(obj) {
             }
             delete obj[key];
         }
-    });
+    }
 
     if (obj.ConstructionTime.length === 1) {
         obj.ConstructionTime = obj.ConstructionTime[0];

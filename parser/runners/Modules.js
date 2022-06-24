@@ -203,20 +203,20 @@ function addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, ast = value.AllowedSt
             }
         });
     } else {
-        CONFIG.starsOrder.forEach((e) => {
+        for (const e of CONFIG.starsOrder) {
             if (e === 'BS' && Object.keys(value).some(hasSeparateBLSValues)) {
                 return;
             }
             addStarInfo(value, e);
-        });
+        }
     }
     keysRemove.forEach((e) => delete value[e]);
 
-    Object.values(value).forEach((v) => {
+    for (const v of Object.values(value)) {
         if (typeof v === 'object' && !Array.isArray(v)) {
             addInfoByStarType(v, TIME_SLOWDOWN_FACTOR_WS, ast);
         }
-    });
+    }
 
 
     function addStarInfo(obj, star) {
