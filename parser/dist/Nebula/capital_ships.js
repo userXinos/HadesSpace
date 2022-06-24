@@ -582,7 +582,7 @@ export default {
         SortLayer: 3,
         IsCombatShip: 1,
         CanBeBuilt: 0,
-        NewModuleSlots: ["Weapon", "Shield", "Support", "Support", "Support", "Support"],
+        NewModuleSlots: [["Weapon", "Shield"], "Support", "Support", "Support", "Support"],
         HP: [4200, 6000, 8000, 10000, 12000],
         HydrogenCapacity: 0,
         Speed: 100,

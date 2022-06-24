@@ -15,11 +15,13 @@ export default function csv2json(csv) {
     if (headers.length <= 1) {
         return simpleArray(data);
     }
-    data.forEach((string, stringIndex) => {
+    data.forEach((string, sIndex) => {
         if (string[0]) {
+            splitSeparators(obj, subName);
             subName = string[0].trim();
             obj[subName] = {};
         }
+
         string.forEach((elem, i) => {
             const header = headers[i];
             const subObj = obj[subName];
@@ -31,13 +33,7 @@ export default function csv2json(csv) {
                 subObj[header] = value;
             } else if (Array.isArray(stockValue)) {
                 if (Array.isArray(value) && !stockValue.some(Array.isArray)) {
-                    const prevStringValue = fixValue(data[stringIndex - 1][i]);
-
-                    if (Array.isArray(prevStringValue)) {
-                        subObj[header] = [ stockValue, value ];
-                    } else {
-                        subObj[header] = [ ...stockValue, value ];
-                    }
+                    subObj[header] = [ stockValue, value ];
                 } else {
                     stockValue.push(value);
                 }
@@ -45,6 +41,10 @@ export default function csv2json(csv) {
                 subObj[header] = [ stockValue, value ];
             }
         });
+
+        if (sIndex + 1 == data.length) {
+            splitSeparators(obj, subName);
+        }
     });
     return removeDupsFromArrays(obj);
 }
@@ -52,9 +52,6 @@ export default function csv2json(csv) {
 function fixValue(val) {
     const parsed = parseInt(val, 10);
     if (isNaN(val) || isNaN(parsed)) {
-        if (val.includes('!')) {
-            return val.split('!').map(fixValue);
-        }
         return val.trim();
     }
     return parsed;
@@ -73,6 +70,31 @@ export function removeDupsFromArrays(obj) {
                 ((Array.isArray(value) && value.every((v) => v === value[0]))) ? value[0] : value)),
         ]),
     );
+}
+
+/**
+ * Разделители в массивах
+ * @param {Object} obj
+ * @param {string} name
+ * @param {string} symbol
+ */
+function splitSeparators(obj, name, symbol = '!') {
+    for (const key in obj[name]) {
+        if (key in obj[name]) {
+            const elem = obj[name][key];
+
+            if (Array.isArray(elem)) {
+                obj[name][key] = elem.map((e) => {
+                    if (typeof e == 'string' && e.includes(symbol)) {
+                        return e.split(symbol).map(fixValue);
+                    }
+                    return e;
+                });
+            } else if (typeof elem == 'string' && elem.includes(symbol)) {
+                obj[name][key] = elem.split(symbol).map(fixValue);
+            }
+        }
+    }
 }
 
 // если не таблица, а просто данные в столбик

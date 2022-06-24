@@ -41,11 +41,6 @@ export default class CapitalShips extends Runner {
                         }
                     });
                 }
-                // исключение
-                if (key === 'Battleship' && this.isNebulaBuild) {
-                    const { NewModuleSlots } = value;
-                    value.NewModuleSlots = [ [ NewModuleSlots.shift(), NewModuleSlots.shift() ], ...NewModuleSlots ];
-                }
                 return [ key, value ];
             },
         });

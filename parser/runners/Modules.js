@@ -233,9 +233,6 @@ function addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, ast = value.AllowedSt
             .forEach(([ key, value ]) => {
                 const keyPostfix = getKeyPostfix(key);
                 const keyWithPostfix = Object.keys(obj).find((k) => keyPostfix.test(k));
-                if (key === 'RelicLoadTicks') {
-                    console.log('e');
-                }
 
                 if (!keyWithPostfix) {
                     const newKey = key + star;
