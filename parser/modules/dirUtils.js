@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, statSync, unlinkSync, lstatSync, rmdirSync } from 'fs';
+import { readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
 /**
@@ -19,22 +19,4 @@ export function walkDir(dir) {
             }
         });
     return results;
-}
-
-/**
- * Рекурсивная удалялка директории
- * @param  {String} dir
- */
-export function wipeDir(dir) {
-    if (existsSync(dir)) {
-        readdirSync(dir).forEach((file) => {
-            const curDir = join(dir, file);
-            if (lstatSync(curDir).isDirectory()) {
-                wipeDir(curDir);
-            } else {
-                unlinkSync(curDir);
-            }
-        });
-        rmdirSync(dir);
-    }
 }

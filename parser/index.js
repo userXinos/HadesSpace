@@ -1,4 +1,4 @@
-import { readdirSync } from 'fs';
+import { readdirSync, rmSync } from 'fs';
 import { pathToFileURL } from 'url';
 import { basename, resolve } from 'path';
 
@@ -8,7 +8,6 @@ import loadFile from './modules/loadFile.js';
 import saveFile from './modules/saveFile.js';
 import { validRunner } from './modules/Runner.js';
 import program, { options } from './modules/program.js';
-import { wipeDir } from './modules/dirUtils.js';
 
 program.parse(process.argv);
 
@@ -33,7 +32,7 @@ const runners = await Promise.all(
     .catch(err);
 
 if (options.wipe) {
-    wipeDir(CONFIG.pathSave);
+    rmSync(CONFIG.pathSave, { recursive: true, force: true });
 }
 
 runners.forEach(({ config }) => {
