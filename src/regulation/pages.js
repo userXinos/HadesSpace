@@ -118,7 +118,7 @@ export default [
                 path: '/alliancelevels',
                 component: () => import(/* webpackChunkName: "AllianceLevels" */ '../pages/AllianceLevels.vue'),
                 icon: {
-                    name: 'relic',
+                    name: isNebulaBuild ? 'corpXp' : 'relic',
                     dir: 'icons',
                 },
             },
@@ -234,6 +234,18 @@ export default [
                     dir: 'icons',
                 },
             },
+            isNebulaBuild ?
+                {
+                    name: 'GameDiffLog',
+                    text: { locKey: 'DL' },
+                    path: '/GameDiffLog',
+                    component: () => import(/* webpackChunkName: "DarkRedStar" */ '../pages/GameDiffLog.vue'),
+                    icon: {
+                        name: 'clock',
+                        dir: 'icons',
+                    },
+                } :
+                undefined,
             {
                 text: {
                     locKey: 'SWITCH_ACCS',
