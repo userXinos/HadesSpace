@@ -7,7 +7,7 @@ const { t, te } = i18n.global;
 export default function(key, pageName) {
     const newKey = locKeys[key] || key;
 
-    if (key === '_' || key === undefined) {
+    if (typeof key == 'undefined' || key == null || key.startsWith('_')) {
         return '';
     }
 

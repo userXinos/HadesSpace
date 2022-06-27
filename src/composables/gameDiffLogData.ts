@@ -1,0 +1,100 @@
+import hideKeys from '@Regulation/hideKeys';
+
+export default function gameDiffLogData() {
+    return {
+        mergeDeep,
+        createDiff,
+        isObject,
+        addMetadata,
+    };
+
+    function mergeDeep(target: {[k: string]: unknown}, ...sources: object[]): object {
+        if (!sources.length) return target;
+        const source = sources.shift() as {[k: string]: unknown};
+
+        if (isObject(target) && isObject(source)) {
+            for (const key in source) {
+                if (isObject(source[key])) {
+                    if (!target[key]) {
+                        Object.assign(target, { [key]: {} });
+                    } else {
+                        target[key] = Object.assign({}, target[key]);
+                    }
+                    mergeDeep(target[key] as typeof target, source[key] as object);
+                } else {
+                    Object.assign(target, { [key]: source[key] });
+                }
+            }
+        }
+
+        return mergeDeep(target, ...sources);
+    }
+
+    function createDiff(parent: object, obj: object): object|null {
+        if (isObject(parent)) {
+            return compareObject(parent, obj);
+        }
+        return null;
+
+        function compareObject(parent: object, obj: object) {
+            const res = {} as {[k: string]: unknown};
+
+            for (const key in parent) {
+                if (key in parent && key in obj) {
+                    const parentElem = (parent as {[k: string]: unknown})[key];
+                    const objElem = (obj as {[k: string]: unknown})[key];
+
+                    if (isObject(parentElem)) {
+                        const child = compareObject(parentElem as object, objElem as object);
+                        if (child) {
+                            res[key] = child;
+                        }
+                        continue;
+                    }
+                    if (Array.isArray(parentElem) ? !isEqualArrays(parentElem, objElem as unknown[]) : parentElem !== objElem) {
+                        res[key] = parentElem;
+                        if (Array.isArray(parentElem)) {
+                            res[`__>>${key}`] = Array.from({ length: parentElem.length }, () => '>>');
+                        }
+                        res[`_${key}`] = objElem;
+                    }
+                }
+            }
+
+            return (Object.keys(res).length) ? res : null;
+        }
+    }
+
+    function addMetadata(target: {[k: string]: unknown}, src: object, filename?: string) {
+        for (const key of Object.keys(target)) {
+            const targetElem = target as {[k: string]: object};
+            const srcElem = src as {[k: string]: object};
+
+            if (isObject(targetElem[key])) {
+                const t = targetElem[key] as typeof target;
+                addMetadata(t, srcElem[key]);
+
+                if (!t.Name) {
+                    t.Name = filename;
+                }
+                if (!t.TID) {
+                    t.TID = filename;
+                }
+            }
+
+            if (srcElem) {
+                hideKeys.meta
+                    .filter((k) => k in srcElem)
+                    .forEach((k) => targetElem[k] = srcElem[k]);
+            }
+        }
+        return target;
+    }
+
+    function isObject(elem: unknown) {
+        return typeof elem == 'object' && !Array.isArray(elem);
+    }
+    function isEqualArrays(arr1: unknown[], arr2: unknown[]) {
+        return arr1.every((e, i) => e === arr2[i]);
+    }
+}

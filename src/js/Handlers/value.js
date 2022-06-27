@@ -3,7 +3,9 @@ import rules from '@Regulation/formatValueRules.js';
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 
 export default function(key, value, dataName) {
-    const fixedKey = key.replace(/_?(RS|WS|BS|BASE)$/, '');
+    const fixedKey = key
+        .replace(/^_/, '')
+        .replace(/_?(RS|WS|BS|BASE)$/, '');
 
     if (value === undefined) {
         return;

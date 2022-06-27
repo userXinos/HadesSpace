@@ -37,6 +37,7 @@ export default {
     props: {
         data: { type: Object, required: true },
         tableOpts: { type: Object, default: () => ({}) },
+        sort: { type: Boolean, default: true },
         iconDir: { type: String, default: '' },
     },
     data() {
@@ -49,7 +50,7 @@ export default {
 
             format: {
                 key: (k) => key(k, this.$route.name),
-                value: (k, v) => value(k, v, this.title.default.Name),
+                value: (k, v) => value(k, v, this?.title.default.Name),
             },
         };
     },
@@ -102,7 +103,7 @@ export default {
 
             pre
                 .filter(([k]) => !hideKeys.global.includes(k) && !hideKeys.byPath.includes(`${Name}.${k}`))
-                .sort(([a], [b]) => headersOrder.indexOf(a) - headersOrder.indexOf(b))
+                .sort(([a], [b]) => this.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
                 .forEach(([key, value]) => {
                     if (Array.isArray(head[category])) {
                         head[category].push(key);

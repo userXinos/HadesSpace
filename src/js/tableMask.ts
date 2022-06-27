@@ -24,10 +24,29 @@ export default function({ head, body }: Raw, mergeCells: boolean) {
 
 function headMask(category: string, keys: string[], out: Out['head']) {
     if (category === 'default') {
-        out[0].push(...keys.map((e) => ({
-            value: e,
-            rowspan: keys.length,
-        })));
+        out[0].push(
+            ...keys
+                .map((e, index) => {
+                    let colspan = 1;
+                    let i = index + 1;
+
+                    if (e.startsWith('_')) {
+                        return null as unknown as Out['head'][0][0];
+                    }
+
+                    while (keys[i]?.startsWith('_')) {
+                        colspan++;
+                        i++;
+                    }
+
+                    return {
+                        value: e,
+                        rowspan: keys.length,
+                        colspan,
+                    };
+                })
+                .filter(Boolean),
+        );
     } else {
         if (!out[1]) {
             out[1] = [];

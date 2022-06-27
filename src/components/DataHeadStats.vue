@@ -44,7 +44,11 @@
                     :format="format"
                     :parent-id="`${parentId}-${name}`"
                     :parent="item"
-                  />
+                  >
+                    <template v-if="diffTools.getKeyDiffValue(item, key)">
+                      {{ diffTools.format(format.value(key, diffTools.getKeyDiffValue(item, key))) }}
+                    </template>
+                  </Stats>
                 </li>
               </ul>
             </div>
@@ -74,6 +78,8 @@
         {{ format.value(itemKey, items) }}
       </template>
 
+      <slot />
+
     </template>
 
   </div>
@@ -86,6 +92,11 @@ import Store from '@Store/index';
 
 import objectArrayify from '@/js/objectArrayify';
 import hk from '@Regulation/hideKeys.js';
+
+export const diffTools = {
+    getKeyDiffValue: (obj, k) => obj[`_${k}`],
+    format: (v) => ` >> ${v}`,
+};
 
 
 const ICON_DIR_LIST = {
@@ -107,7 +118,7 @@ export function getCharsWithHideStatus(d) {
             ],
         ],
         filter: ([k, [, remove]]) => (
-            hk.meta.includes(k) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || hk.meta.includes(k) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
         ),
     });
 
@@ -123,40 +134,18 @@ export default {
     name: 'Stats',
     components: { Icon, VNode },
     props: {
-        items: {
-            type: null,
-            requested: true,
-            default: () => [],
-        },
-        itemKey: {
-            type: String,
-            requested: false,
-            default: null,
-        },
-        parentId: {
-            type: String,
-            requested: true,
-            default: null,
-        },
-        parent: {
-            type: Object,
-            requested: false,
-            default: () => ({ TID_Description: null }),
-        },
-        format: {
-            type: Object,
-            requested: true,
-            default: () => ({ key: () => null, value: () => null }),
-        },
-        iconDir: {
-            type: String,
-            default: '',
-        },
+        items: { type: null, required: true },
+        itemKey: { type: String, default: null },
+        parentId: { type: String, required: true },
+        parent: { type: Object, default: () => ({ TID_Description: null }) },
+        format: { type: Object, required: true },
+        iconDir: { type: String, default: '' },
     },
     data() {
         return {
             iconDirList: ICON_DIR_LIST,
             getCharacteristics: getCharsWithHideStatus,
+            diffTools,
         };
     },
     computed: {
