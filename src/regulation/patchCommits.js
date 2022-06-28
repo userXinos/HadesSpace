@@ -2,7 +2,7 @@
 
 export default [
     {
-        hashes: ['6830102801cbcea667e6cbb8907574a817a613ce', '6b471418f3b60c18647ab3e4d87d376fcacd9563', 'bbae1473ea2350501f35cb427ce33832d72c9c16'],
+        hashes: ['6830102801cbcea667e6cbb8907574a817a613ce', '6b471418f3b60c18647ab3e4d87d376fcacd9563', '79d0e80e53676249ac4070d9113846008e644dd8'],
         title: 'Patch №2',
         note: 'Some nerf',
     },
