@@ -387,7 +387,6 @@ export default {
         WhiteStarScore: [0, 12, 37, 62, 125, 187, 250, 337, 375, 450, 500, 550],
         BSScore: [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000],
         TID_Artifact: "TID_TRADEITEM_ARTIFACT_SUPPORT_4",
-        ActivationDelayWS: 180000,
     },
     MineralStorageCapacity: {
         Name: "MineralStorageCapacity",
@@ -1753,10 +1752,6 @@ export default {
         IsTeleport: 1,
         PreventUseOnWsJumpgate: 1,
         IsRecoil: 1,
-        ActivationPrepWS: 28800,
-        ActivationDelayWS: 81000,
-        ActivationPrepBS: 96,
-        ActivationDelayBS: 270,
     },
     Immolation: {
         Name: "Immolation",
@@ -1770,8 +1765,6 @@ export default {
         ActivationType: "Activated",
         ActivationDelay: 60,
         IsImmolation: 1,
-        ActivationDelayWS: 36000,
-        ActivationDelayBS: 120,
     },
     EMPRocket: {
         Name: "EMPRocket",
@@ -1800,11 +1793,7 @@ export default {
             ImpactFX: "projectiles/EMPRocketHit_FX",
             DestroyedFX: "projectiles/EMPRocketDeath_FX",
             LaunchFX: "projectiles/AlphaRocketLaunch_FX",
-            DisableTimeWS: [12000, 14400, 16800, 19200, 21600, 24000, 26400, 28800],
-            DisableTimeBS: [40, 48, 56, 64, 72, 80, 88, 96],
         },
-        ActivationDelayWS: 120000,
-        ActivationDelayBS: 400,
     },
     HydraBarrage: {
         Name: "HydraBarrage",

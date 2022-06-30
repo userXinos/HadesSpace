@@ -73,6 +73,17 @@ export default class Modules extends Runner {
 
 function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, artifacts, stars ], getGlobalsBy, isNebulaBuild) {
     const TIME_SLOWDOWN_FACTOR_WS = stars.WhiteStar.TimeSlowdownFactor;
+    const ignoreModules = capitalShips.CorpFlagship.FlagshipModules.reduce((acc, elem) => {
+        if (!Array.isArray(elem)) {
+            elem = [ elem ];
+        }
+        for (const e of elem) {
+            if (!acc.includes(e)) {
+                acc.push(e);
+            }
+        }
+        return acc;
+    }, []);
 
     // слить подобные вместе
     if (key in CONFIG.combineKeys) {
@@ -159,7 +170,10 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS);
 
     // добавить/удалить данные звёзд
-    addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS);
+
+    if (!ignoreModules.includes(key)) {
+        addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS);
+    }
 
     return [ key, value ];
 }

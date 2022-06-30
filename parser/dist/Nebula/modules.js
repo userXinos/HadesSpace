@@ -1740,10 +1740,6 @@ export default {
         IsTeleport: 1,
         PreventUseOnWsJumpgate: 1,
         IsRecoil: 1,
-        ActivationPrepWS: 40320,
-        ActivationDelayWS: 113400,
-        ActivationPrepBS: 96,
-        ActivationDelayBS: 270,
     },
     Immolation: {
         Name: "Immolation",
@@ -1757,8 +1753,6 @@ export default {
         ActivationType: "Activated",
         ActivationDelay: 60,
         ImmolationDamage: [500, 4000, 8000, 25000, 50000],
-        ActivationDelayWS: 50400,
-        ActivationDelayBS: 120,
     },
     EMPRocket: {
         Name: "EMPRocket",
@@ -1787,11 +1781,7 @@ export default {
             ImpactFX: "projectiles/EMPRocketHit_FX",
             DestroyedFX: "projectiles/EMPRocketDeath_FX",
             LaunchFX: "projectiles/AlphaRocketLaunch_FX",
-            DisableTimeWS: [16800, 20160, 23520, 26880, 30240, 33600, 36960, 40320],
-            DisableTimeBS: [40, 48, 56, 64, 72, 80, 88, 96],
         },
-        ActivationDelayWS: 168000,
-        ActivationDelayBS: 400,
     },
     HydraBarrage: {
         Name: "HydraBarrage",
@@ -2397,9 +2387,6 @@ export default {
         SpawnedShipOffsets: [-200, 0, 200, 0, -100, 75, 100, 75],
         SpawnLifetime: 180,
         SpawnLifetime_WS: 180,
-        ActivationDelayWS: 252000,
-        ActivationDelayBS: 600,
-        SpawnLifetimeBS: 360,
     },
     FlagshipRocketCluster: {
         Name: "FlagshipRocketCluster",
@@ -2434,8 +2421,6 @@ export default {
             ImpactFX: "projectiles/BomberRocketHit_FX",
             DestroyedFX: "projectiles/OmegaRocketDeath_FX",
         },
-        ActivationDelayWS: 171360,
-        ActivationDelayBS: 408,
     },
     AlphaDroneBattery: {
         Name: "AlphaDroneBattery",
