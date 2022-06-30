@@ -57,7 +57,6 @@ export default class Modules extends Runner {
         data.FlagshipDartBarrage.TID_Description = data.FlagshipDartBarrage.TID_Description[0]; // какие-то буквы лишние в таблице
         data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
-        data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
 
         if (data.TimeWarp) {
@@ -67,6 +66,8 @@ export default class Modules extends Runner {
         if (!this.isNebulaBuild) {
             data.MiningBoost.WhiteStarScore.unshift(0); // ошибка в таблице, не хватает "0"
             data.Destiny.WhiteStarScore.unshift(0); // ошибка в таблице, не хватает "0"
+        } else {
+            data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         }
 
         return data;
