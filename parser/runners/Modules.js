@@ -16,6 +16,7 @@ const CONFIG = Object.freeze({
     combineKeys: {
         FlagshipDartBarrage: 'FlagshipWeaponModule',
         FlagshipAreaShield: 'FlagshipShieldModule',
+        // FlagshipDroneSwarm: 'FlagshipDrone',
         LaserTurret: 'LaserTurret_Laser',
     },
     starsOrder: [ 'YS', 'RS', 'WS', 'BS' ],
@@ -56,6 +57,7 @@ export default class Modules extends Runner {
         data.FlagshipDartBarrage.TID_Description = data.FlagshipDartBarrage.TID_Description[0]; // какие-то буквы лишние в таблице
         data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
+        data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
 
         if (data.TimeWarp) {
@@ -73,7 +75,7 @@ export default class Modules extends Runner {
 
 function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, artifacts, stars ], getGlobalsBy, isNebulaBuild) {
     const TIME_SLOWDOWN_FACTOR_WS = stars.WhiteStar.TimeSlowdownFactor;
-    const ignoreModules = capitalShips.CorpFlagship.FlagshipModules.reduce((acc, elem) => {
+    const onlyWS = capitalShips.CorpFlagship.FlagshipModules.reduce((acc, elem) => {
         if (!Array.isArray(elem)) {
             elem = [ elem ];
         }
@@ -89,6 +91,10 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     if (key in CONFIG.combineKeys) {
         const k = CONFIG.combineKeys[key];
         value[k] = { ...Object.fromEntries(array)[k] };
+
+        if (onlyWS.includes(k)) {
+            onlyWS.push(key);
+        }
     }
 
     // добавить глобальные
@@ -117,6 +123,10 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     // добавить данные дронов
     if (key.includes('Drone')) {
         value.drone = capitalShips[value.Name] || capitalShips[`${value.Name}Ship`];
+
+        if (key == 'FlagshipDroneSwarm') {
+            value.drone = capitalShips.FlagshipDrone;
+        }
 
         if (value.drone) {
             fixModulesShipsData(value.drone);
@@ -171,9 +181,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
     // добавить/удалить данные звёзд
 
-    if (!ignoreModules.includes(key)) {
-        addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS);
-    }
+    addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, onlyWS.includes(key) ? [ 2 ] : undefined);
 
     return [ key, value ];
 }
