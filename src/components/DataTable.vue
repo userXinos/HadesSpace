@@ -244,6 +244,11 @@ $mw: 900px;
     td[cell-key="TID_Description"] {
         font-size: 70%;
     }
+    td[cell-key="Model"] {
+        > div {
+            max-width: 50px;
+        }
+    }
 }
 </style>
 
