@@ -85,15 +85,16 @@ function addModulesStats(obj, modules) {
         }
     }
 
-    function getModuleByLvl(name, lvl) {
-        if (name in modules.data) {
-            return Runner.objectArrayify(modules.data[name], {
+    function getModuleByLvl(name, lvl, data = modules.data) {
+        if (name in data) {
+            return Runner.objectArrayify(data[name], {
                 map: ([ key, value ]) => [
                     key,
-                    (!Array.isArray(value)) ? value :
-                        (value.every(Array.isArray) ? value.map((e) => e[lvl]) :
-                            value[lvl]
-                        ),
+                    (!Array.isArray(value)) ?
+                        (typeof value != 'object') ?
+                            value : getModuleByLvl(key, lvl, data[name]) :
+                        value.every(Array.isArray) ?
+                            value.map((e) => e[lvl]) : value[lvl],
                 ],
             });
         }
