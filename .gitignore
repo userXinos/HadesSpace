@@ -11,6 +11,7 @@ node_modules
 node_modules/
 .cache/
 .directory
+.env.development.local
 
 #psd
 src/img/logo.psd
