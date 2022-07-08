@@ -94,7 +94,7 @@ export default class CalculatorConfig {
 
         for (const [key, TID] of Object.entries(this.TIDs)) {
             const name = i18n.global.t(TID, STRING_FORMAT_LOCALE);
-            const regex = new RegExp(`${name}\\s+?(\\d+?)\\s?`, 'mi'); // EMP       99
+            const regex = new RegExp(`${name}\\s+?(\\d+)\\s?`, 'mi'); // EMP       99
             const [, lvl] = text.match(regex) || [undefined, '0'];
 
             entries.push([key, parseInt(lvl as string)]);

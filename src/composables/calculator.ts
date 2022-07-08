@@ -90,6 +90,9 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
         return [key, mapFnElement(...args)];
     }
     function calcElement(target: {[k: string]: Element}, name: string, map: mapFn) {
+        if (!elementsCharsStore[name]) {
+            return;
+        }
         target[name] = objectArrayify(elementsCharsStore[name], { map }) as Element;
     }
     function calcInput(entries: Level, target: {[k: string]: Element}, elementMapFn: (name: string, level: number, ...args: Parameters<mapFn>) => [string, number]) {

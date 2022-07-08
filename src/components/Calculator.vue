@@ -113,10 +113,10 @@
 
           <div class="flex-end margin-bottom">
             <button
-              v-t="'TID_INBOX_DELETE_MESSAGE'"
               class="button red"
               @click="removeConfig"
-            />
+            >{{ $t(isNebula ? 'TID_SOCIAL_DELETE_MESSAGE' : 'TID_INBOX_DELETE_MESSAGE') }}
+            </button>
           </div>
 
         </div>
@@ -137,6 +137,7 @@
             v-t="'FROM_TEXT_FORMAT'"
             class="name"
           />
+          <p class="name">Example: Fortify 8 Bond 5</p>
           <input v-model="newConfigFromText">
         </div>
 
@@ -210,6 +211,8 @@ export default defineComponent({
     },
     data() {
         return {
+            isNebula: !!process.env.VUE_APP_NEBULA_BUILD,
+
             resetConfirm: (() => Promise.prototype) as (q: string) => Promise<void>,
             modalSizes: SIZES,
             settingsModal: false,
@@ -317,7 +320,7 @@ export default defineComponent({
                         console.error(err);
                     });
             }
-            this.ConfigManager.add({ actually: parsed, plan: parsed });
+            this.ConfigManager.add({ actually: { ...parsed }, plan: { ...parsed } });
             this.newConfigFromText = '';
             this.newModal = false;
             this.fullUpdate();
