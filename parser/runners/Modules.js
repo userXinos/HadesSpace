@@ -182,7 +182,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
     // добавить/удалить данные звёзд
 
-    addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, onlyWS.includes(key) ? [ 2 ] : undefined);
+    addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, (onlyWS.includes(key) && value.Hide) ? [ 2 ] : undefined);
 
     return [ key, value ];
 }
