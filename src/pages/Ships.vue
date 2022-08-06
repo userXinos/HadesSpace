@@ -18,7 +18,7 @@
         />
       </h1>
 
-      <v-content :args="{data: modules, iconDir: 'game/Modules'}" />
+      <v-content :args="{data: modules, iconDir: 'game/Modules', tableOpts: modulesTableOpts}" />
     </div>
 
   </div>
@@ -32,6 +32,7 @@ import ships from '@Data/capital_ships.js';
 import modules from '@Data/modules.js';
 import getFilterByType from '@Scripts/getFilterByType';
 import objectArrayify from '@Scripts/objectArrayify';
+import { tableOpts } from '@/components/ModulePage.vue';
 
 export default {
     components: { Page, VContent },
@@ -43,6 +44,9 @@ export default {
             }),
             img: require(`@Img/game/portraits/portrait_CorpFlagship.png`),
         };
+    },
+    computed: {
+        modulesTableOpts: tableOpts,
     },
 };
 </script>
