@@ -30,6 +30,34 @@ const sortByAwardLevel = objectArrayify(modulesData, {
 export const getBySlotType = (SlotType) => objectArrayify(sortByAwardLevel, {
     filter: ([, v]) => v.SlotType === SlotType,
 });
+export function tableOpts() {
+    const maxModulesLvl = new Map();
+
+    return {
+        get colLvlStartAt() {
+            if (NEBULA_BUILD && this.data?.body) {
+                const matrixKey = (this.data.body.default) ? 'default' : Object.keys(this.data.body)[0];
+                const k = this.data.body[matrixKey];
+
+                if (!maxModulesLvl.has(k)) {
+                    maxModulesLvl.set(k, 0);
+                }
+
+                const maxLvl = maxModulesLvl.get(k);
+                if (maxLvl < 1) {
+                    let max = 0;
+                    for (const e of this.data.body[matrixKey]) {
+                        max = (max < e.length) ? e.length - 1 : max;
+                    }
+                    maxModulesLvl.set(k, max);
+                    return MaxModuleLevel - max;
+                }
+                return MaxModuleLevel - maxLvl;
+            }
+            return 1;
+        },
+    };
+}
 
 export default {
     components: { Page },
@@ -46,33 +74,7 @@ export default {
         };
     },
     computed: {
-        tableOpts() {
-            const maxModulesLvl = new Map();
-
-            return {
-                get colLvlStartAt() {
-                    if (NEBULA_BUILD && this.data?.body?.default) {
-                        const k = this.data.body.default;
-
-                        if (!maxModulesLvl.has(k)) {
-                            maxModulesLvl.set(k, 0);
-                        }
-
-                        const maxLvl = maxModulesLvl.get(k);
-                        if (maxLvl < 1) {
-                            let max = 0;
-                            for (const e of this.data.body.default) {
-                                max = (max < e.length) ? e.length - 1 : max;
-                            }
-                            maxModulesLvl.set(k, max);
-                            return MaxModuleLevel - max;
-                        }
-                        return MaxModuleLevel - maxLvl;
-                    }
-                    return 1;
-                },
-            };
-        },
+        tableOpts,
     },
     methods: {
         addArtifactName(obj) {
