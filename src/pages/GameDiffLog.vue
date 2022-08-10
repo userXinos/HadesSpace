@@ -83,6 +83,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+// import i18n from '@Scripts/Vue/i18n';
 
 import { Head } from '@vueuse/head';
 import patchCommits from '@Regulation/patchCommits.js';
@@ -90,6 +91,7 @@ import Data from '../components/Data.vue';
 import gameDiffLogGHApi from '@/composables/gameDiffLogGHApi';
 import gameDiffLogData from '@/composables/gameDiffLogData';
 import type { Commit } from '@/composables/gameDiffLogGHApi';
+// import type { LocaleObject } from '@/composables/gameDiffLogData';
 
 const ICON_DIR_BY_FILE = {
     capital_ships: 'game/Ships',
@@ -99,10 +101,11 @@ const ICON_DIR_BY_FILE = {
     distinctions: 'game/Distinctions',
 };
 
-// export const diffTools = {
-//     getKeyDiffValue: (obj: object, k: string) => (obj as {[k: string]: unknown})[`_${k}`],
-//     format: (v: unknown) => ` >> ${v}`,
-// };
+export const diffTools = {
+    formatValue: (obj: {[k: string]: unknown}, k: string, formatter: {value: (K:string, v: unknown) => unknown}) => (
+        (`_${k}` in obj) ? ` >> ${formatter.value(k, obj[`_${k}`])}` : null
+    ),
+};
 
 interface patchCommitsExpand {
     status: 'loading'|'ready'|'error',
@@ -112,11 +115,16 @@ interface patchCommitsExpand {
 }
 
 export default defineComponent({
-    name: 'GamePatch',
+    name: 'GameDiffLog',
     components: { Head, VData: Data },
+    provide() {
+        return {
+            additionalStatsContent: diffTools,
+        };
+    },
     setup() {
         const { fetchUrl, fetchParentByName, fetchCommit, fetchFile } = gameDiffLogGHApi();
-        const { createDiff, addMetadata, mergeDeep } = gameDiffLogData();
+        const { createDiff, createLocaleFromDiff, addMetadata, mergeDeep } = gameDiffLogData();
 
         return {
             fetchUrl,
@@ -126,6 +134,7 @@ export default defineComponent({
 
             mergeDeepObject: mergeDeep,
             createDiff,
+            createLocaleFromDiff,
             addMetadata,
         };
     },
@@ -135,7 +144,14 @@ export default defineComponent({
             patchCommits: patchCommits as (typeof patchCommits & patchCommitsExpand[]),
             indexOpened: -1,
             loadingMessage: '',
+
+            // backupCurrentLocale: null as unknown as LocaleObject,
         };
+    },
+    beforeUnmount() {
+        // if (this.backupCurrentLocale) {
+        //     i18n.global.setLocaleMessage(this.$i18n.locale, this.backupCurrentLocale);
+        // }
     },
     methods: {
         onclickCategory(i: number) {
@@ -165,24 +181,24 @@ export default defineComponent({
 
             for (const commit of commits) {
                 for (const { contents_url: url, filename: filepath, status } of commit.files) {
-                    if (filepath.startsWith('parser/dist/') && filepath.includes('modules')) {
+                    if (filepath.startsWith('parser/dist/') && (filepath.includes('modules') || filepath.includes('loc_strings'))) {
                         if (!patch.files) {
                             patch.files = {};
                         }
                         const filename = filepath.substring(filepath.lastIndexOf('/') + 1).replace(/\.\w+$/, '');
                         const prevFile = patch.files?.[filename] || { data: null };
                         this.loadingMessage = `download file: ${filename} (${commit.sha.slice(0, 7)})...`;
-                        const data = await this.fetchFile(url);
+                        const data = (status == 'modified') ? await this.fetchFile(url) : null;
                         this.loadingMessage = '';
 
                         patch.files[filename] = {
                             ...prevFile,
                             status,
-                            data: this.mergeDeepObject(data, prevFile.data || {}),
+                            data: data ? this.mergeDeepObject(data, prevFile.data || {}) : {},
                         };
 
-                        if (status == 'modified' && !('parent' in prevFile)) {
-                            this.loadingMessage = `download parent: ${filename} (${commit.sha.slice(0, 7)})...`;
+                        if (data && !('parent' in prevFile)) {
+                            this.loadingMessage = `download parent file: ${filename} (${commit.sha.slice(0, 7)})...`;
                             patch.files[filename].parent = await this.fetchParentByName(filepath, commit.sha);
                             this.loadingMessage = '';
                         }
@@ -194,16 +210,31 @@ export default defineComponent({
                 if (filename in patch.files && 'parent' in patch.files[filename]) {
                     this.loadingMessage = `create diff: ${filename}...`;
                     const data = this.createDiff(patch.files[filename].parent as object, patch.files[filename].data);
+                    console.log(data);
 
                     if (data != null) {
-                        patch.files[filename] = {
-                            ...patch.files[filename],
-                            data: this.addMetadata(data as {[k: string]: unknown}, patch.files[filename].parent as object, filename),
-                        };
+                        if (filename == 'en') {
+                            patch.files[filename].status = 'yes';
+                            patch.files[filename].data = data;
+                        } else {
+                            patch.files[filename] = {
+                                ...patch.files[filename],
+                                data: this.addMetadata(data as {[k: string]: unknown}, patch.files[filename].parent as object, filename),
+                            };
+                        }
                     }
                     this.loadingMessage = '';
                 }
             }
+
+            // if (Object.keys(i18n.global.messages).length && patch.files.en) {
+            //     const currentLocale = (i18n.global.messages as { [k:string]: LocaleObject })[this.$i18n.locale as string];
+            //     const locale = this.createLocaleFromDiff(patch.files.en.data as LocaleObject, patch.files.en.parent as LocaleObject, currentLocale);
+            //     this.backupCurrentLocale = this.backupCurrentLocale ? this.backupCurrentLocale : currentLocale;
+            //
+            //     i18n.global.setLocaleMessage(this.$i18n.locale, locale);
+            //     delete patch.files.en;
+            // }
         },
     },
 });
@@ -217,16 +248,16 @@ $mv: 1000px;
 .container {
     font-size: 180%;
     text-align: center;
-    margin: 2%;
+    margin: 2% 0;
 }
 
 .category {
-    margin: 1%;
     list-style-type: none;
     text-align: left;
     font-size: 60%;
 
     .head {
+        margin: 2%;
         display: flex;
         text-align: left;
 
@@ -258,13 +289,14 @@ $mv: 1000px;
     .content {
         .file, .status {
             text-align: left;
+            margin: 0 2%;
         }
         .file {
             margin-top: 20px;
-            font-size: 80%;
+            font-size: 100%;
         }
         .status {
-            font-size: 70%;
+            font-size: 90%;
         }
     }
 }
@@ -293,6 +325,8 @@ $mv: 1000px;
 }
 
 .banner {
+    margin: 2%;
+
     .message {
         display: flex;
         margin: 20px auto 30px;

@@ -20,7 +20,7 @@
                 </a>
               </div>
               <p
-                v-if="item.TID_Description && (parent.TID_Description ? parent.TID_Description !== item.TID_Description : true)"
+                v-if="item.TID_Description && (parent.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
                 class="description"
               >
                 {{ formatDescr(item.TID_Description) }}
@@ -45,8 +45,8 @@
                     :parent-id="`${parentId}-${name}`"
                     :parent="item"
                   >
-                    <template v-if="diffTools.getKeyDiffValue(item, key)">
-                      {{ diffTools.format(format.value(key, diffTools.getKeyDiffValue(item, key))) }}
+                    <template v-if="additionalStatsContent != null">
+                      {{ additionalStatsContent.formatValue(item, key, format) }}
                     </template>
                   </Stats>
                 </li>
@@ -93,12 +93,6 @@ import Store from '@Store/index';
 import objectArrayify from '@/js/objectArrayify';
 import hk from '@Regulation/hideKeys.js';
 
-export const diffTools = {
-    getKeyDiffValue: (obj, k) => obj[`_${k}`],
-    format: (v) => ` >> ${v}`,
-};
-
-
 const ICON_DIR_LIST = {
     drone: 'game/Ships',
     modules: 'game/Modules',
@@ -133,10 +127,15 @@ export function getCharsWithHideStatus(d) {
 export default {
     name: 'Stats',
     components: { Icon, VNode },
+    inject: {
+        additionalStatsContent: {
+            default: null,
+        },
+    },
     props: {
         items: { type: null, required: true },
         itemKey: { type: String, default: null },
-        parentId: { type: String, required: true },
+        parentId: { type: String, default: null },
         parent: { type: Object, default: () => ({ TID_Description: null }) },
         format: { type: Object, required: true },
         iconDir: { type: String, default: '' },
@@ -145,7 +144,6 @@ export default {
         return {
             iconDirList: ICON_DIR_LIST,
             getCharacteristics: getCharsWithHideStatus,
-            diffTools,
         };
     },
     computed: {

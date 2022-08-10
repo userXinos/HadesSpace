@@ -1,10 +1,14 @@
 import hideKeys from '@Regulation/hideKeys';
+import objectArrayify from '@/js/objectArrayify';
+
+export type LocaleObject = {[k: string]: string}
 
 export default function gameDiffLogData() {
     return {
         mergeDeep,
         createDiff,
         isObject,
+        createLocaleFromDiff,
         addMetadata,
     };
 
@@ -89,6 +93,18 @@ export default function gameDiffLogData() {
             }
         }
         return target;
+    }
+
+    function createLocaleFromDiff(diff: LocaleObject, diffParent: LocaleObject, currentLocale: LocaleObject) {
+        const copyCurrentLocale = { ...currentLocale };
+
+        // REMOVE_LOC_KEYS.forEach((k) => delete copyCurrentLocale[k]);
+        return {
+            ...copyCurrentLocale,
+            ...objectArrayify(diff, {
+                map: ([k, v]) => [k, v.replaceAll('\\n\\n', '\n')],
+            }),
+        };
     }
 
     function isObject(elem: unknown) {

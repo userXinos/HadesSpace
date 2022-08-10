@@ -86,8 +86,12 @@ export default {
                     }
                 }
             }
-
-            return require(`@Img/${dir}/${name}.png`);
+            try {
+                return require(`@Img/${dir}/${name}.png`);
+            } catch (err) {
+                console.error(`Not found icon: ${name}`);
+                return require(`../img/icons/connection.png`);
+            }
         },
         customType() {
             if (!this.isCustom) {

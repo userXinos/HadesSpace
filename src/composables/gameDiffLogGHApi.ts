@@ -1,10 +1,9 @@
-
 const API_ENDPOINT = 'https://api.github.com/repos/userXinos/HadesSpace/';
-
 const headers = new Headers();
+const CACHE_NAME = 'github-api-v1';
 
-if (process.env.NODE_ENV === 'development') {
-    headers.set('Authorization', `Basic ${btoa(`${'userXinos'}:${process.env.GITHUB_ACCESS_TOKEN}`)}`);
+if (process.env.VUE_APP_GITHUB_ACCESS_TOKEN) {
+    headers.set('Authorization', `Basic ${btoa(`${process.env.VUE_APP_GITHUB_USERNAME}:${process.env.VUE_APP_GITHUB_ACCESS_TOKEN}`)}`);
 }
 
 export declare interface Commit {
@@ -36,18 +35,28 @@ export default function gameDiffLogGHApi() {
     }
 
     function fetchUrl<T>(url: string): Promise<T> {
-        return fetch(url, { method: 'GET', headers })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
+        return caches.open(CACHE_NAME)
+            .then(async (cache) => {
+                const getJson = () => cache.match(url).then(async (r) => (r == undefined) ? undefined : r.json());
+                const json = await getJson();
+
+                if (!json) {
+                    const response = await fetch(url, { method: 'GET', headers });
+
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    await cache.put(url, response);
+                    return await getJson();
                 }
-                return response.json() as Promise<T>;
-            });
+
+                return json;
+            }) as Promise<T>;
     }
 
     async function fetchFile(contentsUrl: string) {
-        const { content } = await fetchUrl(contentsUrl) as {content: string};
-        const module = await import(/* webpackIgnore: true */ `data:text/javascript;base64,${content}`);
+        const { content, encoding } = await fetchUrl(contentsUrl) as {content: string, encoding: string};
+        const module = await import(/* webpackIgnore: true */ `data:text/javascript;${encoding},${content}`);
         return module.default;
     }
 }

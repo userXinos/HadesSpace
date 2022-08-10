@@ -237,7 +237,7 @@ export default [
             isNebulaBuild ?
                 {
                     name: 'GameDiffLog',
-                    text: { locKey: 'DL' },
+                    text: { locKey: 'Nerf log' },
                     path: '/GameDiffLog',
                     component: () => import(/* webpackChunkName: "DarkRedStar" */ '../pages/GameDiffLog.vue'),
                     icon: {
