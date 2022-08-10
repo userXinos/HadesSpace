@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import i18n from '@Scripts/Vue/i18n';
 import Page from '@/components/Page.vue';
 import VData from '../components/Data.vue';
 
@@ -36,10 +37,11 @@ planetsYS.TID2 = planetsYS.TID;
 planetsYS.TID = 'PLANETS';
 planetsYS.Name = 'Planets';
 
+const { t } = i18n.global;
 const colonizationPrices = {
     Name: 'colonize_prices',
     TID: 'COLONIZATION_PLANETS',
-    TID2: planetsYS.TID2,
+    ProbableTypePlanet: planetsYS.TID2.map((k) => t(k)),
     _: [0, ...prices],
 };
 

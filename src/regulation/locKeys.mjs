@@ -348,6 +348,7 @@ export default {
     ReqBank: 'REQ_BANK',
     DronesIgnoreBarrier: 'DRONES_IGNORE_BARRIER',
     RushCostModifier: 'RUSH_COST_MODIFIER',
+    ProbableTypePlanet: 'PROBABLE_TYPE_PLANET',
 
     ...gameCharsLocKeys,
 };
