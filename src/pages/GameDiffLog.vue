@@ -181,7 +181,7 @@ export default defineComponent({
 
             for (const commit of commits) {
                 for (const { contents_url: url, filename: filepath, status } of commit.files) {
-                    if (filepath.startsWith('parser/dist/') && (filepath.includes('modules') || filepath.includes('loc_strings'))) {
+                    if (filepath.startsWith('parser/dist/') && (filepath.includes('modules') || filepath.includes('loc_strings_en'))) {
                         if (!patch.files) {
                             patch.files = {};
                         }
@@ -210,7 +210,6 @@ export default defineComponent({
                 if (filename in patch.files && 'parent' in patch.files[filename]) {
                     this.loadingMessage = `create diff: ${filename}...`;
                     const data = this.createDiff(patch.files[filename].parent as object, patch.files[filename].data);
-                    console.log(data);
 
                     if (data != null) {
                         if (filename == 'en') {
