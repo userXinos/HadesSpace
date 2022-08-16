@@ -57,6 +57,7 @@ export default [
             'SpeedModifierPct',
             'MirrorDamageAsAOE',
             'DRSArtifactBonus',
+            'MassMiningRatePct',
         ],
         (v) => `${v}%`,
     ],

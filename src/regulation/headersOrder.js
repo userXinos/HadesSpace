@@ -49,6 +49,7 @@ export default [
     'APTPIOTTPRS',
     'APTPIOTTPWS',
     'MiningSpeedModifierPct',
+    'MassMiningExtraAsteroids',
     'ExtraMineralStorage', // устарело
     'ExtraHydroStorage',
     'IncreaseSectorHydroPct',
