@@ -270,6 +270,6 @@ export default {
     DronesIgnoreBarrier: 1,
     MaxModuleLevel: 15,
     DiploHydroCapPct: 25,
-    MassMiningMinAsteroids: 0,
     MirrorApplyToProjectiles: 1,
+    MassMiningRatePct: 50,
 };

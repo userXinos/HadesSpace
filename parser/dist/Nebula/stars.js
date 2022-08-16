@@ -383,7 +383,7 @@ export default {
         HexCellEdgeSize: [1500, 1650, 2500, 2000, 2500, 2250, 2300, 2400, 2600, 2900, 2300, 2400, 2600],
         SpeedModifierPct: 200,
         Lifetime: 900,
-        NumPlayersWithAccess: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        NumPlayersWithAccess: 1,
         MaxBattleshipsPerPlayer: [1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3],
         Star: "DarkRedStar",
         HydrogenSearchCost: [0, 50, 100, 250, 500, 750, 1000, 1200, 1800, 2500, 3500, 4000, 4500],
