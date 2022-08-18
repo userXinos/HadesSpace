@@ -17,7 +17,7 @@ export default [
         note: 'EA Stage 2: White Stars',
     },
     {
-        hashes: ['d03ed51e4187a1b5ec1294189166e422d24c72d4'],
+        hashes: ['d03ed51e4187a1b5ec1294189166e422d24c72d4', '685fa42b81a079a8947f3746bb6fa8cafd314052'],
         title: 'Patch №0',
         note: 'EA Stage 1',
     },
