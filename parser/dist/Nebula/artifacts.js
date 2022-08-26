@@ -33,7 +33,7 @@ export default {
         DRSPoints: [1, 1, 1, 1, 1, 2, 3, 4, 6, 10, 15, 20],
         PriceInCrystals: [20, 40, 60, 100, 125, 150, 175, 200, 250, 300, 350, 350],
         RSLevelRequired: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        SlotsUsed: [1, 2, 4, 4, 6, 8, 10, 12, 15, 18, 20, 40],
+        SlotsUsed: [1, 2, 4, 4, 6, 8, 10, 12, 15, 18, 20, 80],
         Model: [
             "Artifact01_lv1",
             "Artifact01_lv2",
@@ -69,7 +69,7 @@ export default {
         DRSPoints: [1, 1, 1, 1, 1, 2, 3, 4, 6, 10, 15, 20],
         PriceInCrystals: [20, 40, 60, 100, 125, 150, 175, 200, 250, 300, 350, 350],
         RSLevelRequired: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        SlotsUsed: [1, 2, 4, 4, 6, 8, 10, 12, 15, 18, 20, 40],
+        SlotsUsed: [1, 2, 4, 4, 6, 8, 10, 12, 15, 18, 20, 80],
         Model: [
             "Artifact02_lv1",
             "Artifact02_lv2",
@@ -105,7 +105,7 @@ export default {
         DRSPoints: [1, 1, 1, 1, 1, 2, 3, 4, 6, 15, 20],
         PriceInCrystals: [40, 60, 100, 125, 150, 175, 200, 250, 300, 350, 350],
         RSLevelRequired: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        SlotsUsed: [2, 4, 4, 6, 8, 10, 12, 15, 18, 20, 40],
+        SlotsUsed: [2, 4, 4, 6, 8, 10, 12, 15, 18, 20, 80],
         Model: [
             "Artifact03_lv2",
             "Artifact03_lv3",

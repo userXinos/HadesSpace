@@ -120,7 +120,7 @@ RelicModel,artifacts/Relic01
 RelicSize,4
 RelicTID,TID_RELIC
 MineralTID,TID_MINERAL_ITEM
-RelicLoadTicks,480
+RelicLoadTicks,720
 CorpMaxMinInfluence,20000
 CorpMinInfuenceIncrements,100!500
 CorpMinInfluenceDiv,1000
@@ -171,7 +171,6 @@ WarpLaneAutoPath,1
 WarpLaneAutoAbortMs,100
 WarpLaneMaxSearchDepth,4
 TimeMachineAffectFxSpeed,1
-SanctuaryHydroCostPct,0
 BondMinPullVector,100!100
 GoalRushCostMultiplier,100
 FadeLoadingShipments,1
@@ -251,9 +250,9 @@ MaxFriends, 25
 MaxFriendRequestsPerDay,8
 MaxRepeatFriendRequestsPerDay, 2
 CustomizePlanetRegularPC,500
-CustomizePlanetPremiumPC,1000
-CustomizeStarRegularPC,500
-CustomizeStarPremiumPC,1200
+CustomizePlanetPremiumPC,2000
+CustomizeStarRegularPC,800
+CustomizeStarPremiumPC,3000
 SP2ResearchTimeDiscountPct,20
 SP2PlanetUpgradeTimeDiscountPct,10
 AllianceInactivityMailDays,7
