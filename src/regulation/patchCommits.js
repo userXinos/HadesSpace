@@ -2,6 +2,11 @@
 
 export default [
     {
+        hashes: ['a058afc5e5934a8fb9fcfbe0fc4e8c8dced33b20'],
+        title: 'Patch №4',
+        note: 'something was nerfed',
+    },
+    {
         hashes: ['ab3e4a6eed9c72d25b54b2e7d14232bef332e155'],
         title: 'Patch №3',
         note: 'Andreas released from prison',
