@@ -11,6 +11,7 @@ export default Object.freeze({
     savePath: join(ROOT_DIR, './dist'),
     additionalContent: join(ROOT_DIR, './locales'),
 
+    additionalStarAliases: [ 'BLS', 'PVP' ],
     excludeFromStringsStarHeaders: [ 'NoCerbBondTeleportPRS' ],
     upperCaseKeys: upperCase,
     stringKeys: gameCharsLocKeys,

@@ -1,7 +1,8 @@
 import Modules from '../../parser/runners/Modules.js';
 import CONFIG from '../config.js';
 
-const STAR_REGEX = new RegExp(`(.+?)(_?(${ Modules.config.runner.starsOrder.join('|') }))$`, 'm');
+const starsPostfixes = [ ...Modules.config.runner.starsOrder, ...CONFIG.additionalStarAliases ];
+const STAR_REGEX = new RegExp(`(.+?)(_?(${starsPostfixes.join('|')}))$`, 'm');
 
 export default function genStringsStarHeaders(data, res = {}) {
     Object.entries(data)
