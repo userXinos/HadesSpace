@@ -63,7 +63,10 @@
               <h2 class="file">File: {{ filename }}</h2>
               <h3 class="status">status: {{ file.status }}</h3>
 
-              <div v-for="d of file.data">
+              <div
+                v-for="(d, vkey) of file.data"
+                :key="vkey"
+              >
                 <v-data
                   v-if="file.status == 'modified'"
                   :data="d"
