@@ -109,6 +109,10 @@ export default [
         (v) => `${v / (isNebulaBuild ? 100 : 10)}%`,
     ],
     [
+        ['ImpulseSpeedup'],
+        (v) => `${v / 10}x`,
+    ],
+    [
         ['BlueStar_CreditPctPerPos'],
         (v) => `${v / 2}%`,
     ],

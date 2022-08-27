@@ -4,6 +4,7 @@ export const gameCharsLocKeys = {
     // by i18n/locale
     BarrageMaxAdditionalEnemies: 'BARRAGE_MAX_ADDITIONAL_ENEMIES',
 
+    ImpulseDPS: 'TID_MODULE_DESCR_DPS_AREA',
     MassMiningExtraAsteroids: 'TID_MODULE_MASS_MINING_EXTRA_ASTEROIDS',
     MassMiningRatePct: 'TID_MODULE_MASS_MINING_REMOTE_RATE',
     WSDispatchAOERange: 'TID_DESTROYER_AREADAMAGERANGE',
