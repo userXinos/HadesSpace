@@ -263,7 +263,7 @@ export default {
     SecondResearchSlotPrice: 100000,
     ClonedAsteroidDistances: [250, 350],
     MirrorShieldTickPeriod: 40,
-    DRSArtifactBonus: 50,
+    DRSArtifactBonus: 60,
     MaxBlockedPlayers: 20,
     PermissionExpireDays: 7,
     DronesIgnoreBarrier: 1,
