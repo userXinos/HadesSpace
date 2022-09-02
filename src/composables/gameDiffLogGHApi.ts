@@ -22,7 +22,7 @@ export default function gameDiffLogGHApi() {
     async function fetchParentByName(file: string, childCommit: string) {
         const url = new URL('commits', API_ENDPOINT);
         url.searchParams.set('path', file);
-        const commits = await fetchUrl<{sha: string, url: string}[]>(url.href);
+        const commits = await fetchUrl<{sha: string, url: string}[]>(url.href, { noCache: true });
         const childIndex = commits.findIndex((e) => e.sha == childCommit);
         const commit = await fetchUrl<{files: {filename: string, contents_url: string}[]}>(commits[childIndex + 1].url);
         const fileUrl = commit.files.find((e) => e.filename == file)!.contents_url;
@@ -34,20 +34,27 @@ export default function gameDiffLogGHApi() {
         return fetchUrl(url.href);
     }
 
-    function fetchUrl<T>(url: string): Promise<T> {
+    function fetchUrl<T>(url: string, opts = { noCache: false }): Promise<T> {
         return caches.open(CACHE_NAME)
             .then(async (cache) => {
                 const getJson = () => cache.match(url).then(async (r) => (r == undefined) ? undefined : r.json());
                 const json = await getJson();
 
-                if (!json) {
+                if (!json || opts.noCache) {
                     const response = await fetch(url, { method: 'GET', headers });
 
                     if (!response.ok) {
                         throw new Error(response.statusText);
                     }
+
                     await cache.put(url, response);
-                    return await getJson();
+                    const json = await getJson();
+
+                    if (opts.noCache) {
+                        await cache.delete(url);
+                    }
+
+                    return json;
                 }
 
                 return json;
