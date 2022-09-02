@@ -2,6 +2,11 @@
 
 export default [
     {
+        hashes: ['7fca096eb0714f383f8eb286c340748a93c70baa'],
+        title: 'Patch №5',
+        note: 'teamplay (???) DRS',
+    },
+    {
         hashes: ['a058afc5e5934a8fb9fcfbe0fc4e8c8dced33b20'],
         title: 'Patch №4',
         note: 'something was nerfed',
