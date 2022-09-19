@@ -27,8 +27,8 @@ import VTitle from './DataHead.vue';
 
 import key from '@Handlers/key.js';
 import value from '@Handlers/value.js';
+import isHide from '@Handlers/isHide';
 
-import hideKeys from '@Regulation/hideKeys.js';
 import headersOrder from '@Regulation/headersOrder.js';
 
 export default {
@@ -74,7 +74,7 @@ export default {
                 if (value.constructor === Object) {
                     this.packagingData(value, key);
                 } else if (Array.isArray(value)) {
-                    if (hideKeys.forceTitle.includes(key)) {
+                    if (isHide(key, null, { asTitle: true })) {
                         this.title[key] = value;
                     } else {
                         preTable.push([key, value]);
@@ -102,7 +102,7 @@ export default {
             const { Name } = this.data;
 
             pre
-                .filter(([k]) => !hideKeys.global.includes(k) && !hideKeys.byPath.includes(`${Name}.${k}`))
+                .filter(([k]) => !isHide(k, Name))
                 .sort(([a], [b]) => this.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
                 .forEach(([key, value]) => {
                     if (Array.isArray(head[category])) {

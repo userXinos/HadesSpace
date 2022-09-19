@@ -91,7 +91,7 @@ import Icon from '@/components/Icon.vue';
 import Store from '@Store/index';
 
 import objectArrayify from '@/js/objectArrayify';
-import hk from '@Regulation/hideKeys.js';
+import isHide from '@Handlers/isHide';
 
 const ICON_DIR_LIST = {
     drone: 'game/Ships',
@@ -108,11 +108,11 @@ export function getCharsWithHideStatus(d) {
             k,
             [
                 value,
-                hk.global.includes(k) || hk.byPath.includes(`${d.Name}.${k}`),
+                isHide(k, d.Name),
             ],
         ],
         filter: ([k, [, remove]]) => (
-            k.startsWith('_') || hk.meta.includes(k) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || isHide(k, null, { asMeta: true }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
         ),
     });
 
