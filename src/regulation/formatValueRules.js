@@ -101,6 +101,9 @@ export default [
             'AdditionalRangesPerLink',
             'WSDispatchAOERange',
             'LeapAOERange',
+            'RadialMoveRadius',
+            'RadiusMax',
+            'MinEffectRadius',
         ],
         (v) => `${v / 10} ${t('AU')}`,
     ],
@@ -173,7 +176,7 @@ export default [
         (v) => v.map((e) => sec2str(e)).join(', '),
     ],
     [
-        ['InitialModule', 'ShipToSpawn', 'Name'],
+        ['InitialModule', 'ShipToSpawn', 'Name', 'OnDestroySpawn'],
         (v) => t(locKeys[v] || v),
     ],
     [

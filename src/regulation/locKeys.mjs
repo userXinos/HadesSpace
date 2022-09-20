@@ -293,6 +293,7 @@ export default {
     OnDestroySpawnCount: 'ON_DESTROY_SPAWN_COUNT',
     GhostSpawnSecs: 'GHOST_SPAWN_SECS',
     ShipToSpawn: 'SHIP_TO_SPAWN',
+    OnDestroySpawn: 'SHIP_TO_SPAWN', // небула замена
     MaxShips: 'MAX_SHIPS',
     AwardXP: 'XP_AWARD',
     RadialMoveRadius: 'MOVE_RADIUS',
