@@ -127,6 +127,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
         if (key == 'FlagshipDroneSwarm') {
             value.drone = capitalShips.FlagshipDrone;
+            delete value.drone.InitialModule[value.drone.InitialModule.findIndex((e) => e == 'Recoil')];
         }
 
         if (value.drone) {

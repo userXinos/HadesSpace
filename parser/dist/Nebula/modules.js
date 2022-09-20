@@ -2432,7 +2432,7 @@ export default {
             HP: 2000,
             Speed: 175,
             BSPenaltyPerSec: 500,
-            modules: { Battery: 3, Recoil: 4 },
+            modules: { Battery: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] },
             DesignUpgradeTimeWS: 0,
         },
         ActivationDelayWS: 172800,

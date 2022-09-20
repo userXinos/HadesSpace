@@ -33,14 +33,6 @@ export default class CapitalShips extends Runner {
                         }
                     });
                 }
-                if (key === 'CorpFlagship') {
-                    Object.entries(Modules.config.runner.combineKeys).forEach(([ fixedName, name ]) => {
-                        if (value.modules[name]) {
-                            value.modules[fixedName] = value.modules[name];
-                            delete value.modules[name];
-                        }
-                    });
-                }
                 return [ key, value ];
             },
         });
@@ -103,17 +95,27 @@ function addModulesStats(obj, modules) {
 }
 
 // из "{key:[module1!module2], key2:[1!2]}" в "{module1:[1], module2:[2]}"
-export function fixModulesShipsData(obj, Modules = 'InitialModule', ModuleLevels = 'InitialModuleLevels') {
+export function fixModulesShipsData(obj, moduleKey = 'InitialModule', moduleLevelsKey = 'InitialModuleLevels') {
     const res = { };
     let maxIndex = 0;
+    let module = obj[moduleKey];
+    const moduleLevels = obj[moduleLevelsKey];
 
-    if (!obj[Modules] && !obj[ModuleLevels]) {
+    if (!module && !moduleLevels) {
         return;
     }
-    if (Array.isArray(obj[Modules]) && Array.isArray(obj[ModuleLevels])) {
-        obj[Modules].forEach((_, i) => {
-            const modulesStr = getAsArray(obj[Modules][i]);
-            const lvlStr = getAsArray(obj[ModuleLevels][i]);
+    if (Array.isArray(module) && Array.isArray(moduleLevels)) {
+        if (module.length < moduleLevels.length) {
+            const elem = module;
+            module = [];
+
+            while (module.length < moduleLevels.length) {
+                module.push(elem);
+            }
+        }
+        for (let i = 0; i < module.length; i++) {
+            const modulesStr = getAsArray(module[i]);
+            const lvlStr = getAsArray(moduleLevels[i]);
             maxIndex = i;
 
             modulesStr.forEach((module, j) => {
@@ -130,13 +132,13 @@ export function fixModulesShipsData(obj, Modules = 'InitialModule', ModuleLevels
                     }
                 }
             });
-        });
+        }
     } else {
-        res[obj[Modules]] = obj[ModuleLevels];
+        res[module] = moduleLevels;
     }
 
-    delete obj[Modules];
-    delete obj[ModuleLevels];
+    delete obj[moduleKey];
+    delete obj[moduleLevelsKey];
 
     Object.entries(Runner.fillSpace(res, 0, maxIndex + 1))
         .forEach(([ k, v ]) => {
