@@ -13,7 +13,6 @@ import goals from '@Data/player_goals.js';
 
 const INDEXES = ['X', 'Y', 'Z'];
 const VALUE_BY_INDEX = {
-    SalvageArtifacts: ['StringParam', 'GoalTarget'],
     DeliverShipmentsBatch: ['IntParam', 'GoalTarget'],
     DestroySentinels: ['StringParam', 'GoalTarget'],
     DestroyGuardians: ['StringParam', 'GoalTarget'],
