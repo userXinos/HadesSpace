@@ -94,6 +94,7 @@ export default {
         'UISortOrder',
         'AppearanceModels',
         'RSLevel',
+        'PivotYOffset',
         'LinkDPSBoostPct', // перевёл в урон на парсере
 
         // временно ?

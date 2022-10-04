@@ -2,19 +2,24 @@
 
 export default [
     {
+        hashes: ['c2c924f51e76acc9c8030f980cebb33fedaced0b'],
+        title: 'Patch №6',
+        note: 'Hydro system refactoring',
+    },
+    {
         hashes: ['7fca096eb0714f383f8eb286c340748a93c70baa'],
         title: 'Patch №5',
-        note: 'teamplay (???) DRS',
+        note: 'Team play (???) DRS',
     },
     {
         hashes: ['a058afc5e5934a8fb9fcfbe0fc4e8c8dced33b20'],
         title: 'Patch №4',
-        note: 'something was nerfed',
+        note: 'Something was nerfed',
     },
     {
         hashes: ['ab3e4a6eed9c72d25b54b2e7d14232bef332e155'],
         title: 'Patch №3',
-        note: 'Andreas released from prison',
+        note: '"Have a good summer"',
     },
     {
         hashes: ['6830102801cbcea667e6cbb8907574a817a613ce', '6b471418f3b60c18647ab3e4d87d376fcacd9563', '79d0e80e53676249ac4070d9113846008e644dd8'],
