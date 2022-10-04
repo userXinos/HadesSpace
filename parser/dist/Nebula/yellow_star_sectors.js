@@ -16,7 +16,7 @@ export default {
     MoonSize: [100, 100, null, null, null, null, 105, null, null, 105, null, 105, 105, null, null, null, null, null, 110, 105, 105, 105, 105, 105, 105, 105, 105, null, null, null, null, null, null, null, null, null],
     AsteroidsMin: [3, 4, 3, 4, 3, 5, 5, 6, 5, 6, 7, 7, 8, 8, 8, 9, 7, 8, 10, 12, 12, 9, 9, 10, 11, 8, 9, 10, 10, 12, 11, 10, 9, 8, 12, 10],
     AsteroidsMax: [3, 4, 3, 4, 3, 5, 5, 6, 5, 6, 7, 7, 8, 8, 8, 9, 7, 8, 10, 12, 12, 9, 9, 10, 11, 8, 9, 10, 10, 12, 11, 10, 9, 8, 12, 10],
-    HydrogenPerDay: [1100, 1500, 1100, 1200, 1160, 1700, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1100, 1100, 1100, 1650, 1650, 1650, 1650, 1650, 1720, 1760, 1740, 1710, 1850, 1850, 1820, 5250, 5050, 5200, 5400, 5600, 5450],
+    HydrogenPerDay: [600, 500, 450, 300, 350, 300, 250, 200, 150, 200, 180, 120, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
     AsteroidBeltAxis1Size: [1600, 1600, 1600, 2500, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600, 1600],
     AsteroidBeltAxis2Size: [2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500],
     CerbGroup: [
@@ -68,11 +68,11 @@ export default {
         null,
         null,
         null,
-        { Name: "HomeSystem1", TID: "TID_CERB_STATION_HOME1", TID_Description: "TID_CERB_STATION_HOME_DESCR", ConceptImage: "portrait_CerberusStation", SpawnFleetIntervalSeconds: 86400, ShipToSpawn: "CerberusGuardian", ShipLevel: 0, MaxHP: 20000, MaxShield: 20000, DPS: 100, AttackRange: 1000, Model: "CerberusStation_DrkNeb", WeaponFx: "Gun_Projectile01_Weak", ShieldRegenPerMinute: 10, ShieldRegenTimeAfterDamage: 3600, MaxShips: 3, AwardXP: 1000 },
+        { Name: "HomeSystem1", TID: "TID_CERB_STATION_HOME1", TID_Description: "TID_CERB_STATION_HOME_DESCR", ConceptImage: "portrait_CerberusStation", SpawnFleetIntervalSeconds: 86400, ShipToSpawn: "CerberusGuardian", ShipLevel: 0, MaxHP: 15000, MaxShield: 15000, DPS: 100, AttackRange: 1000, Model: "CerberusStation_DrkNeb", WeaponFx: "Gun_Projectile01_Weak", ShieldRegenPerMinute: 10, ShieldRegenTimeAfterDamage: 3600, MaxShips: 3, AwardXP: 1000 },
         null,
         null,
         null,
-        { Name: "HomeSystem1", TID: "TID_CERB_STATION_HOME1", TID_Description: "TID_CERB_STATION_HOME_DESCR", ConceptImage: "portrait_CerberusStation", SpawnFleetIntervalSeconds: 86400, ShipToSpawn: "CerberusGuardian", ShipLevel: 0, MaxHP: 20000, MaxShield: 20000, DPS: 100, AttackRange: 1000, Model: "CerberusStation_DrkNeb", WeaponFx: "Gun_Projectile01_Weak", ShieldRegenPerMinute: 10, ShieldRegenTimeAfterDamage: 3600, MaxShips: 3, AwardXP: 1000 },
+        { Name: "HomeSystem1", TID: "TID_CERB_STATION_HOME1", TID_Description: "TID_CERB_STATION_HOME_DESCR", ConceptImage: "portrait_CerberusStation", SpawnFleetIntervalSeconds: 86400, ShipToSpawn: "CerberusGuardian", ShipLevel: 0, MaxHP: 15000, MaxShield: 15000, DPS: 100, AttackRange: 1000, Model: "CerberusStation_DrkNeb", WeaponFx: "Gun_Projectile01_Weak", ShieldRegenPerMinute: 10, ShieldRegenTimeAfterDamage: 3600, MaxShips: 3, AwardXP: 1000 },
         null,
         null,
         null,
@@ -98,5 +98,4 @@ export default {
         null,
         null,
     ],
-    DSAnomaly: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1],
 };

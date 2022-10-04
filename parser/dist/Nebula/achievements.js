@@ -120,7 +120,7 @@ export default {
         TID: "TID_ACHIEVEMENT_HYDROINCOME",
         TID_Description: "TID_ACHIEVEMENT_HYDROINCOME_DESCR",
         UnlockType: "HydroIncome",
-        UnlockAmount: [3500, 15000, 50000, 100000, 200000],
+        UnlockAmount: [1000, 5000, 10000, 25000, 40000],
         PCReward: [5, 15, 50, 200, 500],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQDQ",

@@ -85,8 +85,8 @@ RedStarHintTimer,12
 NumSecondsBeforeSupernovaToSendNotification,120
 CorporationCreationCost,100
 TimeToTravelActiveWarpLaneSegmentTicks,2
-DistanceToWarpGatePriceFactor,3
-WarpLaneActivationTimeHrs,24
+WarpGatePrice,1000
+WarpLaneActivationTimeHrs,16
 MinShipLevelThatSupportsRename,1
 FacebookURL,https://facebook.com/hadesstar
 InstagramURL,https://www.instagram.com/hadesstargame/
@@ -134,7 +134,8 @@ SupportWebURLSteam,https://hadesstar.com/{0}/support.html?uid={1}&pcc={2}
 WhiteStarHintCount,11
 WhiteStarHintTimer,12
 SectorEnrichCooldownSeconds,86400
-SectorGenesisCooldownSeconds,720
+SectorGenesisCooldownSecondsWS,720
+SectorGenesisCooldownSecondsYS,86400
 WSMaxBSPerPlayer,1
 WSMaxOtherPerPlayer,1
 WSLostShipTimeCooldown,64800
@@ -142,7 +143,7 @@ WSDisbandCooldown,259200
 WSJumpBSTimeCooldown,7200
 WSJumpOtherTimeCooldown,7200
 UnityMaxDamageIncreasePct,200
-MaxScheduledOrders,12
+MaxScheduledOrders,20
 MaxTimeMachineFutureSeconds,172800
 WSBucketSizes,6!12
 TimeMachineRewindIntervalSeconds,43200
@@ -187,7 +188,6 @@ BondOverridesBarrier,1
 LeapBreaksBond,1
 TeleportBreaksBond,1
 BondBreaksBond,1
-TimeModulationFxSpeedup,300
 NoKeepAliveDuringLoad,1
 BondMaxPullListSize,20
 BondWorksOnLoadingTransport,1
@@ -212,7 +212,7 @@ BlueStar_CRRewardWinLimit,1
 BlueStar_CRRewardWinLimitPeriod,86400
 BlueStar_HydroPctPerMatch,10
 BlueStar_HydroPctPerPos,100!60!25!10!0
-BlueStar_MaxHydroPerDayPct,25
+BlueStar_MaxHydroPerDayPct,20
 BlueStar_CreditPctPerPos,100!60!30!0!0
 BlueStar_RankedMatchesPerDay,3
 BlueStar_Fragments,12!8!5!3!0
@@ -233,10 +233,10 @@ WSScoreMiningModifier,5
 WSScoreTransportModifier,800
 NewsletterURL,http://eepurl.com/cal8yD
 FlagshipContribAmounts,10000!100000!1000000!8000000
-CRAsteroidMineTicks,2400
+CRAsteroidMineTicks,1200
 TutorialDialogImg,youtube/video1!youtube/video2!youtube/video3!youtube/video5
 TutorialDialogURL,https://www.youtube.com/watch?v=UPkk6yKzRnI!https://www.youtube.com/watch?v=Ajdg8jgBXVg!https://www.youtube.com/watch?v=U4zvvJqsaXc!https://www.youtube.com/watch?v=LrY853vumu8
-RSPublicLateJoin_MaxTimeAvailable,300 
+RSPublicLateJoin_MaxTimeAvailable,300
 RSPublicLateJoin_MaxTimeOffTotal,180
 RSPublicLateJoin_ClientCacheExpiry,30
 RSPublicLateJoin_MinStarLevel,5
@@ -267,3 +267,7 @@ MaxModuleLevel,15
 DiploHydroCapPct,25
 MirrorApplyToProjectiles,1
 MassMiningRatePct,50
+RelayCapCostPct,80
+HydroScannerCooldown,86400
+StarHarvesterDuration,10
+YSMaxGenesis,1
