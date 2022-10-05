@@ -15,6 +15,7 @@ export default {
         'BarrageMaxAdditionalEnemies',
     ],
     global: [
+        'SpawnedShip',
         'NumMoons',
         'Hide',
         'InitialBlueprints',
@@ -60,12 +61,8 @@ export default {
         'ImpactFX',
         'DestroyedFX',
         'LaunchFX',
-        'IsDestiny',
         'TID_INFO_SCREEN',
         'ModelScale',
-        'IsCombatShip',
-        'IsDrone',
-        'IsTurret',
         'AwardLevel',
         'ActivateFX',
         'ActivateFXStaysInPlace',
@@ -108,7 +105,6 @@ export default {
         // SpaceBuildings
         'Shipyard.MaxPerSector',
         'BlueStarScanner.StarScannerType',
-        'WarpLaneHub.IsWarpLane',
         'WarpLaneHub.OverrideMinAsteroidDistSquared',
         'ShortRangeScanner.CanScanSectors',
 
@@ -135,9 +131,6 @@ export default {
         'CorpFlagship.JumpFuelCosts',
 
         // Ships.FlagmanModules
-        'Recoil.IsTeleport',
-        'Recoil.IsRecoil',
-        'Immolation.IsImmolation',
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDroneSwarm.NewModuleSlots',
 
@@ -159,7 +152,6 @@ export default {
         'yellow_star_sectors.NumBases',
         'Planets.FuelShipmentModifier',
         'YellowStar.NumPlayersWithAccess',
-        'YellowStar.IsHome',
         'YellowStar.Star',
         'YellowStar.Lifetime',
 
@@ -208,7 +200,6 @@ export default {
         'RelicDrone.RelicLoadTicks',
         'RelicDrone.RelicLoadTicksBS',
         'Dispatch.APTPIOTTPYS', // неизвестная единица измерения
-        'CargoRocket.IsCargoRocket',
 
         // Mining
         'HydroRocket.InitialBlueprints',
@@ -226,21 +217,14 @@ export default {
         'ChainRay.MaxIncomingLinks', // хз что это
 
         // Shields
-        'BlastShield.IsAOEOnlyShield',
+        'AlphaShield.ShieldStrength',
         'WeakShield.WhiteStarScore',
-        'AlphaShield.IsAlphaShield',
 
         // Support
-        'EMP.IsEMP',
-        'Teleport.IsTeleport',
         'Sanctuary.JumpToSafety',
         'Sanctuary.SanctuaryHydroCostPct',
-        'Stealth.IsStealth',
-        'Fortify.IsTaunt',
         /^(?!Delta)(\w+)\.AdditionalWaypoint/,
-        'Supress.IsSupress',
         'Destiny.ReqEnemyShipsInSector',
-        'Barrier.IsBarrier',
         'Leap.TeleportToClosestCombat',
         'Bond.PullShips',
         'Bond.MinPublicRSLevel',
@@ -255,6 +239,7 @@ export default {
         'LaserTurret.InitialModuleLevels',
         'LaserTurret.MaxPerRS',
         'DeltaRocket.PreventUseOnWsJumpgate',
+        /^\w+\.Is\w+/,
         'Impulse.MaxImpulse', // ???
     ],
 };

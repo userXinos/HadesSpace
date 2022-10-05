@@ -63,9 +63,7 @@ function addStarKeys(data, starHeaders) {
             const starKey = star.replace(/_?(\w\w)/, '$1');
             const key = CONFIG.stringKeys[k] || k;
 
-            if (data[starKey]) {
-                data[k + star] = `${data[key] || key} (${data[starKey]})`;
-            }
+            data[k + star] = `${data[key] || key} (${data[starKey] || starKey})`;
         });
     });
 }

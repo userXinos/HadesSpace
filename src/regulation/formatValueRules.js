@@ -58,11 +58,14 @@ export default [
             'MirrorDamageAsAOE',
             'DRSArtifactBonus',
             'MassMiningRatePct',
+            'HydroDeliveryBonus',
+            'RelayBonusPct',
         ],
         (v) => `${v}%`,
     ],
     [
         [
+            'AllowAdditionalBuildingsAtMaxLevel',
             'DeactivateOnJump',
             'PreventUseOnWsJumpgate',
             'StopCountdownOnDisable',
@@ -170,6 +173,10 @@ export default [
     [
         ['MiningPeriod'],
         (v) => `${(60 * (100 / v)).toFixed(1)}/${t('TID_MINUTE_ABBREVIATION')}`,
+    ],
+    [
+        ['OnBoardHydroMax'],
+        (v) => `${(v / 30).toFixed(1)}/${t('TID_SECOND_ABBREVIATION')}`,
     ],
     [
         ['GhostSpawnSecs'],

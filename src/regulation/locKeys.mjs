@@ -4,6 +4,14 @@ export const gameCharsLocKeys = {
     // by i18n/locale
     BarrageMaxAdditionalEnemies: 'BARRAGE_MAX_ADDITIONAL_ENEMIES',
 
+    // game
+    DroneHydro: 'TID_MODULE_DESCR_ACTIVATION_COST',
+    ActivationHydro: 'TID_MODULE_DESCR_ACTIVATION_COST',
+    WSDispatchAOEAmt: 'TID_DESTROYER_AREADAMAGE',
+    HydroDeliveryBonus: 'TID_MODULE_BONUS_HYDRO',
+    OnBoardHydroMax: 'TID_MODULE_ONBOARD_HYDRO_USE',
+    RelayBonusPct: 'TID_RELAY_BONUS_PCT',
+    SHHydroPerDay: 'TID_HARVESTER_HYDRO_PER_DAY_INFO',
     ImpulseDPS: 'TID_MODULE_DESCR_DPS_AREA',
     MassMiningExtraAsteroids: 'TID_MODULE_MASS_MINING_EXTRA_ASTEROIDS',
     MassMiningRatePct: 'TID_MODULE_MASS_MINING_REMOTE_RATE',
