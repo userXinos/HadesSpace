@@ -159,6 +159,7 @@ export default class Runner {
                             }
                         } else {
                             res[key] = [ res[key], value ];
+                            mergedKeys.push(key);
                         }
 
                         if (maxIndex > 0) {
