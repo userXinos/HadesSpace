@@ -3,11 +3,20 @@
     <Page
       title-loc-key="TID_RED_STAR"
       :content-args="{
-        data: star,
+        data: stars.RedStar,
         iconDir: 'game/Stars',
         tableOpts: {colLvlStartAt: 0}
       }"
       :portrait="{src: img, alt: 'RedStar'}"
+    />
+
+    <v-data
+      v-if="isNebulaBuild"
+      v-bind="{
+        data: stars.DarkRedStar,
+        iconDir: 'game/Stars',
+        tableOpts: {colLvlStartAt: 5}
+      }"
     />
 
     <h1
@@ -43,6 +52,7 @@ import Page from '@/components/Page.vue';
 
 import stars from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
+import objectArrayify from '@Scripts/objectArrayify';
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const ARTS = {
@@ -51,6 +61,7 @@ const ARTS = {
     Support: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_SUPPORT' : 'SUPPORT_ART',
 };
 const { RedStar } = stars;
+const DarkRedStar = stars.DarkRedStar || {};
 const USELESS_STATS = [
     'GhostSpawnSecs',
     'Models',
@@ -64,6 +75,10 @@ const USELESS_STATS = [
 ];
 
 USELESS_STATS.forEach((k) => delete RedStar[k]);
+USELESS_STATS.forEach((k) => delete DarkRedStar[k]);
+
+DarkRedStar.TID = 'TID_DARK_RED_STAR_LABEL';
+DarkRedStar.TID_Description = 'TID_JOIN_DARK_RED_STAR_INFO';
 
 export default {
     components: { Page, VData },
@@ -71,8 +86,14 @@ export default {
         return {
             ARTS,
             artifacts,
-            star: { RedStar },
+            stars: {
+                RedStar: { RedStar },
+                DarkRedStar: objectArrayify(DarkRedStar, {
+                    map: ([k, v]) => [k, Array.isArray(v) ? v.slice(RedStar.MinDarkRSLevel) : v],
+                }),
+            },
             img: require(`@Img/game/portraits/portrait_RedStar.png`),
+            isNebulaBuild,
         };
     },
     methods: {

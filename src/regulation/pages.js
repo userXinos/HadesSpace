@@ -99,7 +99,7 @@ export default [
                 path: '/spacebuildings',
                 component: () => import(/* webpackChunkName: "SpaceBuildings" */ '../pages/SpaceBuildings.vue'),
                 icon: {
-                    name: 'station_trade',
+                    name: isNebulaBuild ? 'station_trade' : 'trade_station',
                     dir: 'game/SpaceBuildings',
                 },
             },
@@ -177,18 +177,6 @@ export default [
                     dir: 'game/Stars',
                 },
             },
-            isNebulaBuild ?
-                {
-                    name: 'DarkRedStar',
-                    text: { locKey: 'TID_DARK_RED_STAR_LABEL' },
-                    path: '/darkredstar',
-                    component: () => import(/* webpackChunkName: "DarkRedStar" */ '../pages/DarkRedStar.vue'),
-                    icon: {
-                        name: 'star_red_dark',
-                        dir: 'game/Stars',
-                    },
-                } :
-                undefined,
             {
                 name: 'WhiteStar',
                 text: { locKey: 'TID_WHITE_STAR' },
