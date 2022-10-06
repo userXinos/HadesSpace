@@ -4,7 +4,7 @@
       v-if="show"
       class="btn"
       @click="scrollToTop"
-    />
+    ><div class="icon" /></div>
   </transition>
 </template>
 
@@ -41,22 +41,33 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+@import "../style/vars";
+
 .btn {
     position: fixed;
     right: 20px;
     bottom: 30px;
     width: 55px;
     height: 55px;
-    background: #313033 url(../img/icons/arrow.svg) no-repeat center/20px;
+    background-color: $border-color;
     border-radius: 100%;
-    opacity: 0.8;
-    transform: rotate(270deg);
     cursor: pointer;
+    transition: 0.5s;
 
-  &:hover {
-    background-color: #454347;
-    opacity: 1;
-  }
+    &:hover {
+        transform: scale(1.2);
+    }
+
+    .icon {
+        height: 100%;
+        background-color: black;
+        transform: rotate(270deg);
+
+        mask-image: url(../img/icons/arrow.svg);
+        mask-position: center;
+        mask-size: 40px;
+        mask-repeat: no-repeat;
+    }
 }
 
 .v-enter-active, .v-leave-active {

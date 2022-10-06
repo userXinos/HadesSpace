@@ -55,8 +55,8 @@ $border-size: 3px;
     background-color: $background-elements;
     height: 100%;
     width: 80%;
-    border-right: #202a22 solid 3px;
-    padding-top: 80px;
+    border-right: solid 2px $border-color;
+    padding: 80px 2%;
     overflow: auto;
     top: 0;
 }

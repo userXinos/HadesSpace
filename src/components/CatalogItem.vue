@@ -49,19 +49,20 @@ $mw: 960px;
     }
 }
 .item {
-  margin: 5%;
-  background-color: $background-elements;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    margin: 5%;
+    background-color: $background-elements;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
-  transition: 0.5s;
+    transition: 0.5s;
 
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     &:hover {
         transform: scale(0.93);

@@ -6,13 +6,6 @@
     <Head><title>Hades Space</title></Head>
     <vue-progress-bar />
 
-
-    <Sidebar
-      v-if="isMinMode"
-      v-model:open="sidebarIsOpen"
-      :swipe-handler="swipeHandler"
-    />
-
     <div
       v-touch:swipe="swipeHandler"
     >
@@ -29,6 +22,11 @@
 
         </the-header>
 
+        <Sidebar
+          v-if="isMinMode"
+          v-model:open="sidebarIsOpen"
+          :swipe-handler="swipeHandler"
+        />
 
       </div>
     </div>

@@ -186,9 +186,13 @@ $selected-color: $border-color;
 
             &:first-child {
                 border-top-width: 2px;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
             }
             &:last-child {
                 border-bottom-width: 2px;
+                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 10px;
             }
             &:hover {
                 filter: brightness(150%);
