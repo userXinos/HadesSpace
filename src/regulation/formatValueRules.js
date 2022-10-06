@@ -309,17 +309,7 @@ export default [
     ],
     [
         ['Transport', 'Miner', 'Battleship'],
-        (v) => (Array.isArray(v)) ?
-            Object.entries(v.reduce((acc, e) => {
-                if (e in acc) {
-                    acc[e]++;
-                } else {
-                    acc[e] = 1;
-                }
-                return acc;
-            }, {}))
-                .map(([cost, sum]) => (sum > 1) ? `${sum}x${cost}` : cost).join('->') :
-            v,
+        (v) => (Array.isArray(v)) ? v.join('>') : v,
         ['RedStar', 'DarkRedStar'],
     ],
 ];
