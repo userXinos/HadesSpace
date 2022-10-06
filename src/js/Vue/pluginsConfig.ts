@@ -1,7 +1,7 @@
 export default {
     VueProgressBar: {
-        color: '#345b66',
-        failedColor: '#874b4b',
+        color: '#aee3fc',
+        failedColor: '#ff4646',
         thickness: '3px',
         transition: {
             speed: '0.2s',

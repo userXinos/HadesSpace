@@ -52,7 +52,7 @@ $border-size: 3px;
 
 .sidebar {
     position: fixed;
-    background-color: #161b1d;
+    background-color: $background-elements;
     height: 100%;
     width: 80%;
     border-right: #202a22 solid 3px;

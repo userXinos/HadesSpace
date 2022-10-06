@@ -82,8 +82,7 @@ export default {
 @import "../style/vars";
 
 $mv: 1000px;
-$hover-color: #242e2f;
-$selected-color: #5fdba7;
+$selected-color: $border-color;
 
 .container {
     display: flex;
@@ -180,13 +179,23 @@ $selected-color: #5fdba7;
             text-decoration: none;
         }
         li {
-            background-color: $background-elements;
+            background-color: $background;
             border-color: $border-color;
             border-style: solid;
-            border-width: 1px 3px 1px 3px;
+            border-width: 0 2px;
 
+            &:first-child {
+                border-top-width: 2px;
+            }
+            &:last-child {
+                border-bottom-width: 2px;
+            }
             &:hover {
-                background-color: $hover-color;
+                filter: brightness(150%);
+            }
+
+            @media screen and (max-width: $mv) {
+                border: none;
             }
         }
         .name {

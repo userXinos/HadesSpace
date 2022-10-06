@@ -74,8 +74,9 @@ $mw: 960px;
 
     .bg {
         padding: 2%;
+        border: solid $border-color 1px;
+        border-radius: 10px;
         background-color: #161b1d;
-        box-shadow: 0 0 10px 5px #20282b;
     }
 
     @media screen and (max-width: $mw) {
@@ -83,8 +84,11 @@ $mw: 960px;
     }
 }
 .section {
+    border-top: solid #2e3c42 1px;
+    padding-top: 10px;
+
     .name {
-        color: white;
+        color: #4c7885;
         font-size: 180%;
         padding: 2%;
         text-align: left;

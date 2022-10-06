@@ -11,8 +11,8 @@ export default function({ head, body }: Raw, mergeCells: boolean) {
 
     Object.entries(head)
         .sort((_, [b]) => (b === 'default') ? 1 : -1)
-        .forEach(([category, keys]) => {
-            headMask(category, keys, newHead);
+        .forEach(([category, keys], i, array) => {
+            headMask(category, keys, array.length - i, newHead);
             bodyMask(category, keys, body[category], mergeCells, newBody);
         });
 
@@ -22,7 +22,7 @@ export default function({ head, body }: Raw, mergeCells: boolean) {
     };
 }
 
-function headMask(category: string, keys: string[], out: Out['head']) {
+function headMask(category: string, keys: string[], depp: number, out: Out['head']) {
     if (category === 'default') {
         out[0].push(
             ...keys
@@ -41,7 +41,7 @@ function headMask(category: string, keys: string[], out: Out['head']) {
 
                     return {
                         value: e,
-                        rowspan: keys.length,
+                        rowspan: depp,
                         colspan,
                     };
                 })

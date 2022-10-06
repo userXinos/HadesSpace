@@ -61,7 +61,7 @@ $mw: 1000px;
         height: $height;
     }
     .header {
-        background: $background-elements;
+        background: $background;
         width: 100%;
         height: $height;
         border-bottom: 2px solid $border-color;

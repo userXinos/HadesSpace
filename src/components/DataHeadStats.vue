@@ -185,7 +185,7 @@ $mw: 900px;
     }
 
     .item {
-        background-color: #2b2b2b;
+        background-color: #2e3f46;
         width: 100%;
 
         @media screen and (max-width: $mw) {
@@ -255,7 +255,7 @@ $mw: 900px;
         margin: 0;
 
         .item {
-            background-color: #171717;
+            background-color: #202b2f;
 
             .body .text-side {
                 // padding: 0 0 0 1%;

@@ -50,7 +50,7 @@ $mw: 960px;
 }
 .item {
   margin: 5%;
-  background-color: #1b2325;
+  background-color: $background-elements;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -64,11 +64,9 @@ $mw: 960px;
   right: 0;
 
     &:hover {
-        box-shadow: 1px 1px #000000, 2px 2px #000000, 3px 3px #000000, 4px 4px #000000,
-        5px 5px #000000, 6px 6px #000000, 7px 7px #000000;
-        transform: translateX(-7px);
+        transform: scale(0.93);
         transition: 0.5s;
-        background-color: #1f282b;
+        filter: brightness(120%);
     }
 
     .icon {

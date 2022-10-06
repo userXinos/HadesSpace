@@ -117,7 +117,7 @@ const HEIGHT_HEADER = 80;
 const TH_PADDING = 20;
 
 export default {
-    name: 'Table',
+    name: 'DTable',
     components: { VNode },
     props: {
         data: { type: Object, required: true },
@@ -203,6 +203,8 @@ $mw: 900px;
     .wrapper {
         position: relative;
         overflow: auto;
+        border: solid $border-color 1px;
+        border-radius: 10px;
     }
     .pinned {
         overflow: hidden;
@@ -210,8 +212,7 @@ $mw: 900px;
 }
 .table {
     width: 100%;
-    border-bottom: 1px solid map.get($table, border);
-    border-left: 1px solid map.get($table, border);
+    border-collapse: collapse;
 
     .lvl-col {
         position: sticky;
@@ -220,6 +221,7 @@ $mw: 900px;
     }
     th, :slotted(th) {
         background-color: map.get($table, background2);
+        background-clip: padding-box;
         font-weight: bold;
 
         @media screen and (max-width: $mw) {
@@ -228,7 +230,7 @@ $mw: 900px;
     }
     .body {
         tr:hover, :slotted(tr):hover {
-            background-color: map.get($table, hover);
+            backdrop-filter: brightness(150%);
         }
     }
     th, td, :slotted(td), :slotted(th) {
@@ -237,8 +239,7 @@ $mw: 900px;
         text-align: center;
         font-size: 90%;
         // user-select: none;
-        border-top: 1px solid map.get($table, border);
-        border-right: 1px solid map.get($table, border);
+        border: 1px solid map.get($table, border);
     }
 
     td[cell-key="TID_Description"] {
