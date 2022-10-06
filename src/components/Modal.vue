@@ -125,7 +125,6 @@ $border-color: #aee3fc;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 5;
     width: 100%;
     height: 100%;
 }

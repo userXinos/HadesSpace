@@ -24,10 +24,6 @@ $button-colors: (
     border-radius: 5px;
     padding: 2%;
     font-size: 130%;
-
-    //option:hover {
-    //    background-color: map.get($table, hover) !important;
-    //}
   }
 }
 
@@ -110,7 +106,7 @@ $button-colors: (
   transition: all 0.3s;
   position: relative;
   border: none;
-  z-index: 1;
+  z-index: 0;
   min-width: 70px;
 
   &:after {
@@ -120,7 +116,7 @@ $button-colors: (
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    z-index: -3;
   }
 
   &:before {
@@ -131,7 +127,7 @@ $button-colors: (
     width: 0;
     height: 100%;
     transition: all 0.3s;
-    z-index: -1;
+    z-index: -2;
   }
 
   &:hover:before {

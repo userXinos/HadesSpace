@@ -59,7 +59,6 @@ $border-size: 3px;
     padding-top: 80px;
     overflow: auto;
     top: 0;
-    z-index: 5;
 }
 
 .v-enter-active, .v-leave-active {

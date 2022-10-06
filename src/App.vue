@@ -18,13 +18,17 @@
     >
       <div>
 
+
         <the-header
           :is-min-mode="isMinMode"
           :open-sidebar="() => setShowSidebar(true)"
-        />
-        <div class="target-wrap"><div id="table-head-target" /></div>
+        >
+          <div class="target-wrap"><div id="table-head-target" /></div>
+          <router-view />
 
-        <router-view />
+
+        </the-header>
+
 
       </div>
     </div>

@@ -1,5 +1,11 @@
 <template>
-  <div class="offset">
+  <div>
+    <div class="offset" />
+
+    <!--  content -->
+    <slot />
+
+
     <transition>
       <header
         v-if="active"
@@ -104,7 +110,6 @@ $mw: 1000px;
         width: 100%;
         height: $height;
         border-bottom: 2px solid $border-color;
-        z-index: 2;
         position: fixed;
         left: 0;
         top: 0;
