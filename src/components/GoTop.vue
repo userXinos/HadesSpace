@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import debounce from 'lodash.debounce';
+
 export default {
     data() {
         return {
@@ -16,7 +18,7 @@ export default {
         };
     },
     created() {
-        this.hide = this.debounce(() => this.show = false);
+        this.hide = debounce(() => this.show = false, 4000);
     },
     mounted() {
         document.addEventListener('scroll', this.scroll);
@@ -34,15 +36,6 @@ export default {
                 this.show = show;
                 this.hide();
             }
-        },
-        debounce(func, timeout = 4000) {
-            let timer;
-            return (...args) => {
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    func.apply(this, args);
-                }, timeout);
-            };
         },
     },
 };

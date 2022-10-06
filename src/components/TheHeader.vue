@@ -36,6 +36,7 @@
 <script>
 import Navigation from './TheNavigation.vue';
 import Settings from '@/components/Settings.vue';
+import debounce from 'lodash.debounce';
 
 let lastScrollY = null;
 let $tableHeadTarget = null;
@@ -61,6 +62,9 @@ export default {
             active: true,
         };
     },
+    created() {
+        this.disable = debounce(() => this.active = !this.active, 250);
+    },
     mounted() {
         lastScrollY = window.scrollY;
         $tableHeadTarget = document.querySelector('#table-head-target');
@@ -74,15 +78,11 @@ export default {
         scroll() {
             const newScrollY = window.scrollY;
 
-            if (newScrollY > lastScrollY && $tableHeadTarget.children.length == 0 && $modals.children.length == 0) {
-                if (this.active) {
-                    this.active = false;
-                }
-            } else {
-                if (!this.active) {
-                    this.active = true;
-                }
+            if ($tableHeadTarget.children.length != 0 || $modals.children.length != 0) {
+                this.active = true;
+                return;
             }
+            this.active = newScrollY <= lastScrollY;
 
             lastScrollY = newScrollY;
         },
@@ -107,6 +107,7 @@ $mw: 1000px;
         z-index: 2;
         position: fixed;
         left: 0;
+        top: 0;
 
         .logo {
             position: absolute;
@@ -164,11 +165,10 @@ $mw: 1000px;
 
 .v-enter-active, .v-leave-active {
     top: 0;
-    transition: ease-in-out, top 500ms
 }
 .v-enter-from, .v-leave-to {
     top: -100px;
-    transition: ease-in-out, top 500ms;
+    transition: ease-in-out, top 1s;
 }
 
 </style>
