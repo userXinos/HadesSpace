@@ -74,11 +74,35 @@ const USELESS_STATS = [
     'HighRiskMining',
 ];
 
-USELESS_STATS.forEach((k) => delete RedStar[k]);
-USELESS_STATS.forEach((k) => delete DarkRedStar[k]);
+USELESS_STATS.forEach((k) => {
+    delete RedStar[k];
+    delete DarkRedStar[k];
+});
 
 DarkRedStar.TID = 'TID_DARK_RED_STAR_LABEL';
 DarkRedStar.TID_Description = 'TID_JOIN_DARK_RED_STAR_INFO';
+
+if ('JumpCosts_T' in RedStar) {
+    RedStar.JumpCost = {
+        Transport: [...RedStar.JumpCosts_T],
+        Miner: [...RedStar.JumpCosts_M],
+        Battleship: [...RedStar.JumpCosts_B],
+    };
+    delete RedStar.JumpCosts_T;
+    delete RedStar.JumpCosts_M;
+    delete RedStar.JumpCosts_B;
+}
+
+if ('JumpCosts_T' in DarkRedStar) {
+    DarkRedStar.JumpCost = {
+        Transport: [...DarkRedStar.JumpCosts_T],
+        Miner: [...DarkRedStar.JumpCosts_M],
+        Battleship: [...DarkRedStar.JumpCosts_B],
+    };
+    delete DarkRedStar.JumpCosts_T;
+    delete DarkRedStar.JumpCosts_M;
+    delete DarkRedStar.JumpCosts_B;
+}
 
 export default {
     components: { Page, VData },

@@ -135,6 +135,8 @@ export default {
         'FlagshipDroneSwarm.NewModuleSlots',
 
         // RedStar
+        'DarckRedStar.PlanetBomberCoverage', // временно ?
+        'RedStar.MaxSectorDistanceToMaxPlanet', // временно ?
         /(Dark)?RedStar\.Star/,
         /(Dark)?RedStar\.RSPublicLateJoin_ClientCacheExpiry/,
         /(Dark)?RedStar\.MaxGateBomberCoverage/,
