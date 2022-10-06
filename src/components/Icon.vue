@@ -107,7 +107,7 @@ export default {
         this.bgClasses = {
             'module-bg': this.type === 'Module' && !this.isProjectiles,
             'space-building-bg': this.type === 'SpaceBuilding' && !this.isCerberus && (isNebulaBuild ? !nebulaSpaceBuildsNoBG.includes(this.name) : true),
-            'round-bg': this.type === 'Star' || 'TimeModulator' === this.customType,
+            'round-bg': 'TimeModulator' === this.customType,
             'art-bg': this.name === 'art',
             'warp-line-bg': this.customType == 'WarpLane',
         };
@@ -120,12 +120,15 @@ export default {
             'cerberus': this.isCerberus,
             'warp-line-body': this.customType == 'WarpLane',
             'big-size': this.type == 'Distinction' || (this.type === 'specialIcon' && this.name !== 'art'),
+            'circle': this.type === 'Star',
         };
     },
 };
 </script>
 
 <style scoped lang="scss">
+@import "../style/vars";
+
 .main {
     display: inline-block;
     position: relative;
@@ -173,6 +176,12 @@ export default {
 .big-size {
     height: 80%;
     width: 80%;
+}
+.circle {
+    background-color: $border-color;
+    border-radius: 50%;
+    width: 85%;
+    height: 100%;
 }
 .module-bg {
     background-image: url(../img/game/background/Module.png);
