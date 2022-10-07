@@ -87,7 +87,7 @@
                 :render="format.value(key, value)"
               />
               <template v-else>
-                {{ format.value(key, value) }}
+                <span>{{ format.value(key, value) }}</span>
               </template>
 
             </td>
@@ -193,6 +193,7 @@ export default {
 <style scoped lang="scss">
 @use "sass:map";
 @import "../style/vars";
+@import "../style/statsIcons";
 
 $mw: 900px;
 
@@ -248,6 +249,19 @@ $mw: 900px;
     td[cell-key="Model"] {
         > div {
             max-width: 50px;
+        }
+    }
+    @each $key, $color, $image in $stats-icons {
+        td[cell-key="#{$key}"] span {
+            color: $color;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+
+            &:before {
+                content: $image;
+                width: 15px;
+            }
         }
     }
 }

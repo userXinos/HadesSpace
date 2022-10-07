@@ -113,6 +113,7 @@
                   v-for="type of Object.keys(input)"
                   :key="type"
                   :class="outputClasses(type, key)"
+                  :item-key="key"
                 >
 
                   <template v-if="typeof calc.output[type]?.[modalOpts.data.key]?.[key] === 'object'">
@@ -279,6 +280,7 @@ function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Param
 @import "../style/vars";
 @import "../style/calculator";
 @import "../style/userInput";
+@import "../style/statsIcons";
 
 $actually-color: #92cee5;
 $plan-color: #ded45a;
@@ -333,6 +335,24 @@ $plan-color: #ded45a;
 
             @media screen and (max-width: 960px){
                 font-size: 80%;
+            }
+
+            span.actually:not(.none) {
+                color: $border-color;
+
+                @each $key, $color, $image in $stats-icons {
+                    &[item-key="#{$key}"] {
+                        color: $color;
+                        display: inline-flex;
+                        justify-content: center;
+                        gap: 7px;
+
+                        &:before {
+                            content: $image;
+                            width: 15px;
+                        }
+                    }
+                }
             }
         }
         &.sub-chars {

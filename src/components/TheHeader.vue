@@ -44,10 +44,6 @@ import Navigation from './TheNavigation.vue';
 import Settings from '@/components/Settings.vue';
 import debounce from 'lodash.debounce';
 
-let lastScrollY = null;
-let $tableHeadTarget = null;
-let $modals = null;
-
 export default {
     name: 'Header',
     components: { Navigation, Settings },
@@ -72,9 +68,9 @@ export default {
         this.disable = debounce(() => this.active = !this.active, 250);
     },
     mounted() {
-        lastScrollY = window.scrollY;
-        $tableHeadTarget = document.querySelector('#table-head-target');
-        $modals = document.querySelector('#modals');
+        this.lastScrollY = window.scrollY;
+        this.$tableHeadTarget = document.querySelector('#table-head-target');
+        this.$modals = document.querySelector('#modals');
         window.addEventListener('scroll', this.scroll);
     },
     unmounted() {
@@ -84,13 +80,13 @@ export default {
         scroll() {
             const newScrollY = window.scrollY;
 
-            if ($tableHeadTarget.children.length != 0 || $modals.children.length != 0) {
+            if (this.$tableHeadTarget.children.length != 0 || this.$modals.children.length != 0) {
                 this.active = true;
                 return;
             }
-            this.active = newScrollY <= lastScrollY;
+            this.active = newScrollY <= this.lastScrollY;
 
-            lastScrollY = newScrollY;
+            this.lastScrollY = newScrollY;
         },
     },
 };

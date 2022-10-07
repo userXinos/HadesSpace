@@ -405,6 +405,7 @@ export default defineComponent({
             if (type == 'actually') {
                 return {
                     'none': charName && this.totalResultKeys.includes(charName),
+                    'actually': true,
                 };
             }
             if (type == 'plan') {
@@ -414,6 +415,7 @@ export default defineComponent({
                     'yellow-color': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
                     'plus': !charName || (charName && !this.totalResultKeys.includes(charName)),
                     'none': this.input.plan[key] == this.input.actually[key],
+                    'plan': true,
                 };
             }
             return {};

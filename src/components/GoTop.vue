@@ -47,8 +47,8 @@ export default {
     position: fixed;
     right: 20px;
     bottom: 30px;
-    width: 55px;
-    height: 55px;
+    width: 7vh;
+    height: 7vh;
     background-color: $border-color;
     border-radius: 100%;
     cursor: pointer;
@@ -65,7 +65,7 @@ export default {
 
         mask-image: url(../img/icons/arrow.svg);
         mask-position: center;
-        mask-size: 40px;
+        mask-size: 4vh;
         mask-repeat: no-repeat;
     }
 }

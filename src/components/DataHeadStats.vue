@@ -74,9 +74,13 @@
         v-if="typeof format.value(itemKey, items) === 'function'"
         :render="format.value(itemKey, items)"
       />
-      <template v-else>
+      <span
+        v-else
+        :item-key="itemKey"
+        class="value"
+      >
         {{ format.value(itemKey, items) }}
-      </template>
+      </span>
 
       <slot />
 
@@ -173,6 +177,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../style/vars";
+@import "../style/statsIcons";
+
 $mw: 900px;
 
 .wrapper {
@@ -232,6 +239,22 @@ $mw: 900px;
                         }
                         &.filtered {
                             background-color: rgba(220,20,60, 0.2);
+                        }
+
+                        @each $key, $color, $image in $stats-icons {
+                            span.value {
+                                &[item-key="#{$key}"] {
+                                    color: $color;
+                                    display: inline-flex;
+                                    justify-content: center;
+                                    gap: 7px;
+
+                                    &:before {
+                                        content: $image;
+                                        width: 15px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
