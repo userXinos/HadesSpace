@@ -123,6 +123,16 @@ export default [
     'MaxShipments',
     'ShipmentsPerHour',
 
+    'Cost',
+    'TimeToUpgrade',
+    'CreditStorage',
+    'FuelStorage',
+    'CreditsPerHour',
+    'FuelPerHour',
+    'ShipmentsCRValuePerDay',
+    'XPAward',
+    'RSLevelReq',
+
     // RED_STAR
     'Hydrogen',
     'Credits',

@@ -16,9 +16,9 @@
           :is-min-mode="isMinMode"
           :open-sidebar="() => setShowSidebar(true)"
         >
+
           <div class="target-wrap"><div id="table-head-target" /></div>
           <router-view />
-
 
         </the-header>
 
@@ -103,7 +103,7 @@ export default defineComponent({
 
 .target-wrap {
     position: fixed;
-    z-index: 1;
+    z-index: 1; // <- либо ставить под router-view, но нужно прописать отступ от шапки в top, либо z-index
     width: 100%;
 
     #table-head-target {
