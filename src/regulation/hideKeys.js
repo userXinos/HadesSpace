@@ -195,7 +195,6 @@ export default {
 
         // Trade
         'Recall.TeleportToTradeStation',
-        'ShipmentDrone.JobCapacity',
         'ShipmentDrone.MiningPeriod',
         'ShipmentDrone.HP',
         'RelicDrone.MaxShipments',

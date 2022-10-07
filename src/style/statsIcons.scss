@@ -2,11 +2,14 @@
 @use "sass:list";
 
 $-type:(
-        "credit" : #fff19c url(../img/icons/credit.svg),
-        "fuel"   : #ceb3ff url(../img/icons/fuel.svg),
-        "time"   : #88dac4 url(../img/icons/clock.svg),
-        "flt"   : #9fe5ff url(../img/icons/flt_friendly.svg),
-        "bls_fragments"   : #00c4ff url(../img/icons/blueStar_Fragments.svg),
+        "credit"         : #fff19c url(../img/icons/credit.svg),
+        "fuel"           : #ceb3ff url(../img/icons/fuel.svg),
+        "time"           : #88dac4 url(../img/icons/clock.svg),
+        "flt"            : #9fe5ff url(../img/icons/flt_friendly.svg),
+        "bls_fragments"  : #00c4ff url(../img/icons/blueStar_Fragments.svg),
+        "influence"      : #76e6ff url(../img/icons/influence.svg),
+        "mining_route"   : #9fe5ff url(../img/icons/mining_route.svg),
+        "shipments"      : #76e6ff url(../img/icons/shipments.svg),
 );
 
 $stats-icons:
@@ -19,6 +22,7 @@ $stats-icons:
         join("DesignUpgradeCost", map.get($-type, "credit")),
         join("SectorUnlockCost", map.get($-type, "credit")),
         join("TotalShipmentCRPerDay", map.get($-type, "credit")),
+        join("SalvageCRReward", map.get($-type, "credit")),
 
         join("FuelUseIncrease", map.get($-type, "fuel")),
         join("ActivationHydro", map.get($-type, "fuel")),
@@ -27,7 +31,7 @@ $stats-icons:
         join("InstantHydrogenCollected", map.get($-type, "fuel")),
         join("HydroPerNewAsteroid_YS", map.get($-type, "fuel")),
         join("HydroPerNewAsteroid_WS", map.get($-type, "fuel")),
-        //join("HydrogenCapacity", map.get($-type, "fuel")),
+        join("HydrogenCapacity", map.get($-type, "fuel")),
         //join("MiningPeriod", map.get($-type, "fuel")),
         //join("MiningPeriod_WS", map.get($-type, "fuel")),
         join("ActivationHydroOnBoard", map.get($-type, "fuel")),
@@ -35,6 +39,8 @@ $stats-icons:
         join("FuelUsePer5000Distance", map.get($-type, "fuel")),
         join("MoveHydrogenCostPerSector", map.get($-type, "fuel")),
         join("SHHydroPerDay", map.get($-type, "fuel")),
+        join("HydrogenSearchCost", map.get($-type, "fuel")),
+        join("HydrogenPerDay", map.get($-type, "fuel")),
 
         join("UnlockTime", map.get($-type, "time")),
         join("TimeToUpgrade", map.get($-type, "time")),
@@ -47,4 +53,15 @@ $stats-icons:
         join("ShipyardCapacity", map.get($-type, "flt")),
 
         join("TeleportShipmentActivationFragments", map.get($-type, "bls_fragments")),
+        join("FragmentCapacity", map.get($-type, "bls_fragments")),
+
+        join("Influence", map.get($-type, "influence")),
+        join("RegularInfuenceRange", map.get($-type, "influence")),
+        join("MaxInfluenceLoss", map.get($-type, "influence")),
+        join("MaxInfluenceGain", map.get($-type, "influence")),
+        join("InfluencePoints", map.get($-type, "influence")),
+
+        join("NumSectorsToMine", map.get($-type, "mining_route")),
+
+        join("MaxShipments", map.get($-type, "shipments")),
 ;
