@@ -80,7 +80,7 @@
               :key="index2 + key"
               :rowspan="rowspan"
               :colspan="colspan"
-              :cell-key="key"
+              :cell-key="value ? key : null"
             >
               <v-node
                 v-if="typeof format.value(key, value) === 'function'"
@@ -192,8 +192,9 @@ export default {
 
 <style scoped lang="scss">
 @use "sass:map";
+@use "../style/statsStyle";
+
 @import "../style/vars";
-@import "../style/statsIcons";
 
 $mw: 900px;
 
@@ -251,19 +252,10 @@ $mw: 900px;
             max-width: 50px;
         }
     }
-    @each $key, $color, $image in $stats-icons {
-        td[cell-key="#{$key}"] span {
-            color: $color;
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-
-            &:before {
-                content: $image;
-                width: 15px;
-            }
-        }
+    @function format($key) {
+        @return 'td[cell-key="#{$key}"] span'
     }
+    @include statsStyle.statsIcons(get-function("format"));
 }
 </style>
 

@@ -177,8 +177,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@use "../style/statsStyle";
+
 @import "../style/vars";
-@import "../style/statsIcons";
 
 $mw: 900px;
 
@@ -241,21 +242,10 @@ $mw: 900px;
                             background-color: rgba(220,20,60, 0.2);
                         }
 
-                        @each $key, $color, $image in $stats-icons {
-                            span.value {
-                                &[item-key="#{$key}"] {
-                                    color: $color;
-                                    display: inline-flex;
-                                    justify-content: center;
-                                    gap: 7px;
-
-                                    &:before {
-                                        content: $image;
-                                        width: 15px;
-                                    }
-                                }
-                            }
+                        @function format($key) {
+                            @return 'span.value[item-key="#{$key}"]'
                         }
+                        @include statsStyle.statsIcons(get-function("format"), inline-flex);
                     }
                 }
             }

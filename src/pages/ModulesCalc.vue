@@ -275,12 +275,12 @@ function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Param
 
 <style scoped lang="scss">
 @use "sass:map";
+@use "../style/statsStyle";
 
 @import "../style/page";
 @import "../style/vars";
 @import "../style/calculator";
 @import "../style/userInput";
-@import "../style/statsIcons";
 
 $actually-color: #92cee5;
 $plan-color: #ded45a;
@@ -340,19 +340,10 @@ $plan-color: #ded45a;
             span.actually:not(.none) {
                 color: $border-color;
 
-                @each $key, $color, $image in $stats-icons {
-                    &[item-key="#{$key}"] {
-                        color: $color;
-                        display: inline-flex;
-                        justify-content: center;
-                        gap: 7px;
-
-                        &:before {
-                            content: $image;
-                            width: 15px;
-                        }
-                    }
+                @function format($key) {
+                    @return '&[item-key="#{$key}"]'
                 }
+                @include statsStyle.statsIcons(get-function("format"), inline-flex);
             }
         }
         &.sub-chars {

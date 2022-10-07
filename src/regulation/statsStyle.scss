@@ -1,0 +1,71 @@
+
+$types:(
+        "credit"         : #fff19c url(../img/icons/credit.svg),
+        "fuel"           : #ceb3ff url(../img/icons/fuel.svg),
+        "time"           : #88dac4 url(../img/icons/clock.svg),
+        "flt"            : #9fe5ff url(../img/icons/flt_friendly.svg),
+        "bls_fragments"  : #00c4ff url(../img/icons/blueStar_Fragments.svg),
+        "influence"      : #76e6ff url(../img/icons/influence.svg),
+        "mining_route"   : #9fe5ff url(../img/icons/mining_route.svg),
+        "shipments"      : #76e6ff url(../img/icons/shipments.svg),
+);
+
+$by-type: (
+        "credit": (
+                "UnlockPrice"
+                "BCCost"
+                "Cost"
+                "CreditStorage"
+                "CRReward"
+                "BuildCost"
+                "DesignUpgradeCost"
+                "SectorUnlockCost"
+                "TotalShipmentCRPerDay"
+                "SalvageCRReward"
+        ),
+        "fuel": (
+                "FuelUseIncrease"
+                "ActivationHydro"
+                "DroneHydro"
+                "OnBoardHydroMax"
+                "InstantHydrogenCollected"
+                "HydroPerNewAsteroid_YS"
+                "HydroPerNewAsteroid_WS"
+                "HydrogenCapacity"
+                "ActivationHydroOnBoard"
+                "FuelStorage"
+                "FuelUsePer5000Distance"
+                "MoveHydrogenCostPerSector"
+                "SHHydroPerDay"
+                "HydrogenSearchCost"
+                "HydrogenPerDay"
+        ),
+        "time": (
+                "UnlockTime"
+                "TimeToUpgrade"
+                "DesignUpgradeTime"
+                "ConstructionTime"
+                "ConstructionTime"
+                "ConstructionTime"
+                "TimeToResearch"
+        ),
+        "flt": (
+                "ShipyardCapacity"
+        ),
+        "bls_fragments": (
+                "TeleportShipmentActivationFragments"
+                "FragmentCapacity"
+        ),
+        "influence": (
+                "Influence"
+                "RegularInfuenceRange"
+                "MaxInfluenceLoss"
+                "MaxInfluenceGain"
+        ),
+        "mining_route": (
+                "NumSectorsToMine"
+        ),
+        "shipments": (
+                "MaxShipments"
+        ),
+);

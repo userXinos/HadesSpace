@@ -1,0 +1,32 @@
+@use "sass:list";
+@use "sass:map";
+
+@use "../regulation/statsStyle";
+
+$-mw: 900px;
+
+@mixin statsIcons($format, $display: flex) {
+  @each $type, $keys in statsStyle.$by-type {
+    $rules: map.get(statsStyle.$types, $type);
+
+    @each $key in $keys {
+
+      #{call($format, $key)} {
+        color: list.nth($rules, 1);
+        display: $display;
+        justify-content: center;
+        gap: 5px;
+
+        &:before {
+          width: 15px;
+          content: list.nth($rules, 2);
+
+          @media screen and (max-width: $-mw){
+            width: 12px;
+          }
+        }
+      }
+
+    }
+  }
+}
