@@ -62,7 +62,10 @@
               ref="th"
               :rowspan="rowspan"
               :colspan="colspan"
-            >{{ format.key(value) }}</th>
+            >
+              {{ format.key(value) }}
+              <template v-if="$store.state.userSettings.showKeys">({{ value }})</template>
+            </th>
 
             <slot name="head" />
           </tr>

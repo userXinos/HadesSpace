@@ -24,6 +24,11 @@ const mutations = <MutationTree<UserSettings>> {
         setSettings(LOCAL_STORAGE_KEY, state);
         return state.disableFilters;
     },
+    [types.DEBUG_SWITCH_SHOW_KEYS](state) {
+        state.showKeys = !state.showKeys;
+        setSettings(LOCAL_STORAGE_KEY, state);
+        return state.showKeys;
+    },
 };
 
 
@@ -34,6 +39,7 @@ export default {
     state: {
         language: settings.language || ((browserLang in SUPPORT_LOCALES) ? browserLang : DEFAULT_LANG),
         disableFilters: settings.disableFilters || false,
+        showKeys: settings.showKeys || false,
     },
     mutations: mutations,
 };
@@ -46,6 +52,7 @@ function getSettings(key: string): Settings {
     let res: Settings = {
         language: DEFAULT_LANG,
         disableFilters: false,
+        showKeys: false,
     };
 
     if (localStorage.getItem(key)) {

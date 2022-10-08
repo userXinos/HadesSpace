@@ -48,6 +48,28 @@
           />
         </div>
 
+        <template v-if="isDebug">
+
+          <div class="switch">
+            <div>
+              <p class="name"> [Debug] Show keys </p>
+              <p class="description" />
+            </div>
+            <input
+              id="show-keys"
+              class="checkbox"
+              type="checkbox"
+              :checked="$store.state.userSettings.showKeys"
+              @change="switchShowKeys"
+            >
+            <label
+              for="show-keys"
+              class="label"
+            />
+          </div>
+
+        </template>
+
       </template>
 
     </Modal>
@@ -70,6 +92,7 @@ export default {
 
             languages,
             languageCode: this.$store.state.userSettings.language,
+            isDebug: process.env.NODE_ENV === 'development',
         };
     },
     methods: {
@@ -78,6 +101,9 @@ export default {
         },
         switchDisableFilters() {
             this.$store.commit(types.SWITCH_DISABLE_FILTERS);
+        },
+        switchShowKeys() {
+            this.$store.commit(types.DEBUG_SWITCH_SHOW_KEYS);
         },
     },
 };

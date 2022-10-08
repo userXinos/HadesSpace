@@ -1,6 +1,7 @@
 declare interface Settings {
     language: string
-    disableFilters: boolean
+    disableFilters: boolean,
+    showKeys: boolean
 }
 
-declare interface UserSettings extends Settings {}
+type UserSettings = Settings

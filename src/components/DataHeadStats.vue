@@ -68,7 +68,7 @@
     </template>
 
     <template v-else>
-      <b>{{ format.key(itemKey) }}</b>:
+      <b>{{ format.key(itemKey) }}</b><template v-if="$store.state.userSettings.showKeys"> ({{ itemKey }})</template>:
 
       <v-node
         v-if="typeof format.value(itemKey, items) === 'function'"
