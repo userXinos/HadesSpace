@@ -127,7 +127,7 @@ export default defineComponent({
     },
     setup() {
         const { fetchUrl, fetchParentByName, fetchCommit, fetchFile } = gameDiffLogGHApi();
-        const { createDiff, createLocaleFromDiff, addMetadata, mergeDeep } = gameDiffLogData();
+        const { createDiff, createLocaleFromDiff, addMetadata } = gameDiffLogData();
 
         return {
             fetchUrl,
@@ -135,7 +135,6 @@ export default defineComponent({
             fetchParentByName,
             fetchCommit,
 
-            mergeDeepObject: mergeDeep,
             createDiff,
             createLocaleFromDiff,
             addMetadata,
@@ -179,32 +178,28 @@ export default defineComponent({
         async loadDiff(index: number) {
             this.loadingMessage = 'getting commits...';
             const patch = this.patchCommits[index];
-            const commits = await Promise.all(patch.hashes.map(this.fetchCommit)) as Commit[];
+            const commit = await this.fetchCommit(patch.hash) as Commit;
             this.loadingMessage = '';
 
-            for (const commit of commits) {
-                for (const { contents_url: url, filename: filepath, status } of commit.files) {
-                    if (filepath.startsWith('parser/dist/') && (filepath.includes('modules') || filepath.includes('loc_strings_en'))) {
-                        if (!patch.files) {
-                            patch.files = {};
-                        }
-                        const filename = filepath.substring(filepath.lastIndexOf('/') + 1).replace(/\.\w+$/, '');
-                        const prevFile = patch.files?.[filename] || { data: null };
-                        this.loadingMessage = `download file: ${filename} (${commit.sha.slice(0, 7)})...`;
-                        const data = (status == 'modified') ? await this.fetchFile(url) : null;
+            for (const { contents_url: url, filename: filepath, status } of commit.files) {
+                if (filepath.startsWith('parser/dist/') && (filepath.includes('modules') || filepath.includes('loc_strings_en'))) {
+                    if (!patch.files) {
+                        patch.files = {};
+                    }
+                    const filename = filepath.substring(filepath.lastIndexOf('/') + 1).replace(/\.\w+$/, '');
+                    this.loadingMessage = `download file: ${filename} (${commit.sha.slice(0, 7)})...`;
+                    const data = (status == 'modified') ? await this.fetchFile(url) : null;
+                    this.loadingMessage = '';
+
+                    patch.files[filename] = {
+                        status,
+                        data: data || {},
+                    };
+
+                    if (data) {
+                        this.loadingMessage = `download parent file: ${filename} (${commit.sha.slice(0, 7)})...`;
+                        patch.files[filename].parent = await this.fetchParentByName(filepath, commit.sha);
                         this.loadingMessage = '';
-
-                        patch.files[filename] = {
-                            ...prevFile,
-                            status,
-                            data: data ? this.mergeDeepObject(data, prevFile.data || {}) : {},
-                        };
-
-                        if (data && !('parent' in prevFile)) {
-                            this.loadingMessage = `download parent file: ${filename} (${commit.sha.slice(0, 7)})...`;
-                            patch.files[filename].parent = await this.fetchParentByName(filepath, commit.sha);
-                            this.loadingMessage = '';
-                        }
                     }
                 }
             }

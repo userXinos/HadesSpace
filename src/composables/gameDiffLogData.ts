@@ -5,34 +5,11 @@ export type LocaleObject = {[k: string]: string}
 
 export default function gameDiffLogData() {
     return {
-        mergeDeep,
         createDiff,
         isObject,
         createLocaleFromDiff,
         addMetadata,
     };
-
-    function mergeDeep(target: {[k: string]: unknown}, ...sources: object[]): object {
-        if (!sources.length) return target;
-        const source = sources.shift() as {[k: string]: unknown};
-
-        if (isObject(target) && isObject(source)) {
-            for (const key in source) {
-                if (isObject(source[key])) {
-                    if (!target[key]) {
-                        Object.assign(target, { [key]: {} });
-                    } else {
-                        target[key] = Object.assign({}, target[key]);
-                    }
-                    mergeDeep(target[key] as typeof target, source[key] as object);
-                } else {
-                    Object.assign(target, { [key]: source[key] });
-                }
-            }
-        }
-
-        return mergeDeep(target, ...sources);
-    }
 
     function createDiff(parent: object, obj: object): object|null {
         if (isObject(parent)) {
