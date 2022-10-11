@@ -2,6 +2,7 @@ import hideKeys from '@Regulation/hideKeys';
 import objectArrayify from '@/js/objectArrayify';
 
 export type LocaleObject = {[k: string]: string}
+export type ObjectKString = { [k: string]: unknown }
 
 export default function gameDiffLogData() {
     return {
@@ -12,46 +13,109 @@ export default function gameDiffLogData() {
     };
 
     function createDiff(parent: object, obj: object): object|null {
+        class Cell {
+            constructor(public data: unknown = null, public status: string = 'unknown') {}
+        }
+
         if (isObject(parent)) {
-            return compareObject(parent, obj);
+            const [res, topLevel] = compareObject(parent as ObjectKString, obj as ObjectKString);
+
+            if (res || topLevel) {
+                return {
+                    ...res,
+                    ...topLevel,
+                };
+            }
         }
         return null;
 
-        function compareObject(parent: object, obj: object) {
-            const res = {} as {[k: string]: unknown};
+        function compareObject(parent: ObjectKString, obj: ObjectKString): [{[k: string]: Cell}|null, ObjectKString|null] {
+            const stats: {[k: string]: Cell} = {};
+            let topLevel: ObjectKString = {};
 
             for (const key in parent) {
-                if (key in parent && key in obj) {
-                    const parentElem = (parent as {[k: string]: unknown})[key];
-                    const objElem = (obj as {[k: string]: unknown})[key];
+                if (key in parent) {
+                    const cell = stats[key] = new Cell();
 
-                    if (isObject(parentElem)) {
-                        const child = compareObject(parentElem as object, objElem as object);
-                        if (child) {
-                            res[key] = child;
+                    if (key in obj) {
+                        const parentElem = parent[key];
+                        const objElem = obj[key];
+
+                        if (isObject(parentElem)) {
+                            const [child, topLvl] = compareObject(parentElem as ObjectKString, objElem as ObjectKString);
+
+                            if (child || topLvl) {
+                                cell.status = 'modified';
+
+                                if (child) {
+                                    cell.data = child;
+                                }
+                                if (topLvl) {
+                                    topLevel = {
+                                        ...topLevel,
+                                        [key]: topLvl,
+                                    };
+                                }
+                            } else {
+                                delete stats[key];
+                            }
+
+                            continue;
                         }
-                        continue;
-                    }
-                    if (Array.isArray(parentElem) ? !isEqualArrays(parentElem, objElem as unknown[]) : parentElem !== objElem) {
-                        res[key] = parentElem;
                         if (Array.isArray(parentElem)) {
-                            res[`__>>${key}`] = Array.from({ length: parentElem.length }, () => '>>');
+                            topLevel[key] = [...parentElem];
+                            topLevel[`__>>${key}`] = Array.from({ length: parentElem.length }, () => '>>');
+
+                            if (Array.isArray(objElem)) {
+                                if (!isEqualArrays(parentElem, objElem)) {
+                                    topLevel[`_${key}`] = [...objElem];
+                                } else {
+                                    delete topLevel[key];
+                                    delete topLevel[`__>>${key}`];
+                                }
+                            } else {
+                                topLevel[`_${key}`] = Array.from({ length: parentElem.length }, () => objElem);
+                            }
+
+                            delete stats[key];
+                            continue;
                         }
-                        res[`_${key}`] = objElem;
+                        if (parentElem !== objElem) {
+                            cell.status = 'modified';
+                            cell.data = [parentElem, objElem];
+                        }
+                    } else {
+                        cell.status = 'deleted';
+                        cell.data = parent[key];
+                    }
+
+
+                    if (!cell.data) {
+                        delete stats[key];
                     }
                 }
             }
+            if (Object.keys(parent).length < Object.keys(obj).length) {
+                Object.keys(obj)
+                    .filter((k) => !(k in parent))
+                    .forEach((k) => {
+                        stats[k] = new Cell(obj[k], 'added');
+                    });
+            }
 
-            return (Object.keys(res).length) ? res : null;
+            return [
+                (Object.keys(stats).length) ? stats : null,
+                (Object.keys(topLevel).length) ? topLevel : null,
+            ];
         }
     }
 
-    function addMetadata(target: {[k: string]: unknown}, src: object, filename?: string) {
+    function addMetadata(target: ObjectKString, src: object, filename?: string) {
         for (const key of Object.keys(target)) {
             const targetElem = target as {[k: string]: object};
             const srcElem = src as {[k: string]: object};
 
-            if (isObject(targetElem[key])) {
+            if (isObject(targetElem[key]) && key in srcElem) {
                 const t = targetElem[key] as typeof target;
                 addMetadata(t, srcElem[key]);
 

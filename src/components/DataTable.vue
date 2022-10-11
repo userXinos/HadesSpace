@@ -83,7 +83,7 @@
               :key="index2 + key"
               :rowspan="rowspan"
               :colspan="colspan"
-              :cell-key="value ? key : null"
+              :cell-key="value ? (key.startsWith('_') ? key.slice(1) : key) : null"
             >
               <v-node
                 v-if="typeof format.value(key, value) === 'function'"

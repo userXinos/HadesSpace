@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Stats from '@/components/DataHeadStats.vue';
+import Stats from '@/components/DataHeadRenderStat.vue';
 
 export default {
     name: 'Head',

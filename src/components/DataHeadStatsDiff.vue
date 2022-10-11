@@ -15,16 +15,10 @@
                 :id="parentId ? `${parentId}-${name}` : item.Name"
                 class="title"
               >
-                <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
+                <div v-if="name != 'data'">
                   {{ format.key(name || item.TID) }}
-                </a>
+                </div>
               </div>
-              <p
-                v-if="item.TID_Description && (parent.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
-                class="description"
-              >
-                {{ formatDescr(item.TID_Description) }}
-              </p>
 
               <template v-if="Array.isArray(item) && item.every((e) => e !== Object(e))">
                 {{ format.value(name, item) }}
@@ -34,7 +28,7 @@
                 class="characteristics"
               >
                 <li
-                  v-for="([value, filtered], key) in getCharacteristics(item)"
+                  v-for="([value, status, filtered], key) in getCharacteristics(item)"
                   :key="key"
                   :class="{'line': true, filtered}"
                 >
@@ -44,6 +38,7 @@
                     :format="format"
                     :parent-id="`${parentId}-${name}`"
                     :parent="item"
+                    :status="status"
                   />
                 </li>
               </ul>
@@ -64,18 +59,26 @@
     </template>
 
     <template v-else>
-      <b>{{ format.key(itemKey) }}</b><template v-if="$store.state.userSettings.showKeys"> ({{ itemKey }})</template>:
-
-      <v-node
-        v-if="typeof format.value(itemKey, items) === 'function'"
-        :render="format.value(itemKey, items)"
-      />
-      <span
-        v-else
-        :item-key="itemKey"
-        class="value"
-      >
-        {{ format.value(itemKey, items) }}
+      <span :class="`status-${status || parent[itemKey]?.status}`">
+        <template v-if="itemKey != 'data'">
+          <b>{{ format.key(itemKey) }}</b>
+          <template v-if="$store.state.userSettings.showKeys"> ({{ itemKey }})</template>
+          :
+        </template>
+        <v-node
+          v-if="typeof format.value(itemKey, items) === 'function'"
+          :render="format.value(itemKey, items)"
+        />
+        <span
+          v-else
+          :item-key="itemKey"
+          class="value"
+        >
+          <template v-if="Array.isArray(items)">
+            {{ items.map((e) => format.value(keyFormatter, e)).join(items.length == 2 ? ' >> ' : ', ') }}
+          </template>
+          <template v-else>{{ format.value(keyFormatter, items) }}</template>
+        </span>
       </span>
 
       <slot />
@@ -99,6 +102,9 @@ const ICON_DIR_LIST = {
     default: 'game/Modules',
 };
 
+function isObject(o) {
+    return (typeof o === 'object' && !Array.isArray(o) && o !== null);
+}
 function VNode({ render }) {
     return render(h);
 }
@@ -107,26 +113,44 @@ export function getCharsWithHideStatus(d) {
         map: ([k, value]) => [
             k,
             [
-                value,
+                (typeof value == 'object' && 'data' in value) ? value.data : value,
+                ('status' in d) ? d.status : null,
                 isHide(k, d.Name),
             ],
         ],
-        filter: ([k, [, remove]]) => (
+        filter: ([k, [,, remove]]) => (
             k.startsWith('_') || isHide(k, null, { asMeta: true }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
         ),
     });
 
-    if (d.projectile) { // перенести вниз
+    for (const key in res) {
+        if (typeof res[key][0] == 'object') {
+            const keys = Object.keys(res[key][0]);
+
+            if (keys.every((k) => isObject(res[key][0]?.[k]) && 'data' in res[key][0][k])) {
+                keys.forEach((k) => res[k] = [...Object.values(res[key][0][k]), ...res[key].slice(2)]);
+                delete res[key];
+            }
+        }
+    }
+
+    if (res.projectile) { // перенести вниз
         const { projectile } = res;
         delete res.projectile;
         res.projectile = projectile;
     }
+
     return res;
 }
 
 export default {
     name: 'Stats',
     components: { Icon, VNode },
+    inject: {
+        additionalStatsContent: {
+            default: null,
+        },
+    },
     props: {
         items: { type: null, required: true },
         itemKey: { type: String, default: null },
@@ -134,9 +158,11 @@ export default {
         parent: { type: Object, default: () => ({ TID_Description: null }) },
         format: { type: Object, required: true },
         iconDir: { type: String, default: '' },
+        status: { type: String, default: '' },
     },
     data() {
         return {
+            isObject,
             iconDirList: ICON_DIR_LIST,
             getCharacteristics: getCharsWithHideStatus,
         };
@@ -151,11 +177,11 @@ export default {
             }
             return [this.items];
         },
+        keyFormatter() {
+            return (this.itemKey == 'data') ? this.parentId.split('-').pop() : this.itemKey;
+        },
     },
     methods: {
-        isObject(o) {
-            return (typeof o === 'object' && !Array.isArray(o) && o !== null);
-        },
         formatDescr(descrKey) {
             const customDescrKey = descrKey.endsWith('_DESCR') ? descrKey.replace('_DESCR', '_CUSTOM_DESCR') : null;
             const descr = this.$t(descrKey, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
@@ -233,10 +259,26 @@ $mw: 900px;
                             background-color: rgba(220,20,60, 0.2);
                         }
 
-                        @function format($key) {
-                            @return 'span.value[item-key="#{$key}"]'
+                        .status-deleted {
+                            &, b, .value {
+                                color: #a14145;
+                            }
                         }
-                        @include statsStyle.statsIcons(get-function("format"), inline-flex);
+                        .status-added {
+                            &, b, .value {
+                                color: #3b8d54;
+                            }
+                        }
+                        .status-modified {
+                            &, b, .value {
+                                color: #dacc5e;
+                            }
+                        }
+
+                        //@function format($key) {
+                        //    @return 'span.value[item-key="#{$key}"]'
+                        //}
+                        //@include statsStyle.statsIcons(get-function("format"), inline-flex);
                     }
                 }
             }

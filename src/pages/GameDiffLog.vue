@@ -56,6 +56,11 @@
             v-if="patchCommits[index]?.status == 'ready'"
             class="content"
           >
+            <a
+              target="_blank"
+              :href="`${GHRepo}/commit/${patchCommits[index].hash}`"
+            >Look at github</a>
+
             <div
               v-for="(file, filename) of patchCommits[index].files"
               :key="filename"
@@ -86,6 +91,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { defineAsyncComponent } from 'vue';
 // import i18n from '@Scripts/Vue/i18n';
 
 import { Head } from '@vueuse/head';
@@ -94,7 +100,7 @@ import Data from '../components/Data.vue';
 import gameDiffLogGHApi from '@/composables/gameDiffLogGHApi';
 import gameDiffLogData from '@/composables/gameDiffLogData';
 import type { Commit } from '@/composables/gameDiffLogGHApi';
-// import type { LocaleObject } from '@/composables/gameDiffLogData';
+import type { ObjectKString } from '@/composables/gameDiffLogData';
 
 const ICON_DIR_BY_FILE = {
     capital_ships: 'game/Ships',
@@ -103,6 +109,7 @@ const ICON_DIR_BY_FILE = {
     spacebuildings: 'game/SpaceBuildings',
     distinctions: 'game/Distinctions',
 };
+const GH_REPO = 'https://github.com/userXinos/HadesSpace';
 
 export const diffTools = {
     formatValue: (obj: {[k: string]: unknown}, k: string, formatter: {value: (K:string, v: unknown) => unknown}) => (
@@ -110,7 +117,13 @@ export const diffTools = {
     ),
 };
 
-interface patchCommitsExpand {
+interface patchCommit {
+    hash: string,
+    title: string,
+    note: string
+}
+
+interface patchCommitExpand extends patchCommit{
     status: 'loading'|'ready'|'error',
     files: {
         [fileName: string]: {data: object, parent?: object, status: string}
@@ -122,7 +135,7 @@ export default defineComponent({
     components: { Head, VData: Data },
     provide() {
         return {
-            additionalStatsContent: diffTools,
+            StatsComponent: defineAsyncComponent(() => import('../components/DataHeadStatsDiff.vue')),
         };
     },
     setup() {
@@ -142,8 +155,9 @@ export default defineComponent({
     },
     data() {
         return {
+            GHRepo: GH_REPO,
             iconDirByFile: ICON_DIR_BY_FILE,
-            patchCommits: patchCommits as (typeof patchCommits & patchCommitsExpand[]),
+            patchCommits: patchCommits as (typeof patchCommits & patchCommitExpand[]),
             indexOpened: -1,
             loadingMessage: '',
 
@@ -206,17 +220,18 @@ export default defineComponent({
 
             for (const filename in patch.files) {
                 if (filename in patch.files && 'parent' in patch.files[filename]) {
-                    this.loadingMessage = `create diff: ${filename}...`;
                     const data = this.createDiff(patch.files[filename].parent as object, patch.files[filename].data);
 
                     if (data != null) {
+                        console.log(data);
+
                         if (filename == 'en') {
                             patch.files[filename].status = 'yes';
                             patch.files[filename].data = data;
                         } else {
                             patch.files[filename] = {
                                 ...patch.files[filename],
-                                data: this.addMetadata(data as {[k: string]: unknown}, patch.files[filename].parent as object, filename),
+                                data: this.addMetadata(data as ObjectKString, patch.files[filename].parent as object, filename),
                             };
                         }
                     }
@@ -284,7 +299,7 @@ $mv: 1000px;
     }
 
     .content {
-        .file, .status {
+        .file, .status, a {
             text-align: left;
             margin: 0 2%;
         }
