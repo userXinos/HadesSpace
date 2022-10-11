@@ -3,19 +3,6 @@
     <Head><title>Nerflog</title></Head>
     <h1 class="title"> Nerflog </h1>
 
-    <div class="banner">
-      <div class="wrap">
-        <div class="message">
-          <div class="icon-bg">
-            <div class="icon" />
-          </div>
-          <div class="body">
-            <p>Work in progress. Only Modules file partially supported</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <transition-group
       tag="ol"
       class="list"
@@ -61,25 +48,47 @@
               :href="`${GHRepo}/commit/${patchCommits[index].hash}`"
             >Look at github</a>
 
-            <div
-              v-for="(file, filename) of patchCommits[index].files"
-              :key="filename"
+            <transition-group
+              tag="ol"
+              class="list"
             >
-              <h2 class="file">File: {{ filename }}</h2>
-              <h3 class="status">status: {{ file.status }}</h3>
-
-              <div
-                v-for="(d, vkey) of file.data"
-                :key="vkey"
+              <li
+                v-for="(file, filename) of patchCommits[index].files"
+                :key="filename"
+                class="category"
               >
-                <v-data
-                  v-if="file.status == 'modified'"
-                  :data="d"
-                  :sort="false"
-                  :icon-dir="iconDirByFile[filename]"
-                />
-              </div>
-            </div>
+                <div
+                  class="head"
+                  @click="file.opened = !file.opened"
+                >
+                  <div
+                    v-if="file.status == 'modified' && file.canRender"
+                    class="icon"
+                    :class="{'rotate': file.opened}"
+                  />
+                  <div>
+                    <div class="file">File: {{ filename }}</div>
+                    <div class="Status">status: {{ file.status }} {{ file.canRender ? '' : '(Not rendered)' }}</div>
+                  </div>
+                </div>
+
+                <div
+                  v-for="(d, vkey) of file.data"
+                  :key="vkey"
+                >
+                  <v-data
+                    v-show="file.opened"
+                    v-if="file.status == 'modified' && file.canRender"
+                    :data="d"
+                    :sort="false"
+                    :icon-dir="iconDirByFile[filename]"
+                  />
+                </div>
+
+              </li>
+            </transition-group>
+
+
           </div>
         </div>
 
@@ -90,17 +99,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, defineComponent } from 'vue';
 // import i18n from '@Scripts/Vue/i18n';
-
 import { Head } from '@vueuse/head';
 import patchCommits from '@Regulation/patchCommits.js';
 import Data from '../components/Data.vue';
-import gameDiffLogGHApi from '@/composables/gameDiffLogGHApi';
-import gameDiffLogData from '@/composables/gameDiffLogData';
 import type { Commit } from '@/composables/gameDiffLogGHApi';
+import gameDiffLogGHApi from '@/composables/gameDiffLogGHApi';
 import type { ObjectKString } from '@/composables/gameDiffLogData';
+import gameDiffLogData from '@/composables/gameDiffLogData';
 
 const ICON_DIR_BY_FILE = {
     capital_ships: 'game/Ships',
@@ -110,6 +117,40 @@ const ICON_DIR_BY_FILE = {
     distinctions: 'game/Distinctions',
 };
 const GH_REPO = 'https://github.com/userXinos/HadesSpace';
+const CAN_RENDER = [
+    'en',
+    'achievements',
+    'alliance_levels',
+    'artifacts',
+    // 'badge_colors',
+    // 'badge_icons',
+    'blue_star_sectors',
+    'capital_ships',
+    'cerberus_stations',
+    // 'colonize_prices',
+    'dark_red_star_sectors',
+    'distinctions',
+    'globals',
+    // 'iap',
+    // 'languages',
+    'modules',
+    // 'module_scenes',
+    // 'news',
+    'planets',
+    'planet_levels',
+    'player_default_names',
+    'player_goals',
+    'red_star_sectors',
+    // 'regions',
+    'spacebuildings',
+    'stars',
+    // 'static_object_names',
+    // 'steam_prices',
+    // 'tutorial',
+    'white_star_sectors',
+    // 'xp_levels',
+    'yellow_star_sectors',
+];
 
 export const diffTools = {
     formatValue: (obj: {[k: string]: unknown}, k: string, formatter: {value: (K:string, v: unknown) => unknown}) => (
@@ -126,7 +167,7 @@ interface patchCommit {
 interface patchCommitExpand extends patchCommit{
     status: 'loading'|'ready'|'error',
     files: {
-        [fileName: string]: {data: object, parent?: object, status: string}
+        [fileName: string]: {data: object, parent?: object, status: string, canRender: boolean, opened?: boolean}
     }
 }
 
@@ -140,7 +181,7 @@ export default defineComponent({
     },
     setup() {
         const { fetchUrl, fetchParentByName, fetchCommit, fetchFile } = gameDiffLogGHApi();
-        const { createDiff, createLocaleFromDiff, addMetadata } = gameDiffLogData();
+        const { createDiff, createLocaleFromDiff, addMetadata, isObject } = gameDiffLogData();
 
         return {
             fetchUrl,
@@ -151,6 +192,7 @@ export default defineComponent({
             createDiff,
             createLocaleFromDiff,
             addMetadata,
+            isObject,
         };
     },
     data() {
@@ -160,16 +202,12 @@ export default defineComponent({
             patchCommits: patchCommits as (typeof patchCommits & patchCommitExpand[]),
             indexOpened: -1,
             loadingMessage: '',
-
-            // backupCurrentLocale: null as unknown as LocaleObject,
         };
     },
-    beforeUnmount() {
-        // if (this.backupCurrentLocale) {
-        //     i18n.global.setLocaleMessage(this.$i18n.locale, this.backupCurrentLocale);
-        // }
-    },
     methods: {
+        setStatus(msg: string) {
+            this.loadingMessage = msg;
+        },
         onclickCategory(i: number) {
             if (this.indexOpened == i) {
                 this.indexOpened = -1;
@@ -184,75 +222,66 @@ export default defineComponent({
                     })
                     .catch((e) => {
                         this.patchCommits[i].status = 'error';
-                        this.loadingMessage = `Error: ${e.message}`;
+                        this.setStatus(`Error: ${e.message}`);
                         console.error(e);
                     });
             }
         },
         async loadDiff(index: number) {
-            this.loadingMessage = 'getting commits...';
+            this.setStatus('getting commits...');
             const patch = this.patchCommits[index];
             const commit = await this.fetchCommit(patch.hash) as Commit;
-            this.loadingMessage = '';
 
             for (const { contents_url: url, filename: filepath, status } of commit.files) {
-                if (filepath.startsWith('parser/dist/') && (filepath.includes('modules') || filepath.includes('loc_strings_en'))) {
+                const filename = filepath?.split('/')?.pop()?.split('.')?.shift() as string;
+                const canRender = CAN_RENDER.includes(filename);
+
+                if (filepath.startsWith('parser/dist/')) {
                     if (!patch.files) {
                         patch.files = {};
                     }
-                    const filename = filepath.substring(filepath.lastIndexOf('/') + 1).replace(/\.\w+$/, '');
-                    this.loadingMessage = `download file: ${filename} (${commit.sha.slice(0, 7)})...`;
-                    const data = (status == 'modified') ? await this.fetchFile(url) : null;
-                    this.loadingMessage = '';
+                    this.setStatus(`download file: ${filename} (${commit.sha.slice(0, 7)})...`);
+                    const data = (status == 'modified' && canRender) ? await this.fetchFile(url) : null;
 
                     patch.files[filename] = {
                         status,
                         data: data || {},
+                        canRender,
                     };
 
-                    if (data) {
-                        this.loadingMessage = `download parent file: ${filename} (${commit.sha.slice(0, 7)})...`;
+                    if (data && canRender) {
+                        this.setStatus(`download parent file: ${filename} (${commit.sha.slice(0, 7)})...`);
                         patch.files[filename].parent = await this.fetchParentByName(filepath, commit.sha);
-                        this.loadingMessage = '';
                     }
                 }
             }
 
             for (const filename in patch.files) {
                 if (filename in patch.files && 'parent' in patch.files[filename]) {
-                    const data = this.createDiff(patch.files[filename].parent as object, patch.files[filename].data);
+                    this.setStatus(`create diff: ${filename}...`);
+
+                    const parent = patch.files[filename].parent as object;
+                    const rawData = patch.files[filename].data as object;
+                    const wrapRawData = Object.values(rawData).some((e) => !this.isObject(e)) ? { [filename]: rawData } : rawData as ObjectKString;
+                    const wrapParent = Object.values(parent).some((e) => !this.isObject(e)) ? { [filename]: parent } : parent as ObjectKString;
+
+                    const data = this.createDiff(wrapParent, wrapRawData);
 
                     if (data != null) {
-                        console.log(data);
-
-                        if (filename == 'en') {
-                            patch.files[filename].status = 'yes';
-                            patch.files[filename].data = data;
-                        } else {
-                            patch.files[filename] = {
-                                ...patch.files[filename],
-                                data: this.addMetadata(data as ObjectKString, patch.files[filename].parent as object, filename),
-                            };
-                        }
+                        patch.files[filename] = {
+                            ...patch.files[filename],
+                            data: this.addMetadata(data as ObjectKString, wrapParent, filename),
+                        };
                     }
-                    this.loadingMessage = '';
                 }
             }
-
-            // if (Object.keys(i18n.global.messages).length && patch.files.en) {
-            //     const currentLocale = (i18n.global.messages as { [k:string]: LocaleObject })[this.$i18n.locale as string];
-            //     const locale = this.createLocaleFromDiff(patch.files.en.data as LocaleObject, patch.files.en.parent as LocaleObject, currentLocale);
-            //     this.backupCurrentLocale = this.backupCurrentLocale ? this.backupCurrentLocale : currentLocale;
-            //
-            //     i18n.global.setLocaleMessage(this.$i18n.locale, locale);
-            //     delete patch.files.en;
-            // }
         },
     },
 });
 </script>
 
 <style lang="scss" scoped>
+@import "../style/vars";
 @import "../style/page";
 
 $mv: 1000px;
@@ -295,20 +324,33 @@ $mv: 1000px;
         }
         .note {
             font-size: 90%;
+
+            @media screen and (max-width: $mv) {
+                font-size: 70%;
+            }
         }
     }
 
     .content {
-        .file, .status, a {
+        .category {
+            font-size: 100%;
+            border-left: 2px solid $border-color;
+            margin-left: 1%;
+
+            .head {
+                margin-left: 4%;
+                font-size: 120%;
+            }
+        }
+
+        a {
             text-align: left;
             margin: 0 2%;
         }
         .file {
             margin-top: 20px;
-            font-size: 100%;
         }
         .status {
-            font-size: 90%;
         }
     }
 }
@@ -333,41 +375,6 @@ $mv: 1000px;
     .text {
         text-align: center;
         font-size: 130%;
-    }
-}
-
-.banner {
-    margin: 2%;
-
-    .message {
-        display: flex;
-        margin: 20px auto 30px;
-        background-color: #F39C12;
-        color: #fff;
-        width: 100%;
-
-        .icon-bg {
-            width: 4%;
-            background-color: rgba(0, 0, 0, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-
-            .icon {
-                background: url("../img/icons/info.png") no-repeat;
-                background-size: 100%;
-                width: 30px;
-                height: 30px;
-
-            }
-        }
-        .body p {
-            padding: 15px;
-            color: #2a2a2a;
-            font-weight: bold;
-            font-size: 60%;
-        }
     }
 }
 
