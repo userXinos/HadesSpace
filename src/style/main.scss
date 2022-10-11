@@ -30,4 +30,15 @@ a {
         color: #029be0;
         text-decoration: underline;
     }
+
+    &[target="_blank"] {
+        &:before {
+            padding: 5px;
+            content: url("../img/icons/outbound.svg");
+
+            @media screen and (max-width: 900px){
+                width: 12px;
+            }
+        }
+    }
 }
