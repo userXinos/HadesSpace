@@ -125,10 +125,10 @@ export default function gameDiffLogData() {
 
     function addMetadata(target: {[k: string]: unknown}, src: {[k: string]: unknown}, filename: string) {
         for (const key in target) {
-            if (isObject(target[key]) && isObject(src[key])) {
-                addMetadata(target[key] as typeof target, src[key] as typeof src, filename);
-            } else {
-                const needNameKey = Object.values(target).some((e) => !isObject(e));
+            if (key in target) {
+                if (isObject(target[key]) && isObject(src[key])) {
+                    addMetadata(target[key] as typeof target, src[key] as typeof src, filename);
+                }
 
                 if (isObject(src)) {
                     ['TID', 'Icon', 'Name']
@@ -136,6 +136,7 @@ export default function gameDiffLogData() {
                         .forEach((k) => target[k] = src[k]);
                 }
 
+                const needNameKey = Object.values(target).some((e) => !isObject(e));
                 if (needNameKey) {
                     ['Name', 'TID']
                         .filter((k) => !(k in target && typeof target[k] == 'string'))
