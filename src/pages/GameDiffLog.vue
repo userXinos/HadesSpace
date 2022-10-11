@@ -3,6 +3,25 @@
     <Head><title>Nerflog</title></Head>
     <h1 class="title"> Nerflog </h1>
 
+    <div class="banner">
+      <div class="wrap">
+        <div class="message">
+          <div class="icon-bg">
+            <div class="icon" />
+          </div>
+          <div class="body">
+            <p>This is not an official Hades' Star Nebula game changelog compiled from game static files, official data is published on the game's <a
+              href="https://discord.gg/hadesstar"
+              target="_blank"
+            >discord server</a> and <a
+              href="http://blog.hadesstar.com"
+              target="_blank"
+            >blog</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <transition-group
       tag="ol"
       class="list"
@@ -375,6 +394,41 @@ $mv: 1000px;
     .text {
         text-align: center;
         font-size: 130%;
+    }
+}
+
+.banner {
+    margin: 2%;
+
+    .message {
+        display: flex;
+        margin: 20px auto 30px;
+        background-color: #F39C12;
+        color: #fff;
+        width: 100%;
+
+        .icon-bg {
+            width: 4%;
+            background-color: rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+
+            .icon {
+                background: url("../img/icons/info.png") no-repeat;
+                background-size: 100%;
+                width: 30px;
+                height: 30px;
+
+            }
+        }
+        .body p {
+            padding: 15px;
+            color: #2a2a2a;
+            font-weight: bold;
+            font-size: 60%;
+        }
     }
 }
 
