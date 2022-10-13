@@ -123,30 +123,35 @@ export default function gameDiffLogData() {
         }
     }
 
-    function addMetadata(target: {[k: string]: unknown}, src: {[k: string]: unknown}, filename: string) {
+    function addMetadata(target: {[k: string]: unknown}, sources: {[k: string]: unknown}[], filename: string) {
         for (const key in target) {
             if (key in target) {
-                if (isObject(target[key]) && isObject(src[key])) {
-                    addMetadata(target[key] as typeof target, src[key] as typeof src, filename);
+                const sourcesByKey = sources.map((src) => src[key]);
+                const filtered = sourcesByKey.filter(isObject);
+
+                if (isObject(target[key]) && filtered.length) {
+                    addMetadata(target[key] as typeof target, filtered as typeof sources, filename);
                 }
 
-                if (isObject(src)) {
-                    ['TID', 'Icon', 'Name']
-                        .filter((k) => k in src && !(k in target))
-                        .forEach((k) => target[k] = src[k]);
-                }
+                sources.forEach((src) => {
+                    if (isObject(src)) {
+                        ['TID', 'Icon', 'Name']
+                            .filter((k) => k in src && !(k in target))
+                            .forEach((k) => target[k] = src[k]);
+                    }
 
-                const needNameKey = Object.values(target).some((e) => !isObject(e));
-                if (needNameKey) {
-                    ['Name', 'TID']
-                        .filter((k) => !(k in target && typeof target[k] == 'string'))
-                        .forEach((k) => {
-                            if (Array.isArray(target[k])) {
-                                target[`${k}2`] = [...target[k] as string[]];
-                            }
-                            target[k] = filename;
-                        });
-                }
+                    const needNameKey = Object.values(target).some((e) => !isObject(e));
+                    if (needNameKey) {
+                        ['Name', 'TID']
+                            .filter((k) => !(k in target && typeof target[k] == 'string'))
+                            .forEach((k) => {
+                                if (Array.isArray(target[k])) {
+                                    target[`${k}2`] = [...target[k] as string[]];
+                                }
+                                target[k] = filename;
+                            });
+                    }
+                });
             }
         }
 
