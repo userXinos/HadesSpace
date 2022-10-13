@@ -101,6 +101,7 @@
                     :data="d"
                     :sort="false"
                     :icon-dir="iconDirByFile[filename]"
+                    :table-opts="getTableOpts(filename)"
                   />
                 </div>
 
@@ -127,6 +128,7 @@ import type { Commit } from '@/composables/gameDiffLogGHApi';
 import gameDiffLogGHApi from '@/composables/gameDiffLogGHApi';
 import type { ObjectKString } from '@/composables/gameDiffLogData';
 import gameDiffLogData from '@/composables/gameDiffLogData';
+import { tableOpts as modulesTableOpts } from '@/components/ModulePage.vue';
 
 const ICON_DIR_BY_FILE = {
     capital_ships: 'game/Ships',
@@ -170,12 +172,6 @@ const CAN_RENDER = [
     // 'xp_levels',
     'yellow_star_sectors',
 ];
-
-export const diffTools = {
-    formatValue: (obj: {[k: string]: unknown}, k: string, formatter: {value: (K:string, v: unknown) => unknown}) => (
-        (`_${k}` in obj) ? ` >> ${formatter.value(k, obj[`_${k}`])}` : null
-    ),
-};
 
 interface patchCommit {
     hash: string,
@@ -223,9 +219,20 @@ export default defineComponent({
             loadingMessage: '',
         };
     },
+    computed: {
+        modulesTableOpts,
+    },
     methods: {
         setStatus(msg: string) {
             this.loadingMessage = msg;
+        },
+        getTableOpts(name: string) {
+            const data = {
+                modules: this.modulesTableOpts,
+                stars: { colLvlStartAt: 0 },
+            };
+
+            return (name in data) ? data[name as keyof typeof data] : undefined;
         },
         onclickCategory(i: number) {
             if (this.indexOpened == i) {
