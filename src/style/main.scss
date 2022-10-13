@@ -32,13 +32,9 @@ a {
     }
 
     &[target="_blank"] {
-        &:before {
+        &:after {
             padding: 5px;
             content: url("../img/icons/outbound.svg");
-
-            @media screen and (max-width: 900px){
-                width: 12px;
-            }
         }
     }
 }
