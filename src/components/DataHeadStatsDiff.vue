@@ -61,7 +61,7 @@
     <template v-else>
       <span :class="`status-${status || parent[itemKey]?.status}`">
         <template v-if="itemKey != 'data'">
-          <b>{{ format.key(itemKey) }}</b>
+          <b>{{ parentId != 'en-data' ? format.key(itemKey) : itemKey }}</b>
           <template v-if="$store.state.userSettings.showKeys"> ({{ itemKey }})</template>
           :
         </template>
@@ -75,7 +75,12 @@
           class="value"
         >
           <template v-if="Array.isArray(items)">
-            {{ items.map((e) => format.value(keyFormatter, e)).join(items.length == 2 ? ' >> ' : ', ') }}
+            {{
+              items
+                .map((e) => format.value(keyFormatter, e))
+                .map(e => (parentId == 'en-data') ? `"${e}"`: e)
+                .join(items.length == 2 ? ' >> ' : ', ')
+            }}
           </template>
           <template v-else>{{ format.value(keyFormatter, items) }}</template>
         </span>
@@ -91,7 +96,6 @@
 <script>
 import { h } from 'vue';
 import Icon from '@/components/Icon.vue';
-import Store from '@Store/index';
 
 import objectArrayify from '@/js/objectArrayify';
 import isHide from '@Handlers/isHide';
@@ -119,7 +123,7 @@ export function getCharsWithHideStatus(d) {
             ],
         ],
         filter: ([k, [,, remove]]) => (
-            k.startsWith('_') || isHide(k, null, { asMeta: true }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || isHide(k, null, { asMeta: true }) ? false : !remove
         ),
     });
 
@@ -165,6 +169,7 @@ export default {
             isObject,
             iconDirList: ICON_DIR_LIST,
             getCharacteristics: getCharsWithHideStatus,
+            minimumFormatting: (this?.parent?.Name == 'en'),
         };
     },
     computed: {
@@ -266,7 +271,7 @@ $mw: 900px;
                         }
                         .status-added {
                             &, b, .value {
-                                color: #3b8d54;
+                                color: #42a15f;
                             }
                         }
                         .status-modified {
