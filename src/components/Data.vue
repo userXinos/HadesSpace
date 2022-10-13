@@ -100,9 +100,10 @@ export default {
         buildTable(category, pre) {
             const { table: { head, body } } = this;
             const { Name } = this.data;
+            const keys = pre.map(([k]) => k);
 
             pre
-                .filter(([k]) => !isHide(k, Name))
+                .filter(([k]) => (keys.includes(`_${k}`)) ? true : !isHide(k, Name))
                 .sort(([a], [b]) => this.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
                 .forEach(([key, value]) => {
                     if (Array.isArray(head[category])) {

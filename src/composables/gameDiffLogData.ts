@@ -1,5 +1,4 @@
 import objectArrayify from '@/js/objectArrayify';
-import isHide from '@Handlers/isHide';
 
 export type LocaleObject = {[k: string]: string}
 export type ObjectKString = { [k: string]: unknown }
@@ -63,16 +62,19 @@ export default function gameDiffLogData() {
                             continue;
                         }
                         if (Array.isArray(parentElem)) {
-                            if (isHide(key, null)) {
-                                delete stats[key];
-                                continue;
-                            }
                             topLevel[key] = [...parentElem];
                             topLevel[`__>>${key}`] = Array.from({ length: parentElem.length }, () => '>>');
 
                             if (Array.isArray(objElem)) {
-                                if (!isEqualArrays(parentElem, objElem) && typeof objElem[0] != 'object') {
+                                if (!isEqualArrays(parentElem, objElem) && !isObject(objElem[0])) {
                                     topLevel[`_${key}`] = [...objElem];
+
+                                    if (objElem.length > parentElem.length) {
+                                        const length = objElem.length - parentElem.length;
+
+                                        (topLevel[key] as unknown[]).push(...Array.from({ length }, () => ''));
+                                        (topLevel[`__>>${key}`] as unknown[]).push(...Array.from({ length }, () => '>>'));
+                                    }
                                 } else {
                                     delete topLevel[key];
                                     delete topLevel[`__>>${key}`];
@@ -114,6 +116,9 @@ export default function gameDiffLogData() {
         }
 
         function isEqualArrays(arr1: unknown[], arr2: unknown[]): boolean {
+            if (arr1.length != arr2.length) {
+                return false;
+            }
             return arr1.every((e, i) => {
                 if (Array.isArray(e) && Array.isArray(arr2[i])) {
                     return isEqualArrays(e, arr2[i] as unknown[]);
@@ -143,7 +148,7 @@ export default function gameDiffLogData() {
                     const needNameKey = Object.values(target).some((e) => !isObject(e));
                     if (needNameKey) {
                         ['Name', 'TID']
-                            .filter((k) => !(k in target && typeof target[k] == 'string'))
+                            .filter((k) => typeof target[k] != 'string')
                             .forEach((k) => {
                                 if (Array.isArray(target[k])) {
                                     target[`${k}2`] = [...target[k] as string[]];
@@ -171,6 +176,6 @@ export default function gameDiffLogData() {
     }
 
     function isObject(elem: unknown) {
-        return typeof elem == 'object' && !Array.isArray(elem);
+        return typeof elem == 'object' && !Array.isArray(elem) && elem != null;
     }
 }

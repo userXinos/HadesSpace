@@ -298,6 +298,8 @@ export default defineComponent({
                             ...patch.files[filename],
                             data: this.addMetadata(data as ObjectKString, [wrapParent, wrapRawData], filename),
                         };
+                    } else {
+                        patch.files[filename].data = {};
                     }
                 }
             }
