@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: '801f4596aed37a0d0355656bf6cfff4407891de6',
+        title: 'Update № 7',
+        note: '[October 14]: Mining Modules in Red Stars',
+    },
+    {
         hash: 'c2c924f51e76acc9c8030f980cebb33fedaced0b',
         title: 'Update № 6',
         note: '[October 4]: Initial Hydrogen changes',
