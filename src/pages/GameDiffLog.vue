@@ -53,9 +53,11 @@
               class="icon"
             />
             <p
-              v-if="patchCommits[index]?.status != 'ready'"
+              v-show="patchCommits[index]?.status != 'ready'"
               class="text"
-            >{{ loadingMessage }}</p>
+            >
+              {{ loadingMessage }}<br>
+            </p>
 
           </div>
           <div
@@ -72,32 +74,32 @@
               class="list"
             >
               <li
-                v-for="(file, filename) of patchCommits[index].files"
+                v-for="(content, filename) of patchCommits[index].files"
                 :key="filename"
                 class="category"
               >
                 <div
                   class="head"
-                  @click="file.opened = !file.opened"
+                  @click="content.opened = !content.opened"
                 >
                   <div
-                    v-if="file.status == 'modified' && file.canRender"
+                    v-if="content.status == 'modified' && content.canRender"
                     class="icon"
-                    :class="{'rotate': file.opened}"
+                    :class="{'rotate': content.opened}"
                   />
                   <div>
                     <div class="file">File: {{ filename }}</div>
-                    <div class="Status">status: {{ file.status }} {{ file.canRender ? '' : '(Not rendered)' }}</div>
+                    <div class="Status">status: {{ content.status }} {{ content.canRender ? '' : '(Not rendered)' }}</div>
                   </div>
                 </div>
 
                 <div
-                  v-for="(d, vkey) of file.data"
+                  v-for="(d, vkey) of content.file"
                   :key="vkey"
                 >
                   <v-data
-                    v-show="file.opened"
-                    v-if="file.status == 'modified' && file.canRender"
+                    v-show="content.opened"
+                    v-if="content.status == 'modified' && content.canRender"
                     :data="d"
                     :sort="false"
                     :icon-dir="iconDirByFile[filename]"
@@ -120,7 +122,6 @@
 
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
-// import i18n from '@Scripts/Vue/i18n';
 import { Head } from '@vueuse/head';
 import patchCommits from '@Regulation/patchCommits.js';
 import Data from '../components/Data.vue';
@@ -173,16 +174,16 @@ const CAN_RENDER = [
     'yellow_star_sectors',
 ];
 
-interface patchCommit {
+interface PatchCommit {
     hash: string,
     title: string,
     note: string
 }
 
-interface patchCommitExpand extends patchCommit{
+interface PatchCommitExpand extends PatchCommit{
     status: 'loading'|'ready'|'error',
     files: {
-        [fileName: string]: {data: object, parent?: object, status: string, canRender: boolean, opened?: boolean}
+        [fileName: string]: {file: object, parent?: object, status: string, canRender: boolean, opened?: boolean}
     }
 }
 
@@ -196,7 +197,7 @@ export default defineComponent({
     },
     setup() {
         const { fetchUrl, fetchParentByName, fetchCommit, fetchFile } = gameDiffLogGHApi();
-        const { createDiff, createLocaleFromDiff, addMetadata, isObject } = gameDiffLogData();
+        const { createDiff, addMetadata, isObject, limit } = gameDiffLogData();
 
         return {
             fetchUrl,
@@ -205,16 +206,16 @@ export default defineComponent({
             fetchCommit,
 
             createDiff,
-            createLocaleFromDiff,
             addMetadata,
             isObject,
+            limit,
         };
     },
     data() {
         return {
             GHRepo: GH_REPO,
             iconDirByFile: ICON_DIR_BY_FILE,
-            patchCommits: patchCommits as (typeof patchCommits & patchCommitExpand[]),
+            patchCommits: patchCommits as (typeof patchCommits & PatchCommitExpand[]),
             indexOpened: -1,
             loadingMessage: '',
         };
@@ -223,7 +224,11 @@ export default defineComponent({
         modulesTableOpts,
     },
     methods: {
-        setStatus(msg: string) {
+        setStatus(msg: string|null) {
+            if (msg == null) {
+                this.loadingMessage = '';
+                return;
+            }
             this.loadingMessage = msg;
         },
         getTableOpts(name: string) {
@@ -242,7 +247,7 @@ export default defineComponent({
             this.indexOpened = i;
             if (!this.patchCommits[i].status && this.patchCommits[i].status != 'loading') {
                 this.patchCommits[i].status = 'loading';
-                this.loadDiff(i)
+                this.initPatch(this.patchCommits[i])
                     .then(() => {
                         this.patchCommits[i].status = 'ready';
                     })
@@ -253,56 +258,64 @@ export default defineComponent({
                     });
             }
         },
-        async loadDiff(index: number) {
-            this.setStatus('getting commits...');
-            const patch = this.patchCommits[index];
-            const commit = await this.fetchCommit(patch.hash) as Commit;
+        async initPatch(patch: PatchCommitExpand) {
+            const files: PatchCommitExpand['files'] = await this.loadFiles(patch.hash);
+            patch.files = await this.diffFiles(files);
+        },
 
-            for (const { contents_url: url, filename: filepath, status } of commit.files) {
+        async loadFiles(hash: string): Promise<PatchCommitExpand['files']> {
+            this.setStatus('getting commits...');
+            const commit: Commit = await this.fetchCommit(hash);
+            this.setStatus(null);
+            const res: PatchCommitExpand['files'] = {};
+
+            const loadFile = async ({ contents_url: url, filename: filepath, status }: Commit['files'][0]) => {
                 const filename = filepath?.split('/')?.pop()?.split('.')?.shift() as string;
                 const canRender = CAN_RENDER.includes(filename);
 
                 if (filepath.startsWith('parser/dist/')) {
-                    if (!patch.files) {
-                        patch.files = {};
-                    }
                     this.setStatus(`download file: ${filename} (${commit.sha.slice(0, 7)})...`);
-                    const data = (status == 'modified' && canRender) ? await this.fetchFile(url) : null;
+                    const file = (status == 'modified' && canRender) ? await this.fetchFile(url) : null;
 
-                    patch.files[filename] = {
-                        status,
-                        data: data || {},
-                        canRender,
-                    };
+                    res[filename] = { status, file: file || {}, canRender };
 
-                    if (data && canRender) {
+                    if (file) {
                         this.setStatus(`download parent file: ${filename} (${commit.sha.slice(0, 7)})...`);
-                        patch.files[filename].parent = await this.fetchParentByName(filepath, commit.sha);
+                        res[filename].parent = await this.fetchParentByName(filepath, commit.sha);
                     }
+                    console.log(filename);
+                    this.setStatus(null);
                 }
-            }
+            };
 
-            for (const filename in patch.files) {
-                if (filename in patch.files && 'parent' in patch.files[filename]) {
-                    this.setStatus(`create diff: ${filename}...`);
+            await this.limit(commit.files.map((e) => () => loadFile(e)), 4);
 
-                    const parent = patch.files[filename].parent as object;
-                    const rawData = patch.files[filename].data as object;
-                    const wrapRawData = Object.values(rawData).some((e) => !this.isObject(e)) ? { [filename]: rawData } : rawData as ObjectKString;
-                    const wrapParent = Object.values(parent).some((e) => !this.isObject(e)) ? { [filename]: parent } : parent as ObjectKString;
+            return res;
+        },
 
-                    const data = this.createDiff(wrapParent, wrapRawData);
+        async diffFiles(files: PatchCommitExpand['files']): Promise<PatchCommitExpand['files']> {
+            const res: PatchCommitExpand['files'] = {};
 
-                    if (data != null) {
-                        patch.files[filename] = {
-                            ...patch.files[filename],
-                            data: this.addMetadata(data as ObjectKString, [wrapParent, wrapRawData], filename),
-                        };
-                    } else {
-                        patch.files[filename].data = {};
-                    }
+            const diffFile = async ([filename, { file, parent }]: [string, { file: object, parent?: object }]) => {
+                if (!parent) {
+                    return;
                 }
-            }
+
+                const wrapRawFile = Object.values(file).some((e) => !this.isObject(e)) ? { [filename]: file } : file as ObjectKString;
+                const wrapParent = Object.values(parent).some((e) => !this.isObject(e)) ? { [filename]: parent } : parent as ObjectKString;
+
+                this.setStatus(`create diff: ${filename}...`);
+                const diff = this.createDiff(wrapParent, wrapRawFile) || {};
+
+                res[filename] = {
+                    ...files[filename],
+                    file: this.addMetadata(diff as ObjectKString, [wrapParent, wrapRawFile], filename),
+                };
+            };
+
+            await this.limit(Object.entries(files).map((e) => () => diffFile(e)), 8);
+
+            return res;
         },
     },
 });

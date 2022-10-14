@@ -1,14 +1,12 @@
-import objectArrayify from '@/js/objectArrayify';
 
-export type LocaleObject = {[k: string]: string}
 export type ObjectKString = { [k: string]: unknown }
 
 export default function gameDiffLogData() {
     return {
         createDiff,
         isObject,
-        createLocaleFromDiff,
         addMetadata,
+        limit,
     };
 
     function createDiff(parent: object, obj: object): object|null {
@@ -163,19 +161,19 @@ export default function gameDiffLogData() {
         return target;
     }
 
-    function createLocaleFromDiff(diff: LocaleObject, diffParent: LocaleObject, currentLocale: LocaleObject) {
-        const copyCurrentLocale = { ...currentLocale };
-
-        // REMOVE_LOC_KEYS.forEach((k) => delete copyCurrentLocale[k]);
-        return {
-            ...copyCurrentLocale,
-            ...objectArrayify(diff, {
-                map: ([k, v]) => [k, v.replaceAll('\\n\\n', '\n')],
-            }),
-        };
-    }
-
     function isObject(elem: unknown) {
         return typeof elem == 'object' && !Array.isArray(elem) && elem != null;
+    }
+
+    async function limit(tasks: (() => unknown)[], concurrency = 2) {
+        async function runTasks(tasksIterator: (() => unknown)[]) {
+            for (const task of tasksIterator) {
+                await task();
+            }
+        }
+
+        const workers = new Array(concurrency).fill(tasks).map(runTasks);
+
+        await Promise.allSettled(workers);
     }
 }

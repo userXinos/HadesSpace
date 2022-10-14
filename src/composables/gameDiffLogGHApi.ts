@@ -29,7 +29,7 @@ export default function gameDiffLogGHApi() {
         return fetchFile(fileUrl);
     }
 
-    function fetchCommit(hash: string) {
+    function fetchCommit(hash: string): Promise<Commit> {
         const url = new URL(`commits/${hash}`, API_ENDPOINT);
         return fetchUrl(url.href);
     }
