@@ -58,4 +58,8 @@ export default [
         ['TargetSwitchTicks', 'MirrorShieldTickPeriod', 'DispatchActivTicks', 'RelicLoadTicks'],
         (v, {TicksPerSecond}) => v / TicksPerSecond,
     ],
+    [
+        ['RSLESecPer500Hydro'],
+        (v) => v * 3,
+    ],
 ]

@@ -52,9 +52,13 @@ export default [
     'APTPIOTTPRS',
     'APTPIOTTPWS',
     'MiningSpeedModifierPct',
+    'MiningSpeedModifierPct_YS',
+    'MiningSpeedModifierPct_RS',
     'MiningSpeedModifierPct_WS',
+    'ActivationHydroOnBoard',
     'HydroDeliveryBonus',
     'MassMiningExtraAsteroids',
+    'RSLESecPer500Hydro',
     'ExtraMineralStorage', // устарело
     'ExtraHydroStorage',
     'IncreaseSectorHydroPct',

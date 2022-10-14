@@ -5,6 +5,7 @@ export const gameCharsLocKeys = {
     BarrageMaxAdditionalEnemies: 'BARRAGE_MAX_ADDITIONAL_ENEMIES',
 
     // game
+    RSLESecPer500Hydro: 'TID_MODULE_RED_STAR_EXTENSION_STAT',
     DroneHydro: 'TID_MODULE_DESCR_ACTIVATION_COST',
     ActivationHydro: 'TID_MODULE_DESCR_ACTIVATION_COST',
     WSDispatchAOEAmt: 'TID_DESTROYER_AREADAMAGE',

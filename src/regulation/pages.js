@@ -15,7 +15,7 @@ export default [
                 path: '/trade',
                 component: () => import(/* webpackChunkName: "Trade" */ '../pages/Trade.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_ArtifactBoost_Icon' : 'Mod_TransportAutopilot_Icon',
+                    name: isNebulaBuild ? 'Mod_CargoRocket_Icon' : 'Mod_TransportAutopilot_Icon',
                     dir: 'game/Modules',
                 },
             },
