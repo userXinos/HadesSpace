@@ -90,7 +90,7 @@ export default {
     NumSecondsBeforeSupernovaToSendNotification: 120,
     CorporationCreationCost: 100,
     TimeToTravelActiveWarpLaneSegmentTicks: 2,
-    WarpGatePrice: 1000,
+    WarpGatePrice: 400,
     WarpLaneActivationTimeHrs: 16,
     MinShipLevelThatSupportsRename: 1,
     FacebookURL: "https://facebook.com/hadesstar",

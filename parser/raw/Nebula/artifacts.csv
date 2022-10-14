@@ -1,5 +1,5 @@
 Name,TID,TID_Description,DRSPoints,PriceInCrystals,RSLevelRequired,SlotsUsed,Model,SalvageCRReward,CRReward,GroupNames,TimeToLoad,TimeToResearch,RushCostModifier,XP,DirectModuleRefs,BlueprintTypes,InfluencePoints,ColorR,ColorG,ColorB
-TutArtifact,TID_TRADEITEM_ARTIFACT_TUT,TID_TRADEITEM_ARTIFACT_TUT_DESCR,,0,1,1,Artifact01_lv1,0,300,tutorial,5,60,1,50,TransportCapacity!Battery!AlphaShield,Weapon!Shield,,255,94,96
+TutArtifact,TID_TRADEITEM_ARTIFACT_TUT,TID_TRADEITEM_ARTIFACT_TUT_DESCR,,0,1,1,Artifact01_lv1,0,300,tutorial,5,60,1,50,TransportCapacity!Laser!AlphaShield,Trade!Mining,,200,100,255
 CombatArtifact1,TID_TRADEITEM_ARTIFACT_COMBAT,TID_BUY_ARTIFACT_DLG_DESCR_ORB,1,20,1,1,Artifact01_lv1,400,1000,rs1,9,3600,1,100,,Weapon!Shield,4,255,94,96
 CombatArtifact2,TID_TRADEITEM_ARTIFACT_COMBAT,TID_BUY_ARTIFACT_DLG_DESCR_ORB,1,40,2,2,Artifact01_lv2,1000,2500,rs2,19,7200,2,250,,Weapon!Shield,4,255,94,96
 CombatArtifact3,TID_TRADEITEM_ARTIFACT_COMBAT,TID_BUY_ARTIFACT_DLG_DESCR_ORB,1,60,3,4,Artifact01_lv3,1200,3000,rs3,59,9000,3,500,,Weapon!Shield,6,255,94,96

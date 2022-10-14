@@ -85,7 +85,7 @@ RedStarHintTimer,12
 NumSecondsBeforeSupernovaToSendNotification,120
 CorporationCreationCost,100
 TimeToTravelActiveWarpLaneSegmentTicks,2
-WarpGatePrice,1000
+WarpGatePrice,400
 WarpLaneActivationTimeHrs,16
 MinShipLevelThatSupportsRename,1
 FacebookURL,https://facebook.com/hadesstar
@@ -236,7 +236,7 @@ FlagshipContribAmounts,10000!100000!1000000!8000000
 CRAsteroidMineTicks,1200
 TutorialDialogImg,youtube/video1!youtube/video2!youtube/video3!youtube/video5
 TutorialDialogURL,https://www.youtube.com/watch?v=UPkk6yKzRnI!https://www.youtube.com/watch?v=Ajdg8jgBXVg!https://www.youtube.com/watch?v=U4zvvJqsaXc!https://www.youtube.com/watch?v=LrY853vumu8
-RSPublicLateJoin_MaxTimeAvailable,300
+RSPublicLateJoin_MaxTimeAvailable,300 
 RSPublicLateJoin_MaxTimeOffTotal,180
 RSPublicLateJoin_ClientCacheExpiry,30
 RSPublicLateJoin_MinStarLevel,5

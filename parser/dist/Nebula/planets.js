@@ -143,8 +143,8 @@ export default {
         CreditShipmentModifier: 95,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
-        MaxShipments: 48,
-        ShipmentsPerHour: 200,
+        MaxShipments: 24,
+        ShipmentsPerHour: 100,
     },
     lava_lv3: {
         Name: "lava_lv3",
@@ -314,8 +314,8 @@ export default {
         CreditShipmentModifier: 120,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
-        MaxShipments: 48,
-        ShipmentsPerHour: 200,
+        MaxShipments: 24,
+        ShipmentsPerHour: 100,
     },
     terran_lv3: {
         Name: "terran_lv3",
@@ -374,8 +374,8 @@ export default {
         CreditShipmentModifier: 120,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
-        MaxShipments: 48,
-        ShipmentsPerHour: 200,
+        MaxShipments: 24,
+        ShipmentsPerHour: 100,
     },
     gas_lv2: {
         Name: "gas_lv2",
