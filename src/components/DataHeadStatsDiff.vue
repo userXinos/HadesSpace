@@ -122,8 +122,8 @@ export function getCharsWithHideStatus(d) {
                 isHide(k, d.Name),
             ],
         ],
-        filter: ([k, [,, remove]]) => (
-            k.startsWith('_') || isHide(k, null, { asMeta: true }) ? false : !remove
+        filter: ([k]) => (
+            !(k.startsWith('_') || isHide(k, null, { asMeta: true }))
         ),
     });
 
