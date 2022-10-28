@@ -283,7 +283,7 @@ export default defineComponent({
                         this.setStatus(`download parent file: ${filename} (${commit.sha.slice(0, 7)})...`);
                         res[filename].parent = await this.fetchParentByName(filepath, commit.sha);
                     }
-                    console.log(filename);
+
                     this.setStatus(null);
                 }
             };

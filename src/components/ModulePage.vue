@@ -16,11 +16,12 @@ const { MaxModuleLevel } = globals;
 
 const NEBULA_BUILD = !!process.env.VUE_APP_NEBULA_BUILD;
 const TID_ART_BY_SLOT = {
-    Trade: 'TID_TRADEITEM_ARTIFACT_UTILITY',
-    Mining: 'TID_TRADEITEM_ARTIFACT_UTILITY',
-    Shield: 'TID_TRADEITEM_ARTIFACT_COMBAT',
-    Weapon: 'TID_TRADEITEM_ARTIFACT_COMBAT',
-    Support: 'TID_TRADEITEM_ARTIFACT_SUPPORT',
+    Trade: 'TID_ARTIFACT_TYPE_0',
+    Mining: 'TID_ARTIFACT_TYPE_1',
+    Shield: 'TID_ARTIFACT_TYPE_2',
+    Weapon: 'TID_ARTIFACT_TYPE_3',
+    Support: 'TID_ARTIFACT_TYPE_4',
+    Drone: 'TID_ARTIFACT_TYPE_5',
 };
 
 const sortByAwardLevel = objectArrayify(modulesData, {

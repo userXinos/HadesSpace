@@ -11,7 +11,7 @@ export default [
         children: [
             {
                 name: 'Trade',
-                text: { locKey: 'TYPE_MOD_TRADE' },
+                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_TRADE' : 'TYPE_MOD_TRADE' },
                 path: '/trade',
                 component: () => import(/* webpackChunkName: "Trade" */ '../pages/Trade.vue'),
                 icon: {
@@ -21,7 +21,7 @@ export default [
             },
             {
                 name: 'Mining',
-                text: { locKey: 'TYPE_MOD_MINING' },
+                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_MINING' : 'TYPE_MOD_MINING' },
                 path: '/mining',
                 component: () => import(/* webpackChunkName: "Mining" */ '../pages/Mining.vue'),
                 icon: {
@@ -31,7 +31,7 @@ export default [
             },
             {
                 name: 'Weapon',
-                text: { locKey: 'TYPE_MOD_WEAPON' },
+                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS' : 'TYPE_MOD_WEAPON' },
                 path: '/weapon',
                 component: () => import(/* webpackChunkName: "Weapon" */ '../pages/Weapon.vue'),
                 icon: {
@@ -41,24 +41,34 @@ export default [
             },
             {
                 name: 'Shield',
-                text: { locKey: 'TYPE_MOD_SHIELD' },
+                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS' : 'TYPE_MOD_SHIELD' },
                 path: '/shield',
                 component: () => import(/* webpackChunkName: "Shield" */ '../pages/Shield.vue'),
                 icon: {
-                    name: 'Mod_PassiveShield_Icon',
+                    name: 'Mod_Shields_Icon',
                     dir: 'game/Modules',
                 },
             },
             {
                 name: 'Support',
-                text: { locKey: 'TYPE_MOD_SUPPORT' },
+                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT' : 'TYPE_MOD_SUPPORT' },
                 path: '/support',
                 component: () => import(/* webpackChunkName: "Support" */ '../pages/Support.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_DeltaDrone_Icon' : 'Mod_Destiny_Icon',
+                    name: isNebulaBuild ? 'Mod_Destiny_Icon' : 'Mod_Destiny_Icon',
                     dir: 'game/Modules',
                 },
             },
+            isNebulaBuild ? ({
+                name: 'Drone',
+                text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE' },
+                path: '/drone',
+                component: () => import(/* webpackChunkName: "Drone" */ '../pages/Drone.vue'),
+                icon: {
+                    name: 'Mod_DeltaDrone_Icon',
+                    dir: 'game/Modules',
+                },
+            }) : undefined,
         ],
     },
     {

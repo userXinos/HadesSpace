@@ -1,6 +1,6 @@
 <template>
   <ModulePage
-    type="Support"
+    type="Drone"
     portrait="portrait_AlphaDrone"
     :post-filter="postFilter"
   />
@@ -9,16 +9,12 @@
 <script>
 import ModulePage from '@/components/ModulePage.vue';
 import modules from '@Data/modules.js';
-import stars from '@Data/stars.js';
-
-const NEBULA_BUILD = !!process.env.VUE_APP_NEBULA_BUILD;
 
 export default {
     components: { ModulePage },
     methods: {
         postFilter(data) {
             const Salvage = { ...data.Salvage };
-            const Repair = { ...data.Repair };
 
             if (Salvage.SalvageHullPercent) {
                 Salvage.SalvageHullPercent = {
@@ -27,17 +23,6 @@ export default {
                     // BS: Salvage.SalvageHullPercent[2], // тоже самое, что и в КЗ
                 };
                 data.Salvage = Salvage;
-            }
-
-            if (Repair.RepairHullPointsPerSecond) {
-                Repair.RepairHullPointsPerSecond = Repair.RepairHullPointsPerSecond
-                    .map((e) => e * Repair.EffectDurationx10 / 10);
-                Repair.RepairHullPointsPerSecond_BLS = Repair.RepairHullPointsPerSecond_BLS
-                    .map((e) => e * Repair.EffectDurationx10BS / 10);
-                Repair.RepairHullPointsPerSecond_WS = Repair.RepairHullPointsPerSecond_WS
-                    .map((e) => e * Repair.EffectDurationx10WS / 10 / stars.WhiteStar.TimeSlowdownFactor);
-
-                data.Repair = Repair;
             }
 
             for (const [k, module] of Object.entries(data)) {
