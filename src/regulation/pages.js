@@ -69,6 +69,14 @@ export default [
                     dir: 'game/Modules',
                 },
             }) : undefined,
+            isNebulaBuild ? ({
+                text: { locKey: 'TID_CORP_FLAGSHIP' },
+                path: '/ships#FlagshipModules',
+                icon: {
+                    name: 'Mod_Cataclysm_Icon',
+                    dir: 'game/Modules',
+                },
+            }) : undefined,
         ],
     },
     {
