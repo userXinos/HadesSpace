@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: '7deac2d0f73481739d61b0157c0840c0d3b8f904',
+        title: 'Update № 8',
+        note: '[October 27]: Artifact redesign, Module and early RS level tweaks',
+    },
+    {
         hash: '801f4596aed37a0d0355656bf6cfff4407891de6',
         title: 'Update № 7',
         note: '[October 14]: Mining Modules in Red Stars',
