@@ -15,7 +15,7 @@ export default [
                 path: '/trade',
                 component: () => import(/* webpackChunkName: "Trade" */ '../pages/Trade.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_CargoRocket_Icon' : 'Mod_TransportAutopilot_Icon',
+                    name: isNebulaBuild ? 'Mod_Category_Trade' : 'Mod_TransportAutopilot_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -25,7 +25,7 @@ export default [
                 path: '/mining',
                 component: () => import(/* webpackChunkName: "Mining" */ '../pages/Mining.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_Enrich_Icon' : 'Mod_MiningBoost_Icon',
+                    name: isNebulaBuild ? 'Mod_Category_Mining' : 'Mod_MiningBoost_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -35,7 +35,7 @@ export default [
                 path: '/weapon',
                 component: () => import(/* webpackChunkName: "Weapon" */ '../pages/Weapon.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_ChainRay_Icon' : 'Mod_Barrage_Icon',
+                    name: isNebulaBuild ? 'Mod_Category_Weapon' : 'Mod_Barrage_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -45,7 +45,7 @@ export default [
                 path: '/shield',
                 component: () => import(/* webpackChunkName: "Shield" */ '../pages/Shield.vue'),
                 icon: {
-                    name: 'Mod_Shields_Icon',
+                    name: isNebulaBuild ? 'Mod_Category_Shield' : 'Mod_Shields_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -55,7 +55,7 @@ export default [
                 path: '/support',
                 component: () => import(/* webpackChunkName: "Support" */ '../pages/Support.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_Destiny_Icon' : 'Mod_Destiny_Icon',
+                    name: isNebulaBuild ? 'Mod_Category_Support' : 'Mod_Destiny_Icon',
                     dir: 'game/Modules',
                 },
             },
@@ -65,7 +65,7 @@ export default [
                 path: '/drone',
                 component: () => import(/* webpackChunkName: "Drone" */ '../pages/Drone.vue'),
                 icon: {
-                    name: 'Mod_DeltaDrone_Icon',
+                    name: 'Mod_Category_Drone',
                     dir: 'game/Modules',
                 },
             }) : undefined,
@@ -73,7 +73,7 @@ export default [
                 text: { locKey: 'TID_CORP_FLAGSHIP' },
                 path: '/ships#FlagshipModules',
                 icon: {
-                    name: 'Mod_Cataclysm_Icon',
+                    name: 'Mod_Category_Support',
                     dir: 'game/Modules',
                 },
             }) : undefined,
