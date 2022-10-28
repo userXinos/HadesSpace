@@ -16,7 +16,7 @@
                 class="title"
               >
                 <div v-if="name != 'data'">
-                  {{ format.key(name || item.TID) }}
+                  {{ format.key(name || item.TID) }}  ({{ item.Name }})
                 </div>
               </div>
 

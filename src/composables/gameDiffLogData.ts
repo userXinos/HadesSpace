@@ -1,4 +1,3 @@
-
 export type ObjectKString = { [k: string]: unknown }
 
 export default function gameDiffLogData() {
@@ -18,10 +17,7 @@ export default function gameDiffLogData() {
             const [res, topLevel] = compareObject(parent as ObjectKString, obj as ObjectKString);
 
             if (res || topLevel) {
-                return {
-                    ...res,
-                    ...topLevel,
-                };
+                return combineObjects(res || {}, topLevel || {});
             }
         }
         return null;
@@ -46,6 +42,8 @@ export default function gameDiffLogData() {
 
                                 if (child) {
                                     cell.data = child;
+                                } else {
+                                    delete stats[key];
                                 }
                                 if (topLvl) {
                                     topLevel = {
@@ -60,18 +58,28 @@ export default function gameDiffLogData() {
                             continue;
                         }
                         if (Array.isArray(parentElem)) {
-                            topLevel[key] = [...parentElem];
-                            topLevel[`__>>${key}`] = Array.from({ length: parentElem.length }, () => '>>');
+                            const parent: unknown[] = topLevel[key] = [...parentElem];
+                            const separator: string[] = topLevel[`__>>${key}`] = Array.from({ length: parentElem.length }, () => '>>');
 
                             if (Array.isArray(objElem)) {
                                 if (!isEqualArrays(parentElem, objElem) && !isObject(objElem[0])) {
-                                    topLevel[`_${key}`] = [...objElem];
+                                    const target: unknown[] = topLevel[`_${key}`] = [...objElem];
 
                                     if (objElem.length > parentElem.length) {
                                         const length = objElem.length - parentElem.length;
 
-                                        (topLevel[key] as unknown[]).push(...Array.from({ length }, () => ''));
-                                        (topLevel[`__>>${key}`] as unknown[]).push(...Array.from({ length }, () => '>>'));
+                                        parent.push(...Array.from({ length }, () => null));
+                                        separator.push(...Array.from({ length }, () => '>>'));
+                                    }
+
+                                    for (const i in separator) {
+                                        if (
+                                            (Array.isArray(parent[i]) && Array.isArray(target[i]) && isEqualArrays(parent[i] as unknown[], target[i] as unknown[])) ||
+                                            (parent[i] == target[i])
+                                        ) {
+                                            parent[i] = null;
+                                            target[i] = null;
+                                        }
                                     }
                                 } else {
                                     delete topLevel[key];
@@ -89,21 +97,38 @@ export default function gameDiffLogData() {
                             cell.data = [parentElem, objElem];
                         }
                     } else {
-                        cell.status = 'deleted';
-                        cell.data = parent[key];
+                        if (Array.isArray(parent[key])) {
+                            const value = parent[key] as unknown[];
+
+                            topLevel[key] = [...value];
+                            topLevel[`__>>${key}`] = Array.from({ length: value.length }, () => '>>');
+                            topLevel[`_${key}`] = Array.from({ length: value.length }, () => null);
+                        } else {
+                            cell.status = 'deleted';
+                            cell.data = parent[key];
+                        }
                     }
 
 
-                    if (!cell.data) {
+                    if (cell.status == 'unknown') {
                         delete stats[key];
                     }
                 }
             }
+
             if (!isEqualArrays(Object.keys(parent), Object.keys(obj))) {
                 Object.keys(obj)
                     .filter((k) => !(k in parent))
                     .forEach((k) => {
-                        stats[k] = new Cell(obj[k], 'added');
+                        const value = obj[k];
+
+                        if (Array.isArray(value)) {
+                            topLevel[k] = Array.from({ length: value.length }, () => null);
+                            topLevel[`__>>${k}`] = Array.from({ length: value.length }, () => '>>');
+                            topLevel[`_${k}`] = [...value];
+                        } else {
+                            stats[k] = new Cell(obj[k], 'added');
+                        }
                     });
             }
 
@@ -174,6 +199,24 @@ export default function gameDiffLogData() {
 
         const workers = new Array(concurrency).fill(tasks).map(runTasks);
 
-        await Promise.allSettled(workers);
+        await Promise.all(workers);
+    }
+
+    function combineObjects(target: object, ...sources: object[]): object {
+        if (!sources.length) return target;
+        const source = sources.shift();
+
+        if (isObject(target) && isObject(source)) {
+            for (const key in source) {
+                if (isObject((source as ObjectKString)[key])) {
+                    if (!(target as ObjectKString)[key]) Object.assign(target, { [key]: {} });
+                    combineObjects((target as { [k: string]: object })[key], (source as { [k: string]: object })[key]);
+                } else {
+                    Object.assign(target, { [key]: (source as ObjectKString)[key] });
+                }
+            }
+        }
+
+        return combineObjects(target, ...sources);
     }
 }

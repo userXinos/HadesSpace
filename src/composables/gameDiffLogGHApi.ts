@@ -35,26 +35,27 @@ export default function gameDiffLogGHApi() {
     }
 
     function fetchUrl<T>(url: string, opts = { noCache: false }): Promise<T> {
+        const assJson = (r: Response|undefined) => (r == undefined) ? undefined : r.json();
+        const getResponse = () => fetch(url, { method: 'GET', headers });
+
+        if (opts.noCache) {
+            return getResponse().then(assJson);
+        }
+
         return caches.open(CACHE_NAME)
             .then(async (cache) => {
-                const getJson = () => cache.match(url).then(async (r) => (r == undefined) ? undefined : r.json());
+                const getJson = () => cache.match(url).then(assJson);
                 const json = await getJson();
 
-                if (!json || opts.noCache) {
-                    const response = await fetch(url, { method: 'GET', headers });
+                if (!json) {
+                    const response = await getResponse();
 
                     if (!response.ok) {
                         throw new Error(response.statusText);
                     }
 
                     await cache.put(url, response);
-                    const json = await getJson();
-
-                    if (opts.noCache) {
-                        await cache.delete(url);
-                    }
-
-                    return json;
+                    return await getJson();
                 }
 
                 return json;

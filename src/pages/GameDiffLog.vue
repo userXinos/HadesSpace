@@ -10,7 +10,7 @@
             <div class="icon" />
           </div>
           <div class="body">
-            <p>This is not an official Hades' Star Nebula game changelog compiled from game static files, official data is published on the game's <a
+            <p>This is not an official Hades' Star Nebula game changelog. It's compiled from game static files, official data is published on the game's <a
               href="https://discord.gg/hadesstar"
               target="_blank"
             >discord server</a> and <a
@@ -61,7 +61,6 @@
 
           </div>
           <div
-            v-if="patchCommits[index]?.status == 'ready'"
             class="content"
           >
             <a
@@ -70,6 +69,7 @@
             >Look at github</a>
 
             <transition-group
+              v-if="patchCommits[index]?.status == 'ready'"
               tag="ol"
               class="list"
             >
@@ -89,7 +89,7 @@
                   />
                   <div>
                     <div class="file">File: {{ filename }}</div>
-                    <div class="Status">status: {{ content.status }} {{ content.canRender ? '' : '(Not rendered)' }}</div>
+                    <div class="Status">status: {{ content.status }} {{ content.canRender ? '' : '[Not rendered]' }}</div>
                   </div>
                 </div>
 
@@ -98,8 +98,7 @@
                   :key="vkey"
                 >
                   <v-data
-                    v-show="content.opened"
-                    v-if="content.status == 'modified' && content.canRender"
+                    v-if="content.status == 'modified' && content.canRender && content.opened"
                     :data="d"
                     :sort="false"
                     :icon-dir="iconDirByFile[filename]"
@@ -274,21 +273,30 @@ export default defineComponent({
                 const canRender = CAN_RENDER.includes(filename);
 
                 if (filepath.startsWith('parser/dist/')) {
-                    this.setStatus(`download file: ${filename} (${commit.sha.slice(0, 7)})...`);
-                    const file = (status == 'modified' && canRender) ? await this.fetchFile(url) : null;
+                    try {
+                        this.setStatus(`download file: ${filename} (${commit.sha.slice(0, 7)})...`);
+                        const file = (status == 'modified' && canRender) ? await this.fetchFile(url) : null;
 
-                    res[filename] = { status, file: file || {}, canRender };
+                        res[filename] = { status, file: file || {}, canRender };
 
-                    if (file) {
-                        this.setStatus(`download parent file: ${filename} (${commit.sha.slice(0, 7)})...`);
-                        res[filename].parent = await this.fetchParentByName(filepath, commit.sha);
+                        if (file) {
+                            this.setStatus(`download parent file: ${filename} (${commit.sha.slice(0, 7)})...`);
+                            res[filename].parent = await this.fetchParentByName(filepath, commit.sha);
+                        }
+                    } catch (e) {
+                        res[filename] = {
+                            status: `download error (${e})`,
+                            file: {},
+                            canRender: false,
+                        };
+                        console.error(e);
                     }
 
                     this.setStatus(null);
                 }
             };
 
-            await this.limit(commit.files.map((e) => () => loadFile(e)), 4);
+            await this.limit(commit.files.map((e) => () => loadFile(e)), 10);
 
             return res;
         },
@@ -297,6 +305,8 @@ export default defineComponent({
             const res: PatchCommitExpand['files'] = {};
 
             const diffFile = async ([filename, { file, parent }]: [string, { file: object, parent?: object }]) => {
+                res[filename] = { ...files[filename] };
+
                 if (!parent) {
                     return;
                 }
@@ -307,13 +317,10 @@ export default defineComponent({
                 this.setStatus(`create diff: ${filename}...`);
                 const diff = this.createDiff(wrapParent, wrapRawFile) || {};
 
-                res[filename] = {
-                    ...files[filename],
-                    file: this.addMetadata(diff as ObjectKString, [wrapParent, wrapRawFile], filename),
-                };
+                res[filename].file = this.addMetadata(diff as ObjectKString, [wrapParent, wrapRawFile], filename);
             };
 
-            await this.limit(Object.entries(files).map((e) => () => diffFile(e)), 8);
+            await this.limit(Object.entries(files).map((e) => () => diffFile(e)), 20);
 
             return res;
         },

@@ -7,7 +7,7 @@ export default function(key, value, dataName) {
         .replace(/^_/, '')
         .replace(/_?(RS|WS|BS|BASE|YS|NonYS|PVP|PVE)$/, '');
 
-    if (value === undefined) {
+    if (value === undefined || value === null) {
         return;
     }
     for (const [keys, func, dataNames = []] of rules) {

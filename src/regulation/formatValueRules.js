@@ -242,7 +242,7 @@ export default [
     ],
     [
         ['CerbGroup'],
-        (v) => (v === null) ? '' : Object.entries(v)
+        (v) => Object.entries(v)
             .filter(([k]) => k !== 'Name') //                          NumCERBER_NAMEs
             .map(([k, v]) => `${t(locKeys[k.replace(/^Num(.+?)s?$/, '$1')] || k)}: ${v}`)
             .join(', '),
