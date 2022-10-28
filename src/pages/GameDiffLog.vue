@@ -375,8 +375,6 @@ $mv: 1000px;
     .content {
         .category {
             font-size: 100%;
-            border-left: 2px solid $border-color;
-            margin-left: 1%;
 
             .head {
                 margin-left: 4%;

@@ -196,6 +196,7 @@ $mw: 900px;
             display: flex;
 
             .text-side {
+                width: 98%;
                 flex: 9;
                 padding: 2%;
 

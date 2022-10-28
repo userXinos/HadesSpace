@@ -229,6 +229,7 @@ $mw: 900px;
             .text-side {
                 flex: 9;
                 padding: 2%;
+                width: 98%;
 
                 .title {
                     margin-bottom: 1%;
