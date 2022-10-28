@@ -8,6 +8,7 @@ import locKeys from '@Regulation/locKeys.mjs';
 import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';
 import globals from '@Data/globals.js';
 import stars from '@Data/stars.js';
+import planets from '@Data/planets.js';
 
 const { t } = i18n.global;
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
@@ -60,6 +61,9 @@ export default [
             'MassMiningRatePct',
             'HydroDeliveryBonus',
             'RelayBonusPct',
+            'RushRSSpeedIncr',
+            'RushYSHydroDc',
+            'RushRSHydroDc',
         ],
         (v) => `${v}%`,
     ],
@@ -112,7 +116,7 @@ export default [
     ],
     [
         ['BlueStar_HydroPctPerPos'],
-        (v) => `${v / (isNebulaBuild ? 100 : 10)}%`,
+        (v) => `${v / 10}%`,
     ],
     [
         ['ImpulseSpeedup'],
@@ -127,15 +131,7 @@ export default [
         (v) => `${numberFormat(v)} ${t('HYD')}.`,
     ],
     [
-        ['SpeedIncreasePerShipment'],
-        (v) => t('TID_MODULE_RUSH_SPEED_INCR_VAL_PER_SHIPMENT', [v]),
-    ],
-    [
-        ['SpeedIncreasePerArtifact'],
-        (v) => t('TID_MODULE_RUSH_SPEED_INCR_VAL_PER_SHIPMENT_RS', [v]),
-    ],
-    [
-        ['SpeedIncreasePerRelic'],
+        ['RushWSSpeedIncrPR'],
         (v) => t('TID_MODULE_RUSH_SPEED_INCR_VAL_PER_SHIPMENT_WS', [v]),
     ],
     [
@@ -268,14 +264,11 @@ export default [
     [
         ['PlanetTypes'],
         (v) => {
-            return (Array.isArray(v) ? v : [v])
-                .filter((e) => e !== null)
-                .map((e) => {
-                    const [name, lvl] = e.split('_');
-                    if (!lvl) return name;
-                    return `${t(locKeys[name])} ${t('LVL')}. ${lvl.slice(-1)}`;
-                })
-                .join(', ');
+            const getName = (k) => (k in planets) ? t(planets[k].TID) : k;
+            if (Array.isArray(v)) {
+                return v.map((e) => getName(e)).join(', ');
+            }
+            return getName(v);
         },
     ],
     [

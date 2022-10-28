@@ -2,6 +2,7 @@
 $types:(
         "credit"         : #fff19c url(../img/icons/credit.svg),
         "fuel"           : #ceb3ff url(../img/icons/fuel.svg),
+        "сrystal"        : #9fffe4 url(../img/icons/сrystal.svg),
         "time"           : #88dac4 url(../img/icons/clock.svg),
         "flt"            : #9fe5ff url(../img/icons/flt_friendly.svg),
         "bls_fragments"  : #00c4ff url(../img/icons/blueStar_Fragments.svg),
@@ -23,6 +24,7 @@ $by-type: (
                 "TotalShipmentCRPerDay"
                 "SalvageCRReward"
                 "CroidAmt"
+                "ColonizeCost"
         ),
         "fuel": (
                 "FuelUseIncrease"
@@ -41,6 +43,10 @@ $by-type: (
                 "HydrogenSearchCost"
                 "HydrogenPerDay"
         ),
+        "сrystal": (
+                "PriceInCrystals"
+                "PCReward"
+        ),
         "time": (
                 "UnlockTime"
                 "TimeToUpgrade"
@@ -56,6 +62,7 @@ $by-type: (
         "bls_fragments": (
                 "TeleportShipmentActivationFragments"
                 "FragmentCapacity"
+                "BlueStar_Fragments"
         ),
         "influence": (
                 "Influence"

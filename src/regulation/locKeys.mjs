@@ -5,6 +5,11 @@ export const gameCharsLocKeys = {
     BarrageMaxAdditionalEnemies: 'BARRAGE_MAX_ADDITIONAL_ENEMIES',
 
     // game
+    BlueStar_Fragments: 'TID_BS_FRAGMENTS_REWARD_TITLE',
+    RushYSHydroDc: 'TID_MODULE_RUSH_HYDRO_REDUCT',
+    // RushRSHydroDc: 'TID_MODULE_RUSH_HYDRO_REDUCT', // ужно добавлять префикс
+    RushRSSpeedIncr: 'TID_MODULE_RUSH_SPEED_INCR',
+    RushWSSpeedIncrPR: 'TID_MODULE_RUSH_SPEED_INCR',
     RSLESecPer500Hydro: 'TID_MODULE_RED_STAR_EXTENSION_STAT',
     DroneHydro: 'TID_MODULE_DESCR_ACTIVATION_COST',
     ActivationHydro: 'TID_MODULE_DESCR_ACTIVATION_COST',
@@ -13,7 +18,7 @@ export const gameCharsLocKeys = {
     OnBoardHydroMax: 'TID_MODULE_ONBOARD_HYDRO_USE',
     RelayBonusPct: 'TID_RELAY_BONUS_PCT',
     SHHydroPerDay: 'TID_HARVESTER_HYDRO_PER_DAY_INFO',
-    ImpulseDPS: 'TID_MODULE_DESCR_DPS_AREA',
+    ImpulseDPS: 'TID_MODULE_IMPULSE_DAMAGE',
     MassMiningExtraAsteroids: 'TID_MODULE_MASS_MINING_EXTRA_ASTEROIDS',
     MassMiningRatePct: 'TID_MODULE_MASS_MINING_REMOTE_RATE',
     WSDispatchAOERange: 'TID_DESTROYER_AREADAMAGERANGE',
@@ -354,8 +359,8 @@ export default {
     BlueStar_MaxHydroPerDayPct: 'BLS_MAX_HYDRO_PER_DAY_PCT',
     BlueStar_RankedMatchesPerDay: 'BLS_RANKED_MATCHES_PER_DAY',
     BlueStar_SPFactor: 'BLS_SP_FACTOR',
-    BlueStar_HydroPctPerPos: 'BLS_HYDRO_PCT_PER_POS',
-    BlueStar_Fragments: 'BLS_FRAGMENTS',
+    BlueStar_HydroPctPerPos: 'BLS_HYDRO_REWARD',
+    BlueStar_CreditPctPerPos: 'BLS_CREDIT_REWARD',
     ConceptImage: 'PORTRAIT',
     AIUpdateIntervalSeconds: 'AI_UPDATE_INTERVAL',
     ReqBank: 'REQ_BANK',
