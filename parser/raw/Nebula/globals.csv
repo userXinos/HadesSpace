@@ -174,7 +174,6 @@ WarpLaneMaxSearchDepth,4
 TimeMachineAffectFxSpeed,1
 BondMinPullVector,100!100
 GoalRushCostMultiplier,100
-FadeLoadingShipments,1
 ShipsHealOnAnyObject,1
 BackgroundReloadSec,30
 AutoWarpLaneMinActivationTimeMin,2
@@ -203,7 +202,6 @@ SeparationMaxDistance,12
 SeparationModifier,200
 MinMultiSelectDistance,1000
 UseSeparationInYS,0
-SafeInterceptorInPublicRS,1
 NoCerbBondTeleportPRS,1
 StoreArtifactBonusYield,20
 BomberLaunchOffsetV,50!100
@@ -259,7 +257,6 @@ AllianceInactivityMailDays,7
 SecondResearchSlotPrice,100000
 ClonedAsteroidDistances,250!350
 MirrorShieldTickPeriod,40
-DRSArtifactBonus,60
 MaxBlockedPlayers, 20
 PermissionExpireDays,7
 DronesIgnoreBarrier,1
@@ -271,3 +268,5 @@ RelayCapCostPct,80
 HydroScannerCooldown,86400
 StarHarvesterDuration,10
 YSMaxGenesis,1
+TutorialArtifactAwardedModules,0!14!6
+DRSArtifactBonus,60

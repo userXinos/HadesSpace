@@ -59,7 +59,7 @@ export default {
     RedStarScanner: {
         Name: "RedStarScanner",
         AllowBuildOnYS: 1,
-        MoveHydrogenCostPerSector: 100,
+        MoveHydrogenCostPerSector: 25,
         TID: "TID_BUILDING_REDSTAR_SCANNER",
         TID_Description: "TID_BUILDING_REDSTAR_SCANNER_DESCR",
         TID_INFO_SCREEN: "TID_BUILDING_REDSTAR_SCANNER_INFO",
@@ -83,7 +83,7 @@ export default {
     ResearchStation: {
         Name: "ResearchStation",
         AllowBuildOnYS: 1,
-        MoveHydrogenCostPerSector: 50,
+        MoveHydrogenCostPerSector: 25,
         TID: "TID_BUILDING_RESEARCH",
         TID_Description: "TID_BUILDING_RESEARCH_DESCR",
         TID_INFO_SCREEN: "TID_BUILDING_RESEARCH_INFO",

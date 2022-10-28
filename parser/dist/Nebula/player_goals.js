@@ -1058,7 +1058,7 @@ export default {
         GoalType: "UpgradeAllPlanets",
         AppearsOnceOnly: 1,
         MaxRSLevel: 4,
-        GoalTarget: 6,
+        GoalTarget: 5,
         IntParam: 3,
         XPReward: 40,
         CRReward: 10000,
