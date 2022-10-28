@@ -4,7 +4,7 @@
     :content-args="{
       data,
       iconDir: 'game/Stars',
-      tableOpts: { lvlColKey: '№' }
+      tableOpts: { lvlColKey: 'Position' }
     }"
     :portrait="{src: img, alt: 'BlueStar'}"
   />
