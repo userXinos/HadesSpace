@@ -1,9 +1,9 @@
 import { createApp } from 'vue';
 
-import App from './App.vue';
 import router from '@Scripts/Vue/router';
 import i18n from '@Scripts/Vue/i18n';
 import store from '@Store/index';
+import App from './App.vue';
 
 import VueProgressBar from '@aacassandra/vue3-progressbar';
 import VueGtag from 'vue-gtag';

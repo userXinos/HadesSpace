@@ -172,6 +172,13 @@ $border-color: #aee3fc;
             &-small {
                 max-width: 450px;
             }
+            &-large {
+                min-height: 80%;
+
+                .head {
+                    padding-bottom: 0;
+                }
+            }
         }
 
         .head {

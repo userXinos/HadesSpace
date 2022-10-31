@@ -15,4 +15,12 @@ module.exports = {
             '@Handlers': path('src/js/Handlers'),
         },
     },
+    module: {
+        rules: [
+            {
+                test: /\.md$/i,
+                loader: 'raw-loader',
+            },
+        ],
+    },
 };

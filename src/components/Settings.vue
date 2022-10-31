@@ -70,25 +70,39 @@
 
         </template>
 
+        <div
+          class="button"
+          @click="showChangelog = true"
+        >{{ $t('OPEN_CHANGELOG') }}</div>
+
       </template>
 
     </Modal>
+
+    <changelog
+      :is-open="showChangelog"
+      :title="''"
+      @close="showChangelog = false"
+    />
+
   </div>
 
 </template>
 
 <script>
 import Modal from '@/components/Modal.vue';
+import Changelog from '@/components/Changelog';
 import types from '@Store/modules/userSettings/types';
 
 import languages from '@Data/languages.js';
 
 export default {
     name: 'Settings',
-    components: { Modal },
+    components: { Changelog, Modal },
     data() {
         return {
             isOpenModal: false,
+            showChangelog: false,
 
             languages,
             languageCode: this.$store.state.userSettings.language,

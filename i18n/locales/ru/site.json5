@@ -30,5 +30,8 @@
   LIST: 'Список',
   FROM_TEXT_FORMAT: 'Из текстового формата (необязательно)',
   REMOVE_CONFIG: 'Удалить "{0}" конфигурацию ?',
-  PROBABLE_TYPE_PLANET: 'Вероятный тип планеты'
+  PROBABLE_TYPE_PLANET: 'Вероятный тип планеты',
+  UPDATED: 'Обновлено',
+  CURRENT_VERSION: 'Текущая версия',
+  OPEN_CHANGELOG: 'Открыть журнал изменений'
 }

@@ -1,6 +1,7 @@
 {
   "name": "hades-space",
   "author": "Xinos",
+  "version": "3.2.0",
   "scripts": {
     "build": "npm run parser && npm run i18n:full && vue-cli-service build",
     "build-nebula": "export VUE_APP_NEBULA_BUILD=true && npm run i18n-nebula:full && vue-cli-service build",
@@ -25,6 +26,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "jsoncrush": "^1.1.6",
     "lodash.debounce": "^4.0.8",
+    "raw-loader": "^4.0.2",
     "register-service-worker": "^1.7.2",
     "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
@@ -32,12 +34,14 @@
     "vue": "^3.2.40",
     "vue-gtag": "^2.0.1",
     "vue-i18n": "^9.2.0-beta.35",
+    "vue-markdown-render": "^2.0.0",
     "vue-router": "^4.0.12",
     "vue-template-compiler": "^2.6.12",
     "vue3-touch-events": "^4.1.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/markdown-it": "^12.2.3",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/eslint-config-typescript": "^9.1.0",

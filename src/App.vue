@@ -6,11 +6,11 @@
     <Head><title>Hades Space</title></Head>
     <vue-progress-bar />
 
+
     <div
       v-touch:swipe="swipeHandler"
     >
       <div>
-
 
         <the-header
           :is-min-mode="isMinMode"
@@ -32,6 +32,10 @@
     </div>
 
     <go-top />
+    <changelog
+      :is-open="changelogIsOpen"
+      @close="changelogOnClose"
+    />
   </div>
 </template>
 
@@ -42,19 +46,21 @@ import { Head } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
 import Sidebar from '@/components/TheSidebar.vue';
-// import PWAPrompt from '@/components/PWAPrompt.vue';
+import Changelog from '@/components/Changelog.vue';
 
 import appSidebar from '@/composables/appSidebar';
+import appChangelog from '@/composables/appChangelog';
 
 const MAX_WIDTH = 1000;
 
 export default defineComponent({
     name: 'App',
-    components: { Head, GoTop, TheHeader, Sidebar },
+    components: { Head, Changelog, GoTop, TheHeader, Sidebar },
     setup() {
         const isMinMode = ref(window.innerWidth < MAX_WIDTH);
 
         const { setShow, swipeHandler, onResize, isOpen } = appSidebar(isMinMode);
+        const { isOpen: isOpen2, init, onClose } = appChangelog();
 
         return {
             isMinMode,
@@ -62,11 +68,17 @@ export default defineComponent({
             sidebarIsOpen: isOpen,
             swipeHandler,
             onResize,
+
+            changelogIsOpen: isOpen2,
+            initChangelog: init,
+            changelogOnClose: onClose,
         };
     },
     mounted() {
-        this.$Progress.finish();
         window.addEventListener('resize', this.resize);
+        this.$Progress.finish();
+
+        this.initChangelog();
     },
     unmounted() {
         window.removeEventListener('resize', this.resize);

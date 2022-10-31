@@ -3,7 +3,6 @@ import { MutationTree } from 'vuex';
 import types from './types';
 import languages from '@Data/languages.js';
 import { setI18nLanguage } from '@Scripts/Vue/i18n';
-import Settings from '@/components/Settings.vue';
 
 const LOCAL_STORAGE_KEY = 'settings';
 const SUPPORT_LOCALES = Object.values(languages).map((l) => l.Code);
@@ -29,6 +28,11 @@ const mutations = <MutationTree<UserSettings>> {
         setSettings(LOCAL_STORAGE_KEY, state);
         return state.showKeys;
     },
+    [types.SET_LAST_CHECKED_VERSION_CHANGELOG](state, ver) {
+        state.lastVersionChangelog = ver;
+        setSettings(LOCAL_STORAGE_KEY, state);
+        return state.lastVersionChangelog;
+    },
 };
 
 
@@ -38,8 +42,9 @@ export default {
 
     state: {
         language: settings.language || ((browserLang in SUPPORT_LOCALES) ? browserLang : DEFAULT_LANG),
-        disableFilters: settings.disableFilters || false,
-        showKeys: settings.showKeys || false,
+        disableFilters: settings.disableFilters,
+        showKeys: settings.showKeys,
+        lastVersionChangelog: settings.lastVersionChangelog,
     },
     mutations: mutations,
 };
@@ -53,11 +58,12 @@ function getSettings(key: string): Settings {
         language: DEFAULT_LANG,
         disableFilters: false,
         showKeys: false,
+        lastVersionChangelog: '0.0.0',
     };
 
     if (localStorage.getItem(key)) {
         try {
-            res = JSON.parse(localStorage.getItem(key) || '{}');
+            res = { ...res, ...JSON.parse(localStorage.getItem(key) || '{}') };
         } catch (e) {
             console.error(e);
             localStorage.removeItem(key);

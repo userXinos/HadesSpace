@@ -1,6 +1,7 @@
 const configureWebpack = require('./webpack.config.js');
 
 const isDev = (process.env.NODE_ENV === 'development');
+const { version } = require('./package.json');
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 module.exports = {
@@ -13,6 +14,10 @@ module.exports = {
             if (isNebulaBuild) {
                 options.patterns[0].from = `${options.patterns[0].from}-nebula`;
             }
+            return [options];
+        });
+        config.plugin('define').tap(([options]) => {
+            options.process.env.VERSION = JSON.stringify(version);
             return [options];
         });
     },
