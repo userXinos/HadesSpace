@@ -42,6 +42,7 @@ export default [
             'HydroCloneLifetimeSec',
             'WSLostShipTimeCooldown',
             'WSDisbandCooldown',
+            'DPSRampTimes',
             // 'ActivationDelayBLS', // хз какой там кооф
         ],
         (v) => v,

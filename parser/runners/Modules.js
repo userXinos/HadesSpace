@@ -216,7 +216,7 @@ function fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS) {
 }
 function addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, ast = value.AllowedStarTypes) {
     const keysRemove = [ 'AllowedStarTypes' ];
-    const hasSeparateBLSValues = (e) => /_?BS$/.test(e);
+    const hasSeparateBLSValues = (e) => /_?(BS|BLS)$/.test(e);
 
     if (ast !== undefined) {
         CONFIG.starsOrder.forEach((star, starIndex) => {

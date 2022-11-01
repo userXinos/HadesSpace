@@ -17,7 +17,10 @@ const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 export default [
 
-    ...formatValueRulesTime.map(([keys, formatter]) => [keys, (v) => sec2str(formatter(v, globals))]),
+    ...formatValueRulesTime.map(([keys, formatter]) => [
+        keys,
+        (v) => Array.isArray(v) ? v.map((e) => sec2str(formatter(e, globals))).join(', ') : sec2str(formatter(v, globals)),
+    ]),
 
     [
         [

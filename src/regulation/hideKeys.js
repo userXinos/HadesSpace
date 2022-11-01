@@ -13,6 +13,9 @@ export default {
         'GhostSpawnSecs',
         'DestinyDisableTimes',
         'BarrageMaxAdditionalEnemies',
+        'DPSRampTimes',
+        'DPSRampTimes_BLS',
+        'DPSRampTimes_WS',
     ],
     global: [
         'SpawnedShip',

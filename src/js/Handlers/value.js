@@ -5,7 +5,7 @@ const numberFormat = new Intl.NumberFormat('ru-RU').format;
 export default function(key, value, dataName) {
     const fixedKey = key
         .replace(/^_/, '')
-        .replace(/_?(RS|WS|BS|BASE|YS|NonYS|PVP|PVE)$/, '');
+        .replace(/_?(RS|WS|BS|BLS|BASE|YS|NonYS|PVP|PVE)$/, '');
 
     if (value === undefined || value === null) {
         return;

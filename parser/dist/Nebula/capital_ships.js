@@ -261,6 +261,8 @@ export default {
                 RampDPS_WS1: 200,
                 RampDPS_WS2: 270,
                 DPSRampTimes: 20,
+                DPSRampTimesWS: 12000,
+                DPSRampTimesBS: 40,
             },
             {
                 Name: "ColossusSalvage",
@@ -439,6 +441,7 @@ export default {
                 DPSRampTimes: 15,
                 DPSRampTimes_BLS: 15,
                 MaxTargets: 2,
+                DPSRampTimesWS: 9000,
             },
             {
                 Name: "PhoenixShield",
@@ -1043,6 +1046,8 @@ export default {
                 MaxTargets: 8,
                 SpawnedShip: 26,
                 IndependentLaserRampUp: 1,
+                DPSRampTimesWS: 6000,
+                DPSRampTimesBS: 20,
             },
         ],
     },
@@ -1184,6 +1189,8 @@ export default {
                 RampDPS_WS1: 250,
                 RampDPS_WS2: 330,
                 DPSRampTimes: 45,
+                DPSRampTimesWS: 27000,
+                DPSRampTimesBS: 90,
             },
             {
                 Name: "ColossusSalvage",
@@ -1452,6 +1459,7 @@ export default {
                 DPSRampTimes: 30,
                 DPSRampTimes_BLS: 30,
                 MaxTargets: 2,
+                DPSRampTimesWS: 18000,
             },
             {
                 level: 2,
