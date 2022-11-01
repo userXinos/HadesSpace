@@ -9,12 +9,14 @@
 <script>
 import ModulePage from '@/components/ModulePage.vue';
 import modules from '@Data/modules.js';
+import stars from '@Data/stars.js';
 
 export default {
     components: { ModulePage },
     methods: {
         postFilter(data) {
             const Salvage = { ...data.Salvage };
+            const Repair = { ...data.Repair };
 
             if (Salvage.SalvageHullPercent) {
                 Salvage.SalvageHullPercent = {
@@ -42,6 +44,17 @@ export default {
                         data[k] = DroneModule;
                     }
                 }
+            }
+
+            if (Repair.RepairHullPointsPerSecond) {
+                Repair.RepairHullPointsPerSecond = Repair.RepairHullPointsPerSecond
+                    .map((e) => e * Repair.EffectDurationx10 / 10);
+                Repair.RepairHullPointsPerSecond_BLS = Repair.RepairHullPointsPerSecond_BLS
+                    .map((e) => e * Repair.EffectDurationx10BS / 10);
+                Repair.RepairHullPointsPerSecond_WS = Repair.RepairHullPointsPerSecond_WS
+                    .map((e) => e * Repair.EffectDurationx10WS / 10 / stars.WhiteStar.TimeSlowdownFactor);
+
+                data.Repair = Repair;
             }
 
             return data;
