@@ -29,7 +29,7 @@ export default {
                 data.Salvage = Salvage;
             }
 
-            if (Repair.RepairHullPointsPerSecond) {
+            if (Repair.RepairHullPointsPerSecond && NEBULA_BUILD) {
                 Repair.RepairHullPointsPerSecond = Repair.RepairHullPointsPerSecond
                     .map((e) => e * Repair.EffectDurationx10 / 10);
                 Repair.RepairHullPointsPerSecond_BLS = Repair.RepairHullPointsPerSecond_BLS
