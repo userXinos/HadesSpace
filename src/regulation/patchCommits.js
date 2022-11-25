@@ -2,6 +2,16 @@
 
 export default [
     {
+        hash: '5635af5658ed46b45a3ecf23f70bd46be1ddd899',
+        title: 'Patch № 9.1',
+        note: '[November 24]: fix for red stars becoming corp pvp, blue stars pve, white stars free for all pvp',
+    },
+    {
+        hash: 'c23b1caae1b75b42bbe60f505324406cd137e36e',
+        title: 'Update № 9',
+        note: '[November 24]: Module, economy and red star tweaks up to RS5',
+    },
+    {
         hash: '7deac2d0f73481739d61b0157c0840c0d3b8f904',
         title: 'Update № 8',
         note: '[October 27]: Artifact redesign, Module and early RS level tweaks',

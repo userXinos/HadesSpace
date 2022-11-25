@@ -1,7 +1,7 @@
 <template>
   <ModulePage
     type="Support"
-    portrait="portrait_AlphaDrone"
+    portrait="portrait_TurretLaser"
     :post-filter="postFilter"
   />
 </template>
