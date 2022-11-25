@@ -71,7 +71,7 @@ export default {
         return {
             data: this.postFilter(this.addArtifactName(getBySlotType(this.type))),
             img: require(`@Img/game/portraits/${this.portrait}.png`),
-            locKey: `TYPE_MOD_${this.type.toUpperCase()}`,
+            locKey: `TYPE_MOD_${(NEBULA_BUILD && this.type == 'Support') ? 'COMBAT' : this.type.toUpperCase() }`,
         };
     },
     computed: {
