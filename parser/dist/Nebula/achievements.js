@@ -13,6 +13,7 @@ export default {
         PCReward: [1, 5, 20, 50, 100],
         XPReward: [100, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQAg",
+        SortOrder: 1,
     },
     UpgradePlanet: {
         Name: "UpgradePlanet",
@@ -23,6 +24,7 @@ export default {
         PCReward: [2, 5, 20, 50, 100],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQAw",
+        SortOrder: 3,
     },
     SectorsUnlocked: {
         Name: "SectorsUnlocked",
@@ -33,6 +35,7 @@ export default {
         PCReward: [2, 10, 20, 50, 100],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQBA",
+        SortOrder: 4,
     },
     FleetSize: {
         Name: "FleetSize",
@@ -43,6 +46,7 @@ export default {
         PCReward: [1, 3, 5, 10, 20],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQBQ",
+        SortOrder: 5,
     },
     CommonHydro: {
         Name: "CommonHydro",
@@ -53,6 +57,7 @@ export default {
         PCReward: [1, 3, 5, 10, 20],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQBg",
+        SortOrder: 6,
     },
     NumberArtifacts: {
         Name: "NumberArtifacts",
@@ -63,6 +68,7 @@ export default {
         PCReward: [1, 5, 10, 25, 50],
         XPReward: [50, 200, 500, 1000, 5000],
         GoogleID: "CgkItJiH6OEGEAIQBw",
+        SortOrder: 7,
     },
     PlanetsColonized: {
         Name: "PlanetsColonized",
@@ -73,6 +79,7 @@ export default {
         PCReward: [5, 20, 50, 100, 200],
         XPReward: [150, 300, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQCA",
+        SortOrder: 8,
     },
     Tax: {
         Name: "Tax",
@@ -84,6 +91,7 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQCQ",
         Retired: 1,
+        SortOrder: 9,
     },
     Relationship: {
         Name: "Relationship",
@@ -94,6 +102,7 @@ export default {
         PCReward: [5, 30, 100, 500, 1000],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQCg",
+        SortOrder: 10,
     },
     CerberusFleetsDestroyed: {
         Name: "CerberusFleetsDestroyed",
@@ -104,6 +113,7 @@ export default {
         PCReward: [1, 5, 20, 50, 100],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQCw",
+        SortOrder: 11,
     },
     CRIncome: {
         Name: "CRIncome",
@@ -114,6 +124,7 @@ export default {
         PCReward: [5, 15, 50, 200, 500],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQDA",
+        SortOrder: 12,
     },
     HydroIncome: {
         Name: "HydroIncome",
@@ -124,6 +135,7 @@ export default {
         PCReward: [5, 15, 50, 200, 500],
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQDQ",
+        SortOrder: 13,
     },
     WSMatches: {
         Name: "WSMatches",
@@ -134,6 +146,7 @@ export default {
         PCReward: [20, 50, 100, 250, 1000],
         XPReward: [100, 500, 1000, 5000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQEA",
+        SortOrder: 14,
     },
     WSHydro: {
         Name: "WSHydro",
@@ -144,6 +157,7 @@ export default {
         PCReward: [20, 50, 100, 250, 1000],
         XPReward: [100, 500, 1000, 5000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQEQ",
+        SortOrder: 15,
     },
     WSRelics: {
         Name: "WSRelics",
@@ -154,6 +168,7 @@ export default {
         PCReward: [20, 50, 100, 250, 1000],
         XPReward: [100, 500, 1000, 5000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQEg",
+        SortOrder: 16,
     },
     WSRewards: {
         Name: "WSRewards",
@@ -164,6 +179,7 @@ export default {
         PCReward: [20, 50, 100, 250, 1000],
         XPReward: [100, 500, 1000, 5000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQEw",
+        SortOrder: 17,
     },
     BSWins: {
         Name: "BSWins",
@@ -174,6 +190,7 @@ export default {
         PCReward: [50, 100, 200, 500, 1000],
         XPReward: [500, 2000, 5000, 10000, 20000],
         GoogleID: "CgkItJiH6OEGEAIQFg",
+        SortOrder: 18,
     },
     DRSArtifacts: {
         Name: "DRSArtifacts",
@@ -183,5 +200,16 @@ export default {
         UnlockAmount: [10, 100, 1000, 15000, 60000],
         PCReward: [5, 20, 50, 250, 1000],
         XPReward: [500, 2000, 5000, 10000, 20000],
+        SortOrder: 19,
+    },
+    RSLevel: {
+        Name: "RSLevel",
+        TID: "TID_ACHIEVEMENT_RS_LEVEL",
+        TID_Description: "TID_ACHIEVEMENT_RS_LEVEL_DESCR",
+        UnlockType: "RSLevel",
+        UnlockAmount: [2, 3, 4, 6, 9],
+        PCReward: [5, 10, 20, 30, 50],
+        XPReward: [100, 200, 500, 1000, 5000],
+        SortOrder: 2,
     },
 };

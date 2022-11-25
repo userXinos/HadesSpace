@@ -119,7 +119,6 @@ ConnectionTimeouts,3000!3000!3000
 RelicModel,artifacts/Relic01
 RelicSize,4
 RelicTID,TID_RELIC
-MineralTID,TID_MINERAL_ITEM
 RelicLoadTicks,720
 CorpMaxMinInfluence,20000
 CorpMinInfuenceIncrements,100!500
@@ -190,7 +189,6 @@ BondBreaksBond,1
 NoKeepAliveDuringLoad,1
 BondMaxPullListSize,20
 BondWorksOnLoadingTransport,1
-SDBonusIsPerAddShipment,1
 CValidateRouteES,1
 PrivateRSEventClientDisplayMode,2
 FollowJumpShipImmediately,0
@@ -241,6 +239,7 @@ RSPublicLateJoin_MinStarLevel,5
 BSWaitForRankedMinShipLevel,3
 LinkCorporationReward,100
 MineralLifetime,172800
+MinRSLevel,2
 MinDarkRSLevel,5
 SpeedupTimeFreeSec,60
 YSSpeedModifierPct,300
@@ -252,7 +251,7 @@ CustomizePlanetPremiumPC,2000
 CustomizeStarRegularPC,800
 CustomizeStarPremiumPC,3000
 SP2ResearchTimeDiscountPct,20
-SP2PlanetUpgradeTimeDiscountPct,10
+SP2BlueprintBoostPct,20
 AllianceInactivityMailDays,7
 SecondResearchSlotPrice,100000
 ClonedAsteroidDistances,250!350

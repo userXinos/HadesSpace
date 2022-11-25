@@ -14,7 +14,7 @@ export default {
         { Name: "BSR4_1", NumInterceptors: [1, 2] },
         { Name: "BSR4_2", NumSentinels: [0, 1], NumGuardians: [0, 1] },
         { Name: "BSR4_3" },
-        [{ Name: "BSR4_C1", NumInterceptors: [0, 1] }, null, null],
+        [{ Name: "BSR4_C1" }, null, null],
     ],
     CerbGroup_Mid: [
         null,
@@ -25,11 +25,7 @@ export default {
             { Name: "BSR5_2_3", NumInterceptors: [0, 2] },
         ],
         { Name: "BSR5_3", NumSentinels: [1, 2] },
-        [
-            { Name: "BSR5_C1", NumColossus: 1 },
-            { Name: "BSR5_C2", NumInterceptors: [0, 1] },
-            { Name: "BSR5_C3", NumColossus: 1 },
-        ],
+        [{ Name: "BSR5_C1", NumColossus: 1 }, { Name: "BSR5_C2" }, { Name: "BSR5_C3", NumColossus: 1 }],
     ],
     CerbGroup_High: [
         null,
