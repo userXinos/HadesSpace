@@ -206,16 +206,25 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<ProvideGetterEleme
         MaxOnOwnSolarSystem: number
     }
     let tsMaxLvl = 0;
+    const filteredLevels = objectArrayify(levels, {
+        filter: ([, v]: [string, unknown]) => Array.isArray(v),
+    });
 
     const planets = objectArrayify(planetsData, {
         ...getFilterByType('planets.yellowstar'),
         map: ([name, planet]: [string, Element]) => {
-            elements[name] = objectArrayify(levels, {
-                filter: ([, v]: [string, unknown]) => Array.isArray(v),
-                map: ([k, v]: [string, number[]]) => [
-                    k, v.map((e) => e * ((k in CHARS_MODIFIERS) ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1)),
-                ],
+            elements[name] = objectArrayify(filteredLevels, {
+                map: ([k, v]: [string, number[]]) => {
+                    const MaxUpgradeLevel = planet.MaxUpgradeLevel as number;
+                    const res = v.map((e) => e * ((k in CHARS_MODIFIERS) ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1));
+
+                    if (res.length < MaxUpgradeLevel) {
+                        res.push(...Array.from({ length: MaxUpgradeLevel - res.length }, () => res[res.length - 1]));
+                    }
+                    return [k, res];
+                },
             }) as Element;
+
             TIDs[name] = planet.TID;
 
             return [name, planet];
