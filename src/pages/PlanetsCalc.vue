@@ -126,7 +126,7 @@ const KEYS_ALIASES_TS: Record<string, string> = {
     Cost: 'Cost',
     ConstructionTime: 'TimeToUpgrade',
 };
-const STACK_CHARS = ['XPAward', 'Cost', 'TimeToUpgrade'];
+const STACK_CHARS = ['XPAward', 'Cost', 'TimeToUpgrade', 'RSLevelReq'];
 const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name', 'ShipmentsHydroValuePerDay'];
 const TOTAL_KEYS = Object.keys(levels)
     .filter((k) => ![...STACK_CHARS, ...HIDE_LVL_CHARS].includes(k));
@@ -180,6 +180,7 @@ export default defineComponent({
         },
 
         calcTotal(store: ElementsStore, output: Output) {
+            let RSLevelReq = 0;
             for (const k of TOTAL_KEYS) {
                 output.total.intermediate[k] = {
                     actually: 0,
@@ -188,11 +189,17 @@ export default defineComponent({
                 };
             }
 
-            return function(name: string) {
+            return function(name: string, input: Input) {
                 for (const k of TOTAL_KEYS) {
                     output.total.intermediate[k].actually += output.actually[name]?.[k] as number || 0;
                     output.total.intermediate[k].plan += output.plan[name]?.[k] as number || 0;
                     output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
+                }
+
+
+                if (store[name].RSLevelReq) {
+                    const localeRSLevelReq = (store[name].RSLevelReq as number[])[input.plan[name]] || 0;
+                    RSLevelReq = output.total.result.RSLevelReq = (RSLevelReq < localeRSLevelReq) ? localeRSLevelReq : RSLevelReq;
                 }
             };
         },
