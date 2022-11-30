@@ -13,6 +13,8 @@ module.exports = {
             '@Scripts': path('src/js'),
             '@Store': path('src/store'),
             '@Handlers': path('src/js/Handlers'),
+
+            'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
         },
     },
     module: {
@@ -20,6 +22,14 @@ module.exports = {
             {
                 test: /\.md$/i,
                 loader: 'raw-loader',
+            },
+            {
+                test: /\.json$/,
+                type: 'javascript/auto',
+                loader: '@intlify/vue-i18n-loader',
+                include: [
+                    resolve(__dirname, 'i18n/dist'),
+                ],
             },
         ],
     },
