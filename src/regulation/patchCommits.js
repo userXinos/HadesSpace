@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: '8ce3954eb0fb5d14c9de6fed8c8eb8cd517887fa',
+        title: 'Patch № 10',
+        note: '[December 15]: Work in progress in Red Stars, White Stars and modules',
+    },
+    {
         hash: '5635af5658ed46b45a3ecf23f70bd46be1ddd899',
         title: 'Patch № 9.1',
         note: '[November 24]: fix for red stars becoming corp pvp, blue stars pve, white stars free for all pvp',

@@ -13,22 +13,25 @@ export default {
     components: { ModulePage },
     methods: {
         postFilter(data) {
-            const Laser = { ...data.Laser };
+            ['Laser', 'DualLaser']
+                .forEach((modKey) => {
+                    const mod = { ...data[modKey] };
 
-            ['RampDPS', 'RampDPS_BLS', 'RampDPS_WS']
-                .forEach((key) => {
-                    if (`${key}0` in Laser) {
-                        Laser[key] = {
-                            '0%+': [...Laser[`${key}0`]],
-                            '50%+': [...Laser[`${key}1`]],
-                            '100%': [...Laser[`${key}2`]],
-                        };
-                        delete Laser[`${key}0`];
-                        delete Laser[`${key}1`];
-                        delete Laser[`${key}2`];
+                    ['RampDPS', 'RampDPS_BLS', 'RampDPS_WS']
+                        .forEach((key) => {
+                            if (`${key}0` in mod) {
+                                mod[key] = {
+                                    '0%+': [...mod[`${key}0`]],
+                                    '50%+': [...mod[`${key}1`]],
+                                    '100%': [...mod[`${key}2`]],
+                                };
+                                delete mod[`${key}0`];
+                                delete mod[`${key}1`];
+                                delete mod[`${key}2`];
 
-                        data.Laser = Laser;
-                    }
+                                data[modKey] = mod;
+                            }
+                        });
                 });
 
             return data;
