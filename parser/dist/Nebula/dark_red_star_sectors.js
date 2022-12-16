@@ -165,7 +165,7 @@ export default {
         { Name: "RS0", NumSentinels: 1 },
         { Name: "RSP2", NumSentinels: [0, 1], NumGuardians: 1 },
         { Name: "RSP3", NumSentinels: [2, 3], NumGuardians: [1, 2], WeightPerPlayers: [100, 100, 0] },
-        { Name: "RSP4", NumSentinels: 1, NumGuardians: 2 },
+        { Name: "RSP4", NumSentinels: 3, NumGuardians: 2 },
         { Name: "DRSP5", NumSentinels: 1, NumColossus: 1 },
         { Name: "DRSP6", NumSentinels: [3, 4], NumGuardians: [3, 4], NumColossus: 1 },
         { Name: "DRSP7", NumSentinels: [4, 5], NumGuardians: 3, NumColossus: 2 },

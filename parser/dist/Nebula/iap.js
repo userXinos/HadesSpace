@@ -27,6 +27,7 @@ export default {
         RefPrice: 3,
         DisplayOrder: 3,
         SteamPrice: "USD3",
+        ProductID: "9P8FMLVPLQLW",
     },
     PC2: {
         Name: "PC2",
@@ -38,6 +39,7 @@ export default {
         RefPrice: 10,
         DisplayOrder: 4,
         SteamPrice: "USD10",
+        ProductID: "9P1K49NW7TGC",
     },
     PC3: {
         Name: "PC3",

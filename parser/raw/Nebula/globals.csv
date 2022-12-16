@@ -144,7 +144,7 @@ WSJumpOtherTimeCooldown,7200
 UnityMaxDamageIncreasePct,200
 MaxScheduledOrders,20
 MaxTimeMachineFutureSeconds,172800
-WSBucketSizes,6!12
+WSBucketSizes,10
 TimeMachineRewindIntervalSeconds,43200
 InterceptorPrioritizeTriggerer,1
 MaxAsteroidsInSector,14
@@ -237,14 +237,13 @@ RSPublicLateJoin_MaxTimeOffTotal,180
 RSPublicLateJoin_ClientCacheExpiry,30
 RSPublicLateJoin_MinStarLevel,5
 BSWaitForRankedMinShipLevel,3
-LinkCorporationReward,100
 MineralLifetime,172800
 MinRSLevel,2
 MinDarkRSLevel,5
 SpeedupTimeFreeSec,60
 YSSpeedModifierPct,300
-MaxFriends, 25
-MaxFriendRequestsPerDay,8
+MaxFriends, 40
+MaxFriendRequestsPerDay,40
 MaxRepeatFriendRequestsPerDay, 2
 CustomizePlanetRegularPC,500
 CustomizePlanetPremiumPC,2000
@@ -252,7 +251,7 @@ CustomizeStarRegularPC,800
 CustomizeStarPremiumPC,3000
 SP2ResearchTimeDiscountPct,20
 SP2BlueprintBoostPct,20
-AllianceInactivityMailDays,7
+AllianceInactivityChatAlertDays,7
 SecondResearchSlotPrice,100000
 ClonedAsteroidDistances,250!350
 MirrorShieldTickPeriod,40
