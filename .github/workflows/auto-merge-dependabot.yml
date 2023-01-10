@@ -1,0 +1,16 @@
+name: Auto Merge Dependabot[bot]
+
+on:
+  pull_request_target:
+
+jobs:
+  auto-merge:
+    name: Merge Automatically
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Prepare Auto Merge
+        uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          github-token: ${{ secrets.AUTOMERGE_TOKEN }}
