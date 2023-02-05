@@ -2,8 +2,18 @@
 
 export default [
     {
+        hash: '064dde984fae6ff75f24ff80bc9b24a29f17274c',
+        title: 'Patch № 11.1 - 11.2',
+        note: '[January 30 - February 2]:  Dark Red Star 5',
+    },
+    {
+        hash: '662e5a1d3071334515019bc7d57a7ccfa6030bb8',
+        title: 'Update № 11',
+        note: '[January 27]: Blue Stars Early Access mode',
+    },
+    {
         hash: '8ce3954eb0fb5d14c9de6fed8c8eb8cd517887fa',
-        title: 'Patch № 10',
+        title: 'Update № 10',
         note: '[December 15]: Work in progress in Red Stars, White Stars and modules',
     },
     {
