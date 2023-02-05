@@ -3,8 +3,8 @@
 export default [
     {
         hash: '064dde984fae6ff75f24ff80bc9b24a29f17274c',
-        title: 'Patch № 11.1 - 11.2',
-        note: '[January 30 - February 2]:  Dark Red Star 5',
+        title: 'Patch № 11.1 & 11.2',
+        note: '[January 30 & February 2]: Blast shield, Dark Red Star 5',
     },
     {
         hash: '662e5a1d3071334515019bc7d57a7ccfa6030bb8',
