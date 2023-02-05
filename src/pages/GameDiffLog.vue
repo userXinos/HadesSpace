@@ -10,7 +10,7 @@
             <div class="icon" />
           </div>
           <div class="body">
-            <p>This is not an official Hades' Star Nebula game changelog. It's compiled from game static files, official data is published on the game's <a
+            <p>This is unofficial Hades' Star Nebula game changelog. It's compiled from game static files, official data is published on the game's <a
               href="https://discord.gg/hadesstar"
               target="_blank"
             >discord server</a> and <a
@@ -353,6 +353,8 @@ $mv: 1000px;
         .icon {
             margin-right: 20px;
             width: 28px;
+            height: 41px;
+            flex-shrink: 0;
             background: url(../img/icons/arrow.svg) no-repeat right/100%;
             transition: 500ms ease;
             transform: rotate(90deg);
