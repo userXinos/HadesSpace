@@ -28,7 +28,7 @@ module.exports = {
                 type: 'javascript/auto',
                 loader: '@intlify/vue-i18n-loader',
                 include: [
-                    resolve(__dirname, 'i18n/dist'),
+                    path('i18n/dist'),
                 ],
             },
         ],
