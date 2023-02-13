@@ -102,6 +102,7 @@ export default {
         'BSPenaltyPerSec',
         'BSPenaltyPerSecOnSector',
         'AllowForWSEarlyAccess',
+        'AllowForBLSEarlyAccess',
     ],
     byPath: [
 

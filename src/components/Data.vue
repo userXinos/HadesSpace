@@ -71,6 +71,11 @@ export default {
             const preTitle = [];
 
             Object.entries(obj).forEach(([key, value]) => {
+                if (value === undefined || value === null) {
+                    console.warn(`key: "${key}" is ${value}.`);
+                    preTitle.push([key, '-']);
+                    return;
+                }
                 if (value.constructor === Object) {
                     this.packagingData(value, key);
                 } else if (Array.isArray(value)) {

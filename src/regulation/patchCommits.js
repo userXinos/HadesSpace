@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: '5adc879903c33d84ebee115d177fc2026d8ae8f1',
+        title: 'Update № 12',
+        note: '[February 13]: Multiple new modules mechanics; GC rip',
+    },
+    {
         hash: '064dde984fae6ff75f24ff80bc9b24a29f17274c',
         title: 'Patch № 11.1 & 11.2',
         note: '[January 30 & February 2]: Blast shield, Dark Red Star 5',
