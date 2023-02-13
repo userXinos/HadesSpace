@@ -60,7 +60,7 @@ ClosestAllowedDistanceBetweenRandomSites,3500
 DynamicCSVUpdates,1
 CompressCSVUpdates,1
 DisbandFleetUnlockLevel,2
-DisableIAP,0
+DisableIAP,1
 ShipmentsPeriod,60
 PlanetUpgradeShipmentRefreshPeriods,2
 ShipmentRefreshCrystalDiscountPct,10
@@ -84,13 +84,13 @@ BlueStarHintsCount,5
 RedStarHintTimer,12
 NumSecondsBeforeSupernovaToSendNotification,120
 CorporationCreationCost,100
-TimeToTravelActiveWarpLaneSegmentTicks,2
+WarpLaneSpeed,50000
 WarpGatePrice,400
 WarpLaneActivationTimeHrs,16
 MinShipLevelThatSupportsRename,1
-FacebookURL,https://facebook.com/hadesstar
-InstagramURL,https://www.instagram.com/hadesstargame/
-TwitterURL,https://twitter.com/hadesstargame
+FacebookURL,
+InstagramURL,
+TwitterURL,
 DiscordURL,https://discord.gg/hadesstar
 TwitchTVURL,
 StarterPackShipUpgradeDiscountPct,10
@@ -272,3 +272,4 @@ MaxShipsInRSSector,50
 AreaShieldCoversOwnShip,0
 WSDistinctions,22!21!20
 WSDistinctionWins,2!3!4
+MaintenanceInfoURL,http://blog.hadesstar.com/2017/08/about-maintenance.html

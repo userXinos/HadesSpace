@@ -1,7 +1,7 @@
 ﻿Name,AllowBuildOnYS,CanCancelBuild,CancelBuildRefundPct,CanBeRenamed,SeparateBuildingPerLevel,AllowAdditionalBuildingsAtMaxLevel,BuyInPairs,MoveHydrogenCostPerSector,AllowMoveInSameSectorOnly,TID,TID_Description,TID_INFO_SCREEN,TID_UPGRADE,TID_CUSTOM_TUT_SELECT,ConceptImage,Model,PrefabModel,PrefabModel_BuildMenu,PrefabModel_WithStarHarvester,RequiredPlanetLevel,UISortOrder,Cost,SectorUnlockCost,SectorUnlockTime,ConstructionTimeHours,ConstructionTimeMinutes,ConstructionTimeSeconds,TotalShipmentCRPerDay,IsStargate,IsAllianceStargate,ResearchSlots,RequiresEmptySector,RequiresSectorDistance,,RequiresStarSector,MaxOnOwnSolarSystem,MaxPerSector,StarScannerType,IsWarpLane,CanScanSectors,ShipyardCapacity,OverrideMinAsteroidDistSquared,StargateModel,RelayBonusPct,TeleportShipmentsPerHr,TeleportShipmentsDurationHr,TeleportShipmentActivationFragments,FragmentCapacity,TeleportShipmentMaxSectors,BuildNotifMode,ShowInStarLinks,QSExploreCost,DestroyerTarget,MaxHealth,RequiresDoneSRS,GenAsteroids,SimilarBuildingID,SHHydroPerDay
 Shipyard,1,,,,,,,100,,TID_BUILDING_SHIPYARD,TID_BUILDING_SHIPYARD_DESCR,TID_BUILDING_SHIPYARD_DESCR,TID_BLD_SHIPYARD_UPGRADE,TID_TUT_SELECT_SHIPYARD,portrait_EmptySpace,,station_Shipyard,station_Shipyard_ui,,1,10,800,,,,,5,,,,,0,,,,1,1,,,,4,,,,,,,,,0,1,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,1000,,,,1,,,,,,,,,,,,,,,5,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,5000,,,,30,,,,,,,,,,,,,,,7,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,4000,,,,1,,,,,,,,,,,,,,,5,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,10000,,,,30,,,,,,,,,,,,,,,7,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,20000,,,8,,,,,,,,,,,,,,,,8,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,80000,,,24,,,,,,,,,,,,,,,,10,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,200000,,,48,,,,,,,,,,,,,,,,12,,,,,,,,,,,,,,,,,
@@ -22,7 +22,7 @@ ShortRangeScanner,1,1,90,,1,1,,50,1,TID_BUILDING_SHORT_RANGE_SCANNER,TID_BUILDIN
 ,,,,,,,,,,,,,,,,,,,,,,3000000,3000000,604800,24,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,4000000,4000000,604800,24,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 RedStarScanner,1,,,,,,,25,,TID_BUILDING_REDSTAR_SCANNER,TID_BUILDING_REDSTAR_SCANNER_DESCR,TID_BUILDING_REDSTAR_SCANNER_INFO,TID_BLD_REDSTAR_UPGRADE,TID_TUT_SELECT_MISSION_BUILDING,portrait_JumpGate,,station_RedStarScanner,station_RedStarScanner_ui,,4,40,1000,,,,,3,,,,,0,,,,1,1,0,,,,,JumpGate,,,,,,,1,1,,,,,,,
-#RS2,,,,,,,,,,,,,,,,,,,,,,2000,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+#RS2,,,,,,,,,,,,,,,,,,,,,,5000,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #RS3,,,,,,,,,,,,,,,,,,,,,,20000,,,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #RS4,,,,,,,,,,,,,,,,,,,,,,60000,,,24,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #RS5,,,,,,,,,,,,,,,,,,,,,,120000,,,48,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -71,7 +71,7 @@ WarpLaneHub,1,,,,1,1,1,50,,TID_BUILDING_WARPLANE_HUB,TID_BUILDING_WARPLANE_HUB_D
 ,,,,,,,,,,,,,,,,,,,,,,8000000,,,240,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Stargate,0,,,,,,,,,TID_BUILDING_STARGATE,TID_BUILDING_STARGATE_DESCR,TID_BUILDING_STARGATE_DESCR,,,portrait_JumpGate,,,,,,,,,,,,,,1,,,0,,,,,,,,,,1000000,JumpGate02,,,,,,,,,,,,,,,
 OrangeStarScanner,0,,,,,,,1000,,TID_BUILDING_ORANGESTAR_SCANNER,TID_BUILDING_ORANGESTAR_SCANNER_DESCR,TID_BUILDING_ORANGESTAR_SCANNER_INFO,,,portrait_JumpGate,redStarScanner,,,,5,50,40000,,,24,,,,,,,1,,,,1,1,1,,,,,JumpGate,,,,,,,,,,,,,,,
-WhiteStarScanner,1,,,,,,,100,,TID_BLD_WHITESTAR_SCANNER,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_REDSTAR_UPGRADE,,portrait_JumpGate,,station_WhiteStarScanner,station_WhiteStarScanner_ui,,1,0,1,,,,,1,,,,,0,,,,1,1,,,,,,JumpGateWhiteStar,,,,,,,1,1,,,,,,,
+WhiteStarScanner,1,,,,,,,100,,TID_BLD_WHITESTAR_SCANNER,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_WHITESTAR_SCANNER_DESCR,TID_BLD_REDSTAR_UPGRADE,,portrait_JumpGate,,station_WhiteStarScanner,station_WhiteStarScanner_ui,,1,92,1,,,,,1,,,,,0,,,,1,1,,,,,,JumpGateWhiteStar,,,,,,,1,1,,,,,,,
 TimeModulator,0,,,,,,,1000,1,TID_BLD_STAR_HARVESTER,TID_BLD_STAR_HARVESTER_BUILD_DESCR,TID_BLD_STAR_HARVESTER_DESCR,,,portrait_SpaceBuilding,,timeModulator,timeModulator_ui,,6,71,1000,,,,,5,,,,,,,,1,1,1,,,,,,,,,,,,,1,1,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,4000,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,10000,,,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -129,7 +129,7 @@ DO_NOT_USE,,,,,1,,,500,1,TID_BUILDING_HYDRO_SCANNER,TID_BUILDING_HYDRO_SCANNER_D
 ,,,,,,,,,,,,,,,,,,,,,,1000000,,,168,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,16000000,,,168,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,20000000,,,168,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-StarHarvester,1,,,,,,,50,1,TID_BLD_STAR_HARVESTER,TID_BLD_STAR_HARVESTER_DESCR,TID_BLD_STAR_HARVESTER_DESCR,,,portrait_SpaceBuilding,,timeModulator,timeModulator_ui,,10,71,140000,,,24,,,,,,,,,,1,1,1,,,,,,,,,,,,,1,1,,,,,,,1000
+StarHarvester,1,,,,,,,50,1,TID_BLD_STAR_HARVESTER,TID_BLD_STAR_HARVESTER_DESCR,TID_BLD_STAR_HARVESTER_DESCR,,,portrait_SpaceBuilding,,timeModulator,timeModulator_ui,,10,95,140000,,,24,,,,,,,,,,1,1,1,,,,,,,,,,,,,1,1,,,,,,,1000
 ,,,,,,,,,,,,,,,,,,,,,,200000,,,48,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1500
 ,,,,,,,,,,,,,,,,,,,,,,280000,,,72,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,2000
 ,,,,,,,,,,,,,,,,,,,,,,550000,,,72,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,4000

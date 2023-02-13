@@ -219,7 +219,7 @@ export default {
         TID: "TID_ACHIEVEMENT_DAILY_REWARDS",
         TID_Description: "TID_ACHIEVEMENT_DAILY_REWARDS_DESCR",
         UnlockType: "CollectDailyRewards",
-        UnlockAmount: [1, 3, 7, 14, 30],
+        UnlockAmount: [2, 3, 7, 14, 30],
         PCReward: [1, 5, 20, 50, 100],
         XPReward: [100, 200, 500, 1000, 10000],
         SortOrder: 5,
