@@ -165,7 +165,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // исправить название статы скачка
-    if (key === 'Leap') {
+    if (key === 'Leap' && !isNebulaBuild) {
         value.DisableTime = value.EffectDurationx10 / 10;
         delete value.EffectDurationx10;
     }

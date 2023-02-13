@@ -942,9 +942,7 @@ export default {
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
         LeapBreaksBond: 1,
-        DisableTimeWS: null,
         ActivationDelayBS: 1200,
-        DisableTimeBS: null,
     },
     Vengeance: {
         Name: "Vengeance",
