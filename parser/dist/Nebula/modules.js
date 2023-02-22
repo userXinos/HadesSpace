@@ -1072,6 +1072,7 @@ export default {
         ActivationDelayWS: 172800,
         SpawnedShip: 41,
         SpawnLifetime: 48,
+        SpawnLifetime_WS: 28800,
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
         drone: {
@@ -1110,7 +1111,6 @@ export default {
             SpeedIncrPerTick: 40,
             modules: { DroneRocketLauncher: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] },
         },
-        SpawnLifetimeWS: 28800,
     },
     Enrich: {
         Name: "Enrich",
