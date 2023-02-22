@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: 'aacc92c739c742d1d2733db19db812b9d721df27',
+        title: 'Patch № 12.1',
+        note: '[February 22]: fix Rocket Drone zero lifetime',
+    },
+    {
         hash: '5adc879903c33d84ebee115d177fc2026d8ae8f1',
         title: 'Update № 12',
         note: '[February 13]: Multiple new modules mechanics; GC rip',
