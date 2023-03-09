@@ -31,7 +31,7 @@ StartingPlayerBCAmount,0
 StartingPlayerFuelAmount,100
 MaxPlayerNameLength,16
 ColonizePlanetXP,0
-MaxRecentPlayerNotifications,25
+MaxRecentPlayerNotifications,30
 MaxPlayerNameChangesAllowed,2
 MinAllianceNameLength,3
 MaxAllianceNameLength,15
@@ -173,7 +173,6 @@ WarpLaneMaxSearchDepth,4
 TimeMachineAffectFxSpeed,1
 BondMinPullVector,100!100
 GoalRushCostMultiplier,100
-ShipsHealOnAnyObject,1
 BackgroundReloadSec,30
 AutoWarpLaneMinActivationTimeMin,2
 AutoWarpLaneCheckCerberus,1
@@ -208,6 +207,7 @@ BlueStar_CRRewardWinLimitPeriod,86400
 BlueStar_HydroPctPerMatch,10
 BlueStar_HydroPctPerPos,100!60!25!10!0
 BlueStar_MaxHydroPerDayPct,20
+BlueStar_MaxHydroPerDayAbsolute,10000
 BlueStar_CreditPctPerPos,100!60!30!0!0
 BlueStar_RankedMatchesPerDay,3
 BlueStar_Fragments,12!8!5!3!0
@@ -218,14 +218,11 @@ BSAI_EndGameSOCount,60
 BSAI_MaxMoveWeight,1000000
 BSAI_EG_StarPenalty,0
 BSAI_EG_KZPenalty,500
-STPeriodTicks,1200
+STPeriodTicks,1
 MaxRebuildShipDesignsPerType,3
 RefreshWeaponFxOnSelect,0
 InfluenceDecayPct,3000
 InfluenceDecayPeriod,259200
-WSScoreDamageModifier,1
-WSScoreMiningModifier,5
-WSScoreTransportModifier,800
 NewsletterURL,http://eepurl.com/cal8yD
 FlagshipContribAmounts,10000!100000!1000000!8000000
 CRAsteroidMineTicks,1200
@@ -248,8 +245,8 @@ CustomizePlanetRegularPC,500
 CustomizePlanetPremiumPC,2000
 CustomizeStarRegularPC,800
 CustomizeStarPremiumPC,3000
-SP2ResearchTimeDiscountPct,20
-SP2BlueprintBoostPct,20
+SP2ShipmentsBoostPct,20
+SP2BlueprintBoostPct,40
 AllianceInactivityChatAlertDays,7
 SecondResearchSlotPrice,100000
 ClonedAsteroidDistances,250!350
@@ -261,12 +258,11 @@ MaxModuleLevel,15
 DiploHydroCapPct,25
 MirrorApplyToProjectiles,1
 MassMiningRatePct,50
-RelayCapCostPct,80
 HydroScannerCooldown,86400
 StarHarvesterDuration,10
 YSMaxGenesis,1
 TutorialArtifactAwardedModules,0!14!6
-DRSArtifactBonus,60
+DRSArtifactBonus,100
 GhostMinMoveDistance,1000
 MaxShipsInRSSector,50
 AreaShieldCoversOwnShip,0

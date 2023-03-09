@@ -65,7 +65,10 @@ Dart,TID_DART_MISSILE,TID_DART_MISSILE_DESCR,250,250,10,,250,4100,,,600,,0,proje
 ,,,,,,,250,12000,,,600,,,,,,,,
 ,,,,,,,250,13000,,,600,,,,,,,,
 ,,,,,,,250,14000,,,600,,,,,,,,
+,,,,,,,250,15000,,,600,,,,,,,,
 ,,,,,,,250,16000,,,600,,,,,,,,
+,,,,,,,250,17000,,,600,,,,,,,,
+,,,,,,,250,18000,,,600,,,,,,,,
 StormDarts,TID_DART_MISSILE,TID_DART_MISSILE_DESCR,250,250,10,,350,1200,,,1000,,0,projectiles/DartRocket_DrkNeb,projectiles/DartRocketHit_FX,projectiles/DartRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,1
 HydroRocket,TID_MODULE_HYDRO_ROCKET,TID_HYDRO_ROCKET_DESCR,250,250,10,,500,7000,,,1200,,0,projectiles/HydrogenRocket_DrkNeb,projectiles/HydroRocketHit_FX,projectiles/HydroRocketDeath_FX,projectiles/AlphaRocketLaunch_FX,,
 ,,,,,,,550,7700,,,1200,,,,,,,,
