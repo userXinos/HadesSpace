@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: 'c696b3a73c2577b9daf7e849d13e119970b92c04',
+        title: 'Update № 13',
+        note: '[March 8]: Initial Shipment changes',
+    },
+    {
         hash: 'aacc92c739c742d1d2733db19db812b9d721df27',
         title: 'Patch № 12.1',
         note: '[February 22]: fix Rocket Drone zero lifetime',
