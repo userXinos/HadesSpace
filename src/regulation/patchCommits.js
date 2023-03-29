@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: '1735bcefa9661c002619bc6f691f83d228690c99',
+        title: 'Update № 14',
+        note: '[March 28]: ',
+    },
+    {
         hash: 'c696b3a73c2577b9daf7e849d13e119970b92c04',
         title: 'Update № 13',
         note: '[March 8]: Initial Shipment changes',
