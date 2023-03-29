@@ -5,23 +5,11 @@
  */
 
 export default {
-    Name: [
-        "EntryGate",
-        "HighYieldAsteroids",
-        "LowYieldAsteroids",
-        "HighQualityPlanet",
-        "LowQualityPlanet",
-        "RefreshAsteroids1",
-        "RefreshAsteroids2",
-    ],
-    AsteroidsMin: [2, 2, 3, 4, 3, 3, 3],
-    AsteroidsMax: [4, 8, 6, 6, 4, 5, 5],
-    HydrogenPerDay: [160, 2000, 350, 700, 400, 1200, 800],
-    AsteroidBeltAxis1Size: [800, 900, 900, 1100, 1100, 900, 900],
-    AsteroidBeltAxis2Size: [1400, 1500, 1600, 1600, 1600, 1600, 1600],
-    CerbGroup: [null, null, null, null, null, null, null],
-    PlanetTypes: [null, null, null, "whitestar1", "whitestar2", null, null],
-    ExtraAsteroidSpawnTick: [null, null, null, null, null, 3200, 6800],
-    ExtraAsteroidsNumber: [null, null, null, null, null, 6, 2],
-    ExtraAsteroidHydroAmount: [null, null, null, null, null, 1200, 800],
+    Name: ["EntryGate", "Disputed", "Close_LowHydro", "Close_HighHydro"],
+    AsteroidsMin: [2, 3, 1, 2],
+    AsteroidsMax: [4, 8, 2, 3],
+    HydrogenPerDay: [60, 1200, 40, 200],
+    AsteroidBeltAxis1Size: [800, 1100, 900, 900],
+    AsteroidBeltAxis2Size: [1400, 1600, 1600, 1500],
+    CerbGroup: [null, null, null, null],
 };

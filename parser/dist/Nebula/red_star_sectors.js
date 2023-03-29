@@ -29,7 +29,7 @@ export default {
         { Name: "RS0", NumSentinels: 1 },
         { Name: "RSG", NumGuardians: 1 },
         { Name: "RSM1L3", NumSentinels: [0, 1], NumGuardians: 1 },
-        { Name: "RSM1L4", NumSentinels: [2, 5], NumGuardians: 2 },
+        { Name: "RSM1L4", NumSentinels: [2, 4], NumGuardians: 1 },
         { Name: "RSM1L5", NumSentinels: [3, 4], NumGuardians: 1, WeightPerPlayers: [100, 100, 0] },
         { Name: "RSM1L6", NumSentinels: [3, 6], NumGuardians: 2 },
         { Name: "RSM1L7", NumSentinels: [3, 6], NumGuardians: 2 },
