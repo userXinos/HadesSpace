@@ -15,7 +15,7 @@
       v-bind="{
         data: stars.DarkRedStar,
         iconDir: 'game/Stars',
-        tableOpts: {colLvlStartAt: 5}
+        tableOpts: {colLvlStartAt: MinDarkRSLevel}
       }"
     />
 
@@ -52,6 +52,7 @@ import Page from '@/components/Page.vue';
 
 import stars from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
+import globals from '@Data/globals.js'
 import objectArrayify from '@Scripts/objectArrayify';
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
@@ -110,10 +111,11 @@ export default {
         return {
             ARTS,
             artifacts,
+            MinDarkRSLevel: globals.MinDarkRSLevel,
             stars: {
                 RedStar: { RedStar },
                 DarkRedStar: objectArrayify(DarkRedStar, {
-                    map: ([k, v]) => [k, Array.isArray(v) ? v.slice(RedStar.MinDarkRSLevel) : v],
+                    map: ([k, v]) => [k, Array.isArray(v) ? v.slice(globals.MinDarkRSLevel) : v],
                 }),
             },
             img: require(`@Img/game/portraits/portrait_RedStar.png`),
