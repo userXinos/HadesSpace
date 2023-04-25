@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: 'ce31506e46d01917b370bc67a0ac06b16420f00c',
+        title: 'Update № 15',
+        note: '[April 24]: http://blog.hadesstar.com/2023/04/dark-nebula-new-early-access-build.html',
+    },
+    {
         hash: '1735bcefa9661c002619bc6f691f83d228690c99',
         title: 'Update № 14',
         note: '[March 28]: ',
