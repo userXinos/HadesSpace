@@ -238,12 +238,12 @@ export default defineComponent({
             return Object.keys(this.output.total.result);
         },
         currentUrl() {
-            return `${location.origin}${location.pathname}`;
+            return `${location.pathname}`;
         },
     },
     created() {
-        if (this.$route.query.m) {
-            const parsed = this.ConfigManager.parseUrl(this.$route.query.m as string);
+        if (this.$route.query.d) {
+            const parsed = this.ConfigManager.parseUrl(this.$route.query.d as string);
 
             this.ConfigManager.add({ actually: parsed, plan: parsed }, { temporary: true });
             this.$router.push(this.currentUrl);
@@ -326,9 +326,9 @@ export default defineComponent({
             this.fullUpdate();
         },
         copyConfig() {
-            const m = this.ConfigManager.stringifyUrl();
+            const d = this.ConfigManager.stringifyUrl();
 
-            navigator.clipboard.writeText(`${this.currentUrl}?m=${m}`)
+            navigator.clipboard.writeText(`${this.currentUrl}?d=${d}`)
                 .then(() => {
                     this.buttonCopy.text = this.$t('COPIED');
                     this.buttonCopy.color = 'green';
