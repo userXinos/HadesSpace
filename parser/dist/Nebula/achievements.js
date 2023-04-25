@@ -14,7 +14,8 @@ export default {
         XPReward: [100, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQAg",
         SortOrder: 10,
-        PID1: [1, 2, 3],
+        PID1: [1, 2, 3, 4, 5],
+        PSNID: [1, 2, 3],
     },
     UpgradePlanet: {
         Name: "UpgradePlanet",
@@ -26,6 +27,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQAw",
         SortOrder: 30,
+        PID1: [6, 7, 8, 9, 10],
+        PSNID: 4,
     },
     SectorsUnlocked: {
         Name: "SectorsUnlocked",
@@ -37,6 +40,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQBA",
         SortOrder: 40,
+        PID1: [31, 32, 33, 34, 35],
+        PSNID: 11,
     },
     FleetSize: {
         Name: "FleetSize",
@@ -48,6 +53,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQBQ",
         SortOrder: 50,
+        PID1: [11, 12, 13, 14, 15],
+        PSNID: 5,
     },
     CommonHydro: {
         Name: "CommonHydro",
@@ -59,6 +66,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQBg",
         SortOrder: 60,
+        PID1: [16, 17, 18, 19, 20],
+        PSNID: 6,
     },
     NumberArtifacts: {
         Name: "NumberArtifacts",
@@ -70,6 +79,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 5000],
         GoogleID: "CgkItJiH6OEGEAIQBw",
         SortOrder: 70,
+        PID1: [21, 22, 23, 24, 25],
+        PSNID: 7,
     },
     PlanetsColonized: {
         Name: "PlanetsColonized",
@@ -81,6 +92,8 @@ export default {
         XPReward: [150, 300, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQCA",
         SortOrder: 80,
+        PID1: [26, 27, 28, 29, 30],
+        PSNID: [8, 9, 10],
     },
     Tax: {
         Name: "Tax",
@@ -104,6 +117,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQCg",
         SortOrder: 100,
+        PID1: [36, 37, 38, 39, 40],
+        PSNID: 12,
     },
     CerberusFleetsDestroyed: {
         Name: "CerberusFleetsDestroyed",
@@ -115,6 +130,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQCw",
         SortOrder: 110,
+        PID1: [41, 42, 43, 44, 45],
+        PSNID: [13, 14, 15],
     },
     CRIncome: {
         Name: "CRIncome",
@@ -126,6 +143,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQDA",
         SortOrder: 120,
+        PID1: [46, 47, 48, 49, 50],
+        PSNID: 16,
     },
     HydroIncome: {
         Name: "HydroIncome",
@@ -137,6 +156,8 @@ export default {
         XPReward: [50, 200, 500, 1000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQDQ",
         SortOrder: 130,
+        PID1: [51, 52, 53, 54, 55],
+        PSNID: 17,
     },
     WSMatches: {
         Name: "WSMatches",
@@ -148,6 +169,8 @@ export default {
         XPReward: [100, 500, 1000, 5000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQEA",
         SortOrder: 140,
+        PID1: [56, 57, 58, 59, 60],
+        PSNID: 18,
     },
     WSHydro: {
         Name: "WSHydro",
@@ -159,6 +182,7 @@ export default {
         XPReward: [100, 500, 1000, 5000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQEQ",
         SortOrder: 150,
+        PID1: [61, 62, 63, 64, 65],
     },
     WSRelics: {
         Name: "WSRelics",
@@ -170,6 +194,7 @@ export default {
         XPReward: [100, 500, 1000, 5000, 10000],
         GoogleID: "CgkItJiH6OEGEAIQEg",
         SortOrder: 160,
+        PID1: [66, 67, 68, 69, 70],
     },
     WSRewards: {
         Name: "WSRewards",
@@ -193,6 +218,8 @@ export default {
         XPReward: [500, 2000, 5000, 10000, 20000],
         GoogleID: "CgkItJiH6OEGEAIQFg",
         SortOrder: 180,
+        PID1: [71, 72, 73, 74, 75],
+        PSNID: [19, 20, 21],
     },
     DRSArtifacts: {
         Name: "DRSArtifacts",
@@ -203,6 +230,8 @@ export default {
         PCReward: [5, 20, 50, 250, 1000],
         XPReward: [500, 2000, 5000, 10000, 20000],
         SortOrder: 190,
+        PID1: [96, 97, 98, 99, 100],
+        PSNID: 22,
     },
     RSLevel: {
         Name: "RSLevel",
@@ -213,6 +242,8 @@ export default {
         PCReward: [5, 10, 20, 30, 50],
         XPReward: [100, 200, 500, 1000, 5000],
         SortOrder: 20,
+        PID1: [76, 77, 78, 79, 80],
+        PSNID: [23, 24, 25],
     },
     CollectDailyRewards: {
         Name: "CollectDailyRewards",
@@ -223,6 +254,8 @@ export default {
         PCReward: [1, 5, 20, 50, 100],
         XPReward: [100, 200, 500, 1000, 10000],
         SortOrder: 5,
+        PID1: [81, 82, 83, 84, 85],
+        PSNID: 26,
     },
     ShipmentBonus: {
         Name: "ShipmentBonus",
@@ -233,6 +266,8 @@ export default {
         PCReward: [1, 5, 20, 50, 100],
         XPReward: [100, 200, 500, 1000, 10000],
         SortOrder: 15,
+        PID1: [86, 87, 88, 89, 90],
+        PSNID: 27,
     },
     RedHydrogen: {
         Name: "RedHydrogen",
@@ -243,5 +278,7 @@ export default {
         PCReward: [1, 5, 20, 50, 100],
         XPReward: [100, 200, 500, 1000, 10000],
         SortOrder: 65,
+        PID1: [91, 92, 93, 94, 95],
+        PSNID: 28,
     },
 };

@@ -16,6 +16,7 @@ export default {
         RefPrice: 5,
         DisplayOrder: 0,
         SteamPrice: "USD5",
+        ProductID: "9P67R8P8T14K",
     },
     PC1: {
         Name: "PC1",
@@ -28,6 +29,8 @@ export default {
         DisplayOrder: 3,
         SteamPrice: "USD3",
         ProductID: "9P8FMLVPLQLW",
+        PSNID: '"""0964615238411522"""',
+        PSNEntitlement: '"""0000000000000001"""',
     },
     PC2: {
         Name: "PC2",
@@ -40,6 +43,8 @@ export default {
         DisplayOrder: 4,
         SteamPrice: "USD10",
         ProductID: "9P1K49NW7TGC",
+        PSNID: '"""0286380058766117"""',
+        PSNEntitlement: '"""0000000000000002"""',
     },
     PC3: {
         Name: "PC3",
@@ -51,6 +56,9 @@ export default {
         RefPrice: 20,
         DisplayOrder: 5,
         SteamPrice: "USD20",
+        ProductID: "9NH5JX0NH26Q",
+        PSNID: '"""0587036577826064"""',
+        PSNEntitlement: '"""0000000000000PC3"""',
     },
     PC4: {
         Name: "PC4",
@@ -62,6 +70,7 @@ export default {
         RefPrice: 50,
         DisplayOrder: 6,
         SteamPrice: "USD50",
+        ProductID: "9MX0PDVT837N",
     },
     PC5: {
         Name: "PC5",
@@ -73,6 +82,7 @@ export default {
         RefPrice: 100,
         DisplayOrder: 7,
         SteamPrice: "USD100",
+        ProductID: "9NB7B7TZ5C4N",
     },
     FuelPack1: {
         Name: "FuelPack1",
@@ -128,6 +138,7 @@ export default {
         RefPrice: 5,
         DisplayOrder: 2,
         SteamPrice: "USD5",
+        ProductID: "9MZW49XJHVMB",
     },
     SP2: {
         Name: "SP2",
@@ -141,5 +152,6 @@ export default {
         RefPrice: 20,
         DisplayOrder: 1,
         SteamPrice: "USD20",
+        ProductID: "9NK0D6QQW9MX",
     },
 };

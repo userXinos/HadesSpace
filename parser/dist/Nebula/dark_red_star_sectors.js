@@ -118,7 +118,7 @@ export default {
         6, 6, 10, 10, 10, 10, 12, 4, 7, 10, 12, 4, 7, 10,
     ],
     HydrogenPerDay: [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 500, 600, 800, 1000, 1200, 1500, 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 500, 600, 800, 1000, 1200, 1500, 1500,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1500, 0, 0, 0, 1500,
     ],
     AsteroidBeltAxis1Size: [
@@ -158,7 +158,7 @@ export default {
         { Name: "RSM2L4", NumSentinels: [1, 3], NumGuardians: 1, WeightPerPlayers: [100, 100, 0] },
         { Name: "DRSM2L5", NumSentinels: 3, NumGuardians: 2, NumColossus: [0, 1] },
         { Name: "DRSM2L6", NumSentinels: 3, NumGuardians: 2, NumColossus: [0, 1], WeightPerPlayers: [100, 100, 50] },
-        { Name: "DRSM2L7", NumSentinels: [3, 5], NumBomber: 1 },
+        { Name: "DRSM2L7", NumSentinels: [3, 5] },
         { Name: "DRSM2L8", NumSentinels: [3, 4], NumGuardians: [1, 2], NumPhoenix: 1 },
         { Name: "DRSM2L9", NumSentinels: 4, NumGuardians: 3, NumColossus: 1 },
         { Name: "DRSM2L10", NumSentinels: [3, 5], NumGuardians: [2, 3], NumPhoenix: 1, NumStorm: 1 },
