@@ -21,9 +21,9 @@ export default {
                         .forEach((key) => {
                             if (`${key}0` in mod) {
                                 mod[key] = {
-                                    '0%+': [...mod[`${key}0`]],
-                                    '50%+': [...mod[`${key}1`]],
-                                    '100%': [...mod[`${key}2`]],
+                                    '■': [...mod[`${key}0`]],
+                                    '■■': [...mod[`${key}1`]],
+                                    '■■■': [...mod[`${key}2`]],
                                 };
                                 delete mod[`${key}0`];
                                 delete mod[`${key}1`];
