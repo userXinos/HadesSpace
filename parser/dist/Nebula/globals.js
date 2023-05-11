@@ -150,7 +150,7 @@ export default {
     InterceptorPrioritizeTriggerer: 1,
     MaxAsteroidsInSector: 14,
     DontAllowUseOfEnemyWSGate: 1,
-    BarrageMaxAdditionalEnemies_Base: 10,
+    BarrageMaxAdditionalEnemies_Base: 6,
     BarrageMaxAdditionalEnemies_BLS: 2,
     BarrageMaxAdditionalEnemies_WS: 4,
     WSShipXPCollectEnabled: 0,
