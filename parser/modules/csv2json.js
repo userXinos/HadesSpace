@@ -4,22 +4,28 @@
  * @return {Object}     Результат
  */
 export default function csv2json(csv) {
-    let subName = null;
     const obj = {};
+    let subName = null;
+
     const [ headers, ...data ] = csv
         .trim()
         .split(/\r?\n/)
-        .filter(({ length }) => length)
+        .filter((s) => s.length)
         .map((s) => s.split(','));
 
     if (headers.length <= 1) {
         return simpleArray(data);
     }
+
     data.forEach((string, sIndex) => {
         if (string[0]) {
-            splitSeparators(obj, subName);
-            subName = string[0].trim();
-            obj[subName] = {};
+            if (string[0].startsWith('#')) {
+                delete string[0];
+            } else {
+                splitSeparators(obj, subName);
+                subName = string[0].trim();
+                obj[subName] = {};
+            }
         }
 
         string.forEach((elem, i) => {
@@ -28,7 +34,7 @@ export default function csv2json(csv) {
             const stockValue = subObj[header];
             const value = fixValue(elem);
 
-            if (value.constructor === String && !value) return;
+            if (typeof value === 'string' && !value) return;
             if (stockValue === undefined || stockValue === '') {
                 subObj[header] = value;
             } else if (Array.isArray(stockValue)) {
@@ -42,10 +48,11 @@ export default function csv2json(csv) {
             }
         });
 
-        if (sIndex + 1 == data.length) {
+        if (sIndex + 1 === data.length) {
             splitSeparators(obj, subName);
         }
     });
+
     return removeDupsFromArrays(obj);
 }
 
@@ -97,7 +104,7 @@ export function removeDupsFromArrays(obj) {
  */
 function splitSeparators(obj, name, symbol = '!') {
     for (const key in obj[name]) {
-        if (key in obj[name]) {
+        if (Object.prototype.hasOwnProperty.call(obj[name], key)) {
             const elem = obj[name][key];
 
             if (Array.isArray(elem)) {
@@ -107,7 +114,7 @@ function splitSeparators(obj, name, symbol = '!') {
                     }
                     return e;
                 });
-            } else if (typeof elem == 'string' && elem.includes(symbol)) {
+            } else if (typeof elem === 'string' && elem.includes(symbol)) {
                 obj[name][key] = elem.split(symbol).map(fixValue);
             }
         }
