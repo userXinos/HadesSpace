@@ -162,7 +162,7 @@ export default [
         (v) => `x${v / 10000}`,
     ],
     [
-        ['TID', 'TID2', 'TID_Description', 'TID_Artifact', 'TID_Description_BLS'],
+        ['TID', 'TID2', 'TID_Description', 'TID_Artifact', 'TID_Description_BLS', 'DNDiff'],
         (v) => t(v),
     ],
     [
