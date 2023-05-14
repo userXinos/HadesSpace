@@ -11,6 +11,8 @@ const PARSER_DIST_BLACK_LIST_FILES = [
     'globals', 'iap', 'badge_colors',
     'languages', 'news', 'steam_prices',
     'tutorial', 'player_goals', 'module_scenes',
+    'player_default_names', 'regions', 'static_object_names',
+    'xp_levels',
 ];
 
 const REGULATION_RULES_PATH = '../src/regulation/formatValueRules.js';
@@ -111,11 +113,19 @@ function collectKeysAndClassification(modules) {
     const keys = {};
 
     const traverseModules = (obj, isTop = false, topName = '') => {
-        if (typeof obj === 'object' && obj !== null && !Array.isArray(obj)) {
+        if (typeof obj === 'object' && obj !== null) {
             const objKeys = Object.keys(obj);
+
             objKeys.forEach((key) => {
                 if (typeof obj[key] !== 'object') {
                     keys[key] = [typeof obj[key], topName];
+                }
+
+                if (Array.isArray(obj[key])) {
+                    if (!obj[key].some((e) => typeof e == 'object')) {
+                        keys[key] = [`Array<${typeof obj[key][0]}>`, topName];
+                    }
+                    return;
                 }
 
                 traverseModules(obj[key], ...((isTop || topName) ? [false, topName || key] : []));
