@@ -1,11 +1,12 @@
 import rules from '@Regulation/formatValueRules.js';
+import postfixRegex from '@Regulation/postfixRegex.mjs';
 
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 
 export default function(key, value, dataName) {
     const fixedKey = key
         .replace(/^_/, '')
-        .replace(/_?(RS|WS|BS|BLS|BASE|YS|NonYS|PVP|PVE)$/, '');
+        .replace(postfixRegex, '');
 
     if (value === undefined || value === null) {
         return;
