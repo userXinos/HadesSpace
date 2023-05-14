@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Head><title>Page not found</title></Head>
+    <v-head><title>Page not found</title></v-head>
     <h1 class="glitch"> 404 </h1>
 
     <p>
@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import { Head } from '@vueuse/head';
+import { Head as VHead } from '@vueuse/head';
 
-export default { components: { Head } };
+export default { components: { VHead } };
 </script>
 
 <style scoped lang="scss">

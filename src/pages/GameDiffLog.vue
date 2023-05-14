@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Head><title>Nerflog</title></Head>
+    <v-head><title>Nerflog</title></v-head>
     <h1 class="title"> Nerflog </h1>
 
     <div class="banner">
@@ -121,7 +121,7 @@
 
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
-import { Head } from '@vueuse/head';
+import { Head as VHead } from '@vueuse/head';
 import patchCommits from '@Regulation/patchCommits.js';
 import Data from '../components/Data.vue';
 import type { Commit } from '@/composables/gameDiffLogGHApi';
@@ -188,7 +188,7 @@ interface PatchCommitExpand extends PatchCommit{
 
 export default defineComponent({
     name: 'GameDiffLog',
-    components: { Head, VData: Data },
+    components: { VHead, VData: Data },
     provide() {
         return {
             StatsComponent: defineAsyncComponent(() => import('../components/DataHeadStatsDiff.vue')),

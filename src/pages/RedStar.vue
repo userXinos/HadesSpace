@@ -52,7 +52,7 @@ import Page from '@/components/Page.vue';
 
 import stars from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
-import globals from '@Data/globals.js'
+import globals from '@Data/globals.js';
 import objectArrayify from '@Scripts/objectArrayify';
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;

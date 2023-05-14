@@ -25,6 +25,7 @@ export default function gameDiffLogGHApi() {
         const commits = await fetchUrl<{sha: string, url: string}[]>(url.href, { noCache: true });
         const childIndex = commits.findIndex((e) => e.sha == childCommit);
         const commit = await fetchUrl<{files: {filename: string, contents_url: string}[]}>(commits[childIndex + 1].url);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const fileUrl = commit.files.find((e) => e.filename == file)!.contents_url;
         return fetchFile(fileUrl);
     }

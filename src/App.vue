@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <Head><title>Hades Space</title></Head>
+    <v-head><title>Hades Space</title></v-head>
     <vue-progress-bar />
 
 
@@ -42,7 +42,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import { Head } from '@vueuse/head';
+import { Head as VHead } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
 import Sidebar from '@/components/TheSidebar.vue';
@@ -55,7 +55,7 @@ const MAX_WIDTH = 1000;
 
 export default defineComponent({
     name: 'App',
-    components: { Head, Changelog, GoTop, TheHeader, Sidebar },
+    components: { VHead, Changelog, GoTop, TheHeader, Sidebar },
     setup() {
         const isMinMode = ref(window.innerWidth < MAX_WIDTH);
 

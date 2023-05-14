@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head><title>{{ title }}</title></Head>
+    <v-head><title>{{ title }}</title></v-head>
     <h1 class="topic"> {{ title }} </h1>
 
     <table class="total-table">
@@ -158,7 +158,7 @@
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 
-import { Head } from '@vueuse/head';
+import { Head as VHead } from '@vueuse/head';
 import Confirm from '@/components/TheConfirm.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 
@@ -181,11 +181,11 @@ export declare type ProvideGetterElementsCB = (TIDs: CalculatorConfig['TIDs'], .
 type calculatorArgs = Parameters<typeof calculator>
 type configArgs = ConstructorParameters<typeof CalculatorConfig>
 
-
 export default defineComponent({
     name: 'Calculator',
-    components: { Head, Confirm, Modal },
+    components: { VHead, Confirm, Modal },
     emits: ['update:input', 'setup'],
+    // eslint-disable-next-line  vue/no-setup-props-destructure
     setup({ stackChars, calcTotal, localStorageKey }) {
         const { provideGetterElements, output, update } = calculator(stackChars, calcTotal);
         const ConfigManager = new CalculatorConfig(localStorageKey);
@@ -239,186 +239,6 @@ export default defineComponent({
         },
         currentUrl() {
             return `${location.pathname}`;
-        },
-    },
-    created() {
-        if (this.$route.query.d) {
-            const parsed = this.ConfigManager.parseUrl(this.$route.query.d as string);
-
-            this.ConfigManager.add({ actually: parsed, plan: parsed }, { temporary: true });
-            this.$router.push(this.currentUrl);
-        }
-
-        this.fullUpdate();
-        this.$emit('setup', {
-            onChangeLvl: this.onChangeLvl,
-            isSelected: this.isSelected,
-            isDisabled: this.isDisabled,
-            outputClasses: this.outputClasses,
-            provideGetterElements: this.provideGetterElements,
-            output: this.output,
-        });
-    },
-    methods: {
-        setShowConfirm(func: () => Promise<void>) {
-            this.resetConfirm = func;
-        },
-        updateInput() {
-            this.$emit('update:input', this.ConfigManager.selectedConfig);
-        },
-        updateOutput(key?: string) {
-            this.$nextTick(() => {
-                this.updateLogicOutput(this.input, key);
-            });
-        },
-        fullUpdate() {
-            this.updateInput();
-            this.updateOutput();
-        },
-        async onReset(event: Event): Promise<void> {
-            if ((event.target as HTMLButtonElement).name == 'all') {
-                await this.resetConfirm('Reset all ? Are you serious ?')
-                    .then(() => {
-                        for (const key in this.input) {
-                            if (key in this.input) {
-                                this.ConfigManager.selectedConfig[key as keyof Input] = {};
-                            }
-                        }
-                    })
-                    .catch(() => undefined);
-            } else {
-                if (this.input.plan) {
-                    for (const key in this.input.plan) {
-                        if (key in this.input.plan) {
-                            this.ConfigManager.selectedConfig.plan[key] = this.input.actually[key];
-                        }
-                    }
-                }
-            }
-
-            this.updateOutput();
-            this.ConfigManager.save();
-        },
-
-        async removeConfig() {
-            const { name } = this.ConfigManager.value.configs[this.ConfigManager.value.selected];
-            await this.resetConfirm(this.$t('REMOVE_CONFIG', [name]))
-                .then(() => {
-                    this.ConfigManager.removeSelected();
-                    this.fullUpdate();
-                })
-                .catch(() => undefined);
-        },
-        async createConfig() {
-            let parsed = {};
-
-            if (this.newConfigFromText) {
-                await this.ConfigManager.parseString(this.newConfigFromText)
-                    .then((data) => parsed = data)
-                    .catch((err) => {
-                        alert(err.message);
-                        console.error(err);
-                    });
-            }
-            this.ConfigManager.add({ actually: { ...parsed }, plan: { ...parsed } });
-            this.newConfigFromText = '';
-            this.newModal = false;
-            this.fullUpdate();
-        },
-        copyConfig() {
-            const d = this.ConfigManager.stringifyUrl();
-
-            navigator.clipboard.writeText(`${this.currentUrl}?d=${d}`)
-                .then(() => {
-                    this.buttonCopy.text = this.$t('COPIED');
-                    this.buttonCopy.color = 'green';
-
-                    setTimeout(() => {
-                        this.buttonCopy.text = this.$t('COPY');
-                        this.buttonCopy.color = 'yellow';
-                    }, 2000);
-                })
-                .catch((err) => {
-                    this.buttonCopy.text = 'Error';
-                    this.buttonCopy.color = 'red';
-                    alert(err.message);
-                    console.error(err);
-                });
-        },
-
-        totalTableClasses(type: string, key: string): object {
-            const val = this.output.total.intermediate[key];
-
-            if (type == 'plan') {
-                return {
-                    'yellow-color plus': val.plan,
-                    'hide': val.plan == 0,
-                };
-            }
-            if (type == 'sum') {
-                const isGrowth = (val.sum > val.actually);
-
-                return {
-                    'green-color ': isGrowth,
-                    'muffle': !isGrowth,
-                    'hide': val.sum == 0,
-                };
-            }
-            return {};
-        },
-
-        onChangeLvl(type: keyof Input, key: string, value: number|string): number {
-            value = (typeof value === 'string') ? parseInt(value) : value;
-
-            if (value == 0) {
-                delete this.input[type][key];
-                delete this.output[type][key];
-            } else {
-                this.ConfigManager.selectedConfig[type][key] = value;
-            }
-
-            this.updateInput();
-            this.updateOutput(key);
-            this.ConfigManager.save();
-
-            return value;
-        },
-        isSelected(type: keyof Input, key: string, value: number): boolean {
-            let current = this.input.plan[key] || 0;
-            const min = this.input.actually[key];
-
-            if (min > current) {
-                current = this.onChangeLvl('plan', key, min);
-            }
-            if (type == 'plan') {
-                return (value == current);
-            }
-            return (this.input[type][key] == value);
-        },
-        isDisabled(type: keyof Input, key: string, value: number): boolean {
-            if (type != 'plan' || !this.input.actually) {
-                return false;
-            }
-            return (value < this.input.actually[key]);
-        },
-        outputClasses(type: keyof Output, key: string, charName?: string): object {
-            if (type == 'actually') {
-                return {
-                    'none': charName && this.totalResultKeys.includes(charName),
-                    'actually': true,
-                };
-            }
-            if (type == 'plan') {
-                const char = charName ? this.output[type][key][charName] : undefined;
-
-                return {
-                    'yellow-color': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
-                    'plus': !charName || (charName && !this.totalResultKeys.includes(charName)),
-                    'none': this.input.plan[key] == this.input.actually[key],
-                    'plan': true,
-                };
-            }
-            return {};
         },
     },
 });

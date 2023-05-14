@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head><title>{{ title }}</title></Head>
+    <v-head><title>{{ title }}</title></v-head>
 
     <div class="portrait-container">
       <img
@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import { Head } from '@vueuse/head';
+import { Head as VHead } from '@vueuse/head';
 import VContent from '../components/Content.vue';
 
 export default {
-    components: { Head, VContent },
+    components: { VHead, VContent },
     props: {
         contentArgs: { type: Object, required: true },
         titleLocKey: { type: String, required: true },

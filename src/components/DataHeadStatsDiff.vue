@@ -28,7 +28,7 @@
                 class="characteristics"
               >
                 <li
-                  v-for="([value, status, filtered], key) in getCharacteristics(item)"
+                  v-for="([value, charsStatus, filtered], key) in getCharacteristics(item)"
                   :key="key"
                   :class="{'line': true, filtered}"
                 >
@@ -38,7 +38,7 @@
                     :format="format"
                     :parent-id="`${parentId}-${name}`"
                     :parent="item"
-                    :status="status"
+                    :status="charsStatus"
                   />
                 </li>
               </ul>

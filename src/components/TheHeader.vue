@@ -41,7 +41,7 @@ import Navigation from './TheNavigation.vue';
 import Settings from '@/components/Settings.vue';
 
 export default {
-    name: 'Header',
+    name: 'TheHeader',
     components: { Navigation, Settings },
     props: {
         isMinMode: {

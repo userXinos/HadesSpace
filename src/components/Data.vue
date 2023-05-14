@@ -32,7 +32,7 @@ import isHide from '@Handlers/isHide';
 import headersOrder from '@Regulation/headersOrder.js';
 
 export default {
-    name: 'Data',
+    name: 'VData',
     components: { VTable, VTitle },
     props: {
         data: { type: Object, required: true },

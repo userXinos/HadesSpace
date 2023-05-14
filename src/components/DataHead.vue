@@ -27,7 +27,7 @@
 import Stats from '@/components/DataHeadRenderStat.vue';
 
 export default {
-    name: 'Head',
+    name: 'DataHead',
     components: { Stats },
     props: {
         data: {
