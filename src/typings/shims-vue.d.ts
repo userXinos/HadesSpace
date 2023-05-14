@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Router } from 'vue-router';
+import { Router, RouteLocationNormalized } from 'vue-router';
 
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
@@ -9,6 +9,7 @@ declare module '*.vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $router: Router;
+    $route: RouteLocationNormalized;
   }
 }
 
