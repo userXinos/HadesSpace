@@ -1,4 +1,5 @@
 /* eslint-disable guard-for-in */
+// noinspection DuplicatedCode
 
 import fs from 'fs';
 import path from 'path';
