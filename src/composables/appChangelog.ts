@@ -19,11 +19,11 @@ export default function appChangelog() {
 
 
     function init() {
-        if (needChangeLog()) {
-            router.afterEach(() => {
+        router.afterEach(() => {
+            if (needChangeLog()) {
                 isOpen.value = true;
-            });
-        }
+            }
+        });
     }
     function needChangeLog() {
         const get = (s: string) => s.split(/\./g).slice(0, -1);
