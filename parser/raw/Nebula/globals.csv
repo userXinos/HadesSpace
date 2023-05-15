@@ -269,7 +269,7 @@ WSDistinctionWins,2!3!4
 MaintenanceInfoURL,http://blog.hadesstar.com/2017/08/about-maintenance.html
 CorpBonusCooldown,0
 EA_RS_UNLOCK_LVL,4
-EA_RS_EA_LEVELS,5!6!7!8
+EA_RS_EA_LEVELS,5!6!7!8!9
 SP1ShipUpgradeDiscountPct,10
 SP1ShipBuildDiscountPct,50
 BldMoveToSectorEdge,1
