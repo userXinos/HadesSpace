@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: 'b3ecca02ed85e5d3a91bf7b34fd13ec52f3febc1',
+        title: 'Patch № 16.1',
+        note: '[May 15]: RS9 EA; many translations into other languages',
+    },
+    {
         hash: '8f58a0e6838fc93cf976309feac8433bfecc5abf',
         title: 'Update № 16',
         note: '[May 10]: http://blog.hadesstar.com/2023/05/incoming-early-access-update-may-10.html',
