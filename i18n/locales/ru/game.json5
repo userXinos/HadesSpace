@@ -115,5 +115,8 @@
   EXTRA_ASTEROID_SPAWN_RING_DISTANCE: 'Кольцо спавна дополнительных астероидов',
   EXTRA_ASTEROID_SPAWN_AMT: 'Количество водорода дополнительных астероидов',
   PORTRAIT: 'Изображение',
-  AI_UPDATE_INTERVAL: 'Интервал обновления бота'
+  AI_UPDATE_INTERVAL: 'Интервал обновления бота',
+  DRONES_IGNORE_BARRIER: 'Дроны игнорируют Барьер',
+  RUSH_COST_MODIFIER: 'Модификатор стоимости усорения за кристалы',
+  CLUSTER: 'Кластер'
 }

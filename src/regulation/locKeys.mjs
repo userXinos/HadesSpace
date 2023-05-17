@@ -169,7 +169,6 @@ export const gameCharsLocKeys = {
     terran: 'TID_PLANET_TERRAN_2',
     gas: 'TID_PLANET_GAS_1',
     ice: 'TID_PLANET_ICE',
-    MinScannerLevel: 'TID_BUILDING_SHORT_RANGE_SCANNER',
     AsteroidsMax: 'TID_MODULE_GENESIS_MAX_ASTEROIDS',
     BaseType: 'TID_CERB_STATION_HOME2',
     BSAnomaly: 'TID_BLUE_STAR_ANOMALY',
@@ -367,6 +366,7 @@ export default {
     DronesIgnoreBarrier: 'DRONES_IGNORE_BARRIER',
     RushCostModifier: 'RUSH_COST_MODIFIER',
     ProbableTypePlanet: 'PROBABLE_TYPE_PLANET',
+    MinScannerLevel: 'CLUSTER',
 
     ...gameCharsLocKeys,
 };

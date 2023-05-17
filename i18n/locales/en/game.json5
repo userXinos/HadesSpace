@@ -118,4 +118,5 @@
   AI_UPDATE_INTERVAL: 'Bot update interval',
   DRONES_IGNORE_BARRIER: 'Drones ignores the Barrier',
   RUSH_COST_MODIFIER: 'Crystal rush cost modifier',
+  CLUSTER: 'Cluster'
 }
