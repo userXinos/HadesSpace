@@ -172,11 +172,7 @@ export default [
         (v) => `${(v / 30).toFixed(1)}/${t('TID_SECOND_ABBREVIATION')}`,
     ],
     [
-        ['GhostSpawnSecs'],
-        (v) => v.map((e) => sec2str(e)).join(', '),
-    ],
-    [
-        ['InitialModule', 'ShipToSpawn', 'Name', 'OnDestroySpawn'],
+        ['InitialModule', 'Name'],
         (v) => t(locKeys[v] || v),
     ],
     [

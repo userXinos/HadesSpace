@@ -99,7 +99,14 @@ export default {
             isNebulaBuild: !!process.env.VUE_APP_NEBULA_BUILD,
             ships: this.getShips('capital_ships.cerberus'),
             darkShips: this.getShips('capital_ships.darkCerberus'),
-            stations,
+            stations: objectArrayify(stations, {
+                map: ([k, v]) => {
+                    if (v.ShipToSpawn) {
+                        v.ShipToSpawn = this.getShipLocName(v.ShipToSpawn);
+                    }
+                    return [k, v];
+                },
+            }),
             cerberusPortrait: require(`@Img/game/portraits/portrait_CerberusDestroyer.png`),
             darkCerberusPortrait: require( `@Img/game/portraits/${process.env.VUE_APP_NEBULA_BUILD ? 'portrait_CerberusCarrier' : 'portrait_CerberusDestroyer'}.png`),
             stationPortrait: require(`@Img/game/portraits/portrait_CerberusStation.png`),
@@ -115,10 +122,20 @@ export default {
                             filter: ([k]) => !UNNECESSARY_MODULE_STATS.includes(k),
                         }));
                     }
+                    if (v.OnDestroySpawn) {
+                        const k = v.OnDestroySpawn;
+                        const n = String(v.OnDestroySpawnCount);
+
+                        v.OnDestroySpawn = `${n}x ${this.getShipLocName(k)}`;
+                        delete v.OnDestroySpawnCount;
+                    }
                     return [k, v];
                 },
 
             });
+        },
+        getShipLocName(key) {
+            return (key in ships) ? this.$t(ships[key].TID) : key;
         },
     },
 };
