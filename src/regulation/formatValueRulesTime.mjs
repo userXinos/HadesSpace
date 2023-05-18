@@ -35,11 +35,9 @@ export default [
             'ShieldRegenTimeAfterDamage',
             'SectorEnrichCooldownSeconds',
             'TurretSetupTime',
-            'RelicLoad',
             'RSPublicLateJoin_TimeAvailable',
             'SectorGenesisCooldownSeconds',
             'AIUpdateIntervalSeconds',
-            'HydroCloneLifetimeSec',
             'WSLostShipTimeCooldown',
             'WSDisbandCooldown',
             'DPSRampTimes',
@@ -48,7 +46,7 @@ export default [
         (v) => v,
     ],
     [
-        ['APTPIOTTP'], //  заменить на DispatchActivTicks
+        ['APTPIOTTP'],
         (v) => v / 5,
     ],
     [
@@ -58,9 +56,5 @@ export default [
     [
         ['TargetSwitchTicks', 'MirrorShieldTickPeriod', 'DispatchActivTicks', 'RelicLoadTicks'],
         (v, {TicksPerSecond}) => v / TicksPerSecond,
-    ],
-    [
-        ['RSLESecPer500Hydro'],
-        (v) => v * 3,
     ],
 ]

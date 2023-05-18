@@ -139,7 +139,6 @@ export default {
         'FlagshipDroneSwarm.NewModuleSlots',
 
         // RedStar
-        'DarkRedStar.PlanetBomberCoverage', // временно ?
         'RedStar.MaxSectorDistanceToMaxPlanet', // временно ?
         /(Dark)?RedStar\.Star/,
         /(Dark)?RedStar\.RSPublicLateJoin_ClientCacheExpiry/,
@@ -203,7 +202,6 @@ export default {
         'ShipmentDrone.HP',
         'RelicDrone.MaxShipments',
         'RelicDrone.RelicLoadTicks',
-        'RelicDrone.RelicLoadTicksBS',
         'Dispatch.APTPIOTTPYS', // неизвестная единица измерения
 
         // Mining

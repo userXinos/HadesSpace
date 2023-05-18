@@ -35,7 +35,7 @@ export default [
             'UnityBoostPercent',
             'IncreaseSectorHydroPct',
             'HydroUploadPct',
-            'SpeedIncreasePerShipment', // устарело
+            'SpeedIncreasePerShipment',
             'CreditIncomeModifier',
             'FuelIncomeModifier',
             'CreditStorageModifier',
@@ -53,16 +53,11 @@ export default [
             'BlueStar_SPFactor',
             'MaxRelicSpeedIncrease',
             'ArtifactBoostPct',
-            'HydroClonePct',
             'LinkDPSBoostPct',
-            'SolitudeDPSBoost',
-            'DmgReduceImmobilize',
-            'SpeedSlowdownFactor',
             'SpeedModifierPct',
             'MirrorDamageAsAOE',
             'DRSArtifactBonus',
             'MassMiningRatePct',
-            'HydroDeliveryBonus',
             'RelayBonusPct',
             'RushRSSpeedIncr',
             'RushYSHydroDc',
@@ -94,7 +89,6 @@ export default [
             'RequiresStarSector',
             'SafeInterceptorInPublicRS',
             'ShowDurationInTopSpot',
-            'NoCerbBondTeleportP', // так надо
             'DronesIgnoreBarrier',
         ],
         (v) => v ? t('YES') : t('NO'),
@@ -154,7 +148,7 @@ export default [
         (v) => `x${v}`,
     ],
     [
-        ['TimeWarpFactor', 'MiningSpeedModifierPct', 'DamageAmplifyFactor'],
+        ['TimeWarpFactor', 'MiningSpeedModifierPct'],
         (v) => `x${v / 100}`,
     ],
     [
