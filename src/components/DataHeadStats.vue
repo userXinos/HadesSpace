@@ -16,7 +16,7 @@
                 class="title"
               >
                 <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
-                  {{ format.key(name || item.TID) }}
+                  {{ formatTitle(name, item.TID) }}
                 </a>
               </div>
               <p
@@ -90,6 +90,7 @@ import { h } from 'vue';
 import Icon from '@/components/Icon.vue';
 import Store from '@Store/index';
 
+import locKeys from '@Regulation/locKeys.mjs';
 import objectArrayify from '@/js/objectArrayify';
 import isHide from '@Handlers/isHide';
 
@@ -162,6 +163,11 @@ export default {
             const customDescr = (customDescrKey && this.$te(customDescrKey)) ? this.$t(customDescrKey) : null;
 
             return (customDescr) ? `${descr}\n\n${customDescr}` : descr;
+        },
+        formatTitle(keyName, TID) {
+            const finalKey = (TID) ? ((keyName in locKeys) ? keyName : TID) : keyName;
+
+            return this.format.key(finalKey);
         },
     },
 };
