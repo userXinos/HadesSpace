@@ -55,6 +55,7 @@ export default {
                 ...sectors,
                 BaseType: sectors.BaseType.map((v, i) => v ? ({ ...v, NumBases: sectors.NumBases[i] }) : null),
                 TID: 'SECTORS',
+                TID_Description: 'TID_YS_SECTORS_CUSTOM_DESCR',
                 Name: 'yellow_star_sectors',
             },
             levels: { TID: 'LVLS_PLANETS', ...levels },
