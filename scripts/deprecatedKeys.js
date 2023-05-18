@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 /* CONFIGURATION  */
 const PARSER_DIST_PATH = '../parser/dist/Nebula';
 const REGULATION_PATH = '../src/regulation/';
+const POSTFIXES = '../src/regulation/postfixes.mjs';
 const BLACK_LIST_REG_FILES = ['pages', 'patchCommits', 'byTypes'];
 const IGNORED_KEYS = [
     'valueX',
@@ -17,6 +18,8 @@ const IGNORED_KEYS = [
     '_',
     'Name2',
     'TID2',
+    'alliancelevels',
+    'playergoals',
 ];
 /* CONFIGURATION  */
 
@@ -24,6 +27,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const parser = await compileModules(PARSER_DIST_PATH);
 const AllUsesKeys = collectKeysFromObj(parser);
+const postfixes = await import(POSTFIXES);
 const regulation = await compileModules(REGULATION_PATH).then((o) => {
     BLACK_LIST_REG_FILES.forEach((k) => delete o[k]);
     return o;
@@ -37,7 +41,16 @@ const output = Object.keys(regulationByKeys).reduce((acc, key) => {
         if (typeof k == 'string' && k.includes('.')) {
             k = k.split('.').pop();
         }
-        return !AllUsesKeys.includes(k) && !IGNORED_KEYS.includes(k);
+        if (IGNORED_KEYS.includes(k) || AllUsesKeys.includes(k)) {
+            return false;
+        }
+
+        for (const p of postfixes.default) {
+            if (AllUsesKeys.includes(`${k}${p}`) || AllUsesKeys.includes(`${k}_${p}`)) {
+                return false;
+            }
+        }
+        return true;
     });
     if (arr.length) {
         acc[key] = arr;

@@ -17,7 +17,7 @@ const PARSER_DIST_BLACK_LIST_FILES = [
 
 const REGULATION_RULES_PATH = '../src/regulation/formatValueRules.js';
 const REGULATION_RULES_TIME_PATH = '../src/regulation/formatValueRulesTime.mjs';
-const POSTFIX_REGEX = '../src/regulation/postfixRegex.mjs';
+const POSTFIXES = '../src/regulation/postfixes.mjs';
 const REGULATION_LOC_PATH = '../src/regulation/locKeys.mjs';
 const REGULATION_HIDE_PATH = '../src/regulation/hideKeys.js';
 /* CONFIGURATION  */
@@ -29,7 +29,7 @@ PARSER_DIST_BLACK_LIST_FILES.forEach((k) => delete parser[k]);
 const AllUsesKeys = collectKeysAndClassification(parser);
 const rules = await importModule(REGULATION_RULES_PATH);
 const rulesTime = await importModule(REGULATION_RULES_TIME_PATH);
-const postfixRegex = await importModule(POSTFIX_REGEX);
+const postfixes = await importModule(POSTFIXES);
 const loc = await importModule(REGULATION_LOC_PATH);
 const hide = await importModule(REGULATION_HIDE_PATH);
 const rulesByKeys = collectKeysFromArrays({ ...rules.default, ...rulesTime.default });
@@ -46,7 +46,7 @@ const isHide = (key) => (
     })
 );
 const output = Object.entries(AllUsesKeys).reduce((acc, [key, [type, fileName]]) => {
-    key = key.replace(postfixRegex.default, '');
+    key = key.replace(postfixes.regex, '');
     if (rulesByKeys.includes(key) || isHide(key) || key in loc.default) {
         return acc;
     }

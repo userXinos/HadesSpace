@@ -1,5 +1,5 @@
 import rules from '@Regulation/formatValueRules.js';
-import postfixRegex from '@Regulation/postfixRegex.mjs';
+import { regex as postfixRegex } from '@Regulation/postfixes.mjs';
 
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 
