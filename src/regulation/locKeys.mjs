@@ -1,5 +1,17 @@
 // noinspection SpellCheckingInspection
 
+export const gameSlostLocKeys = {
+    Weapon: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS',
+    Shield: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS',
+    Transport: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_TRADE',
+    Mining: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_MINING',
+    Combat: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT',
+    Drone: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE',
+
+    Support: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT',
+    Trade: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_TRADE',
+}
+
 export const gameCharsLocKeys = {
     BlueStar_Fragments: 'TID_BS_FRAGMENTS_REWARD_TITLE',
     RushYSHydroDc: 'TID_MODULE_RUSH_HYDRO_REDUCT',
@@ -336,4 +348,5 @@ export default {
     MinScannerLevel: 'CLUSTER',
 
     ...gameCharsLocKeys,
+    ...gameSlostLocKeys,
 };
