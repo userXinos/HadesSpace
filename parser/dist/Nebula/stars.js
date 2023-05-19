@@ -166,7 +166,7 @@ export default {
         DRSArtifactBonus: 100,
         MaxShipsInRSSector: 50,
         EA_RS_UNLOCK_LVL: 4,
-        EA_RS_EA_LEVELS: [null, null, null, null, null, null, null, null, 5, 6, 7, 8, 9],
+        EA_RS_EA_LEVELS: [null, null, null, null, null, null, null, null, 5, 6, 7, 8, 10],
         Influence: [
             null,
             [0, 150],
