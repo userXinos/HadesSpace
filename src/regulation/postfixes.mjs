@@ -1,4 +1,4 @@
-const e = [
+const postfixes = [
     'RS',
     'WS',
     'BS',
@@ -12,5 +12,5 @@ const e = [
     'PvP'
 ];
 
-export const regex = new RegExp(`_?(${e.join('|')})$`);
-export default e;
+export const regex = new RegExp(`_?(${postfixes.join('|')})$`);
+export default postfixes;

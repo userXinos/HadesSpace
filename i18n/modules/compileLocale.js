@@ -4,15 +4,12 @@ import CONFIG from '../config.js';
 import loadLocale from './loadLocale.js';
 import parser from './parser.js';
 
-export default async function compileLocale(name, defaultLocale, starHeaders) {
+export default async function compileLocale(name, defaultLocale) {
     const parsedData = await parser(`loc_strings/loc_strings_${name}.csv`, LocStrings);
     const locale = await loadLocale(name);
-    const result = { ...fixWords(parsedData), ...{ ...defaultLocale, ...locale } };
+
+    return { ...fixWords(parsedData), ...{ ...defaultLocale, ...locale } };
     /*                                                       ^ заполнить пробелы, если есть  */
-
-    addStarKeys(result, starHeaders);
-
-    return result;
 }
 
 /**
@@ -50,20 +47,4 @@ function fixWords(data) {
         }
         return result;
     }
-}
-
-/**
- *
- * @param {Object} data
- * @param {Object} starHeaders
- */
-function addStarKeys(data, starHeaders) {
-    Object.keys(starHeaders).forEach((k) => {
-        starHeaders[k].forEach((star) => {
-            const starKey = star.replace(/_?(\w\w)/, '$1');
-            const key = CONFIG.stringKeys[k] || k;
-
-            data[k + star] = `${data[key] || key} (${data[starKey] || starKey})`;
-        });
-    });
 }

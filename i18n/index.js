@@ -3,21 +3,16 @@ import { existsSync, mkdirSync, readdirSync } from 'fs';
 import { writeFile } from 'fs/promises';
 
 import Timer from '../parser/modules/Timer.js';
-import Modules from '../parser/runners/Modules.js';
 
 import CONFIG from './config.js';
 import program from './modules/program.js';
 import loadLocale from './modules/loadLocale.js';
-import parser from './modules/parser.js';
 import compileLocale from './modules/compileLocale.js';
-import genStringsStarHeaders from './modules/genStringsStarHeaders.js';
 
 program.parse();
 
 const time = new Timer();
-const modules = await parser('modules.csv', Modules);
 const defaultLocale = await loadLocale(CONFIG.defaultLang);
-const starHeaders = genStringsStarHeaders(modules);
 const files = readdirSync(CONFIG.additionalContent).map(handler);
 
 
@@ -26,7 +21,7 @@ console.log('\x1b[32m[✓] \x1b[0m Done! (%s sec.)', time.final);
 
 
 async function handler(locale) {
-    const data = await compileLocale(locale, defaultLocale, starHeaders);
+    const data = await compileLocale(locale, defaultLocale);
     const path = join(CONFIG.savePath, `${locale}.json`);
 
     if (!existsSync(dirname(path))) {
