@@ -238,7 +238,7 @@ export default defineComponent({
             return Object.keys(this.output.total.result);
         },
         currentUrl() {
-            return `${location.pathname}`;
+            return `${location.origin}${location.pathname}`;
         },
     },
     created() {
@@ -246,7 +246,7 @@ export default defineComponent({
             const parsed = this.ConfigManager.parseUrl(this.$route.query.d as string);
 
             this.ConfigManager.add({ actually: parsed, plan: parsed }, { temporary: true });
-            this.$router.push(this.currentUrl);
+            this.$router.push(`${location.pathname}`);
         }
 
         this.fullUpdate();
