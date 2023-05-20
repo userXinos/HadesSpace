@@ -19,16 +19,24 @@ export default function appChangelog() {
 
 
     function init() {
-        router.afterEach(() => {
-            if (needChangeLog()) {
-                isOpen.value = true;
-            }
-        });
+        if (needChangeLog()) {
+            router.afterEach(() => {
+                if (needChangeLog()) {
+                    isOpen.value = true;
+                }
+            });
+        }
     }
     function needChangeLog() {
         const get = (s: string) => s.split(/\./g).slice(0, -1);
         const currVers = get(VERSION);
         const lastVers = get(store.state.userSettings.lastVersionChangelog);
+
+        if (lastVers[0] == '0') {
+            store.commit(types.SET_LAST_CHECKED_VERSION_CHANGELOG, VERSION);
+
+            return false;
+        }
 
         while (currVers.length || lastVers.length) {
             const a = Number(currVers.shift());
