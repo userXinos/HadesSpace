@@ -289,11 +289,6 @@ export default [
         ['EntrustArtifacts'],
     ],
     [
-        ['valueX'],
-        (v) => t(locKeys[v.replace(/^Cerberus(.+?)s?$/, '$1')]),
-        ['DestroySentinels', 'DestroyGuardians', 'DestroyColossus', 'DestroyInterceptor', 'DestroyPhoenix'],
-    ],
-    [
         ['Transport', 'Miner', 'Battleship'],
         (v) => (Array.isArray(v)) ? v.join('>') : v,
         ['RedStar', 'DarkRedStar'],
