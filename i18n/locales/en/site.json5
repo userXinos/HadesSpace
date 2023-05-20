@@ -8,7 +8,6 @@
   TYPE_MOD_DRONE: 'Drone modules',
   LVL: 'lvl',
   HOME: 'Home',
-  CONTENT: 'Content',
   PLAN_LVL: 'Planned level',
   CURRENT_LVL: 'Current level',
   REQ_BANK: 'Required credit bank',

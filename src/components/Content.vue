@@ -3,28 +3,44 @@
 
     <template v-if="Object.keys(args.data).length > 1">
       <div class="title">
-        <h2>{{ $t('CONTENT') }}</h2>
         <div
-          class="hamburger-icon"
-          :class="{'opened': contentOpened}"
+          class="chat-icon"
+          :class="[contentOpened ? 'opened' : 'closed']"
           @click="contentOpened = !contentOpened"
-        ><div /></div>
+        />
       </div>
-      <transition-group
-        v-if="contentOpened"
-        tag="ol"
-        class="list"
-      >
-        <li
-          v-for="{Name, TID} of args.data"
-          :key="Name"
+      <transition>
+        <ol
+          v-if="contentOpened"
+          class="list"
+          :class="{'with-icons': 'iconDir' in args}"
         >
-          <a
-            v-t="TID"
-            :href="`#${Name}`"
-          />
-        </li>
-      </transition-group>
+          <li
+            v-for="item of args.data"
+            :key="item.Name"
+          >
+            <a :href="`#${item.Name}`">
+              <template v-if="'iconDir' in args">
+                <div>
+                  <div
+                    v-if="item.PrefabModel || item.Icon || item.Model"
+                    class="icon"
+                  >
+                    <icon
+                      :name="getRandomIfArr(item.PrefabModel || item.Icon || item.Model)"
+                      :dir="args.iconDir"
+                    />
+                  </div>
+                  <p>{{ $t(item.TID) }}</p>
+                </div>
+              </template>
+              <template v-else>
+                {{ $t(item.TID) }}
+              </template>
+            </a>
+          </li>
+        </ol>
+      </transition>
     </template>
 
     <v-data
@@ -41,6 +57,7 @@
 
 <script>
 import VData from './Data.vue';
+import Icon from '@/components/Icon.vue';
 
 /**
  * @typedef {Object} data - from @Data
@@ -55,14 +72,24 @@ import VData from './Data.vue';
  */
 
 export default {
-    components: { VData },
+    components: { VData, Icon },
     props: {
         args: { type: Object, required: true },
     },
     data() {
         return {
-            contentOpened: false,
+            contentOpened: true,
         };
+    },
+    methods: {
+        getRandomIfArr(elem) {
+            if (Array.isArray(elem)) {
+                const i = Math.floor(Math.random() * elem.length);
+
+                return elem[i];
+            }
+            return elem;
+        },
     },
 };
 </script>
@@ -80,52 +107,98 @@ export default {
     }
 
     .list {
-        border: 5px solid #586066;
-        list-style-type: none;
+        border: 3px solid $border-color;
+        border-radius: 10px;
+        list-style: none;
         columns: 200px auto;
         font-size: 125%;
         margin: 0 3%;
+        padding: 10px;
 
-        li {
-            text-align: center;
+        &.with-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            li {
+                display: inline-block;
+                flex-grow: 1;
+                padding: 10px;
+                width: 100%;
+
+                max-width: 90px;
+
+                @media screen and (max-width: 1600px){
+                    max-width: 80px;
+                    font-size: 100%;
+                }
+                @media screen and (max-width: 1500px){
+                    max-width: 70px;
+                    font-size: 90%;
+                }
+                @media screen and (max-width: 1024px){
+                    max-width: 60px;
+                    font-size: 80%;
+                }
+                @media screen and (max-width: 960px){
+                    max-width: 50px;
+                    font-size: 70%;
+                }
+
+                p {
+                    padding-top: 5px;
+                    text-align: center;
+                }
+            }
         }
     }
+
 }
-
-// credits: https://codepen.io/Bilal1909/pen/KKdrmRP
-.hamburger-icon {
+.chat-icon {
     width: 50px;
+    height: 50px;
     cursor: pointer;
-
-    @media screen and (max-width: 1000px){
-        width: 40px;
-    }
-
-    &:before, &:after, & div {
-        background: $text-color;
-        content: "";
-        display: block;
-        height: 5px;
-        border-radius: 3px;
-        margin: 7px 0;
-        transition: 0.5s;
-
-        @media screen and (max-width: 1000px){
-            height: 4px;
-            margin: 2px 0;
-        }
-    }
+    background: url('../img/icons/chat_arrow.svg') no-repeat right/100%;
+    animation-duration: 0.5s;
 
     &.opened {
-        &:before {
-            transform: translateY(12px) rotate(135deg);
-        }
-        &:after {
-            transform: translateY(-12px) rotate(-135deg);
-        }
-        &  div {
-            transform: scale(0);
-        }
+        transform: rotateX(180deg);
+        animation-name: open;
     }
+    &.closed {
+        animation-name: close;
+    }
+
+    @keyframes open {
+        0% {transform: scale(0.5);}
+        50% {transform: rotateX(180deg);}
+        100% {transform: scale(1) rotateX(180deg);}
+    }
+    @keyframes close {
+        0% {transform: scale(0.5);}
+        50% {transform: rotateX(0);}
+        100% {transform: scale(1) rotateX(0);}
+    }
+}
+.v {
+    &-leave-active {
+        animation: out 0.5s;
+    }
+
+    &-enter-active {
+        animation: in 0.5s;
+    }
+
+    @keyframes in {
+        0% {transform: scale(0);opacity: 0;}
+        50% {transform: scale(1.1);opacity: 1;}
+        100% {transform: scale(1);opacity: 1;}
+    }
+    @keyframes out {
+        0% {transform: scale(1);opacity: 1;}
+        50% {transform: scale(1.1);opacity: 1;}
+        100% {transform: scale(0);opacity: 0;}
+    }
+
 }
 </style>
