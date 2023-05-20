@@ -27,11 +27,9 @@ export default function(key, pageName) {
 
     if (FIX_KEY_REGEX.test(key)) {
         const fixedKey = key.replace(FIX_KEY_REGEX, '');
+        const fixedKey2 = key.replace(GET_POSTFIX_KEY_REGEX, '$1');
 
-        if (fixedKey in locKeys) {
-            const keyPart2 = key.replace(GET_POSTFIX_KEY_REGEX, '$1');
-            return `${t(locKeys[fixedKey])} (${t(locKeys[keyPart2] || keyPart2)})`;
-        }
+        return `${t(locKeys[fixedKey] || fixedKey)} (${t(locKeys[fixedKey2] || fixedKey2)})`;
     }
 
     return key;
