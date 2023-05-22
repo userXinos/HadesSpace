@@ -186,7 +186,6 @@ const props = defineProps<Props>();
 const emit = defineEmits(['update:input', 'setup']);
 
 const isNebula = !!process.env.VUE_APP_NEBULA_BUILD;
-const isProd = !!process.env.NODE_ENV === 'production';
 const format = {
     key: (k: string) => key(k, router.currentRoute.name as string),
     value: (k: string, v: unknown) => value(k, v, router.currentRoute.value.name as string),
@@ -219,10 +218,9 @@ const currentUrl = computed(() => `${location.origin}${location.pathname}`);
 
 if (router.currentRoute.value.query.d) {
     const parsed = ConfigManager.parseUrl(router.currentRoute.value.query.d as string);
-    const data = { actually: parsed, plan: parsed };
+    const data = { actually: { ...parsed }, plan: { ...parsed } };
 
     ConfigManager.add(data, { temporary: true });
-    router.push({ path: isProd ? '/' : location.pathname });
 }
 
 fullUpdate();
