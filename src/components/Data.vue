@@ -9,7 +9,7 @@
       />
 
       <v-table
-        v-if="table != null"
+        v-if="'default' in table.head && Object.keys(table.head.default).length !== 0"
         v-bind="Object.assign(tableOpts, {data: table, format})"
       >
         <!--         eslint-disable vue/max-attributes-per-line         -->
@@ -21,111 +21,113 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed, ref, Ref, watch } from 'vue';
+import router from '@Utils/Vue/router';
+
 import VTable from './DataTable.vue';
 import VTitle from './DataHead.vue';
 
-import key from '@Handlers/key.js';
-import value from '@Handlers/value.js';
+import key from '@Handlers/key';
+import value from '@Handlers/value';
 import isHide from '@Handlers/isHide';
 
 import headersOrder from '@Regulation/headersOrder.js';
 
-export default {
-    name: 'VData',
-    components: { VTable, VTitle },
-    props: {
-        data: { type: Object, required: true },
-        tableOpts: { type: Object, default: () => ({}) },
-        sort: { type: Boolean, default: true },
-        iconDir: { type: String, default: '' },
-    },
-    data() {
-        return {
-            table: {
-                head: {},
-                body: {},
-            },
-            title: {},
+export interface Props {
+    data: object
+    tableOpts?: object
+    sort?: boolean
+    iconDir?: string
+}
+interface DataTable {
+    head: Record<string, unknown[]>
+    body: Record<string, unknown[]>
+}
+interface DataTitle {
+    [k: string]: {[k: string]: unknown}|unknown[]
+}
 
-            format: {
-                key: (k) => key(k, this.$route.name),
-                value: (k, v) => value(k, v, this?.title.default.Name),
-            },
-        };
-    },
-    watch: {
-        data() {
-            this.table = { head: {}, body: {} };
-            this.title = {};
+const props = withDefaults(defineProps<Props>(), {
+    tableOpts: () => ({}),
+    sort: true,
+    iconDir: '',
+});
+const table: Ref<DataTable> = ref({ head: {}, body: {} });
+const title: Ref<DataTitle> = ref({ });
 
-            this.packagingData(this.data);
-        },
-    },
-    created() {
-        this.packagingData(this.data);
-    },
-    methods: {
-        packagingData(obj, category = 'default') {
-            const preTable = [];
-            const preTitle = [];
-
-            Object.entries(obj).forEach(([key, value]) => {
-                if (value === undefined || value === null) {
-                    console.warn(`key: "${key}" is ${value}.`);
-                    preTitle.push([key, '-']);
-                    return;
-                }
-                if (value.constructor === Object) {
-                    this.packagingData(value, key);
-                } else if (Array.isArray(value)) {
-                    if (isHide(key, null, { asTitle: true })) {
-                        this.title[key] = value;
-                    } else {
-                        preTable.push([key, value]);
-                    }
-                } else {
-                    preTitle.push([key, value]);
-                }
-            });
-            this.buildTitle(category, preTitle);
-            this.buildTable(category, preTable);
-        },
-        buildTitle(category, pre) {
-            // TODO перенести фильтры из Head сюда
-            const { title } = this;
-
-            pre.forEach(([k, v]) => {
-                if (!title[category]) {
-                    title[category] = {};
-                }
-                title[category][k] = v;
-            });
-        },
-        buildTable(category, pre) {
-            const { table: { head, body } } = this;
-            const { Name } = this.data;
-            const keys = pre.map(([k]) => k);
-
-            pre
-                .filter(([k]) => (keys.includes(`_${k}`)) ? true : !isHide(k, Name))
-                .sort(([a], [b]) => this.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
-                .forEach(([key, value]) => {
-                    if (Array.isArray(head[category])) {
-                        head[category].push(key);
-                        body[category].push(value);
-                    } else {
-                        head[category] = [key];
-                        body[category] = [value];
-                    }
-                });
-
-            if (category === 'default' && Object.keys(head).length === 0) {
-                this.table = null;
-            }
-        },
-    },
+const dataName = computed(() => {
+    const { value: t } = title;
+    return (t && 'default' in t) ? (t.default as Record<string, string>).Name : null;
+});
+const format = {
+    key: (k: string) => key(k, router.currentRoute.name as string),
+    value: (k: string, v: unknown) => value(k, v, dataName.value),
 };
+
+watch(() => props.data, () => {
+    table.value = { head: {}, body: {} };
+    title.value = {};
+
+    packagingData(props.data);
+});
+
+packagingData(props.data);
+
+
+function packagingData(obj: Record<string, unknown>, category = 'default') {
+    const preTable = [] as [string, unknown][];
+    const preTitle = [] as [string, unknown][];
+
+    Object.entries(obj).forEach(([key, value]) => {
+        if (value === undefined || value === null) {
+            console.warn(`key: "${key}" is ${value}.`);
+            preTitle.push([key, '-']);
+            return;
+        }
+        if (value.constructor === Object) {
+            packagingData(value as Record<string, unknown>, key);
+        } else if (Array.isArray(value)) {
+            if (isHide(key, null, { asMeta: false, asTitle: true })) {
+                title.value[key] = value as unknown[];
+            } else {
+                preTable.push([key, value]);
+            }
+        } else {
+            preTitle.push([key, value]);
+        }
+    });
+    buildTitle(category, preTitle);
+    buildTable(category, preTable);
+}
+function buildTitle(category: string, pre:[string, unknown][]) {
+    // TODO перенести фильтры из Head сюда
+    const { value } = title;
+    pre.forEach(([k, v]) => {
+        if (!value[category]) {
+            value[category] = {};
+        }
+        (value[category] as Record<string, unknown>)[k] = v;
+    });
+}
+function buildTable(category: string, pre: [string, unknown][]) {
+    const { head, body } = table.value;
+    const { Name } = props.data;
+    const keys = pre.map(([k]) => k);
+
+    pre
+        .filter(([k]) => (keys.includes(`_${k}`)) ? true : !isHide(k, Name))
+        .sort(([a], [b]) => props.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
+        .forEach(([key, value]) => {
+            if (Array.isArray(head[category])) {
+                head[category].push(key);
+                body[category].push(value);
+            } else {
+                head[category] = [key];
+                body[category] = [value];
+            }
+        });
+}
 </script>
 <style scoped lang="scss">
 .container-wrap {

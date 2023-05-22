@@ -4,7 +4,7 @@
 
       <calculator
         v-model:input="input"
-        :stack-chars="stackChars"
+        :stack-chars="STACK_CHARS"
         :calc-total="calcTotal"
         local-storage-key="modulesCalc"
         title-key="MODULES_CALC"
@@ -17,7 +17,7 @@
           :key="typeName"
           class="type"
         >
-          <h3> {{ format.key(typeName) }} </h3>
+          <h3> {{ calc.format.key(typeName) }} </h3>
           <ul>
             <li
               v-for="([module, maxLevel]) of type"
@@ -107,7 +107,7 @@
               :key="key"
               :class="{'output': true, 'sub-chars': typeof calc.output.plan?.[modalOpts.data.key]?.[key] == 'object'}"
             >
-              <b>{{ format.key(key) }}</b>
+              <b>{{ calc.format.key(key) }}</b>
               <div>
                 <span
                   v-for="type of Object.keys(input)"
@@ -123,14 +123,14 @@
                         :key="k1"
                         class="output"
                       >
-                        <b>{{ format.key(k1) }}</b>
+                        <b>{{ calc.format.key(k1) }}</b>
                         <div>
                           <span
                             v-for="type1 of Object.keys(input)"
                             :key="type1"
                             :class="outputClasses(type1, k1)"
                           >
-                            {{ format.value(k1, calc.output[type1]?.[modalOpts.data.key]?.[key]?.[k1]) }}
+                            {{ calc.format.value(k1, calc.output[type1]?.[modalOpts.data.key]?.[key]?.[k1]) }}
                           </span>
                         </div>
                       </li>
@@ -138,7 +138,7 @@
                   </template>
 
                   <template v-else>
-                    {{ format.value(key, calc.output[type]?.[modalOpts.data.key]?.[key]) }}
+                    {{ calc.format.value(key, calc.output[type]?.[modalOpts.data.key]?.[key]) }}
                   </template>
 
                 </span>
@@ -151,110 +151,87 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref, Ref, reactive } from 'vue';
+import i18n from '../utils/Vue/i18n';
 
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 import Calculator from '@/components/Calculator.vue';
 
-import value from '@Handlers/value';
-import key from '@Handlers/key';
-import type { Input, Output, Element, ElementsStore } from '../composables/calculator';
-import type { Setup, ProvideGetterElementsCB } from '../components/Calculator.vue';
+import type { SetupComponent, SetupGetElementsCB, Input, Output, OutputValue, OutputMap, ElementsStore } from '@/typings/calculator';
 import { getBySlotType } from '../components/ModulePage.vue';
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
 const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
 
-export default defineComponent({
-    name: 'ModulesCalc',
-    components: { Icon, Modal, Calculator },
-    data() {
-        return {
-            inputLocKeys: {
-                actually: 'CURRENT_LVL',
-                plan: 'PLAN_LVL',
-            },
-            format: {
-                key: (k: string) => key(k, this.$route.name),
-                value: (k: string, v: string | number) => value(k, v, null),
-            },
-            types: TYPES_ORDER,
-            stackChars: STACK_CHARS,
-
-            modules: {} as {[k: string]: unknown},
-            calc: {} as Setup,
-            input: { actually: {}, plan: {} } as Input,
-            resetConfirm: () => (new Promise(() => null)) as Promise<void>,
-
-            openModal: false,
-            modalOpts: {
-                size: SIZES.SMALL,
-                title: this.$t('TID_TECH_DLG_TITLE'),
-                data: {
-                    module: {} as Element,
-                    maxLevel: 0,
-                    get key() {
-                        return this.module.Name;
-                    },
-                },
-            },
-
-        };
-    },
-    methods: {
-        setupCalculator(v: Setup) {
-            this.calc = v;
-            for (const type of TYPES_ORDER) {
-                this.modules[type] = v.provideGetterElements((...p) => getModulesBySlotType.apply(null, [type, ...p]));
-            }
-        },
-        onChangeLvl(type: keyof Input, value: number|string) {
-            return this.calc.onChangeLvl(type, this.modalOpts.data.key, value);
-        },
-        isSelected(type: keyof Input, value: number): boolean {
-            return this.calc.isSelected(type, this.modalOpts.data.key, value);
-        },
-        isDisabled(type: keyof Input, value: number): boolean {
-            return this.calc.isDisabled(type, this.modalOpts.data.key, value);
-        },
-        async onReset(event: Event): Promise<void> {
-            if (this.openModal) {
-                if ((event.target as HTMLButtonElement).name == 'all') {
-                    this.onChangeLvl('actually', 0);
-                    this.onChangeLvl('plan', 0);
-                } else {
-                    this.onChangeLvl('plan', 0);
-                }
-            }
-        },
-
-        outputClasses(type: keyof Output, charName?: string): object {
-            return this.calc.outputClasses(type, this.modalOpts.data.key, charName);
-        },
-        openModuleInfo(module: Element, maxLevel: number) {
-            this.modalOpts.data.module = module;
-            this.modalOpts.data.maxLevel = maxLevel;
-            this.openModal = true;
-        },
-
-        calcTotal(store: ElementsStore, output: Output) {
-            const val = output.total;
-            val.result['ReqBank'] = 0;
-
-            return function(name: string, input: Input) {
-                const UnlockPrices = store[name].UnlockPrice;
-                const UnlockPrice = (Array.isArray(UnlockPrices)) ? UnlockPrices[input.plan[name] - 1] : UnlockPrices as number;
-
-                val.result.ReqBank = (UnlockPrice > val.result.ReqBank) ? UnlockPrice : val.result.ReqBank;
-            };
+const { t } = i18n.global;
+const inputLocKeys = {
+    actually: 'CURRENT_LVL',
+    plan: 'PLAN_LVL',
+};
+const modules: Ref<{[k: string]: unknown}> = ref({});
+const input: Ref<Input> = ref({ actually: {}, plan: {} });
+const openModal = ref(false);
+const modalOpts = reactive({
+    size: SIZES.SMALL,
+    title: t('TID_TECH_DLG_TITLE'),
+    data: {
+        module: {},
+        maxLevel: 0,
+        get key() {
+            return this.module.Name;
         },
     },
 });
+let calc: SetupComponent;
 
-function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Parameters<ProvideGetterElementsCB>) {
-    const modules = getBySlotType(type) as { [k: string]: Element };
+function setupCalculator(v: SetupComponent) {
+    calc = v;
+    for (const type of TYPES_ORDER) {
+        modules.value[type] = v.provideGetterElements((...p) => getModulesBySlotType.apply(null, [type, ...p]));
+    }
+}
+function onChangeLvl(type: keyof Input, value: number|string) {
+    return calc.onChangeLvl(type, modalOpts.data.key, value);
+}
+function isSelected(type: keyof Input, value: number): boolean {
+    return calc.isSelected(type, modalOpts.data.key, value);
+}
+function isDisabled(type: keyof Input, value: number): boolean {
+    return calc.isDisabled(type, modalOpts.data.key, value);
+}
+async function onReset(event: Event): Promise<void> {
+    if (openModal.value) {
+        if ((event.target as HTMLButtonElement).name == 'all') {
+            onChangeLvl('actually', 0);
+            onChangeLvl('plan', 0);
+        } else {
+            onChangeLvl('plan', 0);
+        }
+    }
+}
+function outputClasses(type: keyof Output, charName?: string): object {
+    return calc.outputClasses(type, modalOpts.data.key, charName);
+}
+function openModuleInfo(module: OutputValue, maxLevel: number) {
+    modalOpts.data.module = module;
+    modalOpts.data.maxLevel = maxLevel;
+    openModal.value = true;
+}
+function calcTotal(store: ElementsStore, output: Output) {
+    const val = output.total;
+    val.result['ReqBank'] = 0;
+
+    return function(name: string, input: Input) {
+        const UnlockPrices = store[name].UnlockPrice;
+        const UnlockPrice = (Array.isArray(UnlockPrices)) ? UnlockPrices[input.plan[name] - 1] : UnlockPrices as number;
+
+        val.result.ReqBank = (UnlockPrice > val.result.ReqBank) ? UnlockPrice : val.result.ReqBank;
+    };
+}
+function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB>) {
+    const modules = getBySlotType(type) as OutputMap;
 
     return Object.entries(modules).map(([name, module]) => {
         let maxLevel = 1;
@@ -265,7 +242,7 @@ function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Param
             }
         }
 
-        elements[name] = getChars((modules as {[k: string]: object})[name] as Element, maxLevel);
+        elements[name] = getChars((modules as {[k: string]: object})[name] as OutputValue, maxLevel);
         TIDs[name] = module.TID;
 
         return [module, maxLevel];

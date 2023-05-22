@@ -46,14 +46,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';
 
-import stars from '@Data/stars.js';
+import starsData from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
 import globals from '@Data/globals.js';
-import objectArrayify from '@Scripts/objectArrayify';
+import objectArrayify from '@Utils/objectArrayify';
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const ARTS = {
@@ -61,8 +61,9 @@ const ARTS = {
     Utility: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_UTILITY' : 'UTILITY_ART',
     Support: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_SUPPORT' : 'SUPPORT_ART',
 };
-const { RedStar } = stars;
-const DarkRedStar = stars.DarkRedStar || {};
+const { MinDarkRSLevel } = globals;
+const { RedStar } = starsData;
+const DarkRedStar = starsData.DarkRedStar || {};
 const USELESS_STATS = [
     'GhostSpawnSecs',
     'Models',
@@ -105,46 +106,34 @@ if ('JumpCosts_T' in DarkRedStar) {
     delete DarkRedStar.JumpCosts_B;
 }
 
-export default {
-    components: { Page, VData },
-    data() {
-        return {
-            ARTS,
-            artifacts,
-            MinDarkRSLevel: globals.MinDarkRSLevel,
-            stars: {
-                RedStar: { RedStar },
-                DarkRedStar: objectArrayify(DarkRedStar, {
-                    map: ([k, v]) => [k, Array.isArray(v) ? v.slice(globals.MinDarkRSLevel) : v],
-                }),
-            },
-            img: require(`@Img/game/portraits/portrait_RedStar.png`),
-            isNebulaBuild,
-        };
-    },
-    methods: {
-        getArt(name) {
-            const tableOpts = {
-                lvlColKey: '№',
-                colLvlStartAt: (name == 'Support') ? 2 : 1,
-            };
-            const res = [];
-
-            res[0] = {
-                data: { ...this.artifacts[name], TID2: this.artifacts[name].TID, TID: ARTS[name] },
-                tableOpts,
-            };
-            if (!isNebulaBuild) {
-                res[1] = {
-                    data: { TID: 'BLUEPRINTS', ...this.artifacts[`${name}Blueprints`] },
-                    tableOpts,
-                };
-            }
-
-            return res;
-        },
-    },
+const stars = {
+    RedStar: { RedStar },
+    DarkRedStar: objectArrayify(DarkRedStar, {
+        map: ([k, v]) => [k, Array.isArray(v) ? v.slice(MinDarkRSLevel) : v],
+    }),
 };
+const img = require(`@Img/game/portraits/portrait_RedStar.png`);
+
+function getArt(name) {
+    const tableOpts = {
+        lvlColKey: '№',
+        colLvlStartAt: (name == 'Support') ? 2 : 1,
+    };
+    const res = [];
+
+    res[0] = {
+        data: { ...artifacts[name], TID2: artifacts[name].TID, TID: ARTS[name] },
+        tableOpts,
+    };
+    if (!isNebulaBuild) {
+        res[1] = {
+            data: { TID: 'BLUEPRINTS', ...artifacts[`${name}Blueprints`] },
+            tableOpts,
+        };
+    }
+
+    return res;
+}
 </script>
 <style scoped lang="scss">
 @import "../style/vars";

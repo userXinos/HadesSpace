@@ -1,12 +1,12 @@
 <template>
   <Modal
     :open="isOpen"
-    :size="modalSize"
+    :size="SIZES.LARGE"
     :title="titleKey ? $t(titleKey) : null"
     @update:open="$emit('close')"
   >
     <template #body>
-      <p class="ver">{{ $t('CURRENT_VERSION') }}: {{ version }}</p>
+      <p class="ver">{{ $t('CURRENT_VERSION') }}: {{ VERSION }}</p>
       <vue-markdown
         :source="text"
         class="content"
@@ -15,36 +15,27 @@
   </Modal>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
 import VueMarkdown from 'vue-markdown-render';
 
-export default defineComponent({
-    name: 'Changelog',
-    components: { VueMarkdown, Modal },
-    props: {
-        isOpen: {
-            type: Boolean,
-            required: true,
-        },
-        titleKey: {
-            type: String,
-            default: 'UPDATED',
-        },
-    },
-    emits: ['close'],
-    setup() {
-        return {
-            text: ref(''),
-            modalSize: SIZES.LARGE,
-            version: process.env.VERSION,
-        };
-    },
-    mounted() {
-        import('../../CHANGELOG.md').then((m) => this.text = m.default);
-    },
+
+export interface Props {
+    isOpen: boolean
+    titleKey?: string
+}
+withDefaults(defineProps<Props>(), {
+    titleKey: 'UPDATED',
+});
+
+const text = ref('');
+const { VERSION } = process.env;
+
+defineEmits(['close']);
+onMounted(() => {
+    import('../../CHANGELOG.md').then((m) => text.value = m.default);
 });
 </script>
 

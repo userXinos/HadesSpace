@@ -4,7 +4,7 @@ type Out = {
     head: {value: string, rowspan?: number, colspan?: number}[][],
     body: {key: string, value: unknown, rowspan?: number, colspan?: number, hide: boolean}[][]
 }
-
+export type { Raw, Out };
 export default function({ head, body }: Raw, mergeCells: boolean) {
     const newHead: Out['head'] = [[]];
     const newBody: Out['body'] = [];

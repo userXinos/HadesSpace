@@ -1,4 +1,4 @@
-import i18n from '@/js/Vue/i18n';
+import i18n from '@Utils/Vue/i18n';
 import locKeys from '@Regulation/locKeys.mjs';
 
 const { t } = i18n.global;

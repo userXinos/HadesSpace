@@ -8,19 +8,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Head as VHead } from '@vueuse/head';
 import Catalog from '../components/Catalog';
 import NebulaBanner from '@/components/NebulaBanner';
 
-import { getSectionsPages } from '@Scripts/parsePages.ts';
+import { getSectionsPages } from '@Utils/parsePages.ts';
 
-export default {
-    components: { VHead, Catalog, NebulaBanner },
-    data() {
-        return {
-            sections: getSectionsPages(),
-        };
-    },
-};
+const sections = getSectionsPages();
 </script>

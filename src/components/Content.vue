@@ -55,43 +55,31 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref } from 'vue';
+
 import VData from './Data.vue';
 import Icon from '@/components/Icon.vue';
 
-/**
- * @typedef {Object} data - from @Data
- * @param {Object.<String, Object>}}
- */
+export interface Props {
+    args: {
+        data: Record<string, object>,
+        tableOpts: object,
+        iconDir: string
+    }
+}
+defineProps<Props>();
 
-/**
- * @typedef {Object} args
- * @param {data} data
- * @param {Object} tableOpts - pass to DataTable.vue
- * @param {String} iconDir - from @Img/
- */
+const contentOpened = ref(true);
 
-export default {
-    components: { VData, Icon },
-    props: {
-        args: { type: Object, required: true },
-    },
-    data() {
-        return {
-            contentOpened: true,
-        };
-    },
-    methods: {
-        getRandomIfArr(elem) {
-            if (Array.isArray(elem)) {
-                const i = Math.floor(Math.random() * elem.length);
+function getRandomIfArr(elem) {
+    if (Array.isArray(elem)) {
+        const i = Math.floor(Math.random() * elem.length);
 
-                return elem[i];
-            }
-            return elem;
-        },
-    },
-};
+        return elem[i];
+    }
+    return elem;
+}
 </script>
 
 <style scoped lang="scss">
@@ -159,7 +147,7 @@ export default {
     height: 50px;
     cursor: pointer;
     background: url('../img/icons/chat_arrow.svg') no-repeat right/100%;
-    animation-duration: 0.5s;
+    animation-duration: 0.7s;
 
     &.opened {
         transform: rotateX(180deg);
@@ -170,12 +158,12 @@ export default {
     }
 
     @keyframes open {
-        0% {transform: scale(0.5);}
+        0% {transform: scale(0.1);}
         50% {transform: rotateX(180deg);}
         100% {transform: scale(1) rotateX(180deg);}
     }
     @keyframes close {
-        0% {transform: scale(0.5);}
+        0% {transform: scale(0.1);}
         50% {transform: rotateX(0);}
         100% {transform: scale(1) rotateX(0);}
     }

@@ -50,32 +50,24 @@
   </nav>
 </template>
 
-<script>
-import { getSectionsPages } from '@/js/parsePages';
+<script setup lang="ts">
+import { Ref, ref } from 'vue';
 
-export default {
-    name: 'Navigation',
-    data() {
-        return {
-            sections: getSectionsPages(),
-            selected: null,
-        };
-    },
-    created() {
-        this.$router.afterEach(() => {
-            this.select(null);
-        });
-    },
-    methods: {
-        select(i) {
-            if (this.selected === i) {
-                this.selected = null;
-                return;
-            }
-            this.selected = i;
-        },
-    },
-};
+import router from '@Utils/Vue/router';
+import { getSectionsPages } from '@Utils/parsePages';
+
+const sections = getSectionsPages();
+const selected: Ref<number|null> = ref(null);
+
+router.afterEach(() => select(null));
+
+function select(i) {
+    if (selected.value === i) {
+        selected.value = null;
+        return;
+    }
+    selected.value = i;
+}
 </script>
 
 <style scoped lang="scss">

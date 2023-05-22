@@ -47,20 +47,13 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Item from '../components/CatalogItem';
 
-export default {
-    name: 'Catalog',
-    components: { Item },
-    props: {
-        sections: {
-            type: Array,
-            request: true,
-            default: () => [],
-        },
-    },
-};
+export interface Props {
+    sections: unknown[]
+}
+defineProps<Props>();
 </script>
 
 <style scoped lang="scss">

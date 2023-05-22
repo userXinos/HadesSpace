@@ -89,38 +89,30 @@
 
 </template>
 
-<script>
+<script setup lang="ts">
+import { Ref, ref } from 'vue';
+
 import Modal from '@/components/Modal.vue';
 import Changelog from '@/components/Changelog';
+import Store from '@/store';
 import types from '@Store/modules/userSettings/types';
 
 import languages from '@Data/languages.js';
 
-export default {
-    name: 'Settings',
-    components: { Changelog, Modal },
-    data() {
-        return {
-            isOpenModal: false,
-            showChangelog: false,
+const isOpenModal = ref(false);
+const showChangelog = ref(false);
+const languageCode: Ref<string> = ref(Store.state.userSettings.language);
+const isDebug = process.env.NODE_ENV === 'development';
 
-            languages,
-            languageCode: this.$store.state.userSettings.language,
-            isDebug: process.env.NODE_ENV === 'development',
-        };
-    },
-    methods: {
-        changeLanguage() {
-            this.$store.commit(types.SET_LANGUAGE, this.languageCode);
-        },
-        switchDisableFilters() {
-            this.$store.commit(types.SWITCH_DISABLE_FILTERS);
-        },
-        switchShowKeys() {
-            this.$store.commit(types.DEBUG_SWITCH_SHOW_KEYS);
-        },
-    },
-};
+function changeLanguage() {
+    Store.commit(types.SET_LANGUAGE, languageCode.value);
+}
+function switchDisableFilters() {
+    Store.commit(types.SWITCH_DISABLE_FILTERS);
+}
+function switchShowKeys() {
+    Store.commit(types.DEBUG_SWITCH_SHOW_KEYS);
+}
 </script>
 
 <style scoped lang="scss">

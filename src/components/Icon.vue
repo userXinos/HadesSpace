@@ -15,11 +15,15 @@
   </div>
 </template>
 
-<script>
-import CustomIcon from '@/js/CustomIcon';
+<script setup lang="ts">
+import CustomIcon from '@Utils/CustomIcon';
+
+export interface Props {
+    name: string|CustomIcon
+    dir: string
+}
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
-
 const TYPES = {
     'game/Modules': 'Module',
     'game/Ships': 'Ship',
@@ -33,97 +37,74 @@ const CUSTOM_TYPES = {
     TimeModulator: [],
 };
 
-export default {
-    name: 'Icon',
-    props: {
-        name: {
-            type: [String, CustomIcon],
-            default: '',
-            requested: true,
-        },
-        dir: {
-            type: String,
-            default: null,
-            requested: true,
-        },
-    },
-    data() {
-        return {
-            isCustom: this.name.constructor === CustomIcon,
-            isCerberus: this.name.includes('Cerberus'),
-            isProjectiles: this.name.includes('projectiles/'),
-            type: TYPES[this.dir] || null,
+const props = defineProps<Props>();
+const isCustom = (props.name.constructor === CustomIcon);
+const isCerberus = (props.name.includes('Cerberus'));
+const isProjectiles = (props.name.includes('projectiles/'));
+const type = TYPES[props.dir] || null;
+const customType = getCustomType();
+const url = getUrl();
 
-            bgClasses: {},
-            iconStyle: {},
-            iconClasses: {},
-        };
-    },
-    computed: {
-        url() {
-            if (!this.name) {
-                return '';
-            }
-            const { dir } = this;
-            let { name } = this;
-
-            if (this.isCustom) {
-                if (!this.customType) {
-                    return '';
-                }
-                name = this.customType;
-            }
-
-            if (isNebulaBuild) {
-                if (this.isProjectiles && !name.includes('_DrkNeb')) {
-                    name += '_DrkNeb';
-                }
-                if (this.isCerberus) {
-                    if (name.includes('_lv1')) {
-                        name = name.replace('_lv1', '');
-                    } else if (!name.startsWith('Battleship') && !name.startsWith('CerberusStation') && !name.endsWith('Carrier')) {
-                        name += '_lv1';
-                    }
-                }
-            }
-            try {
-                return require(`@Img/${dir}/${name}.png`);
-            } catch (err) {
-                console.error(`Not found icon: ${name}`);
-                return require(`../img/icons/connection.png`);
-            }
-        },
-        customType() {
-            if (!this.isCustom) {
-                return null;
-            }
-            const n = this.name.name;
-            return (n in CUSTOM_TYPES) ? n : null;
-        },
-    },
-    created() {
-        const nebulaSpaceBuildsNoBG = ['warpLaneHub', 'timeModulator'];
-
-        this.bgClasses = {
-            'module-bg': this.type === 'Module' && !this.isProjectiles,
-            'space-building-bg': this.type === 'SpaceBuilding' && !this.isCerberus && (isNebulaBuild ? !nebulaSpaceBuildsNoBG.includes(this.name) : true),
-            'round-bg': 'TimeModulator' === this.customType,
-            'art-bg': this.name === 'art',
-            'warp-line-bg': this.customType == 'WarpLane',
-        };
-        this.iconStyle = {
-            backgroundImage: `url('${this.url}')`,
-            width: (this.type === 'SpaceBuilding' && isNebulaBuild) ? '70%' : null,
-        };
-        this.iconClasses = {
-            'ship': this.type === 'Ship',
-            'cerberus': this.isCerberus,
-            'warp-line-body': this.customType == 'WarpLane',
-            'big-size': this.type == 'Distinction' || (this.type === 'specialIcon' && this.name !== 'art'),
-            'circle': this.type === 'Star',
-        };
-    },
+const nebulaSpaceBuildsNoBG = ['warpLaneHub', 'timeModulator'];
+const bgClasses = {
+    'module-bg': type === 'Module' && !isProjectiles,
+    'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (isNebulaBuild ? !nebulaSpaceBuildsNoBG.includes(props.name) : true),
+    'round-bg': 'TimeModulator' === customType,
+    'art-bg': props.name === 'art',
+    'warp-line-bg': customType == 'WarpLane',
 };
+const iconStyle = {
+    backgroundImage: `url('${url}')`,
+    width: (type === 'SpaceBuilding' && isNebulaBuild) ? '70%' : null,
+};
+const iconClasses = {
+    'ship': type === 'Ship',
+    'cerberus': isCerberus,
+    'warp-line-body': customType == 'WarpLane',
+    'big-size': type == 'Distinction' || (type === 'specialIcon' && name !== 'art'),
+    'circle': type === 'Star',
+};
+
+function getCustomType() {
+    if (!isCustom) {
+        return null;
+    }
+    const n = props.name.name;
+    return (n in CUSTOM_TYPES) ? n : null;
+}
+function getUrl() {
+    if (!props.name) {
+        return '';
+    }
+    const { dir } = props;
+    let { name } = props;
+
+    if (isCustom) {
+        if (!customType) {
+            return '';
+        }
+        name = customType;
+    }
+
+    if (isNebulaBuild) {
+        if (isProjectiles && !name.includes('_DrkNeb')) {
+            name += '_DrkNeb';
+        }
+        if (isCerberus) {
+            if (name.includes('_lv1')) {
+                name = name.replace('_lv1', '');
+            } else if (!name.startsWith('Battleship') && !name.startsWith('CerberusStation') && !name.endsWith('Carrier')) {
+                name += '_lv1';
+            }
+        }
+    }
+    try {
+        return require(`@Img/${dir}/${name}.png`);
+    } catch (err) {
+        console.error(`[ICON] Not found: ${name}`);
+        return require(`../img/icons/connection.png`);
+    }
+}
 </script>
 
 <style scoped lang="scss">

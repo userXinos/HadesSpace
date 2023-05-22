@@ -20,9 +20,9 @@
       "@Data/*": ["parser/dist/*"],
       "@i18n/*": ["i18n/dist/*"],
       "@Regulation/*": ["src/regulation/*"],
-      "@Scripts/*": ["src/js/*"],
+      "@Utils/*": ["src/utils/*"],
       "@Store/*": ["src/store/*"],
-      "@Handlers/*": ["src/js/Handlers/*"],
+      "@Handlers/*": ["src/utils/Handlers/*"],
       "@/*": ["src/*"]
     },
     "lib": [

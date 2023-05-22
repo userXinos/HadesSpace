@@ -5,10 +5,10 @@
   />
 </template>
 
-<script>
+<script setup>
 import Page from '@/components/Page.vue';
 
-import objectArrayify from '@Scripts/objectArrayify';
+import objectArrayify from '@Utils/objectArrayify';
 import goals from '@Data/player_goals.js';
 
 const INDEXES = ['X', 'Y', 'Z'];
@@ -43,13 +43,5 @@ const fixed = objectArrayify(goals, {
 });
 
 fixed.WinBSWithModule.Name = 'WinBSWithModule';
-
-export default {
-    components: { Page },
-    data: () => {
-        return {
-            data: fixed,
-        };
-    },
-};
+const data = fixed;
 </script>

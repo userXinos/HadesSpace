@@ -1,41 +1,32 @@
 import { reactive } from 'vue';
-import i18n, { loadLocaleMessages } from '@Scripts/Vue/i18n';
+import i18n, { loadLocaleMessages } from '@Utils/Vue/i18n';
 import JSONCrush from 'jsoncrush';
 
-import type { Input, Level } from '@/composables/calculator';
-
-interface Config {
-    configs: { name: string, temporary?: boolean, value: Input }[],
-    selected: number
-}
+import type { Input, InputValue, Config } from '@/typings/calculator';
 
 const NAME_ZERO = 'new entry';
 const STRING_FORMAT_LOCALE = 'en';
 
 export default class CalculatorConfig {
-    public readonly value: Config;
+    public readonly store: Config;
 
     public readonly TIDs: Record<string, string> = {};
 
-    private readonly localStoreKey: string;
 
-
-    constructor(lsKey: string) {
-        this.value = reactive({ configs: [], selected: 0 }) as Config;
-        this.localStoreKey = lsKey;
-
+    constructor(private readonly localStoreKey: string) {
+        this.store = reactive({ configs: [], selected: 0 }) as Config;
         this.load();
     }
 
     public get selectedConfig() {
-        return this.value.configs[this.value.selected].value;
+        return this.store.configs[this.store.selected].value;
     }
 
     public load() {
         const data = JSON.parse(localStorage.getItem(this.localStoreKey) || '{}');
 
         if (data.configs) {
-            Object.assign(this.value, data);
+            Object.assign(this.store, data);
             return;
         }
         if (Object.keys(data).length && (data.actually && data.plan)) {
@@ -46,22 +37,22 @@ export default class CalculatorConfig {
     }
 
     public save() {
-        localStorage.setItem(this.localStoreKey, JSON.stringify(this.value));
+        localStorage.setItem(this.localStoreKey, JSON.stringify(this.store));
     }
 
     public removeSelected() {
-        this.value.configs.splice(this.value.selected, 1);
+        this.store.configs.splice(this.store.selected, 1);
 
-        if (this.value.configs.length == 0) {
+        if (this.store.configs.length == 0) {
             this.add();
             return;
         }
 
-        this.value.selected = this.value.configs.length - 1;
+        this.store.selected = this.store.configs.length - 1;
     }
 
     public add(data?: Input, { temporary } = { temporary: false }) {
-        const val = this.value;
+        const val = this.store;
         let i = 0;
         let newName: string;
 
@@ -108,6 +99,6 @@ export default class CalculatorConfig {
     }
 
     public parseUrl(text: string) {
-        return JSON.parse(JSONCrush.uncrush(text)) as Level;
+        return JSON.parse(JSONCrush.uncrush(text)) as InputValue;
     }
 }

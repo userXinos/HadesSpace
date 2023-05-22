@@ -2,33 +2,34 @@
   <div>
     <Page
       title-loc-key="TID_YELLOW_STAR"
-      :content-args="{data: {stars}, iconDir: 'game/Stars'}"
+      :content-args="{data: {ys}, iconDir: 'game/Stars'}"
       :portrait="{src: img, alt: 'yellowStar'}"
     />
 
     <v-data v-bind="{data: sectors, tableOpts: { lvlColKey: '№' }}" />
-    <v-data v-bind="{data: levels}" />
-    <v-data v-bind="{data: planets, tableOpts: { lvlColKey: '№' }}" />
-    <v-data v-bind="{data: prices, tableOpts: { lvlColKey: '№' }}" />
+    <v-data v-bind="{data: { TID: 'LVLS_PLANETS', ...levels }}" />
+    <v-data v-bind="{data: planetsYS, tableOpts: { lvlColKey: '№' }}" />
+    <v-data v-bind="{data: colonizationPrices, tableOpts: { lvlColKey: '№' }}" />
 
   </div>
 </template>
 
-<script>
-import i18n from '@Scripts/Vue/i18n';
+<script setup>
+import i18n from '@Utils/Vue/i18n';
 import Page from '@/components/Page.vue';
 import VData from '../components/Data.vue';
 
 import stars from '@Data/stars.js';
-import sectors from '@Data/yellow_star_sectors.js';
+import sectorsData from '@Data/yellow_star_sectors.js';
 import levels from '@Data/planet_levels.js';
 import planets from '@Data/planets.js';
 import prices from '@Data/colonize_prices.js';
+import img from '@Img/game/portraits/portrait_YellowStar.png';
 
-import compileOne from '@Scripts/compileOne.js';
+import compileOne from '@Utils/compileOne.ts';
 
-const star = { ...stars.YellowStar };
-delete star.Models;
+const ys = { ...stars.YellowStar };
+delete ys.Models;
 
 const planetsYS = compileOne(planets, { filterByType: { path: 'planets.yellowstar' } });
 delete planetsYS.ModelFolders;
@@ -45,26 +46,13 @@ const colonizationPrices = {
     _: [0, ...prices],
 };
 
-export default {
-    components: { Page, VData },
-    data() {
-        return {
-            stars: star,
-            sectors: {
-                Name2: sectors.Name,
-                ...sectors,
-                BaseType: sectors.BaseType.map((v, i) => v ? ({ ...v, NumBases: sectors.NumBases[i] }) : null),
-                TID: 'SECTORS',
-                TID_Description: 'TID_YS_SECTORS_CUSTOM_DESCR',
-                Name: 'yellow_star_sectors',
-            },
-            levels: { TID: 'LVLS_PLANETS', ...levels },
-            planets: planetsYS,
-            prices: colonizationPrices,
-
-            img: require(`@Img/game/portraits/portrait_YellowStar.png`),
-        };
-    },
+const sectors = {
+    Name2: sectorsData.Name,
+    ...sectorsData,
+    BaseType: sectorsData.BaseType.map((v, i) => v ? ({ ...v, NumBases: sectorsData.NumBases[i] }) : null),
+    TID: 'SECTORS',
+    TID_Description: 'TID_YS_SECTORS_CUSTOM_DESCR',
+    Name: 'yellow_star_sectors',
 };
 </script>
 <style scoped src="../style/page.scss"  lang="scss"></style>

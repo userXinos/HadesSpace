@@ -10,9 +10,9 @@ module.exports = {
             '@i18n': path('i18n/dist'),
             '@Regulation': path('src/regulation'),
             '@Img': isNebulaBuild ? path('src/img/Nebula') : path('src/img'),
-            '@Scripts': path('src/js'),
+            '@Utils': path('src/utils'),
             '@Store': path('src/store'),
-            '@Handlers': path('src/js/Handlers'),
+            '@Handlers': path('src/utils/Handlers'),
 
             'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
         },

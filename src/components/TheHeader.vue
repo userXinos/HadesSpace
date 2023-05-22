@@ -36,26 +36,15 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Navigation from './TheNavigation.vue';
 import Settings from '@/components/Settings.vue';
 
-export default {
-    name: 'TheHeader',
-    components: { Navigation, Settings },
-    props: {
-        isMinMode: {
-            type: Boolean,
-            requested: true,
-            default: null,
-        },
-        openSidebar: {
-            type: Function,
-            requested: true,
-            default: null,
-        },
-    },
-};
+export interface Props {
+    isMinMode: boolean,
+    openSidebar: () => void
+}
+defineProps<Props>();
 </script>
 
 <style scoped lang="scss">

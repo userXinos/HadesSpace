@@ -107,89 +107,86 @@
   </div>
 </template>
 
-<script>
-import { h } from 'vue';
+<script setup lang="ts">
+import { ref, computed, useSlots, onUpdated, onMounted, onUnmounted, h } from 'vue';
+import { Ref } from 'vue';
+import i18n from '@Utils/Vue/i18n';
 
-import tableMask from '@Scripts/tableMask';
+import tableMaskUtil from '@Utils/tableMask';
+import type { Raw } from '@Utils/tableMask';
 
-function VNode({ render }) {
-    return render(h);
+export interface Props {
+    data: Raw
+    format: { key: (k: string) => string, value: (k: string, v: unknown) => string }
+    mergeCells?: boolean
+    colLvlStartAt?: number
+    lvlColKey?: string
 }
 
 const HEIGHT_HEADER = 80;
 const TH_PADDING = 20;
 
-export default {
-    name: 'DTable',
-    components: { VNode },
-    props: {
-        data: { type: Object, required: true },
-        format: { type: Object, required: true },
-        mergeCells: { type: Boolean, default: true },
-        colLvlStartAt: { type: Number, default: 1 },
-        lvlColKey: { type: String, default: 'LVL' },
-    },
-    data() {
-        return {
-            pinHead: false,
-        };
-    },
-    computed: {
-        hasSlots() {
-            return this.$slots.head && this.$slots.body;
-        },
-        tableMask() {
-            return tableMask({ ...this.data }, this.mergeCells);
-        },
-        lvlColName() {
-            return this.$te(this.lvlColKey) ? this.$t(this.lvlColKey) : this.lvlColKey;
-        },
-    },
+const { t, te } = i18n.global;
+const props = withDefaults(defineProps<Props>(), {
+    mergeCells: true,
+    colLvlStartAt: 1,
+    lvlColKey: 'LVL',
+});
+const pinHead = ref(false);
+const slots = useSlots();
+const hasSlots = computed(() => slots.head && slots.body);
+const tableMask = computed(() => tableMaskUtil({ ...props.data }, props.mergeCells));
+const lvlColName = computed(() => te(props.lvlColKey) ? t(props.lvlColKey) : props.lvlColKey);
+let manualScroll;
 
-    updated() {
-        if (this.pinHead && this.$refs.teleTable) {
-            this.$refs.teleTable.scrollLeft = this.$refs.table.scrollLeft;
+const teleTable = ref(null) as Ref<HTMLInputElement>;
+const table = ref(null) as Ref<HTMLInputElement>;
+const th = ref(null) as Ref<HTMLInputElement>;
+
+onUpdated(() => {
+    if (pinHead.value && teleTable.value) {
+        teleTable.value.scrollLeft = table.value.scrollLeft;
+    }
+});
+onMounted(()=> {
+    window.addEventListener('scroll', onScroll);
+});
+onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll);
+});
+
+function onScroll(): void {
+    pinHead.value = !hasSlots.value && isInViewport(table.value);
+}
+function isInViewport(element: HTMLInputElement): boolean {
+    const rect = element.getBoundingClientRect();
+    return rect.top <= (HEIGHT_HEADER - 20) && rect.bottom >= (HEIGHT_HEADER + 200);
+    //                                  ^                                       ^
+    //   убирать/показывать прямо когда сролл на таблице
+}
+function onTableScroll(e: Event): void {
+    if (!manualScroll) {
+        if (teleTable.value) {
+            manualScroll = true;
+            teleTable.value.scrollLeft = e.target.scrollLeft;
         }
-    },
-    mounted() {
-        window.addEventListener('scroll', this.onScroll);
-    },
-    unmounted() {
-        window.removeEventListener('scroll', this.onScroll);
-    },
-    methods: {
-        onScroll() {
-            this.pinHead = !this.hasSlots && this.isInViewport(this.$refs.table);
-        },
-        isInViewport(element) {
-            const rect = element.getBoundingClientRect();
-            return rect.top <= (HEIGHT_HEADER - 20) && rect.bottom >= (HEIGHT_HEADER + 200);
-            //                                  ^                                       ^
-            //   убирать/показывать прямо когда сролл на таблице
-        },
+        manualScroll = false;
+    }
+}
+function getPinnedTableCellStyle(index: number, strIndex = 0): {minWidth?: string, maxWidth?: string} {
+    if (strIndex > 0) {
+        return {};
+    }
 
-        onTableScroll(e) {
-            if (!this.manualScroll) {
-                if (this.$refs.teleTable) {
-                    this.manualScroll = true;
-                    this.$refs.teleTable.scrollLeft = e.target.scrollLeft;
-                }
-                this.manualScroll = false;
-            }
-        },
-        getPinnedTableCellStyle(index, strIndex = 0) {
-            if (strIndex > 0) {
-                return {};
-            }
-
-            const width = this.$refs.th[index].clientWidth - TH_PADDING;
-            return {
-                minWidth: `${width}px`,
-                maxWidth: `${width}px`,
-            };
-        },
-    },
-};
+    const width = th.value[index].clientWidth - TH_PADDING;
+    return {
+        minWidth: `${width}px`,
+        maxWidth: `${width}px`,
+    };
+}
+function VNode({ render }) {
+    return render(h);
+}
 </script>
 
 

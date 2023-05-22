@@ -62,22 +62,23 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import i18n from '@Utils/Vue/i18n';
 import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
-import getFilterByType from '@Scripts/getFilterByType';
-import objectArrayify from '@Scripts/objectArrayify';
-import ships from '@Data/capital_ships.js';
-import stations from '@Data/cerberus_stations.js';
+import getFilterByType from '@Utils/getFilterByType';
+import objectArrayify from '@Utils/objectArrayify';
+import shipsData from '@Data/capital_ships.js';
+import stationsData from '@Data/cerberus_stations.js';
 
-if (ships.CerberusGhosts.GhostSpawnSecs) {
+if (shipsData.CerberusGhosts.GhostSpawnSecs) {
     // eslint-disable-next-line prefer-destructuring
-    ships.CerberusGhosts.GhostSpawnSecs = ships.CerberusGhosts.GhostSpawnSecs[0];
+    shipsData.CerberusGhosts.GhostSpawnSecs = shipsData.CerberusGhosts.GhostSpawnSecs[0];
 }
 
-if (ships.CerberusColossus.modules[1].SalvageHullPercent) {
-    ships.CerberusColossus.modules[1].SalvageHullPercent.pop();
+if (shipsData.CerberusColossus.modules[1].SalvageHullPercent) {
+    shipsData.CerberusColossus.modules[1].SalvageHullPercent.pop();
 }
 
 
@@ -92,53 +93,45 @@ const UNNECESSARY_MODULE_STATS = [
     'WhiteStarScore',
 ];
 
-export default {
-    components: { Page, VContent },
-    data() {
-        return {
-            isNebulaBuild: !!process.env.VUE_APP_NEBULA_BUILD,
-            ships: this.getShips('capital_ships.cerberus'),
-            darkShips: this.getShips('capital_ships.darkCerberus'),
-            stations: objectArrayify(stations, {
-                map: ([k, v]) => {
-                    if (v.ShipToSpawn) {
-                        v.ShipToSpawn = this.getShipLocName(v.ShipToSpawn);
-                    }
-                    return [k, v];
-                },
-            }),
-            cerberusPortrait: require(`@Img/game/portraits/portrait_CerberusDestroyer.png`),
-            darkCerberusPortrait: require( `@Img/game/portraits/${process.env.VUE_APP_NEBULA_BUILD ? 'portrait_CerberusCarrier' : 'portrait_CerberusDestroyer'}.png`),
-            stationPortrait: require(`@Img/game/portraits/portrait_CerberusStation.png`),
-        };
+const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
+const ships = getShips('capital_ships.cerberus');
+const darkShips = getShips('capital_ships.darkCerberus');
+const stations = objectArrayify(stationsData, {
+    map: ([k, v]) => {
+        if (v.ShipToSpawn) {
+            v.ShipToSpawn = getShipLocName(v.ShipToSpawn);
+        }
+        return [k, v];
     },
-    methods: {
-        getShips(path) {
-            return objectArrayify(ships, {
-                ...getFilterByType(path),
-                map: ([k, v]) => {
-                    if (v.modules) {
-                        v.modules = v.modules.map((e) => objectArrayify(e, {
-                            filter: ([k]) => !UNNECESSARY_MODULE_STATS.includes(k),
-                        }));
-                    }
-                    if (v.OnDestroySpawn) {
-                        const k = v.OnDestroySpawn;
-                        const n = String(v.OnDestroySpawnCount);
+});
+const cerberusPortrait = require(`@Img/game/portraits/portrait_CerberusDestroyer.png`);
+const darkCerberusPortrait = require( `@Img/game/portraits/${process.env.VUE_APP_NEBULA_BUILD ? 'portrait_CerberusCarrier' : 'portrait_CerberusDestroyer'}.png`);
+const stationPortrait = require(`@Img/game/portraits/portrait_CerberusStation.png`);
 
-                        v.OnDestroySpawn = `${n}x ${this.getShipLocName(k)}`;
-                        delete v.OnDestroySpawnCount;
-                    }
-                    return [k, v];
-                },
+function getShips(path) {
+    return objectArrayify(shipsData, {
+        ...getFilterByType(path),
+        map: ([k, v]) => {
+            if (v.modules) {
+                v.modules = v.modules.map((e) => objectArrayify(e, {
+                    filter: ([k]) => !UNNECESSARY_MODULE_STATS.includes(k),
+                }));
+            }
+            if (v.OnDestroySpawn) {
+                const k = v.OnDestroySpawn;
+                const n = String(v.OnDestroySpawnCount);
 
-            });
+                v.OnDestroySpawn = `${n}x ${getShipLocName(k)}`;
+                delete v.OnDestroySpawnCount;
+            }
+            return [k, v];
         },
-        getShipLocName(key) {
-            return (key in ships) ? this.$t(ships[key].TID) : key;
-        },
-    },
-};
+
+    });
+}
+function getShipLocName(key) {
+    return (key in shipsData) ? i18n.global.t(shipsData[key].TID) : key;
+}
 </script>
 
 <style scoped lang="scss">

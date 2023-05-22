@@ -1,7 +1,7 @@
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 import store from '@Store/index';
-import router from '@/js/Vue/router';
+import router from '@Utils/Vue/router';
 
 import types from '@Store/modules/userSettings/types';
 
@@ -10,9 +10,10 @@ const { VERSION } = process.env;
 export default function appChangelog() {
     const isOpen = ref(false);
 
+    onMounted(() => init());
+
     return {
         isOpen,
-        init,
         onClose,
         version: VERSION,
     };

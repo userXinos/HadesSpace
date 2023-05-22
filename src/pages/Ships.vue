@@ -24,30 +24,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { computed } from 'vue';
+
 import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
-import ships from '@Data/capital_ships.js';
-import modules from '@Data/modules.js';
-import getFilterByType from '@Scripts/getFilterByType';
-import objectArrayify from '@Scripts/objectArrayify';
+import shipsData from '@Data/capital_ships.js';
+import modulesData from '@Data/modules.js';
+import getFilterByType from '@Utils/getFilterByType';
+import objectArrayify from '@Utils/objectArrayify';
 import { tableOpts } from '@/components/ModulePage.vue';
 
-export default {
-    components: { Page, VContent },
-    data() {
-        return {
-            ships: objectArrayify(ships, getFilterByType('capital_ships.player')),
-            modules: objectArrayify(modules, {
-                filter: ([k]) => k in ships.CorpFlagship.modules,
-            }),
-            img: require(`@Img/game/portraits/portrait_CorpFlagship.png`),
-        };
-    },
-    computed: {
-        modulesTableOpts: tableOpts,
-    },
-};
+const ships = objectArrayify(shipsData, getFilterByType('capital_ships.player'));
+const modules = objectArrayify(modulesData, { filter: ([k]) => k in ships.CorpFlagship.modules });
+const img = require(`@Img/game/portraits/portrait_CorpFlagship.png`);
+const modulesTableOpts = computed(tableOpts);
 </script>
 <style scoped src="../style/page.scss"  lang="scss"></style>

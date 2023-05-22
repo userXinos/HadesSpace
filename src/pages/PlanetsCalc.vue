@@ -4,7 +4,7 @@
 
       <calculator
         v-model:input="input"
-        :stack-chars="stackChars"
+        :stack-chars="STACK_CHARS"
         :calc-total="calcTotal"
         local-storage-key="planetsCalc"
         title-key="PLANETS_CALC"
@@ -74,18 +74,18 @@
               </div>
             </li>
             <li
-              v-for="key in Object.keys(calc.output.plan[modalOpts.data.key] || {}).filter(k => !hideKeys.includes(k))"
+              v-for="key in Object.keys(calc.output.plan[modalOpts.data.key] || {}).filter(k => !HIDE_LVL_CHARS.includes(k))"
               :key="key"
               class="calc.output"
             >
-              <b>{{ format.key(key) }}</b>
+              <b>{{ calc.format.key(key) }}</b>
               <div>
                 <span
                   v-for="type of Object.keys(input)"
                   :key="type"
                   :class="outputClasses(type, key)"
                 >
-                  {{ format.value(key, Math.trunc(calc.output[type]?.[modalOpts.data.key]?.[key]) || undefined) }}
+                  {{ calc.format.value(key, Math.trunc(calc.output[type]?.[modalOpts.data.key]?.[key]) || undefined) }}
                 </span>
               </div>
             </li>
@@ -96,8 +96,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref, computed, Ref, reactive } from 'vue';
+import i18n from '../utils/Vue/i18n';
 
 import levels from '@Data/planet_levels.js';
 import planetsData from '@Data/planets.js';
@@ -107,12 +108,9 @@ import Calculator from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 
-import type { Input, Element, ElementsStore, Output } from '../composables/calculator';
-import type { ProvideGetterElementsCB, Setup } from '@/components/Calculator.vue';
-import key from '@Handlers/key.js';
-import value from '@Handlers/value.js';
-import objectArrayify from '../js/objectArrayify';
-import getFilterByType from '../js/getFilterByType';
+import type { SetupComponent, SetupGetElementsCB, Input, OutputValue, ElementsStore, Output } from '../typings/calculator';
+import objectArrayify from '../utils/objectArrayify';
+import getFilterByType from '../utils/getFilterByType';
 
 const CHARS_MODIFIERS: Record<string, string> = {
     CreditStorage: 'CreditStorageModifier',
@@ -131,85 +129,64 @@ const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name', 'ShipmentsHydroValuePerDay'];
 const TOTAL_KEYS = Object.keys(levels)
     .filter((k) => ![...STACK_CHARS, ...HIDE_LVL_CHARS].includes(k));
 
-export default defineComponent({
-    components: { Calculator, VData, Modal },
-    data() {
-        return {
-            input: { actually: {}, plan: {} } as Input,
-            calc: {} as Setup,
-            hideKeys: HIDE_LVL_CHARS,
-            stackChars: STACK_CHARS,
-            planets: {},
-
-            openModal: false,
-            modalOpts: {
-                size: SIZES.SMALL,
-                title: 'name',
-                data: {
-                    planet: {} as Element,
-                    get key() {
-                        return this.planet.Name;
-                    },
-                },
-            },
-
-            format: {
-                key: (k: string) => key(k, this.$route.name),
-                value: (k: string, v: unknown) => value(k, v, null),
-            },
-        };
-    },
-    computed: {
-        planetValues(): unknown[] {
-            return Object.values(this.planets);
-        },
-    },
-    methods: {
-        setupCalculator(v: Setup) {
-            this.calc = v;
-            this.planets = v.provideGetterElements(getPlanets as ProvideGetterElementsCB) as object;
-        },
-
-        openModuleInfo(planet: Element) {
-            this.modalOpts.title = this.$t(planet.TID as string) + ((/_\d$/.test(planet.Name)) ? planet.Name.replace(/.+?_(\d)$/, ' $1') : '');
-            this.modalOpts.data.planet = planet;
-            this.openModal = true;
-        },
-        outputClasses(type: keyof Output, charName?: string): object {
-            return this.calc.outputClasses(type, this.modalOpts.data.key, charName);
-        },
-
-        calcTotal(store: ElementsStore, output: Output) {
-            let RSLevelReq = 0;
-            for (const k of TOTAL_KEYS) {
-                output.total.intermediate[k] = {
-                    actually: 0,
-                    plan: 0,
-                    sum: 0,
-                };
-            }
-
-            return function(name: string, input: Input) {
-                for (const k of TOTAL_KEYS) {
-                    output.total.intermediate[k].actually += output.actually[name]?.[k] as number || 0;
-                    output.total.intermediate[k].plan += output.plan[name]?.[k] as number || 0;
-                    output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
-                }
-
-
-                if (store[name].RSLevelReq) {
-                    const localeRSLevelReq = (store[name].RSLevelReq as number[])[input.plan[name]] || 0;
-                    RSLevelReq = output.total.result.RSLevelReq = (RSLevelReq < localeRSLevelReq) ? localeRSLevelReq : RSLevelReq;
-                }
-            };
+const { t } = i18n.global;
+const planets = ref([]);
+const input: Ref<Input> = ref({ actually: {}, plan: {} });
+const openModal = ref(false);
+const modalOpts = reactive({
+    size: SIZES.SMALL,
+    title: 'name',
+    data: {
+        planet: {},
+        get key() {
+            return this.planet.Name;
         },
     },
 });
+const planetValues: ComputedRef<unknown[]> = computed(() => Object.values(planets.value));
+let calc: SetupComponent;
 
-function getPlanets(...[TIDs, getChars, elements]: Parameters<ProvideGetterElementsCB>) {
+
+function setupCalculator(v: SetupComponent) {
+    calc = v;
+    planets.value = v.provideGetterElements(getPlanets as SetupGetElementsCB) as unknown[];
+}
+function openModuleInfo(planet: OutputValue) {
+    modalOpts.title = t(planet.TID);
+    modalOpts.data.planet = planet;
+    openModal.value = true;
+}
+function outputClasses(type: keyof Output, charName?: string): object {
+    return calc.outputClasses(type, modalOpts.data.key, charName);
+}
+function calcTotal(store: ElementsStore, output: Output) {
+    let RSLevelReq = 0;
+    for (const k of TOTAL_KEYS) {
+        output.total.intermediate[k] = {
+            actually: 0,
+            plan: 0,
+            sum: 0,
+        };
+    }
+
+    return function(name: string, input: Input) {
+        for (const k of TOTAL_KEYS) {
+            output.total.intermediate[k].actually += output.actually[name]?.[k] as number || 0;
+            output.total.intermediate[k].plan += output.plan[name]?.[k] as number || 0;
+            output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
+        }
+
+
+        if (store[name].RSLevelReq) {
+            const localeRSLevelReq = (store[name].RSLevelReq as number[])[input.plan[name]] || 0;
+            RSLevelReq = output.total.result.RSLevelReq = (RSLevelReq < localeRSLevelReq) ? localeRSLevelReq : RSLevelReq;
+        }
+    };
+}
+function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB>): unknown[] {
     type TS = {
         Name: string,
-        MaxUpgradeLevel: number,
+        MaxUpgradeLevel?: number,
         MaxOnOwnSolarSystem: number
     }
     let tsMaxLvl = 0;
@@ -219,7 +196,7 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<ProvideGetterEleme
 
     const planets = objectArrayify(planetsData, {
         ...getFilterByType('planets.yellowstar'),
-        map: ([name, planet]: [string, Element]) => {
+        map: ([name, planet]: [string, OutputValue]) => {
             elements[name] = objectArrayify(filteredLevels, {
                 map: ([k, v]: [string, number[]]) => {
                     const MaxUpgradeLevel = planet.MaxUpgradeLevel as number;
@@ -230,21 +207,21 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<ProvideGetterEleme
                     }
                     return [k, res];
                 },
-            }) as Element;
+            });
 
             TIDs[name] = planet.TID;
 
             return [name, planet];
         },
-    }) as {[k: string]: unknown};
-    const TradingStation = objectArrayify(spaceBuildings.TradingStation, {
+    });
+    const TradingStation = objectArrayify(spaceBuildings.TradingStation as TS, {
         map: ([k, v]: [string, unknown]) => {
             if (Array.isArray(v) && v.length > tsMaxLvl) {
                 tsMaxLvl = v.length;
             }
             return [(k in KEYS_ALIASES_TS) ? KEYS_ALIASES_TS[k] : k, v];
         },
-    }) as TS;
+    });
     TradingStation.MaxUpgradeLevel = tsMaxLvl;
 
     for (let i = 0; TradingStation.MaxOnOwnSolarSystem > i; i++) {

@@ -5,12 +5,7 @@
   />
 </template>
 
-<script>
+<script setup>
 import Page from '@/components/Page.vue';
 import data from '@Data/distinctions.js';
-
-export default {
-    components: { Page },
-    data: () => ({ data }),
-};
 </script>

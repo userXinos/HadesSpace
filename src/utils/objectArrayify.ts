@@ -6,13 +6,8 @@ export declare type Callbacks = {
     sort?: (a: Parameters<Callback>[0], b: Parameters<Callback>[0]) => number
     map?: Callback
 }
-/**
- * using array methods with an object
- * @param {Object} obj
- * @param {Object.<String, Function>} callbacks - where key - function name from [Array.prototype]
- * @return {Object}
- */
-export default function objectArrayify <T extends object>(obj: T, callbacks: Callbacks): object {
+
+export default function objectArrayify <T extends object>(obj: T, callbacks: Callbacks): T {
     let entries = Object.entries(obj);
 
     for (const key in callbacks) {
@@ -21,5 +16,5 @@ export default function objectArrayify <T extends object>(obj: T, callbacks: Cal
         }
     }
 
-    return Object.fromEntries(entries);
+    return Object.fromEntries(entries) as T;
 }

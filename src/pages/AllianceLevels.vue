@@ -5,13 +5,10 @@
   />
 </template>
 
-<script>
+<script setup>
 import Page from '@/components/Page.vue';
-import data from '@Data/alliance_levels.js';
+import allianceLevels from '@Data/alliance_levels.js';
 
+const data = { data: { TID: '', ...allianceLevels } };
 
-export default {
-    components: { Page },
-    data: () => ({ data: { data: { TID: '', ...data } } }),
-};
 </script>

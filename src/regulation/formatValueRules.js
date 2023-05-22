@@ -1,8 +1,8 @@
 // noinspection SpellCheckingInspection
 
-import i18n from '@/js/Vue/i18n';
+import i18n from '@Utils/Vue/i18n';
 import Icon from '@/components/Icon.vue';
-import sec2str from '@/js/sec2str';
+import sec2str from '@Utils/sec2str';
 
 import locKeys from '@Regulation/locKeys.mjs';
 import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';

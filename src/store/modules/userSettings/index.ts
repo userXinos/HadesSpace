@@ -2,7 +2,7 @@ import { MutationTree } from 'vuex';
 
 import types from './types';
 import languages from '@Data/languages.js';
-import { setI18nLanguage } from '@Scripts/Vue/i18n';
+import { setI18nLanguage } from '@Utils/Vue/i18n';
 
 const LOCAL_STORAGE_KEY = 'settings';
 const SUPPORT_LOCALES = Object.values(languages).map((l) => l.Code);

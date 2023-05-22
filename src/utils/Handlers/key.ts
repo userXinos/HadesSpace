@@ -1,4 +1,4 @@
-import i18n from '@/js/Vue/i18n';
+import i18n from '@Utils/Vue/i18n';
 import rules from '@Regulation/formatKeyRules.js';
 import locKeys from '@Regulation/locKeys.mjs';
 import postfixes, { regex as FIX_KEY_REGEX } from '@Regulation/postfixes.mjs';
@@ -6,7 +6,7 @@ import postfixes, { regex as FIX_KEY_REGEX } from '@Regulation/postfixes.mjs';
 const GET_POSTFIX_KEY_REGEX = new RegExp(`.+?_?(${postfixes.join('|')})$`);
 const { t, te } = i18n.global;
 
-export default function(key, pageName) {
+export default function(key: string, pageName:string): string {
     if (typeof key == 'undefined' || key == null || key.startsWith('_')) {
         return '';
     }

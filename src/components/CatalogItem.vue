@@ -13,27 +13,14 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Icon from './Icon.vue';
 
-export default {
-    name: 'CatalogItem',
-    components: { Icon },
-    props: {
-        text: {
-            type: Object,
-            default: () => ({
-                locKey: '',
-            }),
-            requested: true,
-        },
-        icon: {
-            type: Object,
-            default: () => ({}),
-            requested: true,
-        },
-    },
-};
+export interface Props {
+    text: {locKey: string}
+    icon: object
+}
+defineProps<Props>();
 </script>
 
 <style scoped lang="scss">

@@ -1,43 +1,15 @@
 import { reactive } from 'vue';
 
-import objectArrayify from '@Scripts/objectArrayify';
+import objectArrayify from '@Utils/objectArrayify';
 import { getCharsWithHideStatus } from '@/components/DataHeadStats.vue';
-import type { Callback as mapFn } from '@Scripts/objectArrayify';
 
-export declare type Element = {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    Name: string,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    TID: string,
+import type { Callback as mapFn } from '@Utils/objectArrayify';
+import type { InputValue, Input, OutputValue, OutputMap, Output } from '@/typings/calculator';
+import type { ElementsStore, getElementsCB, InitCalcTotalCB, GetMapFn, ValueHandlerToMapFnTarget } from '@/typings/calculator';
 
-    [key: string]: number|number[]|{[k: string]: number[]}
-}
-export declare type Level = Record<string, number>
-export declare type Input = Record<'actually'|'plan', Level>
-export declare interface Output {
-    actually: {[key: string]: Element}
-    plan: {[key: string]: Element}
-    total: {
-        intermediate: {
-            [key: string]: {
-                [key in 'actually'|'plan'|'sum']: number
-            }
-        },
-        result: {[key: string]: number}
-    }
-}
-export declare type ElementsStore = { [key: string]: Element }
-export declare type getElementsCB = (getChars: <Type extends object>(element: Type, maxLevel: number) => Element, elementsStore: ElementsStore) => unknown
-
-export default function calculator(stackChars: string[], initCalcTotal: (store: ElementsStore, output: Output) => (name: string, input: Input) => void) {
-    const output = reactive({
-        actually: {},
-        plan: {},
-        total: { intermediate: {}, result: {} },
-    }) as Output;
-    const elementsCharsStore = {} as ElementsStore;
+export default function calculator(stackChars: string[], initCalcTotal: InitCalcTotalCB) {
+    const output: Output = reactive({ actually: {}, plan: {}, total: { intermediate: {}, result: {} } });
+    const elementsCharsStore: ElementsStore = {};
 
     for (const k of stackChars) {
         output.total.result[k] = 0;
@@ -54,17 +26,21 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
         return callback(getChars, elementsCharsStore);
     }
     function update(input: Input, name?: string) {
-        const planMapFn = (name: string, level: number, ...args: Parameters<mapFn>) =>
-            mapFnWrap(([k], i, arr) => calcDiffChars(Object.fromEntries(arr), k, input.actually[name], level), name, ...args);
-        const actuallyMapFn = (name: string, level: number, ...args: Parameters<mapFn>) =>
-            mapFnWrap(([, v]) => Array.isArray(v) ? v[level - 1] : v, name, ...args);
+        const getPlanMapFn: GetMapFn = (name: string, level: number) =>
+            valueHandlerToMapFn(name,
+                ([k], i, arr) => calcDiffChars(Object.fromEntries(arr), k, input.actually[name], level),
+            );
+        const getActuallyMapHandler: GetMapFn = (name: string, level: number) =>
+            valueHandlerToMapFn(name,
+                ([, v]) => Array.isArray(v) ? v[level - 1] : v,
+            );
 
         if (name) {
-            calcElement(output.plan, name, (...args) => planMapFn(name, input.plan[name], ...args));
-            calcElement(output.actually, name, (...args) => actuallyMapFn(name, input.actually[name], ...args));
+            calcOutputValue(output.plan, name, getPlanMapFn(name, input.plan[name]));
+            calcOutputValue(output.actually, name, getActuallyMapHandler(name, input.actually[name]));
         } else {
-            calcInput(input.plan, output.plan, planMapFn);
-            calcInput(input.actually, output.actually, actuallyMapFn);
+            calcAllOutputValues(input.plan, output.plan, getPlanMapFn);
+            calcAllOutputValues(input.actually, output.actually, getActuallyMapHandler);
         }
 
         setAllKeysZero(output.total);
@@ -78,30 +54,33 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
             }
         }
     }
-    function mapFnWrap(mapFnElement: (...args: Parameters<mapFn>) => number, name: string, ...args: Parameters<mapFn>): [string, number] {
-        const [[key]] = args;
+    function valueHandlerToMapFn(name: string, valueHandler: ValueHandlerToMapFnTarget): mapFn {
+        return (...args) => {
+            const [[key]] = args;
 
-        if (isObject(elementsCharsStore[name][key])) {
-            const obj = objectArrayify(elementsCharsStore[name][key] as object, {
-                map: (...args: Parameters<mapFn>) => [args[0][0], mapFnElement(...args)],
-            }) as unknown as number; // <- тсс
-            return [key, obj];
-        }
-        return [key, mapFnElement(...args)];
+            if (isObject(elementsCharsStore[name][key])) {
+                const obj = objectArrayify(elementsCharsStore[name][key] as object, {
+                    map: (...args) => [args[0][0], valueHandler(...args)],
+                });
+                return [key, obj];
+            }
+            const number = valueHandler(...args);
+            return [key, number];
+        };
     }
-    function calcElement(target: {[k: string]: Element}, name: string, map: mapFn) {
+    function calcOutputValue(target: OutputMap, name: string, map: mapFn): void {
         if (!elementsCharsStore[name]) {
             return;
         }
-        target[name] = objectArrayify(elementsCharsStore[name], { map }) as Element;
+        target[name] = objectArrayify(elementsCharsStore[name], { map });
     }
-    function calcInput(entries: Level, target: {[k: string]: Element}, elementMapFn: (name: string, level: number, ...args: Parameters<mapFn>) => [string, number]) {
-        if (Object.keys(entries).length) {
-            for (const [n, lvl] of Object.entries(entries)) {
+    function calcAllOutputValues(inputLevels: InputValue, target: OutputMap, getMapFn: GetMapFn): void {
+        if (Object.keys(inputLevels).length) {
+            for (const [n, lvl] of Object.entries(inputLevels)) {
                 if (!lvl) {
-                    target[n] = {} as Element;
+                    target[n] = {} as OutputValue;
                 } else {
-                    calcElement(target, n, (...args) => elementMapFn(n, lvl, ...args));
+                    calcOutputValue(target, n, getMapFn(n, lvl));
                 }
             }
         } else {
@@ -110,7 +89,7 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
             }
         }
     }
-    function calcDiffChars(obj: {[k: string]: unknown}, key: string, levelOne: number, levelTwo: number) {
+    function calcDiffChars(obj: {[k: string]: unknown}, key: string, levelOne: number, levelTwo: number): number {
         const char = obj[key] as number[];
         const one = ((levelOne > 0) ? char[levelOne - 1] : 0);
         let two = char[levelTwo - 1];
@@ -132,7 +111,7 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
         }
         return two - one;
     }
-    function setAllKeysZero(obj: {[k: string]: unknown}) {
+    function setAllKeysZero(obj: {[k: string]: unknown}): void {
         for (const k in obj) {
             if (k in obj) {
                 if (isObject(obj[k])) {
@@ -144,13 +123,13 @@ export default function calculator(stackChars: string[], initCalcTotal: (store: 
         }
     }
 
-    function getChars<Type extends object>(element: Type, maxLevel: number) {
+    function getChars(element: object, maxLevel: number): OutputValue {
         type ObjAndVisible = [object, boolean];
 
         const raw = getCharsWithHideStatus(element);
         removeNotArrayChars(raw as {[key: string]: ObjAndVisible});
 
-        return raw as Element;
+        return raw as OutputValue;
 
         // TODO настройка для отключения этого поведения
         function removeNotArrayChars(obj: {[key: string]: ObjAndVisible|object}) {

@@ -7,25 +7,18 @@
 </template>
 
 <!--suppress JSUnresolvedVariable -->
-<script>
+<script setup>
 import Page from '@/components/Page.vue';
 
-import CustomIcon from '@Scripts/CustomIcon';
-import objectArrayify from '@Scripts/objectArrayify';
+import CustomIcon from '@Utils/CustomIcon';
+import objectArrayify from '@Utils/objectArrayify';
 import spaceBuildings from '@Data/spacebuildings.js';
 
 spaceBuildings.WarpLaneHub.Model = new CustomIcon('WarpLane');
 spaceBuildings.TimeModulator.Model = new CustomIcon('TimeModulator');
 
-export default {
-    components: { Page },
-    data() {
-        return {
-            data: objectArrayify(spaceBuildings, {
-                filter: ([k, v]) => !k.startsWith('#') && v?.CanBeBuilt || v?.AllowBuildOnYS || v?.AllowBuildOnDS,
-            }),
-            img: require(`@Img/game/portraits/BlackCitadel.png`),
-        };
-    },
-};
+const data = objectArrayify(spaceBuildings, {
+    filter: ([, v]) => v?.CanBeBuilt || v?.AllowBuildOnYS,
+});
+const img = require(`@Img/game/portraits/BlackCitadel.png`);
 </script>

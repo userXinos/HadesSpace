@@ -1,4 +1,4 @@
-import { ref, Ref } from 'vue';
+import { ref, Ref, onMounted, onUnmounted } from 'vue';
 
 const ENABLE_SWIPE_PRESENT = 60;
 
@@ -8,10 +8,12 @@ export default function appSidebar(isMinMode: Ref<boolean>) {
     const isOpen = ref(false);
     const ignoreSwipeUp = ref(window.innerWidth * ENABLE_SWIPE_PRESENT / 100);
 
+    onMounted(() => window.addEventListener('resize', onResize));
+    onUnmounted(() => window.removeEventListener('resize', onResize));
+
     return {
         setShow,
         swipeHandler,
-        onResize,
         isOpen,
     };
 

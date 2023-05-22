@@ -123,7 +123,7 @@
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { Head as VHead } from '@vueuse/head';
 import patchCommits from '@Regulation/patchCommits.js';
-import Data from '../components/Data.vue';
+import Data from '@/components/Data.vue';
 import type { Commit } from '@/composables/gameDiffLogGHApi';
 import gameDiffLogGHApi from '@/composables/gameDiffLogGHApi';
 import type { ObjectKString } from '@/composables/gameDiffLogData';

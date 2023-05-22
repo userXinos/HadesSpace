@@ -2,25 +2,25 @@
   <div>
     <Page
       title-loc-key="TID_WHITE_STAR"
-      :content-args="{data: stars, iconDir: 'game/Stars', tableOpts: {lvlColKey: '№'} }"
+      :content-args="{data: { ws }, iconDir: 'game/Stars', tableOpts: {lvlColKey: '№'} }"
       :portrait="{src: img, alt: 'whiteStars'}"
     />
 
     <v-data
-      :data="planets"
+      :data="planetsWS"
       :table-opts="{lvlColKey: '№'}"
     />
 
   </div>
 </template>
 
-<script>
+<script setup>
 import Page from '@/components/Page.vue';
 import VData from '@/components/Data.vue';
 
 import stars from '@Data/stars.js';
 import planets from '@Data/planets.js';
-import compileOne from '@Scripts/compileOne.js';
+import compileOne from '@Utils/compileOne.ts';
 
 const ws = stars.WhiteStar;
 ws.Lifetime = ws.Lifetime * ws.TimeSlowdownFactor;
@@ -40,16 +40,6 @@ planetsWS.Name = 'Planets';
     'ConceptImage',
 ].forEach((k) => delete planetsWS[k]);
 
-export default {
-    components: { Page, VData },
-    data() {
-        return {
-            stars: { ws },
-            planets: planetsWS,
-            img: require(`@Img/game/portraits/portrait_PlanetWhiteStar.png`),
-
-        };
-    },
-};
+const img = require(`@Img/game/portraits/portrait_PlanetWhiteStar.png`);
 </script>
 <style scoped src="../style/page.scss"  lang="scss"></style>

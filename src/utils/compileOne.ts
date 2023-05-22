@@ -1,15 +1,7 @@
 import byTypes from '@Regulation/byTypes.js';
 
-/**
- * Из кучи маленьких в один большой объект
- * @param {Object.<String, Object>} obj
- * @param {Object} opts
- * @param {Object} opts.filterByType
- * @param {String} opts.filterByType.path
- * @return {Object}
- */
-export default function(obj, { filterByType: { path } }) {
-    const res = {};
+export default function(obj: Record<string, object>, { filterByType: { path } }: {filterByType: {path: string}}): object {
+    const res: Record<string, any> = {};
     const list = (path) ? path.split('.').reduce((acc, p) => acc[p], byTypes) : null;
 
     Object.entries(obj)

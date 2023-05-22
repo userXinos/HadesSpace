@@ -52,67 +52,58 @@
   </div>
 </template>
 
-<script>
-import types from '@Store/types';
-
+<script lang="ts">
+export default { name: 'Modal' };
 export const SIZES = {
     SMALL: 'small',
     MEDIUM: 'medium',
     LARGE: 'large',
 };
+</script>
 
-export default {
-    name: 'Modal',
-    props: {
-        size: {
-            type: String,
-            default: SIZES.MEDIUM,
-        },
-        title: {
-            type: String,
-            default: undefined,
-        },
-        open: Boolean,
-    },
-    emits: ['update:open'],
-    data() {
-        return {
-            modalKey: 0,
-        };
-    },
-    computed: {
-        modalActive() {
-            return this.open && (this.$store.state.modals.at(- 1) == this.modalKey);
-        },
-    },
-    watch: {
-        open() {
-            if (this.open) {
-                this.$store.dispatch(types.MODAL_OPEN).then((key) => {
-                    this.modalKey = key;
-                });
-            } else {
-                this.$store.dispatch(types.MODAL_CLOSE, this.modalKey);
-            }
-        },
-    },
-    unmounted() {
-        this.$store.dispatch(types.MODAL_CLOSE, this.modalKey);
-    },
-    created() {
-        this.$router.beforeResolve( () => {
-            if (this.modalActive) {
-                this.onClose();
-                return false;
-            }
+<script setup lang="ts">
+import { ref, computed, watch, onMounted } from 'vue';
+import router from '@Utils/Vue/router';
+
+import store from '@/store';
+import types from '@Store/types';
+
+export interface Props {
+    open: boolean
+    size?: string
+    title?: string
+}
+
+const emit = defineEmits(['update:open']);
+const props = withDefaults(defineProps<Props>(), {
+    size: SIZES.MEDIUM,
+    title: undefined,
+});
+const modalKey = ref(0);
+const modalActive = computed(() => props.open && (store.state.modals.at(- 1) == modalKey.value));
+
+router.beforeResolve( () => {
+    if (modalActive.value) {
+        onClose();
+        return false;
+    }
+});
+watch(()=> props.open, () => {
+    if (props.open) {
+        store.dispatch(types.MODAL_OPEN).then((key) => {
+            modalKey.value = key;
         });
-    },
-    methods: {
-        onClose() {
-            this.$emit('update:open', false);
-        },
-    },
-};
+    } else {
+        store.dispatch(types.MODAL_CLOSE, modalKey.value);
+    }
+});
+onMounted(() => {
+    store.dispatch(types.MODAL_CLOSE, modalKey.value);
+});
+
+function onClose(): void {
+    emit('update:open', false);
+}
 </script>
 
 <style scoped lang="scss">

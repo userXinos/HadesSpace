@@ -8,37 +8,30 @@
   </transition>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
 import debounce from 'lodash.debounce';
 
-export default {
-    data() {
-        return {
-            show: false,
-        };
-    },
-    created() {
-        this.hide = debounce(() => this.show = false, 4000);
-    },
-    mounted() {
-        document.addEventListener('scroll', this.scroll);
-    },
-    unmounted() {
-        document.removeEventListener('scroll', this.scroll);
-    },
-    methods: {
-        scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        },
-        scroll() {
-            const show = (window.scrollY > 300);
-            if (this.show != show) {
-                this.show = show;
-                this.hide();
-            }
-        },
-    },
-};
+const show = ref(false);
+const hide = debounce(() => show.value = false, 4000);
+
+onMounted(() => {
+    document.addEventListener('scroll', scroll);
+});
+onUnmounted(() => {
+    document.removeEventListener('scroll', scroll);
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function scroll() {
+    const s = (window.scrollY > 300);
+    if (show.value != s) {
+        show.value = s;
+        hide();
+    }
+}
 </script>
 <style scoped lang="scss">
 @import "../style/vars";

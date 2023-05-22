@@ -38,7 +38,7 @@
                   :key="key"
                   :class="{'line': true, filtered}"
                 >
-                  <Stats
+                  <DataHeadStats
                     :item-key="key"
                     :items="value"
                     :format="format"
@@ -54,7 +54,7 @@
             >
               <icon
                 :name="item.PrefabModel || item.Icon || item.Model"
-                :dir="iconDir || iconDirList[name] || iconDirList.default"
+                :dir="iconDir || ICON_DIR_LIST[name] || ICON_DIR_LIST.default"
               />
             </div>
           </div>
@@ -85,25 +85,12 @@
   </div>
 </template>
 
-<script>
-import { h } from 'vue';
-import Icon from '@/components/Icon.vue';
-import Store from '@Store/index';
-
-import locKeys from '@Regulation/locKeys.mjs';
-import objectArrayify from '@/js/objectArrayify';
+<script lang="ts">
+import objectArrayify from '@Utils/objectArrayify';
 import isHide from '@Handlers/isHide';
+import Store from '@/store';
 
-const ICON_DIR_LIST = {
-    drone: 'game/Ships',
-    modules: 'game/Modules',
-    default: 'game/Modules',
-};
-
-function VNode({ render }) {
-    return render(h);
-}
-export function getCharsWithHideStatus(d) {
+function getCharacteristics(d: Record<string, any>): object {
     const res = objectArrayify(d, {
         map: ([k, value]) => [
             k,
@@ -113,9 +100,9 @@ export function getCharsWithHideStatus(d) {
             ],
         ],
         filter: ([k, [, remove]]) => (
-            k.startsWith('_') || isHide(k, null, { asMeta: true }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
         ),
-    });
+    }) as Record<string, any>;
 
     if (d.projectile) { // перенести вниз
         const { projectile } = res;
@@ -125,52 +112,69 @@ export function getCharsWithHideStatus(d) {
     return res;
 }
 
-export default {
-    name: 'Stats',
-    components: { Icon, VNode },
-    props: {
-        items: { type: null, required: true },
-        itemKey: { type: String, default: null },
-        parentId: { type: String, default: null },
-        parent: { type: Object, default: () => ({ TID_Description: null }) },
-        format: { type: Object, required: true },
-        iconDir: { type: String, default: '' },
-    },
-    data() {
-        return {
-            iconDirList: ICON_DIR_LIST,
-            getCharacteristics: getCharsWithHideStatus,
-        };
-    },
-    computed: {
-        itemsToArray() {
-            if (Array.isArray(this.items)) {
-                return this.items;
-            }
-            if (Object.values(this.items).every((e) => this.isObject(e) || Array.isArray(e))) {
-                return this.items;
-            }
-            return [this.items];
-        },
-    },
-    methods: {
-        isObject(o) {
-            return (typeof o === 'object' && !Array.isArray(o) && o !== null);
-        },
-        formatDescr(descrKey) {
-            const customDescrKey = descrKey.endsWith('_DESCR') ? descrKey.replace('_DESCR', '_CUSTOM_DESCR') : null;
-            const descr = this.$t(descrKey, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
-            const customDescr = (customDescrKey && this.$te(customDescrKey)) ? this.$t(customDescrKey) : null;
-
-            return (customDescr) ? `${descr}\n\n${customDescr}` : descr;
-        },
-        formatTitle(keyName, TID) {
-            const finalKey = (TID) ? ((keyName in locKeys) ? keyName : TID) : keyName;
-
-            return this.format.key(finalKey);
-        },
-    },
+export {
+    getCharacteristics as getCharsWithHideStatus,
 };
+</script>
+
+<script setup lang="ts">
+import { h, computed } from 'vue';
+import Icon from '@/components/Icon.vue';
+import i18n from '@Utils/Vue/i18n';
+
+import locKeys from '@Regulation/locKeys.mjs';
+
+export interface Props {
+    items: unknown[] | unknown | { [k:string]: object|unknown[] },
+    format: { key: (k: string) => string, value: (k: string, v: unknown) => string }
+    itemKey?: string|null
+    parentId?: string|null
+    parent?: object
+    iconDir?: string
+}
+
+const ICON_DIR_LIST = {
+    drone: 'game/Ships',
+    modules: 'game/Modules',
+    default: 'game/Modules',
+};
+
+const { t, te } = i18n.global;
+const props = withDefaults(defineProps<Props>(), {
+    itemKey: null,
+    parentId: null,
+    parent: () => ({ ID_Description: null }),
+    iconDir: '',
+});
+const itemsToArray = computed(() => {
+    if (Array.isArray(props.items)) {
+        return props.items;
+    }
+    if (isObject(props.items) && Object.values(props.items).every((e) => isObject(e) || Array.isArray(e))) {
+        return props.items;
+    }
+    return [props.items];
+});
+
+function isObject(o: unknown): boolean {
+    return (typeof o === 'object' && !Array.isArray(o) && o !== null);
+}
+function formatDescr(descrKey: string): string {
+    const customDescrKey = descrKey.endsWith('_DESCR') ? descrKey.replace('_DESCR', '_CUSTOM_DESCR') : null;
+    const descr = t(descrKey, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
+    const customDescr = (customDescrKey && te(customDescrKey)) ? t(customDescrKey) : null;
+
+    return (customDescr) ? `${descr}\n\n${customDescr}` : descr;
+}
+function formatTitle(keyName: string, TID: string) {
+    const finalKey = (TID) ? ((keyName in locKeys) ? keyName : TID) : keyName;
+
+    return props.format.key(finalKey);
+}
+
+function VNode({ render }) {
+    return render(h);
+}
 </script>
 
 <style scoped lang="scss">

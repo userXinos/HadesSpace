@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 
-import router from '@Scripts/Vue/router';
-import i18n from '@Scripts/Vue/i18n';
+import router from '@Utils/Vue/router';
+import i18n from '@Utils/Vue/i18n';
 import store from '@Store/index';
 import App from './App.vue';
 
@@ -10,11 +10,11 @@ import VueGtag from 'vue-gtag';
 import Vue3TouchEvents from 'vue3-touch-events';
 import { createHead } from '@vueuse/head';
 
-import pluginsConfig from '@Scripts/Vue/pluginsConfig';
-import clickOutside from '@Scripts/Vue/clickOutside';
+import pluginsConfig from '@Utils/Vue/pluginsConfig';
+import clickOutside from '@Utils/Vue/clickOutside';
 
 import '@/style/main.scss';
-import '@Scripts/Vue/registerServiceWorker';
+import '@Utils/Vue/registerServiceWorker';
 
 createApp(App)
     .use(createHead())

@@ -27,47 +27,37 @@
   </modal>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import Modal from '@/components/Modal.vue';
 
-export default defineComponent({
-    name: 'Confirm',
-    components: { Modal },
-    emits: ['setShow'],
-    data() {
-        return {
-            text: '',
-            show: false,
-            confirm: (() => null) as (value: unknown) => void|null,
-            defeat: (() => null) as () => void|null,
-        };
-    },
-    created() {
-        this.$emit('setShow', this.open.bind(this));
-    },
-    methods: {
-        modalUpdate() {
-            this.close(this.defeat);
-        },
-        open(text: string) {
-            this.show = true;
-            this.text = text;
+const text = ref('');
+const show = ref(false);
+let confirm;
+let defeat;
 
-            return new Promise(((resolve, reject) => {
-                this.confirm = resolve;
-                this.defeat = reject;
-            }));
-        },
-        close(cb: (v?: unknown) => void) {
-            cb();
-            this.show = false;
-            this.confirm = () => null;
-            this.defeat = () => null;
-        },
-    },
+const emit = defineEmits(['setShow']);
 
-});
+emit('setShow', open);
+
+function modalUpdate() {
+    close(defeat);
+}
+function open(t: string) {
+    show.value = true;
+    text.value = t;
+
+    return new Promise(((resolve, reject) => {
+        confirm = resolve;
+        defeat = reject;
+    }));
+}
+function close(cb: (v?: unknown) => void) {
+    cb();
+    show.value = false;
+    confirm = () => null;
+    defeat = () => null;
+}
 </script>
 
 <style scoped lang="scss">

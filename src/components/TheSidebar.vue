@@ -13,34 +13,25 @@
   </modal>
 </template>
 
-<script lang="js">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 
 import Navigation from './TheNavigation.vue';
 import Modal from '@/components/Modal.vue';
 import Settings from '@/components/Settings.vue';
 
-export default defineComponent({
-    name: 'Sidebar',
-    components: { Navigation, Settings, Modal },
-    props: {
-        open: Boolean,
-        swipeHandler: {
-            type: Function,
-            default: undefined,
-        },
-    },
-    emits: ['update:open'],
-    computed: {
-        propModel: {
-            get() {
-                return this.open;
-            },
-            set(value) {
-                this.$emit('update:open', value);
-            },
-        },
-    },
+export interface Props {
+    open: boolean
+    swipeHandler?: () => void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    swipeHandler: () => (() => undefined),
+});
+const emit = defineEmits(['update:open']);
+const propModel = computed({
+    get: () => props.open,
+    set: (value: boolean) => emit('update:open', value),
 });
 </script>
 

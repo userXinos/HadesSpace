@@ -97,7 +97,7 @@
 import { h } from 'vue';
 import Icon from '@/components/Icon.vue';
 
-import objectArrayify from '@/js/objectArrayify';
+import objectArrayify from '@Utils/objectArrayify';
 import isHide from '@Handlers/isHide';
 
 const ICON_DIR_LIST = {

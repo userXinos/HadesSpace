@@ -1,5 +1,5 @@
 import byTypes from '@Regulation/byTypes.js';
-import type { Callbacks } from '@/js/objectArrayify.js';
+import type { Callbacks } from './objectArrayify.js';
 
 /**
  * @param {String} pathType path.to.array

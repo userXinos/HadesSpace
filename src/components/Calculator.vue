@@ -59,7 +59,7 @@
     <modal
       v-model:open="settingsModal"
       :title="$t('CALCULATOR_SETTINGS') + ' (Alpha)'"
-      :size="modalSizes.MEDIUM"
+      :size="SIZES.MEDIUM"
       @update:open="() => ConfigManager.save()"
     >
 
@@ -87,11 +87,11 @@
               class="name"
             />
             <select
-              v-model="ConfigManager.value.selected"
+              v-model="ConfigManager.store.selected"
               @change="fullUpdate()"
             >
               <option
-                v-for="(value, index) in ConfigManager.value.configs"
+                v-for="(value, index) in ConfigManager.store.configs"
                 :key="index"
                 :value="index"
               >
@@ -106,7 +106,7 @@
               class="name"
             />
             <input
-              v-model="ConfigManager.value.configs[ConfigManager.value.selected].name"
+              v-model="ConfigManager.store.configs[ConfigManager.store.selected].name"
               :placeholder="$t('TID_CORP_NAME_LABEL')"
             >
           </div>
@@ -129,7 +129,7 @@
     <modal
       v-model:open="newModal"
       :title="$t('CREATE')"
-      :size="modalSizes.SMALL"
+      :size="SIZES.SMALL"
     >
       <template #body>
         <div class="input">
@@ -154,9 +154,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import type { PropType } from 'vue';
+<script setup lang="ts">
+import { computed, ref, nextTick } from 'vue';
+import i18n from '@Utils/Vue/i18n';
+import router from '@Utils/Vue/router';
 
 import { Head as VHead } from '@vueuse/head';
 import Confirm from '@/components/TheConfirm.vue';
@@ -166,262 +167,217 @@ import value from '@Handlers/value';
 import key from '@Handlers/key';
 import calculator from '@/composables/calculator';
 import CalculatorConfig from '@/composables/calculatorConfig';
-import type { Input, Output, getElementsCB } from '@/composables/calculator';
 
-export declare interface Setup {
-    onChangeLvl: (type: keyof Input, key: string, value: number|string) => number,
-    isSelected: (type: keyof Input, key: string, value: number) => boolean
-    isDisabled: (type: keyof Input, key: string, value: number) => boolean
-    outputClasses: (type: keyof Output, key: string, charName?: string) => object,
-    provideGetterElements: (callback: ProvideGetterElementsCB) => unknown,
-    output: Output
-}
-export declare type ProvideGetterElementsCB = (TIDs: CalculatorConfig['TIDs'], ...args: Parameters<getElementsCB>) => unknown
+import type { Input, SetupComponent, SetupGetElementsCB } from '@/typings/calculator';
+
 
 type calculatorArgs = Parameters<typeof calculator>
 type configArgs = ConstructorParameters<typeof CalculatorConfig>
 
-export default defineComponent({
-    name: 'Calculator',
-    components: { VHead, Confirm, Modal },
-    emits: ['update:input', 'setup'],
-    // eslint-disable-next-line  vue/no-setup-props-destructure
-    setup({ stackChars, calcTotal, localStorageKey }) {
-        const { provideGetterElements, output, update } = calculator(stackChars, calcTotal);
-        const ConfigManager = new CalculatorConfig(localStorageKey);
-        const wrapCalcProvide = (cb: ProvideGetterElementsCB) =>
-            provideGetterElements.apply(null, [(...a) => cb(ConfigManager.TIDs, ...a)]);
+export interface Props {
+    stackChars: calculatorArgs[0]
+    calcTotal: calculatorArgs[1]
+    localStorageKey: configArgs[0]
+    titleKey: string,
+    input: Input
+}
 
-        return {
-            output,
-            updateLogicOutput: update,
-            provideGetterElements: (cb: ProvideGetterElementsCB) => wrapCalcProvide(cb),
+const { t } = i18n.global;
+const props = defineProps<Props>();
+const emit = defineEmits(['update:input', 'setup']);
 
-            ConfigManager,
-        };
-    },
-    // eslint-disable-next-line vue/order-in-components
-    props: {
-        stackChars: { type: Array as PropType<calculatorArgs[0]>, required: true },
-        calcTotal: { type: Function as PropType<calculatorArgs[1]>, required: true },
-        localStorageKey: { type: String as PropType<configArgs[0]>, required: true },
+const isNebula = !!process.env.VUE_APP_NEBULA_BUILD;
+const format = {
+    key: (k: string) => key(k, router.currentRoute.name as string),
+    value: (k: string, v: unknown) => value(k, v, router.currentRoute.value.name as string),
+};
 
-        titleKey: { type: String, required: true },
-        input: { type: Object as () => Input, required: true },
-    },
-    data() {
-        return {
-            isNebula: !!process.env.VUE_APP_NEBULA_BUILD,
+const { provideGetterElements, output, update: updateLogicOutput } = calculator(props.stackChars, props.calcTotal);
+const ConfigManager = new CalculatorConfig(props.localStorageKey);
 
-            resetConfirm: (() => Promise.prototype) as (q: string) => Promise<void>,
-            modalSizes: SIZES,
-            settingsModal: false,
+const setupArgs: SetupComponent = {
+    output: output,
+    onChangeLvl: onChangeLvl,
+    isSelected: isSelected,
+    isDisabled: isDisabled,
+    outputClasses: outputClasses,
+    format: format,
 
-            newModal: false,
-            newConfigFromText: '',
-            buttonCopy: {
-                text: this.$t('COPY'),
-                color: 'yellow',
-            },
+    provideGetterElements: (cb: SetupGetElementsCB) =>
+        provideGetterElements((...args) => cb(ConfigManager.TIDs, ...args)),
+};
 
-            format: {
-                key: (k: string) => key(k, this.$route.name),
-                value: (k: string, v: unknown) => value(k, v, null),
-            },
-        };
-    },
-    computed: {
-        title() {
-            return this.$t(this.titleKey);
-        },
-        totalResultKeys() {
-            return Object.keys(this.output.total.result);
-        },
-        currentUrl() {
-            return `${location.origin}${location.pathname}`;
-        },
-    },
-    created() {
-        if (this.$route.query.d) {
-            const parsed = this.ConfigManager.parseUrl(this.$route.query.d as string);
+let resetConfirm: (q: string) => Promise<void> = (() => Promise.prototype);
+const settingsModal = ref(false);
+const newModal = ref(false);
+const newConfigFromText = ref('');
+const buttonCopy = ref({ text: t('COPY'), color: 'yellow' });
+const title = computed(() => t(props.titleKey));
+const totalResultKeys = computed(() => Object.keys(output.total.result));
+const currentUrl = computed(() => `${location.origin}${location.pathname}`);
 
-            this.ConfigManager.add({ actually: parsed, plan: parsed }, { temporary: true });
-            this.$router.push(`${location.pathname}`);
-        }
 
-        this.fullUpdate();
-        this.$emit('setup', {
-            onChangeLvl: this.onChangeLvl,
-            isSelected: this.isSelected,
-            isDisabled: this.isDisabled,
-            outputClasses: this.outputClasses,
-            provideGetterElements: this.provideGetterElements,
-            output: this.output,
-        });
-    },
-    methods: {
-        setShowConfirm(func: () => Promise<void>) {
-            this.resetConfirm = func;
-        },
-        updateInput() {
-            this.$emit('update:input', this.ConfigManager.selectedConfig);
-        },
-        updateOutput(key?: string) {
-            this.$nextTick(() => {
-                this.updateLogicOutput(this.input, key);
-            });
-        },
-        fullUpdate() {
-            this.updateInput();
-            this.updateOutput();
-        },
-        async onReset(event: Event): Promise<void> {
-            if ((event.target as HTMLButtonElement).name == 'all') {
-                await this.resetConfirm('Reset all ? Are you serious ?')
-                    .then(() => {
-                        for (const key in this.input) {
-                            if (key in this.input) {
-                                this.ConfigManager.selectedConfig[key as keyof Input] = {};
-                            }
-                        }
-                    })
-                    .catch(() => undefined);
-            } else {
-                if (this.input.plan) {
-                    for (const key in this.input.plan) {
-                        if (key in this.input.plan) {
-                            this.ConfigManager.selectedConfig.plan[key] = this.input.actually[key];
-                        }
+if (router.currentRoute.value.query.d) {
+    const parsed = ConfigManager.parseUrl(router.currentRoute.value.query.d as string);
+    const data = { actually: parsed, plan: parsed };
+
+    ConfigManager.add(data, { temporary: true });
+    router.push(`${location.pathname}`);
+}
+
+fullUpdate();
+emit('setup', setupArgs);
+
+
+function setShowConfirm(func: () => Promise<void>): void {
+    resetConfirm = func;
+}
+function updateInput() {
+    emit('update:input', ConfigManager.selectedConfig);
+}
+function updateOutput(key?: string) {
+    nextTick(() => updateLogicOutput(props.input, key));
+}
+function fullUpdate() {
+    updateInput();
+    updateOutput();
+}
+async function onReset(event: Event): Promise<void> {
+    if ((event.target).name == 'all') {
+        await resetConfirm('Reset all ? Are you serious ?')
+            .then(() => {
+                for (const key in props.input) {
+                    if (key in props.input) {
+                        ConfigManager.selectedConfig[key as keyof Input] = {};
                     }
                 }
+            })
+            .catch(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
+    } else {
+        if (props.input.plan) {
+            for (const key in props.input.plan) {
+                if (key in props.input.plan) {
+                    ConfigManager.selectedConfig.plan[key] = props.input.actually[key];
+                }
             }
+        }
+    }
 
-            this.updateOutput();
-            this.ConfigManager.save();
-        },
+    updateOutput();
+    ConfigManager.save();
+}
+async function removeConfig(): Promise<void> {
+    const { name } = ConfigManager.store.configs[ConfigManager.store.selected];
+    await resetConfirm(t('REMOVE_CONFIG', [name]))
+        .then(() => {
+            ConfigManager.removeSelected();
+            fullUpdate();
+        })
+        .catch(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
+}
+async function createConfig(): Promise<void> {
+    let parsed = {};
 
-        async removeConfig() {
-            const { name } = this.ConfigManager.value.configs[this.ConfigManager.value.selected];
-            await this.resetConfirm(this.$t('REMOVE_CONFIG', [name]))
-                .then(() => {
-                    this.ConfigManager.removeSelected();
-                    this.fullUpdate();
-                })
-                .catch(() => undefined);
-        },
-        async createConfig() {
-            let parsed = {};
+    if (newConfigFromText.value) {
+        await ConfigManager.parseString(newConfigFromText.value)
+            .then((data) => parsed = data)
+            .catch((err) => {
+                alert(err.message);
+                console.error(err);
+            });
+    }
+    ConfigManager.add({ actually: { ...parsed }, plan: { ...parsed } });
+    newConfigFromText.value = '';
+    newModal.value = false;
+    fullUpdate();
+}
+function copyConfig(): void {
+    const d = ConfigManager.stringifyUrl();
 
-            if (this.newConfigFromText) {
-                await this.ConfigManager.parseString(this.newConfigFromText)
-                    .then((data) => parsed = data)
-                    .catch((err) => {
-                        alert(err.message);
-                        console.error(err);
-                    });
-            }
-            this.ConfigManager.add({ actually: { ...parsed }, plan: { ...parsed } });
-            this.newConfigFromText = '';
-            this.newModal = false;
-            this.fullUpdate();
-        },
-        copyConfig() {
-            const d = this.ConfigManager.stringifyUrl();
+    navigator.clipboard.writeText(`${currentUrl.value}?d=${d}`)
+        .then(() => {
+            buttonCopy.value = { text: t('COPIED'), color: 'green' };
+            setTimeout(() => buttonCopy.value = { text: t('COPY'), color: 'yellow' }, 2000);
+        })
+        .catch((err) => {
+            buttonCopy.value = { text: t('Error'), color: 'red' };
+            alert(err.message);
+            console.error(err);
+        });
+}
+function totalTableClasses(type: string, key: string): object {
+    const val = output.total.intermediate[key];
 
-            navigator.clipboard.writeText(`${this.currentUrl}?d=${d}`)
-                .then(() => {
-                    this.buttonCopy.text = this.$t('COPIED');
-                    this.buttonCopy.color = 'green';
+    if (type == 'plan') {
+        return {
+            'yellow-color plus': val.plan,
+            'hide': val.plan == 0,
+        };
+    }
+    if (type == 'sum') {
+        const isGrowth = (val.sum > val.actually);
 
-                    setTimeout(() => {
-                        this.buttonCopy.text = this.$t('COPY');
-                        this.buttonCopy.color = 'yellow';
-                    }, 2000);
-                })
-                .catch((err) => {
-                    this.buttonCopy.text = 'Error';
-                    this.buttonCopy.color = 'red';
-                    alert(err.message);
-                    console.error(err);
-                });
-        },
+        return {
+            'green-color ': isGrowth,
+            'muffle': !isGrowth,
+            'hide': val.sum == 0,
+        };
+    }
+    return {};
+}
+function onChangeLvl(type: keyof Input, key: string, value: number|string): number {
+    value = (typeof value === 'string') ? parseInt(value) : value;
 
-        totalTableClasses(type: string, key: string): object {
-            const val = this.output.total.intermediate[key];
+    if (value == 0) {
+        delete props.input[type][key]; // eslint-disable-line vue/no-mutating-props
+        delete output[type][key];
+    } else {
+        ConfigManager.selectedConfig[type][key] = value;
+    }
 
-            if (type == 'plan') {
-                return {
-                    'yellow-color plus': val.plan,
-                    'hide': val.plan == 0,
-                };
-            }
-            if (type == 'sum') {
-                const isGrowth = (val.sum > val.actually);
+    updateInput();
+    updateOutput(key);
+    ConfigManager.save();
 
-                return {
-                    'green-color ': isGrowth,
-                    'muffle': !isGrowth,
-                    'hide': val.sum == 0,
-                };
-            }
-            return {};
-        },
+    return value;
+}
+function isSelected(type: keyof Input, key: string, value: number): boolean {
+    let current = props.input.plan[key] || 0;
+    const min = props.input.actually[key];
 
-        onChangeLvl(type: keyof Input, key: string, value: number|string): number {
-            value = (typeof value === 'string') ? parseInt(value) : value;
+    if (min > current) {
+        current = onChangeLvl('plan', key, min);
+    }
+    if (type == 'plan') {
+        return (value == current);
+    }
+    return (props.input[type][key] == value);
+}
+function isDisabled(type: keyof Input, key: string, value: number): boolean {
+    if (type != 'plan' || !props.input.actually) {
+        return false;
+    }
+    return (value < props.input.actually[key]);
+}
+function outputClasses(type: keyof Output, key: string, charName?: string): object {
+    if (type == 'actually') {
+        return {
+            'none': charName && totalResultKeys.value.includes(charName),
+            'actually': true,
+        };
+    }
+    if (type == 'plan') {
+        const char = charName ? output[type][key][charName] : undefined;
 
-            if (value == 0) {
-                delete this.input[type][key];
-                delete this.output[type][key];
-            } else {
-                this.ConfigManager.selectedConfig[type][key] = value;
-            }
-
-            this.updateInput();
-            this.updateOutput(key);
-            this.ConfigManager.save();
-
-            return value;
-        },
-        isSelected(type: keyof Input, key: string, value: number): boolean {
-            let current = this.input.plan[key] || 0;
-            const min = this.input.actually[key];
-
-            if (min > current) {
-                current = this.onChangeLvl('plan', key, min);
-            }
-            if (type == 'plan') {
-                return (value == current);
-            }
-            return (this.input[type][key] == value);
-        },
-        isDisabled(type: keyof Input, key: string, value: number): boolean {
-            if (type != 'plan' || !this.input.actually) {
-                return false;
-            }
-            return (value < this.input.actually[key]);
-        },
-        outputClasses(type: keyof Output, key: string, charName?: string): object {
-            if (type == 'actually') {
-                return {
-                    'none': charName && this.totalResultKeys.includes(charName),
-                    'actually': true,
-                };
-            }
-            if (type == 'plan') {
-                const char = charName ? this.output[type][key][charName] : undefined;
-
-                return {
-                    'yellow-color': (this.input.actually[key] ? this.input.plan[key] > this.input.actually[key] : true) && (typeof char !== 'object'),
-                    'plus': !charName || (charName && !this.totalResultKeys.includes(charName)),
-                    'none': this.input.plan[key] == this.input.actually[key],
-                    'plan': true,
-                };
-            }
-            return {};
-        },
-    },
-});
+        return {
+            'yellow-color': (props.input.actually[key] ? props.input.plan[key] > props.input.actually[key] : true) && (typeof char !== 'object'),
+            'plus': !charName || (charName && !totalResultKeys.value.includes(charName)),
+            'none': props.input.plan[key] == props.input.actually[key],
+            'plan': true,
+        };
+    }
+    return {};
+}
 </script>
 
 <style scoped lang="scss">

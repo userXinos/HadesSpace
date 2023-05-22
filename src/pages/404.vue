@@ -12,10 +12,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Head as VHead } from '@vueuse/head';
-
-export default { components: { VHead } };
 </script>
 
 <style scoped lang="scss">

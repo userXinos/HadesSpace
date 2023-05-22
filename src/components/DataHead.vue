@@ -23,36 +23,23 @@
 
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed } from 'vue';
+
 import Stats from '@/components/DataHeadRenderStat.vue';
 
-export default {
-    name: 'DataHead',
-    components: { Stats },
-    props: {
-        data: {
-            type: Object,
-            requested: true,
-            default: () => ({ default: {} }),
-        },
-        format: {
-            type: Object,
-            requested: true,
-            default: () => ({ key: () => null, value: () => null }),
-        },
-        iconDir: {
-            type: String,
-            default: '',
-        },
-    },
-    computed: {
-        other() {
-            const res = { ...this.data };
-            delete res.default;
-            return res;
-        },
-    },
-};
+export interface Props {
+    data: object,
+    format: { key: () => string, value: () => string }
+    iconDir: string
+}
+
+const props = defineProps<Props>();
+const other = computed(() => {
+    const res = { ...props.data };
+    delete res.default;
+    return res;
+});
 </script>
 
 <style scoped lang="scss">
