@@ -222,7 +222,7 @@ if (router.currentRoute.value.query.d) {
     const data = { actually: parsed, plan: parsed };
 
     ConfigManager.add(data, { temporary: true });
-    router.replace({ path: isProd ? '/' : location.pathname });
+    router.push({ path: isProd ? '/' : location.pathname });
 }
 
 fullUpdate();
