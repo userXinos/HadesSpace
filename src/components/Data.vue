@@ -113,11 +113,11 @@ function buildTitle(category: string, pre:[string, unknown][]) {
 function buildTable(category: string, pre: [string, unknown][]) {
     const { head, body } = table.value;
     const { Name } = props.data;
-    const keys = pre.map(([k]) => k);
+    const keys = pre.map(([k]: [string, unknown]) => k);
 
     pre
-        .filter(([k]) => (keys.includes(`_${k}`)) ? true : !isHide(k, Name))
-        .sort(([a], [b]) => props.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
+        .filter(([k]: [string, unknown]) => (keys.includes(`_${k}`)) ? true : !isHide(k, Name))
+        .sort(([a]: [string, unknown], [b]: [string, unknown]) => props.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
         .forEach(([key, value]) => {
             if (Array.isArray(head[category])) {
                 head[category].push(key);

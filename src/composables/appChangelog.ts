@@ -30,18 +30,18 @@ export default function appChangelog() {
     }
     function needChangeLog() {
         const get = (s: string) => s.split(/\./g).slice(0, -1);
-        const currVers = get(VERSION);
-        const lastVers = get(store.state.userSettings.lastVersionChangelog);
+        const current = get(VERSION);
+        const last = get(store.state.userSettings.lastVersionChangelog);
 
-        if (lastVers[0] == '0') {
+        if (last[0] == '0') {
             store.commit(types.SET_LAST_CHECKED_VERSION_CHANGELOG, VERSION);
 
             return false;
         }
 
-        while (currVers.length || lastVers.length) {
-            const a = Number(currVers.shift());
-            const b = Number(lastVers.shift());
+        while (current.length || last.length) {
+            const a = Number(current.shift());
+            const b = Number(last.shift());
 
             if (a === b) {
                 continue;

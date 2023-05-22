@@ -64,8 +64,8 @@ import Icon from '@/components/Icon.vue';
 export interface Props {
     args: {
         data: Record<string, object>,
-        tableOpts: object,
-        iconDir: string
+        tableOpts?: object,
+        iconDir?: string
     }
 }
 defineProps<Props>();

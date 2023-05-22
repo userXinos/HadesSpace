@@ -1,3 +1,4 @@
+//noinspection CssUnknownTarget
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 @import "./vars";
 
@@ -13,11 +14,14 @@ body, html {
     font-family: 'Fira Sans', sans-serif;
     overflow-x: hidden;
     scrollbar-color: #48555c $background;
-}
 
-html[no-scroll] {
-    // overflow: hidden;
-    // margin-right: var(--scroll-bar-width);
+    ::-webkit-scrollbar {
+        background: $background;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #48555c;
+    }
 }
 
 a {

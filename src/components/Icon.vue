@@ -48,7 +48,7 @@ const url = getUrl();
 const nebulaSpaceBuildsNoBG = ['warpLaneHub', 'timeModulator'];
 const bgClasses = {
     'module-bg': type === 'Module' && !isProjectiles,
-    'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (isNebulaBuild ? !nebulaSpaceBuildsNoBG.includes(props.name) : true),
+    'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (isNebulaBuild ? !nebulaSpaceBuildsNoBG.includes(props.name as string) : true),
     'round-bg': 'TimeModulator' === customType,
     'art-bg': props.name === 'art',
     'warp-line-bg': customType == 'WarpLane',
@@ -61,7 +61,7 @@ const iconClasses = {
     'ship': type === 'Ship',
     'cerberus': isCerberus,
     'warp-line-body': customType == 'WarpLane',
-    'big-size': type == 'Distinction' || (type === 'specialIcon' && name !== 'art'),
+    'big-size': type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
     'circle': type === 'Star',
 };
 

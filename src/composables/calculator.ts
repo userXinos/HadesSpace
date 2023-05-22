@@ -126,7 +126,7 @@ export default function calculator(stackChars: string[], initCalcTotal: InitCalc
     function getChars(element: object, maxLevel: number): OutputValue {
         type ObjAndVisible = [object, boolean];
 
-        const raw = getCharsWithHideStatus(element);
+        const raw = getCharsWithHideStatus(element as Record<string, unknown>);
         removeNotArrayChars(raw as {[key: string]: ObjAndVisible});
 
         return raw as OutputValue;

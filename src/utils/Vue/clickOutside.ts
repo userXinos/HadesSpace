@@ -1,5 +1,6 @@
 
 // https://github.com/ndelvalle/v-click-outside/issues/238#issuecomment-725378716
+// noinspection JSUnusedGlobalSymbols
 
 import { DirectiveBinding } from '@vue/runtime-core';
 

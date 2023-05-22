@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
   <div>
     <template v-if="isObject(items) || (Array.isArray(items) && items.every(isObject))">

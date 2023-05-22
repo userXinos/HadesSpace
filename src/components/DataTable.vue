@@ -14,7 +14,7 @@
         >
           <div class="table-bg">
             <div
-              ref="teleTable"
+              ref="teleportTable"
               class="wrapper pinned"
             ><table class="table">
 
@@ -139,13 +139,13 @@ const tableMask = computed(() => tableMaskUtil({ ...props.data }, props.mergeCel
 const lvlColName = computed(() => te(props.lvlColKey) ? t(props.lvlColKey) : props.lvlColKey);
 let manualScroll;
 
-const teleTable = ref(null) as Ref<HTMLInputElement>;
+const teleportTable = ref(null) as Ref<HTMLInputElement>;
 const table = ref(null) as Ref<HTMLInputElement>;
 const th = ref(null) as Ref<HTMLInputElement>;
 
 onUpdated(() => {
-    if (pinHead.value && teleTable.value) {
-        teleTable.value.scrollLeft = table.value.scrollLeft;
+    if (pinHead.value && teleportTable.value) {
+        teleportTable.value.scrollLeft = table.value.scrollLeft;
     }
 });
 onMounted(()=> {
@@ -166,9 +166,9 @@ function isInViewport(element: HTMLInputElement): boolean {
 }
 function onTableScroll(e: Event): void {
     if (!manualScroll) {
-        if (teleTable.value) {
+        if (teleportTable.value) {
             manualScroll = true;
-            teleTable.value.scrollLeft = e.target.scrollLeft;
+            teleportTable.value.scrollLeft = e.target.scrollLeft;
         }
         manualScroll = false;
     }

@@ -5,29 +5,29 @@
 
     <table class="total-table">
       <tr
-        v-for="(value, key) of output.total.intermediate"
-        :key="key"
+        v-for="(v, k) of output.total.intermediate"
+        :key="k"
       >
-        <td>{{ format.key(key) }}</td>
+        <td>{{ format.key(k) }}</td>
         <td
-          v-for="(item, itemKey) of value"
-          :key="key + itemKey"
-          :class="totalTableClasses(itemKey, key)"
+          v-for="(item, itemKey) of v"
+          :key="k + itemKey"
+          :class="totalTableClasses(itemKey, k)"
         >
           {{ item.toLocaleString('ru-RU') }}
         </td>
       </tr>
       <tr
-        v-for="(value, key) of output.total.result"
-        :key="key"
+        v-for="(v, k) of output.total.result"
+        :key="k"
         class="result"
       >
-        <td>{{ format.key(key) }}</td>
+        <td>{{ format.key(k) }}</td>
         <td
-          v-if="value > 0"
+          v-if="v > 0"
           colspan="3"
         >
-          <b>{{ format.value(key, value) }}</b>
+          <b>{{ format.value(k, v) }}</b>
         </td>
       </tr>
     </table>
@@ -91,11 +91,11 @@
               @change="fullUpdate()"
             >
               <option
-                v-for="(value, index) in ConfigManager.store.configs"
+                v-for="(v, index) in ConfigManager.store.configs"
                 :key="index"
                 :value="index"
               >
-                {{ value.name }}
+                {{ v.name }}
               </option>
             </select>
           </div>
@@ -426,9 +426,6 @@ function outputClasses(type: keyof Output, key: string, charName?: string): obje
     }
     .result ~ .result {
         border: none;
-    }
-    .crystal {
-        width: 11px;
     }
 }
 

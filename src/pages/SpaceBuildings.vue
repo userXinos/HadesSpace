@@ -13,6 +13,7 @@ import Page from '@/components/Page.vue';
 import CustomIcon from '@Utils/CustomIcon';
 import objectArrayify from '@Utils/objectArrayify';
 import spaceBuildings from '@Data/spacebuildings.js';
+import img from '@Img/game/portraits/BlackCitadel.png';
 
 spaceBuildings.WarpLaneHub.Model = new CustomIcon('WarpLane');
 spaceBuildings.TimeModulator.Model = new CustomIcon('TimeModulator');
@@ -20,5 +21,4 @@ spaceBuildings.TimeModulator.Model = new CustomIcon('TimeModulator');
 const data = objectArrayify(spaceBuildings, {
     filter: ([, v]) => v?.CanBeBuilt || v?.AllowBuildOnYS,
 });
-const img = require(`@Img/game/portraits/BlackCitadel.png`);
 </script>

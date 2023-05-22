@@ -10,7 +10,7 @@ export default function({ head, body }: Raw, mergeCells: boolean) {
     const newBody: Out['body'] = [];
 
     Object.entries(head)
-        .sort((_, [b]) => (b === 'default') ? 1 : -1)
+        .sort((_, [b]: [string, string[]]) => (b === 'default') ? 1 : -1)
         .forEach(([category, keys], i, array) => {
             headMask(category, keys, array.length - i, newHead);
             bodyMask(category, keys, body[category], mergeCells, newBody);

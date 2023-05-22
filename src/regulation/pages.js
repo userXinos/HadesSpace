@@ -223,7 +223,7 @@ export default [
             {
                 name: 'PlanetsCalc',
                 text: { locKey: 'PLANETS_CALC' },
-                path: '/planetscalc',
+                path: '/planetsCalc',
                 component: () => import(/* webpackChunkName: "PlanetsCalc" */ '../pages/PlanetsCalc.vue'),
                 icon: {
                     name: 'planets-calc',
@@ -233,7 +233,7 @@ export default [
             {
                 name: 'ModulesCalc',
                 text: { locKey: 'MODULES_CALC' },
-                path: '/modulescalc',
+                path: '/modulesCalc',
                 component: () => import(/* webpackChunkName: "ModulesCalc" */ '../pages/ModulesCalc.vue'),
                 icon: {
                     name: 'modules-calc',

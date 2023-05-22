@@ -47,7 +47,7 @@ function tableOptsGetter() {
             }
             return 1;
         },
-    } as Record<string, any>;
+    } as Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 export default { name: 'ModulePage' };
 export {
@@ -84,7 +84,7 @@ const props = withDefaults(defineProps<Props>(), {
     postFilter: (e) => e,
 });
 const data = props.postFilter(addArtifactName(getBySlotType(props.type)));
-const img = require(`@Img/game/portraits/${props.portrait}.png`);
+const img = require(`@Img/game/portraits/${props.portrait}.png`) as string;
 const locKey = `TYPE_MOD_${(NEBULA_BUILD && props.type == 'Support') ? 'COMBAT' : props.type.toUpperCase()}`;
 const tableOpts = computed(tableOptsGetter);
 

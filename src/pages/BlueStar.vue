@@ -13,6 +13,5 @@
 <script setup>
 import Page from '@/components/Page.vue';
 import stars from '@Data/stars.js';
-
-const img = require(`@Img/game/portraits/portrait_BlueStar.png`);
+import img from '@Img/game/portraits/portrait_BlueStar.png';
 </script>

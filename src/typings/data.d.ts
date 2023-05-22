@@ -5,5 +5,5 @@ declare module '@Data/planet_levels.js' {
     export default Record<string, number[]>;
 }
 declare module '@Data/modules.js' {
-    export default Record<string, {[k:string]: any}>;
+    export default Record<string, {[k:string]: unknown}>;
 }

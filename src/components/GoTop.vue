@@ -9,8 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+// noinspection TypeScriptCheckImport
 import debounce from 'lodash.debounce';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const show = ref(false);
 const hide = debounce(() => show.value = false, 4000);

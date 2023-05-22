@@ -39,7 +39,10 @@
         v-for="args in getArt(name)"
         :key="`${name}${args.data.Name}`"
       >
-        <v-data v-bind="args" />
+        <v-data
+          :data="args.data"
+          :table-opts="args.tableOpts"
+        />
       </div>
 
     </div>
@@ -54,6 +57,7 @@ import starsData from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
 import globals from '@Data/globals.js';
 import objectArrayify from '@Utils/objectArrayify';
+import img from '@Img/game/portraits/portrait_RedStar.png';
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const ARTS = {
@@ -112,8 +116,6 @@ const stars = {
         map: ([k, v]) => [k, Array.isArray(v) ? v.slice(MinDarkRSLevel) : v],
     }),
 };
-const img = require(`@Img/game/portraits/portrait_RedStar.png`);
-
 function getArt(name) {
     const tableOpts = {
         lvlColKey: '№',

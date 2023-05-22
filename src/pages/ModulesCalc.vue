@@ -101,7 +101,7 @@
               </select>
             </li>
 
-            <br>
+            <li><br></li>
             <li
               v-for="key in Object.keys(calc.output.plan[modalOpts.data.key] || {})"
               :key="key"

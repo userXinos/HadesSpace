@@ -65,6 +65,7 @@ export default function gameDiffLogGHApi() {
 
     async function fetchFile(contentsUrl: string) {
         const { content, encoding } = await fetchUrl(contentsUrl) as {content: string, encoding: string};
+        // noinspection TypeScriptCheckImport
         const module = await import(/* webpackIgnore: true */ `data:text/javascript;${encoding},${content}`);
         return module.default;
     }

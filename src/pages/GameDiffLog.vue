@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
   <div class="container">
     <v-head><title>Nerflog</title></v-head>

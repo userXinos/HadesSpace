@@ -1,4 +1,4 @@
-type rule = [ string[], (v: unknown) => any, string[]? ];
+type rule = [ string[], (v: unknown) => string, string[]? ];
 
 declare module '@Regulation/byTypes.js' {
     export default Record<string, Record<string, string[]>>;

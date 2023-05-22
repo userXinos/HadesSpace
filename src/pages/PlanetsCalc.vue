@@ -45,6 +45,7 @@
               <img
                 src="../img/icons/info.png"
                 class="open-info"
+                alt="info icon"
               >
             </div>
           </td>

@@ -30,7 +30,7 @@ import Stats from '@/components/DataHeadRenderStat.vue';
 
 export interface Props {
     data: object,
-    format: { key: () => string, value: () => string }
+    format: {value: (k: string, v: unknown) => unknown, key: (k: string) => string}
     iconDir: string
 }
 

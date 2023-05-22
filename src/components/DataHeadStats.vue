@@ -38,6 +38,7 @@
                   :key="key"
                   :class="{'line': true, filtered}"
                 >
+                  <!--suppress HtmlUnknownTag -->
                   <DataHeadStats
                     :item-key="key"
                     :items="value"
@@ -90,19 +91,19 @@ import objectArrayify from '@Utils/objectArrayify';
 import isHide from '@Handlers/isHide';
 import Store from '@/store';
 
-function getCharacteristics(d: Record<string, any>): object {
+function getCharacteristics(d: Record<string, unknown>): object {
     const res = objectArrayify(d, {
         map: ([k, value]) => [
             k,
             [
                 value,
-                isHide(k, d.Name),
+                isHide(k, d.Name as string),
             ],
         ],
         filter: ([k, [, remove]]) => (
             k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
         ),
-    }) as Record<string, any>;
+    }) as Record<string, [unknown|string, boolean]>;
 
     if (d.projectile) { // перенести вниз
         const { projectile } = res;

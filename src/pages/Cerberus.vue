@@ -72,6 +72,10 @@ import objectArrayify from '@Utils/objectArrayify';
 import shipsData from '@Data/capital_ships.js';
 import stationsData from '@Data/cerberus_stations.js';
 
+import cerberusPortrait from '@Img/game/portraits/portrait_CerberusDestroyer.png';
+import stationPortrait from '@Img/game/portraits/portrait_CerberusStation.png';
+const darkCerberusPortrait = require( `@Img/game/portraits/${process.env.VUE_APP_NEBULA_BUILD ? 'portrait_CerberusCarrier' : 'portrait_CerberusDestroyer'}.png`); // eslint-disable-line @typescript-eslint/no-var-requires
+
 if (shipsData.CerberusGhosts.GhostSpawnSecs) {
     // eslint-disable-next-line prefer-destructuring
     shipsData.CerberusGhosts.GhostSpawnSecs = shipsData.CerberusGhosts.GhostSpawnSecs[0];
@@ -104,9 +108,6 @@ const stations = objectArrayify(stationsData, {
         return [k, v];
     },
 });
-const cerberusPortrait = require(`@Img/game/portraits/portrait_CerberusDestroyer.png`);
-const darkCerberusPortrait = require( `@Img/game/portraits/${process.env.VUE_APP_NEBULA_BUILD ? 'portrait_CerberusCarrier' : 'portrait_CerberusDestroyer'}.png`);
-const stationPortrait = require(`@Img/game/portraits/portrait_CerberusStation.png`);
 
 function getShips(path) {
     return objectArrayify(shipsData, {
