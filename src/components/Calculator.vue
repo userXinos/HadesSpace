@@ -170,7 +170,6 @@ import CalculatorConfig from '@/composables/calculatorConfig';
 
 import type { Input, SetupComponent, SetupGetElementsCB } from '@/typings/calculator';
 
-
 type calculatorArgs = Parameters<typeof calculator>
 type configArgs = ConstructorParameters<typeof CalculatorConfig>
 
@@ -222,7 +221,7 @@ if (router.currentRoute.value.query.d) {
     const data = { actually: parsed, plan: parsed };
 
     ConfigManager.add(data, { temporary: true });
-    router.push(`${location.pathname}`);
+    router.replace({ path: `${location.pathname}` });
 }
 
 fullUpdate();
