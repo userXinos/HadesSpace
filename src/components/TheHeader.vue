@@ -78,15 +78,18 @@ $mw: 1000px;
                 padding-left: 70px;
             }
 
+
+            $logo-wight: 187px;
             .image {
-                background: url("../img/logo.png") round center;
+                background: url("../img/logo.png") center no-repeat;
+                background-size: 80%;
                 padding-top: $height;
-                padding-left: calc(#{$height} * 2);
-                background-position: inherit;
+                padding-left: $logo-wight;
 
                 @media screen and (max-width: $mw) {
-                    background-image: url("../img/mini-logo.png");
-                    padding-left: $height;
+                    background-size: 50%;
+                    background-position: left;
+                    padding-top: $height;
                 }
             }
 
