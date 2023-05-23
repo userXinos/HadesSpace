@@ -1,7 +1,7 @@
 {
   "name": "hades-space",
   "author": "Xinos",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "scripts": {
     "build": "npm run parser && npm run i18n:full && vue-cli-service build",
     "build-nebula": "export VUE_APP_NEBULA_BUILD=true && npm run i18n-nebula:full && vue-cli-service build",

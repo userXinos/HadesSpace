@@ -2,6 +2,19 @@
 
 This changelog starts with the v3.0 the third rewrite of the parser module and the entire web app
 
+## 4.0.0
+
+### Added
+- Settings in the calculator, at the moment all possible manipulations in the input data are implemented
+- Icons for some stats
+- Scripts for ease of maintenance regulations configs
+
+### Changed
+- Entire web application rewritten in TypeScript & Composition API
+
+### Fixes
+- In General, fixed what needs to be fixed
+
 ## 3.2.0
 
 ### Added
