@@ -9,7 +9,7 @@
       />
 
       <v-table
-        v-if="'default' in table.head && Object.keys(table.head.default).length !== 0"
+        v-if="Object.keys(table.head).length > 0"
         v-bind="Object.assign(tableOpts, {data: table, format})"
       >
         <!--         eslint-disable vue/max-attributes-per-line         -->

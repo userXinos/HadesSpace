@@ -10,9 +10,7 @@ export default function(key: string, value:unknown, dataName?:string):unknown {
         return;
     }
 
-    const fixedKey = key
-        .replace(/^_/, '')
-        .replace(postfixRegex, '');
+    const fixedKey = key.replace(postfixRegex, '');
 
     for (const [keys, func, dataNames = []] of rules) {
         if (

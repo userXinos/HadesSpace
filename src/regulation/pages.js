@@ -85,7 +85,7 @@ export default [
             {
                 name: 'Planets',
                 text: { locKey: 'PLANETS' },
-                path: '/yellowstar#Planets',
+                path: '/yellowstar#planet_levels',
                 icon: {
                     name: 'planet',
                     dir: 'icons',

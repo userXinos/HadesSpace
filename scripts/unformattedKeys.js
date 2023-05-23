@@ -15,11 +15,11 @@ const PARSER_DIST_BLACK_LIST_FILES = [
     'xp_levels',
 ];
 
-const REGULATION_RULES_PATH = '../src/regulation/formatValueRules.utils';
+const REGULATION_RULES_PATH = '../src/regulation/formatValueRules.js';
 const REGULATION_RULES_TIME_PATH = '../src/regulation/formatValueRulesTime.mjs';
 const POSTFIXES = '../src/regulation/postfixes.mjs';
 const REGULATION_LOC_PATH = '../src/regulation/locKeys.mjs';
-const REGULATION_HIDE_PATH = '../src/regulation/hideKeys.utils';
+const REGULATION_HIDE_PATH = '../src/regulation/hideKeys.js';
 /* CONFIGURATION  */
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

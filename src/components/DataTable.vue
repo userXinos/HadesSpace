@@ -83,6 +83,7 @@
               :key="index2 + key"
               :rowspan="rowspan"
               :colspan="colspan"
+              :cell-key="key"
             >
               <v-node
                 v-if="typeof format.value(key, value) === 'function'"
