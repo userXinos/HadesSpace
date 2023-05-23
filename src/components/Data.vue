@@ -58,7 +58,7 @@ const title: Ref<DataTitle> = ref({ });
 
 const dataName = computed(() => {
     const { value: t } = title;
-    return (t && 'default' in t) ? (t.default as Record<string, string>).Name : null;
+    return (t && 'default' in t) ? (t.default as Record<string, string>).Name : undefined;
 });
 const format = {
     key: (k: string) => key(k, router.currentRoute.name as string),
