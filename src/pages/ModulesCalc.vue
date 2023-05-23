@@ -112,8 +112,11 @@
                 <span
                   v-for="type of Object.keys(input)"
                   :key="type"
-                  :class="outputClasses(type, key)"
-                  :item-key="key"
+                  :class="{
+                    ...outputClasses(type, key),
+                    [statsStyleName(key)]: true,
+                    'stats-style': (type == 'actually') ? !outputClasses(type, key).none : false
+                  }"
                 >
 
                   <template v-if="typeof calc.output[type]?.[modalOpts.data.key]?.[key] === 'object'">
@@ -161,6 +164,7 @@ import Calculator from '@/components/Calculator.vue';
 
 import type { SetupComponent, SetupGetElementsCB, Input, Output, OutputValue, OutputMap, ElementsStore } from '@/typings/calculator';
 import { getBySlotType } from '../components/ModulePage.vue';
+import statsStyleName from '../utils/Handlers/statsStyleName';
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
 const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
@@ -252,7 +256,6 @@ function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Param
 
 <style scoped lang="scss">
 @use "sass:map";
-@use "../style/statsStyle";
 
 @import "../style/page";
 @import "../style/vars";
@@ -316,11 +319,9 @@ $plan-color: #ded45a;
 
             span.actually:not(.none) {
                 color: $border-color;
-
-                @function format($key) {
-                    @return '&[item-key="#{$key}"]'
-                }
-                @include statsStyle.statsIcons(get-function("format"), inline-flex);
+            }
+            span.stats-style {
+                display: inline-flex;
             }
         }
         &.sub-chars {

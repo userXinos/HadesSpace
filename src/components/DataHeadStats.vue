@@ -73,8 +73,8 @@
       />
       <span
         v-else
-        :item-key="itemKey"
-        class="value"
+        :class="statsStyleName(itemKey)"
+        class="value stats-style"
       >
         {{ format.value(itemKey, items) }}
       </span>
@@ -123,6 +123,7 @@ import { h, computed } from 'vue';
 import Icon from '@/components/Icon.vue';
 import i18n from '@Utils/Vue/i18n';
 
+import statsStyleName from '@Handlers/statsStyleName';
 import locKeys from '@Regulation/locKeys.mjs';
 
 export interface Props {
@@ -179,8 +180,6 @@ function VNode({ render }) {
 </script>
 
 <style scoped lang="scss">
-@use "../style/statsStyle";
-
 @import "../style/vars";
 
 $mw: 900px;
@@ -245,10 +244,9 @@ $mw: 900px;
                             background-color: rgba(220,20,60, 0.2);
                         }
 
-                        @function format($key) {
-                            @return 'span.value[item-key="#{$key}"]'
+                        span.value.stats-style {
+                            display: inline-flex;
                         }
-                        @include statsStyle.statsIcons(get-function("format"), inline-flex);
                     }
                 }
             }
@@ -273,9 +271,6 @@ $mw: 900px;
         .item {
             background-color: #202b2f;
 
-            .body .text-side {
-                // padding: 0 0 0 1%;
-            }
             .icon {
                 max-width: 100px;
             }

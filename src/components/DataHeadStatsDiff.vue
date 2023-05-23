@@ -200,8 +200,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@use "../style/statsStyle";
-
 @import "../style/vars";
 
 $mw: 900px;

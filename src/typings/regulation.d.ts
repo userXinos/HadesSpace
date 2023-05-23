@@ -14,3 +14,7 @@ declare module '@Regulation/formatValueRules.js' {
 declare module '@Regulation/locKeys.mjs' {
     export default Record<string, string>;
 }
+declare module '@Regulation/statsStyle.js' {
+    const rules: Record<string, string[]>;
+    export default rules;
+}

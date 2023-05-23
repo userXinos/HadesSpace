@@ -83,14 +83,16 @@
               :key="index2 + key"
               :rowspan="rowspan"
               :colspan="colspan"
-              :cell-key="value ? (key.startsWith('_') ? key.slice(1) : key) : null"
             >
               <v-node
                 v-if="typeof format.value(key, value) === 'function'"
                 :render="format.value(key, value)"
               />
               <template v-else>
-                <span>{{ format.value(key, value) }}</span>
+                <span
+                  class="stats-style"
+                  :class="value ? statsStyleName((key.startsWith('_') ? key.slice(1) : key)) : null"
+                >{{ format.value(key, value) }}</span>
               </template>
 
             </td>
@@ -113,6 +115,7 @@ import { Ref } from 'vue';
 import i18n from '@Utils/Vue/i18n';
 
 import tableMaskUtil from '@Utils/tableMask';
+import statsStyleName from '@Handlers/statsStyleName';
 import type { Raw } from '@Utils/tableMask';
 
 export interface Props {
@@ -192,7 +195,6 @@ function VNode({ render }) {
 
 <style scoped lang="scss">
 @use "sass:map";
-@use "../style/statsStyle";
 
 @import "../style/vars";
 
@@ -252,10 +254,6 @@ $mw: 900px;
             max-width: 50px;
         }
     }
-    @function format($key) {
-        @return 'td[cell-key="#{$key}"] span'
-    }
-    @include statsStyle.statsIcons(get-function("format"));
 }
 </style>
 

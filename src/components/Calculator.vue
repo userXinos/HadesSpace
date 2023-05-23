@@ -8,7 +8,10 @@
         v-for="(v, k) of output.total.intermediate"
         :key="k"
       >
-        <td>{{ format.key(k) }}</td>
+        <td
+          :class="statsStyleName(k)"
+          class="stats-style"
+        >{{ format.key(k) }}</td>
         <td
           v-for="(item, itemKey) of v"
           :key="k + itemKey"
@@ -22,7 +25,10 @@
         :key="k"
         class="result"
       >
-        <td>{{ format.key(k) }}</td>
+        <td
+          :class="statsStyleName(k)"
+          class="stats-style"
+        >{{ format.key(k) }}</td>
         <td
           v-if="v > 0"
           colspan="3"
@@ -58,7 +64,7 @@
 
     <modal
       v-model:open="settingsModal"
-      :title="$t('CALCULATOR_SETTINGS') + ' (Alpha)'"
+      :title="$t('CALCULATOR_SETTINGS')"
       :size="SIZES.MEDIUM"
       @update:open="() => ConfigManager.save()"
     >
@@ -165,6 +171,7 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
+import statsStyleName from '@Handlers/statsStyleName';
 import calculator from '@/composables/calculator';
 import CalculatorConfig from '@/composables/calculatorConfig';
 
@@ -398,6 +405,7 @@ function outputClasses(type: keyof Output, key: string, charName?: string): obje
         padding: 6px;
         line-height: 16px;
         text-align: center;
+        justify-content: left;
 
         @media screen and (max-width: 1000px){
             font-size: 70%;
