@@ -62,4 +62,14 @@ export default {
     shipments: [
         'MaxShipments',
     ],
+    directDamageIndicator: [
+        'DPS',
+    ],
+    areaDamageIndicator: [
+        'Damage',
+        'DamageWhenNeutralized',
+        'AOEDamage',
+        'LeapAOEAmt',
+        'ImpulseDPS',
+    ],
 };
