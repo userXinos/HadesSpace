@@ -11,6 +11,7 @@ This changelog starts with the v3.0 the third rewrite of the parser module and t
 
 ### Changed
 - Entire web application rewritten in TypeScript & Composition API
+- Improved design of some components
 
 ### Fixes
 - In General, fixed what needs to be fixed
