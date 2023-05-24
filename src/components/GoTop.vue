@@ -16,12 +16,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const show = ref(false);
 const hide = debounce(() => show.value = false, 4000);
 
-onMounted(() => {
-    document.addEventListener('scroll', scroll);
-});
-onUnmounted(() => {
-    document.removeEventListener('scroll', scroll);
-});
+onMounted(() => document.addEventListener('scroll', scroll));
+onUnmounted(() => document.removeEventListener('scroll', scroll));
 
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
