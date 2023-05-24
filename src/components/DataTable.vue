@@ -63,7 +63,9 @@
               :rowspan="rowspan"
               :colspan="colspan"
             >
-              {{ format.key(value) }}
+              <DataStatTooltip :k="value">
+                {{ format.key(value) }}
+              </DataStatTooltip>
               <template v-if="$store.state.userSettings.showKeys">({{ value }})</template>
             </th>
 
@@ -115,6 +117,7 @@ import { ref, computed, useSlots, onUpdated, onMounted, onUnmounted, h } from 'v
 import { Ref } from 'vue';
 import i18n from '@Utils/Vue/i18n';
 
+import DataStatTooltip from '@/components/DataStatTooltip.vue';
 import tableMaskUtil from '@Utils/tableMask';
 import statsStyleName from '@Handlers/statsStyleName';
 import type { Raw } from '@Utils/tableMask';

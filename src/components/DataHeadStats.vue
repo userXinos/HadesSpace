@@ -65,7 +65,12 @@
     </template>
 
     <template v-else>
-      <b>{{ format.key(itemKey) }}</b><template v-if="$store.state.userSettings.showKeys"> ({{ itemKey }})</template>:
+      <b>
+        <DataStatTooltip :k="itemKey">
+          {{ format.key(itemKey) }}
+        </DataStatTooltip>
+      </b>
+      <template v-if="$store.state.userSettings.showKeys"> ({{ itemKey }})</template>:
 
       <v-node
         v-if="typeof format.value(itemKey, items) === 'function'"
@@ -121,6 +126,7 @@ export {
 <script setup lang="ts">
 import { h, computed } from 'vue';
 import Icon from '@/components/Icon.vue';
+import DataStatTooltip from '@/components/DataStatTooltip.vue';
 import i18n from '@Utils/Vue/i18n';
 
 import statsStyleName from '@Handlers/statsStyleName';
