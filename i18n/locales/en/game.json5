@@ -31,7 +31,6 @@
   MAX_SHIPMENTS: 'Max Shipments',
   CREDIT_SHIPMENT_MODIFIER: 'Shipment modifier',
   MAX_UPGRADE_LEVEL: 'Max Level',
-  SHIPMENTS_CR_VALUE_PER_DAY: 'Base Shipments Cost Per Day',
   MODEL: 'Model',
   SLOTS_USED: 'Weight',
   SALVAGE_CR_REWARD: 'Credits for Salvage',

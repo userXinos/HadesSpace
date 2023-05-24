@@ -12,6 +12,9 @@ export default {
         'SalvageCRReward',
         'CroidAmt',
         'ColonizeCost',
+        'BLSDailyCRReward',
+        'CreditsPerHour',
+        'ShipmentsCRValuePerDay',
     ],
     fuel: [
         'FuelUseIncrease',
@@ -28,8 +31,9 @@ export default {
         'SHHydroPerDay',
         'HydrogenSearchCost',
         'HydrogenPerDay',
+        'FuelPerHour',
     ],
-    сrystal: [
+    crystal: [
         'PriceInCrystals',
         'PCReward',
     ],
@@ -61,6 +65,11 @@ export default {
     ],
     shipments: [
         'MaxShipments',
+        'ExtraTradeSlots',
+        'JobCapacity',
+    ],
+    star_red: [
+        'RSLevelReq',
     ],
     directDamageIndicator: [
         'DPS',

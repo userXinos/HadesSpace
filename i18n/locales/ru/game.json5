@@ -31,7 +31,6 @@
   MAX_SHIPMENTS: 'Макс. грузов',
   CREDIT_SHIPMENT_MODIFIER: 'Модификатор грузов',
   MAX_UPGRADE_LEVEL: 'Макс. уровень',
-  SHIPMENTS_CR_VALUE_PER_DAY: 'Базовая стоимость грузов в день',
   MODEL: 'Модель',
   SLOTS_USED: 'Вес',
   SALVAGE_CR_REWARD: 'Кредиты за утилизацию',

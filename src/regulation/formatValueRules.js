@@ -265,6 +265,14 @@ export default [
         },
     ],
     [
+        ['CreditsPerHour', 'FuelPerHour'],
+        (v) => `${v}/${t('TID_HOUR_ABBREVIATION')}`,
+    ],
+    [
+        ['ShipmentsCRValuePerDay', 'TotalShipmentCRPerDay'],
+        (v) => `${numberFormat(v)}/${t('TID_DAY_ABBREVIATION')}`,
+    ],
+    [
         ['NewModuleSlots'],
         (v) => {
             return (Array.isArray(v) ? v : [v])
