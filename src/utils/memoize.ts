@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export default function<T>(fn: (...args: any[]) => T): (...args: any[]) => T {
     const cache: { [key: string]: T } = {};
 
