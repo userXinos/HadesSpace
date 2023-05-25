@@ -9,55 +9,57 @@
           class="item"
         >
           <div class="body">
-            <div class="text-side">
-              <div
-                v-if="name || item.TID"
-                :id="parentId ? `${parentId}-${name}` : item.Name"
-                class="title"
-              >
-                <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
-                  {{ formatTitle(name, item.TID) }}
-                </a>
-              </div>
-              <p
-                v-if="item.TID_Description && (parent.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
-                class="description"
-              >
-                {{ formatDescr(item.TID_Description) }}
-              </p>
-
-              <template v-if="Array.isArray(item) && item.every((e) => e !== Object(e))">
-                {{ format.value(name, item) }}
-              </template>
-              <ul
-                v-else
-                class="characteristics"
-              >
-                <li
-                  v-for="([value, filtered], key) in getCharacteristics(item)"
-                  :key="key"
-                  :class="{'line': true, filtered}"
+            <div class="meta">
+              <div class="text-side">
+                <div
+                  v-if="name || item.TID"
+                  :id="parentId ? `${parentId}-${name}` : item.Name"
+                  class="title"
                 >
-                  <!--suppress HtmlUnknownTag -->
-                  <DataHeadStats
-                    :item-key="key"
-                    :items="value"
-                    :format="format"
-                    :parent-id="`${parentId}-${name}`"
-                    :parent="item"
-                  />
-                </li>
-              </ul>
+                  <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
+                    {{ formatTitle(name, item.TID) }}
+                  </a>
+                </div>
+                <p
+                  v-if="item.TID_Description && (parent.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
+                  class="description"
+                >
+                  {{ formatDescr(item.TID_Description) }}
+                </p></div>
+
+              <div
+                v-if="item.PrefabModel || item.Icon || item.Model"
+                class="icon"
+              >
+                <icon
+                  :name="item.PrefabModel || item.Icon || item.Model"
+                  :dir="iconDir || ICON_DIR_LIST[name] || ICON_DIR_LIST.default"
+                />
+              </div>
             </div>
-            <div
-              v-if="item.PrefabModel || item.Icon || item.Model"
-              class="icon"
+
+            <template v-if="Array.isArray(item) && item.every((e) => e !== Object(e))">
+              {{ format.value(name, item) }}
+            </template>
+            <ul
+              v-else
+              class="characteristics"
             >
-              <icon
-                :name="item.PrefabModel || item.Icon || item.Model"
-                :dir="iconDir || ICON_DIR_LIST[name] || ICON_DIR_LIST.default"
-              />
-            </div>
+              <li
+                v-for="([value, filtered], key) in getCharacteristics(item)"
+                :key="key"
+                :class="{'line': true, filtered}"
+              >
+                <!--suppress HtmlUnknownTag -->
+                <DataHeadStats
+                  :item-key="key"
+                  :items="value"
+                  :format="format"
+                  :parent-id="`${parentId}-${name}`"
+                  :parent="item"
+                />
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -202,67 +204,75 @@ $mw: 900px;
     .item {
         background-color: #2e3f46;
         width: 100%;
+        border-radius: 10px;
 
         @media screen and (max-width: $mw) {
             width: auto;
             margin-top: 3%;
+            border-radius: 7px;
         }
 
         .body {
-            display: flex;
+            padding: 2%;
+            width: 96%;
 
-            .text-side {
-                width: 98%;
-                flex: 9;
-                padding: 2%;
+            .meta {
+                display: flex;
 
-                .title {
-                    margin-bottom: 1%;
-                    font-size: 170%;
+                .text-side {
+                    flex: 9;
 
-                    @media screen and (max-width: $mw) {
-                        font-size: 140%;
+                    .title {
+                        margin-bottom: 1%;
+                        font-size: 170%;
+
+                        @media screen and (max-width: $mw) {
+                            font-size: 140%;
+                        }
+
+                        a {
+                            color: #ccd7de;
+                        }
                     }
-                    a {
-                        color: #ccd7de;
-                    }
-                }
-                .description {
-                    white-space: pre-line;
-                    font-size: 120%;
-                    margin: 0 0 1%;
 
-                    @media screen and (max-width: $mw) {
-                        font-size: 90%;
-                    }
-                }
-                .characteristics {
-                    list-style-type: none;
-
-                    .line {
-                        font-size: 100%;
-                        padding: 2px 0;
+                    .description {
+                        white-space: pre-line;
+                        font-size: 120%;
+                        padding-bottom: 3%;
 
                         @media screen and (max-width: $mw) {
                             font-size: 90%;
                         }
-                        &.filtered {
-                            background-color: rgba(220,20,60, 0.2);
-                        }
+                    }
+                }
 
-                        span.value.stats-style {
-                            display: inline-flex;
-                        }
+                .icon {
+                    flex: 2;
+                    margin: 1%;
+                    max-width: 140px;
+
+                    @media screen and (max-width: $mw) {
+                        max-width: none;
                     }
                 }
             }
-            .icon {
-                flex: 2;
-                margin: 1%;
-                max-width: 140px;
+            .characteristics {
+                list-style-type: none;
 
-                @media screen and (max-width: $mw) {
-                    max-width: none;
+                .line {
+                    font-size: 100%;
+                    padding: 2px 0;
+
+                    @media screen and (max-width: $mw) {
+                        font-size: 90%;
+                    }
+                    &.filtered {
+                        background-color: rgba(220,20,60, 0.2);
+                    }
+
+                    span.value.stats-style {
+                        display: inline-flex;
+                    }
                 }
             }
 
@@ -277,7 +287,7 @@ $mw: 900px;
         .item {
             background-color: #202b2f;
 
-            .icon {
+            .body .meta .icon {
                 max-width: 100px;
             }
         }

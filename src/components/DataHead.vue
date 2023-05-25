@@ -51,39 +51,46 @@ $mw: 900px;
             background: none;
 
             .body {
-                .text-side {
-                    padding: 0;
+                width: 100%;
+                padding: 0;
 
-                    .title {
-                        font-size: 200%;
 
-                        @media screen and (max-width: $mw) {
-                            font-size: 180%;
+                .meta {
+                    .text-side {
+                        .title {
+                            font-size: 200%;
+
+                            @media screen and (max-width: $mw) {
+                                font-size: 180%;
+                            }
                         }
-                    }
-                    .description {
-                        font-size: 140%;
 
-                        @media screen and (max-width: $mw) {
-                            font-size: 100%;
-                        }
-                    }
-                    .characteristics {
-                        .line {
+                        .description {
                             font-size: 140%;
 
                             @media screen and (max-width: $mw) {
-                                font-size: 90%;
+                                font-size: 100%;
                             }
                         }
                     }
-                }
-                > .icon {
-                    flex: 1;
 
-                    @media screen and (max-width: $mw) {
-                        flex: 2;
-                        max-width: none;
+                    > .icon {
+                        flex: 1;
+
+                        @media screen and (max-width: $mw) {
+                            flex: 2;
+                            max-width: none;
+                        }
+                    }
+                }
+
+                .characteristics {
+                    .line {
+                        font-size: 140%;
+
+                        @media screen and (max-width: $mw) {
+                            font-size: 90%;
+                        }
                     }
                 }
             }
