@@ -133,7 +133,12 @@ export default [
     ],
     [
         ['SecurityRating'],
-        (v) => t(`TID_SECURITY_RATING_${v}`),
+        (v) => {
+            if (isNebulaBuild) {
+                return t(`TID_SECURITY_RATING_${['S', 'PS', 'NS'][v]}`);
+            }
+            return t(`TID_SECURITY_RATING_${v}`);
+        },
     ],
     [
         ['BSAnomaly'],
@@ -157,7 +162,7 @@ export default [
     ],
     [
         ['TID', 'TID2', 'TID_Description', 'TID_Artifact', 'DNDiff'],
-        (v) => t(v),
+        (v) => !Array.isArray(v) ? t(v) : undefined,
     ],
     [
         ['BaseType'],
@@ -266,11 +271,11 @@ export default [
     ],
     [
         ['CreditsPerHour', 'FuelPerHour'],
-        (v) => `${v}/${t('TID_HOUR_ABBREVIATION')}`,
+        (v) => t('TID_INFO_VALUE_PER_HR', [v]),
     ],
     [
         ['ShipmentsCRValuePerDay', 'TotalShipmentCRPerDay'],
-        (v) => `${numberFormat(v)}/${t('TID_DAY_ABBREVIATION')}`,
+        (v) => t('TID_INFO_VALUE_PER_DAY', [numberFormat(v)]),
     ],
     [
         ['NewModuleSlots'],

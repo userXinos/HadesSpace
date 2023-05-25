@@ -72,7 +72,6 @@
         />
         <span
           v-else
-          :item-key="itemKey"
           class="value"
         >
           <template v-if="Array.isArray(items)">
@@ -113,7 +112,7 @@ function isObject(o) {
 function VNode({ render }) {
     return render(h);
 }
-export function getCharsWithHideStatus(d) {
+function getCharsWithHideStatus(d) {
     const res = objectArrayify(d, {
         map: ([k, value]) => [
             k,
