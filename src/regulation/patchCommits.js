@@ -2,9 +2,14 @@
 
 export default [
     {
+        hash: '20e00275849144442e637c754f19fdff3916d5dc',
+        title: 'Update № 17',
+        note: '[May 26]: Red Star balancing & other fixes',
+    },
+    {
         hash: 'bfa4fb222211fea8604a31258b797d21c9b44ab3',
         title: 'Patch № 16.2',
-        note: '[May 19]: ',
+        note: '[May 19]: RS10 EA',
     },
     {
         hash: 'b3ecca02ed85e5d3a91bf7b34fd13ec52f3febc1',

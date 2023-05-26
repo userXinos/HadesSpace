@@ -113,7 +113,7 @@ export default {
         'ShortRangeScanner.CanScanSectors',
 
         // Cerberus
-        /(Cerberus(\w+)|Dark(\w+)|Hydraling(\d))\.BuildCost/,
+        /(Cerberus(\w+)|Dark(\w+)|(Dark)?Hydraling(\d))\.BuildCost/,
         /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+))\.NewModuleSlots/,
         /(Cerberus|Dark)Destroyer\.ApplyModuleOnDockedObjectDestroy/,
         /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+))\.OnDestroySpawnMinRadius/,
