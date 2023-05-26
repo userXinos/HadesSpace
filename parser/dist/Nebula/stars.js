@@ -158,6 +158,7 @@ export default {
         DisableRSSearchDuringTutorial: 1,
         WarnOnSRSPlacementMinNumNeighbors: 3,
         SectorEnrichCooldownSecondsRS: 86400,
+        SectorGenesisCooldownSecondsRS: 300,
         PrivateRSEventClientDisplayMode: 2,
         RSPublicLateJoin_MaxTimeAvailable: 300,
         RSPublicLateJoin_MaxTimeOffTotal: 180,
@@ -166,7 +167,7 @@ export default {
         DRSArtifactBonus: 100,
         MaxShipsInRSSector: 50,
         EA_RS_UNLOCK_LVL: 4,
-        EA_RS_EA_LEVELS: [null, null, null, null, null, null, null, null, 5, 6, 7, 8, 10],
+        EA_RS_EA_LEVELS: [null, null, null, null, null, null, null, null, 5, 6, 7, 8, 11],
         Influence: [
             null,
             [0, 150],

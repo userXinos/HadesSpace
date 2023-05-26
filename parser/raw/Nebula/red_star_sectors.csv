@@ -40,10 +40,10 @@ ArtifactPlanet_Lv7,destroyed07,,,,,,10,10,0,1000,1750,RSP7,,,4,4,rs7,,0!100,900
 ArtifactPlanet_Lv8,destroyed08,,,,,,10,10,0,1000,1750,RSP8,,,4,4,rs8,,0!100,1000
 ArtifactPlanet_Lv9,destroyed09,,,,,,10,10,0,1000,1750,RSP9,,,4,4,rs9,,0!100,1000
 ArtifactPlanet_Lv10,destroyed10,,,,,,10,10,0,1000,1750,RSP10,,,4,4,rs10,,0!100,1000
-ArtifactPlanet_Lv11,destroyed11,,,,,,10,10,0,1400,1800,RSP11,,,4,4,rs11,,0!100,1000
+ArtifactPlanet_Lv11,destroyed11,,,,,,10,10,0,1000,1750,RSP11,,,4,4,rs11,,0!100,1000
 Mine_Risk0_Lv11,,,,,,,3,4,0,1400,1550,,,,,,,,,
 Mine_Risk1_Lv11,,,,,,,5,7,0,1500,1300,RSM1L11,,,,,,,,
-Mine_Risk2_Lv11,,,,,,,8,10,1500,1700,1200,RSM2L11,,,,,,,,
+Mine_Risk2_Lv11,,,,,,,8,10,1500,1600,1200,RSM2L11,,,,,,,,
 ArtifactPlanet_Lv12,destroyed12,,,,,,10,10,0,1400,1800,RSP12,,,4,6,rs12,,0!100,1000
 Mine_Risk0_Lv12,,,,,,,3,4,0,1400,1550,,,,,,,,,
 Mine_Risk1_Lv12,,,,,,,5,7,0,1500,1300,RSM1L12,,,,,,,,
