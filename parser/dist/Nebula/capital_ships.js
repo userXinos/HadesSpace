@@ -863,7 +863,7 @@ export default {
         AIUpdateIntervalSeconds: 20,
         AggressiveAI: 1,
         InfluencePoints: 50,
-        EMPResist: 0,
+        EMPResist: 80,
         modules: [
             {
                 Name: "HydraBarrage",
@@ -880,7 +880,7 @@ export default {
                 WeaponFx: "Gun_Projectile01_Strong",
                 EffectRadius: 1400,
                 DPS: 40,
-                AddDPSPerTarget: 200,
+                AddDPSPerTarget: 400,
             },
         ],
     },
@@ -912,7 +912,7 @@ export default {
         OnDestroySpawnMinRadius: 300,
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
-        EMPResist: 0,
+        EMPResist: 80,
         modules: [
             {
                 level: 2,
@@ -930,7 +930,7 @@ export default {
                 WeaponFx: "Gun_Projectile01_Strong",
                 EffectRadius: 1400,
                 DPS: 60,
-                AddDPSPerTarget: 400,
+                AddDPSPerTarget: 600,
             },
         ],
     },
@@ -963,7 +963,7 @@ export default {
         OnDestroySpawnMinRadius: 300,
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
-        EMPResist: 0,
+        EMPResist: 80,
         modules: [
             {
                 level: 3,
@@ -981,7 +981,7 @@ export default {
                 WeaponFx: "Gun_Projectile01_Strong",
                 EffectRadius: 1400,
                 DPS: 150,
-                AddDPSPerTarget: 850,
+                AddDPSPerTarget: 1000,
             },
         ],
     },
@@ -1676,7 +1676,7 @@ export default {
         AIUpdateIntervalSeconds: 20,
         AggressiveAI: 1,
         InfluencePoints: 50,
-        EMPResist: 80,
+        EMPResist: 90,
         BaseCerbShipDataIdx: 18,
         modules: [
             {
@@ -1694,7 +1694,7 @@ export default {
                 WeaponFx: "Gun_Projectile01_Strong",
                 EffectRadius: 1400,
                 DPS: 40,
-                AddDPSPerTarget: 200,
+                AddDPSPerTarget: 400,
             },
         ],
     },
@@ -1726,7 +1726,7 @@ export default {
         OnDestroySpawnMinRadius: 300,
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
-        EMPResist: 80,
+        EMPResist: 90,
         BaseCerbShipDataIdx: 19,
         modules: [
             {
@@ -1745,7 +1745,7 @@ export default {
                 WeaponFx: "Gun_Projectile01_Strong",
                 EffectRadius: 1400,
                 DPS: 60,
-                AddDPSPerTarget: 400,
+                AddDPSPerTarget: 600,
             },
         ],
     },
@@ -1778,7 +1778,7 @@ export default {
         OnDestroySpawnMinRadius: 300,
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
-        EMPResist: 80,
+        EMPResist: 90,
         BaseCerbShipDataIdx: 20,
         modules: [
             {
@@ -1797,7 +1797,7 @@ export default {
                 WeaponFx: "Gun_Projectile01_Strong",
                 EffectRadius: 1400,
                 DPS: 150,
-                AddDPSPerTarget: 850,
+                AddDPSPerTarget: 1000,
             },
         ],
     },
