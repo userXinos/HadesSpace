@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: '39b4559545def5350a1914d16de7be98be95a101',
+        title: 'Patch № 17.1',
+        note: '[May 29]: Red Star module tweaks',
+    },
+    {
         hash: '20e00275849144442e637c754f19fdff3916d5dc',
         title: 'Update № 17',
         note: '[May 26]: Red Star balancing & other fixes',
