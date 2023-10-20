@@ -67,6 +67,9 @@ function hasInfoGetter() {
     if (te(`${newKey}_INFO`)) {
         return [true, `${newKey}_INFO`];
     }
+    if (te(`${newKey}_HINT`)) {
+        return [true, `${newKey}_HINT`];
+    }
     return [false, ''];
 }
 function click() {
