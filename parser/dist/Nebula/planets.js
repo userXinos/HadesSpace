@@ -30,8 +30,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 0,
-        ShipmentsCap: 24,
-        CapLevel: 15,
     },
     desert_lv2: {
         Name: "desert_lv2",
@@ -59,8 +57,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 200000,
-        ShipmentsCap: 48,
-        CapLevel: 15,
     },
     desert_lv3: {
         Name: "desert_lv3",
@@ -88,8 +84,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 500000,
-        ShipmentsCap: 60,
-        CapLevel: 30,
     },
     lava_lv1: {
         Name: "lava_lv1",
@@ -118,8 +112,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 150,
-        ShipmentsCap: 24,
-        CapLevel: 15,
     },
     lava_lv2: {
         Name: "lava_lv2",
@@ -148,8 +140,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 80000,
-        ShipmentsCap: 24,
-        CapLevel: 15,
     },
     lava_lv3: {
         Name: "lava_lv3",
@@ -177,8 +167,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 300000,
-        ShipmentsCap: 60,
-        CapLevel: 30,
     },
     water_lv1: {
         Name: "water_lv1",
@@ -207,8 +195,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 200,
-        ShipmentsCap: 24,
-        CapLevel: 15,
     },
     water_lv2: {
         Name: "water_lv2",
@@ -237,8 +223,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 100000,
-        ShipmentsCap: 48,
-        CapLevel: 25,
     },
     water_lv3: {
         Name: "water_lv3",
@@ -267,8 +251,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 750000,
-        ShipmentsCap: 60,
-        CapLevel: 30,
     },
     terran_lv1: {
         Name: "terran_lv1",
@@ -296,8 +278,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 1000,
-        ShipmentsCap: 24,
-        CapLevel: 15,
     },
     terran_lv2: {
         Name: "terran_lv2",
@@ -325,8 +305,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 40000,
-        ShipmentsCap: 24,
-        CapLevel: 15,
     },
     terran_lv3: {
         Name: "terran_lv3",
@@ -354,8 +332,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 1000000,
-        ShipmentsCap: 60,
-        CapLevel: 30,
     },
     gas_lv1: {
         Name: "gas_lv1",
@@ -387,8 +363,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 2500,
-        ShipmentsCap: 24,
-        CapLevel: 15,
     },
     gas_lv2: {
         Name: "gas_lv2",
@@ -421,8 +395,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 120000,
-        ShipmentsCap: 60,
-        CapLevel: 30,
     },
     DO_NOT_USE: {
         Name: "DO_NOT_USE",
@@ -439,8 +411,6 @@ export default {
         CreditShipmentModifier: 140,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
-        ShipmentsCap: 96,
-        CapLevel: 15,
     },
     destroyed01: {
         Name: "destroyed01",
@@ -458,8 +428,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     destroyed02: {
         Name: "destroyed02",
@@ -477,8 +446,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     destroyed03: {
         Name: "destroyed03",
@@ -496,8 +464,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     destroyed04: {
         Name: "destroyed04",
@@ -515,8 +482,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     destroyed05: {
         Name: "destroyed05",
@@ -534,8 +500,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     ice_variation1: {
         Name: "ice_variation1",
@@ -553,8 +518,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 2000000,
-        ShipmentsCap: 60,
-        CapLevel: 30,
     },
     ice_variation2: {
         Name: "ice_variation2",
@@ -572,8 +535,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_Planet",
         ColonizeCost: 4000000,
-        ShipmentsCap: 80,
-        CapLevel: 40,
     },
     destroyed06: {
         Name: "destroyed06",
@@ -591,8 +552,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     whitestar1: {
         Name: "whitestar1",
@@ -609,8 +569,7 @@ export default {
         CreditShipmentModifier: 0,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_PlanetWhiteStar",
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
         RelicHydroStages: [3, 10],
         RelicHydroAmounts: [50, 400, 1500],
     },
@@ -630,8 +589,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     whitestar2: {
         Name: "whitestar2",
@@ -648,8 +606,7 @@ export default {
         CreditShipmentModifier: 0,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_PlanetWhiteStar",
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
         RelicHydroStages: [3, 10],
         RelicHydroAmounts: [250, 500, 2000],
     },
@@ -669,8 +626,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     destroyed09: {
         Name: "destroyed09",
@@ -688,8 +644,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     destroyed10: {
         Name: "destroyed10",
@@ -707,8 +662,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     whitestar_l1: {
         Name: "whitestar_l1",
@@ -725,8 +679,7 @@ export default {
         CreditShipmentModifier: 0,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_PlanetWhiteStar",
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
         RelicHydroStages: [3, 10],
         RelicHydroAmounts: [100, 1000, 3000],
     },
@@ -746,8 +699,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
     ds1: {
         Name: "ds1",
@@ -757,8 +709,7 @@ export default {
         AppearanceModels: ["destroyed14", "fire", "ice01"],
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 100,
-        CapLevel: 1,
+        ShipmentOverride: 100,
     },
     ds2: {
         Name: "ds2",
@@ -768,8 +719,7 @@ export default {
         AppearanceModels: ["destroyed20", "fire04", "ice02"],
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 100,
-        CapLevel: 1,
+        ShipmentOverride: 100,
     },
     ds3: {
         Name: "ds3",
@@ -779,8 +729,7 @@ export default {
         AppearanceModels: ["destroyed15", "fire05", "ice03"],
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 100,
-        CapLevel: 1,
+        ShipmentOverride: 100,
     },
     ds4: {
         Name: "ds4",
@@ -790,8 +739,7 @@ export default {
         AppearanceModels: ["destroyed16", "fire06", "ice04"],
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 100,
-        CapLevel: 1,
+        ShipmentOverride: 100,
     },
     ds5: {
         Name: "ds5",
@@ -801,8 +749,7 @@ export default {
         AppearanceModels: ["destroyed08", "fire07", "ice05"],
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 100,
-        CapLevel: 1,
+        ShipmentOverride: 100,
     },
     destroyed12: {
         Name: "destroyed12",
@@ -820,7 +767,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentsCap: 12,
-        CapLevel: 1,
+        ShipmentOverride: 12,
     },
 };

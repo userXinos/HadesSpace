@@ -1,7 +1,7 @@
 /**
  * @GeneratedBy CapitalShips.js runner
  * @OriginalFile raw/Nebula/capital_ships.csv
- * @UsedFiles ship_spawners.csv, solar_system_gen_data.csv
+ * @UsedFiles solar_system_gen_data.csv
  */
 
 export default {
@@ -38,7 +38,7 @@ export default {
         Speed_BLS: 192,
         Speed_WS: 124,
         SpeedIncrPerTick: 6,
-        FuelUsePer5000Distance: [10, 18, 40, 50, 55, 70, 140],
+        FuelUsePer5000Distance: [10, 18, 26, 34, 50, 120, 250],
     },
     Miner: {
         Name: "Miner",
@@ -100,7 +100,7 @@ export default {
         IsCombatShip: 1,
         CanBeBuilt: 1,
         NewModuleSlots: [["Weapon", "Shield"], "Support", "Drone", "Support", "Support", "Support", "Drone"],
-        BuildCost: [500, 1000, 10000, 100000, 800000, 2000000, 4000000],
+        BuildCost: [500, 1000, 10000, 100000, 800000, 2000000, 2500000],
         DesignUpgradeCost: [0, 2000, 140000, 400000, 1500000, 8000000, 28000000],
         BLSDailyCRReward: [5000, 20000, 80000, 140000, 200000, 500000, 600000],
         DesignUpgradeTime: [0, 300, 86400, 259200, 604800, 864000, 864000],
@@ -765,19 +765,6 @@ export default {
                 DPS_WS: 80,
             },
         ],
-        shipSpawners: {
-            Name: "Ghosts",
-            TID: "TID_GHOST_SPAWNER",
-            TID_Description: "TID_GHOST_SPAWNER_DESCR",
-            ConceptImage: "portrait_CerberusSwarm",
-            ModelToSpawn: "CerberusGhosts",
-            NumToSpawn: 14,
-            SpawnDelay: 40,
-            RadiusMin: 80,
-            RadiusMax: 900,
-            SpawnFx: "SentinelSpawn_Fx",
-            MoveUpdateSec: 5,
-        },
     },
     CorpFlagship: {
         Name: "CorpFlagship",
@@ -1084,7 +1071,7 @@ export default {
         PeriodSpawnCount: 3,
         SpawnFx: "SentinelSpawn_Fx",
         RadialMoveRadius: 1600,
-        AITeleportDelay: 15,
+        AITeleportDelay: 8,
     },
     DarkSentinel: {
         Name: "DarkSentinel",
@@ -1589,7 +1576,7 @@ export default {
         CanBeBuilt: 0,
         BuildCost: 0,
         RequiredPlanetLevel: 0,
-        HP: 50000,
+        HP: 100000,
         Speed_YS: 150,
         Speed_RS: 125,
         Speed_BLS: 100,
@@ -1600,10 +1587,10 @@ export default {
         InfluencePoints: 150,
         PeriodSpawnTicks: 90,
         PeriodSpawnType: "CerberusSentinel",
-        PeriodSpawnCount: 3,
+        PeriodSpawnCount: 6,
         SpawnFx: "SentinelSpawn_Fx",
         RadialMoveRadius: 1600,
-        AITeleportDelay: 15,
+        AITeleportDelay: 8,
         BaseCerbShipDataIdx: 26,
     },
     DarkGhosts: {

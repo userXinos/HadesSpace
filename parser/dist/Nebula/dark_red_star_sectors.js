@@ -118,8 +118,8 @@ export default {
         10, 10, 10, 10, 10, 10, 10, 4, 7, 10, 10, 4, 7, 10,
     ],
     HydrogenPerDay: [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 500, 600, 800, 1000, 1200, 1500, 1500,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1500, 0, 0, 0, 1500,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150, 200, 250, 300, 400, 500, 600, 700, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 1000,
     ],
     AsteroidBeltAxis1Size: [
         0, 1500, 1200, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1200, 1300, 1300, 1300, 1300, 1300, 1300, 1300,
@@ -169,7 +169,7 @@ export default {
         { Name: "RSP5", NumSentinels: 1, NumGuardians: 4, NumColossus: 1 },
         { Name: "RSP6", NumSentinels: [3, 4], NumGuardians: [3, 4] },
         { Name: "RSP7", NumBomber: 1 },
-        { Name: "RSP8" },
+        { Name: "RSP8", NumGuardians: 2 },
         { Name: "RSP9", NumBomber: 0, NumStorm: 2 },
         { Name: "RSP10", NumColossus: 1, NumStorm: 2 },
         { Name: "RSP11", NumHydra: 1 },
