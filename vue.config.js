@@ -2,6 +2,7 @@ const configureWebpack = require('./webpack.config.js');
 
 const isDev = (process.env.NODE_ENV === 'development');
 const { version } = require('./package.json');
+const currentDate = new Date();
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 module.exports = {
@@ -18,6 +19,7 @@ module.exports = {
         });
         config.plugin('define').tap(([options]) => {
             options['process.env']['VERSION'] = JSON.stringify(version);
+            options['process.env']['BUILD_TIMESTAMP'] = currentDate.getTime();
             return [options];
         });
     },

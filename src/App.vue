@@ -31,6 +31,7 @@
       </div>
     </div>
 
+    <the-footer />
     <go-top />
     <changelog
       :is-open="changelogIsOpen"
@@ -46,6 +47,7 @@ import router from '@Utils/Vue/router';
 import { Head as VHead } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
 import TheHeader from '@/components/TheHeader.vue';
+import TheFooter from '@/components/TheFooter.vue';
 import Sidebar from '@/components/TheSidebar.vue';
 import Changelog from '@/components/Changelog.vue';
 

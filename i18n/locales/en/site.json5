@@ -34,5 +34,6 @@
   PROBABLE_TYPE_PLANET: 'Probable type of planet',
   UPDATED: 'Updated',
   CURRENT_VERSION: 'Current version',
-  OPEN_CHANGELOG: 'open changelog'
+  OPEN_CHANGELOG: 'open changelog',
+  DEPLOYED: 'App deployed'
 }

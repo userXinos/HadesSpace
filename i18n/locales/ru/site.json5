@@ -32,5 +32,6 @@
   PROBABLE_TYPE_PLANET: 'Вероятный тип планеты',
   UPDATED: 'Обновлено',
   CURRENT_VERSION: 'Текущая версия',
-  OPEN_CHANGELOG: 'Открыть журнал изменений'
+  OPEN_CHANGELOG: 'Открыть журнал изменений',
+  Deployed: 'Приложение развернуто'
 }
