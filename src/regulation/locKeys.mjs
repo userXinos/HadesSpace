@@ -94,6 +94,8 @@ export const gameCharsLocKeys = {
     MaxMembers: 'TID_CORP_MAX_MEMBERS',
     PassiveIncomeModifier: 'TID_CORP_PASSIVE_INCOME_BONUS',
     ArtifactYieldBonus: 'TID_CORP_ARTIFACT_YIELD_BONUS',
+    BaseArtifactYieldBonus: 'TID_ARTIFACT_BONUS_CORP_LABEL',
+    MaxArtifactYieldBonus: 'TID_CORP_ARTIFACT_YIELD_BONUS',
     MaxFlagshipLevel: 'TID_CORP_MAX_FLAGSHIP_LEVEL',
     achievements: 'TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS',
     UnlockAmount: 'TID_TRADE_DLG_DESTINATION_COLUMN',

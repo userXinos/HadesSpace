@@ -62,6 +62,8 @@ export default [
             'RushRSSpeedIncr',
             'RushYSHydroDc',
             'RushRSHydroDc',
+            'BaseArtifactYieldBonus',
+            'MaxArtifactYieldBonus',
         ],
         (v) => `${v}%`,
     ],

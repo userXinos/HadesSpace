@@ -2,6 +2,11 @@
 
 export default [
     {
+        hash: 'ea4c2cf6a7416f86670a841d28bdb1ad6cc2cc2d',
+        title: 'Patch № 18',
+        note: '[October 11]: Launch Rehearsal #2 - October 11-16',
+    },
+    {
         hash: '39b4559545def5350a1914d16de7be98be95a101',
         title: 'Patch № 17.1',
         note: '[May 29]: Red Star module tweaks',

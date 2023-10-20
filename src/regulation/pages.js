@@ -140,7 +140,7 @@ export default [
                     dir: 'icons',
                 },
             },
-            {
+            !isNebulaBuild ? ({
                 name: 'PlayerGoals',
                 text: { locKey: 'TID_EMPIRE_OBJECTIVES' },
                 path: '/playergoals',
@@ -149,7 +149,7 @@ export default [
                     name: 'influence',
                     dir: 'icons',
                 },
-            },
+            }) : undefined,
             {
                 name: 'Achievements',
                 text: { locKey: 'TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS' },

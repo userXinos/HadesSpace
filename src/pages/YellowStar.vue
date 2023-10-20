@@ -9,7 +9,10 @@
     <v-data v-bind="{data: sectors, tableOpts: { lvlColKey: '№' }}" />
     <v-data v-bind="{data: { TID: 'LVLS_PLANETS', ...levels }}" />
     <v-data v-bind="{data: planetsYS, tableOpts: { lvlColKey: '№' }}" />
-    <v-data v-bind="{data: colonizationPrices, tableOpts: { lvlColKey: '№' }}" />
+    <template v-if="prices.length">
+      <v-data v-bind="{data: colonizationPrices, tableOpts: { lvlColKey: '№' }}" />
+    </template>
+
 
   </div>
 </template>
@@ -23,11 +26,11 @@ import stars from '@Data/stars.js';
 import sectorsData from '@Data/yellow_star_sectors.js';
 import levels from '@Data/planet_levels.js';
 import planets from '@Data/planets.js';
-import prices from '@Data/colonize_prices.js';
 import img from '@Img/game/portraits/portrait_YellowStar.png';
 
 import compileOne from '@Utils/compileOne.ts';
 
+const prices = process.env.VUE_APP_NEBULA_BUILD ? [] : require(`@Data/colonize_prices.js`);
 const ys = { ...stars.YellowStar };
 delete ys.Models;
 

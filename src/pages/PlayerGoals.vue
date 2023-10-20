@@ -9,7 +9,7 @@
 import Page from '@/components/Page.vue';
 
 import objectArrayify from '@Utils/objectArrayify';
-import goals from '@Data/player_goals.js';
+const goals = process.env.VUE_APP_NEBULA_BUILD ? undefined : require(`@Data/player_goals.js`);
 
 const INDEXES = ['X', 'Y', 'Z'];
 const VALUE_BY_INDEX = {
