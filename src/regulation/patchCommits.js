@@ -3,7 +3,7 @@
 export default [
     {
         hash: 'ea4c2cf6a7416f86670a841d28bdb1ad6cc2cc2d',
-        title: 'Patch № 18',
+        title: 'Update № 18',
         note: '[October 11]: Launch Rehearsal #2 - October 11-16',
     },
     {
