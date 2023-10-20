@@ -12,7 +12,7 @@ export default class CapitalShips extends Runner {
     };
 
     async run(rawData) {
-        const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = this.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);
+        const [ shipSpawners, { RedStar: { GhostSpawnSecs } } ] = this.isNebulaBuild ? [ null, ...this.multiReadCsv([ 'solar_system_gen_data' ]) ] : this.multiReadCsv([ 'ship_spawners', 'solar_system_gen_data' ]);
         const path = join(CONFIG.pathRaw, this.isNebulaBuild ? '/Nebula' : '/', 'modules.csv');
         const modules = await loadFile(path, [ Modules ]).then((e) => e.render());
 
@@ -37,7 +37,9 @@ export default class CapitalShips extends Runner {
             },
         });
 
-        data.CerberusGhosts.shipSpawners = shipSpawners['Ghosts'];
+        if (shipSpawners !== null) {
+            data.CerberusGhosts.shipSpawners = shipSpawners['Ghosts'];
+        }
         data.CerberusGhosts.GhostSpawnSecs = GhostSpawnSecs;
 
         return data;
