@@ -260,7 +260,7 @@ export default [
         (modules) => (createElement) => modules == null ? null : (
             createElement('div', null,
                 modules.map((mod) => (
-                    createElement('a', { href: `/${mod.SlotType}#${mod.Name}` },
+                    createElement('a', { href: `${process.env.BASE_URL}${mod.SlotType}#${mod.Name}` },
                         createElement(Icon, { name: mod.Icon, dir: 'game/Modules' }),
                         store.state.userSettings.compactModulesByArtTypeTable ? null : createElement('p', null, t(mod.TID)),
                     )
