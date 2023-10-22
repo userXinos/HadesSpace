@@ -20,6 +20,21 @@
           <div class="target-wrap"><div id="table-head-target" /></div>
           <router-view />
 
+          <div
+            v-if="renderError"
+            id="render-error"
+          >
+            <div class="bg">
+              <div class="title">
+                <span>There was a page rendering error 😓 Please contact me. For example on </span><a
+                  target="_blank"
+                  href="https://discord.com/users/359208482290925568"
+                >Discord</a>
+              </div>
+              <p>{{ renderError }}</p>
+            </div>
+          </div>
+
         </the-header>
 
         <Sidebar
@@ -41,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, getCurrentInstance } from 'vue';
+import { onMounted, onUnmounted, onErrorCaptured, ref, getCurrentInstance } from 'vue';
 import router from '@Utils/Vue/router';
 
 import { Head as VHead } from '@vueuse/head';
@@ -59,6 +74,7 @@ const MAX_WIDTH = 1000;
 const internalInstance = getCurrentInstance();
 const { $Progress } = internalInstance.appContext.config.globalProperties;
 const isMinMode = ref(window.innerWidth < MAX_WIDTH);
+const renderError = ref<Error>();
 
 const { setShow: setShowSidebar, swipeHandler, isOpen: sidebarIsOpen } = appSidebar(isMinMode);
 const { isOpen: changelogIsOpen, onClose: changelogOnClose } = appChangelog();
@@ -67,6 +83,9 @@ $Progress.start();
 
 onMounted(() => window.addEventListener('resize', resize));
 onUnmounted(() => window.removeEventListener('resize', resize));
+onErrorCaptured((err) => {
+    renderError.value = err;
+});
 
 router.beforeEach(async (to, from, next) => {
     if (to.path !== from.path) {
@@ -83,6 +102,7 @@ function resize() {
 }
 </script>
 <style scoped lang="scss">
+$mw: 960px;
 
 .target-wrap {
     position: fixed;
@@ -93,4 +113,24 @@ function resize() {
         margin: -1% 3% 0;
     }
 }
+
+#render-error {
+    padding: 0 12%;
+    margin-top: 1%;
+
+    .bg {
+        padding: 1%;
+        background-color: #b94054;
+
+        .title {
+            font-size: 120%;
+            padding-bottom: 10px;
+        }
+    }
+
+    @media screen and (max-width: $mw) {
+        padding: 0;
+    }
+}
+
 </style>
