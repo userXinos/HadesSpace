@@ -30,7 +30,7 @@ import img from '@Img/game/portraits/portrait_YellowStar.png';
 
 import compileOne from '@Utils/compileOne.ts';
 
-const prices = process.env.VUE_APP_NEBULA_BUILD ? [] : require(`@Data/colonize_prices.js`);
+const prices = process.env.VUE_APP_NEBULA_BUILD ? [] : require(`@Data/colonize_prices.js`).default;
 const ys = { ...stars.YellowStar };
 delete ys.Models;
 
