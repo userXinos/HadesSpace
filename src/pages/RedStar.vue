@@ -30,34 +30,70 @@
       />
     </h1>
 
-    <!--suppress JSUnusedLocalSymbols -->
-    <div
-      v-for="(_, name) in ARTS"
-      :key="name"
-    >
+    <template v-if="!isNebulaBuild">
+      <!--suppress JSUnusedLocalSymbols -->
       <div
-        v-for="args in getArt(name)"
-        :key="`${name}${args.data.Name}`"
+        v-for="(_, name) in ARTS"
+        :key="name"
       >
-        <v-data
-          :data="args.data"
-          :table-opts="args.tableOpts"
-        />
+        <div
+          v-for="args in getArt(name)"
+          :key="`${name}${args.data.Name}`"
+        >
+          <v-data
+            :data="args.data"
+            :table-opts="args.tableOpts"
+          />
+        </div>
       </div>
+    </template>
 
+
+    <div id="ModulesByArtType">
+      <v-data :data="{TID: 'MODULES_BY_ARTIFACT_TYPE', Name: 'modulesByArtType', ...modulesByArtType}">
+
+        <div class="switch">
+          <div>
+            <p
+              v-t="'COMPACT_MODE'"
+              class="name"
+            />
+            <p
+              v-t="'COMPACT_MODE_NOTE'"
+              class="description"
+            />
+          </div>
+          <input
+            id="compact-mode"
+            class="checkbox"
+            type="checkbox"
+            :checked="$store.state.userSettings.compactModulesByArtTypeTable"
+            @change="switchCompactMode"
+          >
+          <label
+            for="compact-mode"
+            class="label"
+          />
+        </div>
+
+      </v-data>
     </div>
+
   </div>
 </template>
 
 <script setup>
 import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';
+import Store from '@/store';
 
 import starsData from '@Data/stars.js';
 import artifacts from '@Data/artifacts.js';
 import globals from '@Data/globals.js';
 import objectArrayify from '@Utils/objectArrayify';
+import { getBySlotType } from '../components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_RedStar.png';
+import types from '@Store/modules/userSettings/types';
 
 const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const ARTS = {
@@ -68,6 +104,7 @@ const ARTS = {
 const { MinDarkRSLevel } = globals;
 const { RedStar } = starsData;
 const DarkRedStar = starsData.DarkRedStar || {};
+const ARTIFACT_TYPES = isNebulaBuild ? ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'] : ['Utility', 'Combat', 'Support'];
 const USELESS_STATS = [
     'GhostSpawnSecs',
     'Models',
@@ -79,6 +116,7 @@ const USELESS_STATS = [
     'MedRiskMining',
     'HighRiskMining',
 ];
+const RS_LVLS = RedStar[`${isNebulaBuild ? 'AppearanceModels' : 'Models'}`].length - 1; // Tut lvl 0
 
 USELESS_STATS.forEach((k) => {
     delete RedStar[k];
@@ -116,6 +154,10 @@ const stars = {
         map: ([k, v]) => [k, Array.isArray(v) ? v.slice(MinDarkRSLevel) : v],
     }),
 };
+const modulesByArtType = Object.fromEntries(ARTIFACT_TYPES.map((type) => (
+    [type, modulesByLvl(getBySlotType(type))]
+)));
+
 function getArt(name) {
     const tableOpts = {
         lvlColKey: '№',
@@ -136,6 +178,25 @@ function getArt(name) {
 
     return res;
 }
+function modulesByLvl(modules) {
+    const res = [];
+
+    for (let i = 0; i < RS_LVLS; i++) {
+        const item = Object.values(modules)
+            .map(((mod) => {
+                if (mod[`${isNebulaBuild ? 'RSLevel' : 'AwardLevel'}`] == i + 1) {
+                    return mod;
+                }
+            }))
+            .filter((e) => e != undefined);
+        res.push(item.length ? item : null);
+    }
+
+    return res;
+}
+function switchCompactMode() {
+    Store.commit(types.SWITCH_COMPACT_MODULES_BY_ART_TYPE_TABLE);
+}
 </script>
 <style scoped lang="scss">
 @import "../style/vars";
@@ -151,9 +212,39 @@ $mw: 900px;
 </style>
 
 <!--suppress CssUnusedSymbol -->
-<style>
+<style scoped lang="scss">
+@import "../style/vars";
+@import "../style/userInput";
+
 #CombatBlueprints, #UtilityBlueprints, #SupportBlueprints {
     font-size: 130%;
     margin-top: 2%;
+}
+
+#ModulesByArtType:deep(.table > tbody > tr > td > div) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        padding: 0 10px;
+        transition: filter .2s;
+
+        &:hover {
+            filter: opacity(0.5) drop-shadow(0.1px 0px 0px #000000);
+        }
+        > div {
+            width: 50px;
+        }
+
+        p {
+            padding-top: 5px;
+            text-align: center;
+        }
+    }
+}
+
+.switch {
+    justify-content: start;
 }
 </style>

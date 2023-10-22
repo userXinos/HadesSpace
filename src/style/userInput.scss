@@ -55,6 +55,11 @@ $button-colors: (
   justify-content: space-between;
   padding-bottom: 20px;
 
+  p:last-child {
+    font-size: 90%;
+    opacity: .8;
+  }
+
   .label {
     cursor: pointer;
     flex-shrink: 0;

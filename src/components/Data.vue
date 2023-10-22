@@ -8,6 +8,8 @@
         :icon-dir="iconDir"
       />
 
+      <slot />
+
       <v-table
         v-if="Object.keys(table.head).length > 0"
         v-bind="Object.assign(tableOpts, {data: table, format})"

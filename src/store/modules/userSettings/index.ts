@@ -23,6 +23,11 @@ const mutations = <MutationTree<UserSettings>> {
         setSettings(LOCAL_STORAGE_KEY, state);
         return state.disableFilters;
     },
+    [types.SWITCH_COMPACT_MODULES_BY_ART_TYPE_TABLE](state) {
+        state.compactModulesByArtTypeTable = !state.compactModulesByArtTypeTable;
+        setSettings(LOCAL_STORAGE_KEY, state);
+        return state.compactModulesByArtTypeTable;
+    },
     [types.DEBUG_SWITCH_SHOW_KEYS](state) {
         state.showKeys = !state.showKeys;
         setSettings(LOCAL_STORAGE_KEY, state);
@@ -43,6 +48,7 @@ export default {
     state: {
         language: settings.language || ((browserLang in SUPPORT_LOCALES) ? browserLang : DEFAULT_LANG),
         disableFilters: settings.disableFilters,
+        compactModulesByArtTypeTable: settings.compactModulesByArtTypeTable,
         showKeys: settings.showKeys,
         lastVersionChangelog: settings.lastVersionChangelog,
     },
@@ -57,6 +63,7 @@ function getSettings(key: string): Settings {
     let res: Settings = {
         language: DEFAULT_LANG,
         disableFilters: false,
+        compactModulesByArtTypeTable: true,
         showKeys: false,
         lastVersionChangelog: '0.0.0',
     };

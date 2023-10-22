@@ -35,5 +35,8 @@
   UPDATED: 'Updated',
   CURRENT_VERSION: 'Current version',
   OPEN_CHANGELOG: 'open changelog',
-  DEPLOYED: 'App deployed'
+  DEPLOYED: 'App deployed',
+  MODULES_BY_ARTIFACT_TYPE: 'Modules by artifact type',
+  COMPACT_MODE: 'Compact mode',
+  COMPACT_MODE_NOTE: 'WARNING! Only turn it off if you know what you\'re doing.'
 }

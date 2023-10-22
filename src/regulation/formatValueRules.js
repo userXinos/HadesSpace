@@ -1,6 +1,7 @@
 // noinspection SpellCheckingInspection
 
 import i18n from '@Utils/Vue/i18n';
+import store from '@Store/index';
 import Icon from '@/components/Icon.vue';
 import sec2str from '@Utils/sec2str';
 
@@ -253,6 +254,20 @@ export default [
             name: v,
             dir: 'game/Ships',
         }),
+    ],
+    [
+        ['*'],
+        (modules) => (createElement) => modules == null ? null : (
+            createElement('div', null,
+                modules.map((mod) => (
+                    createElement('a', { href: `/${mod.SlotType}#${mod.Name}` },
+                        createElement(Icon, { name: mod.Icon, dir: 'game/Modules' }),
+                        store.state.userSettings.compactModulesByArtTypeTable ? null : createElement('p', null, t(mod.TID)),
+                    )
+                )),
+            )
+        ),
+        ['modulesByArtType'],
     ],
     [
         ['ConceptImage'],
