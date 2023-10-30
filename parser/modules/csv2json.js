@@ -23,7 +23,13 @@ export default function csv2json(csv) {
                 delete string[0];
             } else {
                 splitSeparators(obj, subName);
-                subName = string[0].trim();
+                const newSubName = string[0].trim();
+
+                if (subName === newSubName) {
+                    subName = `${newSubName}-${sIndex}`;
+                } else {
+                    subName = newSubName;
+                }
                 obj[subName] = {};
             }
         }
