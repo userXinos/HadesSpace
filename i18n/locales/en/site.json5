@@ -31,7 +31,6 @@
   LIST: 'List',
   FROM_TEXT_FORMAT: 'From text format (optional)',
   REMOVE_CONFIG: 'Delete "{0}" configuration ?',
-  PROBABLE_TYPE_PLANET: 'Probable type of planet',
   UPDATED: 'Updated',
   CURRENT_VERSION: 'Current version',
   OPEN_CHANGELOG: 'open changelog',
