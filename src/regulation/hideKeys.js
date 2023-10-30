@@ -10,8 +10,6 @@ export default {
     ],
     forceTitle: [
         'modules',
-        'GhostSpawnSecs',
-        'DestinyDisableTimes',
         'BarrageMaxAdditionalEnemies',
         'DPSRampTimes',
         'DPSRampTimes_BLS',
@@ -41,7 +39,6 @@ export default {
         'Weight',
         'CrystalsWeight',
         'PlanetSize',
-        'ModelFolders',
         'ColorR',
         'ColorG',
         'ColorB',
@@ -51,10 +48,6 @@ export default {
         'HexCellEdgeSize',
         'FixedSector',
         'TID_CUSTOM_TUT_SELECT',
-        'CUnitShipmentScaleY',
-        'CUnitShipmentSpacingY',
-        'CShipmentSizeMin',
-        'CShipmentSizeMax',
         'HideModulesOnHUD',
         'GoalRushCostMultiplier',
         'SlotType',
@@ -66,7 +59,6 @@ export default {
         'LaunchFX',
         'TID_INFO_SCREEN',
         'ModelScale',
-        'AwardLevel',
         'ActivateFX',
         'ActivateFXStaysInPlace',
         'SustainedFX',
@@ -79,12 +71,8 @@ export default {
         'StargateModel',
         'SupernovaFX',
         'SupernovaFXSpawnTimeSec',
-        'GroupId',
-        'GoalType',
         'GoogleID',
-        'ModuleReq',
         'UnlockType',
-        'GroupName',
         'GroupPriority',
         'ShowOnPlayerBadge',
         'PreviewLevel',
@@ -96,6 +84,8 @@ export default {
         'RSLevel',
         'PivotYOffset',
         'LinkDPSBoostPct', // перевёл в урон на парсере
+        'SortOrder',
+        'PSNID',
 
         // временно ?
         'ActivationDelayBLS',
@@ -103,6 +93,7 @@ export default {
         'BSPenaltyPerSecOnSector',
         'AllowForWSEarlyAccess',
         'AllowForBLSEarlyAccess',
+        'GenWSMods',
     ],
     byPath: [
 
@@ -119,9 +110,7 @@ export default {
         /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+))\.OnDestroySpawnMinRadius/,
         /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+))\.OnDestroySpawnMaxRadius/,
         /Dark(\w+)\.BaseCerbShipDataIdx/,
-        'Ghosts.ModelToSpawn',
-        'Ghosts.RadiusMin',
-        // 'Ghosts.RadiusMax', // - в строчках есть перевод, а так хз зачем это
+        /HomeSystem(\d)\.ShipLevel/,
 
         // Ships
         /(Transport|Miner)\.HP/,
@@ -132,7 +121,6 @@ export default {
         'Battleship.HydrogenCapacity',
         'CorpFlagship.DesignUpgradeTime',
         'CorpFlagship.BuildCost',
-        'CorpFlagship.JumpFuelCosts',
 
         // Ships.FlagmanModules
         'FlagshipDartBarrage.SingleTarget',
@@ -152,7 +140,6 @@ export default {
         /(Combat|Utility|Support)\.(Model|RSLevelRequired|MaxModuleLevelToAward|GroupNames|BlueprintTypes)/,
 
         // YellowStar
-        'planet_levels.ShipmentsHydroValuePerDay',
         'yellow_star_sectors.AsteroidsMin',
         'yellow_star_sectors.NumBases',
         'Planets.FuelShipmentModifier',
@@ -161,13 +148,8 @@ export default {
         'YellowStar.Lifetime',
 
         // BlueStar
-        'BlueStar.Models',
         'BlueStar.Star',
-        'BlueStar.CollapseReductionPerCycle',
-        'BlueStar.StageStartSec',
         'BlueStar.StarSectorNavpointDistance',
-        'BlueStar.MedRiskMining',
-        'BlueStar.HighRiskMining',
         'BlueStar.HydrogenSearchCost',
         'BlueStar.MaxBattleshipsPerPlayer',
         'BlueStar.BlueStar_HydroPctPerMatch',
@@ -179,25 +161,20 @@ export default {
 
         // WhiteStar
         'WhiteStar.Star',
-        'WhiteStar.Models',
-        'WhiteStar.PlayerNumberBrackets',
         'WhiteStar.HQPlanetsPerBracket',
         'WhiteStar.LQPlanetsPerBracket',
-        'WhiteStar.HighRiskMining',
         'WhiteStar.FleetDepartTimeInSeconds_WS',
         'WhiteStar.DontAllowUseOfEnemyWSGate',
         'WhiteStar.WSShipXPCollectEnabled',
         'WhiteStar.WSShipMinXP',
         'WhiteStar.WSShipXPEventClientDisplayMode',
         'WhiteStar.WSShipXPEventVersion',
-        'WhiteStar.WSHQAsteroidsPerBucket',
         'WhiteStar.WSShipEventTopBrackets',
         'WhiteStar.WSShipEventCRRewards',
         'WhiteStar.SpeedModifierPct', // времено ?
         'WhiteStar.BarrageMaxAdditionalEnemies_WS',
 
         // Trade
-        'Recall.TeleportToTradeStation',
         'ShipmentDrone.MiningPeriod',
         'ShipmentDrone.HP',
         'RelicDrone.MaxShipments',
@@ -206,36 +183,29 @@ export default {
 
         // Mining
         'HydroRocket.InitialBlueprints',
-        'MassMining.MineAllInSector',
-        'Entrust.SwapLoadWithOtherTransport',
         'MineralStorageCapacity.FuelUseIncrease',
         'MassMining.FuelUseIncrease',
-        'HydrogenUpload.WhiteStarScore',
         'MiningDrone.JobCapacity',
         'HydroStorageCapacity.FuelUseIncrease',
 
         // Weapons
-        /(WeakBattery|GuardianBattery|InterceptorMBattery|ColossusLaser|DestroyerVengeance|BomberLauncher|PhoenixShield|DartBarrage)\.(UnlockPrice|UnlockBlueprints|UnlockTime|ShowWSInfo|WhiteStarScore|Install|BCCost)/, // В небуле не неужно модулям церберов
+        /(WeakBattery|GuardianBattery|InterceptorMBattery|ColossusLaser|DestroyerVengeance|BomberLauncher|PhoenixShield|DartBarrage)\.(UnlockPrice|UnlockBlueprints|UnlockTime|ShowWSInfo|Install|BCCost)/, // В небуле не неужно модулям церберов
         'PlayerRocketLauncher.MinEffectRadius',
         'ChainRay.MaxIncomingLinks', // хз что это
 
         // Shields
-        'AlphaShield.ShieldStrength',
-        'WeakShield.WhiteStarScore',
+        'AlphaShield.ShieldStrengthPVE',
+        'AlphaShield.ShieldStrengthPvP',
 
         // Support
-        'Sanctuary.JumpToSafety',
-        'Sanctuary.SanctuaryHydroCostPct',
         /^(?!Delta)(\w+)\.AdditionalWaypoint/,
         'Destiny.ReqEnemyShipsInSector',
-        'Leap.TeleportToClosestCombat',
         'Bond.PullShips',
-        'Bond.MinPublicRSLevel',
         'Bond.BondMinPullVector',
         'Bond.BondWorksOnLoadingTransport',
-        'Recall.WhiteStarScore',
         /((\w+)Drone|LaserTurret|DroneSquad)\.(BuildCost|DesignUpgradeCost|DesignUpgradeTime|NewModuleSlots)/,
-        'RemoteBomb.Speed',
+        'RemoteBomb.SpeedPVE',
+        'RemoteBomb.SpeedPVP',
         'LaserTurret_Laser.WeaponEffectType',
         'LaserTurret.InitialModule',
         'LaserTurret.Speed',
@@ -243,6 +213,8 @@ export default {
         'LaserTurret.MaxPerRS',
         'DeltaRocket.PreventUseOnWsJumpgate',
         /^\w+\.Is\w+/,
-        'Impulse.MaxImpulse', // ???
+
+        // Drone
+        'DecoyDrone.HasTaunt',
     ],
 };

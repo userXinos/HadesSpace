@@ -1,7 +1,6 @@
 export default {
     credit: [
         'UnlockPrice',
-        'BCCost',
         'Cost',
         'CreditStorage',
         'CRReward',
@@ -21,7 +20,6 @@ export default {
         'ActivationHydro',
         'DroneHydro',
         'OnBoardHydroMax',
-        'InstantHydrogenCollected',
         'HydroPerNewAsteroid',
         'HydrogenCapacity',
         'ActivationHydroOnBoard',
@@ -32,6 +30,7 @@ export default {
         'HydrogenSearchCost',
         'HydrogenPerDay',
         'FuelPerHour',
+        'Crunch',
     ],
     crystal: [
         'PriceInCrystals',
@@ -50,8 +49,6 @@ export default {
         'ShipyardCapacity',
     ],
     bls_fragments: [
-        'TeleportShipmentActivationFragments',
-        'FragmentCapacity',
         'BlueStar_Fragments',
     ],
     influence: [
@@ -80,5 +77,7 @@ export default {
         'AOEDamage',
         'LeapAOEAmt',
         'ImpulseDPS',
+        'BlastDroneDamageAmount',
+        'MirrorDamageAsAOE',
     ],
 };

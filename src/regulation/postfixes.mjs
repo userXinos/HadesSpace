@@ -4,6 +4,7 @@ const postfixes = [
     'BS',
     'BLS',
     'BASE',
+    'Base', // yes...
     'YS',
     'NonYS',
     'PVP',
