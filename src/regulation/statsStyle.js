@@ -67,6 +67,7 @@ export default {
     ],
     star_red: [
         'RSLevelReq',
+        'RSLevel',
     ],
     directDamageIndicator: [
         'DPS',

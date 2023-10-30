@@ -57,9 +57,7 @@ export {
 
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-var-requires */
-
 import { computed } from 'vue';
-import i18n from '@Utils/Vue/i18n';
 
 import Page from '@/components/Page.vue';
 
@@ -69,30 +67,11 @@ export interface Props {
     postFilter?: (e: object) => e
 }
 
-const { t } = i18n.global;
-const TID_ART_BY_SLOT = {
-    Trade: 'TID_ARTIFACT_TYPE_0',
-    Mining: 'TID_ARTIFACT_TYPE_1',
-    Shield: 'TID_ARTIFACT_TYPE_2',
-    Weapon: 'TID_ARTIFACT_TYPE_3',
-    Support: 'TID_ARTIFACT_TYPE_4',
-    Drone: 'TID_ARTIFACT_TYPE_5',
-};
-
 const props = withDefaults(defineProps<Props>(), {
     postFilter: (e) => e,
 });
-const data = props.postFilter(addArtifactName(getBySlotType(props.type)));
+const data = props.postFilter(getBySlotType(props.type));
 const img = require(`@Img/game/portraits/${props.portrait}.png`) as string;
 const locKey = `TYPE_MOD_${props.type.toUpperCase()}`;
 const tableOpts = computed(tableOptsGetter);
-
-function addArtifactName(obj) {
-    for (const e of Object.values(obj)) {
-        if (e.SlotType && e.RSLevel) {
-            e.artifact = `${t(TID_ART_BY_SLOT[e.SlotType])} ${t('TID_LEVEL_GENERIC', [e.RSLevel]).toLowerCase()}`;
-        }
-    }
-    return obj;
-}
 </script>

@@ -81,7 +81,6 @@ export default {
         'AllowBuildOnYS',
         'UISortOrder',
         'AppearanceModels',
-        'RSLevel',
         'PivotYOffset',
         'LinkDPSBoostPct', // перевёл в урон на парсере
         'SortOrder',

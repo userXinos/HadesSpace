@@ -44,7 +44,7 @@ export const gameCharsLocKeys = {
     RelicLoadTicks: 'TID_MODULE_RELIC_DRONE_SPEED',
     ActivationType: 'TID_MODULE_TYPE',
     StarSectorDPS: 'STAR_SECTOR_DPS',
-    RSLevel: 'TID_RED_STAR',
+    RSLevel: 'TID_XBL_STAT_4',
     PriceInCrystals: 'PRICE_IN_CRYSTALS',
     Influence: 'TID_CORP_SEARCH_INFLUENCE_RANGE',
     AllowMoveInSameSectorOnly: 'TID_HUD_MUST_MOVE_TO_SAME_SECTOR',
