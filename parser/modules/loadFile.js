@@ -13,10 +13,9 @@ export default async function(path, runners) {
     const metadata = { originalFile: path, runnerName: null };
     const file = await readFile(path, 'utf-8');
     const fileName = basename(path, '.csv');
-    const isNebulaBuild = path.includes('Nebula');
     const MyRunner = runners.find((e) => filter(e, fileName)) || Runner;
 
-    return new MyRunner({ raw: file, metadata, isNebulaBuild });
+    return new MyRunner({ raw: file, metadata });
 }
 
 function filter(runner, fileName) {

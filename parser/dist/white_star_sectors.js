@@ -5,11 +5,11 @@
  */
 
 export default {
-    Name: ["EntryGate", "HighYieldAsteroids", "LowYieldAsteroids", "HighQualityPlanet", "LowQualityPlanet"],
-    AsteroidsMin: [2, 2, 3, 4, 3],
-    AsteroidsMax: [4, 8, 5, 6, 4],
-    HydrogenPerDay: [160, 3000, 350, 500, 300],
-    AsteroidBeltAxis1Size: [800, 900, 900, 1100, 1100],
-    AsteroidBeltAxis2Size: [1400, 1500, 1600, 1600, 1600],
-    PlanetTypes: [null, null, null, "whitestar1", "whitestar2"],
+    Name: ["EntryGate", "Disputed", "Close_LowHydro", "Close_HighHydro"],
+    AsteroidsMin: [2, 3, 1, 2],
+    AsteroidsMax: [4, 8, 2, 3],
+    HydrogenPerDay: [60, 1200, 40, 200],
+    AsteroidBeltAxis1Size: [800, 1100, 900, 900],
+    AsteroidBeltAxis2Size: [1400, 1600, 1600, 1500],
+    CerbGroup: [null, null, null, null],
 };

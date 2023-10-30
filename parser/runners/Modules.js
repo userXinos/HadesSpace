@@ -44,37 +44,26 @@ export default class Modules extends Runner {
         const dataTables = this.multiReadCsv([
             'capital_ships',
             'projectiles',
-            'artifacts',
             'stars',
         ]);
         const getGlobalsBy = (k) => Globals.getGlobalsBy(k, this.readCsv.bind(this));
         const data = Runner.objectArrayify(rawData, {
-            map: (...args) => dataMapCallback(...args, dataTables, getGlobalsBy, this.isNebulaBuild),
+            map: (...args) => dataMapCallback(...args, dataTables, getGlobalsBy),
         });
-        const TIME_SLOWDOWN_FACTOR_WS = dataTables[3].WhiteStar.TimeSlowdownFactor;
+        const TIME_SLOWDOWN_FACTOR_WS = dataTables[2].WhiteStar.TimeSlowdownFactor;
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
         data.FlagshipDartBarrage.TID_Description = data.FlagshipDartBarrage.TID_Description[0]; // какие-то буквы лишние в таблице
         data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
-
-        if (data.TimeWarp) {
-            data.TimeWarp.Icon = 'Mod_TimeWarp_Icon'; // ошибка в таблице, 'w' в иконках в верхнем регистре
-        }
-
-        if (!this.isNebulaBuild) {
-            data.MiningBoost.WhiteStarScore.unshift(0); // ошибка в таблице, не хватает "0"
-            data.Destiny.WhiteStarScore.unshift(0); // ошибка в таблице, не хватает "0"
-        } else {
-            data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
-        }
+        data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
 
         return data;
     }
 }
 
-function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, artifacts, stars ], getGlobalsBy, isNebulaBuild) {
+function dataMapCallback([ key, value ], index, array, [ capitalShips, projectiles, stars ], getGlobalsBy) {
     const TIME_SLOWDOWN_FACTOR_WS = stars.WhiteStar.TimeSlowdownFactor;
     const onlyWS = capitalShips.CorpFlagship.FlagshipModules.reduce((acc, elem) => {
         if (!Array.isArray(elem)) {
@@ -102,19 +91,6 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     const glob = getGlobalsBy(key);
     Runner.combineObjects(value, glob);
 
-    // добавить уровень артефакта
-    if (!value.Hide) {
-        Object.values(artifacts).forEach((art) => {
-            if (!art.BlueprintTypes) {
-                return;
-            }
-            if (!isNebulaBuild) {
-                if (art.MaxModuleLevelToAward === value.AwardLevel && art.BlueprintTypes.includes(value.SlotType)) {
-                    value.TID_Artifact = art.TID;
-                }
-            }
-        });
-    }
 
     // добавить Projectiles
     if (value.WeaponEffectType === 'projectile') {
@@ -143,31 +119,6 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     // добавить LaserTurret данные
     if (key === 'LaserTurret') {
         Runner.combineObjects(value.LaserTurret_Laser, capitalShips.LaserTurret);
-    }
-
-    // разрешить спрайты майниг дрона
-    if (key === 'MiningDrone' && !isNebulaBuild) {
-        const pattern = 'MiningDrone_lv';
-        const ranges = CONFIG.allowedSpriteNamesMiningDrone
-            .map((e) => e.replace(pattern, ''))
-            .map((e) => e.split('-').map(Number));
-
-        value.drone.Model = value.drone.Model.map((e) => {
-            const number = Number(e.replace(pattern, ''));
-            const i = ranges.findIndex(([ start, end ]) => {
-                if (!end) {
-                    return (number === start);
-                }
-                return (number >= start && number <= end);
-            });
-            return CONFIG.allowedSpriteNamesMiningDrone[i];
-        });
-    }
-
-    // исправить название статы скачка
-    if (key === 'Leap' && !isNebulaBuild) {
-        value.DisableTime = value.EffectDurationx10 / 10;
-        delete value.EffectDurationx10;
     }
 
     // посчитать саппорт урон для Луча

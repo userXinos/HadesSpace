@@ -1,4 +1,0 @@
-Name,TID,TID_Description,ConceptImage,SpawnFleetIntervalSeconds,ShipToSpawn,ShipLevel,MaxHP,MaxShield,DPS,AttackRange,Model,WeaponFx,ShieldRegenPerMinute,ShieldRegenTimeAfterDamage,MaxShips,AwardXP
-HomeSystem1,TID_CERB_STATION_HOME1,TID_CERB_STATION_HOME_DESCR,portrait_CerberusStation,86400,CerberusGuardian,0,15000,15000,100,1000,CerberusStation_DrkNeb,Gun_Projectile01_Weak,10,3600,3,1000
-HomeSystem2,TID_CERB_STATION_HOME2,TID_CERB_STATION_HOME_DESCR,portrait_CerberusStation,86400,CerberusGuardian,0,50000,50000,140,1600,CerberusStation_DrkNeb_lv2,Gun_Projectile01,14,3600,5,3000
-HomeSystem3,TID_CERB_STATION_HOME3,TID_CERB_STATION_HOME_DESCR,portrait_CerberusStation,86400,CerberusGuardian,0,90000,90000,200,2400,CerberusStation_DrkNeb_lv3,Gun_Projectile01_Strong,20,3600,7,5000

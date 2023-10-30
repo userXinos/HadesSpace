@@ -1,6 +1,6 @@
 /**
  * @GeneratedBy default runner
- * @OriginalFile raw/Nebula/planet_shipments.csv
+ * @OriginalFile raw/planet_shipments.csv
  */
 
 export default [

@@ -1,6 +1,6 @@
 /**
  * @GeneratedBy StarSectors.js runner
- * @OriginalFile raw/Nebula/dark_red_star_sectors.csv
+ * @OriginalFile raw/dark_red_star_sectors.csv
  * @UsedFiles cerb_groups.csv, cerberus_stations.csv
  */
 

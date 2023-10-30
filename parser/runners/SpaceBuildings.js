@@ -18,7 +18,7 @@ export default class SpaceBuildings extends Runner {
         const data = Runner.objectArrayify(rawData, {
             filter: ([ k ]) => !k.startsWith('#'),
             map: ([ key, value ]) => {
-                if (key === 'RedStarScanner' && this.isNebulaBuild) {
+                if (key === 'RedStarScanner') {
                     const allRSs = Runner.objectArrayify(rawData, {
                         filter: ([ k ]) => k.startsWith('#RS'),
                     });

@@ -1,5 +1,0 @@
-Name,AsteroidsMin,AsteroidsMax,HydrogenPerDay,AsteroidBeltAxis1Size,AsteroidBeltAxis2Size,CerbGroup,NumBases,BaseType
-EntryGate,2,4,60,800,1400,,,
-Disputed,3,8,1200,1100,1600,WS_DISPUTED,,
-Close_LowHydro,1,2,40,900,1600,WS_LOWHYDRO,,
-Close_HighHydro,2,3,200,900,1500,WS_HIGHHYDRO,,

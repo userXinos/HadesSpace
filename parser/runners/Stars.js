@@ -27,11 +27,6 @@ export default class Stars extends Runner {
                     value = Runner.combineObjects(value, Globals.getGlobalsBy(CONFIG.globalKeys[key], this.readCsv.bind(this)));
                 }
                 if (key === 'WhiteStar') {
-                    if (!this.isNebulaBuild) {
-                        const matrix = CONFIG.thresholdsKeys.map((e) => value[e]);
-                        value.Thresholds = Runner.transposeMatrix(matrix);
-                        CONFIG.thresholdsKeys.forEach((e) => delete value[e]);
-                    }
                     [
                         'ExtraAsteroidSpawnTick',
                         'ExtraAsteroidSpawnRingDistance',

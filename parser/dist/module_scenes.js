@@ -1,6 +1,6 @@
 /**
  * @GeneratedBy default runner
- * @OriginalFile raw/Nebula/module_scenes.csv
+ * @OriginalFile raw/module_scenes.csv
  */
 
 export default {

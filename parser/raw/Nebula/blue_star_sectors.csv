@@ -1,6 +1,0 @@
-Name,AsteroidsMin,AsteroidsMax,CerbGroup_VeryLow,CerbGroup_Low,CerbGroup_Mid,CerbGroup_High
-IncomingSG,2,3,,,,
-D1,5,8,BSR2_1,BSR4_1,BSR5_1,BSR7_1
-D2,4,6,BSR2_2,BSR4_2,BSR5_2,BSR7_2
-D3,5,7,BSR2_3,BSR4_3,BSR5_3,BSR7_3
-Center,,,BSR2_C,BSR4_C,BSR5_C,BSR7_C
