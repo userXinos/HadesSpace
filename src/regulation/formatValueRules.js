@@ -8,13 +8,10 @@ import sec2str from '@Utils/sec2str';
 import locKeys from '@Regulation/locKeys.mjs';
 import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';
 import globals from '@Data/globals.js';
-import stars from '@Data/stars.js';
 import planets from '@Data/planets.js';
 
 const { t } = i18n.global;
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
-
-const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 export default [
 
@@ -137,10 +134,7 @@ export default [
     [
         ['SecurityRating'],
         (v) => {
-            if (isNebulaBuild) {
-                return t(`TID_SECURITY_RATING_${['S', 'PS', 'NS'][v]}`);
-            }
-            return t(`TID_SECURITY_RATING_${v}`);
+            return t(`TID_SECURITY_RATING_${['S', 'PS', 'NS'][v]}`);
         },
     ],
     [
@@ -224,14 +218,6 @@ export default [
     [
         ['Thresholds'],
         (v) => v.map(numberFormat).join(' -> '),
-    ],
-    [
-        [isNebulaBuild ? '' : 'DestinyDisableTimes'],
-        ([rs, ws]) => `${t('RS')}: ${sec2str(rs)} | ${t('WS')}: ${sec2str(ws * stars.WhiteStar.TimeSlowdownFactor)}`,
-    ],
-    [
-        [isNebulaBuild ? '' : 'BarrageMaxAdditionalEnemies'],
-        ([rs, ws]) => `${t('RS')}: ${rs} | ${t('WS')}: ${ws}`,
     ],
     [
         ['SalvageHullPercent'],

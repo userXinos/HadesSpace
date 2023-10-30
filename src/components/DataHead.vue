@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import Stats from '@/components/DataHeadRenderStat.vue';
+import Stats from '@/components/DataHeadStats.vue';
 
 export interface Props {
     data: object,

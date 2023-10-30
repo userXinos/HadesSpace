@@ -9,14 +9,14 @@
         <h2>{{ 'Categories' }}</h2>
         <div class="list">
           <ol>
-            <li v-if="isNebulaBuild"><a href="#DarkCerberus">Dark cerberus</a></li>
+            <li><a href="#DarkCerberus">Dark cerberus</a></li>
             <li><a href="#CerberusStations">Cerberus stations</a></li>
           </ol>
         </div>
       </div>
     </Page>
 
-    <div v-if="isNebulaBuild">
+    <div>
       <div class="portrait-container">
         <img
           class="portrait"
@@ -74,7 +74,7 @@ import stationsData from '@Data/cerberus_stations.js';
 
 import cerberusPortrait from '@Img/game/portraits/portrait_CerberusDestroyer.png';
 import stationPortrait from '@Img/game/portraits/portrait_CerberusStation.png';
-const darkCerberusPortrait = require( `@Img/game/portraits/${process.env.VUE_APP_NEBULA_BUILD ? 'portrait_CerberusCarrier' : 'portrait_CerberusDestroyer'}.png`); // eslint-disable-line @typescript-eslint/no-var-requires
+import darkCerberusPortrait from '@Img/game/portraits/portrait_CerberusCarrier.png';
 
 if (shipsData.CerberusGhosts.GhostSpawnSecs) {
     // eslint-disable-next-line prefer-destructuring
@@ -97,7 +97,6 @@ const UNNECESSARY_MODULE_STATS = [
     'WhiteStarScore',
 ];
 
-const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const ships = getShips('capital_ships.cerberus');
 const darkShips = getShips('capital_ships.darkCerberus');
 const stations = objectArrayify(stationsData, {

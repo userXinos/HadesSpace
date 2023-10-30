@@ -119,10 +119,10 @@
 
           <div class="flex-end margin-bottom">
             <button
+              v-t="'TID_SOCIAL_DELETE_MESSAGE'"
               class="button red"
               @click="removeConfig"
-            >{{ $t(isNebula ? 'TID_SOCIAL_DELETE_MESSAGE' : 'TID_INBOX_DELETE_MESSAGE') }}
-            </button>
+            />
           </div>
 
         </div>
@@ -192,7 +192,6 @@ const { t } = i18n.global;
 const props = defineProps<Props>();
 const emit = defineEmits(['update:input', 'setup']);
 
-const isNebula = !!process.env.VUE_APP_NEBULA_BUILD;
 const format = {
     key: (k: string) => key(k, router.currentRoute.name as string),
     value: (k: string, v: unknown) => value(k, v, router.currentRoute.value.name as string),

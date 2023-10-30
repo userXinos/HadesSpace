@@ -11,8 +11,6 @@ import ModulePage from '@/components/ModulePage.vue';
 import modules from '@Data/modules.js';
 import stars from '@Data/stars.js';
 
-const NEBULA_BUILD = !!process.env.VUE_APP_NEBULA_BUILD;
-
 function postFilter(data) {
     const Salvage = { ...data.Salvage };
     const Repair = { ...data.Repair };
@@ -26,7 +24,7 @@ function postFilter(data) {
         data.Salvage = Salvage;
     }
 
-    if (Repair.RepairHullPointsPerSecond && NEBULA_BUILD) {
+    if (Repair.RepairHullPointsPerSecond) {
         Repair.RepairHullPointsPerSecond = Repair.RepairHullPointsPerSecond
             .map((e) => e * Repair.EffectDurationx10 / 10);
         Repair.RepairHullPointsPerSecond_BLS = Repair.RepairHullPointsPerSecond_BLS

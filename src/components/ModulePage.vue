@@ -11,11 +11,10 @@ import globals from '@Data/globals.js';
 import modulesData from '@Data/modules.js';
 import objectArrayify from '@Utils/objectArrayify';
 
-const NEBULA_BUILD = !!process.env.VUE_APP_NEBULA_BUILD;
 const { MaxModuleLevel } = globals;
 const sortByAwardLevel = objectArrayify(modulesData, {
     filter: ([, v]) => !v.Hide,
-    sort: (([, a], [, b]) => (NEBULA_BUILD) ? a.RSLevel - b.RSLevel : a.AwardLevel - b.AwardLevel),
+    sort: (([, a], [, b]) => a.RSLevel - b.RSLevel),
 });
 
 const getBySlotType = (SlotType: string) => objectArrayify(sortByAwardLevel, {
@@ -26,7 +25,7 @@ function tableOptsGetter() {
 
     return {
         get colLvlStartAt() {
-            if (NEBULA_BUILD && this?.data?.body) {
+            if (this?.data?.body) {
                 const matrixKey = (this.data.body.default) ? 'default' : Object.keys(this.data.body)[0];
                 const k = this.data.body[matrixKey];
 
@@ -85,7 +84,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const data = props.postFilter(addArtifactName(getBySlotType(props.type)));
 const img = require(`@Img/game/portraits/${props.portrait}.png`) as string;
-const locKey = `TYPE_MOD_${(NEBULA_BUILD && props.type == 'Support') ? 'COMBAT' : props.type.toUpperCase()}`;
+const locKey = `TYPE_MOD_${props.type.toUpperCase()}`;
 const tableOpts = computed(tableOptsGetter);
 
 function addArtifactName(obj) {

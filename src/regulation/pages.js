@@ -1,5 +1,3 @@
-const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
-
 export default [
     {
         name: 'Index',
@@ -11,55 +9,55 @@ export default [
         children: [
             {
                 name: 'Trade',
-                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_TRADE' : 'TYPE_MOD_TRADE' },
+                text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_TRADE' },
                 path: '/trade',
                 component: () => import(/* webpackChunkName: "Trade" */ '../pages/Trade.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_Category_Trade' : 'Mod_TransportAutopilot_Icon',
+                    name: 'Mod_Category_Trade',
                     dir: 'game/Modules',
                 },
             },
             {
                 name: 'Mining',
-                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_MINING' : 'TYPE_MOD_MINING' },
+                text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_MINING' },
                 path: '/mining',
                 component: () => import(/* webpackChunkName: "Mining" */ '../pages/Mining.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_Category_Mining' : 'Mod_MiningBoost_Icon',
+                    name: 'Mod_Category_Mining',
                     dir: 'game/Modules',
                 },
             },
             {
                 name: 'Weapon',
-                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS' : 'TYPE_MOD_WEAPON' },
+                text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS' },
                 path: '/weapon',
                 component: () => import(/* webpackChunkName: "Weapon" */ '../pages/Weapon.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_Category_Weapon' : 'Mod_Barrage_Icon',
+                    name: 'Mod_Category_Weapon',
                     dir: 'game/Modules',
                 },
             },
             {
                 name: 'Shield',
-                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS' : 'TYPE_MOD_SHIELD' },
+                text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS' },
                 path: '/shield',
                 component: () => import(/* webpackChunkName: "Shield" */ '../pages/Shield.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_Category_Shield' : 'Mod_Shields_Icon',
+                    name: 'Mod_Category_Shield',
                     dir: 'game/Modules',
                 },
             },
             {
                 name: 'Support',
-                text: { locKey: isNebulaBuild ? 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT' : 'TYPE_MOD_SUPPORT' },
+                text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT' },
                 path: '/support',
                 component: () => import(/* webpackChunkName: "Support" */ '../pages/Support.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Mod_Category_Support' : 'Mod_Destiny_Icon',
+                    name: 'Mod_Category_Support',
                     dir: 'game/Modules',
                 },
             },
-            isNebulaBuild ? ({
+            {
                 name: 'Drone',
                 text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE' },
                 path: '/drone',
@@ -68,15 +66,15 @@ export default [
                     name: 'Mod_Category_Drone',
                     dir: 'game/Modules',
                 },
-            }) : undefined,
-            isNebulaBuild ? ({
+            },
+            {
                 text: { locKey: 'TID_CORP_FLAGSHIP' },
                 path: '/ships#FlagshipModules',
                 icon: {
                     name: 'Mod_Category_Support',
                     dir: 'game/Modules',
                 },
-            }) : undefined,
+            },
         ],
     },
     {
@@ -97,7 +95,7 @@ export default [
                 path: '/ships',
                 component: () => import(/* webpackChunkName: "Ships" */ '../pages/Ships.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Transport_DrkNeb_lv5' : 'Miner_lv6',
+                    name: 'Transport_DrkNeb_lv5',
                     dir: 'game/Ships',
                 },
             },
@@ -107,7 +105,7 @@ export default [
                 path: '/cerberus',
                 component: () => import(/* webpackChunkName: "Cerberus" */ '../pages/Cerberus.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'Fighter_DrkNeb_Cerberus5_lv1' : 'Fighter_Cerberus6_lv1',
+                    name: 'Fighter_DrkNeb_Cerberus5_lv1',
                     dir: 'game/Ships',
                 },
             },
@@ -117,7 +115,7 @@ export default [
                 path: '/spacebuildings',
                 component: () => import(/* webpackChunkName: "SpaceBuildings" */ '../pages/SpaceBuildings.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'station_trade' : 'trade_station',
+                    name: 'station_trade',
                     dir: 'game/SpaceBuildings',
                 },
             },
@@ -136,20 +134,10 @@ export default [
                 path: '/alliancelevels',
                 component: () => import(/* webpackChunkName: "AllianceLevels" */ '../pages/AllianceLevels.vue'),
                 icon: {
-                    name: isNebulaBuild ? 'corpXp' : 'relic',
+                    name: 'corpXp',
                     dir: 'icons',
                 },
             },
-            !isNebulaBuild ? ({
-                name: 'PlayerGoals',
-                text: { locKey: 'TID_EMPIRE_OBJECTIVES' },
-                path: '/playergoals',
-                component: () => import(/* webpackChunkName: "PlayerGoals" */ '../pages/PlayerGoals.vue'),
-                icon: {
-                    name: 'influence',
-                    dir: 'icons',
-                },
-            }) : undefined,
             {
                 name: 'Achievements',
                 text: { locKey: 'TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS' },
@@ -240,18 +228,6 @@ export default [
                     dir: 'icons',
                 },
             },
-            isNebulaBuild ?
-                {
-                    name: 'GameDiffLog',
-                    text: { locKey: 'Nerf log' },
-                    path: '/GameDiffLog',
-                    component: () => import(/* webpackChunkName: "DarkRedStar" */ '../pages/GameDiffLog.vue'),
-                    icon: {
-                        name: 'clock',
-                        dir: 'icons',
-                    },
-                } :
-                undefined,
             {
                 text: {
                     locKey: 'SWITCH_ACCS',

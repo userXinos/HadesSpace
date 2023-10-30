@@ -6,7 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 /* CONFIGURATION  */
-const PARSER_DIST_PATH = '../parser/dist/Nebula';
+const PARSER_DIST_PATH = '../parser/dist';
 const REGULATION_PATH = '../src/regulation/';
 const POSTFIXES = '../src/regulation/postfixes.mjs';
 const BLACK_LIST_REG_FILES = ['pages', 'patchCommits', 'byTypes'];
@@ -83,7 +83,6 @@ async function compileModules(directory) {
                 const file = fs.readFileSync(`./${modulePath}`, 'utf-8');
                 let [, fileExport] = file.match(/(export default ([{[])[\s\S]*?([}\]]);)/);
 
-                fileExport = `const isNebulaBuild = false;\n${fileExport}`; // shh...
                 if (moduleName == 'formatValueRules') { // SHH...
                     fileExport = fileExport
                         .replace(/\.\.\.formatValueRulesTime\.map\(\(\[keys, formatter]\) => \[\s*keys,\s*\(v\) => Array\.isArray\(v\) \? v\.map\(\(e\) => sec2str\(formatter\(e, globals\)\)\)\.join\(', '\) : sec2str\(formatter\(v, globals\)\),\s*]\),/, '');

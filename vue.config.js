@@ -1,22 +1,16 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const configureWebpack = require('./webpack.config.js');
 
 const isDev = (process.env.NODE_ENV === 'development');
 const { version } = require('./package.json');
 const currentDate = new Date();
-const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 
 module.exports = {
-    publicPath: (isDev ? '/' : `/HadesSpace/${isNebulaBuild ? 'Nebula/' : ''}`),
-    outputDir: isNebulaBuild ? './dist/Nebula/' : './dist',
+    publicPath: (isDev ? '/' : `/HadesSpace/`),
+    outputDir: './dist',
     productionSourceMap: isDev,
     lintOnSave: isDev,
     chainWebpack: (config) => {
-        config.plugin('copy').tap(([options]) => {
-            if (isNebulaBuild) {
-                options.patterns[0].from = `${options.patterns[0].from}-nebula`;
-            }
-            return [options];
-        });
         config.plugin('define').tap(([options]) => {
             options['process.env']['VERSION'] = JSON.stringify(version);
             options['process.env']['BUILD_TIMESTAMP'] = currentDate.getTime();

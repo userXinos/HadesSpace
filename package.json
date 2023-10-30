@@ -4,12 +4,9 @@
   "version": "4.0.0",
   "scripts": {
     "build": "npm run parser && npm run i18n:full && vue-cli-service build",
-    "build-nebula": "export VUE_APP_NEBULA_BUILD=true && npm run i18n-nebula:full && vue-cli-service build",
     "dev": "vue-cli-service serve",
-    "dev-nebula": "export VUE_APP_NEBULA_BUILD=true && vue-cli-service serve",
     "i18n": "cd i18n && npm run start",
     "i18n:full": "cd i18n && npm run start -- --full",
-    "i18n-nebula:full": "cd i18n && npm run start -- --full --raw-content ../parser/raw/Nebula",
     "parser": "cd parser && npm run start",
     "postinstall": "(cd parser && npm install && cd ..) && (cd i18n && npm install && cd ..)",
     "test": "echo \"Error: no test specified\" && exit 1"

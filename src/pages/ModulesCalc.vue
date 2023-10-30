@@ -167,7 +167,7 @@ import { getBySlotType } from '../components/ModulePage.vue';
 import statsStyleName from '../utils/Handlers/statsStyleName';
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
-const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support'];
+const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
 
 const { t } = i18n.global;
 const inputLocKeys = {
@@ -371,7 +371,7 @@ $plan-color: #ded45a;
         --module-size: 75px;
     }
     @media screen and (max-width: 1500px){
-        --module-size: 80px;
+        --module-size: 70px;
         max-height: 1000px;
         max-width: 920px;
     }
@@ -380,6 +380,10 @@ $plan-color: #ded45a;
         max-width: 420px;
     }
     @media screen and (max-width: 960px){
+        --module-size: 80px;
+        max-width: 290px;
+    }
+    @media screen and (max-width: 600px){
         --module-size: 60px;
         max-width: 290px;
     }

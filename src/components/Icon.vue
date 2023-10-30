@@ -23,7 +23,6 @@ export interface Props {
     dir: string
 }
 
-const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
 const TYPES = {
     'game/Modules': 'Module',
     'game/Ships': 'Ship',
@@ -45,17 +44,14 @@ const type = TYPES[props.dir] || null;
 const customType = getCustomType();
 const url = getUrl();
 
-const nebulaSpaceBuildsNoBG = ['warpLaneHub', 'timeModulator'];
+const spaceBuildsNoBG = ['warpLaneHub', 'timeModulator'];
 const bgClasses = {
     'module-bg': type === 'Module' && !isProjectiles,
-    'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (isNebulaBuild ? !nebulaSpaceBuildsNoBG.includes(props.name as string) : true),
-    'round-bg': 'TimeModulator' === customType,
+    'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (!spaceBuildsNoBG.includes(props.name as string)),
     'art-bg': props.name === 'art',
-    'warp-line-bg': customType == 'WarpLane',
 };
 const iconStyle = {
     backgroundImage: `url('${url}')`,
-    width: (type === 'SpaceBuilding' && isNebulaBuild) ? '70%' : null,
 };
 const iconClasses = {
     'ship': type === 'Ship',
@@ -63,6 +59,7 @@ const iconClasses = {
     'warp-line-body': customType == 'WarpLane',
     'big-size': type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
     'circle': type === 'Star',
+    'width70': type === 'SpaceBuilding',
 };
 
 function getCustomType() {
@@ -86,7 +83,8 @@ function getUrl() {
         name = customType;
     }
 
-    if (isNebulaBuild) {
+    // TODO: fix
+    if (true) {
         if (isProjectiles && !name.includes('_DrkNeb')) {
             name += '_DrkNeb';
         }
@@ -164,23 +162,19 @@ function getUrl() {
     width: 85%;
     height: 100%;
 }
+.width70 {
+    width: 70%
+}
 .module-bg {
     background-image: url(../img/game/background/Module.png);
 }
 .space-building-bg {
     background-image: url(@Img/game/background/SpaceBuilding.png);
 }
-.round-bg {
-    background-image: url(../img/game/SpaceBuildings/TimeModulatorBackground.png);
-    background-size: auto 100%;
-}
 .art-bg {
     background-image: url(../img/game/background/Artifact.png);
     opacity: 0.9;
     background-size: auto 100%;
-}
-.warp-line-bg {
-    background-image: url(../img/game/SpaceBuildings/WarpLaneBG.png);
 }
 .warp-line-body {
     background-size: 210%;

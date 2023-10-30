@@ -20,8 +20,10 @@
           let redirect = sessionStorage.redirect;
 
           if (redirect) {
+
+              // Nebula update legacy
               if (redirect.includes('/Nebula/') && !location.href.includes('/Nebula/')) {
-                  location.href = location.href + 'Nebula/';
+                  location.href = location.href.replace('/Nebula/', '/')
                   return;
               }
 

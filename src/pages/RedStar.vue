@@ -11,7 +11,6 @@
     />
 
     <v-data
-      v-if="isNebulaBuild"
       v-bind="{
         data: stars.DarkRedStar,
         iconDir: 'game/Stars',
@@ -30,27 +29,9 @@
       />
     </h1>
 
-    <template v-if="!isNebulaBuild">
-      <!--suppress JSUnusedLocalSymbols -->
-      <div
-        v-for="(_, name) in ARTS"
-        :key="name"
-      >
-        <div
-          v-for="args in getArt(name)"
-          :key="`${name}${args.data.Name}`"
-        >
-          <v-data
-            :data="args.data"
-            :table-opts="args.tableOpts"
-          />
-        </div>
-      </div>
-    </template>
-
 
     <div id="ModulesByArtType">
-      <v-data :data="{TID: 'MODULES_BY_ARTIFACT_TYPE', Name: 'modulesByArtType', ...modulesByArtType}">
+      <v-data :data="{TID: 'MODULES_BY_ARTIFACT_TYPE', Name: 'ModulesByArtType', ...modulesByArtType}">
 
         <div class="switch">
           <div>
@@ -88,23 +69,16 @@ import Page from '@/components/Page.vue';
 import Store from '@/store';
 
 import starsData from '@Data/stars.js';
-import artifacts from '@Data/artifacts.js';
 import globals from '@Data/globals.js';
 import objectArrayify from '@Utils/objectArrayify';
 import { getBySlotType } from '../components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_RedStar.png';
 import types from '@Store/modules/userSettings/types';
 
-const isNebulaBuild = !!process.env.VUE_APP_NEBULA_BUILD;
-const ARTS = {
-    Combat: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_COMBAT' : 'COMBAT_ART',
-    Utility: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_UTILITY' : 'UTILITY_ART',
-    Support: isNebulaBuild ? 'TID_TRADEITEM_ARTIFACT_SUPPORT' : 'SUPPORT_ART',
-};
 const { MinDarkRSLevel } = globals;
 const { RedStar } = starsData;
-const DarkRedStar = starsData.DarkRedStar || {};
-const ARTIFACT_TYPES = isNebulaBuild ? ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'] : ['Utility', 'Combat', 'Support'];
+const { DarkRedStar } = starsData;
+const ARTIFACT_TYPES = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
 const USELESS_STATS = [
     'GhostSpawnSecs',
     'Models',
@@ -116,7 +90,7 @@ const USELESS_STATS = [
     'MedRiskMining',
     'HighRiskMining',
 ];
-const RS_LVLS = RedStar[`${isNebulaBuild ? 'AppearanceModels' : 'Models'}`].length - 1; // Tut lvl 0
+const RS_LVLS = RedStar['AppearanceModels'].length - 1; // Tut lvl 0
 
 USELESS_STATS.forEach((k) => {
     delete RedStar[k];
@@ -158,33 +132,13 @@ const modulesByArtType = Object.fromEntries(ARTIFACT_TYPES.map((type) => (
     [type, modulesByLvl(getBySlotType(type))]
 )));
 
-function getArt(name) {
-    const tableOpts = {
-        lvlColKey: '№',
-        colLvlStartAt: (name == 'Support') ? 2 : 1,
-    };
-    const res = [];
-
-    res[0] = {
-        data: { ...artifacts[name], TID2: artifacts[name].TID, TID: ARTS[name] },
-        tableOpts,
-    };
-    if (!isNebulaBuild) {
-        res[1] = {
-            data: { TID: 'BLUEPRINTS', ...artifacts[`${name}Blueprints`] },
-            tableOpts,
-        };
-    }
-
-    return res;
-}
 function modulesByLvl(modules) {
     const res = [];
 
     for (let i = 0; i < RS_LVLS; i++) {
         const item = Object.values(modules)
             .map(((mod) => {
-                if (mod[`${isNebulaBuild ? 'RSLevel' : 'AwardLevel'}`] == i + 1) {
+                if (mod['RSLevel'] == i + 1) {
                     return mod;
                 }
             }))
