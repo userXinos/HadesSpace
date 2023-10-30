@@ -44,7 +44,7 @@ export default [
         (v) => v / 10,
     ],
     [
-        ['TargetSwitchTicks', 'MirrorShieldTickPeriod', 'DispatchActivTicks', 'RelicLoadTicks', 'SpeedIncrPerTick', 'PeriodSpawnTicks'],
+        ['TargetSwitchTicks', 'MirrorShieldTickPeriod', 'DispatchActivTicks', 'RelicLoadTicks', 'PeriodSpawnTicks'],
         (v, {TicksPerSecond}) => v / TicksPerSecond,
     ],
 ]

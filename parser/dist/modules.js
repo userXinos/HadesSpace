@@ -332,10 +332,10 @@ export default {
         ActivationType: "Activated",
         ClientActivationFx: "Module_ChargeUp_red",
         ActivateFX: "RSExtender_activate",
-        RSLESec: [2, 4, 6, 8, 10, 14, 18, 22, 26, 30, 40, 60, 80, 110, 150],
         ReqUniqueCargo: 1,
         UCReqMinRSLevel: 0,
         ActivationDelayRS: 1,
+        RSLESecRS: [2, 4, 6, 8, 10, 14, 18, 22, 26, 30, 40, 60, 80, 110, 150],
     },
     WeakBattery: {
         Name: "WeakBattery",
