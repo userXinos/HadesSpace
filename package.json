@@ -3,7 +3,7 @@
   "author": "Xinos",
   "version": "4.0.0",
   "scripts": {
-    "build": "npm run parser && npm run i18n:full && vue-cli-service build",
+    "build": "npm run parser && npm run i18n:full && ./node_modules/.bin/vue-cli-service build",
     "dev": "vue-cli-service serve",
     "i18n": "cd i18n && npm run start",
     "i18n:full": "cd i18n && npm run start -- --full",

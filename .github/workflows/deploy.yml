@@ -17,13 +17,13 @@ jobs:
           node-version: 17
           cache: 'npm'
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 17
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: 17
 
       - name: Install dependencies
         run: |
-          npm install -g @vue/cli-service-global
+#          npm install -g @vue/cli-service-global
           npm install --production
 
       - name: Build
