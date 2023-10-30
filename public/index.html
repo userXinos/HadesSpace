@@ -23,7 +23,7 @@
 
               // Nebula update legacy
               if (redirect.includes('/Nebula/') && !location.href.includes('/Nebula/')) {
-                  location.href = location.href.replace('/Nebula/', '/')
+                  sessionStorage.redirect = redirect.replace('/Nebula/', '/');
                   return;
               }
 
