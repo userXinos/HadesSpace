@@ -25,7 +25,7 @@ export default function csv2json(csv) {
                 splitSeparators(obj, subName);
                 const newSubName = string[0].trim();
 
-                if (subName === newSubName) {
+                if (newSubName in obj) {
                     subName = `${newSubName}-${sIndex}`;
                 } else {
                     subName = newSubName;
