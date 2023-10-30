@@ -436,7 +436,7 @@
 "TID_MODULE_SOLITUDE_DESCR_WS","Aumenta muito o dano da arma da nave com este módulo quando não há outros encouraçados aliados no setor (incluindo encouraçados de jogadores aliados)."
 "TID_MODULE_SOLITUDE_DESCR_BLS","Aumenta muito o dano da arma da nave com este módulo quando só há um encouraçado inimigo no setor (não inclui naves Cerberus)."
 "TID_MODULE_FORTIFY","FORTIFICAÇÃO"
-"TID_MODULE_FORTIFY_DESCR","Reduz o dano direto de arma sofrido. Todas as naves Cerberus no setor vão em direção à nave usuária. Naves e bases inimigas priorizam o ataque a esta nave sobre todos os outros alvos."
+"TID_MODULE_FORTIFY_DESCR","Enquanto o efeito estiver ativo, a produção de dano da arma do encouraçado é aumentada em uma porcentagem fixa. A nave ativada é imediatamente imobilizada e não pode se mover durante toda a duração do efeito. As naves Cerberus preferem atirar na nave fortificada em vez de em todos os outros alvos potenciais e mudarão de alvo imediatamente se a nave ativada estiver dentro do alcance."
 "TID_MODULE_SALVAGE","RECICLAGEM"
 "TID_MODULE_SALVAGE_DESCR","Recupera instantaneamente uma porcentagem da resistência da fuselagem toda vez que qualquer nave (excetuando a Cerberus Fantasma) é destruída no mesmo setor."
 "TID_MODULE_DECOY_DRONE_DESCR","Lança um drone de combate ao local alvo. Naves inimigas imediatamente mudam de alvo para o drone se estiverem no alcance. O drone não tem arma e só serve como escudo de dano para encouraçados próximos. O drone fica no local alvo até sua fuselagem esgotar ou seu tempo de ativação expirar."

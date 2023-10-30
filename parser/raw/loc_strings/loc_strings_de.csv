@@ -436,7 +436,7 @@
 "TID_MODULE_SOLITUDE_DESCR_WS","Erhöht die Schadensmenge der Schiffswaffe stark, wenn sich keine anderen verbündeten Schlachtschiffe im Sektor befinden (einschließlich Schlachtschiffe anderer Spieler)."
 "TID_MODULE_SOLITUDE_DESCR_BLS","Erhöht die Schadensmenge der Schiffswaffe stark, wenn sich nur ein feindliches Schlachtschiff im Sektor befindet (Cerberus-Schiffe zählen nicht)."
 "TID_MODULE_FORTIFY","SCHUTZWALL"
-"TID_MODULE_FORTIFY_DESCR","Verringert erlittenen direkten Waffenschaden. Alle Cerberus-Schiffe im Sektor bewegen sich auf den Besitzer zu. Feindliche Schiffe und Basen feuern bevorzugt auf den Besitzer."
+"TID_MODULE_FORTIFY_DESCR","Solange der Effekt aktiv ist, wird der Waffenschaden des Schlachtschiffs um einen festen Prozentsatz erhöht. Das aktivierende Schiff wird sofort bewegungsunfähig gemacht und kann sich während der gesamten Dauer nicht bewegen. Cerberus-Schiffe feuern lieber auf das befestigte Schiff als auf alle anderen potenziellen Ziele und wechseln sofort von ihrem alten Ziel, wenn das aktivierende Schiff in Reichweite ist."
 "TID_MODULE_SALVAGE","WIEDERVERWERTUNG"
 "TID_MODULE_SALVAGE_DESCR","Regeneriert sofort einen Teil der Trefferpunkte, wenn ein beliebiges Schiff (außer Cerberus-Geist) im gleichen Sektor zerstört wird."
 "TID_MODULE_DECOY_DRONE_DESCR","Sendet eine Kampfdrohne zum Zielort. Feindliche Schiffe wechseln ihr Ziel sofort zur Drohne, wenn sie sich in Reichweite befinden. Die Drohne ist nicht bewaffnet und dient nur dazu, Schlachtschiffe in der Nähe vor Schaden zu schützen. Die Drohne bleibt am Zielort, bis ihre Hülle aufgebraucht oder bis sie abgelaufen ist."

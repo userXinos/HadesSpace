@@ -436,7 +436,7 @@
 "TID_MODULE_SOLITUDE_DESCR_WS","Aumenta enormemente el daño que produce el arma de la nave del propietario cuando no hay ninguna otra nave de combate amiga en el sector (incluidas las naves de combate de jugadores aliados)."
 "TID_MODULE_SOLITUDE_DESCR_BLS","Aumenta enormemente el daño que produce el arma de la nave del propietario cuando solo hay una nave de combate enemiga en el sector (las naves Cerbero no cuentan)."
 "TID_MODULE_FORTIFY","FORTIFICAR"
-"TID_MODULE_FORTIFY_DESCR","Reduce el daño directo de arma recibido. Todas las naves Cerbero del sector se mueven hacia el propietario. Las naves y las bases enemigas prefieren disparar al propietario que a los demás objetivos potenciales."
+"TID_MODULE_FORTIFY_DESCR","Mientras el efecto está activo, el daño causado por las armas del acorazado aumenta en un porcentaje fijo. La nave que se activa queda inmediatamente inmovilizada y no puede moverse mientras dure el efecto. Las naves Cerberus prefieren disparar a la nave fortificada antes que a cualquier otro objetivo potencial, y cambiarán de objetivo inmediatamente si la nave activadora está a su alcance."
 "TID_MODULE_SALVAGE","RESCATAR"
 "TID_MODULE_SALVAGE_DESCR","Recupera al instante un porcentaje de la fuerza del casco cada vez que se destruye una nave (exceptuando el Fantasma Cerbero) en el mismo sector."
 "TID_MODULE_DECOY_DRONE_DESCR","Envía un dron de combate a la ubicación objetivo. Si están al alcance, las naves enemigas cambiarán de objetivo inmediatamente para apuntar al dron. El dron no tiene armas y solo sirve para proteger del daño a las naves de combate cercanas. El dron permanece en su ubicación objetivo hasta que se le agote el casco o hasta que termine el temporizador de activación."
