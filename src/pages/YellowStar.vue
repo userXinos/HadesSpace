@@ -21,7 +21,7 @@ import stars from '@Data/stars.js';
 import sectorsData from '@Data/yellow_star_sectors.js';
 import levels from '@Data/planet_levels.js';
 import planets from '@Data/planets.js';
-import img from '@Img/game/portraits/portrait_YellowStar.png';
+import img from '@Img/game/portraits/portrait_WarpLane.jpg';
 
 import compileOne from '@Utils/compileOne.ts';
 const ys = { ...stars.YellowStar };

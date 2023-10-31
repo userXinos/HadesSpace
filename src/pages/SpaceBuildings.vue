@@ -13,7 +13,7 @@ import Page from '@/components/Page.vue';
 import CustomIcon from '@Utils/CustomIcon';
 import objectArrayify from '@Utils/objectArrayify';
 import spaceBuildings from '@Data/spacebuildings.js';
-import img from '@Img/game/portraits/BlackCitadel.png';
+import img from '@Img/game/portraits/BlackCitadel.jpg';
 
 spaceBuildings.WarpLaneHub.Model = new CustomIcon('WarpLane');
 spaceBuildings.TimeModulator.Model = new CustomIcon('TimeModulator');

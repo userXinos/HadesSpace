@@ -1,7 +1,7 @@
 <template>
   <ModulePage
     type="Trade"
-    portrait="portrait_ShipmentDrone"
+    portrait="portrait_ShipmentDrone.png"
   />
 </template>
 

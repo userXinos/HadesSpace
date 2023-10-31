@@ -1,7 +1,7 @@
 <template>
   <ModulePage
     type="Drone"
-    portrait="portrait_AlphaDrone"
+    portrait="portrait_AlphaDrone.jpg"
     :post-filter="postFilter"
   />
 </template>

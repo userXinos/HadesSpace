@@ -72,9 +72,9 @@ import objectArrayify from '@Utils/objectArrayify';
 import shipsData from '@Data/capital_ships.js';
 import stationsData from '@Data/cerberus_stations.js';
 
-import cerberusPortrait from '@Img/game/portraits/portrait_CerberusDestroyer.png';
-import stationPortrait from '@Img/game/portraits/portrait_CerberusStation.png';
-import darkCerberusPortrait from '@Img/game/portraits/portrait_CerberusCarrier.png';
+import cerberusPortrait from '@Img/game/portraits/portrait_CerberusDestroyer.jpg';
+import stationPortrait from '@Img/game/portraits/portrait_CerberusStation.jpg';
+import darkCerberusPortrait from '@Img/game/portraits/portrait_Interceptor.jpg';
 
 if (shipsData.CerberusGhosts.GhostSpawnSecs) {
     // eslint-disable-next-line prefer-destructuring

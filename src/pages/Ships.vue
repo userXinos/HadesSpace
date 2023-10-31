@@ -35,7 +35,7 @@ import modulesData from '@Data/modules.js';
 import getFilterByType from '@Utils/getFilterByType';
 import objectArrayify from '@Utils/objectArrayify';
 import { tableOpts } from '@/components/ModulePage.vue';
-import img from '@Img/game/portraits/portrait_CorpFlagship.png';
+import img from '@Img/game/portraits/portrait_CorpFlagship.jpg';
 
 const ships = objectArrayify(shipsData, getFilterByType('capital_ships.player'));
 const modules = objectArrayify(modulesData, { filter: ([k]) => k in ships.CorpFlagship.modules });

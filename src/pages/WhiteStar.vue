@@ -21,7 +21,7 @@ import VData from '@/components/Data.vue';
 import stars from '@Data/stars.js';
 import planets from '@Data/planets.js';
 import compileOne from '@Utils/compileOne.ts';
-import img from '@Img/game/portraits/portrait_PlanetWhiteStar.png';
+import img from '@Img/game/portraits/portrait_Sentinel.jpg';
 
 const ws = stars.WhiteStar;
 ws.Lifetime = ws.Lifetime * ws.TimeSlowdownFactor;

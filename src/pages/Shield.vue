@@ -1,7 +1,7 @@
 <template>
   <ModulePage
     type="Shield"
-    portrait="news_Update02"
+    portrait="portrait_CerberusPhoenix.jpg"
   />
 </template>
 

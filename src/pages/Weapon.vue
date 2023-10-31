@@ -1,7 +1,7 @@
 <template>
   <ModulePage
     type="Weapon"
-    portrait="portrait_WhiteStar"
+    portrait="portrait_Sentinel.jpg"
     :post-filter="postFilter"
   />
 </template>

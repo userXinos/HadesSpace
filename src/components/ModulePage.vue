@@ -71,7 +71,7 @@ const props = withDefaults(defineProps<Props>(), {
     postFilter: (e) => e,
 });
 const data = props.postFilter(getBySlotType(props.type));
-const img = require(`@Img/game/portraits/${props.portrait}.png`) as string;
+const img = require(`@Img/game/portraits/${props.portrait}`) as string;
 const locKey = `TYPE_MOD_${props.type.toUpperCase()}`;
 const tableOpts = computed(tableOptsGetter);
 </script>

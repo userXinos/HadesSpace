@@ -1,7 +1,7 @@
 <template>
   <ModulePage
     type="Support"
-    portrait="portrait_TurretLaser"
+    portrait="portrait_TurretLaser.png"
     :post-filter="postFilter"
   />
 </template>
