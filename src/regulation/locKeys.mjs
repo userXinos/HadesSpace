@@ -105,6 +105,7 @@ export const gameCharsLocKeys = {
     MaxBattleshipsPerPlayer: 'TID_REDSCANNER_MAX_BATTLESHIPS',
     HydrogenSearchCost: 'TID_SECTOR_UNLOCK_PRICE',
     DestroyersToSpawn: 'TID_SHIP_CERB_DESTROYER',
+    InterceptorsToSpawn: 'TID_SHIP_CERB_INTERCEPTOR',
     TimeToLoad: 'TID_STATUS_LOADING_ARTIFACT',
     Lifetime: 'TID_MISSIONS_DLG_RED_STAR_SUPERNOVA_TIMER',
     CreditIncomeModifier: 'TID_PLANET_UPG_CREDIT_YIELD',
@@ -186,6 +187,7 @@ export const gameCharsLocKeys = {
     LeapAOERange: 'TID_DESTROYER_AREADAMAGERANGE',
     ColonizeCost: 'TID_OBJECT_ACTION_COLONIZE',
     MaxHealth: 'TID_OBJECT_ACTION_COLONIZE',
+    ImmolationDamage: 'TID_MODULE_IMMOLATION_DAMAGE_AMT',
 };
 
 

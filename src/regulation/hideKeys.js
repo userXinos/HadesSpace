@@ -85,6 +85,7 @@ export default {
         'LinkDPSBoostPct', // перевёл в урон на парсере
         'SortOrder',
         'PSNID',
+        'SpeedIncrPerTick',
 
         // временно ?
         'ActivationDelayBLS',
@@ -113,7 +114,7 @@ export default {
 
         // Ships
         /(Transport|Miner)\.HP/,
-        /(Miner|CorpFlagship)\.FuelUsePer5000Distance/,
+        /(Miner|Battleship|CorpFlagship)\.FuelUsePer5000Distance/,
         'Transport.MaxShipments',
         'Battleship.InitialModule',
         'Battleship.InitialModuleLevels',
@@ -122,6 +123,9 @@ export default {
         'CorpFlagship.BuildCost',
 
         // Ships.FlagmanModules
+        /(Recoil|Immolation|EMPRocket|FlagshipWeaponModule|FlagshipDartBarrage|FlagshipShieldModule|FlagshipAreaShield|FlagshipDroneSwarm|FlagshipRocketCluster)\.RSLevel/,
+        /(Recoil|Immolation|EMPRocket|FlagshipWeaponModule|FlagshipDartBarrage|FlagshipShieldModule|FlagshipAreaShield|FlagshipDroneSwarm|FlagshipRocketCluster)\.UnlockBlueprints/,
+        'FlagshipDartBarrage.SingleTarget',
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDroneSwarm.NewModuleSlots',
 
@@ -134,9 +138,16 @@ export default {
         /(Dark)?RedStar\.DisableRSSearchDuringTutorial/,
         /(Dark)?RedStar\.WarnOnSRSPlacementMinNumNeighbors/,
         /(Dark)?RedStar\.PrivateRSEventClientDisplayMode/,
-
-        // RedStar.artifacts
-        /(Combat|Utility|Support)\.(Model|RSLevelRequired|MaxModuleLevelToAward|GroupNames|BlueprintTypes)/,
+        /(Dark)?RedStar\.LowerPlanetsMaxLevel/,
+        /(Dark)?RedStar\.MaxSectorDistanceToMaxPlanet/,
+        /(Dark)?RedStar\.HPBC/,
+        /(Dark)?RedStar\.LPBC/,
+        /(Dark)?RedStar\.RSLevel/,
+        /(Dark)?RedStar\.CroidMinDist/,
+        /(Dark)?RedStar\.CroidMaxDist/,
+        /(Dark)?RedStar\.SharedMinPlanet/,
+        /(Dark)?RedStar\.MaxShipsInRSSector/,
+        'RedStar.RSJoinInProgressWindowSec',
 
         // YellowStar
         'yellow_star_sectors.AsteroidsMin',

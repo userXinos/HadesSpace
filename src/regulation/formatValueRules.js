@@ -54,6 +54,7 @@ export default [
             'MotionShieldPct',
             'SolitudeDPSBoost',
             'FortifyDamageAmpFactor',
+            'HydroCostModifierPct',
         ],
         (v) => `${v}%`,
     ],

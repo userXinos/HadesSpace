@@ -57,8 +57,7 @@ const iconClasses = {
     'ship': type === 'Ship',
     'cerberus': isCerberus,
     'warp-line-body': customType == 'WarpLane',
-    'big-size': type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
-    'circle': type === 'Star',
+    'big-size': type == 'Star' || type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
     'width70': type === 'SpaceBuilding',
 };
 
@@ -153,14 +152,8 @@ function getUrl() {
 }
 
 .big-size {
-    height: 80%;
-    width: 80%;
-}
-.circle {
-    background-color: $border-color;
-    border-radius: 50%;
-    width: 85%;
     height: 100%;
+    width: 80%;
 }
 .width70 {
     width: 70%
