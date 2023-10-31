@@ -56,6 +56,7 @@ const iconStyle = {
 };
 const iconClasses = {
     'ship': type === 'Ship',
+    'projectiles': isProjectiles,
     'cerberus': isCerberus,
     'big-size': type == 'Star' || type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
     'width70': type === 'SpaceBuilding',
@@ -153,6 +154,10 @@ function getUrl() {
 }
 .cerberus {
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
+}
+.projectiles {
+    transform: rotate(45deg);
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px $border-color);
 }
 
 .big-size {
