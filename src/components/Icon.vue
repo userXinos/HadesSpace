@@ -49,6 +49,7 @@ const bgClasses = {
     'module-bg': type === 'Module' && !isProjectiles,
     'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (!spaceBuildsNoBG.includes(props.name as string)),
     'art-bg': props.name === 'art',
+    'interceptor': props.name === 'Fighter_Cerberus3_DrkNeb_lv1',
 };
 const iconStyle = {
     backgroundImage: `url('${url}')`,
@@ -56,7 +57,6 @@ const iconStyle = {
 const iconClasses = {
     'ship': type === 'Ship',
     'cerberus': isCerberus,
-    'warp-line-body': customType == 'WarpLane',
     'big-size': type == 'Star' || type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
     'width70': type === 'SpaceBuilding',
 };
@@ -82,19 +82,23 @@ function getUrl() {
         name = customType;
     }
 
-    // TODO: fix
-    if (true) {
-        if (isProjectiles && !name.includes('_DrkNeb')) {
-            name += '_DrkNeb';
-        }
-        if (isCerberus) {
-            if (name.includes('_lv1')) {
-                name = name.replace('_lv1', '');
-            } else if (!name.startsWith('Battleship') && !name.startsWith('CerberusStation') && !name.endsWith('Carrier')) {
-                name += '_lv1';
-            }
+    if (isCerberus && name.includes('_lv1')) {
+        name = name.replace('_lv1', '');
+
+        // random names in game
+        switch (name) {
+        case 'Fighter_Cerberus3_DrkNeb':
+            name = 'Fighter_Cerberus_DrkNeb';
+            break;
+        case 'Cerberus_Destroyer_DrkNeb':
+            name = 'Fighter_DrkNeb_Cerberus3';
+            break;
+        case 'Cerberus_DrkNeb_Swarm':
+            name = 'Cerberus_DrkNeb_swarm1';
+            break;
         }
     }
+
     try {
         return require(`@Img/${dir}/${name}.png`);
     } catch (err) {
@@ -169,8 +173,25 @@ function getUrl() {
     opacity: 0.9;
     background-size: auto 100%;
 }
-.warp-line-body {
-    background-size: 210%;
+.interceptor::before {
+    content: "";
+    position: absolute;
+    width: 85%;
+    height: 100%;
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
+    background-image: url(../img/game/background/InterceptorRings.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 </style>
