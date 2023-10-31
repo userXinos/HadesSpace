@@ -7,5 +7,10 @@
 
 <script setup>
 import Page from '@/components/Page.vue';
-import data from '@Data/distinctions.js';
+import distinctions from '@Data/distinctions.js';
+import objectArrayify from '@Utils/objectArrayify';
+
+const data = objectArrayify(distinctions, {
+    sort: ([, a], [, b]) => (a.GroupPriority ?? -100) - (b.GroupPriority ?? -100),
+});
 </script>

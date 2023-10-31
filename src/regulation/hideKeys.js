@@ -74,6 +74,8 @@ export default {
         'GoogleID',
         'UnlockType',
         'GroupPriority',
+        'ListGroupName',
+        'BadgeGroupName',
         'ShowOnPlayerBadge',
         'PreviewLevel',
         'ActivationTargetFX',
