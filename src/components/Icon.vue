@@ -173,16 +173,23 @@ function getUrl() {
     opacity: 0.9;
     background-size: auto 100%;
 }
-.interceptor::before {
-    content: "";
-    position: absolute;
-    width: 85%;
-    height: 100%;
-    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
-    background-image: url(../img/game/background/InterceptorRings.png);
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    animation: rotate 20s linear infinite;
+.interceptor {
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 85%;
+        height: 100%;
+        filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
+        background-image: url(../img/game/background/InterceptorRings.png);
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+        animation: rotate 20s linear infinite;
+    }
+    &:hover:before {
+        filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f52656);
+        animation-duration: 5s;
+    }
 }
 
 @keyframes rotate {
