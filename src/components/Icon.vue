@@ -44,10 +44,10 @@ const type = TYPES[props.dir] || null;
 const url = getUrl();
 
 const bgClasses = DISABLE_BG.includes(props.name) ? {} : {
-    'module-bg': type === 'Module' && !isProjectiles,
-    'space-building-bg': type === 'SpaceBuilding' && !isCerberus,
-    'art-bg': props.name === 'art',
-    'before-bg': props.name in PERSONAL_BG,
+    'module': type === 'Module' && !isProjectiles,
+    'space-building': type === 'SpaceBuilding' && !isCerberus,
+    'art': props.name === 'art',
+    'before': props.name in PERSONAL_BG,
     [PERSONAL_BG[props.name]]: props.name in PERSONAL_BG,
 };
 const iconClasses = {
@@ -134,41 +134,40 @@ $color-cerberus: #f66d8f;
     }
 }
 
-// icons
-.ship {
+
+.icon.ship {
     width: 40px;
     transform: rotate(45deg);
     padding: 10px;
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px $color-player);
 }
-.cerberus {
+.icon.cerberus {
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px $color-cerberus);
 }
-.projectiles {
+.icon.projectiles {
     transform: rotate(45deg);
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px $border-color);
 }
-.big-size {
+.icon.big-size {
     height: 100%;
     width: 80%;
 }
-.medium-size {
+.icon.medium-size {
     width: 70%
 }
 
-// backgrounds
-.module-bg {
+.icon-background.module {
     background-image: url(../img/game/background/Module.png);
 }
-.space-building-bg {
+.icon-background.space-building {
     background-image: url(@Img/game/background/SpaceBuilding.png);
 }
-.art-bg {
+.icon-background.art {
     background-image: url(../img/game/background/Artifact.png);
     opacity: 0.9;
     background-size: auto 100%;
 }
-.before-bg:before {
+.icon-background.before:before {
     content: "";
     position: absolute;
     width: 110%;
