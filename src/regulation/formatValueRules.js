@@ -220,7 +220,7 @@ export default [
         (modules) => (createElement) => modules == null ? null : (
             createElement('div', null,
                 modules.map((mod) => (
-                    createElement(RouterLink, { to: `${process.env.BASE_URL}${mod.SlotType}#${mod.Name}` },
+                    createElement(RouterLink, { to: `/${mod.SlotType}#${mod.Name}` },
                         createElement(Icon, { name: mod.Icon, dir: 'game/Modules' }),
                         store.state.userSettings.compactModulesByArtTypeTable ? null : createElement('p', null, t(mod.TID)),
                     )
