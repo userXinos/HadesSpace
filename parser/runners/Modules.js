@@ -53,7 +53,13 @@ export default class Modules extends Runner {
         const TIME_SLOWDOWN_FACTOR_WS = dataTables[2].WhiteStar.TimeSlowdownFactor;
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
-        data.FlagshipDartBarrage.TID_Description = data.FlagshipDartBarrage.TID_Description[0]; // какие-то буквы лишние в таблице
+        Object.keys(data.Suspend).forEach((k) => { // пупупу
+            if (k.includes('DamageAmplify')) {
+                const nK = k.replace('DamageAmplify', 'DamageReduce');
+                data.Suspend[nK] = data.Suspend[k];
+                delete data.Suspend[k];
+            }
+        });
         data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
@@ -109,11 +115,6 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         if (value.drone) {
             fixModulesShipsData(value.drone);
         }
-    }
-
-    // опрокинуть Salvage
-    if (value.SalvageHullPercent) {
-        value.SalvageHullPercent = Runner.transposeMatrix(value.SalvageHullPercent);
     }
 
     // добавить LaserTurret данные

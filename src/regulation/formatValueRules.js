@@ -140,11 +140,11 @@ export default [
         (v) => `x${v}`,
     ],
     [
-        ['MovementSlowdown', 'DamageAmplifyFactor'],
+        ['MovementSlowdown', 'DamageReduceFactor'],
         (v) => `${100 - v}%`,
     ],
     [
-        ['MiningSpeedModifierPct'],
+        ['MiningSpeedModifierPct', 'DamageAmplifyFactor'],
         (v) => `x${v / 100}`,
     ],
     [

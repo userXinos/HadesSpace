@@ -1850,8 +1850,8 @@ export default {
         EffectRadius: 2400,
         EffectDurationx10: 450,
         EffectDurationx10WS: 288000,
-        DamageAmplifyFactor_PVE: [60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32],
         MovementSlowdown: [75, 72, 69, 66, 63, 60, 57, 54, 51, 48, 46, 44, 42, 40, 38],
+        DamageReduceFactor_PVE: [60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32],
     },
     Recoil: {
         Name: "Recoil",
