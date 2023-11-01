@@ -16,10 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import CustomIcon from '@Utils/CustomIcon';
 
 export interface Props {
-    name: string|CustomIcon
+    name: string
     dir: string
 }
 
@@ -31,59 +30,43 @@ const TYPES = {
     'game/Distinctions': 'Distinction',
     'icons': 'specialIcon',
 };
-const CUSTOM_TYPES = {
-    WarpLane: [],
-    TimeModulator: [],
+const DISABLE_BG = ['warpLaneHub'];
+const PERSONAL_BG = {
+    'Fighter_Cerberus3_DrkNeb_lv1': 'interceptor',
+    'Fighter_DrkNeb_Cerberus4_lv1': 'phoenix',
+    'Cerberus_Destroyer_DrkNeb_lv1': 'destroyer',
 };
 
 const props = defineProps<Props>();
-const isCustom = (props.name.constructor === CustomIcon);
 const isCerberus = (props.name.includes('Cerberus'));
 const isProjectiles = (props.name.includes('projectiles/'));
 const type = TYPES[props.dir] || null;
-const customType = getCustomType();
 const url = getUrl();
 
-const spaceBuildsNoBG = ['warpLaneHub', 'timeModulator'];
-const bgClasses = {
+const bgClasses = DISABLE_BG.includes(props.name) ? {} : {
     'module-bg': type === 'Module' && !isProjectiles,
-    'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (!spaceBuildsNoBG.includes(props.name as string)),
+    'space-building-bg': type === 'SpaceBuilding' && !isCerberus,
     'art-bg': props.name === 'art',
-    'interceptor': props.name === 'Fighter_Cerberus3_DrkNeb_lv1',
-    'phoenix': props.name === 'Fighter_DrkNeb_Cerberus4_lv1',
-    'destroyer': props.name === 'Cerberus_Destroyer_DrkNeb_lv1',
-};
-const iconStyle = {
-    backgroundImage: `url('${url}')`,
+    'before-bg': props.name in PERSONAL_BG,
+    [PERSONAL_BG[props.name]]: props.name in PERSONAL_BG,
 };
 const iconClasses = {
     'ship': type === 'Ship',
     'projectiles': isProjectiles,
     'cerberus': isCerberus,
     'big-size': type == 'Star' || type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
-    'width70': type === 'SpaceBuilding',
+    'medium-size': type === 'SpaceBuilding',
+};
+const iconStyle = {
+    backgroundImage: `url('${url}')`,
 };
 
-function getCustomType() {
-    if (!isCustom) {
-        return null;
-    }
-    const n = props.name.name;
-    return (n in CUSTOM_TYPES) ? n : null;
-}
 function getUrl() {
     if (!props.name) {
         return '';
     }
     const { dir } = props;
     let { name } = props;
-
-    if (isCustom) {
-        if (!customType) {
-            return '';
-        }
-        name = customType;
-    }
 
     if (isCerberus && name.includes('_lv1')) {
         name = name.replace('_lv1', '');
@@ -114,6 +97,9 @@ function getUrl() {
 <style scoped lang="scss">
 @import "../style/vars";
 
+$color-player: #6bd7ff;
+$color-cerberus: #f66d8f;
+
 .main {
     display: inline-block;
     position: relative;
@@ -138,37 +124,39 @@ function getUrl() {
     bottom: 0;
     left: 0;
     right: 0;
+
+    .icon {
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 50%;
+        height: 60%;
+    }
 }
 
-.icon {
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 50%;
-    height: 60%;
-}
-
+// icons
 .ship {
     width: 40px;
     transform: rotate(45deg);
     padding: 10px;
-    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #6bd7ff);
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px $color-player);
 }
 .cerberus {
-    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px $color-cerberus);
 }
 .projectiles {
     transform: rotate(45deg);
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px $border-color);
 }
-
 .big-size {
     height: 100%;
     width: 80%;
 }
-.width70 {
+.medium-size {
     width: 70%
 }
+
+// backgrounds
 .module-bg {
     background-image: url(../img/game/background/Module.png);
 }
@@ -180,62 +168,41 @@ function getUrl() {
     opacity: 0.9;
     background-size: auto 100%;
 }
+.before-bg:before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 125%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+
+    @media screen and (max-width: 1000px) {
+        width: 90%;
+        height: 105%;
+    }
+    @media screen and (max-width: 500px) {
+        width: 120%;
+        height: 135%;
+    }
+}
 .interceptor {
     &:before {
-        content: "";
-        position: absolute;
-        width: 85%;
-        height: 100%;
-        filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
         background-image: url(../img/game/background/InterceptorRings.png);
-        background-repeat: no-repeat;
-        background-size: auto 100%;
+        filter: opacity(0.5) drop-shadow(0.1px 0px 0px $color-cerberus);
         animation: rotate 20s linear infinite;
-
-        @media screen and (max-width: 1000px) {
-            width: 90%;
-            height: 105%;
-        }
-        @media screen and (max-width: 500px) {
-            width: 100%;
-            height: 115%;
-        }
     }
     &:hover:before {
-        filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f52656);
+        filter: opacity(0.5) drop-shadow(0.1px 0px 0px red);
         animation-duration: 5s;
     }
 }
 .phoenix:before {
-    content: "";
-    position: absolute;
-    width: 110%;
-    height: 125%;
     background-image: url(../img/game/background/AreaShieldRing01.png), url(../img/game/background/ShipShield.png);
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
-
-    @media screen and (max-width: 500px) {
-        width: 120%;
-        height: 135%;
-    }
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px $color-cerberus);
 }
-
 .destroyer:before {
-    content: "";
-    position: absolute;
-    width: 110%;
-    height: 125%;
     background-image: url(../img/game/background/vengeanceIndicator.png);
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #ff0020);
-
-    @media screen and (max-width: 500px) {
-        width: 120%;
-        height: 135%;
-    }
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px red);
 }
 
 
@@ -247,5 +214,4 @@ function getUrl() {
         transform: rotate(360deg);
     }
 }
-
 </style>
