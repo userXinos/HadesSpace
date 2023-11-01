@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkhades_space"]=self["webpackChunkhades_space"]||[]).push([[662],{4434:(e,s,a)=>{a.r(s),a.d(s,{default:()=>u});var r=a(66252),t=a(52946);const p={__name:"Shield",setup(e){return(e,s)=>((0,r.wg)(),(0,r.j4)(t.ZP,{type:"Shield",portrait:"portrait_CerberusPhoenix.jpg"}))}},h=p,u=h}}]);
