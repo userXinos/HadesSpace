@@ -51,6 +51,7 @@ const bgClasses = {
     'art-bg': props.name === 'art',
     'interceptor': props.name === 'Fighter_Cerberus3_DrkNeb_lv1',
     'phoenix': props.name === 'Fighter_DrkNeb_Cerberus4_lv1',
+    'destroyer': props.name === 'Cerberus_Destroyer_DrkNeb_lv1',
 };
 const iconStyle = {
     backgroundImage: `url('${url}')`,
@@ -220,6 +221,23 @@ function getUrl() {
         height: 135%;
     }
 }
+
+.destroyer:before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 125%;
+    background-image: url(../img/game/background/vengeanceIndicator.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #ff0020);
+
+    @media screen and (max-width: 500px) {
+        width: 120%;
+        height: 135%;
+    }
+}
+
 
 @keyframes rotate {
     0% {
