@@ -205,10 +205,20 @@ function getUrl() {
         animation-duration: 5s;
     }
 }
-.phoenix {
+.phoenix:before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 125%;
     background-image: url(../img/game/background/AreaShieldRing01.png), url(../img/game/background/ShipShield.png);
+    background-repeat: no-repeat;
     background-size: auto 100%;
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
+
+    @media screen and (max-width: 500px) {
+        width: 120%;
+        height: 135%;
+    }
 }
 
 @keyframes rotate {
