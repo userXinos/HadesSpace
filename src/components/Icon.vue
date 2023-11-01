@@ -50,6 +50,7 @@ const bgClasses = {
     'space-building-bg': type === 'SpaceBuilding' && !isCerberus && (!spaceBuildsNoBG.includes(props.name as string)),
     'art-bg': props.name === 'art',
     'interceptor': props.name === 'Fighter_Cerberus3_DrkNeb_lv1',
+    'phoenix': props.name === 'Fighter_DrkNeb_Cerberus4_lv1',
 };
 const iconStyle = {
     backgroundImage: `url('${url}')`,
@@ -203,6 +204,11 @@ function getUrl() {
         filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f52656);
         animation-duration: 5s;
     }
+}
+.phoenix {
+    background-image: url(../img/game/background/AreaShieldRing01.png), url(../img/game/background/ShipShield.png);
+    background-size: auto 100%;
+    filter: opacity(0.5) drop-shadow(0.1px 0px 0px #f66d8f);
 }
 
 @keyframes rotate {
