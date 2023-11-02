@@ -165,7 +165,7 @@ export const gameCharsLocKeys = {
     DamageRange: 'TID_MODULE_PROJECTILE_DAMAGERANGE',
     IncreaseSectorHydroPct: 'TID_MODULE_ENRICH_INCREASE',
     MaxNewAsteroids: 'TID_MODULE_GENESIS_MAX_ASTEROIDS',
-    HydroPerNewAsteroid: 'TID_MODULE_GENESIS_MAX_HYDRO',
+    MaxNewHydro: 'TID_MODULE_GENESIS_MAX_HYDRO',
     SpawnLifetime: 'TID_DRONE_LIFETIME',
     DPS: 'TID_FLEET_DPM',
     DamageRangeWhenNeutralized: 'TID_MODULE_SECONDARY_RANGE',

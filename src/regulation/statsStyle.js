@@ -21,6 +21,7 @@ export default {
         'DroneHydro',
         'OnBoardHydroMax',
         'HydroPerNewAsteroid',
+        'MaxNewHydro',
         'HydrogenCapacity',
         'ActivationHydroOnBoard',
         'FuelStorage',

@@ -53,13 +53,6 @@ export default class Modules extends Runner {
         const TIME_SLOWDOWN_FACTOR_WS = dataTables[2].WhiteStar.TimeSlowdownFactor;
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
-        Object.keys(data.Suspend).forEach((k) => { // пупупу
-            if (k.includes('DamageAmplify')) {
-                const nK = k.replace('DamageAmplify', 'DamageReduce');
-                data.Suspend[nK] = data.Suspend[k];
-                delete data.Suspend[k];
-            }
-        });
         data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
         delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
@@ -128,6 +121,25 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
         value.LinkDPSBoost = value.DPS.map((e) => e * LinkDPSBoostPct / 100);
         value.LinkDPSBoostWS = value.DPS_WS.map((e) => Math.floor(e * (3600 / TIME_SLOWDOWN_FACTOR_WS) * LinkDPSBoostPct / 100));
+    }
+
+    // пупупу
+    if (key === 'Suspend') {
+        Object.keys(value).forEach((k) => {
+            if (k.includes('DamageAmplify')) {
+                const nK = k.replace('DamageAmplify', 'DamageReduce');
+                value[nK] = value[k];
+                delete value[k];
+            }
+        });
+    }
+
+    if (key === 'Genesis') {
+        value.MaxNewHydro_YS = value.HydroPerNewAsteroid_YS.map(((e) => e * value.MaxNewAsteroids_PvE));
+        value.MaxNewHydro_RS = value.HydroPerNewAsteroid_RS.map(((e) => e * value.MaxNewAsteroids_PvE));
+        value.MaxNewHydro_WS = value.HydroPerNewAsteroid_WS.map(((e) => e * value.MaxNewAsteroids_PvP));
+
+        [ 'HydroPerNewAsteroid_YS', 'HydroPerNewAsteroid_RS', 'HydroPerNewAsteroid_WS' ].forEach((k) => delete value[k]);
     }
 
     // фикс БЗ стат
