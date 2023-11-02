@@ -71,7 +71,7 @@ export default [
                 text: { locKey: 'TID_CORP_FLAGSHIP' },
                 path: '/ships#FlagshipModules',
                 icon: {
-                    name: 'Mod_Category_Support',
+                    name: 'Mod_Category_Flagship',
                     dir: 'game/Modules',
                 },
             },
