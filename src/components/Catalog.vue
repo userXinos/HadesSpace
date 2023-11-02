@@ -88,25 +88,17 @@ $mw: 960px;
         font-weight: bold;
     }
     .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        clear: both;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 18%);
         padding-bottom: 2%;
+        grid-gap: 1vw;
+        justify-content: center;
 
-        .item {
-            display: inline-block;
-            position: relative;
-            width: 20%;
-
-            @media screen and (max-width: $mw) {
-                width: 100%;
-            }
+        @media screen and (max-width: 800px){
+            grid-template-columns: repeat(auto-fill, 24%);
         }
-
-        .link {
-            display: contents;
+        @media screen and (max-width: 300px){
+            grid-template-columns: repeat(auto-fill, 32%);
         }
     }
 }
