@@ -103,7 +103,7 @@
 <script lang="ts">
 import objectArrayify from '@Utils/objectArrayify';
 import isHide from '@Handlers/isHide';
-import { regex as postfixesRegex } from '@Regulation/postfixes.mjs';
+import postfixes, { regex as postfixesRegex } from '@Regulation/postfixes.mjs';
 import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';
 import Store from '@/store';
 
@@ -129,11 +129,17 @@ function getCharacteristics(d: Record<string, unknown>): GetCharacteristicsOut {
         ),
     }) as GetCharacteristicsOut;
 
+    const keys = Object.keys(res);
+    const checkOtherPostfix = (key: string) => {
+        const regex = new RegExp(`${key}_?(${postfixes.join('|')})$`);
+        return keys.some((k) => regex.test(k));
+    };
+
     // eslint-disable-next-line guard-for-in
     for (const key in res) {
         const hasPostfix = postfixesRegex.test(key);
 
-        if (hasPostfix || starKeys.includes(key)) {
+        if (hasPostfix || (starKeys.includes(key) && checkOtherPostfix(key))) {
             if (!('_statsByStar' in res)) {
                 (res as GetCharacteristicsOut)._statsByStar = [{}, false];
             }
@@ -227,7 +233,7 @@ function VNode({ render }) {
 $mw: 900px;
 
 .wrapper {
-    margin-top: 2%;
+    margin-top: 1%;
     display: flex;
     gap: 2%;
 

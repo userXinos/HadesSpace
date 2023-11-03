@@ -218,7 +218,6 @@ export default {
         /((\w+)Drone|LaserTurret|DroneSquad)\.(BuildCost|DesignUpgradeCost|DesignUpgradeTime|NewModuleSlots)/,
         'RemoteBomb.SpeedPVE',
         'RemoteBomb.SpeedPVP',
-        'LaserTurret_Laser.WeaponEffectType',
         'LaserTurret.InitialModule',
         'LaserTurret.Speed',
         'LaserTurret.InitialModuleLevels',

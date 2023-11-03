@@ -63,7 +63,7 @@
                 v-else
                 :class="value && statsStyleName(row[0])"
                 class="stats-style"
-              ><template v-if="value && TO_SPOLER_KEYS.includes(row[0])">
+              ><template v-if="value && TO_SPOILER_KEYS.includes(row[0])">
                  <DataStatTooltip
                    :k="value"
                    :is-loc-key="true"
@@ -101,7 +101,7 @@ const LABEL_BY_ORDER = {
     'pvp': { dir: 'icons', name: 'star_pvp' },
 };
 const LABEL_KEYS = Object.keys(LABEL_BY_ORDER);
-const TO_SPOLER_KEYS = ['TID_Description'];
+const TO_SPOILER_KEYS = ['TID_Description'];
 
 export interface Props {
     items: { [k:string]: object|unknown[] },
@@ -162,18 +162,14 @@ const table = computed(() => {
 
 @import "../style/vars";
 
+$bg-color: #29373d;
+
 .table {
     border-collapse: collapse;
     width: 100%;
 
-    .separator {
-        width: 5px;
-        background-color: #6799b0;
-        height: 106%;
-
-        @media screen and (max-width: 500px) {
-            width: 2px;
-        }
+    @media screen and (max-width: 500px){
+        font-size: 80%;
     }
 
     thead tr {
@@ -188,7 +184,7 @@ const table = computed(() => {
 
             .cell {
                 height: 100%;
-                background-color: #29373d;
+                background-color: $bg-color;
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;
                 display: flex;
@@ -200,16 +196,16 @@ const table = computed(() => {
                     height: 60px;
 
                     @media screen and (max-width: 500px) {
-                        width: 40px;
-                        height: 40px;
+                        width: 30px;
+                        height: 30px;
                     }
                 }
             }
         }
     }
 
-    tbody {
-        background: #29373d;
+    tbody td {
+        background: $bg-color;
 
         .cell-bg {
             margin: 0 5px;
@@ -217,13 +213,28 @@ const table = computed(() => {
             .cell {
                 width: 100%;
                 border: 1px solid map.get($table, border);
-                border-radius: 10px;
+                border-radius: 5px;
                 text-align: center;
                 margin: 5px 1px;
-                background-color: #2e3f45;
+                background: #2e3f45
             }
         }
     }
+    tbody tr:first-child {
+        & > td:first-child {
+            border-top-left-radius: 10px;
+        }
+    }
+    tbody tr:last-child {
+        & > td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+        & > td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+    }
+
+
     thead th:first-child .cell-bg {
         height: 0;
     }
@@ -234,7 +245,7 @@ const table = computed(() => {
         text-align: start;
         border: none;
         background: none;
-        padding-left: 15px;
+        padding-left: 1%;
     }
 }
 </style>
