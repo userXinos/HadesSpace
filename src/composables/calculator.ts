@@ -1,7 +1,8 @@
 import { reactive } from 'vue';
 
+import Store from '@/store';
 import objectArrayify from '@Utils/objectArrayify';
-import { getCharsWithHideStatus } from '@/components/DataHeadStats.vue';
+import isHide from '@Handlers/isHide';
 
 import type { Callback as mapFn } from '@Utils/objectArrayify';
 import type { InputValue, Input, OutputValue, OutputMap, Output } from '@/typings/calculator';
@@ -126,7 +127,7 @@ export default function calculator(stackChars: string[], initCalcTotal: InitCalc
     function getChars(element: object, maxLevel: number): OutputValue {
         type ObjAndVisible = [object, boolean];
 
-        const raw = getCharsWithHideStatus(element as Record<string, unknown>);
+        const raw = getCharacteristicsLEGACY(element as Record<string, unknown>);
         removeNotArrayChars(raw as {[key: string]: ObjAndVisible});
 
         return raw as OutputValue;
@@ -165,4 +166,26 @@ export default function calculator(stackChars: string[], initCalcTotal: InitCalc
 
 function isObject(o: unknown) {
     return (typeof o === 'object' && !Array.isArray(o) && o !== null);
+}
+
+function getCharacteristicsLEGACY(d: Record<string, unknown>): object {
+    const res = objectArrayify(d, {
+        map: ([k, value]) => [
+            k,
+            [
+                value,
+                isHide(k, d.Name as string),
+            ],
+        ],
+        filter: ([k, [, remove]]) => (
+            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+        ),
+    }) as Record<string, [unknown|string, boolean]>;
+
+    if (d.projectile) { // перенести вниз
+        const { projectile } = res;
+        delete res.projectile;
+        res.projectile = projectile;
+    }
+    return res;
 }

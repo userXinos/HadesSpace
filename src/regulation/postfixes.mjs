@@ -6,7 +6,6 @@ const postfixes = [
     'BASE',
     'Base', // yes...
     'YS',
-    'NonYS',
     'PVP',
     'PVE',
     'PvE',

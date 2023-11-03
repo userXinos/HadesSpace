@@ -48,15 +48,22 @@
               <li
                 v-for="([value, filtered], key) in getCharacteristics(item)"
                 :key="key"
-                :class="{'line': true, filtered}"
+                :class="{filtered}"
+                class="line"
               >
                 <!--suppress HtmlUnknownTag -->
                 <DataHeadStats
+                  v-if="key != '_statsByStar'"
                   :item-key="key"
                   :items="value"
                   :format="format"
                   :parent-id="`${parentId}-${name}`"
                   :parent="item"
+                />
+                <DataStatByStar
+                  v-else
+                  :items="value"
+                  :format="format"
                 />
               </li>
             </ul>
@@ -96,21 +103,41 @@
 <script lang="ts">
 import objectArrayify from '@Utils/objectArrayify';
 import isHide from '@Handlers/isHide';
+import { regex as postfixesRegex } from '@Regulation/postfixes.mjs';
+import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';
 import Store from '@/store';
 
-function getCharacteristics(d: Record<string, unknown>): object {
-    const res = objectArrayify(d, {
+const EXCLUDE_KEYS_FROM_TIME = ['UnlockTime'];
+const starKeys = formatValueRulesTime
+    .map(([keys]) => (keys as string[]).filter((k) => !EXCLUDE_KEYS_FROM_TIME.includes(k)))
+    .flat();
+
+
+interface GetCharacteristicsOut {
+    [k: string]: [unknown, boolean],
+    _statsByStar: [{[k: string]: unknown}, boolean]
+}
+
+function getCharacteristics(d: Record<string, unknown>): GetCharacteristicsOut {
+    const res: GetCharacteristicsOut = objectArrayify(d, {
         map: ([k, value]) => [
             k,
-            [
-                value,
-                isHide(k, d.Name as string),
-            ],
+            [value, isHide(k, d.Name as string)],
         ],
         filter: ([k, [, remove]]) => (
             k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
         ),
-    }) as Record<string, [unknown|string, boolean]>;
+    }) as GetCharacteristicsOut;
+
+    for (const key in res) {
+        if (postfixesRegex.test(key) || starKeys.includes(key)) {
+            if (!('_statsByStar' in res)) {
+                (res as GetCharacteristicsOut)._statsByStar = [{}, false];
+            }
+            res._statsByStar[0][key] = res[key][0]; // eslint-disable-line prefer-destructuring
+            delete res[key];
+        }
+    }
 
     if (d.projectile) { // перенести вниз
         const { projectile } = res;
@@ -119,16 +146,13 @@ function getCharacteristics(d: Record<string, unknown>): object {
     }
     return res;
 }
-
-export {
-    getCharacteristics as getCharsWithHideStatus,
-};
 </script>
 
 <script setup lang="ts">
 import { h, computed } from 'vue';
 import Icon from '@/components/Icon.vue';
 import DataStatTooltip from '@/components/DataStatTooltip.vue';
+import DataStatByStar from '@/components/DataStatByStar.vue';
 import i18n from '@Utils/Vue/i18n';
 
 import statsStyleName from '@Handlers/statsStyleName';
