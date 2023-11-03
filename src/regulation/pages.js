@@ -199,7 +199,7 @@ export default [
                 path: '/bluestar',
                 component: () => import(/* webpackChunkName: "BlueStar" */ '../pages/BlueStar.vue'),
                 icon: {
-                    name: 'star_blue',
+                    name: 'star_blue_2',
                     dir: 'game/Stars',
                 },
             },

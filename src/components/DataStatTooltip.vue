@@ -33,6 +33,7 @@ import locKeys from '@Regulation/locKeys.mjs';
 
 export interface Props {
     k: string,
+    isLocKey?: true,
 }
 
 const TOOLTIP_WIDTHS = [400, 200];
@@ -59,6 +60,9 @@ onUnmounted(() => {
 });
 
 function hasInfoGetter() {
+    if (props.isLocKey) {
+        return [true, props.k];
+    }
     const newKey = locKeys[props.k] || props.k;
 
     if (te(`${newKey}_DESCR`)) {

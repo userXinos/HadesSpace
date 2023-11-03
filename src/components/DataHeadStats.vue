@@ -129,13 +129,23 @@ function getCharacteristics(d: Record<string, unknown>): GetCharacteristicsOut {
         ),
     }) as GetCharacteristicsOut;
 
+    // eslint-disable-next-line guard-for-in
     for (const key in res) {
-        if (postfixesRegex.test(key) || starKeys.includes(key)) {
+        const hasPostfix = postfixesRegex.test(key);
+
+        if (hasPostfix || starKeys.includes(key)) {
             if (!('_statsByStar' in res)) {
                 (res as GetCharacteristicsOut)._statsByStar = [{}, false];
             }
             res._statsByStar[0][key] = res[key][0]; // eslint-disable-line prefer-destructuring
             delete res[key];
+        }
+        if (hasPostfix) {
+            const parentKey = key.replace(postfixesRegex, '');
+            if (parentKey && res[parentKey] && !(parentKey in res._statsByStar[0])) {
+                res._statsByStar[0][parentKey] = res[parentKey][0]; // eslint-disable-line prefer-destructuring
+                delete res[parentKey];
+            }
         }
     }
 

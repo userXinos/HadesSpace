@@ -61,8 +61,16 @@
 
               <span
                 v-else
-                :class="statsStyleName(row[0])"
-              >{{ format.value(row[0], value) }}
+                :class="value && statsStyleName(row[0])"
+                class="stats-style"
+              ><template v-if="value && TO_SPOLER_KEYS.includes(row[0])">
+                 <DataStatTooltip
+                   :k="value"
+                   :is-loc-key="true"
+                 > {{ $t('TID_OBJ_ACTION_EXPLORE_SECTOR') }}
+                 </DataStatTooltip>
+               </template>
+                <template v-else>{{ format.value(row[0], value) }}</template>
               </span>
 
             </div>
@@ -81,19 +89,19 @@ import statsStyleName from '@Handlers/statsStyleName';
 
 import { regex as postfixRegex } from '@Regulation/postfixes.mjs';
 
-const dir = 'game/Stars';
 const LABEL_BY_ORDER = {
     'base': 'Base',
-    '': { dir, name: 'star_yellow' },
-    'ys': { dir, name: 'star_yellow' },
-    'rs': { dir, name: 'star_red' },
-    'ws': { dir, name: 'star_white' },
-    'bs': { dir, name: 'star_blue' },
-    'bls': { dir, name: 'star_blue' },
-    'pve': [{ dir, name: 'star_yellow' }, { dir, name: 'star_red' }],
-    'pvp': [{ dir, name: 'star_white' }, { dir, name: 'star_blue' }],
+    '': { dir: 'icons', name: 'star_multi' },
+    'ys': { dir: 'game/Stars', name: 'star_yellow' },
+    'rs': { dir: 'game/Stars', name: 'star_red' },
+    'ws': { dir: 'game/Stars', name: 'star_white' },
+    'bs': { dir: 'game/Stars', name: 'star_blue_2' },
+    'bls': { dir: 'game/Stars', name: 'star_blue_2' },
+    'pve': { dir: 'icons', name: 'star_pve' },
+    'pvp': { dir: 'icons', name: 'star_pvp' },
 };
 const LABEL_KEYS = Object.keys(LABEL_BY_ORDER);
+const TO_SPOLER_KEYS = ['TID_Description'];
 
 export interface Props {
     items: { [k:string]: object|unknown[] },
@@ -108,9 +116,6 @@ const table = computed(() => {
         const baseKey = k.replace(postfixRegex, '');
         const labelIndex = LABEL_KEYS.indexOf((postfixRegex.exec(k)?.[1] ?? '').toLowerCase());
 
-        if (baseKey == 'TID_Description') {
-            return; // TODO
-        }
         if (!(baseKey in preBody)) {
             preBody[baseKey] = Array.from({ length: LABEL_KEYS.length });
         }
@@ -122,12 +127,10 @@ const table = computed(() => {
     const bodyKeys = Object.keys(preBody);
 
     for (let i = LABEL_KEYS.length; i >= 0; i--) {
-        const isSkipLabelKey = Object.values(preBody).every((e) => e[i] == undefined);
+        const isSkipLabelKey = bodyValuesMatrix.every((row) => row[i] == undefined);
 
         if (isSkipLabelKey) {
-            bodyValuesMatrix.forEach((row) => {
-                row.splice(i, 1);
-            });
+            bodyValuesMatrix.forEach((row) => row.splice(i, 1));
         } else {
             const headLabel = LABEL_BY_ORDER[LABEL_KEYS[i]];
             if (typeof headLabel == 'object' && head.some((e) => typeof e == 'object' && e.name == headLabel.name)) {
@@ -135,14 +138,12 @@ const table = computed(() => {
                 // просто перенос значений по индексу с оставлением оригинального, но уже путсного ключа preBody
                 bodyValuesMatrix.forEach((row, iRow) => {
                     const value = row[i];
-                    if (value) {
+                    if (value && !row[i + 1]) {
                         bodyValuesMatrix[iRow][i + 1] = value;
                         delete bodyValuesMatrix[iRow][i];
                     }
                 });
-                bodyValuesMatrix.forEach((row) => {
-                    row.splice(i, 1);
-                });
+                bodyValuesMatrix.forEach((row) => row.splice(i, 1));
             } else {
                 head.unshift(headLabel);
             }
