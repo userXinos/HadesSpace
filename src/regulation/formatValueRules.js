@@ -108,7 +108,7 @@ export default [
     ],
     [
         ['ImpulseSpeedup'],
-        (v) => `${v / 10}x`,
+        (v) => `${v}x`,
     ],
     [
         ['BlueStar_CreditPctPerPos'],

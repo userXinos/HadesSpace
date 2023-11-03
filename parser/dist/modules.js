@@ -239,6 +239,7 @@ export default {
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
         DNDiff: "TID_DNC_IMPULSE_SHIELD",
+        ImpulseDurationWS: 6000,
     },
     OmegaShield: {
         Name: "OmegaShield",

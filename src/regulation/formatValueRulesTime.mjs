@@ -32,6 +32,7 @@ export default [
             'WSDisbandCooldown',
             'DPSRampTimes',
             'RSLESec',
+            'ImpulseDuration',
         ],
         (v) => v,
     ],
