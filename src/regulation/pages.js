@@ -105,7 +105,7 @@ export default [
                 path: '/cerberus',
                 component: () => import(/* webpackChunkName: "Cerberus" */ '../pages/Cerberus.vue'),
                 icon: {
-                    name: 'Fighter_DrkNeb_Cerberus5_lv1',
+                    name: 'Fighter_Cerberus3_DrkNeb_lv1',
                     dir: 'game/Ships',
                 },
             },

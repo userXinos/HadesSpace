@@ -171,7 +171,7 @@ $color-cerberus: #f66d8f;
     content: "";
     position: absolute;
     width: 110%;
-    height: 125%;
+    height: 127.65%;
     background-repeat: no-repeat;
     background-size: auto 100%;
 
