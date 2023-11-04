@@ -1,5 +1,6 @@
 import { reactive } from 'vue';
-import i18n, { loadLocaleMessages } from '@Utils/Vue/i18n';
+import i18n from '@Utils/Vue/i18n';
+import { loadLocaleMessages } from '@Utils/Vue/i18n';
 import JSONCrush from 'jsoncrush';
 
 import type { Input, InputValue, Config } from '@/typings/calculator';
@@ -79,7 +80,7 @@ export default class CalculatorConfig {
     public async parseString(text: string) {
         const entries: [string, number][] = [];
 
-        if (!i18n.global.availableLocales.includes(STRING_FORMAT_LOCALE)) {
+        if (!(i18n.global.availableLocales as string[]).includes(STRING_FORMAT_LOCALE)) {
             await loadLocaleMessages(STRING_FORMAT_LOCALE);
         }
 

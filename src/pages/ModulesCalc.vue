@@ -156,7 +156,7 @@
 
 <script setup lang="ts">
 import { ref, Ref, reactive } from 'vue';
-import i18n from '../utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
@@ -169,7 +169,7 @@ import statsStyleName from '../utils/Handlers/statsStyleName';
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
 const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
 
-const { t } = i18n.global;
+const { t } = useI18n();
 const inputLocKeys = {
     actually: 'CURRENT_LVL',
     plan: 'PLAN_LVL',

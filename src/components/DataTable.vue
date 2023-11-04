@@ -115,7 +115,7 @@
 <script setup lang="ts">
 import { ref, computed, useSlots, onUpdated, onMounted, onUnmounted, h } from 'vue';
 import { Ref } from 'vue';
-import i18n from '@Utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 
 import DataStatTooltip from '@/components/DataStatTooltip.vue';
 import tableMaskUtil from '@Utils/tableMask';
@@ -133,7 +133,7 @@ export interface Props {
 const HEIGHT_HEADER = 80;
 const TH_PADDING = 20;
 
-const { t, te } = i18n.global;
+const { t, te } = useI18n();
 const props = withDefaults(defineProps<Props>(), {
     mergeCells: true,
     colLvlStartAt: 1,

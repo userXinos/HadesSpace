@@ -189,6 +189,7 @@ export const gameCharsLocKeys = {
     ColonizeCost: 'TID_OBJECT_ACTION_COLONIZE',
     MaxHealth: 'TID_OBJECT_ACTION_COLONIZE',
     ImmolationDamage: 'TID_MODULE_IMMOLATION_DAMAGE_AMT',
+    Crunch: 'TID_MODULE_CRUNCH',
 };
 
 
@@ -273,6 +274,8 @@ export default {
     DronesIgnoreBarrier: 'DRONES_IGNORE_BARRIER',
     RushCostModifier: 'RUSH_COST_MODIFIER',
     MinScannerLevel: 'CLUSTER',
+    PvP: 'PVP',
+    PvE: 'PVE',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,

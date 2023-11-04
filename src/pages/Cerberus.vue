@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import i18n from '@Utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 import Page from '@/components/Page.vue';
 import VContent from '../components/Content.vue';
 
@@ -85,7 +85,7 @@ if (shipsData.CerberusColossus.modules[1].SalvageHullPercent) {
     shipsData.CerberusColossus.modules[1].SalvageHullPercent.pop();
 }
 
-
+const { t } = useI18n();
 const UNNECESSARY_MODULE_STATS = [
     'BSScore',
     'BCCost',
@@ -130,7 +130,7 @@ function getShips(path) {
     });
 }
 function getShipLocName(key) {
-    return (key in shipsData) ? i18n.global.t(shipsData[key].TID) : key;
+    return (key in shipsData) ? t(shipsData[key].TID) : key;
 }
 </script>
 

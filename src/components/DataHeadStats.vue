@@ -169,7 +169,7 @@ import { h, computed } from 'vue';
 import Icon from '@/components/Icon.vue';
 import DataStatTooltip from '@/components/DataStatTooltip.vue';
 import DataStatByStar from '@/components/DataStatByStar.vue';
-import i18n from '@Utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 
 import statsStyleName from '@Handlers/statsStyleName';
 import locKeys from '@Regulation/locKeys.mjs';
@@ -189,7 +189,7 @@ const ICON_DIR_LIST = {
     default: 'game/Modules',
 };
 
-const { t, te } = i18n.global;
+const { t, te } = useI18n();
 const props = withDefaults(defineProps<Props>(), {
     itemKey: null,
     parentId: null,

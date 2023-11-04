@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import i18n from '@Utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 
 import { Head as VHead } from '@vueuse/head';
 import VContent from '../components/Content.vue';
@@ -31,10 +31,11 @@ export interface Props {
     portrait?: {src: string, alt: string}|null
 }
 
+const { t } = useI18n();
 const props = withDefaults(defineProps<Props>(), {
     portrait: null,
 });
-const title = computed(() => i18n.global.t(props.titleLocKey));
+const title = computed(() => t(props.titleLocKey));
 </script>
 
 <style scoped src="../style/page.scss" lang="scss"></style>

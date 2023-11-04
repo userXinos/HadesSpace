@@ -162,7 +162,7 @@
 
 <script setup lang="ts">
 import { computed, ref, nextTick } from 'vue';
-import i18n from '@Utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 import router from '@Utils/Vue/router';
 
 import { Head as VHead } from '@vueuse/head';
@@ -188,7 +188,7 @@ export interface Props {
     input: Input
 }
 
-const { t } = i18n.global;
+const { t } = useI18n();
 const props = defineProps<Props>();
 const emit = defineEmits(['update:input', 'setup']);
 

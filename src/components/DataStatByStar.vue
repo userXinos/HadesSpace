@@ -11,20 +11,13 @@
               <template v-if="value == null" />
               <template v-else-if="typeof value == 'string'">{{ $t(value) }}</template>
               <template v-else-if="Array.isArray(value)">
-                <template
+                <!--suppress RequiredAttributes -->
+                <Icon
                   v-for="(v, j) in value"
-                >
-                  <!--suppress RequiredAttributes -->
-                  <Icon
-                    v-bind="v"
-                    class="icon"
-                  />
-                  <div
-                    v-if="j+1 < value.length"
-                    :key="j"
-                    class="separator"
-                  />
-                </template>
+                  :key="j"
+                  v-bind="v"
+                  class="icon"
+                />
               </template>
               <!--suppress RequiredAttributes -->
               <Icon

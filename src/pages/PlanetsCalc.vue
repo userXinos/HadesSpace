@@ -99,7 +99,7 @@
 
 <script setup lang="ts">
 import { ref, computed, Ref, reactive } from 'vue';
-import i18n from '../utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 
 import levels from '@Data/planet_levels.js';
 import planetsData from '@Data/planets.js';
@@ -130,7 +130,7 @@ const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name', 'ShipmentsHydroValuePerDay'];
 const TOTAL_KEYS = Object.keys(levels)
     .filter((k) => ![...STACK_CHARS, ...HIDE_LVL_CHARS].includes(k));
 
-const { t } = i18n.global;
+const { t } = useI18n();
 const planets = ref([]);
 const input: Ref<Input> = ref({ actually: {}, plan: {} });
 const openModal = ref(false);

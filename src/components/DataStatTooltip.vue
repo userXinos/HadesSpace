@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { ref, computed, ComputedRef, reactive, Ref, onMounted, onUnmounted } from 'vue';
-import i18n from '@Utils/Vue/i18n';
+import { useI18n } from 'vue-i18n';
 import locKeys from '@Regulation/locKeys.mjs';
 
 export interface Props {
@@ -37,7 +37,7 @@ export interface Props {
 }
 
 const TOOLTIP_WIDTHS = [400, 200];
-const { te } = i18n.global;
+const { te } = useI18n();
 const props = defineProps<Props>();
 
 const showTooltip = ref(false) as Ref<boolean>;

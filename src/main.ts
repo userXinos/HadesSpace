@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 
 import router from '@Utils/Vue/router';
-import i18n from '@Utils/Vue/i18n';
+import i18n, { setI18nLanguage } from '@Utils/Vue/i18n';
 import store from '@Store/index';
 import App from './App.vue';
 
@@ -16,6 +16,10 @@ import clickOutside from '@Utils/Vue/clickOutside';
 import '@/style/main.scss';
 import '@Utils/Vue/registerServiceWorker';
 
+// noinspection JSIgnoredPromiseFromCall
+setI18nLanguage(store.state.userSettings.language);
+
+// noinspection TypeScriptValidateTypes
 createApp(App)
     .use(createHead())
 
