@@ -111,10 +111,37 @@ function getRandomIfArr(elem) {
             li {
                 display: inline-block;
                 flex-grow: 1;
-                padding: 10px;
+                padding: 20px;
                 width: 100%;
 
                 max-width: 90px;
+
+                a > div {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+
+                    .icon {
+                        width: 100%
+                    }
+                }
+
+                &:lang('de'), &:lang('fr'), &:lang('it') {
+                    word-break: break-all;
+                    padding-right: 20px;
+                    padding-left: 20px;
+
+                    a > div {
+                        width: 130%;
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+
+                        .icon {
+                            width: 80%
+                        }
+                    }
+                }
 
                 @media screen and (max-width: 1600px){
                     max-width: 80px;
