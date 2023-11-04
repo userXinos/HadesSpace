@@ -3,7 +3,6 @@
   TYPE_MOD_MINING: '采矿模组',
   TYPE_MOD_WEAPON: '武器模组',
   TYPE_MOD_SHIELD: '护盾模组',
-  TYPE_MOD_SUPPORT: '支持模组',
   TYPE_MOD_COMBAT: '战斗模组',
   TYPE_MOD_DRONE: '无人机模组',
   LVL: '等级',
