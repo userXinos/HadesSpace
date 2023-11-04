@@ -91,12 +91,14 @@ $selected-color: $border-color;
         list-style-type: none;
         cursor: pointer;
         user-select: none;
-        // user-drag: none; - "Unknown CSS property 'user-drag'"
 
         .section {
             display: inline-block;
             margin: 10px;
 
+            &:lang('zh-si') {
+                width: 90px;
+            }
             @media screen and (max-width: $mv) {
                 display: block;
                 margin: 0;
@@ -105,8 +107,9 @@ $selected-color: $border-color;
             > div {
                 > div {
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: start;
                     align-items: center;
+                    gap: 5px;
 
                     @media screen and (max-width: $mv) {
                         justify-content: left;
