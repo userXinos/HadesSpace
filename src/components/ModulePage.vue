@@ -2,7 +2,7 @@
   <Page
     :title-loc-key="locKey"
     :content-args="{data, iconDir: 'game/Modules', tableOpts}"
-    :portrait="{src: img, alt: `${type} modules`}"
+    :portrait="{src: img, alt: `${type} modules portrait`}"
   />
 </template>
 
@@ -72,6 +72,6 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const data = props.postFilter(getBySlotType(props.type));
 const img = require(`@Img/game/portraits/${props.portrait}`) as string;
-const locKey = `TYPE_MOD_${props.type.toUpperCase()}`;
+const locKey = `TYPE_MOD_${(props.type == 'Support' ? 'COMBAT' : props.type).toUpperCase()}`;
 const tableOpts = computed(tableOptsGetter);
 </script>
