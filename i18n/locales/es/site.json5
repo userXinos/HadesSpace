@@ -1,9 +1,10 @@
 {
-  TYPE_MOD_TRADE: 'Módulos comerciales',
+  TYPE_MOD_TRADE: 'Módulos de comercio',
   TYPE_MOD_MINING: 'Módulos de minería',
   TYPE_MOD_WEAPON: 'Módulos de armas',
-  TYPE_MOD_SHIELD: 'Módulos de protección',
-  TYPE_MOD_SUPPORT: 'Módulos de soporte',
+  TYPE_MOD_SHIELD: 'Módulos de escudo',
+  TYPE_MOD_COMBAT: 'Módulos de combate',
+  TYPE_MOD_DRONE: 'Módulos de drones',
   LVL: 'nivel',
   HOME: 'Home',
   CONTENT: 'Contenido'

@@ -3,7 +3,6 @@
   TYPE_MOD_MINING: 'Mining modules',
   TYPE_MOD_WEAPON: 'Weapon modules',
   TYPE_MOD_SHIELD: 'Shield modules',
-  TYPE_MOD_SUPPORT: 'Support modules',
   TYPE_MOD_COMBAT: 'Combat modules',
   TYPE_MOD_DRONE: 'Drone modules',
   LVL: 'lvl',

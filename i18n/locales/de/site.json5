@@ -1,9 +1,9 @@
 {
-  TYPE_MOD_TRADE: 'Modules déchange',
-  TYPE_MOD_MINING: 'Modules miniers',
-  TYPE_MOD_WEAPON: 'Modules darmes',
-  TYPE_MOD_SHIELD: 'Modules de blindage',
-  TYPE_MOD_SUPPORT: 'Modules de support',
+  TYPE_MOD_TRADE: 'Handelsmodule',
+  TYPE_MOD_MINING: 'Bergbaumodule',
+  TYPE_MOD_WEAPON: 'Waffenmodule',
+  TYPE_MOD_SHIELD: 'Schildmodule',
+  TYPE_MOD_SUPPORT: 'Unterstützungsmodule',
   LVL: 'niveau',
   HOME: 'Home'
 }

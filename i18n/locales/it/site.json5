@@ -1,9 +1,10 @@
 {
-  TYPE_MOD_TRADE: 'Moduli commerciali',
-  TYPE_MOD_MINING: 'Moduli di data mining',
-  TYPE_MOD_WEAPON: 'Moduli arma',
-  TYPE_MOD_SHIELD: 'Moduli schermati',
-  TYPE_MOD_SUPPORT: 'Moduli di supporto',
+  TYPE_MOD_TRADE: 'Moduli di commercio',
+  TYPE_MOD_MINING: 'Moduli di estrazione',
+  TYPE_MOD_WEAPON: 'Moduli d\'arma',
+  TYPE_MOD_SHIELD: 'Moduli di scudo',
+  TYPE_MOD_COMBAT: 'Moduli di combattimento',
+  TYPE_MOD_DRONE: 'Moduli di droni',
   LVL: 'livello',
   HOME: 'Home',
   CONTENT: 'Soddisfare'

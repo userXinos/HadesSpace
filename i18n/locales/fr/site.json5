@@ -1,9 +1,10 @@
 {
-  TYPE_MOD_TRADE: 'Modules déchange',
+  TYPE_MOD_TRADE: 'Modules de commerce',
   TYPE_MOD_MINING: 'Modules miniers',
-  TYPE_MOD_WEAPON: 'Modules darmes',
-  TYPE_MOD_SHIELD: 'Modules de blindage',
-  TYPE_MOD_SUPPORT: 'Modules de support',
+  TYPE_MOD_WEAPON: 'Modules d\'armes',
+  TYPE_MOD_SHIELD: 'Modules de bouclier',
+  TYPE_MOD_COMBAT: 'Modules de combat',
+  TYPE_MOD_DRONE: 'Modules de drones',
   LVL: 'niveau',
   HOME: 'Home'
 }
