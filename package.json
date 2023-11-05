@@ -22,6 +22,7 @@
     "@vue/compiler-sfc": "^3.3.2",
     "@vueuse/head": "^1.1.26",
     "babel-core": "^7.0.0-bridge.0",
+    "bot_client": "github:mcgoldric/compendium-client",
     "jsoncrush": "^1.1.8",
     "lodash.debounce": "^4.0.8",
     "raw-loader": "^4.0.2",

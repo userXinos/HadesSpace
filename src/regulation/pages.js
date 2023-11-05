@@ -161,6 +161,21 @@ export default [
         ],
     },
     {
+        text: { locKey: 'Compendium' },
+        children: [
+            {
+                name: 'CompendiumTech',
+                text: { locKey: 'CompendiumTech' },
+                path: '/compendiumTech',
+                component: () => import(/* webpackChunkName: "CompendiumTech" */ '../pages/CompendiumTech.vue'),
+                icon: {
+                    name: 'compendium',
+                    dir: 'icons',
+                },
+            },
+        ],
+    },
+    {
         text: { locKey: 'STARS' },
         children: [
             {
