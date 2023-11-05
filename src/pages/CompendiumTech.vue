@@ -241,7 +241,8 @@ onMounted(async () => {
     if (!client.getUser()) {
         openCodeReqModal.value = true;
     } else {
-        data.value = client.getTechLevels();
+        // data.value = client.getTechLevels();
+        console.log(await client.corpdata());
     }
     isFetching.value = false;
 });
@@ -353,7 +354,7 @@ $plan-color: #ded45a;
     }
     .level-picker {
         padding-top: 5%;
-        width: 60%;
+        width: 70%;
         margin: 0 auto;
     }
 }
