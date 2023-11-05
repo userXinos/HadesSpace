@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="sections-input other"
+      class="sections-group other"
       :class="{'animated-fetch': isFetching}"
     >
       <section class="type">
@@ -10,7 +10,7 @@
           <li
             v-for="(building, buildingName) of spaceBuildings"
             :key="buildingName"
-            class="module"
+            class="item"
           >
             <div
               :class="{'mute': !getDataById(building.Name)}"
@@ -36,7 +36,7 @@
           <li
             v-for="(ship, shipName) of ships"
             :key="shipName"
-            class="module"
+            class="item"
           >
             <div
               :class="{'mute': !getDataById(ship.Name)}"
@@ -59,7 +59,7 @@
       <section class="type">
         <h3 v-t="'TID_CORP_TAB_MY_CORP'" />
         <ul>
-          <li class="module">
+          <li class="item">
             <div
               :class="{'mute': !getDataById('AllianceLevel')}"
               @click="() => openModuleInfo(alliance, allianceData.XPRequired.length + 1)"
@@ -80,7 +80,7 @@
       </section>
     </div>
     <div
-      class="sections-input modules"
+      class="sections-group modules"
       :class="{'animated-fetch': isFetching}"
     >
       <section
@@ -93,7 +93,7 @@
           <li
             v-for="([module, maxLevel]) of type"
             :key="module.Name"
-            class="module"
+            class="item"
           >
             <div
               :class="{'mute': !getDataById(module.Name)}"
@@ -357,7 +357,7 @@ $plan-color: #ded45a;
         margin: 0 auto;
     }
 }
-.sections-input {
+.sections-group {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -367,20 +367,20 @@ $plan-color: #ded45a;
     border-radius: 10px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
 
     max-height: 850px;
     max-width: 1500px;
-    --module-size: 90px;
+    --icon-size: 90px;
 
     @media screen and (max-width: 1800px){
-        --module-size: 80px;
+        --icon-size: 80px;
     }
     @media screen and (max-width: 1600px){
-        --module-size: 75px;
+        --icon-size: 75px;
     }
     @media screen and (max-width: 1500px){
-        --module-size: 70px;
+        --icon-size: 70px;
         max-height: 1000px;
         max-width: 920px;
     }
@@ -388,18 +388,9 @@ $plan-color: #ded45a;
         max-height: none;
         max-width: 420px;
     }
-    @media screen and (max-width: 960px){
-        --module-size: 80px;
-        max-width: 290px;
-    }
-    @media screen and (max-width: 600px){
-        --module-size: 60px;
-        max-width: 290px;
-    }
-
 
     .type {
-        width: calc((var(--module-size) + 24px)  * 4);
+        width: calc((var(--icon-size) + 24px)  * 4);
         margin-bottom: 3%;
 
         h3 {
@@ -409,9 +400,9 @@ $plan-color: #ded45a;
             display: flex;
             flex-wrap: wrap;
 
-            .module {
+            .item {
                 list-style: none;
-                width: var(--module-size);
+                width: var(--icon-size);
                 margin: 12px;
                 cursor: pointer;
                 position: relative;
@@ -452,23 +443,14 @@ $plan-color: #ded45a;
 }
 
 .animated-fetch {
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeHolderShimmer;
-    animation-timing-function: linear;
     background: linear-gradient(to left, $background, $background-elements 18%, $background);
+    background-size: 50vw;
+    animation: bg-pos-move 10s infinite forwards linear;
     opacity: .6;
-    pointer-events: none;
+    //pointer-events: none;
 }
 
-@keyframes placeHolderShimmer {
-    0% {
-        background-position: -800px 0
-    }
-    100% {
-        background-position: 800px 0
-    }
+@keyframes bg-pos-move {
+    to { background-position: 1000% 0; }
 }
-
 </style>
