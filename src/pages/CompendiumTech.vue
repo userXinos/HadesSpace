@@ -186,6 +186,8 @@ import key from '../utils/Handlers/key';
 import router from '../utils/Vue/router';
 import value from '../utils/Handlers/value';
 
+// 128
+
 declare type SetTechLevel = (techId: number, level: number) => Promise<void>;
 const MODULES_TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
 
@@ -448,7 +450,7 @@ $plan-color: #ded45a;
     background-size: 50vw;
     animation: bg-pos-move 10s infinite forwards linear;
     opacity: .6;
-    //pointer-events: none;
+    pointer-events: none;
 }
 
 @keyframes bg-pos-move {

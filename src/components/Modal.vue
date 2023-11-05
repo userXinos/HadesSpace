@@ -148,7 +148,6 @@ $border-color: #aee3fc;
         border: $border-color solid 1px;
         border-radius: 5px;
         pointer-events: all;
-        height: max-content;
         width: 90%;
         margin-top: 5%;
 
@@ -192,7 +191,10 @@ $border-color: #aee3fc;
         }
 
         .body {
+            overflow: auto;
+            overscroll-behavior: contain;
             padding: 5%;
+            height: 60vh;
         }
     }
 

@@ -173,6 +173,16 @@ export default [
                     dir: 'icons',
                 },
             },
+            {
+                name: 'CompendiumCorp',
+                text: { locKey: 'CompendiumCorp' },
+                path: '/compendiumCorp',
+                component: () => import(/* webpackChunkName: "CompendiumCorp" */ '../pages/CompendiumCorp.vue'),
+                icon: {
+                    name: 'compendium',
+                    dir: 'icons',
+                },
+            },
         ],
     },
     {

@@ -1,0 +1,253 @@
+<template>
+  <div>
+    <div class="sections-group other">
+      <section
+        class="type"
+        name="spaceBuildings"
+      >
+        <h3 v-t="'TID_BUILDING_LEVEL_DESCR'" />
+        <ul>
+          <li
+            v-for="(building, buildingName) of spaceBuildings"
+            :key="buildingName"
+            class="item"
+          >
+            <div
+              :class="{'mute': isMuted(building.Name)}"
+              @click="() => onClick(building)"
+            >
+              <Icon
+                :name="building.PrefabModel"
+                dir="game/SpaceBuildings"
+              />
+              <span
+                v-if="levelMap?.[building.Name]"
+                class="level"
+              >
+                {{ levelMap[building.Name] }}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section
+        class="type"
+        name="ships"
+      >
+        <h3 v-t="'TID_PRODUCTION_DLG_SHIPS'" />
+        <ul>
+          <li
+            v-for="(ship, shipName) of ships"
+            :key="shipName"
+            class="item"
+          >
+            <div
+              :class="{'mute': isMuted(ship.Name)}"
+              @click="() => onClick(ship)"
+            >
+              <Icon
+                :name="ship.Name in levelMap ? ship.Model[levelMap[ship.Name] -1] : ship.Model[5]"
+                dir="game/Ships"
+              />
+              <span
+                v-if="levelMap?.[ships.Name]"
+                class="level"
+              >
+                {{ levelMap[ships.Name] }}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section
+        class="type"
+        name="alliance"
+      >
+        <h3 v-t="'TID_CORP_TAB_MY_CORP'" />
+        <ul>
+          <li class="item">
+            <div
+              :class="{'mute': isMuted('AllianceLevel')}"
+              @click="() => onClick(alliance)"
+            >
+              <Icon
+                name="corpXp"
+                dir="icons"
+              />
+              <span
+                v-if="levelMap?.['AllianceLevel']"
+                class="level"
+              >
+                {{ levelMap['AllianceLevel'] }}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div
+      class="sections-group modules"
+      :class="{'animated-fetch': isFetching}"
+    >
+      <section
+        v-for="(type, typeName) of modules"
+        :key="typeName"
+        class="type"
+        name="modules"
+      >
+        <h3> {{ format.key(typeName) }} </h3>
+        <ul>
+          <li
+            v-for="module of type"
+            :key="module.Name"
+            class="item"
+          >
+            <div
+              :class="{'mute': isMuted(module.Name)}"
+              @click="() => onClick(module)"
+            >
+              <Icon
+                :name="module.Icon"
+                dir="game/Modules"
+              />
+              <span
+                v-if="levelMap?.[module.Name]"
+                class="level"
+              >
+                {{ levelMap[module.Name] }}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</template>
+
+<!--suppress TypeScriptCheckImport -->
+<script setup lang="ts">
+import shipsData from '@Data/capital_ships.js';
+import spaceBuildingsData from '@Data/spacebuildings.js';
+
+import { getBySlotType } from '@/components/ModulePage.vue';
+import Icon from '@/components/Icon.vue';
+import key from '@Handlers/key';
+import router from '@Utils/Vue/router';
+import value from '@Handlers/value';
+
+export interface Props {
+    levelMap?: Record<string, number>
+    onClick?: (item: object) => void
+    isMuted?: (id: string) => boolean
+}
+
+const MODULES_TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
+
+const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
+const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
+const alliance = { Name: 'Alliance', TID: 'TID_CORP_TAB_MY_CORP', Icon: 'corpXp', specialIcon: true };
+const modules: {[k: string]: unknown} = Object.fromEntries(MODULES_TYPES_ORDER.map((t) => [t, getBySlotType(t)]));
+
+const format = {
+    key: (k: string) => key(k, router.currentRoute.name as string),
+    value: (k: string, v: unknown) => value(k, v, router.currentRoute.value.name as string),
+};
+
+withDefaults(defineProps<Props>(), {
+    levelMap: () => ({}),
+    onClick: () => undefined,
+    isMuted: () => false,
+});
+</script>
+
+<style scoped lang="scss">
+@use "sass:map";
+@use "sass:color";
+
+@import "../style/vars";
+@import "../style/userInput";
+
+.sections-group {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+    border: solid 2px $background-elements;
+    padding: 1%;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 2%;
+
+    max-height: 850px;
+    max-width: 1500px;
+    --icon-size: 90px;
+
+    @media screen and (max-width: 1800px){
+        --icon-size: 80px;
+    }
+    @media screen and (max-width: 1600px){
+        --icon-size: 75px;
+    }
+    @media screen and (max-width: 1500px){
+        --icon-size: 70px;
+        max-height: 1000px;
+        max-width: 920px;
+    }
+    @media screen and (max-width: 1024px){
+        max-height: none;
+        max-width: 420px;
+    }
+    @media screen and (max-width: 420px){
+        --icon-size: 50px;
+        max-width: 290px;
+    }
+
+    .type {
+        width: calc((var(--icon-size) + 24px)  * 4);
+        margin-bottom: 1%;
+
+        h3 {
+            margin-bottom: 4%;
+        }
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            .item {
+                list-style: none;
+                width: var(--icon-size);
+                margin: 12px;
+                cursor: pointer;
+                position: relative;
+
+                @media screen and (max-width: 960px){
+                    margin: 6px;
+                }
+
+                .mute {
+                    opacity: .6;
+                }
+
+                .level {
+                    position: absolute;
+                    top: 75%;
+                    right: 0;
+                    font-size: 130%;
+                    width: 30px;
+                    height: 28px;
+                    background-color: $border-color;
+                    color: $background;
+                    text-align: center;
+                    border-radius: 10px;
+                    padding-top: 2px;
+                }
+            }
+        }
+    }
+}
+
+.other {
+    flex-direction: row;
+}
+</style>
