@@ -113,100 +113,104 @@ $mv: 1000px;
 $border-color: #aee3fc;
 
 .fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .background {
-    background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 
-    &-enter-active, &-leave-active {
-        transition: background-color 400ms linear;
-    }
+  &-enter-active, &-leave-active {
+    transition: background-color 400ms linear;
+  }
 
-    &-enter-from, &-leave-to {
-        background-color: rgba(0, 0, 0, 0.0);
+  &-enter-from, &-leave-to {
+    background-color: rgba(0, 0, 0, 0.0);
 
-    }
+  }
 }
 
 .content-wrapper {
-    display: flex;
-    justify-content: center;
-    pointer-events: none;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
 
-    @media screen and (max-width: 1000px){
-        align-items: center;
-    }
+  @media screen and (max-width: 1000px){
+    align-items: center;
+  }
 
-    .content {
-        background: $background;
-        border: $border-color solid 1px;
-        border-radius: 5px;
-        pointer-events: all;
-        width: 90%;
-        height: max-content;
-        margin-top: 5%;
+  .content {
+    background: $background;
+    border: $border-color solid 1px;
+    border-radius: 5px;
+    pointer-events: all;
+    width: 90%;
+    height: max-content;
+    margin-top: 5%;
 
-        &.size {
-            &-medium {
-                max-width: 500px;
-                min-height: 50%;
+    &.size {
+      &-medium {
+        max-width: 500px;
+        min-height: 50%;
 
-                @media screen and (max-width: 1000px){
-                    min-height: 80%;
-                }
-            }
-            &-small {
-                max-width: 450px;
-            }
-            &-large {
-                min-height: 80%;
-                height: 60vh;
-
-                .head {
-                    padding-bottom: 0;
-                }
-            }
+        @media screen and (max-width: 1000px){
+          min-height: 80%;
         }
+      }
+      &-small {
+        max-width: 450px;
+      }
+      &-large {
+        min-height: 80%;
+
 
         .head {
-            padding-bottom: 5%;
-            position: relative;
-
-            .close-button {
-                position: absolute;
-                right: 0;
-                background: url(../img/icons/close.svg) no-repeat;
-                width: 52px;
-                height: 35px;
-                cursor: pointer;
-            }
-            h2 {
-                padding: 15px 52px 0;
-                text-align: center;
-            }
+          padding-bottom: 0;
         }
-
         .body {
-            overflow: auto;
-            overscroll-behavior: contain;
-            padding: 5%;
+          height: 60vh;
         }
+      }
     }
 
-    &-enter-active, &-leave-active {
-        transform: scale(1);
-        transition: 700ms ease, transform 350ms
+    .head {
+      padding-bottom: 5%;
+      position: relative;
+
+      .close-button {
+        position: absolute;
+        right: 0;
+        background: url(../img/icons/close.svg) no-repeat;
+        width: 52px;
+        height: 35px;
+        cursor: pointer;
+      }
+      h2 {
+        padding: 15px 52px 0;
+        text-align: center;
+      }
     }
-    &-enter-from, &-leave-to {
-        opacity: 0;
-        transform: scale(0.6);
-        transition: 550ms ease, transform 300ms, opacity 200ms;
+
+    .body {
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      padding: 5%;
     }
+  }
+
+  &-enter-active, &-leave-active {
+    transform: scale(1);
+    transition: 700ms ease, transform 350ms
+  }
+  &-enter-from, &-leave-to {
+    opacity: 0;
+    transform: scale(0.6);
+    transition: 550ms ease, transform 300ms, opacity 200ms;
+  }
 }
 </style>

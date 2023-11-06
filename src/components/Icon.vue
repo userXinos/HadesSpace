@@ -28,7 +28,6 @@ const TYPES = {
     'game/SpaceBuildings': 'SpaceBuilding',
     'game/Stars': 'Star',
     'game/Distinctions': 'Distinction',
-    'icons': 'specialIcon',
 };
 const DISABLE_BG = ['warpLaneHub'];
 const PERSONAL_BG = {
@@ -40,6 +39,7 @@ const PERSONAL_BG = {
 const props = defineProps<Props>();
 const isCerberus = (props.name.includes('Cerberus'));
 const isProjectiles = (props.name.includes('projectiles/'));
+const isSpecialIcon = (props.dir.includes('icons/'));
 const type = TYPES[props.dir] || null;
 const url = getUrl();
 
@@ -54,7 +54,7 @@ const iconClasses = {
     'ship': type === 'Ship',
     'projectiles': isProjectiles,
     'cerberus': isCerberus,
-    'big-size': type == 'Star' || type == 'Distinction' || (type === 'specialIcon' && props.name !== 'art'),
+    'big-size': type == 'Star' || type == 'Distinction' || (isSpecialIcon && props.name !== 'art'),
     'medium-size': type === 'SpaceBuilding',
 };
 const iconStyle = {
