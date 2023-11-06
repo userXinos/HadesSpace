@@ -22,7 +22,7 @@ import Settings from '@/components/Settings.vue';
 
 export interface Props {
     open: boolean
-    swipeHandler?: () => void
+    swipeHandler?: (direction: string, event: TouchEvent) => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
