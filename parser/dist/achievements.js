@@ -274,7 +274,7 @@ export default {
         TID: "TID_ACHIEVEMENT_USE_HYDRO_IN_RS",
         TID_Description: "TID_ACHIEVEMENT_USE_HYDRO_IN_RS_DESCR",
         UnlockType: "UseHydroInRS",
-        UnlockAmount: [1000, 200000, 2000000, 20000000, 250000000],
+        UnlockAmount: [1000, 10000, 100000, 800000, 5000000],
         PCReward: [1, 5, 20, 50, 100],
         XPReward: [100, 200, 500, 1000, 10000],
         SortOrder: 65,

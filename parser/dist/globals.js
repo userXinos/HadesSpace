@@ -244,7 +244,7 @@ export default {
     CustomizePlanetPremiumPC: 2000,
     CustomizeStarRegularPC: 800,
     CustomizeStarPremiumPC: 3000,
-    SP2ShipmentsBoostPct: 20,
+    SP2ShipmentsBoostPct: 25,
     SP2BlueprintBoostPct: 40,
     AllianceInactivityChatAlertDays: 7,
     SecondResearchSlotPrice: 100000,

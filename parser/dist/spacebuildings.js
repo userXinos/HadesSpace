@@ -300,7 +300,7 @@ export default {
         MaxOnOwnSolarSystem: 1,
         MaxPerSector: 1,
         RelayBonusPct: [0, 5, 10, 20, 60, 110, 150, 180, 240, 330, 1100],
-        HydroCostPerShipment: [20, 25, 35, 50, 75, 90, 100, 120, 140, 160, 200],
+        HydroCostPerShipment: [5, 10, 20, 40, 60, 80, 100, 120, 140, 160, 200],
         BuildNotifMode: [0, 1],
         ShowInStarLinks: 1,
         RSLevelReq: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],

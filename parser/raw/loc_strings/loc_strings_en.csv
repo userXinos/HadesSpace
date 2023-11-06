@@ -2387,6 +2387,7 @@
 "TID_CTRL_REPLAY_PAUSE","Replay Pause"
 "TID_CTRL_SHOW_SHIP_MODULES","Show All Ship Modules"
 "TID_DN_WELCOME_TO_DARK_NEBULA","Welcome to Hades' Star: DARK NEBULA!\n\nThis is the biggest update ever made to Hades' Star. Your existing account has been upgraded, and you may see additional Inbox messages about major changes that affect you. For more information on the new features, changes and bug fixes this update brings, visit blog.hadesstar.com.\n\nPress ACCEPT to claim a <sprite name=''pc''> <c1>{0}</color> gift. THANK YOU for supporting Hades' Star!"
+"TID_DN_HS_CRYSTAL_AWARD","To help you get up and running in DARK NEBULA faster, we are awarding your account with additional Crystals.\n\nPress ACCEPT to claim a <sprite name=''pc''> <c1>{0}</color> gift.\n\nThank you for supporting the game!"
 "TID_DELETE_DN_MESSAGE_CONFIRM","This message contains important information about your account upgrade to Dark Nebula. Are you sure you want to delete it?"
 "TID_SANCTUARY_DELETED_INFO","The SANCTUARY module has been uninstalled from all your ships. All ships will now return home safely when destroyed from combat in any star type, except when they are in the new Dark Red Stars. Ships caught in a Supernova in a Red or White star will be lost permanently."
 "TID_DN_STAR_HARVESTER","Your Time Modulator has been replaced with a level {0} STAR HARVESTER. The STAR HARVESTER should be activated daily to uncover additional Asteroid fields in your system."

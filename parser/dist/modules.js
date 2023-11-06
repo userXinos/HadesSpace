@@ -638,7 +638,7 @@ export default {
             CanBeBuilt: 0,
             NewModuleSlots: "Trade",
             HP: 1,
-            JobCapacity: 6,
+            JobCapacity: 10,
             Speed_YS: 1200,
             Speed_RS: 550,
             Speed_BLS: 440,

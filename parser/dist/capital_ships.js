@@ -100,7 +100,7 @@ export default {
         IsCombatShip: 1,
         CanBeBuilt: 1,
         NewModuleSlots: [["Weapon", "Shield"], "Support", "Drone", "Support", "Support", "Support", "Drone"],
-        BuildCost: [500, 1000, 10000, 100000, 800000, 2000000, 2500000],
+        BuildCost: [500, 1000, 10000, 100000, 400000, 1000000, 2000000],
         DesignUpgradeCost: [0, 2000, 140000, 400000, 1500000, 8000000, 28000000],
         BLSDailyCRReward: [5000, 20000, 80000, 140000, 200000, 500000, 600000],
         DesignUpgradeTime: [0, 300, 86400, 259200, 604800, 864000, 864000],

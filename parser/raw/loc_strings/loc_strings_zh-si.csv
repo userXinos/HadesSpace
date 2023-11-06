@@ -2387,6 +2387,7 @@
 "TID_CTRL_REPLAY_PAUSE","回放暂停"
 "TID_CTRL_SHOW_SHIP_MODULES","显示所有船舰模组"
 "TID_DN_WELCOME_TO_DARK_NEBULA","欢迎来到Hades' Star: DARK NEBULA！\n\n这是Hades' Star迄今为止最大的更新。您的现有账户已升级，您可能会收到额外的收件箱消息，涉及对您产生重大影响的主要更改。有关此更新带来的新功能、更改和错误修复的更多信息，请访问blog.hadesstar.com。\n\n按下'接受'以领取一个<sprite name=''pc''> <c1>{0}</color>的礼物。感谢您对Hades' Star的支持！"
+"TID_DN_HS_CRYSTAL_AWARD","为了帮助您更快地在 DARK NEBULA 中运行，我们将向您的账户赠送额外的水晶。\n\n按 "
 "TID_DELETE_DN_MESSAGE_CONFIRM","这条信息包含关于你的账户升级到黑暗星云的重要信息。你确定要删除它吗？"
 "TID_SANCTUARY_DELETED_INFO","所有您的船只上的避难圣所模块已被卸载。所有船只现在在任何星球类型的战斗中被摧毁时都会安全返回母星，但除非它们位于新的暗红巨星中。在红巨星或白巨星中被超新星困住的船只将永远丧失。"
 "TID_DN_STAR_HARVESTER","您的时间调节器已被替换为一个等级为{0}的恒星收割者。每天应该激活恒星收割者，以发现您系统中的额外小行星场。"

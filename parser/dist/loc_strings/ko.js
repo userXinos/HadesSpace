@@ -2392,6 +2392,7 @@ export default {
     TID_CTRL_REPLAY_PAUSE: "리플레이 일시 정지",
     TID_CTRL_SHOW_SHIP_MODULES: "모든 함선 모듈 보기",
     TID_DN_WELCOME_TO_DARK_NEBULA: "Hades' Star: DARK NEBULA에 오신 것을 환영합니다!\\n\\n이것은 Hades' Star에서 이루어진 가장 큰 업데이트입니다. 기존 계정이 업그레이드되었으며, 사용자에게 영향을 미치는 주요 변경 사항에 대한 추가적인 수신함 메시지를 확인할 수 있습니다. 이번 업데이트에서 새로운 기능, 변경 사항 및 버그 수정에 대한 자세한 정보는 blog.hadesstar.com을 방문하십시오.\\n\\n<sprite name=''pc''> <c1>{0}</color> 선물을 받으시려면 '수락'을 누르세요. Hades' Star를 지원해주셔서 감사합니다!",
+    TID_DN_HS_CRYSTAL_AWARD: "다크 네뷸라를 더 빨리 시작하실 수 있도록 계정에 추가 크리스탈을 지급합니다.\\n\\n수락을 눌러 <sprite name=''pc''> <c1>{0}</color> 선물을 받으세요.\\n\\n게임을 성원해 주셔서 감사합니다!",
     TID_DELETE_DN_MESSAGE_CONFIRM: "이 메시지에는 다크 네뷸라로의 계정 업그레이드에 관한 중요한 정보가 포함되어 있습니다. 정말 삭제하시겠습니까?",
     TID_SANCTUARY_DELETED_INFO: "모든 선박에서 안식처 모듈이 제거되었습니다. 이제 모든 선박은 새로운 어둠의 적색성단에 있지 않는 한 어떤 별 형태에서 전투로 파괴되었을 때 안전하게 집으로 귀환합니다. 빨간색 또는 흰색 별에서 초신성에 포착된 선박은 영구히 손실됩니다.",
     TID_DN_STAR_HARVESTER: "당신의 시간 변조기가 레벨 {0}의 항성 수확기로 교체되었습니다. 항성 수확기는 매일 활성화되어 시스템 내 추가 소행성 필드를 발견하는 데 사용되어야 합니다.",
