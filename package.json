@@ -11,6 +11,7 @@
     "postinstall": "(cd parser && npm install && cd ..) && (cd i18n && npm install && cd ..)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "web-types": "./web-types.json",
   "dependencies": {
     "@aacassandra/vue3-progressbar": "^1.0.3",
     "@intlify/vue-i18n-loader": "^4.2.0",

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
+  "name": "HadesSpace",
+  "framework": "vue",
+  "version": "1.0.0",
+  "contributions": {
+    "html": {
+      "vue-directives": [
+        {
+          "name": "t",
+          "description": "vue-i18n package"
+        }
+      ]
+    }
+  }
+}
