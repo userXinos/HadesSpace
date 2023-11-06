@@ -149,6 +149,7 @@ $border-color: #aee3fc;
         border-radius: 5px;
         pointer-events: all;
         width: 90%;
+        height: max-content;
         margin-top: 5%;
 
         &.size {
@@ -165,6 +166,7 @@ $border-color: #aee3fc;
             }
             &-large {
                 min-height: 80%;
+                height: 60vh;
 
                 .head {
                     padding-bottom: 0;
@@ -194,7 +196,6 @@ $border-color: #aee3fc;
             overflow: auto;
             overscroll-behavior: contain;
             padding: 5%;
-            height: 60vh;
         }
     }
 

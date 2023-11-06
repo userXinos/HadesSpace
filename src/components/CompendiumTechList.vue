@@ -1,3 +1,4 @@
+<!--suppress TypeScriptValidateTypes -->
 <template>
   <div>
     <div class="sections-group other">
@@ -85,10 +86,7 @@
         </ul>
       </section>
     </div>
-    <div
-      class="sections-group modules"
-      :class="{'animated-fetch': isFetching}"
-    >
+    <div class="sections-group modules">
       <section
         v-for="(type, typeName) of modules"
         :key="typeName"
@@ -149,7 +147,7 @@ const alliance = { Name: 'Alliance', TID: 'TID_CORP_TAB_MY_CORP', Icon: 'corpXp'
 const modules: {[k: string]: unknown} = Object.fromEntries(MODULES_TYPES_ORDER.map((t) => [t, getBySlotType(t)]));
 
 const format = {
-    key: (k: string) => key(k, router.currentRoute.name as string),
+    key: (k: string) => key(k, router.currentRoute.value.name as string),
     value: (k: string, v: unknown) => value(k, v, router.currentRoute.value.name as string),
 };
 
@@ -168,86 +166,86 @@ withDefaults(defineProps<Props>(), {
 @import "../style/userInput";
 
 .sections-group {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: space-between;
-    border: solid 2px $background-elements;
-    padding: 1%;
-    border-radius: 10px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-between;
+  background: #131a1c;
+  padding: 1%;
+  border-radius: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 2%;
 
-    max-height: 850px;
-    max-width: 1500px;
-    --icon-size: 90px;
+  max-height: 850px;
+  max-width: 1500px;
+  --icon-size: 90px;
 
-    @media screen and (max-width: 1800px){
-        --icon-size: 80px;
-    }
-    @media screen and (max-width: 1600px){
-        --icon-size: 75px;
-    }
-    @media screen and (max-width: 1500px){
-        --icon-size: 70px;
-        max-height: 1000px;
-        max-width: 920px;
-    }
-    @media screen and (max-width: 1024px){
-        max-height: none;
-        max-width: 420px;
-    }
-    @media screen and (max-width: 420px){
-        --icon-size: 50px;
-        max-width: 290px;
-    }
+  @media screen and (max-width: 1800px){
+    --icon-size: 80px;
+  }
+  @media screen and (max-width: 1600px){
+    --icon-size: 75px;
+  }
+  @media screen and (max-width: 1500px){
+    --icon-size: 70px;
+    max-height: 1000px;
+    max-width: 920px;
+  }
+  @media screen and (max-width: 730px){
+    max-height: none;
+    max-width: 420px;
+  }
+  @media screen and (max-width: 420px){
+    --icon-size: 50px;
+    max-width: 290px;
+  }
 
-    .type {
-        width: calc((var(--icon-size) + 24px)  * 4);
-        margin-bottom: 1%;
+  .type {
+    width: calc((var(--icon-size) + 24px)  * 4);
+    margin-bottom: 1%;
 
-        h3 {
-            margin-bottom: 4%;
+    h3 {
+      margin-bottom: 4%;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+
+      .item {
+        list-style: none;
+        width: var(--icon-size);
+        margin: 12px;
+        cursor: pointer;
+        position: relative;
+
+        @media screen and (max-width: 960px){
+          margin: 6px;
         }
-        ul {
-            display: flex;
-            flex-wrap: wrap;
 
-            .item {
-                list-style: none;
-                width: var(--icon-size);
-                margin: 12px;
-                cursor: pointer;
-                position: relative;
-
-                @media screen and (max-width: 960px){
-                    margin: 6px;
-                }
-
-                .mute {
-                    opacity: .6;
-                }
-
-                .level {
-                    position: absolute;
-                    top: 75%;
-                    right: 0;
-                    font-size: 130%;
-                    width: 30px;
-                    height: 28px;
-                    background-color: $border-color;
-                    color: $background;
-                    text-align: center;
-                    border-radius: 10px;
-                    padding-top: 2px;
-                }
-            }
+        .mute {
+          opacity: .6;
         }
+
+        .level {
+          position: absolute;
+          top: 75%;
+          right: 0;
+          font-size: 130%;
+          width: 30px;
+          height: 28px;
+          background-color: $border-color;
+          color: $background;
+          text-align: center;
+          border-radius: 10px;
+          padding-top: 2px;
+        }
+      }
     }
+  }
 }
 
 .other {
-    flex-direction: row;
+  flex-direction: row;
 }
 </style>
