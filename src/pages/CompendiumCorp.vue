@@ -266,6 +266,15 @@ function filterByTech(value: string[]) {
                 return mem.tech[getTechIndex(fK)]?.[0] || userInfo[fK]?.check(mem);
             });
         })
+        .sort((a, b) => {
+            if (value.length && !(value[0] in userInfo)) {
+                return b.tech[getTechIndex(value[0])][0] - a.tech[getTechIndex(value[0])][0];
+            }
+            if (value[0] == 'CargoCap') {
+                return userInfo.CargoCap.formatter(b) - userInfo.CargoCap.formatter(a);
+            }
+            return 0;
+        })
         .slice(0, MAX_ITEMS_PAGE);
 }
 function getTechForDisplay(member: CorpMember): Record<string, {level: number|string, icon :Icon.Props}> {
