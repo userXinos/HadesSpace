@@ -163,14 +163,14 @@ interface UserInfo {
   }
 }
 
+const { hourCycles } = new Intl.Locale(navigator.language);
+const isBrowserLocale24h = hourCycles ? ['h23', 'h24'].some((hourCycle) => hourCycles.includes(hourCycle)) : true;
+
 const userInfo: UserInfo = {
     LocalTime: {
         icon: { name: 'time', dir: 'icons/compendium' },
         check: (user) => user.timeZone,
-        formatter: ({ timeZone }) => (
-            timeZone.startsWith('UTC') ? timeZone :
-                new Date().toLocaleString(undefined, { timeZone: timeZone, timeStyle: 'short' })
-        ),
+        formatter: ({ localTime, localTime24 }) => isBrowserLocale24h ? localTime24 : localTime,
     },
     AfkFor: {
         icon: { name: 'afk', dir: 'icons/compendium' },
