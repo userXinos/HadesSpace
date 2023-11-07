@@ -143,7 +143,7 @@ const MODULES_TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', '
 
 const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
 const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
-const alliance = { Name: 'Alliance', TID: 'TID_CORP_TAB_MY_CORP', Icon: 'corpXp', specialIcon: true };
+const alliance = { Name: 'AllianceLevel', TID: 'TID_CORP_TAB_MY_CORP', Icon: 'corpXp', specialIcon: true };
 const modules: {[k: string]: unknown} = Object.fromEntries(MODULES_TYPES_ORDER.map((t) => [t, getBySlotType(t)]));
 
 const format = {
