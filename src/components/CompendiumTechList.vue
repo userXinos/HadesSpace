@@ -1,4 +1,4 @@
-<!--suppress TypeScriptValidateTypes -->
+<!--suppress TypeScriptValidateTypes, TypeScriptUnresolvedReference -->
 <template>
   <div>
     <div class="sections-group other">

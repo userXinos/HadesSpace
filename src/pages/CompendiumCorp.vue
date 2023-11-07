@@ -8,10 +8,10 @@
         >
           <div>
             <button
+              v-t="'FILTER'"
               class="btn-tech-filter"
               @click="openSelectorByTech = true"
-            >{{ 'Filter' }}
-            </button>
+            />
           </div>
           <div class="select">
             <select

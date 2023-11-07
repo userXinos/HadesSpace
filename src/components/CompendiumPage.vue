@@ -42,11 +42,11 @@
           v-if="!isFetching && !user"
           class="not-logged"
         >
-          <span>{{ 'Not logged' }}</span>
+          <span v-t="'TID_SETTINGS_DLG_NOT_SIGNED_IN'" />
           <button
             class="button accent"
             @click="openCodeReqModal = true"
-          > {{ 'login' }}
+          > {{ $t('TID_SETTINGS_DLG_SIGN_IN') }}
           </button>
         </div>
       </div>
@@ -65,13 +65,13 @@
 
     <Modal
       v-model:open="openCodeReqModal"
-      :title="'Code'"
+      :title="$t('TID_SETTINGS_DLG_SIGN_IN')"
       :size="SIZES.SMALL"
     >
       <template #body>
         <div class="input">
           <p class="name">
-            <span>Code</span>
+            <span v-t="'ENTER_CODE'" />
             <span class="error-msg">{{ error }}</span>
           </p>
           <input v-model="reqCode">
@@ -82,7 +82,7 @@
           :class="{'disable': isFetching}"
         >
           <button
-            v-t="'TID_OK'"
+            v-t="'TID_LINK_DEVICE_DLG_SUBMIT_CODE_BTN'"
             class="button accent"
             @click="applyReqCode"
           />
@@ -98,6 +98,7 @@
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { Identity, User, Guild } from 'bot_client';
 
 import client, { init as clientInit } from '@Utils/compendium';
@@ -107,7 +108,10 @@ import memberImage from '@Img/icons/member.png';
 import Modal, { SIZES } from '@/components/Modal.vue';
 import Confirm from '@/components/TheConfirm.vue';
 
+
 const REQ_CODE_PATTERN = /[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}/;
+
+const { t } = useI18n();
 const openCodeReqModal = ref(false);
 const reqCode = ref('');
 const error = ref('');
@@ -135,11 +139,11 @@ async function applyReqCode() {
     let ident: Identity;
 
     if (!reqCode.value) {
-        error.value = 'Cannot be empty';
+        error.value = t('CANNOT_BE_EMPTY');
         return;
     }
     if (!REQ_CODE_PATTERN.test(reqCode.value)) {
-        error.value = 'Incorrect code';
+        error.value = t('INCORRECT_CODE');
         return;
     }
     isFetching.value = true;
@@ -156,7 +160,7 @@ async function applyReqCode() {
     isFetching.value = false;
     openCodeReqModal.value = false;
 
-    const drop = await userConfirm(`Confirm your login from ${ident.guild.name} as ${ident.user.username}`)
+    const drop = await userConfirm(t('CONFIRM_LOGIN', [ident.guild.name, ident.user.username]))
         .catch(() => {
             openCodeReqModal.value = true;
             return true;
@@ -171,7 +175,7 @@ async function applyReqCode() {
     }
 }
 function userProfileClick() {
-    userConfirm(`Log out of your account ?`)
+    userConfirm(t('TID_SETTINGS_DLG_SIGN_OUT'))
         .then(() => {
             client.logout();
             user.value = undefined;

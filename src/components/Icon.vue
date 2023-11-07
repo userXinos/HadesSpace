@@ -39,7 +39,7 @@ const PERSONAL_BG = {
 const props = defineProps<Props>();
 const isCerberus = (props.name.includes('Cerberus'));
 const isProjectiles = (props.name.includes('projectiles/'));
-const isSpecialIcon = (props.dir.includes('icons/'));
+const isSpecialIcon = (props.dir.includes('icons'));
 const type = TYPES[props.dir] || null;
 const url = getUrl();
 
