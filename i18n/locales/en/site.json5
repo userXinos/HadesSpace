@@ -36,5 +36,12 @@
   DEPLOYED: 'App deployed',
   MODULES_BY_ARTIFACT_TYPE: 'Modules by artifact type',
   COMPACT_MODE: 'Compact mode',
-  COMPACT_MODE_NOTE: 'WARNING! Only turn it off if you know what you\'re doing.'
+  COMPACT_MODE_NOTE: 'WARNING! Only turn it off if you know what you\'re doing.',
+  CONFIRM_LOGIN: 'Confirm your login from {0} as ${1}',
+  FILTER: 'Filter',
+  ENTER_CODE: 'Connect code from the bot',
+  CANNOT_BE_EMPTY: 'Cannot be empty',
+  INCORRECT_CODE: 'Incorrect code',
+  HS_COMPENDIUM: 'HSCompendium',
+  TECHNOLOGIES: 'Technologies'
 }

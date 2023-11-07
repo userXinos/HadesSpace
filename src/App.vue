@@ -1,11 +1,9 @@
-<!--suppress HtmlUnknownAttribute -->
-<!--suppress HtmlUnknownTag -->
-
 <template>
   <div>
     <v-head><title>Hades Space</title></v-head>
-    <vue-progress-bar />
 
+    <!--suppress HtmlUnknownTag -->
+    <vue-progress-bar />
 
     <div
       v-touch:swipe="swipeHandler"
@@ -58,6 +56,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, onErrorCaptured, ref, getCurrentInstance } from 'vue';
 import router from '@Utils/Vue/router';
+import { stop as compendiumStop } from '@Utils/compendium';
 
 import { Head as VHead } from '@vueuse/head';
 import GoTop from '@/components/GoTop.vue';
@@ -72,7 +71,7 @@ import appChangelog from '@/composables/appChangelog';
 const MAX_WIDTH = 1000;
 
 const internalInstance = getCurrentInstance();
-const { $Progress } = internalInstance.appContext.config.globalProperties;
+const { $Progress } = internalInstance?.appContext.config.globalProperties; // eslint-disable-line no-unsafe-optional-chaining
 const isMinMode = ref(window.innerWidth < MAX_WIDTH);
 const renderError = ref<Error>();
 
@@ -82,7 +81,10 @@ const { isOpen: changelogIsOpen, onClose: changelogOnClose } = appChangelog();
 $Progress.start();
 
 onMounted(() => window.addEventListener('resize', resize));
-onUnmounted(() => window.removeEventListener('resize', resize));
+onUnmounted(() => {
+    window.removeEventListener('resize', resize);
+    compendiumStop();
+});
 onErrorCaptured((err) => {
     renderError.value = err;
 });

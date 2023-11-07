@@ -6,11 +6,18 @@ $button-colors: (
     "green": #5ca109,
     "yellow": #cca814,
     "red": #a90000,
+    "accent": $accent-color,
 );
+
+.disable {
+  opacity: .4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
 
 .select {
-  margin-bottom: 7%;
+  //margin-bottom: 7%;
 
   .name {
     font-size: 120%;
@@ -111,9 +118,10 @@ $button-colors: (
   font-size: 100%;
   transition: all 0.3s;
   position: relative;
-  border: none;
   z-index: 0;
   min-width: 70px;
+  border-radius: 10px;
+  border: solid 0;
 
   &:after {
     content: '';
@@ -123,6 +131,7 @@ $button-colors: (
     width: 100%;
     height: 100%;
     z-index: -3;
+    border-radius: 10px;
   }
 
   &:before {
@@ -134,6 +143,7 @@ $button-colors: (
     height: 100%;
     transition: all 0.3s;
     z-index: -2;
+    border-radius: 10px;
   }
 
   &:hover:before {
@@ -142,6 +152,9 @@ $button-colors: (
 
   @each $name, $color in $button-colors {
     &.#{$name} {
+      @if($name == 'accent') {
+        color: black;
+      }
       &:after {
         background-color: $color
       }

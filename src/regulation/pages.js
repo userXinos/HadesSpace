@@ -161,6 +161,31 @@ export default [
         ],
     },
     {
+        text: { locKey: 'HS_COMPENDIUM' },
+        children: [
+            {
+                name: 'CompendiumTech',
+                text: { locKey: 'TECHNOLOGIES' },
+                path: '/compendiumTech',
+                component: () => import(/* webpackChunkName: "CompendiumTech" */ '../pages/CompendiumTech.vue'),
+                icon: {
+                    name: 'compendiumTech',
+                    dir: 'icons/compendium',
+                },
+            },
+            {
+                name: 'CompendiumCorp',
+                text: { locKey: 'TID_CHAT_TAB_CORPORATION' },
+                path: '/compendiumCorp',
+                component: () => import(/* webpackChunkName: "CompendiumCorp" */ '../pages/CompendiumCorp.vue'),
+                icon: {
+                    name: 'CompendiumCorp',
+                    dir: 'icons/compendium',
+                },
+            },
+        ],
+    },
+    {
         text: { locKey: 'STARS' },
         children: [
             {

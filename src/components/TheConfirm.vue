@@ -74,6 +74,7 @@ $accent-color: #aee3fc;
     display: flex;
     justify-content: center;
     pointer-events: none;
+    z-index: 1;
 
     @media screen and (max-width: 1000px){
         align-items: center;
