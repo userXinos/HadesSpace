@@ -4,7 +4,7 @@
       <div class="container">
         <div
           class="filter"
-          :class="{'disable': !filteredByRoleCache.length}"
+          :class="{'disable': filteredMembers.length > filteredByRoleCache.length}"
         >
           <div>
             <button
