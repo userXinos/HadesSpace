@@ -47,14 +47,14 @@
               @click="() => onClick(ship)"
             >
               <Icon
-                :name="ship.Name in levelMap ? ship.Model[levelMap[ship.Name] -1] : ship.Model[5]"
+                :name="ship.Name in levelMap ? ship.Model[levelMap[ship.Name] - 1] : ship.Model[4]"
                 dir="game/Ships"
               />
               <span
-                v-if="levelMap?.[ships.Name]"
+                v-if="levelMap?.[ship.Name]"
                 class="level"
               >
-                {{ levelMap[ships.Name] }}
+                {{ levelMap[ship.Name] }}
               </span>
             </div>
           </li>
