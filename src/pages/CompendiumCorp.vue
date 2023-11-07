@@ -2,7 +2,10 @@
   <div>
     <CompendiumPage>
       <div class="container">
-        <div class="filter">
+        <div
+          class="filter"
+          :class="{'disable': !filteredByRoleCache.length}"
+        >
           <div>
             <button
               class="btn-tech-filter"
@@ -37,7 +40,7 @@
             <div class="meta">
               <div class="avatar">
                 <img
-                  :src="getAvatarUrl(mem.userId, mem.avatar)"
+                  :src="getDiscordAvatarUrl(mem.userId, mem.avatar)"
                   :alt="`${mem.name} avatar`"
                   @error="(e) => e.target.src = memberImage"
                 ></div>
@@ -134,7 +137,7 @@
 import { CorpData, CorpMember, getTechIndex } from 'bot_client';
 import { onMounted, reactive, Ref, ref, watch } from 'vue';
 
-import getAvatarUrl from '../utils/getDiscordAvatarUrl';
+import { getDiscordAvatarUrl } from '../utils/getDiscordUrl';
 import client from '../utils/compendium';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
@@ -200,15 +203,17 @@ const modalMem = reactive({
     lvlMap: undefined,
 });
 
-let filteredByRoleCache: CorpMember[];
+let filteredByRoleCache: CorpMember[] = [];
 
-filteredMembers.value = Array.from({ length: 10 }, (i) => ({
-    userId: i,
-    name: '',
-    avatarUrl: '',
-}) as CorpMember);
+filteredMembers.value = Array.from({ length: 10 }, (i) => ({ userId: i, name: '', avatarUrl: '' }) as CorpMember);
 
 client.on('connected', () => fetchCorp());
+client.on('disconnected', () => {
+    filteredByRoleCache = [];
+    filteredMembers.value = Array.from({ length: 10 }, (i) => ({ userId: i, name: '', avatarUrl: '' }) as CorpMember);
+    filterRoleId.value = '';
+    filterTech.splice(0);
+});
 onMounted(() => {
     if (client.getUser()) {
         fetchCorp();
@@ -245,12 +250,14 @@ function isSelectedTechItem(id: string) {
     return filterTech.includes(id);
 }
 function memberClick(mem: CorpMember) {
-    modalMem.title = mem.name;
-    // noinspection TypeScriptValidateTypes
-    modalMem.lvlMap = objectArrayify(mem.tech, {
-        map: ([k, v]) => [getTechFromIndex(k), v[0]],
-    });
-    openMemTechList.value = true;
+    if (filteredByRoleCache.length) {
+        modalMem.title = mem.name;
+        // noinspection TypeScriptValidateTypes
+        modalMem.lvlMap = objectArrayify(mem.tech, {
+            map: ([k, v]) => [getTechFromIndex(k), v[0]],
+        });
+        openMemTechList.value = true;
+    }
 }
 function filterByTech(value: string[]) {
     filteredMembers.value = filteredByRoleCache

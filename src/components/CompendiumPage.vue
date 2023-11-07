@@ -11,19 +11,31 @@
             <img
               :src="memberImage"
               alt="memberImage avatar"
-            ></div>
+            >
+            <img
+              :src="memberImage"
+              alt="memberImage avatar"
+            >
+          </div>
           <p />
         </div>
         <div
           v-if="user"
           class="logged"
+          @click="userProfileClick"
         >
           <div class="avatar">
             <img
-              :src="getAvatarUrl(user.id, user.avatar)"
+              :src="getDiscordIconUrl(guild.id, guild.icon)"
+              :alt="`${guild.name} icon`"
+              @error="(e) => e.target.src = memberImage"
+            >
+            <img
+              :src="getDiscordAvatarUrl(user.id, user.avatar)"
               :alt="`${user.username} avatar`"
               @error="(e) => e.target.src = memberImage"
-            ></div>
+            >
+          </div>
           <p>{{ user.username }}</p>
         </div>
         <div
@@ -86,10 +98,10 @@
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { Identity, User } from 'bot_client';
+import { Identity, User, Guild } from 'bot_client';
 
 import client, { init as clientInit } from '@Utils/compendium';
-import getAvatarUrl from '@Utils/getDiscordAvatarUrl';
+import { getDiscordAvatarUrl, getDiscordIconUrl } from '@Utils/getDiscordUrl';
 import memberImage from '@Img/icons/member.png';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
@@ -100,7 +112,8 @@ const openCodeReqModal = ref(false);
 const reqCode = ref('');
 const error = ref('');
 const isFetching = ref(false);
-const user = ref<User|null>(null);
+const user = ref<User|null>();
+const guild = ref<Guild>();
 
 let userConfirm: (q: string) => Promise<void> = (() => Promise.prototype); // eslint-disable-line prefer-const
 
@@ -114,6 +127,7 @@ onMounted(async () => {
         openCodeReqModal.value = true;
     } else {
         user.value = u;
+        guild.value = client.getGuild();
     }
 });
 
@@ -151,9 +165,19 @@ async function applyReqCode() {
     if (!drop) {
         isFetching.value = true;
         await client.connect(ident);
-        user.value = client.getUser() as User;
+        user.value = client.getUser();
+        guild.value = client.getGuild();
         isFetching.value = false;
     }
+}
+function userProfileClick() {
+    userConfirm(`Log out of your account ?`)
+        .then(() => {
+            client.logout();
+            user.value = undefined;
+            guild.value = undefined;
+        })
+        .catch(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
 }
 </script>
 
@@ -180,7 +204,7 @@ async function applyReqCode() {
     .logged, .not-logged {
       display: flex;
       align-items: center;
-      padding: 0.5%;
+      padding: 0.5% 2% 0.5% 18px;
       min-width: 15%;
       border-radius: 10px;
     }
@@ -194,39 +218,66 @@ async function applyReqCode() {
 
       p {
         border: solid 5px #8a9396;
-        width: 200px;
+        width: 130px;
         border-radius: 10px;
       }
     }
 
     .logged {
-      display: flex;
-      align-items: center;
-      gap: 2%;
       border: solid 2px $background-elements;
 
+      &:hover {
+        background-color: $background-elements;
+        cursor: pointer;
+      }
       .avatar {
-        width: 15%;
-        margin-right: 4%;
+        height: 60px;
+        width: 60px;
+        margin-right: 20px;
+        position: relative;
 
         img {
           width: 100%;
+          height: 100%;
+          position: absolute;
 
           &:before  {
-            //width: 40%;
             content: "";
             background: url("@Img/icons/member.png") center 100% no-repeat;
           }
+          &:first-child {
+            bottom: 10%;
+            right: 20%;
+            opacity: .8;
+          }
+          &:last-child {
+            filter: drop-shadow(-5px -5px 4px #000000);
+            width: 90%;
+            height: 90%;
+            top: 20%;
+            left: 30%;
+          }
+        }
+
+        @media screen and (max-width: 900px) {
+          height: 40px;
+          width: 40px;
         }
       }
     }
     .not-logged {
       background-color: #b94054;
       justify-content: space-between;
+      padding-left: 10px;
 
       span {
         font-size: 120%;
+        width: max-content;
+        word-break: keep-all;
       };
+      .button {
+        margin-left: 10px;
+      }
     }
   }
 }
@@ -250,11 +301,6 @@ async function applyReqCode() {
   color: red;
   margin-left: 10px;
   font-style: italic;
-}
-.disable {
-  opacity: .4;
-  cursor: not-allowed;
-  pointer-events: none;
 }
 
 @keyframes bg-pos-move {

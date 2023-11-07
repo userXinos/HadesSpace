@@ -43,7 +43,7 @@
 
 <!--suppress TypeScriptCheckImport, TypeScriptUnresolvedReference -->
 <script setup lang="ts">
-import { ref, reactive, h, VNode, watch } from 'vue';
+import { ref, reactive, h, VNode, watch, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getTechIndex, TechLevels } from 'bot_client';
 import client from '../utils/compendium';
@@ -76,11 +76,10 @@ const maxLvl: Record<string, number> = Object.fromEntries([
     ['AllianceLevel', allianceData.XPRequired.length],
 ]);
 
-
 const setTechLevel: SetTechLevel = debounce((...args) => client.setTechLevel(...args), 500);
 const { t } = useI18n();
 const openModal = ref(false);
-const data = ref<TechLevels>({});
+const data = ref<TechLevels>(null);
 const levelMap = ref<Record<string, number>>({});
 const modalOpts = reactive({
     size: SIZES.SMALL,
@@ -94,22 +93,33 @@ const modalOpts = reactive({
     },
 });
 
-data.value = client.getTechLevels();
+onMounted(() => {
+    if (client.getUser()) {
+        data.value = client.getTechLevels();
+    }
+});
 
 watch(data, (value) => {
-    levelMap.value = objectArrayify(value, {
-        map: ([i, v]) => [getTechFromIndex(i as number), v.level],
-    });
+    if (value) {
+        levelMap.value = objectArrayify(value, {
+            map: ([i, v]) => [getTechFromIndex(i as number), v.level],
+        });
+    }
 }, { deep: true });
 
-client.on('sync', (tl: TechLevels) => {
-    data.value = tl;
+client.on('sync', (tl: TechLevels) => data.value = tl);
+client.on('connected', () => data.value = client.getTechLevels());
+client.on('disconnected', () => {
+    data.value = undefined;
+    levelMap.value = undefined;
 });
 
 function openTechInfo(value: object) {
-    modalOpts.data.value = value;
-    modalOpts.data.maxLevel = maxLvl[value.Name];
-    openModal.value = true;
+    if (data.value) {
+        modalOpts.data.value = value;
+        modalOpts.data.maxLevel = maxLvl[value.Name];
+        openModal.value = true;
+    }
 }
 function isMuted(key: string): boolean {
     return !getDataByKey(key)?.level;
@@ -144,7 +154,7 @@ function ModalIcon(): VNode {
         return h(Icon, { name: m.Icon, dir: m.specialIcon ? 'icons' : 'game/Modules' });
     }
     if (m.Model) {
-        return h(Icon, { name: m.Model[(getDataById(m.Name)?.level - 1) || 5], dir: 'game/Ships' });
+        return h(Icon, { name: m.Model[(getDataByKey(m.Name)?.level - 1) || 5], dir: 'game/Ships' });
     }
     if (m.PrefabModel) {
         return h(Icon, { name: m.PrefabModel, dir: 'game/SpaceBuildings' });
@@ -166,10 +176,6 @@ $plan-color: #ded45a;
 
 .container {
   margin-top: 1%;
-
-  @media screen and (max-width: 960px){
-    //margin: 0 4%;
-  }
 }
 
 .modal {
@@ -194,17 +200,5 @@ $plan-color: #ded45a;
     width: 70%;
     margin: 0 auto;
   }
-}
-
-.animated-fetch {
-  background: linear-gradient(to left, $background, $background-elements 18%, $background);
-  background-size: 50vw;
-  animation: bg-pos-move 10s infinite forwards linear;
-  opacity: .6;
-  pointer-events: none;
-}
-
-@keyframes bg-pos-move {
-  to { background-position: 1000% 0; }
 }
 </style>

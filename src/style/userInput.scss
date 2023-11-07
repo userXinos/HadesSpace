@@ -9,6 +9,12 @@ $button-colors: (
     "accent": $accent-color,
 );
 
+.disable {
+  opacity: .4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 
 .select {
   //margin-bottom: 7%;
