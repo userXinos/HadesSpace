@@ -28,7 +28,7 @@
             <div class="level-picker">
               <NumberPicker
                 :value="getDataByKey(modalOpts.data.key)?.level || 0"
-                :min="0"
+                :min="modalOpts.data.minLevel"
                 :max="modalOpts.data.maxLevel"
                 @update:value="onChangeLvl"
               />
@@ -55,6 +55,7 @@ import CompendiumPage from '../components/CompendiumPage.vue';
 import CompendiumTechList from '../components/CompendiumTechList.vue';
 import NumberPicker from '../components/NumberPicker.vue';
 
+import globals from '@Data/globals.js';
 import shipsData from '@Data/capital_ships.js';
 import allianceData from '@Data/alliance_levels.js';
 import spaceBuildingsData from '@Data/spacebuildings.js';
@@ -66,14 +67,21 @@ declare type SetTechLevel = (techId: number, level: number) => Promise<void>;
 
 const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
 const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
+const { MaxModuleLevel } = globals;
 
 spaceBuildings.RedStarScanner.Cost.shift(); // tut lvl
 
 const maxLvl: Record<string, number> = Object.fromEntries([
     ...Object.entries(spaceBuildings).map(([k, v]) => [k, v.Cost.length]),
     ...Object.entries(ships).map(([k, v]) => [k, v.BuildCost.length]),
-    ...Object.entries(modulesData).map(([k, v]) => [k, getModulesMaxLvl(v as object)]),
+    ...Object.keys(modulesData).map((k) => [k, MaxModuleLevel]),
     ['AllianceLevel', allianceData.XPRequired.length],
+]);
+const minLvl: Record<string, number> = Object.fromEntries([
+    ...Object.keys(spaceBuildings).map((k) => [k, 0]),
+    ...Object.keys(ships).map((k) => [k, 0]),
+    ...Object.entries(modulesData).map(([k, v]) => [k, getModulesMinLvl(v as object)]),
+    ['AllianceLevel', 0],
 ]);
 
 const setTechLevel: SetTechLevel = debounce((...args) => client.setTechLevel(...args), 500);
@@ -87,6 +95,7 @@ const modalOpts = reactive({
     data: {
         value: {},
         maxLevel: 0,
+        minLevel: 0,
         get key() {
             return this.value.Name;
         },
@@ -118,6 +127,7 @@ function openTechInfo(value: object) {
     if (data.value) {
         modalOpts.data.value = value;
         modalOpts.data.maxLevel = maxLvl[value.Name];
+        modalOpts.data.minLevel = minLvl[value.Name];
         openModal.value = true;
     }
 }
@@ -130,19 +140,24 @@ function onChangeLvl(value: number): number {
     if (!data.value[i]) {
         data.value[i] = { level: 0 };
     }
-    data.value[i].level = value;
-    setTechLevel(i, value);
+    if (modalOpts.data.minLevel != 0 && value == modalOpts.data.minLevel && data.value[i].level != 0) {
+        value = 0;
+    }
+    if (data.value[i].level != value) {
+        data.value[i].level = value;
+        setTechLevel(i, value);
+    }
     return value;
 }
-function getModulesMaxLvl(module: object): number {
-    let maxLevel = 1;
+function getModulesMinLvl(module: object): number {
+    let maxLength = 1;
 
     for (const [, value] of Object.entries(module)) {
-        if (Array.isArray(value) && value.length > maxLevel) {
-            maxLevel = value.length;
+        if (Array.isArray(value) && value.length > maxLength) {
+            maxLength = value.length;
         }
     }
-    return maxLevel;
+    return MaxModuleLevel - maxLength + 1;
 }
 function getDataByKey(key: string): object|null {
     return data.value?.[getTechIndex(key)] || null;

@@ -28,9 +28,13 @@ const props = defineProps<Props>();
 const emit = defineEmits(['update:value']);
 
 function checkAndSend(num: number) {
-    if (num > props.max || num < props.min) {
-        return;
+    if (num < props.min) {
+        num = props.min;
     }
+    if (num > props.max) {
+        num = props.max;
+    }
+
     emit('update:value', num);
 }
 </script>
