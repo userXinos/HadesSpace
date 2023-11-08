@@ -39,7 +39,7 @@
   COMPACT_MODE_NOTE: 'ПРЕДУПРЕЖДЕНИЕ! Отключайте только если знаете что делаете.',
   CONFIRM_LOGIN: 'Подтвердите вход из {0} как ${1}',
   FILTER: 'Фильтр',
-  ENTER_CODE: 'Код подлючепния от бота',
+  ENTER_CODE: 'Код подключения от бота',
   CANNOT_BE_EMPTY: 'Не может быть пустым',
   INCORRECT_CODE: 'Неверный код',
   HS_COMPENDIUM: 'HSCompendium',
