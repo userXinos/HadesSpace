@@ -28,7 +28,6 @@
   LVLS_PLANETS: 'Улучшение планет',
   XP_AWARD: 'Опыт',
   TIME_TO_UPGRADE: 'Время улучшения',
-  MAX_SHIPMENTS: 'Макс. грузов',
   CREDIT_SHIPMENT_MODIFIER: 'Модификатор грузов',
   MAX_UPGRADE_LEVEL: 'Макс. уровень',
   MODEL: 'Модель',

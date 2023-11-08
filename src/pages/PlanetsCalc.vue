@@ -97,13 +97,15 @@
   </div>
 </template>
 
+<!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
-import { ref, computed, Ref, reactive } from 'vue';
+import { ref, computed, ComputedRef, Ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import levels from '@Data/planet_levels.js';
 import planetsData from '@Data/planets.js';
 import spaceBuildings from '@Data/spacebuildings.js';
+import YSSectors from '@Data/yellow_star_sectors.js';
 
 import Calculator from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
@@ -126,9 +128,19 @@ const KEYS_ALIASES_TS: Record<string, string> = {
     ConstructionTime: 'TimeToUpgrade',
 };
 const STACK_CHARS = ['XPAward', 'Cost', 'TimeToUpgrade', 'RSLevelReq'];
-const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name', 'ShipmentsHydroValuePerDay'];
+const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name'];
 const TOTAL_KEYS = Object.keys(levels)
     .filter((k) => ![...STACK_CHARS, ...HIDE_LVL_CHARS].includes(k));
+const PLANET_MOONS = Object.values(YSSectors.NumMoons).reduce((acc, NumMoons, currentIndex) => {
+    if (NumMoons) {
+        if (Array.isArray(NumMoons)) {
+            NumMoons.forEach((NumMoons2, currentIndex2 ) => acc[YSSectors.PlanetTypes[currentIndex][currentIndex2]] = NumMoons2);
+        } else {
+            acc[YSSectors.PlanetTypes[currentIndex]] = NumMoons;
+        }
+    }
+    return acc;
+}, {}) as Record<string, number>;
 
 const { t } = useI18n();
 const planets = ref([]);
@@ -201,8 +213,11 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
             elements[name] = objectArrayify(filteredLevels, {
                 map: ([k, v]: [string, number[]]) => {
                     const MaxUpgradeLevel = planet.MaxUpgradeLevel as number;
-                    const res = v.map((e) => e * ((k in CHARS_MODIFIERS) ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1));
+                    let res = v.map((e) => e * ((k in CHARS_MODIFIERS) ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1));
 
+                    if (k == 'ShipmentsCRValuePerDay' && planet.Name in PLANET_MOONS) {
+                        res = v.map((e) => e * (planet[CHARS_MODIFIERS['ShipmentsCRValuePerDay']] / 100) * (PLANET_MOONS[planet.Name] + 1));
+                    }
                     if (res.length < MaxUpgradeLevel) {
                         res.push(...Array.from({ length: MaxUpgradeLevel - res.length }, () => res[res.length - 1]));
                     }
@@ -215,6 +230,7 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
             return [name, planet];
         },
     });
+    // noinspection TypeScriptUnresolvedReference
     const TradingStation = objectArrayify(spaceBuildings.TradingStation as TS, {
         map: ([k, v]: [string, unknown]) => {
             if (Array.isArray(v) && v.length > tsMaxLvl) {

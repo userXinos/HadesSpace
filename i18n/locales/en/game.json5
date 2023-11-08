@@ -28,7 +28,6 @@
   LVLS_PLANETS: 'Planet improvement',
   XP_AWARD: 'XP Award',
   TIME_TO_UPGRADE: 'Time Upgrade',
-  MAX_SHIPMENTS: 'Max Shipments',
   CREDIT_SHIPMENT_MODIFIER: 'Shipment modifier',
   MAX_UPGRADE_LEVEL: 'Max Level',
   MODEL: 'Model',

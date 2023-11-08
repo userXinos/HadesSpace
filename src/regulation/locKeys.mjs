@@ -190,8 +190,8 @@ export const gameCharsLocKeys = {
     MaxHealth: 'TID_OBJECT_ACTION_COLONIZE',
     ImmolationDamage: 'TID_MODULE_IMMOLATION_DAMAGE_AMT',
     Crunch: 'TID_MODULE_CRUNCH',
+    MaxShipments: 'TID_MODULE_SHIPMENTBEAM_MAX_SHIPMENTS',
 };
-
 
 
 export default {
@@ -226,7 +226,6 @@ export default {
     TimeToUpgrade: 'TIME_TO_UPGRADE',
     MaxUpgradeLevel: 'MAX_UPGRADE_LEVEL',
     CreditShipmentModifier: 'CREDIT_SHIPMENT_MODIFIER',
-    MaxShipments: 'MAX_SHIPMENTS',
     PlanetTypes: 'PLANET_TYPES',
     Model: 'MODEL',
     DesignUpgradeCost: 'UPGRADE_COST',
