@@ -55,6 +55,7 @@ export interface SetupComponent {
     onChangeLvl: (type: keyInput, key: string, value: (number | string)) => number,
     outputClasses: (type: keyof Output, key: string, charName?: string) => object,
     format: { value: (k: string, v: unknown) => unknown, key: (k: string) => string }
+    forceReCalc: () => void
     provideGetterElements: (cb: SetupGetElementsCB) => unknown,
 }
 

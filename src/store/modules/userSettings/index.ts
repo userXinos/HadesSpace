@@ -28,6 +28,11 @@ const mutations = <MutationTree<UserSettings>> {
         setSettings(LOCAL_STORAGE_KEY, state);
         return state.compactModulesByArtTypeTable;
     },
+    [types.SWITCH_PLANETS_CALC_SP2](state) {
+        state.planetsCalcSp2 = !state.planetsCalcSp2;
+        setSettings(LOCAL_STORAGE_KEY, state);
+        return state.planetsCalcSp2;
+    },
     [types.DEBUG_SWITCH_SHOW_KEYS](state) {
         state.showKeys = !state.showKeys;
         setSettings(LOCAL_STORAGE_KEY, state);
@@ -49,6 +54,7 @@ export default {
         language: settings.language || ((browserLang in SUPPORT_LOCALES) ? browserLang : DEFAULT_LANG),
         disableFilters: settings.disableFilters,
         compactModulesByArtTypeTable: settings.compactModulesByArtTypeTable,
+        planetsCalcSp2: settings.planetsCalcSp2,
         showKeys: settings.showKeys,
         lastVersionChangelog: settings.lastVersionChangelog,
     },
@@ -64,6 +70,7 @@ function getSettings(key: string): Settings {
         language: DEFAULT_LANG,
         disableFilters: false,
         compactModulesByArtTypeTable: true,
+        planetsCalcSp2: false,
         showKeys: false,
         lastVersionChangelog: '0.0.0',
     };

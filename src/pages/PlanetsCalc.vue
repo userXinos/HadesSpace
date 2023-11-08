@@ -11,6 +11,27 @@
         @setup="setupCalculator"
       />
 
+      <div class="switch">
+        <div>
+          <p
+            v-t="'TID_STARTER_PACK_2'"
+            class="name"
+          />
+          <p />
+        </div>
+        <input
+          id="compact-mode"
+          class="checkbox"
+          type="checkbox"
+          :checked="$store.state.userSettings.planetsCalcSp2"
+          @change="$store.commit(types.SWITCH_PLANETS_CALC_SP2)"
+        >
+        <label
+          for="compact-mode"
+          class="label"
+        />
+      </div>
+
       <v-data
         :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: planetValues.map((e) => e.TID)}"
         :table-opts="{lvlColKey: '№', mergeCells: false}"
@@ -24,7 +45,7 @@
 
         <template #table-body="{ row }">
           <td
-            v-for="type in Object.keys(input)"
+            v-for="(_, type) in input"
             :key="type"
           >
             <select
@@ -34,8 +55,8 @@
               <option
                 v-for="(i, index) in (planetValues[row].MaxUpgradeLevel + 1)"
                 :key="type + i"
-                :selected="calc.isSelected(type, planetValues[row].Name, index)"
-                :disabled="calc.isDisabled(type, planetValues[row].Name, index)"
+                :selected="calc.isSelected(type, planetValues[row].Name, index as number)"
+                :disabled="calc.isDisabled(type, planetValues[row].Name, index as number)"
               >{{ index }}
               </option>
             </select>
@@ -66,7 +87,7 @@
               <b>{{ $t('TID_PLANET_LEVEL_DESCR') }}</b>
               <div>
                 <span
-                  v-for="type of Object.keys(input)"
+                  v-for="(_, type) of input"
                   :key="type"
                   :class="outputClasses(type, null)"
                 >
@@ -82,7 +103,7 @@
               <b>{{ calc.format.key(key) }}</b>
               <div>
                 <span
-                  v-for="type of Object.keys(input)"
+                  v-for="(_, type) of input"
                   :key="type"
                   :class="outputClasses(type, key)"
                 >
@@ -101,11 +122,14 @@
 <script setup lang="ts">
 import { ref, computed, ComputedRef, Ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
+import Store from '@Store/index';
+import types from '../store/modules/userSettings/types';
 
 import levels from '@Data/planet_levels.js';
 import planetsData from '@Data/planets.js';
 import spaceBuildings from '@Data/spacebuildings.js';
 import YSSectors from '@Data/yellow_star_sectors.js';
+import globals from '@Data/globals.js';
 
 import Calculator from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
@@ -115,6 +139,7 @@ import type { SetupComponent, SetupGetElementsCB, Input, OutputValue, ElementsSt
 import objectArrayify from '../utils/objectArrayify';
 import getFilterByType from '../utils/getFilterByType';
 
+const { SP2ShipmentsBoostPct } = globals;
 const CHARS_MODIFIERS: Record<string, string> = {
     CreditStorage: 'CreditStorageModifier',
     FuelStorage: 'FuelStorageModifier',
@@ -131,7 +156,7 @@ const STACK_CHARS = ['XPAward', 'Cost', 'TimeToUpgrade', 'RSLevelReq'];
 const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name'];
 const TOTAL_KEYS = Object.keys(levels)
     .filter((k) => ![...STACK_CHARS, ...HIDE_LVL_CHARS].includes(k));
-const PLANET_MOONS = Object.values(YSSectors.NumMoons).reduce((acc, NumMoons, currentIndex) => {
+const PLANET_MOONS = Object.values(YSSectors.NumMoons as (number|number[])[]).reduce((acc, NumMoons, currentIndex) => {
     if (NumMoons) {
         if (Array.isArray(NumMoons)) {
             NumMoons.forEach((NumMoons2, currentIndex2 ) => acc[YSSectors.PlanetTypes[currentIndex][currentIndex2]] = NumMoons2);
@@ -156,9 +181,15 @@ const modalOpts = reactive({
         },
     },
 });
-const planetValues: ComputedRef<unknown[]> = computed(() => Object.values(planets.value));
+const planetValues: ComputedRef<OutputValue[]> = computed(() => Object.values(planets.value));
 let calc: SetupComponent;
 
+Store.subscribe((mutation) => {
+    if (mutation.type == types.SWITCH_PLANETS_CALC_SP2 && calc) {
+        setupCalculator(calc);
+        calc.forceReCalc();
+    }
+});
 
 function setupCalculator(v: SetupComponent) {
     calc = v;
@@ -213,10 +244,11 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
             elements[name] = objectArrayify(filteredLevels, {
                 map: ([k, v]: [string, number[]]) => {
                     const MaxUpgradeLevel = planet.MaxUpgradeLevel as number;
-                    let res = v.map((e) => e * ((k in CHARS_MODIFIERS) ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1));
+                    const sModifier = (Store.state.userSettings.planetsCalcSp2 && k == 'ShipmentsCRValuePerDay') ? SP2ShipmentsBoostPct / 100 : 0;
+                    let res = v.map((e) => e * (k in CHARS_MODIFIERS ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1 + sModifier));
 
                     if (k == 'ShipmentsCRValuePerDay' && planet.Name in PLANET_MOONS) {
-                        res = v.map((e) => e * (planet[CHARS_MODIFIERS['ShipmentsCRValuePerDay']] / 100) * (PLANET_MOONS[planet.Name] + 1));
+                        res = v.map((e) => e * (planet[CHARS_MODIFIERS['ShipmentsCRValuePerDay']] / 100 + sModifier) * (PLANET_MOONS[planet.Name] + 1));
                     }
                     if (res.length < MaxUpgradeLevel) {
                         res.push(...Array.from({ length: MaxUpgradeLevel - res.length }, () => res[res.length - 1]));
@@ -257,6 +289,7 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
 
 @import "../style/vars";
 @import "../style/calculator";
+@import "../style/userInput";
 
 .wrap {
     display: flex;
@@ -267,6 +300,12 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
         width: 100%;
         max-width: 1000px;
     }
+}
+
+.switch {
+  margin-top: 1%;
+  width: max-content;
+  margin-left: auto;
 }
 
 .select {

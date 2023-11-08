@@ -2,6 +2,7 @@ declare interface Settings {
     language: string
     disableFilters: boolean,
     compactModulesByArtTypeTable: boolean,
+    planetsCalcSp2: boolean,
     showKeys: boolean,
     lastVersionChangelog: string
 }

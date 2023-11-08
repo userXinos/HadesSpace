@@ -206,6 +206,7 @@ const setupArgs: SetupComponent = {
     isSelected: isSelected,
     isDisabled: isDisabled,
     outputClasses: outputClasses,
+    forceReCalc: fullUpdate,
     format: format,
 
     provideGetterElements: (cb: SetupGetElementsCB) =>
