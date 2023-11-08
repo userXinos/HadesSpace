@@ -3,7 +3,7 @@ import { basename } from 'path';
 
 export default class compileOne extends Runner {
     static config = {
-        file: [ 'alliance_levels', 'planet_levels', 'badge_icons' ],
+        file: [ 'alliance_levels', 'badge_icons' ],
     };
 
     run(rawData) {

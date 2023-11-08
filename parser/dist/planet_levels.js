@@ -1,6 +1,7 @@
 /**
- * @GeneratedBy compileOne.js runner
+ * @GeneratedBy PlanetLevels.js runner
  * @OriginalFile raw/planet_levels.csv
+ * @UsedFiles planet_shipments.csv
  */
 
 export default {
@@ -123,4 +124,9 @@ export default {
         8,
     ],
     Name: "planet_levels",
+    MaxShipments: [
+        1, 2, 3, 4, 6, 8, 8, 10, 10, 10, 10, 10, 10, 12, 14, 16, 16, 18, 18, 20, 20, 20, 20, 20, 20, 20, 22, 24, 26, 28,
+        30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44, 46, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110,
+        115, 120, 125, 130, 135, 140, 140,
+    ],
 };
