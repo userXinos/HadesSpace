@@ -464,6 +464,9 @@ function outputClasses(type: keyof Output, key: string, charName?: string): obje
 }
 
 .settings-modal {
+  .select {
+    margin-bottom: 4%;
+  }
     .config-category {
         display: flex;
         justify-content: space-between;

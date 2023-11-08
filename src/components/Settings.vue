@@ -127,6 +127,10 @@ $mv: 1000px;
     padding-bottom: 2%;
 }
 
+.select {
+  margin-bottom: 4%;
+}
+
 .button {
     cursor: pointer;
     display: flex;
