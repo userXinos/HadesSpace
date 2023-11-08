@@ -142,6 +142,11 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         [ 'HydroPerNewAsteroid_YS', 'HydroPerNewAsteroid_RS', 'HydroPerNewAsteroid_WS' ].forEach((k) => delete value[k]);
     }
 
+    if (key === 'Enrich') {
+        value.IncreaseSectorHydroPct_RS = value.IncreaseSectorHydroPct.map((e) => e * value.RSEnrichMod);
+        delete value['RSEnrichMod'];
+    }
+
     // фикс БЗ стат
     fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS);
 

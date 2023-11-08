@@ -1158,7 +1158,7 @@ export default {
         AllowForWSEarlyAccess: 1,
         SectorEnrichCooldownSecondsRS: 300,
         SectorEnrichCooldownSecondsWS: 0,
-        RSEnrichMod: 8,
+        IncreaseSectorHydroPct_RS: [8, 16, 24, 32, 40, 48, 64, 80, 96, 128, 160, 192, 224, 256, 320],
         ActivationDelayRS: 300,
     },
     Rush: {

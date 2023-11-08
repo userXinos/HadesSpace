@@ -66,6 +66,7 @@ export default [
     'RSLESecPer500Hydro',
     'ExtraHydroStorage',
     'IncreaseSectorHydroPct',
+    'IncreaseSectorHydroPct_RS',
     'HydroUploadPct',
     'HydroClonePct',
     'InstantHydrogenCollected',
