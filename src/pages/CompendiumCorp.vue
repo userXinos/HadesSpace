@@ -1,5 +1,7 @@
 <template>
   <div>
+    <v-head><title>{{ title }}</title></v-head>
+
     <CompendiumPage>
       <div class="container">
         <div
@@ -136,10 +138,12 @@
 <script setup lang="ts">
 import { CorpData, CorpMember, getTechIndex } from 'bot_client';
 import { onMounted, reactive, Ref, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import { getDiscordAvatarUrl } from '../utils/getDiscordUrl';
 import client from '../utils/compendium';
 
+import { Head as VHead } from '@vueuse/head';
 import Modal, { SIZES } from '@/components/Modal.vue';
 import Icon from '@/components/Icon.vue';
 import TechList from '@/components/CompendiumTechList.vue';
@@ -152,6 +156,7 @@ import modulesData from '@Data/modules.js';
 import objectArrayify from '../utils/objectArrayify';
 import { getTechFromIndex } from 'bot_client/src/module_types';
 
+
 const DISPLAY_USER_TECH_ITEMS = 5;
 const MAX_ITEMS_PAGE = 50;
 
@@ -163,6 +168,8 @@ interface UserInfo {
   }
 }
 
+const { t } = useI18n();
+const title = t('HS_COMPENDIUM');
 const { hourCycles } = new Intl.Locale(navigator.language);
 const isBrowserLocale24h = hourCycles ? ['h23', 'h24'].some((hourCycle) => hourCycles.includes(hourCycle)) : true;
 
@@ -323,6 +330,7 @@ function getTechForDisplay(member: CorpMember): Record<string, {level: number|st
 @import "../style/vars";
 @import "../style/userInput";
 @import "../style/CompendiumTechList";
+@import "../style/page";
 
 .container {
   max-width: 680px;

@@ -1,5 +1,7 @@
 <template>
   <CompendiumPage>
+    <v-head><title>{{ title }}</title></v-head>
+
     <div>
 
       <div class="container">
@@ -49,6 +51,7 @@ import { getTechIndex, TechLevels } from 'bot_client';
 import client from '../utils/compendium';
 import debounce from 'lodash.debounce';
 
+import { Head as VHead } from '@vueuse/head';
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 import CompendiumPage from '../components/CompendiumPage.vue';
@@ -86,6 +89,7 @@ const minLvl: Record<string, number> = Object.fromEntries([
 
 const setTechLevel: SetTechLevel = debounce((...args) => client.setTechLevel(...args), 500);
 const { t } = useI18n();
+const title = t('HS_COMPENDIUM');
 const openModal = ref(false);
 const data = ref<TechLevels>(null);
 const levelMap = ref<Record<string, number>>({});
