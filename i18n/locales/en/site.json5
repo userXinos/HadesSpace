@@ -43,5 +43,7 @@
   CANNOT_BE_EMPTY: 'Cannot be empty',
   INCORRECT_CODE: 'Incorrect code',
   HS_COMPENDIUM: 'HSCompendium',
-  TECHNOLOGIES: 'Technologies'
+  TECHNOLOGIES: 'Technologies',
+  CRYSTAL_CALCULATOR: 'Crystal calculator',
+  TIME: 'Time'
 }

@@ -43,5 +43,7 @@
   CANNOT_BE_EMPTY: 'Не может быть пустым',
   INCORRECT_CODE: 'Неверный код',
   HS_COMPENDIUM: 'HSCompendium',
-  TECHNOLOGIES: 'Технологии'
+  TECHNOLOGIES: 'Технологии',
+  CRYSTAL_CALCULATOR: 'Калькулятор кристаллов',
+  TIME: 'Время'
 }

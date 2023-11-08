@@ -254,6 +254,16 @@ export default [
                 },
             },
             {
+                name: 'CrystalCalc',
+                text: { locKey: 'CRYSTAL_CALCULATOR' },
+                path: '/crystalCalc',
+                component: () => import(/* webpackChunkName: "CrystalCalc" */ '../pages/CrystalCalc.vue'),
+                icon: {
+                    name: 'crystal-calc',
+                    dir: 'icons',
+                },
+            },
+            {
                 text: {
                     locKey: 'SWITCH_ACCS',
                     params: ['by Raerten', 'up to Android 10'],

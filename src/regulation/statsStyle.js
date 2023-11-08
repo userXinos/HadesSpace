@@ -42,8 +42,6 @@ export default {
         'TimeToUpgrade',
         'DesignUpgradeTime',
         'ConstructionTime',
-        'ConstructionTime',
-        'ConstructionTime',
         'TimeToResearch',
     ],
     flt: [
