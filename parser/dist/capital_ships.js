@@ -36,9 +36,9 @@ export default {
         Speed_YS: 600,
         Speed_RS: 240,
         Speed_BLS: 192,
-        Speed_WS: 124,
         SpeedIncrPerTick: 6,
         FuelUsePer5000Distance: [10, 18, 26, 34, 50, 120, 250],
+        WSSpeed: 124,
     },
     Miner: {
         Name: "Miner",
@@ -75,9 +75,9 @@ export default {
         Speed_YS: 1200,
         Speed_RS: 240,
         Speed_BLS: 192,
-        Speed_WS: 124,
         SpeedIncrPerTick: 40,
         FuelUsePer5000Distance: 0,
+        WSSpeed: 124,
     },
     Battleship: {
         Name: "Battleship",
@@ -111,10 +111,10 @@ export default {
         Speed_YS: 660,
         Speed_RS: 250,
         Speed_BLS: 200,
-        Speed_WS: 130,
         SpeedIncrPerTick: 40,
         FuelUsePer5000Distance: 0,
         BSPenaltyPerSec: [500, 1000, 2000, 4000, 6000, 7000, 8000],
+        WSSpeed: 130,
         modules: [
             {
                 Name: "WeakBattery",
@@ -156,13 +156,13 @@ export default {
         Speed_YS: 150,
         Speed_RS: 125,
         Speed_BLS: 100,
-        Speed_WS: 65,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 14,
         AggressiveAI: 0,
         InfluencePoints: 10,
         BSPenaltyPerSec: 1500,
+        WSSpeed: 65,
         modules: [
             {
                 Name: "SentinelBattery",
@@ -180,7 +180,7 @@ export default {
                 EffectRadius: 1200,
                 DPS: 200,
                 DPS_BS: 200,
-                DPS_WS: 200,
+                DPH_WS: 1200,
             },
         ],
     },
@@ -202,13 +202,13 @@ export default {
         Speed_YS: 165,
         Speed_RS: 137,
         Speed_BLS: 110,
-        Speed_WS: 71,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 8,
         AggressiveAI: 1,
         InfluencePoints: 20,
         BSPenaltyPerSec: 400,
+        WSSpeed: 71,
         modules: [
             {
                 Name: "GuardianBattery",
@@ -248,13 +248,13 @@ export default {
         Speed_YS: 180,
         Speed_RS: 150,
         Speed_BLS: 120,
-        Speed_WS: 78,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 10,
         AggressiveAI: 1,
         InfluencePoints: 100,
         BSPenaltyPerSec: 1200,
+        WSSpeed: 78,
         modules: [
             {
                 Name: "ColossusLaser",
@@ -317,13 +317,13 @@ export default {
         Speed_YS: 390,
         Speed_RS: 325,
         Speed_BLS: 260,
-        Speed_WS: 169,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 5,
         AIUpdateIntervalSeconds: 15,
         AggressiveAI: 1,
         InfluencePoints: 40,
         BSPenaltyPerSec: 800,
+        WSSpeed: 169,
         modules: [
             {
                 Name: "InterceptorMBattery",
@@ -362,7 +362,6 @@ export default {
         Speed_YS: 135,
         Speed_RS: 112,
         Speed_BLS: 90,
-        Speed_WS: 58,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 6,
         PlanetDamagePerSecFP: 55550,
@@ -370,6 +369,7 @@ export default {
         AIUpdateIntervalSeconds: 20,
         AggressiveAI: 1,
         InfluencePoints: 60,
+        WSSpeed: 58,
         modules: [
             {
                 Name: "DestroyerVengeance",
@@ -411,7 +411,6 @@ export default {
         Speed_YS: 135,
         Speed_RS: 112,
         Speed_BLS: 90,
-        Speed_WS: 58,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 7,
         AIUpdateIntervalSeconds: 10,
@@ -423,6 +422,7 @@ export default {
         OnDestroySpawnMinRadius: 300,
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
+        WSSpeed: 58,
         modules: [
             {
                 Name: "PhoenixDualLaser",
@@ -497,11 +497,11 @@ export default {
         Speed_YS: 300,
         Speed_RS: 250,
         Speed_BLS: 200,
-        Speed_WS: 130,
         SpeedIncrPerTick: 40,
         FuelUsePer5000Distance: 0,
         ShipAIHandler: 9,
         AIUpdateIntervalSeconds: 4,
+        WSSpeed: 130,
         modules: [
             {
                 Name: "WeakBattery",
@@ -543,7 +543,6 @@ export default {
         Speed_YS: 120,
         Speed_RS: 100,
         Speed_BLS: 80,
-        Speed_WS: 52,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 11,
         AIUpdateIntervalSeconds: 2,
@@ -551,6 +550,7 @@ export default {
         InfluencePoints: 120,
         BSPenaltyPerSec: 1500,
         BSPenaltyPerSecOnSector: 250,
+        WSSpeed: 52,
         modules: [
             {
                 Name: "BomberLauncher",
@@ -622,11 +622,11 @@ export default {
         Speed_YS: 300,
         Speed_RS: 250,
         Speed_BLS: 200,
-        Speed_WS: 130,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 12,
         AIUpdateIntervalSeconds: 5,
         BSPenaltyPerSec: [500, 1000, 1500, 3000, 5000],
+        WSSpeed: 130,
         modules: [
             {
                 Name: "WeakBattery",
@@ -668,11 +668,11 @@ export default {
         Speed_YS: 6,
         Speed_RS: 6,
         Speed_BLS: 6,
-        Speed_WS: 6,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 13,
         InfluencePoints: 100,
         RadialMoveRadius: 1600,
+        WSSpeed: 6,
         modules: [
             {
                 Name: "StormDarts",
@@ -739,12 +739,12 @@ export default {
         Speed_YS: 390,
         Speed_RS: 325,
         Speed_BLS: 260,
-        Speed_WS: 169,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 16,
         AIUpdateIntervalSeconds: 6,
         InfluencePoints: 1,
         SpawnFx: "SentinelSpawn_Fx",
+        WSSpeed: 169,
         modules: [
             {
                 Name: "GhostBattery",
@@ -762,7 +762,7 @@ export default {
                 EffectRadius: 1200,
                 DPS: 80,
                 DPS_BS: 80,
-                DPS_WS: 80,
+                DPH_WS: 480,
             },
         ],
     },
@@ -812,9 +812,9 @@ export default {
         Speed_YS: 240,
         Speed_RS: 200,
         Speed_BLS: 160,
-        Speed_WS: 104,
         SpeedIncrPerTick: 40,
         FuelUsePer5000Distance: 100,
+        WSSpeed: 104,
         modules: {
             Battery: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15],
             Immolation: [0, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5],
@@ -844,13 +844,13 @@ export default {
         Speed_YS: 300,
         Speed_RS: 250,
         Speed_BLS: 200,
-        Speed_WS: 130,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 20,
         AggressiveAI: 1,
         InfluencePoints: 50,
         EMPResist: 80,
+        WSSpeed: 130,
         modules: [
             {
                 Name: "HydraBarrage",
@@ -888,7 +888,6 @@ export default {
         Speed_YS: 300,
         Speed_RS: 250,
         Speed_BLS: 200,
-        Speed_WS: 130,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 20,
@@ -900,6 +899,7 @@ export default {
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
         EMPResist: 80,
+        WSSpeed: 130,
         modules: [
             {
                 level: 2,
@@ -939,7 +939,6 @@ export default {
         Speed_YS: 240,
         Speed_RS: 200,
         Speed_BLS: 160,
-        Speed_WS: 104,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 20,
@@ -951,6 +950,7 @@ export default {
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
         EMPResist: 80,
+        WSSpeed: 104,
         modules: [
             {
                 level: 3,
@@ -990,12 +990,12 @@ export default {
         Speed_YS: 18,
         Speed_RS: 15,
         Speed_BLS: 12,
-        Speed_WS: 7,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 13,
         InfluencePoints: 100,
         RadialMoveRadius: 1200,
         BaseCerbShipDataIdx: 15,
+        WSSpeed: 7,
         modules: [
             {
                 Name: "StormDarts",
@@ -1061,7 +1061,6 @@ export default {
         Speed_YS: 150,
         Speed_RS: 125,
         Speed_BLS: 100,
-        Speed_WS: 65,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 15,
         AIUpdateIntervalSeconds: 5,
@@ -1072,6 +1071,7 @@ export default {
         SpawnFx: "SentinelSpawn_Fx",
         RadialMoveRadius: 1600,
         AITeleportDelay: 8,
+        WSSpeed: 65,
     },
     DarkSentinel: {
         Name: "DarkSentinel",
@@ -1091,7 +1091,6 @@ export default {
         Speed_YS: 150,
         Speed_RS: 125,
         Speed_BLS: 100,
-        Speed_WS: 65,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 14,
@@ -1099,6 +1098,7 @@ export default {
         InfluencePoints: 10,
         BSPenaltyPerSec: 1500,
         BaseCerbShipDataIdx: 3,
+        WSSpeed: 65,
         modules: [
             {
                 level: 2,
@@ -1117,7 +1117,7 @@ export default {
                 EffectRadius: 1200,
                 DPS: 250,
                 DPS_BS: 250,
-                DPS_WS: 250,
+                DPH_WS: 1500,
             },
         ],
     },
@@ -1139,7 +1139,6 @@ export default {
         Speed_YS: 165,
         Speed_RS: 137,
         Speed_BLS: 110,
-        Speed_WS: 71,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 8,
@@ -1147,6 +1146,7 @@ export default {
         InfluencePoints: 20,
         BSPenaltyPerSec: 400,
         BaseCerbShipDataIdx: 4,
+        WSSpeed: 71,
         modules: [
             {
                 level: 2,
@@ -1187,7 +1187,6 @@ export default {
         Speed_YS: 180,
         Speed_RS: 150,
         Speed_BLS: 120,
-        Speed_WS: 78,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 10,
@@ -1195,6 +1194,7 @@ export default {
         InfluencePoints: 100,
         BSPenaltyPerSec: 1200,
         BaseCerbShipDataIdx: 5,
+        WSSpeed: 78,
         modules: [
             {
                 level: 2,
@@ -1258,7 +1258,6 @@ export default {
         Speed_YS: 480,
         Speed_RS: 400,
         Speed_BLS: 320,
-        Speed_WS: 208,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 5,
         AIUpdateIntervalSeconds: 15,
@@ -1266,6 +1265,7 @@ export default {
         InfluencePoints: 40,
         BSPenaltyPerSec: 800,
         BaseCerbShipDataIdx: 6,
+        WSSpeed: 208,
         modules: [
             {
                 level: 2,
@@ -1305,7 +1305,6 @@ export default {
         Speed_YS: 135,
         Speed_RS: 112,
         Speed_BLS: 90,
-        Speed_WS: 58,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 6,
         PlanetDamagePerSecFP: 55550,
@@ -1314,6 +1313,7 @@ export default {
         AggressiveAI: 1,
         InfluencePoints: 60,
         BaseCerbShipDataIdx: 7,
+        WSSpeed: 58,
         modules: [
             {
                 Name: "DarkDestroyerPulse",
@@ -1375,7 +1375,6 @@ export default {
         Speed_YS: 180,
         Speed_RS: 150,
         Speed_BLS: 120,
-        Speed_WS: 78,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 11,
         AIUpdateIntervalSeconds: 2,
@@ -1384,6 +1383,7 @@ export default {
         BSPenaltyPerSec: 1500,
         BSPenaltyPerSecOnSector: 250,
         BaseCerbShipDataIdx: 13,
+        WSSpeed: 78,
         modules: [
             {
                 level: 2,
@@ -1450,7 +1450,6 @@ export default {
         Speed_YS: 135,
         Speed_RS: 112,
         Speed_BLS: 90,
-        Speed_WS: 58,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 7,
         AIUpdateIntervalSeconds: 10,
@@ -1463,6 +1462,7 @@ export default {
         OnDestroySpawnMaxRadius: 600,
         SpawnFx: "SentinelSpawn_Fx",
         BaseCerbShipDataIdx: 8,
+        WSSpeed: 58,
         modules: [
             {
                 level: 2,
@@ -1534,7 +1534,6 @@ export default {
         Speed_YS: 150,
         Speed_RS: 125,
         Speed_BLS: 100,
-        Speed_WS: 65,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 14,
@@ -1542,6 +1541,7 @@ export default {
         InfluencePoints: 10,
         BSPenaltyPerSec: 1500,
         ExclusiveTutorialTarget: 11,
+        WSSpeed: 65,
         modules: [
             {
                 Name: "SentinelBattery",
@@ -1559,7 +1559,7 @@ export default {
                 EffectRadius: 1200,
                 DPS: 200,
                 DPS_BS: 200,
-                DPS_WS: 200,
+                DPH_WS: 1200,
             },
         ],
     },
@@ -1580,7 +1580,6 @@ export default {
         Speed_YS: 150,
         Speed_RS: 125,
         Speed_BLS: 100,
-        Speed_WS: 65,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 15,
         AIUpdateIntervalSeconds: 5,
@@ -1592,6 +1591,7 @@ export default {
         RadialMoveRadius: 1600,
         AITeleportDelay: 8,
         BaseCerbShipDataIdx: 26,
+        WSSpeed: 65,
     },
     DarkGhosts: {
         Name: "DarkGhosts",
@@ -1611,13 +1611,13 @@ export default {
         Speed_YS: 390,
         Speed_RS: 325,
         Speed_BLS: 260,
-        Speed_WS: 169,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 16,
         AIUpdateIntervalSeconds: 6,
         InfluencePoints: 1,
         SpawnFx: "SentinelSpawn_Fx",
         BaseCerbShipDataIdx: 16,
+        WSSpeed: 169,
         modules: [
             {
                 level: 2,
@@ -1636,7 +1636,7 @@ export default {
                 EffectRadius: 1200,
                 DPS: 140,
                 DPS_BS: 140,
-                DPS_WS: 140,
+                DPH_WS: 840,
             },
         ],
     },
@@ -1657,7 +1657,6 @@ export default {
         Speed_YS: 300,
         Speed_RS: 250,
         Speed_BLS: 200,
-        Speed_WS: 130,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 20,
@@ -1665,6 +1664,7 @@ export default {
         InfluencePoints: 50,
         EMPResist: 90,
         BaseCerbShipDataIdx: 18,
+        WSSpeed: 130,
         modules: [
             {
                 Name: "HydraBarrage",
@@ -1702,7 +1702,6 @@ export default {
         Speed_YS: 300,
         Speed_RS: 250,
         Speed_BLS: 200,
-        Speed_WS: 130,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 20,
@@ -1715,6 +1714,7 @@ export default {
         SpawnFx: "SentinelSpawn_Fx",
         EMPResist: 90,
         BaseCerbShipDataIdx: 19,
+        WSSpeed: 130,
         modules: [
             {
                 level: 2,
@@ -1754,7 +1754,6 @@ export default {
         Speed_YS: 240,
         Speed_RS: 200,
         Speed_BLS: 160,
-        Speed_WS: 104,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 4,
         AIUpdateIntervalSeconds: 20,
@@ -1767,6 +1766,7 @@ export default {
         SpawnFx: "SentinelSpawn_Fx",
         EMPResist: 90,
         BaseCerbShipDataIdx: 20,
+        WSSpeed: 104,
         modules: [
             {
                 level: 3,
@@ -1806,12 +1806,12 @@ export default {
         Speed_YS: 6,
         Speed_RS: 6,
         Speed_BLS: 6,
-        Speed_WS: 6,
         SpeedIncrPerTick: 40,
         ShipAIHandler: 13,
         InfluencePoints: 100,
         RadialMoveRadius: 1600,
         BaseCerbShipDataIdx: 15,
+        WSSpeed: 6,
         modules: [
             {
                 level: 2,

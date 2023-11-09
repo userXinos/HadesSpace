@@ -20,6 +20,12 @@ export default class CapitalShips extends Runner {
             //  => Modules Runner
             filter: ([ k ]) => !k.includes('Drone') && !Object.keys(Modules.config.runner.combineKeys).includes(k),
             map: ([ key, value ]) => {
+                // новые ключи скорости для форматера
+                if ('Speed_WS' in value) {
+                    value['WSSpeed'] = value['Speed_WS'];
+                    delete value['Speed_WS'];
+                }
+
                 addModulesStats(value, modules);
                 fixModulesShipsData(value);
                 fixModulesShipsData(value, 'FlagshipModules', 'FlagshipModuleLevels');

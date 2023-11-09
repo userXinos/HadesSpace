@@ -147,6 +147,18 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         delete value['RSEnrichMod'];
     }
 
+    // DPS -> DPH для БЗ
+    if (Object.keys(value).some((k) => k.startsWith('DPS_WS'))) {
+        Object.keys(value).forEach((k) => {
+            if (k.startsWith('DPS_WS')) {
+                const newK = k.replace('DPS', 'DPH');
+                value[newK] = value[k].map((e) => e * TIME_SLOWDOWN_FACTOR_WS / 100);
+                delete value[k];
+            }
+        });
+    }
+
+
     // фикс БЗ стат
     fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS);
 
