@@ -264,6 +264,16 @@ export default [
                 },
             },
             {
+                name: 'WSMatches',
+                text: { locKey: 'WSMatches' },
+                path: '/WSMatches',
+                component: () => import(/* webpackChunkName: "WSMatches" */ '../pages/WSMatches.vue'),
+                icon: {
+                    name: '',
+                    dir: 'icons',
+                },
+            },
+            {
                 text: {
                     locKey: 'SWITCH_ACCS',
                     params: ['by Raerten', 'up to Android 10'],
