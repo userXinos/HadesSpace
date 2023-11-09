@@ -168,6 +168,7 @@ export const gameCharsLocKeys = {
     MaxNewHydro: 'TID_MODULE_GENESIS_MAX_HYDRO',
     SpawnLifetime: 'TID_DRONE_LIFETIME',
     DPS: 'TID_FLEET_DPM',
+    DPH: 'TID_MODULE_DESCR_DPS_PER_HR',
     DamageRangeWhenNeutralized: 'TID_MODULE_SECONDARY_RANGE',
     HydrogenCapacity: 'TID_HYDRO_CAPACITY',
     AOEDamage: 'TID_DESTROYER_AREADAMAGE',
@@ -190,7 +191,7 @@ export const gameCharsLocKeys = {
     MaxHealth: 'TID_OBJECT_ACTION_COLONIZE',
     ImmolationDamage: 'TID_MODULE_IMMOLATION_DAMAGE_AMT',
     Crunch: 'TID_MODULE_CRUNCH',
-    MaxShipments: 'TID_MODULE_SHIPMENTBEAM_MAX_SHIPMENTS',
+    MaxShipments: 'TID_MODULE_SHIPMENTBEAM_MAX_SHIPMENTS'
 };
 
 

@@ -70,6 +70,7 @@ export default {
     ],
     directDamageIndicator: [
         'DPS',
+        'DPH',
     ],
     areaDamageIndicator: [
         'Damage',
