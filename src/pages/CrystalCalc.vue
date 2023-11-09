@@ -13,7 +13,8 @@
         <input
           v-model="crystals"
           type="number"
-          @change="crystalChange($event.target.value)"
+          min="0"
+          @input="crystalChange($event.target.value)"
         >
       </div>
 
@@ -27,7 +28,8 @@
           <input
             v-model="timeD"
             type="number"
-            @change="timeChange"
+            min="0"
+            @input="timeChange"
           >
         </div>
         <div class="hr-min">
@@ -35,7 +37,8 @@
             <input
               v-model="timeH"
               type="number"
-              @change="timeChange"
+              min="0"
+              @input="timeChange"
             >
           </div>
           <span>:</span>
@@ -43,7 +46,8 @@
             <input
               v-model="timeM"
               type="number"
-              @change="timeChange"
+              min="0"
+              @input="timeChange"
             >
           </div>
         </div>
@@ -57,7 +61,8 @@
         <input
           v-model="credits"
           type="number"
-          @change="creditChange($event.target.value)"
+          min="0"
+          @input="creditChange($event.target.value)"
         >
       </div>
       <div class="input-wrap">
@@ -69,7 +74,8 @@
         <input
           v-model="hydrogen"
           type="number"
-          @change="hydrogenChange($event.target.value)"
+          min="0"
+          @input="hydrogenChange($event.target.value)"
         >
       </div>
     </div>
@@ -137,6 +143,8 @@ function roundToTwo(num: number) {
 .main {
   max-width: 200px;
   margin: 0 auto;
+  padding-top: 40px;
+  padding-bottom: 100px;
 }
 .stats-style {
   width: max-content;

@@ -22,7 +22,6 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'long' } as I
 $mw: 960px;
 
 .container {
-    padding: 0 12%;
     margin-top: 1%;
 
     .bg {
