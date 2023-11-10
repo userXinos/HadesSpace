@@ -191,7 +191,8 @@ export default {
         'ShipmentDrone.HP',
         'RelicDrone.MaxShipments',
         'RelicDrone.RelicLoadTicks',
-        'Dispatch.APTPIOTTPYS', // неизвестная единица измерения
+        'Dispatch.APTPIOTTPYS',
+        'Dispatch.APTPIOTTPWS',
 
         // Mining
         'HydroRocket.InitialBlueprints',

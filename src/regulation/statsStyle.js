@@ -80,5 +80,6 @@ export default {
         'ImpulseDPS',
         'BlastDroneDamageAmount',
         'MirrorDamageAsAOE',
+        'WSDispatchAOEAmt',
     ],
 };
