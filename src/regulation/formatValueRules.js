@@ -182,7 +182,7 @@ export default [
     ],
     [
         ['Speed'],
-        (v) => `${v * 6} ${t('AU')}/${t('TID_MINUTE_ABBREVIATION')}`,
+        (v) => `${Math.round(v / 10)} ${t('AU')}/${t('TID_SECOND_ABBREVIATION')}`,
     ],
     [
         ['MinScannerLevel'],

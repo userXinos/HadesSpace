@@ -12,7 +12,7 @@ export default class CapitalShips extends Runner {
     };
 
     async run(rawData) {
-        const [ { RedStar: { GhostSpawnSecs } } ] = this.multiReadCsv([ 'solar_system_gen_data' ]);
+        const [ { RedStar: { GhostSpawnSecs } }, { WhiteStar } ] = this.multiReadCsv([ 'solar_system_gen_data', 'stars' ]);
         const path = join(CONFIG.pathRaw, 'modules.csv');
         const modules = await loadFile(path, [ Modules ]).then((e) => e.render());
 
@@ -22,7 +22,7 @@ export default class CapitalShips extends Runner {
             map: ([ key, value ]) => {
                 // исправить скорости для форматера
                 if ('Speed_WS' in value) {
-                    value['Speed_WS'] = Math.round(value['Speed_WS'] / 10);
+                    value['Speed_WS'] = value['Speed_WS'] * WhiteStar.TimeSlowdownFactor / 100;
                 }
 
                 addModulesStats(value, modules);
