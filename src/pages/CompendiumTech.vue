@@ -22,6 +22,7 @@
               <div>
                 <!--suppress TypeScriptUnresolvedReference -->
                 <h2>{{ $t(modalOpts.data.value.TID) }}</h2>
+                <p>{{ t('TID_SOCIAL_TIMESTAMP', [sec2biggestTime(modalOpts.data.lastAgoUpdate)]) }}</p>
                 <div />
               </div>
               <ModalIcon />
@@ -45,7 +46,7 @@
 
 <!--suppress TypeScriptCheckImport, TypeScriptUnresolvedReference -->
 <script setup lang="ts">
-import { ref, reactive, h, VNode, watch, onMounted } from 'vue';
+import { ref, reactive, h, VNode, watch, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getTechIndex, TechLevels } from 'bot_client';
 import client from '../utils/compendium';
@@ -65,14 +66,13 @@ import spaceBuildingsData from '@Data/spacebuildings.js';
 import modulesData from '@Data/modules.js';
 import objectArrayify from '../utils/objectArrayify';
 import { getTechFromIndex } from 'bot_client/src/module_types';
+import { TechLevel } from 'bot_client/src/bot_api';
 
 declare type SetTechLevel = (techId: number, level: number) => Promise<void>;
 
 const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
 const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
 const { MaxModuleLevel } = globals;
-
-spaceBuildings.RedStarScanner.Cost.shift(); // tut lvl
 
 const maxLvl: Record<string, number> = Object.fromEntries([
     ...Object.entries(spaceBuildings).map(([k, v]) => [k, v.Cost.length]),
@@ -95,21 +95,27 @@ const data = ref<TechLevels>(null);
 const levelMap = ref<Record<string, number>>({});
 const modalOpts = reactive({
     size: SIZES.SMALL,
-    title: t('TID_TECH_DLG_TITLE'),
+    title: t('TECHNOLOGIES'),
     data: {
         value: {},
         maxLevel: 0,
         minLevel: 0,
+        lastAgoUpdate: 0,
         get key() {
             return this.value.Name;
         },
     },
 });
 
+const dateInterval = setInterval(updateLastAgo, 5000);
+
 onMounted(() => {
     if (client.getUser()) {
         data.value = client.getTechLevels();
     }
+});
+onUnmounted(() => {
+    clearTimeout(dateInterval);
 });
 
 watch(data, (value) => {
@@ -133,6 +139,7 @@ function openTechInfo(value: object) {
         modalOpts.data.maxLevel = maxLvl[value.Name];
         modalOpts.data.minLevel = minLvl[value.Name];
         openModal.value = true;
+        updateLastAgo();
     }
 }
 function isMuted(key: string): boolean {
@@ -150,6 +157,7 @@ function onChangeLvl(value: number): number {
     if (data.value[i].level != value) {
         data.value[i].level = value;
         setTechLevel(i, value);
+        updateLastAgo();
     }
     return value;
 }
@@ -163,7 +171,7 @@ function getModulesMinLvl(module: object): number {
     }
     return MaxModuleLevel - maxLength + 1;
 }
-function getDataByKey(key: string): object|null {
+function getDataByKey(key: string): TechLevel|null {
     return data.value?.[getTechIndex(key)] || null;
 }
 function ModalIcon(): VNode {
@@ -178,6 +186,29 @@ function ModalIcon(): VNode {
     if (m.PrefabModel) {
         return h(Icon, { name: m.PrefabModel, dir: 'game/SpaceBuildings' });
     }
+}
+function updateLastAgo() {
+    if (openModal.value) {
+        const lastDate = getDataByKey(modalOpts.data.key)?.ts;
+
+        if (lastDate) {
+            modalOpts.data.lastAgoUpdate = (new Date() - lastDate) / 1000;
+        }
+    }
+}
+function sec2biggestTime(sec: number): string {
+    const result = [];
+    const days = Math.trunc(sec / 86400);
+    const hours = Math.trunc((sec % 86400) / 3600);
+    const minutes = Math.trunc((sec % 3600) / 60);
+    const seconds = Math.trunc(sec % 60);
+
+    if (days != 0) result.push(`${days}${t('TID_DAY_ABBREVIATION')}`);
+    if (hours != 0) result.push(`${hours}${t('TID_HOUR_ABBREVIATION')}`);
+    if (minutes != 0) result.push(`${minutes}${t('TID_MINUTE_ABBREVIATION')}`);
+    if (seconds != 0) result.push(`${seconds}${t('TID_SECOND_ABBREVIATION')}`);
+
+    return result.slice(0, 2).join(' ');
 }
 </script>
 
@@ -204,6 +235,10 @@ $plan-color: #ded45a;
     display: flex;
     justify-content: space-between;
     margin-bottom: 6%;
+
+    h2 {
+      margin-bottom: 2%;
+    }
 
     > div:first-child {
       flex: 3;
