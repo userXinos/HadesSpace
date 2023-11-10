@@ -13,7 +13,10 @@
         <div>
           <div :class="{'selected': (selected == index) }">
             <div class="icon" />
-            <h2 class="name">{{ $te(section.text.locKey) ? $t(section.text.locKey) : '' }}</h2>
+            <h2
+              class="name"
+              :loc-key="section.text.locKey"
+            >{{ $te(section.text.locKey) ? $t(section.text.locKey) : '' }}</h2>
           </div>
 
           <TransitionGroup
@@ -96,9 +99,6 @@ $selected-color: $border-color;
             display: inline-block;
             margin: 10px;
 
-            &:lang('zh-si') {
-                width: 90px;
-            }
             @media screen and (max-width: $mv) {
                 display: block;
                 margin: 0;
@@ -129,6 +129,18 @@ $selected-color: $border-color;
                             background-position: right;
                         }
                     }
+
+                  h2 {
+                    &:lang('zh-si'), &:lang('ko') {
+                      width: 60px;
+                    }
+                    &:lang('jp') {
+                      width: 120px;
+                    }
+                    &[loc-key="HS_COMPENDIUM"] {
+                      width: auto;
+                    }
+                  }
                 }
 
                 .selected {
