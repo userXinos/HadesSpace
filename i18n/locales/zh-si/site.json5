@@ -1,5 +1,5 @@
 {
-  TYPE_MOD_TRADE: '交易模组',
+  TYPE_MOD_TRADE: '运输模组',
   TYPE_MOD_MINING: '采矿模组',
   TYPE_MOD_WEAPON: '武器模组',
   TYPE_MOD_SHIELD: '护盾模组',
