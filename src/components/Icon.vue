@@ -34,6 +34,22 @@ const PERSONAL_BG = {
     'Fighter_Cerberus3_DrkNeb_lv1': 'interceptor',
     'Fighter_DrkNeb_Cerberus4_lv1': 'phoenix',
     'Cerberus_Destroyer_DrkNeb_lv1': 'destroyer',
+
+    'Transport_DrkNeb_lv1': 'transport',
+    'Transport_DrkNeb_lv2': 'transport',
+    'Transport_DrkNeb_lv3': 'transport',
+    'Transport_DrkNeb_lv4': 'transport',
+    'Transport_DrkNeb_lv5': 'transport',
+    'Transport_DrkNeb_lv6': 'transport',
+    'Transport_DrkNeb_lv7': 'transport',
+    'Miner_DrkNeb_lv1': 'miner',
+    'Miner_DrkNeb_lv2': 'miner',
+    'Miner_DrkNeb_lv3': 'miner',
+    'Miner_DrkNeb_lv4': 'miner',
+    'Miner_DrkNeb_lv5': 'miner',
+    'Miner_DrkNeb_lv6': 'miner',
+    'Miner_DrkNeb_lv7': 'miner',
+
 };
 
 const props = defineProps<Props>();
@@ -203,7 +219,25 @@ $color-cerberus: #f66d8f;
     background-image: url(../img/game/background/vengeanceIndicator.png);
     filter: opacity(0.5) drop-shadow(0.1px 0px 0px red);
 }
-
+.before.transport:before, .before.miner:before {
+  filter: opacity(0.6);
+  transform: rotate(45deg);
+}
+.before.transport:before {
+  background: #f5dc3e;
+  width: 24%;
+  height: 47%;
+  top: 21%;
+  right: 35%;
+}
+.before.miner:before {
+  background: #8c65fc;
+  width: 34%;
+  height: 40%;
+  bottom: 15%;
+  right: 45%;
+  border-radius: 30px;
+}
 
 @keyframes rotate {
     0% {
