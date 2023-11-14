@@ -86,7 +86,6 @@
   "DISABLE_ACTIVATION_DURING_PREP": "Disable activation during provisioning",
   "IGNORE_BARRIER": "Ignore the barrier",
   "DEACTIVATE_ON_JUMP": "Deactivate on jump",
-  "FUEL_SHIPMENT_MODIFIER": "Deactivate on jump",
   "MOVE_RADIUS": "Move radius",
   "BUY_IN_PAIRS": "Buying a pair",
   "RS_PUBLIC_LATE_JOIN_MIN_STAR_LEVEL": "RS Public minimum star level",
