@@ -161,7 +161,7 @@ const tableMask = computed(() => {
         body: objectArrayify(props.data.body, { map: filterMapCb }),
     };
 
-    if (filteredData.body.default.length == 0) {
+    if (filteredData.body.default && filteredData.body.default.length == 0) {
         return null;
     }
     return tableMaskUtil({ ...filteredData }, props.mergeCells);
