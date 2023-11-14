@@ -2,7 +2,7 @@
   <Modal
     :open="isOpen"
     :size="SIZES.LARGE"
-    :title="titleKey ? $t(titleKey) : null"
+    :title="titleKey ? $t(titleKey) : undefined"
     @update:open="$emit('close')"
   >
     <template #body>
@@ -15,6 +15,7 @@
   </Modal>
 </template>
 
+<!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 

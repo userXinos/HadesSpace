@@ -13,7 +13,9 @@
 <script setup lang="ts">
 const { BUILD_TIMESTAMP } = process.env;
 const date = new Date(BUILD_TIMESTAMP);
-const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'long' } as Intl.DateTimeFormatOptions).format(date);
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const dateFormat = new Intl.DateTimeFormat(undefined!, { dateStyle: 'long' } as Intl.DateTimeFormatOptions).format(date);
 </script>
 
 <style scoped lang="scss">

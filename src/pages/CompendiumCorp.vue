@@ -74,6 +74,7 @@
       </div>
     </CompendiumPage>
 
+    <!--suppress TypeScriptUnresolvedReference -->
     <Modal
       v-model:open="openSelectorByTech"
       :title="'Code'"
@@ -119,6 +120,7 @@
       </template>
     </Modal>
 
+    <!--suppress TypeScriptUnresolvedReference -->
     <Modal
       v-model:open="openMemTechList"
       :title="modalMem.title"

@@ -97,7 +97,7 @@ const LABEL_KEYS = Object.keys(LABEL_BY_ORDER);
 const TO_SPOILER_KEYS = ['TID_Description'];
 
 export interface Props {
-    items: { [k:string]: object|unknown[] },
+    items: { [k:string]: unknown },
     format: { key: (k: string) => string, value: (k: string, v: unknown) => string }
 }
 

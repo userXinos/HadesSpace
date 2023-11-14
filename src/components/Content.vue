@@ -1,3 +1,4 @@
+<!--suppress TypeScriptUnresolvedReference -->
 <template>
   <div class="container">
 
@@ -65,7 +66,7 @@ export interface Props {
     args: {
         data: Record<string, object>,
         tableOpts?: object,
-        iconDir?: string
+        iconDir: string
     }
 }
 defineProps<Props>();

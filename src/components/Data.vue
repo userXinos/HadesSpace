@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, Ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import router from '@Utils/Vue/router';
 
 import VTable from './DataTable.vue';
@@ -40,7 +40,7 @@ export interface Props {
     data: object
     tableOpts?: object
     sort?: boolean
-    iconDir?: string
+    iconDir: string
 }
 interface DataTable {
     head: Record<string, unknown[]>
@@ -55,15 +55,15 @@ const props = withDefaults(defineProps<Props>(), {
     sort: true,
     iconDir: '',
 });
-const table: Ref<DataTable> = ref({ head: {}, body: {} });
-const title: Ref<DataTitle> = ref({ });
+const table = ref<DataTable>({ head: {}, body: {} });
+const title = ref<DataTitle>({ });
 
 const dataName = computed(() => {
     const { value: t } = title;
     return (t && 'default' in t) ? (t.default as Record<string, string>).Name : undefined;
 });
 const format = {
-    key: (k: string) => key(k, router.currentRoute.name as string),
+    key: (k: string) => key(k, router.currentRoute.value.name as string),
     value: (k: string, v: unknown) => value(k, v, dataName.value),
 };
 

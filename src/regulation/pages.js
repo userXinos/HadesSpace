@@ -1,10 +1,5 @@
 export default [
     {
-        name: 'Index',
-        path: '/',
-        component: () => import(/* webpackChunkName: "Index" */ '../pages/Index.vue'),
-    },
-    {
         text: { locKey: 'TID_SHIP_UPGRADE_DLG_TITLE' },
         children: [
             {

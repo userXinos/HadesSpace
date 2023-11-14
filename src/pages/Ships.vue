@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
 
 import Page from '@/components/Page.vue';
@@ -37,8 +37,8 @@ import objectArrayify from '@Utils/objectArrayify';
 import { tableOpts } from '@/components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_CorpFlagship.jpg';
 
-const ships = objectArrayify(shipsData, getFilterByType('capital_ships.player'));
-const modules = objectArrayify(modulesData, { filter: ([k]) => k in ships.CorpFlagship.modules });
-const modulesTableOpts = computed(tableOpts);
+const ships: Record<string, object> = objectArrayify(shipsData, getFilterByType('capital_ships.player'));
+const modules: Record<string, object> = objectArrayify(modulesData, { filter: ([k]) => k in ships.CorpFlagship.modules });
+const modulesTableOpts: object = computed(tableOpts);
 </script>
 <style scoped src="../style/page.scss"  lang="scss"></style>

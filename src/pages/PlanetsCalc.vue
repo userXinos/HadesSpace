@@ -32,6 +32,8 @@
         />
       </div>
 
+      <!--suppress JSUnresolvedReference -->
+      <!--  WS moment: Unresolved variable or type planetValues-->
       <v-data
         :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: planetValues.map((e) => e.TID)}"
         :table-opts="{lvlColKey: '№', mergeCells: false}"
@@ -118,9 +120,9 @@
   </div>
 </template>
 
-<!--suppress TypeScriptCheckImport -->
+<!--suppress TypeScriptCheckImport, TypeScriptUnresolvedReference -->
 <script setup lang="ts">
-import { ref, computed, ComputedRef, Ref, reactive } from 'vue';
+import { ref, computed, Ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Store from '@Store/index';
 import types from '../store/modules/userSettings/types';
@@ -181,7 +183,7 @@ const modalOpts = reactive({
         },
     },
 });
-const planetValues: ComputedRef<OutputValue[]> = computed(() => Object.values(planets.value));
+const planetValues = computed<OutputValue[]>(() => Object.values(planets.value));
 let calc: SetupComponent;
 
 Store.subscribe((mutation) => {

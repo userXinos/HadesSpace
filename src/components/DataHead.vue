@@ -29,7 +29,7 @@ import { computed } from 'vue';
 import Stats from '@/components/DataHeadStats.vue';
 
 export interface Props {
-    data: object,
+    data: {[k: string]: unknown, default: unknown},
     format: {value: (k: string, v: unknown) => unknown, key: (k: string) => string}
     iconDir: string
 }

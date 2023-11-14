@@ -160,6 +160,7 @@
   </div>
 </template>
 
+<!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
 import { computed, ref, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -175,7 +176,7 @@ import statsStyleName from '@Handlers/statsStyleName';
 import calculator from '@/composables/calculator';
 import CalculatorConfig from '@/composables/calculatorConfig';
 
-import type { Input, SetupComponent, SetupGetElementsCB } from '@/typings/calculator';
+import type { Input, Output, SetupComponent, SetupGetElementsCB } from '@/typings/calculator';
 
 type calculatorArgs = Parameters<typeof calculator>
 type configArgs = ConstructorParameters<typeof CalculatorConfig>
@@ -193,7 +194,7 @@ const props = defineProps<Props>();
 const emit = defineEmits(['update:input', 'setup']);
 
 const format = {
-    key: (k: string) => key(k, router.currentRoute.name as string),
+    key: (k: string) => key(k, router.currentRoute.value.name as string),
     value: (k: string, v: unknown) => value(k, v, router.currentRoute.value.name as string),
 };
 
@@ -248,7 +249,7 @@ function fullUpdate() {
     updateOutput();
 }
 async function onReset(event: Event): Promise<void> {
-    if ((event.target).name == 'all') {
+    if ((event.target as HTMLInputElement).name == 'all') {
         await resetConfirm('Reset all ? Are you serious ?')
             .then(() => {
                 for (const key in props.input) {

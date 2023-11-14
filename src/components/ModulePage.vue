@@ -6,6 +6,7 @@
   />
 </template>
 
+<!--suppress TypeScriptUnresolvedReference -->
 <script lang="ts">
 import globals from '@Data/globals.js';
 import modulesData from '@Data/modules.js';
@@ -64,7 +65,7 @@ import Page from '@/components/Page.vue';
 export interface Props {
     type: string
     portrait: string
-    postFilter?: (e: object) => e
+    postFilter?: <T extends object>(e: T) => T
 }
 
 const props = withDefaults(defineProps<Props>(), {

@@ -63,6 +63,7 @@
   </div>
 </template>
 
+<!--suppress JSUnresolvedReference -->
 <script setup>
 import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';

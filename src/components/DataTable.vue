@@ -175,7 +175,7 @@ function onTableScroll(e: Event): void {
     if (!manualScroll) {
         if (teleportTable.value) {
             manualScroll = true;
-            teleportTable.value.scrollLeft = e.target.scrollLeft;
+            teleportTable.value.scrollLeft = (e.target as HTMLDataElement).scrollLeft;
         }
         manualScroll = false;
     }

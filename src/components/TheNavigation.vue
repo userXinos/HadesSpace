@@ -20,7 +20,7 @@
             name="list"
             tag="ul"
             class="list"
-            :style="{ '--total': section.children.length }"
+            :style="{ '--total': section.children?.length }"
           >
             <li
               v-for="(child, i) of (selected === index) ? section.children : []"
@@ -30,7 +30,7 @@
 
               <template v-if="child.link.type == 'router'">
                 <router-link :to="child.link.path">
-                  <h2 class="name">{{ $t(child.text.locKey, child.text.params) }}</h2>
+                  <h2 class="name">{{ $t(child.text.locKey, [child.text.params]) }}</h2>
                 </router-link>
               </template>
               <template v-if="child.link.type == 'external'">
@@ -38,7 +38,7 @@
                   :href="child.link.path"
                   target="_blank"
                 >
-                  <h2 class="name">{{ $t(child.text.locKey, child.text.params) }}</h2>
+                  <h2 class="name">{{ $t(child.text.locKey, [child.text.params]) }}</h2>
                 </a>
               </template>
 
@@ -51,13 +51,13 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, ref } from 'vue';
+import { ref } from 'vue';
 
 import router from '@Utils/Vue/router';
 import { getSectionsPages } from '@Utils/parsePages';
 
 const sections = getSectionsPages();
-const selected: Ref<number|null> = ref(null);
+const selected = ref<number|null>(null);
 
 router.afterEach(() => select(null));
 

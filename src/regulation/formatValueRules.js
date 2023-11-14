@@ -1,4 +1,4 @@
-// noinspection SpellCheckingInspection
+// noinspection SpellCheckingInspection, JSUnresolvedReference
 
 import { RouterLink } from 'vue-router';
 import i18n from '@Utils/Vue/i18n';

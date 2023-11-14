@@ -1,10 +1,11 @@
+<!--suppress TypeScriptValidateTypes -->
 <template>
   <div>
     <template v-if="isObject(items) || (Array.isArray(items) && items.every(isObject))">
       <div class="wrapper">
 
         <div
-          v-for="(item, name) of itemsToArray"
+          v-for="(item, name) of (itemsToArray as {[k: string]: unknown, TID: string, TID_Description: string}[])"
           :key="name"
           class="item"
         >
@@ -17,11 +18,11 @@
                   class="title"
                 >
                   <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
-                    {{ formatTitle(name, item.TID) }}
+                    {{ format.key(item.TID) }}
                   </a>
                 </div>
                 <p
-                  v-if="item.TID_Description && (parent.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
+                  v-if="item.TID_Description && (parent?.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
                   class="description"
                 >
                   {{ formatDescr(item.TID_Description) }}
@@ -75,19 +76,22 @@
 
     <template v-else>
       <b>
-        <DataStatTooltip :k="itemKey">
+        <DataStatTooltip
+          v-if="itemKey"
+          :k="itemKey"
+        >
           {{ format.key(itemKey) }}
         </DataStatTooltip>
       </b>
       <template v-if="$store.state.userSettings.showKeys"> ({{ itemKey }})</template>:
 
       <v-node
-        v-if="typeof format.value(itemKey, items) === 'function'"
-        :render="format.value(itemKey, items)"
+        v-if="typeof format.value(itemKey as string, items) === 'function'"
+        :render="format.value(itemKey as string, items)"
       />
       <span
         v-else
-        :class="statsStyleName(itemKey)"
+        :class="statsStyleName(itemKey as string)"
         class="value stats-style"
       >
         {{ format.value(itemKey, items) }}
@@ -111,7 +115,6 @@ const EXCLUDE_KEYS_FROM_TIME = ['UnlockTime'];
 const starKeys = formatValueRulesTime
     .map(([keys]) => (keys as string[]).filter((k) => !EXCLUDE_KEYS_FROM_TIME.includes(k)))
     .flat();
-
 
 interface GetCharacteristicsOut {
     [k: string]: [unknown, boolean],
@@ -172,14 +175,13 @@ import DataStatByStar from '@/components/DataStatByStar.vue';
 import { useI18n } from 'vue-i18n';
 
 import statsStyleName from '@Handlers/statsStyleName';
-import locKeys from '@Regulation/locKeys.mjs';
 
 export interface Props {
     items: unknown[] | unknown | { [k:string]: object|unknown[] },
     format: { key: (k: string) => string, value: (k: string, v: unknown) => string }
     itemKey?: string|null
     parentId?: string|null
-    parent?: object
+    parent?: {[k: string]: unknown, TID?: string, TID_Description?: string}
     iconDir?: string
 }
 
@@ -200,7 +202,7 @@ const itemsToArray = computed(() => {
     if (Array.isArray(props.items)) {
         return props.items;
     }
-    if (isObject(props.items) && Object.values(props.items).every((e) => isObject(e) || Array.isArray(e))) {
+    if (isObject(props.items) && Object.values(props.items as unknown[]).every((e) => isObject(e) || Array.isArray(e))) {
         return props.items;
     }
     return [props.items];
@@ -210,16 +212,11 @@ function isObject(o: unknown): boolean {
     return (typeof o === 'object' && !Array.isArray(o) && o !== null);
 }
 function formatDescr(descrKey: string): string {
-    const customDescrKey = descrKey.endsWith('_DESCR') ? descrKey.replace('_DESCR', '_CUSTOM_DESCR') : null;
+    const customDescrKey = descrKey.endsWith('_DESCR') ? descrKey.replace('_DESCR', '_CUSTOM_DESCR') : undefined;
     const descr = t(descrKey, ['X', 'Y', 'Z']).replace(/<[^>]*>/g, '');
     const customDescr = (customDescrKey && te(customDescrKey)) ? t(customDescrKey) : null;
 
     return (customDescr) ? `${descr}\n\n${customDescr}` : descr;
-}
-function formatTitle(keyName: string, TID: string) {
-    const finalKey = (TID) ? ((keyName in locKeys) ? keyName : TID) : keyName;
-
-    return props.format.key(finalKey);
 }
 
 function VNode({ render }) {

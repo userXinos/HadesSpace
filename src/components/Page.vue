@@ -23,10 +23,10 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { Head as VHead } from '@vueuse/head';
-import VContent from '../components/Content.vue';
+import VContent, { Props as VContentProps } from '../components/Content.vue';
 
 export interface Props {
-    contentArgs: typeof VContent.Props
+    contentArgs: typeof VContentProps
     titleLocKey: string
     portrait?: {src: string, alt: string}|null
 }

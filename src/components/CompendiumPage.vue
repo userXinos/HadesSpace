@@ -26,8 +26,8 @@
         >
           <div class="avatar">
             <img
-              :src="getDiscordIconUrl(guild.id, guild.icon)"
-              :alt="`${guild.name} icon`"
+              :src="getDiscordIconUrl(guild!.id, guild!.icon)"
+              :alt="`${guild!.name} icon`"
               @error="(e) => e.target.src = memberImage"
             >
             <img

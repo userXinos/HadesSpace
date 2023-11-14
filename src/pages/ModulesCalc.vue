@@ -1,3 +1,4 @@
+<!--suppress TypeScriptUnresolvedReference -->
 <template>
   <div>
     <div class="container">
@@ -83,7 +84,7 @@
 
           <ul class="chars">
             <li
-              v-for="type in Object.keys(input)"
+              v-for="type in (Object.keys(input) as Array<keyof Input>)"
               :key="type"
               class="input"
             >
@@ -110,7 +111,7 @@
               <b>{{ calc.format.key(key) }}</b>
               <div>
                 <span
-                  v-for="type of Object.keys(input)"
+                  v-for="type of (Object.keys(input) as Array<keyof typeof Input>)"
                   :key="type"
                   :class="{
                     ...outputClasses(type, key),
@@ -129,7 +130,7 @@
                         <b>{{ calc.format.key(k1) }}</b>
                         <div>
                           <span
-                            v-for="type1 of Object.keys(input)"
+                            v-for="type1 of (Object.keys(input) as Array<keyof Input>)"
                             :key="type1"
                             :class="outputClasses(type1, k1)"
                           >
@@ -154,6 +155,7 @@
   </div>
 </template>
 
+<!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
 import { ref, Ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';

@@ -21,7 +21,7 @@
             @change="changeLanguage"
           >
             <option
-              v-for="language in languages"
+              v-for="language in (languages as {Code: string, Name: string}[])"
               :key="language.Code"
               :value="language.Code"
             >

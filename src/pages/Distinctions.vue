@@ -5,6 +5,7 @@
   />
 </template>
 
+<!--suppress JSUnresolvedReference -->
 <script setup>
 import Page from '@/components/Page.vue';
 import distinctions from '@Data/distinctions.js';
