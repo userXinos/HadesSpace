@@ -15,7 +15,7 @@ export default class SpaceBuildings extends Runner {
     };
 
     run(rawData) {
-        const data = Runner.objectArrayify(rawData, {
+        return Runner.objectArrayify(rawData, {
             filter: ([ k ]) => !k.startsWith('#'),
             map: ([ key, value ]) => {
                 if (key === 'RedStarScanner') {
@@ -27,13 +27,16 @@ export default class SpaceBuildings extends Runner {
                     value.Name = key;
                 }
 
+                if ('RSLevelReq' in value) {
+                    while (value.RSLevelReq.length < value.Cost.length) {
+                        value.RSLevelReq.unshift(null);
+                    }
+                }
+
                 fixConstructionTime(value);
                 return [ key, value ];
             },
         });
-
-        data.TimeModulator.Model = 'TimeModulator'; // нету
-        return data;
     }
 }
 

@@ -146,7 +146,7 @@ export default {
         MaxPerSector: 1,
         BuildNotifMode: 1,
         ShowInStarLinks: 1,
-        RSLevelReq: [5, 6, 7, 7, 8, 8, 9, 9, 10],
+        RSLevelReq: [null, 5, 6, 7, 7, 8, 8, 9, 9, 10],
         ConstructionTime: [86400, 172800, 345600, 432000, 518400, 604800, 691200, 777600, 864000, 950400],
     },
     WarpLaneHub: {
@@ -259,7 +259,6 @@ export default {
             5, 3600, 28800, 172800, 345600, 432000, 518400, 604800, 691200, 777600, 864000, 864000, 864000, 864000,
             864000, 864000,
         ],
-        Model: "TimeModulator",
     },
     BlueStarScanner: {
         Name: "BlueStarScanner",
@@ -303,7 +302,7 @@ export default {
         HydroCostPerShipment: [5, 10, 20, 40, 60, 80, 100, 120, 140, 160, 200],
         BuildNotifMode: [0, 1],
         ShowInStarLinks: 1,
-        RSLevelReq: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        RSLevelReq: [null, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
         ConstructionTime: [3, 28800, 57600, 86400, 172800, 259200, 345600, 432000, 518400, 604800, 604800],
     },
     QuantumStarGate: {
