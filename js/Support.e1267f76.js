@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkhades_space"]=self["webpackChunkhades_space"]||[]).push([[677],{52487:(e,p,r)=>{r.r(p),r.d(p,{default:()=>c});var t=r(66252),a=r(52946);const s={__name:"Support",setup(e){return(e,p)=>((0,t.wg)(),(0,t.j4)(a.ZP,{type:"Support",portrait:"portrait_TurretLaser.png"}))}},u=s,c=u}}]);
