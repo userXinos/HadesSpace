@@ -90,7 +90,6 @@ export default {
         'SpeedIncrPerTick',
 
         // временно ?
-        'ActivationDelayBLS',
         'BSPenaltyPerSec',
         'BSPenaltyPerSecOnSector',
         'AllowForWSEarlyAccess',
