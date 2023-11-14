@@ -1,11 +1,3 @@
 {
-  TYPE_MOD_TRADE: 'トレードモジュール',
-  TYPE_MOD_MINING: '採掘モジュール',
-  TYPE_MOD_WEAPON: '武器モジュール',
-  TYPE_MOD_SHIELD: 'シールドモジュール',
-  TYPE_MOD_COMBAT: '戦闘モジュール',
-  TYPE_MOD_DRONE: 'ドローンモジュール',
-  LVL: 'レベル',
   HOME: 'Home',
-  CONTENT: 'コンテンツ'
 }

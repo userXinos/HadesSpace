@@ -1,4 +1,11 @@
 {
+  TYPE_MOD_TRADE: 'Модули торговли',
+  TYPE_MOD_MINING: 'Модули добычи',
+  TYPE_MOD_WEAPON: 'Оружейные модули',
+  TYPE_MOD_SHIELD: 'Модули щитов',
+  TYPE_MOD_COMBAT: 'Модули боя',
+  TYPE_MOD_DRONE: 'Модули дроны',
+  LVL: 'ур',
   UNLOCK_PRICE: 'Стоимость изучения',
   UNLOCK_BLUEPRINTS: 'Требуется чертежей',
   UNLOCK_TIME: 'Время изучения',

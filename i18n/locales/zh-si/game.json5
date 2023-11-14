@@ -1,4 +1,11 @@
 {
+  TYPE_MOD_TRADE: '运输模组',
+  TYPE_MOD_MINING: '采矿模组',
+  TYPE_MOD_WEAPON: '武器模组',
+  TYPE_MOD_SHIELD: '护盾模组',
+  TYPE_MOD_COMBAT: '战斗模组',
+  TYPE_MOD_DRONE: '无人机模组',
+  LVL: '等级',
   UNLOCK_PRICE: '解锁价格',
   UNLOCK_BLUEPRINTS: '解锁蓝图',
   UNLOCK_TIME: '解锁时间',

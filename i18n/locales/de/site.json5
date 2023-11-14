@@ -1,9 +1,3 @@
 {
-  TYPE_MOD_TRADE: 'Handelsmodule',
-  TYPE_MOD_MINING: 'Bergbaumodule',
-  TYPE_MOD_WEAPON: 'Waffenmodule',
-  TYPE_MOD_SHIELD: 'Schildmodule',
-  TYPE_MOD_SUPPORT: 'Unterstützungsmodule',
-  LVL: 'niveau',
   HOME: 'Home'
 }

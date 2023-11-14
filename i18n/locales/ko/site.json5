@@ -1,11 +1,3 @@
 {
-  TYPE_MOD_TRADE: '거래 모듈',
-  TYPE_MOD_MINING: '채광 모듈',
-  TYPE_MOD_WEAPON: '무기 모듈',
-  TYPE_MOD_SHIELD: '방패 모듈',
-  TYPE_MOD_COMBAT: '전투 모듈',
-  TYPE_MOD_DRONE: '드론 모듈',
-  LVL: '수평',
   HOME: 'Home',
-  CONTENT: '함유량'
 }

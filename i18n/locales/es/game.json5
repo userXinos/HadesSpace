@@ -1,4 +1,11 @@
 {
+  TYPE_MOD_TRADE: 'Módulos de comercio',
+  TYPE_MOD_MINING: 'Módulos de minería',
+  TYPE_MOD_WEAPON: 'Módulos de armas',
+  TYPE_MOD_SHIELD: 'Módulos de escudo',
+  TYPE_MOD_COMBAT: 'Módulos de combate',
+  TYPE_MOD_DRONE: 'Módulos de drones',
+  LVL: 'nivel',
   UNLOCK_PRICE: 'Precio de desbloqueo',
   UNLOCK_BLUEPRINTS: 'Desbloquear planos',
   UNLOCK_TIME: 'Tiempo de desbloqueo',
