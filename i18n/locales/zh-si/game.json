@@ -86,7 +86,6 @@
   "DISABLE_ACTIVATION_DURING_PREP": "在准备期间可取消",
   "IGNORE_BARRIER": "无视屏障",
   "DEACTIVATE_ON_JUMP": "Deactivate on jump",
-  "FUEL_SHIPMENT_MODIFIER": "Deactivate on jump",
   "MOVE_RADIUS": "移动半径",
   "BUY_IN_PAIRS": "需要建造一对",
   "RS_PUBLIC_LATE_JOIN_MIN_STAR_LEVEL": "能中途加入的最小红巨星等级",
