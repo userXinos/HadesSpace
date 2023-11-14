@@ -9,8 +9,7 @@
   },
   "author": "Xinos",
   "dependencies": {
-    "commander": "^9.2.0",
-    "json5": "^2.2.2"
+    "commander": "^9.2.0"
   },
   "devDependencies": {
     "eslint": "^8.14.0",

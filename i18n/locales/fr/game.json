@@ -1,0 +1,18 @@
+{
+  "TYPE_MOD_TRADE": "Modules de commerce",
+  "TYPE_MOD_MINING": "Modules miniers",
+  "TYPE_MOD_WEAPON": "Modules d'armes",
+  "TYPE_MOD_SHIELD": "Modules de bouclier",
+  "TYPE_MOD_COMBAT": "Modules de combat",
+  "TYPE_MOD_DRONE": "Modules de drones",
+  "LVL": "niveau",
+  "UNLOCK_PRICE": "Unlock price",
+  "UNLOCK_BLUEPRINTS": "Unlock blueprints",
+  "UNLOCK_TIME": "Unlock Time",
+  "WS_SCORE": "WS But",
+  "BLS_SCORE": "BS But",
+  "HYD": "hyd",
+  "AU": "AU",
+  "WS": "WS",
+  "BS": "BS"
+}

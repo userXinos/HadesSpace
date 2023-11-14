@@ -1,0 +1,18 @@
+{
+  "TYPE_MOD_TRADE": "トレードモジュール",
+  "TYPE_MOD_MINING": "採掘モジュール",
+  "TYPE_MOD_WEAPON": "武器モジュール",
+  "TYPE_MOD_SHIELD": "シールドモジュール",
+  "TYPE_MOD_COMBAT": "戦闘モジュール",
+  "TYPE_MOD_DRONE": "ドローンモジュール",
+  "LVL": "レベル",
+  "UNLOCK_PRICE": "価格のロックを解除",
+  "UNLOCK_BLUEPRINTS": "ブループリントのロックを解除",
+  "UNLOCK_TIME": "ロック解除時間",
+  "WS_SCORE": "WS スコア",
+  "BLS_SCORE": "BS スコア",
+  "HYD": "hyd",
+  "AU": "AU",
+  "WS": "WS",
+  "BS": "BS"
+}

@@ -2,8 +2,6 @@ import { readdir, readFile } from 'fs/promises';
 import { join, basename } from 'path';
 import { existsSync } from 'fs';
 
-import JSON5 from 'json5';
-
 import CONFIG from '../config.js';
 import program, { options } from './program.js';
 
@@ -17,7 +15,7 @@ export default async function loadLocale(lang) {
     const loadFiles = filesNames.map(async (f) => {
         const path = join(CONFIG.additionalContent, lang, f);
         if (existsSync(path)) {
-            return JSON5.parse(await readFile(path, 'utf-8'));
+            return JSON.parse(await readFile(path, 'utf-8'));
         }
         console.warn('\x1b[33m[⚠]\x1b[0m File "%s" is absent', path);
         return {};
