@@ -1,8 +1,8 @@
 {
   "HOME": "На главную",
   "PLAN_LVL": "Планируемый уровень",
-  "REQ_BANK": "Необходимый банк кредитов",
   "CURRENT_LVL": "Текущий уровень",
+  "REQ_BANK": "Необходимый банк кредитов",
   "RESET_ALL": "Сбросить всё",
   "RESET_PLAN": "Сбросить план",
   "PLANETS_CALC": "Калькулятор планет",
@@ -35,7 +35,7 @@
   "ENTER_CODE": "Код подключения от бота",
   "CANNOT_BE_EMPTY": "Не может быть пустым",
   "INCORRECT_CODE": "Неверный код",
-  "HS_COMPENDIUM": "HSCompendium",
+  "HS_COMPENDIUM": "HS_COMPENDIUM",
   "TECHNOLOGIES": "Технологии",
   "CRYSTAL_CALCULATOR": "Калькулятор кристаллов",
   "TIME": "Время"

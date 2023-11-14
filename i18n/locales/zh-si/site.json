@@ -29,5 +29,14 @@
   "DEPLOYED": "最后部署于",
   "MODULES_BY_ARTIFACT_TYPE": "各神器中能找到的模组蓝图",
   "COMPACT_MODE": "紧凑模式",
-  "COMPACT_MODE_NOTE": "警告！除非你知道你在做什么，否则不要关掉它"
+  "COMPACT_MODE_NOTE": "警告！除非你知道你在做什么，否则不要关掉它",
+  "CONFIRM_LOGIN": "Confirm your login from {0} as {1}",
+  "FILTER": "Filter",
+  "ENTER_CODE": "Connect code from the bot",
+  "CANNOT_BE_EMPTY": "Cannot be empty",
+  "INCORRECT_CODE": "Incorrect code",
+  "HS_COMPENDIUM": "HSCompendium",
+  "TECHNOLOGIES": "Technologies",
+  "CRYSTAL_CALCULATOR": "Crystal calculator",
+  "TIME": "Time"
 }
