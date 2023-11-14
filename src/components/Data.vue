@@ -12,7 +12,7 @@
 
       <v-table
         v-if="Object.keys(table.head).length > 0"
-        v-bind="Object.assign(tableOpts, {data: table, format})"
+        v-bind="Object.assign(tableOpts, {data: table, format, isHide: (k) => isHide(k, data.Name)})"
       >
         <!--         eslint-disable vue/max-attributes-per-line         -->
         <template v-if="$slots['table-head']" #head="p"><slot name="table-head" v-bind="p" /></template>
@@ -103,13 +103,13 @@ function packagingData(obj: Record<string, unknown>, category = 'default') {
     buildTable(category, preTable);
 }
 function buildTitle(category: string, pre:[string, unknown][]) {
-    // TODO перенести фильтры из Head сюда
     const { value } = title;
+
     pre.forEach(([k, v]) => {
         if (!value[category]) {
             value[category] = {};
         }
-        (value[category] as Record<string, unknown>)[k] = v;
+        value[category][k] = v;
     });
 }
 function buildTable(category: string, pre: [string, unknown][]) {
@@ -118,7 +118,7 @@ function buildTable(category: string, pre: [string, unknown][]) {
     const keys = pre.map(([k]: [string, unknown]) => k);
 
     pre
-        .filter(([k]: [string, unknown]) => (keys.includes(`_${k}`)) ? true : !isHide(k, Name))
+        // .filter(([k]: [string, unknown]) => (keys.includes(`_${k}`)) ? true : !isHide(k, Name))
         .sort(([a]: [string, unknown], [b]: [string, unknown]) => props.sort ? headersOrder.indexOf(a) - headersOrder.indexOf(b) : 0)
         .forEach(([key, value]) => {
             if (Array.isArray(head[category])) {

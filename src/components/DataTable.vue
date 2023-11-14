@@ -1,5 +1,8 @@
 <template>
-  <div class="table-bg">
+  <div
+    v-if="tableMask != null"
+    class="table-bg"
+  >
     <div
       ref="table"
       class="wrapper"
@@ -62,6 +65,7 @@
               ref="th"
               :rowspan="rowspan"
               :colspan="colspan"
+              :class="{'filtered': isHide(value)}"
             >
               <DataStatTooltip :k="value">
                 {{ format.key(value) }}
@@ -86,6 +90,7 @@
               :rowspan="rowspan"
               :colspan="colspan"
               :cell-key="key"
+              :class="{'filtered': isHide(key)}"
             >
               <v-node
                 v-if="typeof format.value(key, value) === 'function'"
@@ -113,18 +118,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, useSlots, onUpdated, onMounted, onUnmounted, h } from 'vue';
+import { ref, computed, useSlots, onUpdated, onMounted, onUnmounted, h, reactive, watch } from 'vue';
 import { Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import Store from '@Store/index';
+import types from '../store/modules/userSettings/types';
 
 import DataStatTooltip from '@/components/DataStatTooltip.vue';
+
 import tableMaskUtil from '@Utils/tableMask';
 import statsStyleName from '@Handlers/statsStyleName';
 import type { Raw } from '@Utils/tableMask';
+import objectArrayify from '@Utils/objectArrayify';
 
 export interface Props {
     data: Raw
     format: { key: (k: string) => string, value: (k: string, v: unknown) => string }
+    isHide: (k: string) => boolean,
     mergeCells?: boolean
     colLvlStartAt?: number
     lvlColKey?: string
@@ -142,28 +152,51 @@ const props = withDefaults(defineProps<Props>(), {
 const pinHead = ref(false);
 const slots = useSlots();
 const hasSlots = computed(() => slots.head && slots.body);
-const tableMask = computed(() => tableMaskUtil({ ...props.data }, props.mergeCells));
+const categories = reactive(Object.keys(props.data.head));
+const filteredIndexes = reactive<Record<string, number[]>>(Object.fromEntries(categories.map((e) => [e, []])));
 const lvlColName = computed(() => te(props.lvlColKey) ? t(props.lvlColKey) : props.lvlColKey);
+const tableMask = computed(() => {
+    const filteredData = {
+        head: objectArrayify(props.data.head, { map: filterMapCb }),
+        body: objectArrayify(props.data.body, { map: filterMapCb }),
+    };
+
+    if (filteredData.body.default.length == 0) {
+        return null;
+    }
+    return tableMaskUtil({ ...filteredData }, props.mergeCells);
+});
+
 let manualScroll;
 
 const teleportTable = ref(null) as Ref<HTMLInputElement>;
 const table = ref(null) as Ref<HTMLInputElement>;
 const th = ref(null) as Ref<HTMLInputElement>;
 
+
+updateFiltered();
+
+
+Store.subscribe((mutation) => {
+    if (mutation.type == types.SWITCH_DISABLE_FILTERS) {
+        updateFiltered();
+    }
+});
+
+watch(props.data.head, () => {
+    updateFiltered();
+});
+
 onUpdated(() => {
     if (pinHead.value && teleportTable.value) {
         teleportTable.value.scrollLeft = table.value.scrollLeft;
     }
 });
-onMounted(()=> {
-    window.addEventListener('scroll', onScroll);
-});
-onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll);
-});
+onMounted(()=> window.addEventListener('scroll', onScroll));
+onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
 function onScroll(): void {
-    pinHead.value = !hasSlots.value && isInViewport(table.value);
+    pinHead.value = !hasSlots.value && !!(tableMask.value && isInViewport(table.value));
 }
 function isInViewport(element: HTMLInputElement): boolean {
     const rect = element.getBoundingClientRect();
@@ -191,6 +224,23 @@ function getPinnedTableCellStyle(index: number, strIndex = 0): {minWidth?: strin
         maxWidth: `${width}px`,
     };
 }
+function updateFiltered() {
+    categories.forEach((e) => filteredIndexes[e] = []);
+
+    Object.entries(props.data.head)
+        .forEach(([category, keys]) => {
+            keys.forEach((k, i) => {
+                if (props.isHide(k) && !Store.state.userSettings.disableFilters) {
+                    filteredIndexes[category].push(i);
+                }
+            });
+        });
+}
+function filterMapCb([cat, values]) {
+    const v = [...values];
+    filteredIndexes[cat].forEach((i) => delete v[i]);
+    return [cat, v.filter(Boolean)];
+}
 function VNode({ render }) {
     return render(h);
 }
@@ -205,59 +255,64 @@ function VNode({ render }) {
 $mw: 900px;
 
 .table-bg {
-    background: map.get($table, background);
-    margin-top: 1%;
+  background: map.get($table, background);
+  margin-top: 1%;
 
-    .wrapper {
-        position: relative;
-        overflow: auto;
-        border: solid $border-color 1px;
-        border-radius: 10px;
-    }
-    .pinned {
-        overflow: hidden;
-    }
+  .wrapper {
+    position: relative;
+    overflow: auto;
+    border: solid $border-color 1px;
+    border-radius: 10px;
+  }
+  .pinned {
+    overflow: hidden;
+  }
 }
 .table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 
-    .lvl-col {
-        position: sticky;
-        left: 0;
-        width: 1%;
-    }
-    th, :slotted(th) {
-        background-color: map.get($table, background2);
-        background-clip: padding-box;
-        font-weight: bold;
+  .lvl-col {
+    position: sticky;
+    left: 0;
+    width: 1%;
+  }
+  .filtered {
+    background-color: rgba(157, 14, 43, 0.2);
+  }
+  th, :slotted(th) {
+    background-color: map.get($table, background2);
+    background-clip: padding-box;
+    font-weight: bold;
 
-        @media screen and (max-width: $mw) {
-            font-size: 70%;
-        }
+    @media screen and (max-width: $mw) {
+      font-size: 70%;
     }
-    .body {
-        tr:hover, :slotted(tr):hover {
-            backdrop-filter: brightness(150%);
-        }
+  }
+  .body {
+    tr:hover, :slotted(tr):hover {
+      backdrop-filter: brightness(150%);
     }
-    th, td, :slotted(td), :slotted(th) {
-        padding: 10px;
-        line-height: 16px;
-        text-align: center;
-        font-size: 90%;
-        // user-select: none;
-        border: 1px solid map.get($table, border);
+    .filtered {
+      background-color: rgba(220,20,60, 0.2);
     }
+  }
+  th, td, :slotted(td), :slotted(th) {
+    padding: 10px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 90%;
+    border: 1px solid map.get($table, border);
+  }
 
-    td[cell-key="TID_Description"] {
-        font-size: 70%;
+  td[cell-key="TID_Description"] {
+    font-size: 70%;
+  }
+  td[cell-key="Model"] {
+    > div {
+      max-width: 50px;
     }
-    td[cell-key="Model"] {
-        > div {
-            max-width: 50px;
-        }
-    }
+  }
 }
 </style>
 
