@@ -109,18 +109,6 @@ function bodyMask(category: string, keys: string[], srcBody: unknown[][], mergeC
                 }
             }
 
-            // // TODO фикс багованая рень
-            // // сделать скрытие сложнее прямоугольника (2 точки) по типу буквы P (3 точки)
-
-            // if (!hideByC) {
-            //     let c = elemIndex + 1;
-            //     while (c < arr[rowIndex].length && value === arr[rowIndex][c]) {
-            //         colZero.push(`${rowIndex}>${c}`);
-            //         colspan++;
-            //         c++;
-            //     }
-            // }
-
             return {
                 key: keys[elemIndex],
                 value,

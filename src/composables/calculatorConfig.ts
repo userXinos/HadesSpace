@@ -70,7 +70,7 @@ export default class CalculatorConfig {
         val.selected = val.configs.length - 1;
 
 
-        if (temporary) { // @TODO мб какая-нить логика на основе этого
+        if (temporary) { // мб какая-нить логика на основе этого
             // val.configs[val.selected].temporary = true;
         } else {
             this.save();

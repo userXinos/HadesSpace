@@ -132,7 +132,6 @@ export default function calculator(stackChars: string[], initCalcTotal: InitCalc
 
         return raw as OutputValue;
 
-        // TODO настройка для отключения этого поведения
         function removeNotArrayChars(obj: {[key: string]: ObjAndVisible|object}) {
             for (const key in obj) {
                 if (key in obj) {
