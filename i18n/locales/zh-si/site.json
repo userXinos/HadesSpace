@@ -25,7 +25,7 @@
   "REMOVE_CONFIG": "删除 \"{0}\" 配置 ?",
   "UPDATED": "已更新",
   "CURRENT_VERSION": "当前版本",
-  "OPEN_CHANGELOG": "打开更改日志",
+  "OPEN_CHANGELOG": "Open changelog",
   "DEPLOYED": "最后部署于",
   "MODULES_BY_ARTIFACT_TYPE": "各神器中能找到的模组蓝图",
   "COMPACT_MODE": "紧凑模式",
