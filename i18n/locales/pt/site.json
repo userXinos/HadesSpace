@@ -25,7 +25,7 @@
   "REMOVE_CONFIG": "Delete \"{0}\" configuration ?",
   "UPDATED": "Updated",
   "CURRENT_VERSION": "Current version",
-  "OPEN_CHANGELOG": "open changelog",
+  "OPEN_CHANGELOG": "Open changelog",
   "DEPLOYED": "App deployed",
   "MODULES_BY_ARTIFACT_TYPE": "Modules by artifact type",
   "COMPACT_MODE": "Compact mode",
