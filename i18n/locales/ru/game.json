@@ -86,7 +86,6 @@
   "DISABLE_ACTIVATION_DURING_PREP": "Отключить активацию во время подготовки",
   "IGNORE_BARRIER": "Игнорирует барьер",
   "DEACTIVATE_ON_JUMP": "Деактивировать в режиме прыжка",
-  "FUEL_SHIPMENT_MODIFIER": "Deactivate on jump",
   "MOVE_RADIUS": "Радиус перемещения",
   "BUY_IN_PAIRS": "Покупка пары",
   "RS_PUBLIC_LATE_JOIN_MIN_STAR_LEVEL": "Минимальный уровень звезды КЗ паблик",
