@@ -176,20 +176,17 @@ const isBrowserLocale24h = hourCycles ? ['h23', 'h24'].some((hourCycle) => hourC
 const userInfo: UserInfo = {
     LocalTime: {
         icon: { name: 'time', dir: 'icons/compendium' },
-        check: (user) => user.timeZone,
         formatter: ({ localTime, localTime24 }) => isBrowserLocale24h ? localTime24 : localTime,
     },
     AfkFor: {
         icon: { name: 'afk', dir: 'icons/compendium' },
-        check: (user) => user.afkFor,
         formatter: ({ afkFor }) => afkFor,
     },
     CargoCap: {
         icon: { name: 'cargo', dir: 'icons/compendium' },
-        check: ({ tech }) => tech[getTechIndex('Transport')]?.[0] && tech[getTechIndex('TransportCapacity')]?.[0],
         formatter: ({ tech }) => {
-            const [t] = tech[getTechIndex('Transport')];
-            const [cap] = tech[getTechIndex('TransportCapacity')];
+            const [t] = tech[getTechIndex('Transport')] || [];
+            const [cap] = tech[getTechIndex('TransportCapacity')] || [];
 
             if (t && cap) {
                 return shipsData.Transport.JobCapacity[t] + modulesData.TransportCapacity.ExtraTradeSlots[cap];
@@ -268,14 +265,9 @@ function memberClick(mem: CorpMember) {
 }
 function filterByTech(value: string[]) {
     filteredMembers.value = filteredByRoleCache
-        .filter((mem) => {
-            return value.every((fK) => {
-                return mem.tech[getTechIndex(fK)]?.[0] || userInfo[fK]?.check(mem);
-            });
-        })
         .sort((a, b) => {
             if (value.length && !(value[0] in userInfo)) {
-                return b.tech[getTechIndex(value[0])][0] - a.tech[getTechIndex(value[0])][0];
+                return (b.tech[getTechIndex(value[0])]?.[0] || 0) - (a.tech[getTechIndex(value[0])]?.[0] || 0);
             }
             if (value[0] == 'CargoCap') {
                 return userInfo.CargoCap.formatter(b) - userInfo.CargoCap.formatter(a);
@@ -296,10 +288,9 @@ function getTechForDisplay(member: CorpMember): Record<string, {level: number|st
                 if (k in userInfo) {
                     return [k, userInfo[k].formatter(member)];
                 }
-                return [k, member.tech[getTechIndex(k)][0]];
+                return [k, member.tech[getTechIndex(k)]?.[0]];
             })
-            .sort(([, a], [, b]) => b - a)
-            .slice(0, DISPLAY_USER_TECH_ITEMS),
+            .slice(DISPLAY_USER_TECH_ITEMS * -1),
     );
 
     // eslint-disable-next-line guard-for-in
