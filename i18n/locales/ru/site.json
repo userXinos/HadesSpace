@@ -25,7 +25,7 @@
   "REMOVE_CONFIG": "Удалить \"{0}\" конфигурацию ?",
   "UPDATED": "Обновлено",
   "CURRENT_VERSION": "Текущая версия",
-  "OPEN_CHANGELOG": "Open changelog",
+  "OPEN_CHANGELOG": "Открыть журнал изменений",
   "DEPLOYED": "Приложение развернуто",
   "MODULES_BY_ARTIFACT_TYPE": "Модули по типу артефакта",
   "COMPACT_MODE": "Компактный режим",
