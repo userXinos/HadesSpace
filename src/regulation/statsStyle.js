@@ -59,6 +59,9 @@ export default {
     corpXp: [
         'XPRequired',
     ],
+    member: [
+        'MaxMembers',
+    ],
     mining_route: [
         'NumSectorsToMine',
     ],
