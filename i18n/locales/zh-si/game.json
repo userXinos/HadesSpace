@@ -9,7 +9,6 @@
   "UNLOCK_PRICE": "解锁价格",
   "UNLOCK_BLUEPRINTS": "解锁蓝图",
   "UNLOCK_TIME": "解锁时间",
-  "HYD": "氢气",
   "AU": "天文单位",
   "WS": "白星",
   "BS": "蓝星",
@@ -75,7 +74,6 @@
   "SHIP_TO_SPAWN": "生成冥犬舰队",
   "PLANETS": "星球",
   "STARS": "恒星",
-  "DRONE": "无人机",
   "PROJECTILE": "弹药",
   "PREVENT_USE_ON_WS_JUMPGATE": "在白星传送门上禁用",
   "SECTOR_ENRICH_COOLDOWN_SECONDS": "星区冷却时间",
@@ -93,5 +91,14 @@
   "AI_UPDATE_INTERVAL": "无人机刷新速率",
   "DRONES_IGNORE_BARRIER": "无人机无视屏障",
   "RUSH_COST_MODIFIER": "加速消耗的水晶倍率",
-  "CLUSTER": "Cluster"
+  "CLUSTER": "Cluster",
+  "APPLY_MODULE_ON_DOCKED_OBJECT_DESTROY": "Apply module on docked destroyed object",
+  "ON_DEATH_HEAL_MAX_SHIPS": "Max number of ships to be repaired",
+  "TRIGGER_DIST": "Trigger distance",
+  "NUM_PROJECTILES": "Number of projectiles",
+  "ALLOW_BUILDING_AT_MAX_LEVEL": "Allow building at max level",
+  "LOST_SHIP_COOLDOWN": "Lost ship cooldown",
+  "SHIP_DISBAND_COOLDOWN": "Ship disband cooldown",
+  "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Cooldown after jumping with a battleship",
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type"
 }
