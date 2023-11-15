@@ -9,7 +9,6 @@
   "UNLOCK_PRICE": "Стоимость изучения",
   "UNLOCK_BLUEPRINTS": "Требуется чертежей",
   "UNLOCK_TIME": "Время изучения",
-  "HYD": "вод",
   "AU": "АЕ",
   "WS": "БЗ",
   "BS": "ГЗ",
@@ -75,7 +74,6 @@
   "SHIP_TO_SPAWN": "Спавн корабля",
   "PLANETS": "Планеты",
   "STARS": "Звёзды",
-  "DRONE": "Дрон",
   "PROJECTILE": "Снаряд",
   "PREVENT_USE_ON_WS_JUMPGATE": "Запретить использование на вратах БЗ",
   "SECTOR_ENRICH_COOLDOWN_SECONDS": "Перезарядка сектора после обогащения",
@@ -93,5 +91,14 @@
   "AI_UPDATE_INTERVAL": "Интервал обновления бота",
   "DRONES_IGNORE_BARRIER": "Дроны игнорируют Барьер",
   "RUSH_COST_MODIFIER": "Модификатор стоимости ускорения за кристаллы",
-  "CLUSTER": "Кластер"
+  "CLUSTER": "Кластер",
+  "APPLY_MODULE_ON_DOCKED_OBJECT_DESTROY": "Apply module on docked destroyed object",
+  "ON_DEATH_HEAL_MAX_SHIPS": "Макс количество ремонтируемых кораблей",
+  "TRIGGER_DIST": "Расстояние срабатывания",
+  "NUM_PROJECTILES": "Количество снарядов",
+  "ALLOW_BUILDING_AT_MAX_LEVEL": "Разрешить постройку при максимальном уровне",
+  "LOST_SHIP_COOLDOWN": "Перезарядка убитого корабля",
+  "SHIP_DISBAND_COOLDOWN": "Перезарядка разобранного корабля",
+  "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Перезарядка после прыжка линкором",
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка после прыжка к другим типом корабля"
 }
