@@ -88,6 +88,14 @@ export default {
         'SortOrder',
         'PSNID',
         'SpeedIncrPerTick',
+        'IndependentLaserRampUp',
+        'RSMoveCrossSectorCerbsAway',
+        'PvPOnlyTargetPlayers',
+        'AllowBuildOn',
+        'CanBeRenamed',
+        'RSEnrichMod',
+        'UCReqMinRSLevel',
+        'ApplyAOEDamageOnDestroy',
 
         // временно ?
         'BSPenaltyPerSec',
@@ -149,6 +157,7 @@ export default {
         /(Dark)?RedStar\.SharedMinPlanet/,
         /(Dark)?RedStar\.MaxShipsInRSSector/,
         'RedStar.RSJoinInProgressWindowSec',
+        'RedStar.DRSArtifactBonus',
 
         // YellowStar
         'yellow_star_sectors.AsteroidsMin',
@@ -168,6 +177,7 @@ export default {
         'BlueStar.CollapsePeriod', // времено ?
         'BlueStar.CycleEndTimes',
         'BlueStar.CycleEndCollapseAreaSize',
+        'BlueStar.BlueStar_MaxHydroPerDayAbsolute',
         'BlueStar.InitialCollapseAreaSize', // не так важно
 
         // WhiteStar
@@ -184,6 +194,7 @@ export default {
         'WhiteStar.WSShipEventCRRewards',
         'WhiteStar.SpeedModifierPct', // времено ?
         'WhiteStar.BarrageMaxAdditionalEnemies_WS',
+        'WhiteStar.HAsteroidsClose',
 
         // Trade
         'ShipmentDrone.MiningPeriod',
@@ -198,6 +209,7 @@ export default {
         'MineralStorageCapacity.FuelUseIncrease',
         'MassMining.FuelUseIncrease',
         'MiningDrone.JobCapacity',
+        'BlastDrone.AttackPhaseMaxSpeed',
         'HydroStorageCapacity.FuelUseIncrease',
 
         // Weapons
@@ -208,12 +220,14 @@ export default {
         // Shields
         'AlphaShield.ShieldStrengthPVE',
         'AlphaShield.ShieldStrengthPvP',
+        'AreaShield.AreaShieldCoversOwnShip',
 
         // Support
         /^(?!Delta)(\w+)\.AdditionalWaypoint/,
         'Destiny.ReqEnemyShipsInSector',
         'Bond.PullShips',
         'Bond.BondMinPullVector',
+        'Bond.BondMaxPullListSize',
         'Bond.BondWorksOnLoadingTransport',
         /((\w+)Drone|LaserTurret|DroneSquad)\.(BuildCost|DesignUpgradeCost|DesignUpgradeTime|NewModuleSlots)/,
         'RemoteBomb.SpeedPVE',
