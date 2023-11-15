@@ -7,5 +7,10 @@
 
 <script setup>
 import Page from '@/components/Page.vue';
-import data from '@Data/achievements.js';
+import achievements from '@Data/achievements.js';
+import objectArrayify from '@Utils/objectArrayify';
+
+const data = objectArrayify(achievements, {
+    filter: ([, v]) => !v.Retired,
+});
 </script>

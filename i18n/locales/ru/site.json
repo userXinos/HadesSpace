@@ -35,7 +35,7 @@
   "ENTER_CODE": "Код подключения от бота",
   "CANNOT_BE_EMPTY": "Не может быть пустым",
   "INCORRECT_CODE": "Неверный код",
-  "HS_COMPENDIUM": "HS_COMPENDIUM",
+  "HS_COMPENDIUM": "HSCompendium",
   "TECHNOLOGIES": "Технологии",
   "CRYSTAL_CALCULATOR": "Калькулятор кристаллов",
   "TIME": "Время"

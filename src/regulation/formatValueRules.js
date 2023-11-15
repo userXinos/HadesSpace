@@ -46,6 +46,7 @@ export default [
             'MassMiningRatePct',
             'RelayBonusPct',
             'RushRSSpeedIncr',
+            'RushYSSpeedIncr',
             'RushYSHydroDc',
             'RushRSHydroDc',
             'BaseArtifactYieldBonus',
@@ -73,7 +74,6 @@ export default [
             'IgnoreBarrier',
             'LeapBreaksBond',
             'BondBreaksBond',
-            'ApplyAOEDamageOnDestroy',
             'RequiresEmptySector',
             'CanCancelBuild',
             'AllowMoveInSameSectorOnly',
@@ -82,6 +82,9 @@ export default [
             'ShowDurationInTopSpot',
             'DronesIgnoreBarrier',
             'ReqUniqueCargo',
+            'ApplyModuleOnDockedObjectDestroy',
+            'CenterPlacement',
+            'RequiresSectorDistance',
         ],
         (v) => v ? t('YES') : t('NO'),
     ],
@@ -99,8 +102,9 @@ export default [
             'RadialMoveRadius',
             'MinEffectRadius',
             'BlastDroneDamageRange',
+            'BlastDroneTriggerDist',
         ],
-        (v) => `${v / 10} ${t('AU')}`,
+        (v) => t('TID_DISTANCE', [v / 10]),
     ],
     [
         ['BlueStar_HydroPctPerPos'],
@@ -113,10 +117,6 @@ export default [
     [
         ['BlueStar_CreditPctPerPos'],
         (v) => `${v / 2}%`,
-    ],
-    [
-        ['MoveHydrogenCostPerSector'],
-        (v) => `${numberFormat(v)} ${t('HYD')}.`,
     ],
     [
         ['RushWSSpeedIncrPR'],

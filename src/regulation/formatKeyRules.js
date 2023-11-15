@@ -10,6 +10,14 @@ export default [
         (v) => `${t(locKeys[v])} (${t('RS')})`,
     ],
     [
+        ['RushYSSpeedIncr'],
+        (v) => `${t(locKeys[v])} (${t('YS')})`,
+    ],
+    [
+        ['YSMaxGenesis'],
+        (v) => `${t(locKeys[v])} (${t('YS')})`,
+    ],
+    [
         ['RampDPS0', 'RampDPS1', 'RampDPS2', 'RampDPS_BLS0', 'RampDPS_BLS1', 'RampDPS_BLS2', 'RampDPS_WS0', 'RampDPS_WS1', 'RampDPS_WS2'],
         (v) => {
             const stage = v.slice(-1);

@@ -20,7 +20,6 @@ export default {
         'ActivationHydro',
         'DroneHydro',
         'OnBoardHydroMax',
-        'HydroPerNewAsteroid',
         'MaxNewHydro',
         'HydrogenCapacity',
         'ActivationHydroOnBoard',
@@ -32,6 +31,7 @@ export default {
         'HydrogenPerDay',
         'FuelPerHour',
         'Crunch',
+        'HydroCostPerShipment',
     ],
     crystal: [
         'PriceInCrystals',
@@ -56,6 +56,9 @@ export default {
         'MaxInfluenceLoss',
         'MaxInfluenceGain',
     ],
+    corpXp: [
+        'XPRequired',
+    ],
     mining_route: [
         'NumSectorsToMine',
     ],
@@ -66,6 +69,7 @@ export default {
     ],
     star_red: [
         'RSLevelReq',
+        'RSLevelRequired',
         'RSLevel',
     ],
     directDamageIndicator: [

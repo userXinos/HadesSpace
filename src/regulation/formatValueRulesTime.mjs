@@ -33,6 +33,7 @@ export default [
             'DPSRampTimes',
             'RSLESec',
             'ImpulseDuration',
+            'FleetDepartTimeInSeconds',
         ],
         (v) => v,
     ],
