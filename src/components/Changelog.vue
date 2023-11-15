@@ -63,7 +63,7 @@ div.content {
     }
 
     ::v-deep(ul)  {
-        padding-left: 2%;
+        padding-left: 5%;
     }
 }
 </style>
