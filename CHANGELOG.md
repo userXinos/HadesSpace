@@ -2,6 +2,21 @@
 
 This changelog starts with the v3.0 the third rewrite of the parser module and the entire web app
 
+## 4.1.0
+
+### Added
+- Integration with [HSCompendium](https://hs-compendium.com/)
+- Recommendations to [contributing](https://github.com/userXinos/HadesSpace/blob/master/CONTRIBUTING.md) including [translation platform](https://crowdin.com/project/hadesspace)
+- Crystal Converter
+
+### Changed
+- Completed full update to major game update Nebula
+- Styling improvements for different languages
+- Other graphic tweaks
+
+### Fixes
+- The same as in the last update
+
 ## 4.0.0
 
 ### Added
