@@ -276,7 +276,6 @@ export default {
     MinScannerLevel: 'CLUSTER',
     PvP: 'PVP',
     PvE: 'PVE',
-    MaxWayPoints: 'MAX_WAYPOINTS',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,
