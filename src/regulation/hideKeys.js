@@ -98,6 +98,7 @@ export default {
         'UCReqMinRSLevel',
         'ApplyAOEDamageOnDestroy',
         'SingleTarget',
+        'ShowDurationInTopSpot',
 
         // временно ?
         'BSPenaltyPerSec',

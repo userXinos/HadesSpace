@@ -79,7 +79,6 @@ export default [
             'AllowMoveInSameSectorOnly',
             'BuyInPairs',
             'RequiresStarSector',
-            'ShowDurationInTopSpot',
             'DronesIgnoreBarrier',
             'ReqUniqueCargo',
             'ApplyModuleOnDockedObjectDestroy',
