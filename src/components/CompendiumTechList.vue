@@ -132,6 +132,7 @@ import Icon from '@/components/Icon.vue';
 import key from '@Handlers/key';
 import router from '@Utils/Vue/router';
 import value from '@Handlers/value';
+import byTypes from '@Regulation/byTypes';
 
 export interface Props {
     levelMap?: Record<string, number>
@@ -139,12 +140,10 @@ export interface Props {
     isMuted?: (id: string) => boolean
 }
 
-const MODULES_TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
-
 const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
 const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
 const alliance = { Name: 'AllianceLevel', TID: 'TID_CORP_TAB_MY_CORP', Icon: 'corpXp', specialIcon: true };
-const modules: {[k: string]: unknown} = Object.fromEntries(MODULES_TYPES_ORDER.map((t) => [t, getBySlotType(t)]));
+const modules: {[k: string]: unknown} = Object.fromEntries(byTypes.artifact.map((t) => [t, getBySlotType(t)]));
 
 const format = {
     key: (k: string) => key(k, router.currentRoute.value.name as string),

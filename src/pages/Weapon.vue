@@ -6,17 +6,27 @@
   />
 </template>
 
-<script setup>
-import ModulePage from '@/components/ModulePage.vue';
+<script>
 
-function postFilter(data) {
-    ['Laser', 'DualLaser']
-        .forEach((modKey) => {
-            const mod = { ...data[modKey] };
+export function fixRampLasers(obj) {
+    Object.keys(obj).forEach((k) => {
+        if (k.endsWith('Laser')) {
+            const mod = { ...obj[k] };
 
             ['RampDPS', 'RampDPS_BLS', 'RampDPS_WS']
                 .forEach((key) => {
                     if (`${key}0` in mod) {
+                        if (Array.isArray(mod[`${key}2`])) {
+                            const arr = Array(mod[`${key}2`].length);
+
+                            if (!Array.isArray(mod[`${key}0`])) {
+                                mod[`${key}0`] = [...arr].fill(mod[`${key}0`]);
+                            }
+                            if (!Array.isArray(mod[`${key}1`])) {
+                                mod[`${key}1`] = [...arr].fill(mod[`${key}1`]);
+                            }
+                        }
+
                         mod[key] = {
                             '■': [...mod[`${key}0`]],
                             '■■': [...mod[`${key}1`]],
@@ -26,11 +36,18 @@ function postFilter(data) {
                         delete mod[`${key}1`];
                         delete mod[`${key}2`];
 
-                        data[modKey] = mod;
+                        obj[k] = mod;
                     }
                 });
-        });
+        }
+    });
+    return obj;
+}
+</script>
+<script setup>
+import ModulePage from '@/components/ModulePage.vue';
 
-    return data;
+function postFilter(data) {
+    return fixRampLasers(data);
 }
 </script>

@@ -9,6 +9,7 @@
 <!--suppress JSUnresolvedReference -->
 <script setup>
 import ModulePage from '@/components/ModulePage.vue';
+import { fixRampLasers } from './Weapon.vue';
 import modules from '@Data/modules.js';
 import stars from '@Data/stars.js';
 
@@ -44,36 +45,11 @@ function postFilter(data) {
     }
 
     if (data.LaserTurret) {
-        const modKey = 'LaserTurret';
-        const mod = { ...data[modKey] };
-        const drone = mod.LaserTurret_Laser;
-
-        ['RampDPS', 'RampDPS_BLS', 'RampDPS_WS']
-            .forEach((key) => {
-                if (`${key}0` in drone) {
-                    if (Array.isArray(drone[`${key}2`])) {
-                        const arr = Array(drone[`${key}2`].length);
-
-                        if (!Array.isArray(drone[`${key}0`])) {
-                            drone[`${key}0`] = [...arr].fill(drone[`${key}0`]);
-                        }
-                        if (!Array.isArray(drone[`${key}1`])) {
-                            drone[`${key}1`] = [...arr].fill(drone[`${key}1`]);
-                        }
-                    }
-
-                    drone[key] = {
-                        '■': [...drone[`${key}0`]],
-                        '■■': [...drone[`${key}1`]],
-                        '■■■': [...drone[`${key}2`]],
-                    };
-                    delete drone[`${key}0`];
-                    delete drone[`${key}1`];
-                    delete drone[`${key}2`];
-
-                    data[modKey].drone = mod.drone;
-                }
-            });
+        data.LaserTurret = fixRampLasers(data.LaserTurret);
+        delete data.LaserTurret.LaserTurret_Laser.Speed_YS;
+        delete data.LaserTurret.LaserTurret_Laser.Speed_RS;
+        delete data.LaserTurret.LaserTurret_Laser.Speed_BLS;
+        delete data.LaserTurret.LaserTurret_Laser.Speed_WS;
     }
 
     return data;

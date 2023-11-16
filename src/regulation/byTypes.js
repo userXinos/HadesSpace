@@ -11,4 +11,5 @@ export default {
         redstar: ['destroyed01', 'destroyed02', 'destroyed03', 'destroyed04', 'destroyed05', 'destroyed06', 'destroyed07', 'destroyed08', 'destroyed09', 'destroyed10'],
         whitestar: ['whitestar1', 'whitestar2', 'whitestar_l1'],
     },
+    artifact: ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'],
 };
