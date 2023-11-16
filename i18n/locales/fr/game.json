@@ -92,7 +92,6 @@
   "DRONES_IGNORE_BARRIER": "Drones ignores the Barrier",
   "RUSH_COST_MODIFIER": "Crystal rush cost modifier",
   "CLUSTER": "Cluster",
-  "APPLY_MODULE_ON_DOCKED_OBJECT_DESTROY": "Apply module on docked destroyed object",
   "ON_DEATH_HEAL_MAX_SHIPS": "Max number of ships to be repaired",
   "TRIGGER_DIST": "Trigger distance",
   "NUM_PROJECTILES": "Number of projectiles",
