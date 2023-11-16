@@ -92,7 +92,6 @@
   "DRONES_IGNORE_BARRIER": "无人机无视屏障",
   "RUSH_COST_MODIFIER": "水晶加速花费修正",
   "CLUSTER": "群组",
-  "APPLY_MODULE_ON_DOCKED_OBJECT_DESTROY": "被摧毁时造成范围性伤害",
   "ON_DEATH_HEAL_MAX_SHIPS": "最多修理舰船数量",
   "TRIGGER_DIST": "触发半径",
   "NUM_PROJECTILES": "发射数量",
