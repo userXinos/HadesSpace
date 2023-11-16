@@ -3,10 +3,14 @@ import { createStore, MutationTree, ActionTree } from 'vuex';
 const isDev = (process.env.NODE_ENV === 'development');
 
 import types from '@Store/types';
-import userSettingsModule from '@Store/modules/userSettings/index';
+
+/* userSettingsModule */
+import userSettingsModule from './modules/userSettings/index';
+import userSettingsPlugin from './modules/userSettings/plugin';
+/* userSettingsModule */
 
 interface RootState {
-    userSettings: UserSettings;
+    userSettings: Settings;
     modals: number[]
 }
 
@@ -45,4 +49,5 @@ export default createStore<RootState>({
     modules: {
         userSettings: userSettingsModule,
     },
+    plugins: [userSettingsPlugin],
 });

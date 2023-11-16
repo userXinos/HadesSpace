@@ -6,5 +6,3 @@ declare interface Settings {
     showKeys: boolean,
     lastVersionChangelog: string
 }
-
-type UserSettings = Settings
