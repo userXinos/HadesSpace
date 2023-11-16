@@ -99,5 +99,6 @@
   "LOST_SHIP_COOLDOWN": "Tiempo de enfriamiento al perder una Nave",
   "SHIP_DISBAND_COOLDOWN": "Tiempo de enfriamiento al desintegrar una Nave",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Tiempo de enfriamiento después de hacer saltar una Nave de Combate",
-  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Enfriamiento después de saltar a otro tipo de nave"
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Enfriamiento después de saltar a otro tipo de nave",
+  "MOONS": "Moons"
 }
