@@ -99,5 +99,6 @@
   "LOST_SHIP_COOLDOWN": "Lost ship cooldown",
   "SHIP_DISBAND_COOLDOWN": "Ship disband cooldown",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Cooldown after jumping with a battleship",
-  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type"
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type",
+  "MOONS": "Moons"
 }
