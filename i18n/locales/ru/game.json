@@ -99,5 +99,6 @@
   "LOST_SHIP_COOLDOWN": "Перезарядка убитого корабля",
   "SHIP_DISBAND_COOLDOWN": "Перезарядка разобранного корабля",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Перезарядка после прыжка линкором",
-  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка после прыжка к другим типом корабля"
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка после прыжка к другим типом корабля",
+  "MOONS": "Moons"
 }
