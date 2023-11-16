@@ -912,7 +912,7 @@ export default {
         DPS_BS: [80, 90, 104, 120, 140, 160, 184, 210, 244, 280, 320, 370, 424, 490, 564],
         AddDPSPerTarget: [80, 110, 140, 170, 210, 240, 270, 300, 330, 360, 390, 420, 460, 520, 600],
         AddDPSPerTarget_BLS: [80, 90, 104, 120, 140, 160, 184, 210, 244, 280, 320, 370, 424, 490, 564],
-        AddDPSPerTarget_WS: [100, 114, 132, 152, 174, 200, 230, 266, 306, 352, 404, 464, 534, 614, 708],
+        AddDPSPerTarget_WS: [600, 684, 792, 912, 1044, 1200, 1380, 1596, 1836, 2112, 2424, 2784, 3204, 3684, 4248],
         TargetSwitchTicks: 40,
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
@@ -2046,6 +2046,7 @@ export default {
     FlagshipDartBarrage: {
         Name: "FlagshipDartBarrage",
         TID: "TID_MODULE_FLAGSHIP_WEAPON",
+        TID_Description: "TID_MODULE_FLAGSHIP_WEAPON_DESCR",
         RSLevel: 1,
         Icon: "Mod_DroneDartLauncher_Icon",
         Hide: 1,
