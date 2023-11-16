@@ -5,4 +5,5 @@ export default Object.freeze({
     SWITCH_PLANETS_CALC_SP2: 'SwitchPlanetsCalcSp2',
     DEBUG_SWITCH_SHOW_KEYS: 'DebugSwitchShowKeys',
     SET_LAST_CHECKED_VERSION_CHANGELOG: 'SetLastCheckedVersionChangelog',
+    SET_COMPENDIUM_CORP_LAST_ROLE_ID: 'SetCompendiumCorpLastRoleId',
 });

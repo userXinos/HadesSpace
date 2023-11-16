@@ -140,10 +140,12 @@
 <script setup lang="ts">
 import { CorpData, CorpMember, getTechIndex } from 'bot_client';
 import { onMounted, reactive, Ref, ref, watch } from 'vue';
+import Store from '@Store/index';
 import { useI18n } from 'vue-i18n';
 
 import { getDiscordAvatarUrl } from '../utils/getDiscordUrl';
 import client from '../utils/compendium';
+import types from '@Store/modules/userSettings/types';
 
 import { Head as VHead } from '@vueuse/head';
 import Modal, { SIZES } from '@/components/Modal.vue';
@@ -200,7 +202,7 @@ const userInfo: UserInfo = {
 const isFetching = ref(false);
 const openSelectorByTech = ref(false);
 const openMemTechList = ref(false);
-const filterRoleId = ref<string>('');
+const filterRoleId = ref<string>(Store.state.userSettings.compendiumCorpLastRoleId);
 const filterTech = reactive<string[]>([]);
 const data: Ref<CorpData> = ref({});
 const filteredMembers: Ref<CorpMember[]> = ref([]);
@@ -219,6 +221,7 @@ client.on('disconnected', () => {
     filteredMembers.value = Array.from({ length: 10 }, (i) => ({ userId: i, name: '', avatarUrl: '' }) as CorpMember);
     filterRoleId.value = '';
     filterTech.splice(0);
+    Store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID);
 });
 onMounted(() => {
     if (client.getUser()) {
@@ -228,6 +231,7 @@ onMounted(() => {
 
 watch(filterRoleId, async (value) => {
     isFetching.value = true;
+    Store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID, value);
     filteredByRoleCache = await client.corpdata(value).then((r) => r.members);
     filteredMembers.value = filteredByRoleCache;
     isFetching.value = false;
@@ -238,7 +242,7 @@ watch(() => filterTech, filterByTech, { deep: true });
 
 async function fetchCorp() {
     isFetching.value = true;
-    const resp = await client.corpdata();
+    const resp = await client.corpdata(Store.state.userSettings.compendiumCorpLastRoleId);
 
     data.value = resp;
     filteredByRoleCache = resp.members;
