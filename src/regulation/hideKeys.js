@@ -96,6 +96,7 @@ export default {
         'RSEnrichMod',
         'UCReqMinRSLevel',
         'ApplyAOEDamageOnDestroy',
+        'SingleTarget',
 
         // временно ?
         'BSPenaltyPerSec',
