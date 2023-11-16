@@ -213,7 +213,7 @@ function addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, ast = value.AllowedSt
         });
     } else {
         for (const e of CONFIG.starsOrder) {
-            if (e === 'BS' && Object.keys(value).some(hasSeparateBLSValues)) {
+            if (e === 'BS' && !Object.keys(value).some(hasSeparateBLSValues)) {
                 return;
             }
             addStarInfo(value, e);
