@@ -99,5 +99,6 @@
   "LOST_SHIP_COOLDOWN": "Temps d'attente après avoir perdu un vaisseau",
   "SHIP_DISBAND_COOLDOWN": "Temps d'attente après démantèlement du vaisseau",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Cooldown after jumping with a battleship",
-  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type"
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type",
+  "MOONS": "Moons"
 }
