@@ -28,4 +28,8 @@ export default <MutationTree<Settings>>{
         state.lastVersionChangelog = ver;
         return state.lastVersionChangelog;
     },
+    [types.SET_COMPENDIUM_CORP_LAST_ROLE_ID](state, id?) {
+        state.compendiumCorpLastRoleId = id;
+        return state.compendiumCorpLastRoleId;
+    },
 };

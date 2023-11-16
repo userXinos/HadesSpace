@@ -5,4 +5,5 @@ export default Object.freeze({
     planetsCalcSp2: false,
     showKeys: false,
     lastVersionChangelog: '0.0.0',
+    compendiumCorpLastRoleId: '',
 });

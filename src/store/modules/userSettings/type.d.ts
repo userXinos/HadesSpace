@@ -4,5 +4,6 @@ declare interface Settings {
     compactModulesByArtTypeTable: boolean,
     planetsCalcSp2: boolean,
     showKeys: boolean,
-    lastVersionChangelog: string
+    lastVersionChangelog: string,
+    compendiumCorpLastRoleId: string
 }
