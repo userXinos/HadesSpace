@@ -276,6 +276,7 @@ $mw: 900px;
     position: sticky;
     left: 0;
     width: 1%;
+    word-break: keep-all;
   }
   .filtered {
     background-color: rgba(157, 14, 43, 0.2);

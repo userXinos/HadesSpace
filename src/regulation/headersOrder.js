@@ -14,6 +14,9 @@ export default [
     'UnlockPrice',
     'UnlockTime',
     // ----------------
+    'Moons',
+    'ColonizeCost',
+    'ConceptImage',
     'ActivationDelay',
     'EffectDurationx10',
     'EffectDurationx10WS',

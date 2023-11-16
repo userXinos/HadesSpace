@@ -167,9 +167,9 @@ import Calculator from '@/components/Calculator.vue';
 import type { SetupComponent, SetupGetElementsCB, Input, Output, OutputValue, OutputMap, ElementsStore } from '@/typings/calculator';
 import { getBySlotType } from '../components/ModulePage.vue';
 import statsStyleName from '../utils/Handlers/statsStyleName';
+import byTypes from '@Regulation/byTypes.js';
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
-const TYPES_ORDER = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
 
 const { t } = useI18n();
 const inputLocKeys = {
@@ -194,7 +194,7 @@ let calc: SetupComponent;
 
 function setupCalculator(v: SetupComponent) {
     calc = v;
-    for (const type of TYPES_ORDER) {
+    for (const type of byTypes.artifact) {
         modules.value[type] = v.provideGetterElements((...p) => getModulesBySlotType.apply(null, [type, ...p]));
     }
 }

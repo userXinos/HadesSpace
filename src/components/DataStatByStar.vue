@@ -83,7 +83,7 @@ import statsStyleName from '@Handlers/statsStyleName';
 import { regex as postfixRegex } from '@Regulation/postfixes.mjs';
 
 const LABEL_BY_ORDER = {
-    'base': 'Base',
+    'base': { dir: 'icons', name: 'star_multi' },
     '': { dir: 'icons', name: 'star_multi' },
     'ys': { dir: 'game/Stars', name: 'star_yellow' },
     'rs': { dir: 'game/Stars', name: 'star_red' },

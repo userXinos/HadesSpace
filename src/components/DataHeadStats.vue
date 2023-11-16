@@ -18,7 +18,7 @@
                   class="title"
                 >
                   <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
-                    {{ format.key(item.TID) }}
+                    {{ format.key(item.TID || name) }}
                   </a>
                 </div>
                 <p

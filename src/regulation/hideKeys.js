@@ -13,6 +13,7 @@ export default {
         'BarrageMaxAdditionalEnemies',
         'DPSRampTimes',
         'DPSRampTimes_BLS',
+        'DPSRampTimesBS',
         'DPSRampTimes_WS',
     ],
     global: [

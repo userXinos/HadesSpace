@@ -75,11 +75,11 @@ import objectArrayify from '@Utils/objectArrayify';
 import { getBySlotType } from '../components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_DyingPlanet.jpg';
 import types from '@Store/modules/userSettings/types';
+import byTypes from '@Regulation/byTypes';
 
 const { MinDarkRSLevel } = globals;
 const { RedStar } = starsData;
 const { DarkRedStar } = starsData;
-const ARTIFACT_TYPES = ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'];
 const USELESS_STATS = [
     'GhostSpawnSecs',
     'Models',
@@ -102,10 +102,10 @@ DarkRedStar.TID = 'TID_DARK_RED_STAR_LABEL';
 DarkRedStar.TID_Description = 'TID_JOIN_DARK_RED_STAR_INFO';
 
 if ('JumpCosts_T' in RedStar) {
-    RedStar.JumpCost = {
-        Transport: [...RedStar.JumpCosts_T],
-        Miner: [...RedStar.JumpCosts_M],
-        Battleship: [...RedStar.JumpCosts_B],
+    RedStar.JumpShips = {
+        JumpCostTransport: [...RedStar.JumpCosts_T],
+        JumpCostMiner: [...RedStar.JumpCosts_M],
+        JumpCostBattleship: [...RedStar.JumpCosts_B],
     };
     delete RedStar.JumpCosts_T;
     delete RedStar.JumpCosts_M;
@@ -113,10 +113,10 @@ if ('JumpCosts_T' in RedStar) {
 }
 
 if ('JumpCosts_T' in DarkRedStar) {
-    DarkRedStar.JumpCost = {
-        Transport: [...DarkRedStar.JumpCosts_T],
-        Miner: [...DarkRedStar.JumpCosts_M],
-        Battleship: [...DarkRedStar.JumpCosts_B],
+    DarkRedStar.JumpShips = {
+        JumpCostTransport: [...DarkRedStar.JumpCosts_T],
+        JumpCostMiner: [...DarkRedStar.JumpCosts_M],
+        JumpCostBattleship: [...DarkRedStar.JumpCosts_B],
     };
     delete DarkRedStar.JumpCosts_T;
     delete DarkRedStar.JumpCosts_M;
@@ -129,7 +129,7 @@ const stars = {
         map: ([k, v]) => [k, Array.isArray(v) ? v.slice(MinDarkRSLevel) : v],
     }),
 };
-const modulesByArtType = Object.fromEntries(ARTIFACT_TYPES.map((type) => (
+const modulesByArtType = Object.fromEntries(byTypes.artifact.map((type) => (
     [type, modulesByLvl(getBySlotType(type))]
 )));
 

@@ -32,6 +32,9 @@ export default {
         'FuelPerHour',
         'Crunch',
         'HydroCostPerShipment',
+        'JumpCostTransport',
+        'JumpCostMiner',
+        'JumpCostBattleship',
     ],
     crystal: [
         'PriceInCrystals',

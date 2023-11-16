@@ -4,7 +4,7 @@
     :content-args="{
       data: { BlueStar: stars.BlueStar },
       iconDir: 'game/Stars',
-      tableOpts: { lvlColKey: 'Position' }
+      tableOpts: { lvlColKey: 'TID_BS_FINAL_POSITIONS' }
     }"
     :portrait="{src: img, alt: 'BlueStar'}"
   />

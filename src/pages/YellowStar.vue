@@ -29,11 +29,11 @@ const ys = { ...stars.YellowStar };
 delete ys.Models;
 
 const planetsYS = compileOne(planets, { filterByType: { path: 'planets.yellowstar' } });
-delete planetsYS.ModelFolders;
-delete planetsYS.ConceptImage;
 planetsYS.TID2 = planetsYS.TID;
+planetsYS.Moons = sectorsData.NumMoons.flat();
 planetsYS.TID = 'PLANETS';
 planetsYS.Name = 'Planets';
+
 
 const sectors = {
     Name2: sectorsData.Name,

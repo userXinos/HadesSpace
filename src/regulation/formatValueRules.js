@@ -277,7 +277,7 @@ export default [
         ['EntrustArtifacts'],
     ],
     [
-        ['Transport', 'Miner', 'Battleship'],
+        ['JumpCostTransport', 'JumpCostMiner', 'JumpCostBattleship'],
         (v) => (Array.isArray(v)) ? v.join('>') : v,
         ['RedStar', 'DarkRedStar'],
     ],

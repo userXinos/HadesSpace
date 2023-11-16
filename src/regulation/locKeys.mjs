@@ -6,6 +6,7 @@ export const gameSlostLocKeys = {
     Weapon: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS',
     Shield: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS',
     Combat: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT',
+    Support: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT',
     Drone: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE',
 }
 
@@ -221,6 +222,15 @@ export const gameCharsLocKeys = {
     DRSArtifactBonus: 'TID_MODULE_ARTIFACT_BOOST',
     FleetDepartTimeInSeconds: 'TID_STATUS_DEPARTING',
     DNDiff: 'TID_DN_FIRST_OBJECTIVE_GOAL_TITLE',
+    RampDPS: 'TID_MODULE_DESCR_STAGE_DPS',
+    DPSRampTimes: 'TID_MODULE_DESCR_STAGE_TIME',
+    JumpShips: 'TID_RS_DLG_JUMP_SHIPS_BTN',
+    JumpCostTransport: 'TID_SHIP_TRANSPORT',
+    JumpCostMiner: 'TID_SHIP_MINER',
+    JumpCostBattleship: 'TID_SHIP_BATTLESHIP',
+    Sentinel: 'TID_SHIP_CERB_FIGHTER',
+    Guardian: 'TID_SHIP_CERB_COLOSSUS',
+    Colossu: 'TID_SHIP_CERB_SECTOR_GUARDIAN',
 };
 
 
@@ -316,6 +326,7 @@ export default {
     WSDisbandCooldown: 'SHIP_DISBAND_COOLDOWN',
     WSJumpBSTimeCooldown: 'COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP',
     WSJumpOtherTimeCooldown: 'COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE',
+    Moons: 'MOONS',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,
