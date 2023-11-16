@@ -108,6 +108,7 @@ export default {
         IsEMP: 1,
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
+        ActivationDelayBS: 240,
     },
     RepairDrone: {
         Name: "RepairDrone",
@@ -207,6 +208,7 @@ export default {
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
         EffectDurationx10WS: [60000, 72000, 84000, 96000, 108000, 120000, 132000, 144000, 156000, 168000, 180000, 192000, 204000, 216000, 228000],
+        ActivationDelayBS: 480,
     },
     ImpulseShield: {
         Name: "ImpulseShield",
@@ -240,6 +242,8 @@ export default {
         AllowForBLSEarlyAccess: 1,
         DNDiff: "TID_DNC_IMPULSE_SHIELD",
         ImpulseDurationWS: 6000,
+        ActivationDelayBS: 480,
+        ImpulseDurationBS: 20,
     },
     OmegaShield: {
         Name: "OmegaShield",
@@ -265,6 +269,7 @@ export default {
         ShieldStrengthPvP: [1300, 1500, 1750, 2000, 2350, 2700, 3100, 3650, 4250, 5000, 5800, 6650, 7800, 9000, 11000],
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
+        ActivationDelayBS: 480,
     },
     Teleport: {
         Name: "Teleport",
@@ -292,6 +297,7 @@ export default {
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
         TeleportBreaksBond: 1,
+        ActivationDelayBS: [180, 170, 160, 150, 140, 150, 120, 110, 100, 90, 80, 70, 60, 40, 20],
     },
     DamageAmplifier: {
         Name: "DamageAmplifier",
@@ -319,6 +325,8 @@ export default {
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
         DNDiff: "TID_DNC_DAMAGE_AMP",
+        ActivationDelayBS: 240,
+        EffectDurationx10BS: 600,
     },
     RedStarExtender: {
         Name: "RedStarExtender",
@@ -379,6 +387,7 @@ export default {
         AllowForBLSEarlyAccess: 1,
         DPH_WS: [600, 720, 840, 960, 1080, 1260, 1500, 1704, 1884, 2100, 2424, 2784, 3204, 3684, 4224],
         TargetSwitchTicksWS: 24000,
+        TargetSwitchTicksBS: 80,
     },
     Laser: {
         Name: "Laser",
@@ -407,6 +416,7 @@ export default {
         DPSRampTimes_WS: [4800, 12000],
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
+        DPSRampTimesBS: [16, 40],
     },
     Stealth: {
         Name: "Stealth",
@@ -512,6 +522,7 @@ export default {
         BSOnly: 1,
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
+        ActivationDelayBS: 240,
     },
     DecoyDrone: {
         Name: "DecoyDrone",
@@ -578,6 +589,8 @@ export default {
             BSPenaltyPerSec: 500,
             HasTaunt: 1,
         },
+        ActivationDelayBS: 240,
+        SpawnLifetimeBS: 80,
     },
     D_Supress: {
         Name: "D_Supress",
@@ -604,6 +617,8 @@ export default {
         EffectDurationx10: [30, 40, 50, 60, 70, 90, 110, 130, 160, 200, 220, 240, 260, 280, 300],
         EffectDurationx10WS: [30, 40, 50, 60, 70, 90, 110, 130, 160, 200, 220, 240, 260, 280, 300],
         IsSupress: 1,
+        ActivationDelayBS: 720,
+        EffectDurationx10BS: [60, 80, 100, 120, 140, 180, 220, 260, 320, 400, 440, 480, 520, 560, 600],
     },
     ShipmentDrone: {
         Name: "ShipmentDrone",
@@ -679,6 +694,7 @@ export default {
         ReqEnemyShipsInSector: 1,
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
+        ActivationDelayBS: 600,
     },
     PassiveShield: {
         Name: "PassiveShield",
@@ -702,8 +718,6 @@ export default {
         AllowForBLSEarlyAccess: 1,
         ShieldRegenDelayWS: 3600,
         TimeToFullyRegenWS: 28800,
-        ShieldRegenDelayBS: 12,
-        TimeToFullyRegenBS: 96,
     },
     MirrorShield: {
         Name: "MirrorShield",
@@ -732,6 +746,8 @@ export default {
         MirrorDamageAsAOE_WS: 300,
         MirrorShieldTickPeriod: 40,
         MirrorShieldTickPeriodWS: 24000,
+        ActivationDelayBS: 480,
+        MirrorShieldTickPeriodBS: 80,
     },
     HydrogenUpload: {
         Name: "HydrogenUpload",
@@ -820,6 +836,7 @@ export default {
         MaxTargets: 2,
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
+        DPSRampTimesBS: [16, 40],
     },
     GuardianBattery: {
         Name: "GuardianBattery",
@@ -866,6 +883,7 @@ export default {
         AllowForBLSEarlyAccess: 1,
         BondOverridesBarrier: 1,
         DronesIgnoreBarrier: 1,
+        ActivationDelayBS: 240,
     },
     Impulse: {
         Name: "Impulse",
@@ -912,7 +930,7 @@ export default {
         DPS_BS: [80, 90, 104, 120, 140, 160, 184, 210, 244, 280, 320, 370, 424, 490, 564],
         AddDPSPerTarget: [80, 110, 140, 170, 210, 240, 270, 300, 330, 360, 390, 420, 460, 520, 600],
         AddDPSPerTarget_BLS: [80, 90, 104, 120, 140, 160, 184, 210, 244, 280, 320, 370, 424, 490, 564],
-        AddDPSPerTarget_WS: [100, 114, 132, 152, 174, 200, 230, 266, 306, 352, 404, 464, 534, 614, 708],
+        AddDPSPerTarget_WS: [600, 684, 792, 912, 1044, 1200, 1380, 1596, 1836, 2112, 2424, 2784, 3204, 3684, 4248],
         TargetSwitchTicks: 40,
         AllowForWSEarlyAccess: 1,
         AllowForBLSEarlyAccess: 1,
@@ -921,6 +939,7 @@ export default {
         BarrageMaxAdditionalEnemies_WS: 4,
         DPH_WS: [480, 540, 624, 720, 840, 960, 1104, 1260, 1464, 1680, 1920, 2220, 2544, 2940, 3384],
         TargetSwitchTicksWS: 24000,
+        TargetSwitchTicksBS: 80,
     },
     TradeBurst: {
         Name: "TradeBurst",
@@ -965,6 +984,7 @@ export default {
         LeapAOEAmtPvP: [2000, 2400, 2900, 3500, 4155, 5000, 6000, 7150, 8600, 10300, 12400, 15000, 17500, 21000, 25000],
         LeapAOEAmtPvE: [1500, 1750, 2100, 2450, 2900, 3450, 4050, 4750, 5600, 6650, 7850, 9250, 11000, 12800, 15000],
         LeapBreaksBond: 1,
+        ActivationDelayBS: 360,
     },
     Vengeance: {
         Name: "Vengeance",
@@ -994,6 +1014,7 @@ export default {
         DeactivateOnJump: 1,
         BSOnly: 1,
         AllowForBLSEarlyAccess: 1,
+        ActivationDelayBS: 600,
     },
     ShipmentBeam: {
         Name: "ShipmentBeam",
@@ -1035,7 +1056,6 @@ export default {
         ActivationDelay: 5,
         AllowForWSEarlyAccess: 1,
         ActivationDelayWS: 3000,
-        ActivationDelayBS: 10,
     },
     Crunch: {
         Name: "Crunch",
@@ -1096,6 +1116,9 @@ export default {
         ActivationDelay: 180,
         ActivationDelayBLS: 60,
         ActivationDelayWS: 172800,
+        EffectRadius: [2400, 2600, 2800, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 8000, 10000],
+        EffectRadiusWS: [2400, 2600, 2800, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 8000, 10000],
+        EffectRadiusBS: [2400, 2600, 2800, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 8000, 10000],
         SpawnedShip: 41,
         SpawnLifetime: 48,
         SpawnLifetime_WS: 28800,
@@ -1138,6 +1161,8 @@ export default {
             SpeedIncrPerTick: 40,
             modules: { DroneRocketLauncher: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] },
         },
+        ActivationDelayBS: 360,
+        SpawnLifetimeBS: 96,
     },
     Enrich: {
         Name: "Enrich",
@@ -1210,7 +1235,7 @@ export default {
         SectorGenesisCooldownSecondsRS: 300,
         SectorGenesisCooldownSecondsYS: 82800,
         YSMaxGenesis: 1,
-        MaxNewHydro_YS: [200, 400, 600, 800, 1000, 1600, 3000, 5000, 7000, 8000, 13600, 17600, 22000, 28000, 35000],
+        MaxNewHydro_YS: [200, 400, 600, 800, 1000, 1600, 3400, 6000, 8400, 10400, 15000, 18000, 22800, 28000, 35000],
         MaxNewHydro_RS: [120, 160, 200, 240, 280, 320, 400, 480, 560, 640, 720, 800, 1000, 1200, 1400],
         MaxNewHydro_WS: [60, 70, 80, 90, 100, 110, 120, 140, 160, 200, 240, 280, 320, 400, 500],
     },
@@ -1281,6 +1306,7 @@ export default {
         IsAreaShield: 1,
         DNDiff: "TID_DNC_AREASHIELD",
         AreaShieldCoversOwnShip: 0,
+        ActivationDelayBS: 480,
     },
     PhoenixShield: {
         Name: "PhoenixShield",
@@ -1301,8 +1327,6 @@ export default {
         IsAreaShield: 1,
         ActivationDelayWS: 180000,
         EffectDurationx10WS: 10800000,
-        ActivationDelayBS: 600,
-        EffectDurationx10BS: 36000,
     },
     ChainRayDrone: {
         Name: "ChainRayDrone",
@@ -1370,6 +1394,8 @@ export default {
             IsTurret: 1,
             modules: { ChainRayForDrone: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] },
         },
+        ActivationDelayBS: 600,
+        SpawnLifetimeBS: 360,
     },
     Bond: {
         Name: "Bond",
@@ -1440,6 +1466,7 @@ export default {
             LaunchFX: "projectiles/AlphaRocketLaunch_FX",
             IgnoreBarrier: 1,
         },
+        ActivationDelayBS: 1200,
     },
     BlastShield: {
         Name: "BlastShield",
@@ -1466,6 +1493,7 @@ export default {
         IsAreaShield: 1,
         IsAOEOnlyShield: 1,
         AllowForBLSEarlyAccess: 1,
+        ActivationDelayBS: 480,
     },
     OmegaRocket: {
         Name: "OmegaRocket",
@@ -1508,6 +1536,7 @@ export default {
             DestroyedFX: "projectiles/OmegaRocketDeath_FX",
             LaunchFX: "projectiles/AlphaRocketLaunch_FX",
         },
+        ActivationDelayBS: 1200,
     },
     DestroyerVengeance: {
         Name: "DestroyerVengeance",
@@ -1642,7 +1671,6 @@ export default {
             ImpactFX: "projectiles/BomberRocketHit_FX",
             DestroyedFX: "projectiles/OmegaRocketDeath_FX",
         },
-        ActivationDelayBS: [48, 40],
     },
     ColossusLaser: {
         Name: "ColossusLaser",
@@ -1668,7 +1696,6 @@ export default {
         RampDPS_WS2: [500, 330],
         DPSRampTimes: [10, 20],
         DPSRampTimesWS: [6000, 12000],
-        DPSRampTimesBS: [20, 40],
     },
     DartLauncher: {
         Name: "DartLauncher",
@@ -1709,7 +1736,6 @@ export default {
             SingleTarget: 1,
         },
         ActivationDelayWS: 6000,
-        ActivationDelayBS: 20,
     },
     Dispatch: {
         Name: "Dispatch",
@@ -1777,7 +1803,6 @@ export default {
             SingleTarget: 1,
         },
         ActivationDelayWS: 3000,
-        ActivationDelayBS: 10,
     },
     HydroRocket: {
         Name: "HydroRocket",
@@ -1853,6 +1878,8 @@ export default {
         EffectDurationx10WS: 288000,
         MovementSlowdown: [75, 72, 69, 66, 63, 60, 57, 54, 51, 48, 46, 44, 42, 40, 38],
         DamageReduceFactor_PVE: [60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32],
+        ActivationDelayBS: 600,
+        EffectDurationx10BS: 900,
     },
     Recoil: {
         Name: "Recoil",
@@ -2046,6 +2073,7 @@ export default {
     FlagshipDartBarrage: {
         Name: "FlagshipDartBarrage",
         TID: "TID_MODULE_FLAGSHIP_WEAPON",
+        TID_Description: "TID_MODULE_FLAGSHIP_WEAPON_DESCR",
         RSLevel: 1,
         Icon: "Mod_DroneDartLauncher_Icon",
         Hide: 1,
@@ -2198,7 +2226,11 @@ export default {
             IsTurret: 1,
             TurretSetupTime: 5,
             TurretSetupTime_WS: 24,
+            DPSRampTimesBS: [10, 20],
+            TurretSetupTimeBS: 10,
         },
+        ActivationDelayBS: 600,
+        SpawnLifetimeBS: 60,
     },
     CarrierLaser: {
         Name: "CarrierLaser",
@@ -2226,7 +2258,6 @@ export default {
         SpawnedShip: 26,
         IndependentLaserRampUp: 1,
         DPSRampTimesWS: [6000, 15000],
-        DPSRampTimesBS: [20, 50],
     },
     MineralExtractor: {
         Name: "MineralExtractor",
@@ -2287,7 +2318,6 @@ export default {
             LaunchFX: "projectiles/AlphaRocketLaunch_FX",
         },
         ActivationDelayWS: 3600,
-        ActivationDelayBS: 12,
     },
     Pulse: {
         Name: "Pulse",
@@ -2310,6 +2340,7 @@ export default {
         StopCountdownOnDisable: 1,
         DPH_WS: [4008, 5004, 6000, 7200, 9000],
         ActivationDelayWS: 7200,
+        ActivationDelayBS: 24,
     },
     ChainRay: {
         Name: "ChainRay",
@@ -2338,6 +2369,7 @@ export default {
         LinkDPSBoostWS: [1296, 1468, 1684, 1944, 2260, 2592, 2980, 3412, 3960, 4536],
         DPH_WS: [1080, 1224, 1404, 1620, 1884, 2160, 2484, 2844, 3300, 3780],
         TargetSwitchTicksWS: 36000,
+        TargetSwitchTicksBS: 120,
     },
     OmegaDrone: {
         Name: "OmegaDrone",
@@ -2399,8 +2431,6 @@ export default {
             modules: { undefined: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] },
         },
         ActivationDelayWS: 180000,
-        ActivationDelayBS: 600,
-        SpawnLifetimeBS: 360,
     },
     DroneSquad: {
         Name: "DroneSquad",
@@ -2463,6 +2493,8 @@ export default {
             BSPenaltyPerSec: 500,
             modules: { DroneSquadBattery: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
         },
+        ActivationDelayBS: 600,
+        SpawnLifetimeBS: 360,
     },
     DeltaDroneTeleport: {
         Name: "DeltaDroneTeleport",
@@ -2482,6 +2514,7 @@ export default {
         ActivationDelay: 360,
         IsTeleport: 1,
         ActivationDelayWS: 216000,
+        ActivationDelayBS: 720,
     },
     DeltaDrones: {
         Name: "DeltaDrones",
@@ -2507,6 +2540,8 @@ export default {
         SpawnLifetime_WS: 129600,
         BSOnly: 1,
         ActivationDelayWS: 180000,
+        ActivationDelayBS: 600,
+        SpawnLifetimeBS: 360,
     },
     FlagshipDroneSwarm: {
         Name: "FlagshipDroneSwarm",
@@ -2627,6 +2662,7 @@ export default {
         RSMoveCrossSectorCerbsAway: 1,
         DPH_WS: [900, 960, 1020, 1080, 1224, 1404, 1620, 1884, 2160, 2484, 2844, 3300, 3780, 4200, 4800],
         TargetSwitchTicksWS: 36000,
+        TargetSwitchTicksBS: 120,
     },
     OmegaDroneDarts: {
         Name: "OmegaDroneDarts",
@@ -2646,7 +2682,6 @@ export default {
         EffectRadius: 1500,
         StopCountdownOnDisable: 1,
         ActivationDelayWS: 6000,
-        ActivationDelayBS: 20,
     },
     DroneSquadBattery: {
         Name: "DroneSquadBattery",
@@ -2704,8 +2739,6 @@ export default {
         TimeToFullyRegen: 120,
         ShieldRegenDelayWS: 36000,
         TimeToFullyRegenWS: 72000,
-        ShieldRegenDelayBS: 120,
-        TimeToFullyRegenBS: 240,
     },
     ColossusSalvage: {
         Name: "ColossusSalvage",
@@ -2739,7 +2772,6 @@ export default {
         DPS: 200,
         StopCountdownOnDisable: 1,
         ActivationDelayWS: 3000,
-        ActivationDelayBS: 10,
     },
     PhoenixDualLaser: {
         Name: "PhoenixDualLaser",
@@ -2766,6 +2798,7 @@ export default {
         DPSRampTimes_BLS: [15, 30],
         MaxTargets: 2,
         DPSRampTimesWS: [9000, 18000],
+        DPSRampTimesBS: [30, 60],
     },
     D_MinerLockdown: {
         Name: "D_MinerLockdown",
@@ -2926,6 +2959,7 @@ export default {
             LaunchFX: "projectiles/AlphaRocketLaunch_FX",
         },
         ActivationDelayWS: 7200,
+        ActivationDelayBS: 24,
     },
     MotionShield: {
         Name: "MotionShield",

@@ -35,3 +35,7 @@ npm run dev
 
 - [parser](/parser) - The main module that works with raw game data
 - [i18n](/i18n) - Module that build data for localization
+
+### Contributing & Contributors
+
+Contributions are welcome! Please see the [CONTRIBUTING.md](/CONTRIBUTING.md) file for more information.

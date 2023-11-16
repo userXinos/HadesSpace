@@ -53,10 +53,9 @@ export default class Modules extends Runner {
         const TIME_SLOWDOWN_FACTOR_WS = dataTables[2].WhiteStar.TimeSlowdownFactor;
 
         Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
-        data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
-        data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
-        delete data['FlagshipDartBarrage']['TID_Description']; // какие-то буквы лишние в таблице
-        data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS; // ...
+        data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
+        data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
+        data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
 
         return data;
     }
@@ -148,12 +147,17 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // DPS -> DPH для БЗ
-    if (Object.keys(value).some((k) => k.startsWith('DPS_WS'))) {
+    if (Object.keys(value).some((k) => k.startsWith('DPS_WS') || k == 'AddDPSPerTarget_WS')) {
+        const fak = TIME_SLOWDOWN_FACTOR_WS / 100;
+
         Object.keys(value).forEach((k) => {
             if (k.startsWith('DPS_WS')) {
                 const newK = k.replace('DPS', 'DPH');
-                value[newK] = value[k].map((e) => e * TIME_SLOWDOWN_FACTOR_WS / 100);
+                value[newK] = value[k].map((e) => e * fak);
                 delete value[k];
+            }
+            if (k == 'AddDPSPerTarget_WS') {
+                value[k] = value[k].map((e) => e * fak);
             }
         });
     }
@@ -209,7 +213,7 @@ function addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, ast = value.AllowedSt
         });
     } else {
         for (const e of CONFIG.starsOrder) {
-            if (e === 'BS' && Object.keys(value).some(hasSeparateBLSValues)) {
+            if (e === 'BS' && !Object.keys(value).some(hasSeparateBLSValues)) {
                 return;
             }
             addStarInfo(value, e);

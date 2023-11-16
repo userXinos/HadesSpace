@@ -1,7 +1,7 @@
 {
   "name": "hades-space",
   "author": "Xinos",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "scripts": {
     "build": "npm run parser && npm run i18n:full && ./node_modules/.bin/vue-cli-service build",
     "dev": "vue-cli-service serve",
