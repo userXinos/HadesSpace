@@ -92,7 +92,6 @@
   "DRONES_IGNORE_BARRIER": "Дроны игнорируют Барьер",
   "RUSH_COST_MODIFIER": "Модификатор стоимости ускорения за кристаллы",
   "CLUSTER": "Кластер",
-  "APPLY_MODULE_ON_DOCKED_OBJECT_DESTROY": "Применить модуль к пристыкованному объекту",
   "ON_DEATH_HEAL_MAX_SHIPS": "Макс количество ремонтируемых кораблей",
   "TRIGGER_DIST": "Расстояние срабатывания",
   "NUM_PROJECTILES": "Количество снарядов",
@@ -100,5 +99,6 @@
   "LOST_SHIP_COOLDOWN": "Перезарядка убитого корабля",
   "SHIP_DISBAND_COOLDOWN": "Перезарядка разобранного корабля",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Перезарядка после прыжка линкором",
-  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка после прыжка к другим типом корабля"
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка после прыжка к другим типом корабля",
+  "MOONS": "Луны"
 }
