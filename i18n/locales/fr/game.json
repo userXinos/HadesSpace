@@ -39,7 +39,7 @@
   "MODEL": "Modèle",
   "SLOTS_USED": "Poids",
   "SALVAGE_CR_REWARD": "Crédits obtenus par le démantèlement",
-  "PRICE_IN_CRYSTALS": "Buying for crystals",
+  "PRICE_IN_CRYSTALS": "Prix en cristaux",
   "BLUEPRINTS": "Plans obtenus par niveaux",
   "MAX_INFLUENCE_GAIN": "Récompense maximum de puissance impériale",
   "MAX_INFLUENCE_LOSS": "Perte maximum de puissance impériale",
@@ -84,7 +84,7 @@
   "DISABLE_ACTIVATION_DURING_PREP": "Disable activation during provisioning",
   "IGNORE_BARRIER": "Ignore the barrier",
   "DEACTIVATE_ON_JUMP": "Deactivate on jump",
-  "MOVE_RADIUS": "Move radius",
+  "MOVE_RADIUS": "Rayon de déplacement",
   "BUY_IN_PAIRS": "Buying a pair",
   "RS_PUBLIC_LATE_JOIN_MIN_STAR_LEVEL": "RS Public minimum star level",
   "PORTRAIT": "Portrait",
@@ -98,7 +98,7 @@
   "ALLOW_BUILDING_AT_MAX_LEVEL": "Allow building at max level",
   "LOST_SHIP_COOLDOWN": "Temps d'attente après avoir perdu un vaisseau",
   "SHIP_DISBAND_COOLDOWN": "Temps d'attente après démantèlement du vaisseau",
-  "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Cooldown after jumping with a battleship",
+  "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Temps de récupération après saut avec un cuirassé",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type",
   "MOONS": "Lune"
 }
