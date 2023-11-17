@@ -32,4 +32,8 @@ export default <MutationTree<Settings>>{
         state.compendiumCorpLastRoleId = id;
         return state.compendiumCorpLastRoleId;
     },
+    [types.SET_CALC_DAY_CREDIT_LIMIT](state, value) {
+        state.calcDayCreditLimit = value;
+        return state.calcDayCreditLimit;
+    },
 };

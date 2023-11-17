@@ -140,6 +140,7 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 import type { SetupComponent, SetupGetElementsCB, Input, OutputValue, ElementsStore, Output } from '../typings/calculator';
 import objectArrayify from '../utils/objectArrayify';
 import getFilterByType from '../utils/getFilterByType';
+import transposeMatrix from '../utils/transposeMatrix';
 
 const { SP2ShipmentsBoostPct } = globals;
 const CHARS_MODIFIERS: Record<string, string> = {
@@ -154,7 +155,7 @@ const KEYS_ALIASES_TS: Record<string, string> = {
     Cost: 'Cost',
     ConstructionTime: 'TimeToUpgrade',
 };
-const STACK_CHARS = ['XPAward', 'Cost', 'TimeToUpgrade', 'RSLevelReq'];
+const STACK_CHARS = ['XPAward', 'Cost', 'TimeToUpgrade', 'TimeToUpgradeParallel', 'RSLevelReq'];
 const HIDE_LVL_CHARS = ['CrystalsWeight', 'Name'];
 const TOTAL_KEYS = Object.keys(levels)
     .filter((k) => ![...STACK_CHARS, ...HIDE_LVL_CHARS].includes(k));
@@ -191,6 +192,9 @@ Store.subscribe((mutation) => {
         setupCalculator(calc);
         calc.forceReCalc();
     }
+    if (mutation.type == types.SET_CALC_DAY_CREDIT_LIMIT) {
+        calc.forceReCalc();
+    }
 });
 
 function setupCalculator(v: SetupComponent) {
@@ -207,6 +211,8 @@ function outputClasses(type: keyof Output, charName?: string): object {
 }
 function calcTotal(store: ElementsStore, output: Output) {
     let RSLevelReq = 0;
+    const reqCreditsHourToPlan: Record<string, number[]> = {};
+
     for (const k of TOTAL_KEYS) {
         output.total.intermediate[k] = {
             actually: 0,
@@ -216,16 +222,48 @@ function calcTotal(store: ElementsStore, output: Output) {
     }
 
     return function(name: string, input: Input) {
+        const hourCredLimit = Store.state.userSettings.calcDayCreditLimit / 24;
+        let hoursUpgrade = 0;
+
         for (const k of TOTAL_KEYS) {
             output.total.intermediate[k].actually += output.actually[name]?.[k] as number || 0;
             output.total.intermediate[k].plan += output.plan[name]?.[k] as number || 0;
             output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
         }
-
-
         if (store[name].RSLevelReq) {
-            const localeRSLevelReq = (store[name].RSLevelReq as number[])[input.plan[name]] || 0;
+            const localeRSLevelReq = store[name].RSLevelReq[input.plan[name]] || 0;
             RSLevelReq = output.total.result.RSLevelReq = (RSLevelReq < localeRSLevelReq) ? localeRSLevelReq : RSLevelReq;
+        }
+        if (store[name].TimeToUpgrade) {
+            const planet = store[name];
+            const actuallyLvl = input.actually[name];
+            const planLvl = input.plan[name];
+            const planetHours = [];
+
+            for (let i = 0; i < planLvl - actuallyLvl; i++) {
+                const currentLvl = actuallyLvl + i;
+                const upgradeHours = planet.TimeToUpgrade[currentLvl] / 3600;
+
+                for (let j = 0; j < upgradeHours; j++) {
+                    planetHours.push(planet.Cost[currentLvl] / (planet.TimeToUpgrade[currentLvl] / 3600));
+                }
+            }
+
+            if (planetHours.length) {
+                reqCreditsHourToPlan[name] = planetHours;
+            } else {
+                delete reqCreditsHourToPlan[name];
+            }
+
+            if (Object.keys(reqCreditsHourToPlan).length) {
+                transposeMatrix(Object.values(reqCreditsHourToPlan)).forEach((e) => {
+                    const reqCreditToThisHows = e.reduce((acc, j) => acc + j || 0, 0);
+
+                    hoursUpgrade += Math.ceil(reqCreditToThisHows / hourCredLimit);
+                });
+
+                output.total.result.TimeToUpgradeParallel = hoursUpgrade * 3600;
+            }
         }
     };
 }

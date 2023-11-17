@@ -327,6 +327,7 @@ export default {
     WSJumpBSTimeCooldown: 'COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP',
     WSJumpOtherTimeCooldown: 'COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE',
     Moons: 'MOONS',
+    TimeToUpgradeParallel: 'UPGRADE_TIME_IN_PARALLEL',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,

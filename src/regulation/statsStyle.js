@@ -46,6 +46,7 @@ export default {
         'DesignUpgradeTime',
         'ConstructionTime',
         'TimeToResearch',
+        'TimeToUpgradeParallel',
     ],
     flt: [
         'ShipyardCapacity',

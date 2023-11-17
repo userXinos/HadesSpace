@@ -6,4 +6,5 @@ export default Object.freeze({
     showKeys: false,
     lastVersionChangelog: '0.0.0',
     compendiumCorpLastRoleId: '',
+    calcDayCreditLimit: 420,
 });

@@ -34,6 +34,7 @@ export default [
             'RSLESec',
             'ImpulseDuration',
             'FleetDepartTimeInSeconds',
+            'TimeToUpgradeParallel',
         ],
         (v) => v,
     ],

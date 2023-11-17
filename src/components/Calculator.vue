@@ -71,6 +71,21 @@
 
       <template #body>
         <div class="settings-modal">
+
+          <div class="input-wrap">
+            <p
+              v-t="'TID_PLANET_UPG_CREDIT_YIELD'"
+              class="stats-style"
+              :class="statsStyleName('CreditStorage')"
+            />
+            <input
+              :value="$store.state.userSettings.calcDayCreditLimit"
+              type="number"
+              min="0"
+              @input="$store.commit(types.SET_CALC_DAY_CREDIT_LIMIT, parseInt($event.target.value))"
+            >
+          </div>
+
           <div class="config-category">
             <p v-t="'CONFIG'" />
 
@@ -172,6 +187,7 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
+import types from '@Store/modules/userSettings/types';
 import statsStyleName from '@Handlers/statsStyleName';
 import calculator from '@/composables/calculator';
 import CalculatorConfig from '@/composables/calculatorConfig';
@@ -465,6 +481,26 @@ function outputClasses(type: keyof Output, key: string, charName?: string): obje
 }
 
 .settings-modal {
+  .input-wrap {
+    max-width: 100%;
+    margin-bottom: 10%;
+
+    p {
+      justify-content: start;
+      padding-bottom: 5px;
+    }
+
+    input {
+      margin-top: 5px;
+      width: 100%;
+      font-size: 200%;
+      color: #444;
+      text-align: center;
+      border: none;
+      border-radius: 10px;
+    }
+  }
+
   .select {
     margin-bottom: 4%;
   }
