@@ -39,5 +39,5 @@
   "TECHNOLOGIES": "科技",
   "CRYSTAL_CALCULATOR": "水晶计算器",
   "TIME": "研究时间",
-  "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel"
+  "UPGRADE_TIME_IN_PARALLEL": "同时升级所需实际时间"
 }
