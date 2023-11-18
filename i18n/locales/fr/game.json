@@ -93,12 +93,12 @@
   "RUSH_COST_MODIFIER": "Crystal rush cost modifier",
   "CLUSTER": "Groupe",
   "ON_DEATH_HEAL_MAX_SHIPS": "Max number of ships to be repaired",
-  "TRIGGER_DIST": "Trigger distance",
+  "TRIGGER_DIST": "Distance de déclenchement",
   "NUM_PROJECTILES": "Nombre de projectiles",
-  "ALLOW_BUILDING_AT_MAX_LEVEL": "Allow building at max level",
+  "ALLOW_BUILDING_AT_MAX_LEVEL": "Permettre la construction au niveau maximum",
   "LOST_SHIP_COOLDOWN": "Temps d'attente après avoir perdu un vaisseau",
   "SHIP_DISBAND_COOLDOWN": "Temps d'attente après démantèlement du vaisseau",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Temps de récupération après saut avec un cuirassé",
-  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type",
+  "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Temps de récupération après un saut vers un autre type de vaisseau",
   "MOONS": "Lune"
 }
