@@ -1,5 +1,5 @@
 {
-  "HOME": "Acceuil",
+  "HOME": "Accueil",
   "PLAN_LVL": "Niveau planifié",
   "CURRENT_LVL": "Niveau actuel",
   "REQ_BANK": "Stockage minimal de crédit nécessaire",
@@ -39,5 +39,5 @@
   "TECHNOLOGIES": "Technologies",
   "CRYSTAL_CALCULATOR": "Calculateur de cristal",
   "TIME": "Temps",
-  "UPGRADE_TIME_IN_PARALLEL": "Temps d'amélioration en parallèle"
+  "UPGRADE_TIME_IN_PARALLEL": "Amélioration simultanée"
 }
