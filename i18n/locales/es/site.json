@@ -38,5 +38,6 @@
   "HS_COMPENDIUM": "HSCompendium",
   "TECHNOLOGIES": "Tecnologías",
   "CRYSTAL_CALCULATOR": "Calculadora de cristales",
-  "TIME": "Tiempo"
+  "TIME": "Tiempo",
+  "UPGRADE_TIME_IN_PARALLEL": "Tiempo de mejora en paralelo"
 }
