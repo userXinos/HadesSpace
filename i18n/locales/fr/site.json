@@ -3,8 +3,8 @@
   "PLAN_LVL": "Niveau planifié",
   "CURRENT_LVL": "Niveau actuel",
   "REQ_BANK": "Stockage minimal de crédit nécessaire",
-  "RESET_ALL": "Tout supprimer",
-  "RESET_PLAN": "Supprimer le plan",
+  "RESET_ALL": "Tout réinitialiser",
+  "RESET_PLAN": "Réinitialiser le plan",
   "PLANETS_CALC": "Calculateur de planète",
   "MODULES_CALC": "Calculateur de modules",
   "CALCULATOR_SETTINGS": "Paramètres du calculateur",
@@ -39,5 +39,5 @@
   "TECHNOLOGIES": "Technologies",
   "CRYSTAL_CALCULATOR": "Calculateur de cristal",
   "TIME": "Temps",
-  "UPGRADE_TIME_IN_PARALLEL": "Amélioration simultanée"
+  "UPGRADE_TIME_IN_PARALLEL": "Mise à niveau en parallèle"
 }
