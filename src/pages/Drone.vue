@@ -44,14 +44,6 @@ function postFilter(data) {
         data.Repair = Repair;
     }
 
-    if (data.LaserTurret) {
-        data.LaserTurret = fixRampLasers(data.LaserTurret);
-        delete data.LaserTurret.LaserTurret_Laser.Speed_YS;
-        delete data.LaserTurret.LaserTurret_Laser.Speed_RS;
-        delete data.LaserTurret.LaserTurret_Laser.Speed_BLS;
-        delete data.LaserTurret.LaserTurret_Laser.Speed_WS;
-    }
-
     return data;
 }
 </script>

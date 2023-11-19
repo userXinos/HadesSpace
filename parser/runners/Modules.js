@@ -1,7 +1,5 @@
 import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
-
-import { fixModulesShipsData } from './CapitalShips.js';
 import formatValueRulesTime from '../../src/regulation/formatValueRulesTime.mjs';
 
 const EXCLUDE_KEYS_FROM_TIME = [ 'UnlockTime' ];
@@ -13,12 +11,6 @@ const CONFIG = Object.freeze({
     timeCharacteristics: formatValueRulesTime
         .map(([ keys ]) => keys.filter((k) => !EXCLUDE_KEYS_FROM_TIME.includes(k)))
         .flat(),
-    combineKeys: {
-        FlagshipDartBarrage: 'FlagshipWeaponModule',
-        FlagshipAreaShield: 'FlagshipShieldModule',
-        // FlagshipDroneSwarm: 'FlagshipDrone',
-        LaserTurret: 'LaserTurret_Laser',
-    },
     starsOrder: [ 'YS', 'RS', 'WS', 'BS' ],
     allowedSpriteNamesMiningDrone: [
         'MiningDrone_lv1',
@@ -41,23 +33,13 @@ export default class Modules extends Runner {
     };
 
     run(rawData) {
-        const dataTables = this.multiReadCsv([
-            'capital_ships',
-            'projectiles',
-            'stars',
-        ]);
+        const dataTables = this.multiReadCsv([ 'capital_ships', 'projectiles', 'stars' ]);
         const getGlobalsBy = (k) => Globals.getGlobalsBy(k, this.readCsv.bind(this));
-        const data = Runner.objectArrayify(rawData, {
+
+        return Runner.objectArrayify(rawData, {
             map: (...args) => dataMapCallback(...args, dataTables, getGlobalsBy),
+            filter: ([ k ]) => k,
         });
-        const TIME_SLOWDOWN_FACTOR_WS = dataTables[2].WhiteStar.TimeSlowdownFactor;
-
-        Object.values(CONFIG.combineKeys).forEach((e) => delete data[e]);
-        data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS = data.FlagshipDartBarrage.FlagshipWeaponModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
-        data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS = data.FlagshipAreaShield.FlagshipShieldModule.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
-        data.FlagshipDroneSwarm.SpawnLifetime_WS = data.FlagshipDroneSwarm.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
-
-        return data;
     }
 }
 
@@ -75,43 +57,38 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         return acc;
     }, []);
 
-    // слить подобные вместе
-    if (key in CONFIG.combineKeys) {
-        const k = CONFIG.combineKeys[key];
-        value[k] = { ...Object.fromEntries(array)[k] };
-
-        if (onlyWS.includes(k)) {
-            onlyWS.push(key);
-        }
-    }
 
     // добавить глобальные
     const glob = getGlobalsBy(key);
     Runner.combineObjects(value, glob);
-
 
     // добавить Projectiles
     if (value.WeaponEffectType === 'projectile') {
         value.projectile = projectiles[value.WeaponFx];
     }
 
-    // добавить данные дронов
-    if (key.includes('Drone')) {
-        value.drone = capitalShips[value.Name] || capitalShips[`${value.Name}Ship`];
+    // добавить данные дронов/турелей
+    if (value.SpawnedShip) {
+        const SpawnedShip = Object.values(capitalShips)[value.SpawnedShip];
 
-        if (key == 'FlagshipDroneSwarm') {
-            value.drone = capitalShips.FlagshipDrone;
-            delete value.drone.InitialModule[value.drone.InitialModule.findIndex((e) => e == 'Recoil')];
+        if (!key.endsWith('Drone') && SpawnedShip.Name in Object.fromEntries(array)) {
+            const sameModuleIndex = array.findIndex(([ k ]) => k == SpawnedShip.InitialModule);
+
+            Runner.combineObjects({ ...array[sameModuleIndex][1] }, value);
+            array[sameModuleIndex][0] = undefined; // просто чтобы потом фильром снести
+
+            [ 'InitialModuleLevels', 'Speed_YS', 'Speed_RS', 'Speed_BLS', 'Speed_WS' ]
+                .forEach((k) => delete SpawnedShip[k]);
+            if (SpawnedShip.SpawnLifetime_WS) {
+                SpawnedShip.SpawnLifetime_WS = SpawnedShip.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
+            }
+            value.turret = SpawnedShip;
+        } else {
+            value.drone = SpawnedShip;
         }
 
-        if (value.drone) {
-            fixModulesShipsData(value.drone);
-        }
-    }
-
-    // добавить LaserTurret данные
-    if (key === 'LaserTurret') {
-        Runner.combineObjects(value.LaserTurret_Laser, capitalShips.LaserTurret);
+        [ 'IsDrone', 'IsTurret' ].forEach((k) => delete SpawnedShip[k]);
+        delete value.SpawnedShip;
     }
 
     // посчитать саппорт урон для Луча
@@ -164,25 +141,22 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
 
     // фикс БЗ стат
-    fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS);
+    if (!value.Hide || (onlyWS.includes(key) && value.Hide)) {
+        fixWSTimeChats(value, TIME_SLOWDOWN_FACTOR_WS);
+    }
 
     // добавить/удалить данные звёзд
-
     addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, (onlyWS.includes(key) && value.Hide) ? [ 2 ] : undefined);
 
     return [ key, value ];
 }
 
 
-function fixWSChats(value, TIME_SLOWDOWN_FACTOR_WS) {
-    if (value.Hide) {
-        return;
-    }
-
+function fixWSTimeChats(value, TIME_SLOWDOWN_FACTOR_WS) {
     for (const k in value) {
         if (k in value) {
             if (!Array.isArray(value[k]) && typeof value[k] == 'object') {
-                fixWSChats(value[k], TIME_SLOWDOWN_FACTOR_WS);
+                fixWSTimeChats(value[k], TIME_SLOWDOWN_FACTOR_WS);
                 continue;
             }
             if (k.endsWith('WS') && CONFIG.timeCharacteristics.includes(k.replace(/_?WS/, ''))) {

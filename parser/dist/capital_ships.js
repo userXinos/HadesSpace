@@ -448,7 +448,6 @@ export default {
                 DPSRampTimes_BLS: 15,
                 MaxTargets: 2,
                 DPSRampTimesWS: 9000,
-                DPSRampTimesBS: 30,
             },
             {
                 Name: "PhoenixShield",
@@ -819,8 +818,8 @@ export default {
             FlagshipDroneSwarm: [0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 10, 11, 11, 12, 13],
             EMPRocket: [0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8, 8, 8, 8],
             FlagshipRocketCluster: [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-            FlagshipDartBarrage: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3],
-            FlagshipAreaShield: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3],
+            FlagshipShieldModule: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3],
+            FlagshipWeaponModule: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3],
         },
     },
     Hydraling2: {
@@ -1482,7 +1481,6 @@ export default {
                 DPSRampTimes_BLS: 30,
                 MaxTargets: 2,
                 DPSRampTimesWS: 18000,
-                DPSRampTimesBS: 60,
             },
             {
                 level: 2,
