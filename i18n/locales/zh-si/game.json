@@ -6,9 +6,7 @@
   "TYPE_MOD_COMBAT": "战斗模组",
   "TYPE_MOD_DRONE": "无人机模组",
   "LVL": "等级",
-  "UNLOCK_PRICE": "解锁价格",
   "UNLOCK_BLUEPRINTS": "解锁蓝图",
-  "UNLOCK_TIME": "解锁时间",
   "AU": "天文单位",
   "WS": "白星",
   "BS": "蓝星",
@@ -100,5 +98,6 @@
   "SHIP_DISBAND_COOLDOWN": "舰船解散冷却",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "战斗舰跃迁冷却",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "其他舰船跃迁冷却",
-  "MOONS": "卫星数目"
+  "MOONS": "卫星数目",
+  "TURRET": "Turret"
 }
