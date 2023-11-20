@@ -6,9 +6,7 @@
   "TYPE_MOD_COMBAT": "戦闘モジュール",
   "TYPE_MOD_DRONE": "ドローンモジュール",
   "LVL": "レベル",
-  "UNLOCK_PRICE": "解放費用",
   "UNLOCK_BLUEPRINTS": "解放用設計図",
-  "UNLOCK_TIME": "解放時間",
   "AU": "AU",
   "WS": "WS",
   "BS": "戦艦",
@@ -100,5 +98,6 @@
   "SHIP_DISBAND_COOLDOWN": "艦船自沈時のクールダウン",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "戦艦をジャンプ後のクールダウン",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "戦艦以外のジャンプ後のクールダウン",
-  "MOONS": "衛星"
+  "MOONS": "衛星",
+  "TURRET": "Turret"
 }

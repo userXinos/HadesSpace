@@ -6,9 +6,7 @@
   "TYPE_MOD_COMBAT": "Waffenmodule",
   "TYPE_MOD_DRONE": "Drohnenmodule",
   "LVL": "niveau",
-  "UNLOCK_PRICE": "Preis zum Freischalten",
   "UNLOCK_BLUEPRINTS": "Blaupausen zum Freischalten",
-  "UNLOCK_TIME": "Freischaltzeit",
   "AU": "AU",
   "WS": "WZ",
   "BS": "KS",
@@ -100,5 +98,6 @@
   "SHIP_DISBAND_COOLDOWN": "Abklingzeit des zerstören Schiffes",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Abklingzeit nach einem Sprung mit einem Schlachtschiff",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Abklingzeit nach dem Springen zu einem anderen Schiffstyp",
-  "MOONS": "Monde"
+  "MOONS": "Monde",
+  "TURRET": "Turret"
 }
