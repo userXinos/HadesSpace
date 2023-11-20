@@ -9,7 +9,6 @@ export default {
         'Model',
     ],
     forceTitle: [
-        'modules',
         'BarrageMaxAdditionalEnemies',
         'DPSRampTimes',
         'DPSRampTimes_BLS',
@@ -140,6 +139,7 @@ export default {
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDroneSwarm.NewModuleSlots',
+        /(FlagshipDartBarrage|FlagshipAreaShield)\.(BuildCost|NewModuleSlots)/,
 
         // RedStar
         'RedStar.MaxSectorDistanceToMaxPlanet', // временно ?

@@ -129,7 +129,7 @@ import DataStatTooltip from '@/components/DataStatTooltip.vue';
 import tableMaskUtil from '@Utils/tableMask';
 import statsStyleName from '@Handlers/statsStyleName';
 import type { Raw } from '@Utils/tableMask';
-import objectArrayify from '@Utils/objectArrayify';
+import objectArrayify, { Callbacks } from '@Utils/objectArrayify';
 
 export interface Props {
     data: Raw
@@ -156,12 +156,13 @@ const categories = reactive(Object.keys(props.data.head));
 const filteredIndexes = reactive<Record<string, number[]>>(Object.fromEntries(categories.map((e) => [e, []])));
 const lvlColName = computed(() => te(props.lvlColKey) ? t(props.lvlColKey) : props.lvlColKey);
 const tableMask = computed(() => {
+    const callbacks: Callbacks = { map: filterMapCb, filter: ([, v]) => v.length };
     const filteredData = {
-        head: objectArrayify(props.data.head, { map: filterMapCb }),
-        body: objectArrayify(props.data.body, { map: filterMapCb }),
+        head: objectArrayify(props.data.head, callbacks),
+        body: objectArrayify(props.data.body, callbacks),
     };
 
-    if (filteredData.body.default && filteredData.body.default.length == 0) {
+    if (!Object.values(filteredData.body)[0]?.length) {
         return null;
     }
     return tableMaskUtil({ ...filteredData }, props.mergeCells);

@@ -1,6 +1,7 @@
 import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
 import formatValueRulesTime from '../../src/regulation/formatValueRulesTime.mjs';
+import { fixModulesShipsData } from './CapitalShips.js';
 
 const EXCLUDE_KEYS_FROM_TIME = [ 'UnlockTime' ];
 
@@ -69,15 +70,15 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
 
     // добавить данные дронов/турелей
     if (value.SpawnedShip) {
-        const SpawnedShip = Object.values(capitalShips)[value.SpawnedShip];
+        let SpawnedShip = Object.values(capitalShips)[value.SpawnedShip];
 
         if (!key.endsWith('Drone') && SpawnedShip.Name in Object.fromEntries(array)) {
             const sameModuleIndex = array.findIndex(([ k ]) => k == SpawnedShip.InitialModule);
 
-            value = { ...array[sameModuleIndex][1], ...value };
+            SpawnedShip = { ...array[sameModuleIndex][1], ...SpawnedShip };
             array[sameModuleIndex][0] = undefined; // просто чтобы потом фильром снести
 
-            [ 'InitialModuleLevels', 'Speed_YS', 'Speed_RS', 'Speed_BLS', 'Speed_WS' ]
+            [ 'Speed_YS', 'Speed_RS', 'Speed_BLS', 'Speed_WS', 'InitialModule' ]
                 .forEach((k) => delete SpawnedShip[k]);
             if (SpawnedShip.SpawnLifetime_WS) {
                 SpawnedShip.SpawnLifetime_WS = SpawnedShip.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
@@ -87,7 +88,21 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
             value.drone = SpawnedShip;
         }
 
-        [ 'IsDrone', 'IsTurret' ].forEach((k) => delete SpawnedShip[k]);
+        if ('InitialModule' in SpawnedShip) {
+            const modules = Object.fromEntries(array);
+            const shipModules = [];
+
+            if (Array.isArray(SpawnedShip.InitialModule)) {
+                SpawnedShip.InitialModule.forEach((name) => {
+                    shipModules.push(modules[name]);
+                });
+            } else {
+                shipModules.push(modules[SpawnedShip.InitialModule]);
+            }
+            value.modules = shipModules;
+        }
+
+        [ 'InitialModule', 'InitialModuleLevels', 'IsDrone', 'IsTurret' ].forEach((k) => delete SpawnedShip[k]);
         delete value.SpawnedShip;
     }
 

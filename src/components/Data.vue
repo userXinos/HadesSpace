@@ -77,28 +77,45 @@ watch(() => props.data, () => {
 packagingData(props.data);
 
 
-function packagingData(obj: Record<string, unknown>, category = 'default') {
+function packagingData(obj: Record<string, unknown>, category = 'default', isSubCategory = false) {
     const preTable = [] as [string, unknown][];
     const preTitle = [] as [string, unknown][];
 
-    Object.entries(obj).forEach(([key, value]) => {
-        if (value === undefined || value === null) {
-            console.warn(`key: "${key}" is ${value}.`);
-            preTitle.push([key, '-']);
-            return;
+    if (isSubCategory) {
+        if (!title.value[category]) {
+            title.value[category] = [];
         }
-        if (value.constructor === Object) {
-            packagingData(value as Record<string, unknown>, key);
-        } else if (Array.isArray(value)) {
-            if (isHide(key, null, { asMeta: false, asTitle: true })) {
-                title.value[key] = value as unknown[];
-            } else {
+        Object.entries(obj).forEach(([key, value]) => {
+            if (Array.isArray(value)) {
                 preTable.push([key, value]);
+                delete obj[key];
             }
-        } else {
-            preTitle.push([key, value]);
-        }
-    });
+        });
+        title.value[category].push(obj);
+    } else {
+        Object.entries(obj).forEach(([key, value]) => {
+            if (value === undefined || value === null) {
+                console.warn(`key: "${key}" is ${value}.`);
+                preTitle.push([key, '-']);
+                return;
+            }
+            if (value.constructor === Object) {
+                packagingData(value as Record<string, unknown>, key);
+            } else if (Array.isArray(value)) {
+                if (value.every((e) => e.constructor === Object)) {
+                    value.forEach((subValue) => packagingData(subValue as Record<string, unknown>, key, true));
+                    return;
+                }
+                if (isHide(key, null, { asMeta: false, asTitle: true })) {
+                    title.value[key] = value as unknown[];
+                } else {
+                    preTable.push([key, value]);
+                }
+            } else {
+                preTitle.push([key, value]);
+            }
+        });
+    }
     buildTitle(category, preTitle);
     buildTable(category, preTable);
 }
