@@ -57,6 +57,7 @@ export default [
             'SolitudeDPSBoost',
             'FortifyDamageAmpFactor',
             'HydroCostModifierPct',
+            'EMPResist',
         ],
         (v) => `${v}%`,
     ],

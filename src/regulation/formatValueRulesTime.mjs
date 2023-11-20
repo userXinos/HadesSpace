@@ -21,7 +21,6 @@ export default [
             'WSJumpBSTimeCooldown',
             'WSJumpOtherTimeCooldown',
             'ProximityTriggerSec',
-            'EMPResist',
             'SpawnFleetIntervalSeconds',
             'ShieldRegenTimeAfterDamage',
             'SectorEnrichCooldownSeconds',
