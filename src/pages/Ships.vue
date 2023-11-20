@@ -38,7 +38,11 @@ import { tableOpts } from '@/components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_CorpFlagship.jpg';
 
 const ships: Record<string, object> = objectArrayify(shipsData, getFilterByType('capital_ships.player'));
-const modules: Record<string, object> = objectArrayify(modulesData, { filter: ([k]) => k in ships.CorpFlagship.modules });
+const flagshipModules = Object.keys(ships.CorpFlagship.modules);
+const modules: Record<string, object> = objectArrayify(modulesData, {
+    filter: ([k]) => flagshipModules.includes(k),
+    sort: ([a], [b]) => flagshipModules.indexOf(a) - flagshipModules.indexOf(b),
+});
 const modulesTableOpts: object = computed(tableOpts);
 </script>
 <style scoped src="../style/page.scss"  lang="scss"></style>
