@@ -6,9 +6,7 @@
   "TYPE_MOD_COMBAT": "Modules de combat",
   "TYPE_MOD_DRONE": "Modules de drones",
   "LVL": "Niv",
-  "UNLOCK_PRICE": "Coût de l'amélioration",
   "UNLOCK_BLUEPRINTS": "Plans nécessaires",
-  "UNLOCK_TIME": "Temps d'amélioration",
   "AU": "UA",
   "WS": "Étoile blanche",
   "BS": "Étoile bleue",
@@ -100,5 +98,6 @@
   "SHIP_DISBAND_COOLDOWN": "Temps d'attente après démantèlement du vaisseau",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Temps de recharge après le saut avec un cuirassé",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Temps de recharge après le saut avec un autre type de vaisseau",
-  "MOONS": "Lune"
+  "MOONS": "Lune",
+  "TURRET": "Turret"
 }
