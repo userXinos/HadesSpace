@@ -102,7 +102,7 @@ function packagingData(obj: Record<string, unknown>, category = 'default', isSub
             if (value.constructor === Object) {
                 packagingData(value as Record<string, unknown>, key);
             } else if (Array.isArray(value)) {
-                if (value.every((e) => e.constructor === Object)) {
+                if (value.every((e) => e?.constructor === Object)) {
                     value.forEach((subValue) => packagingData(subValue as Record<string, unknown>, key, true));
                     return;
                 }
