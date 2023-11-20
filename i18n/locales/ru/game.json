@@ -6,9 +6,7 @@
   "TYPE_MOD_COMBAT": "Модули боя",
   "TYPE_MOD_DRONE": "Модули дроны",
   "LVL": "ур",
-  "UNLOCK_PRICE": "Стоимость изучения",
   "UNLOCK_BLUEPRINTS": "Требуется чертежей",
-  "UNLOCK_TIME": "Время изучения",
   "AU": "АЕ",
   "WS": "БЗ",
   "BS": "ГЗ",
@@ -100,5 +98,6 @@
   "SHIP_DISBAND_COOLDOWN": "Перезарядка разобранного корабля",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Перезарядка после прыжка линкором",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка после прыжка к другим типом корабля",
-  "MOONS": "Луны"
+  "MOONS": "Луны",
+  "TURRET": "Turret"
 }
