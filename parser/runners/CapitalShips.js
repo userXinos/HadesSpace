@@ -17,8 +17,6 @@ export default class CapitalShips extends Runner {
         const modules = await loadFile(path, [ Modules ]).then((e) => e.render());
 
         const data = Runner.objectArrayify(rawData, {
-            //  => Modules Runner
-            filter: ([ k ]) => !k.includes('Drone') && !Object.keys(Modules.config.runner.combineKeys).includes(k),
             map: ([ key, value ]) => {
                 // исправить скорости для форматера
                 if ('Speed_WS' in value) {
