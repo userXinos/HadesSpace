@@ -2,14 +2,14 @@
   "TYPE_MOD_TRADE": "Módulos de Transporte",
   "TYPE_MOD_MINING": "Módulos de Extracción",
   "TYPE_MOD_WEAPON": "Módulos de Arma",
-  "TYPE_MOD_SHIELD": "Módulos de escudo",
+  "TYPE_MOD_SHIELD": "Módulos de Escudo",
   "TYPE_MOD_COMBAT": "Módulos de combate",
   "TYPE_MOD_DRONE": "Módulos de Dron",
   "LVL": "Nivel",
-  "UNLOCK_BLUEPRINTS": "Desbloquear planos",
+  "UNLOCK_BLUEPRINTS": "Planos para desbloquear",
   "AU": "UA",
   "WS": "EB",
-  "BS": "NC",
+  "BS": "EA",
   "BLS": "EA",
   "RS": "ER",
   "YS": "EN",
@@ -83,7 +83,7 @@
   "IGNORE_BARRIER": "Ignorar la barrera",
   "DEACTIVATE_ON_JUMP": "Desactivar al saltar",
   "MOVE_RADIUS": "Radio de movimiento",
-  "BUY_IN_PAIRS": "Comprando un par",
+  "BUY_IN_PAIRS": "Se compra en pares",
   "RS_PUBLIC_LATE_JOIN_MIN_STAR_LEVEL": "Nivel mínimo de ER pública",
   "PORTRAIT": "Vertical",
   "AI_UPDATE_INTERVAL": "Intervalo de actualización de bot",
@@ -99,5 +99,5 @@
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Tiempo de enfriamiento después de hacer saltar una Nave de Combate",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Enfriamiento después de saltar a otro tipo de nave",
   "MOONS": "Lunas",
-  "TURRET": "Turret"
+  "TURRET": "Torreta"
 }
