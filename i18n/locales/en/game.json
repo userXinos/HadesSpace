@@ -6,9 +6,7 @@
   "TYPE_MOD_COMBAT": "Combat modules",
   "TYPE_MOD_DRONE": "Drone modules",
   "LVL": "lvl",
-  "UNLOCK_PRICE": "Unlock price",
   "UNLOCK_BLUEPRINTS": "Unlock blueprints",
-  "UNLOCK_TIME": "Unlock Time",
   "AU": "AU",
   "WS": "WS",
   "BS": "BS",
@@ -100,5 +98,6 @@
   "SHIP_DISBAND_COOLDOWN": "Ship disband cooldown",
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Cooldown after jumping with a battleship",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type",
-  "MOONS": "Moons"
+  "MOONS": "Moons",
+  "TURRET": "Turret"
 }

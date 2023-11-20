@@ -196,6 +196,7 @@ export const gameCharsLocKeys = {
     MaxShipments: 'TID_MODULE_SHIPMENTBEAM_MAX_SHIPMENTS',
     ShipmentOverride: 'TID_MODULE_SHIPMENTBEAM_MAX_SHIPMENTS',
     drone: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE',
+    turret: 'TURRET',
     XPRequired: 'TID_LEADERBOARD_SHIP_XP',
     RSLevelRequired: 'TID_XBL_STAT_4',
     RSLevelReq: 'TID_XBL_STAT_4',
@@ -237,8 +238,8 @@ export const gameCharsLocKeys = {
 export default {
     // by i18n/locale
     UnlockBlueprints: 'UNLOCK_BLUEPRINTS',
-    UnlockPrice: 'UNLOCK_PRICE',
-    UnlockTime: 'UNLOCK_TIME',
+    UnlockPrice: 'UPGRADE_COST',
+    UnlockTime: 'UPGRADE_TIME',
     TeleportBreaksBond: 'TELEPORT_BREAKS_BOND',
     NewModuleSlots: 'NEW_MODULE_SLOTS',
     projectile: 'PROJECTILE',
