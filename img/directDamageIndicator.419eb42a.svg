@@ -1,7 +1,0 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 128 128" xml:space="preserve">
-  <style>
-    .st0{fill:#42c1fd;stroke:#000;stroke-width:2;stroke-miterlimit:10}
-  </style>
-  <circle class="st0" cx="63.4" cy="63.5" r="8.3"/>
-  <path class="st0" d="M125.7 60h-16.6C107.4 37.8 90 20.1 68 17.9V2.1h-8v15.7c-22.6 1.7-40.7 19.8-42.3 42.4H1.8v8h16c2.2 22 20 39.3 42.2 41v16.7h8v-16.8c21.7-2.2 38.9-19.4 41-41.1h16.7v-8zM68 102.2v-2.5h-8v2.6c-18.4-1.6-33.1-15.9-35.3-34.1H28v-8h-3.5C26.1 41.3 41.1 26.3 60 24.6v3.6h8v-3.5c18.2 2.1 32.6 16.9 34.3 35.3h-2.7v8h2.6c-2.1 17.9-16.3 32.1-34.2 34.2z"/>
-</svg>
