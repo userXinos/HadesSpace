@@ -26,18 +26,6 @@
                   sessionStorage.redirect = redirect.replace('/Nebula/', '/');
                   return;
               }
-              navigator.serviceWorker.getRegistrations().then((registrations) => {
-                  let reload = false;
-                  for(let reg of registrations) {
-                      if (reg.active.scriptURL.endsWith('service-worker.js')) {
-                          reg.unregister();
-                          reload = true;
-                      }
-                  }
-                  if (reload) {
-                      location.reload();
-                  }
-              });
 
               delete sessionStorage.redirect;
               if (redirect != location.href) {
@@ -46,7 +34,7 @@
           }
       })();
   </script>
-  <script type="module" crossorigin src="/HadesSpace/assets/index-5XVOQWzF.js"></script>
+  <script type="module" crossorigin src="/HadesSpace/assets/index-pURzbvnK.js"></script>
   <link rel="stylesheet" crossorigin href="/HadesSpace/assets/index-kTTmFW35.css">
 <link rel="manifest" href="/HadesSpace/manifest.webmanifest"></head>
 <body>
