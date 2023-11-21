@@ -14,3 +14,4 @@ src/img/logo.psd
 
 # Папка с собранными файлами проекта
 dist/
+dev-dist/

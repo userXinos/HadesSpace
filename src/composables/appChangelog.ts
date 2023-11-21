@@ -5,8 +5,6 @@ import router from '@Utils/Vue/router';
 
 import types from '@Store/modules/userSettings/types';
 
-const { VERSION } = process.env;
-
 export default function appChangelog() {
     const isOpen = ref(false);
 
@@ -15,7 +13,7 @@ export default function appChangelog() {
     return {
         isOpen,
         onClose,
-        version: VERSION,
+        version: __APP_VERSION__,
     };
 
 
@@ -30,11 +28,11 @@ export default function appChangelog() {
     }
     function needChangeLog() {
         const get = (s: string) => s.split(/\./g).slice(0, -1);
-        const current = get(VERSION);
+        const current = get(__APP_VERSION__);
         const last = get(store.state.userSettings.lastVersionChangelog);
 
         if (last[0] == '0') {
-            store.commit(types.SET_LAST_CHECKED_VERSION_CHANGELOG, VERSION);
+            store.commit(types.SET_LAST_CHECKED_VERSION_CHANGELOG, __APP_VERSION__);
 
             return false;
         }
@@ -51,7 +49,7 @@ export default function appChangelog() {
         return false;
     }
     function onClose() {
-        store.commit(types.SET_LAST_CHECKED_VERSION_CHANGELOG, VERSION);
+        store.commit(types.SET_LAST_CHECKED_VERSION_CHANGELOG, __APP_VERSION__);
         isOpen.value = false;
     }
 }

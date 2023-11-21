@@ -6,7 +6,7 @@
     @update:open="$emit('close')"
   >
     <template #body>
-      <p class="ver">{{ $t('CURRENT_VERSION') }}: {{ VERSION }}</p>
+      <p class="ver">{{ $t('CURRENT_VERSION') }}: {{ __APP_VERSION__ }}</p>
       <vue-markdown
         :source="text"
         class="content"
@@ -30,7 +30,6 @@ withDefaults(defineProps<Props>(), {
 });
 
 const text = ref('');
-const { VERSION } = process.env;
 
 defineEmits(['close']);
 onMounted(() => {

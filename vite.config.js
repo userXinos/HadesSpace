@@ -16,8 +16,8 @@ export default defineConfig({
         port: 8080,
     },
     define: {
-        'process.env.VERSION': JSON.stringify(version),
-        'process.env.BUILD_TIMESTAMP': currentDate.getTime(),
+        '__APP_VERSION__': JSON.stringify(version),
+        '__BUILD_TIMESTAMP__': currentDate.getTime(),
     },
     resolve: {
         alias: {
