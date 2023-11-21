@@ -72,7 +72,7 @@ const props = withDefaults(defineProps<Props>(), {
     postFilter: (e) => e,
 });
 const data = props.postFilter(getBySlotType(props.type));
-const img = require(`@Img/game/portraits/${props.portrait}`) as string;
+const img = new URL(`../img/game/portraits/${props.portrait}`, import.meta.url).href;
 const locKey = `TYPE_MOD_${(props.type == 'Support' ? 'COMBAT' : props.type).toUpperCase()}`;
 const tableOpts = computed(tableOptsGetter);
 </script>

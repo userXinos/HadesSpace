@@ -6,7 +6,7 @@ export default [
                 name: 'Trade',
                 text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_TRADE' },
                 path: '/trade',
-                component: () => import(/* webpackChunkName: "Trade" */ '../pages/Trade.vue'),
+                component: () => import('../pages/Trade.vue'),
                 icon: {
                     name: 'Mod_Category_Trade',
                     dir: 'game/Modules',
@@ -16,7 +16,7 @@ export default [
                 name: 'Mining',
                 text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_MINING' },
                 path: '/mining',
-                component: () => import(/* webpackChunkName: "Mining" */ '../pages/Mining.vue'),
+                component: () => import('../pages/Mining.vue'),
                 icon: {
                     name: 'Mod_Category_Mining',
                     dir: 'game/Modules',
@@ -26,7 +26,7 @@ export default [
                 name: 'Weapon',
                 text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS' },
                 path: '/weapon',
-                component: () => import(/* webpackChunkName: "Weapon" */ '../pages/Weapon.vue'),
+                component: () => import('../pages/Weapon.vue'),
                 icon: {
                     name: 'Mod_Category_Weapon',
                     dir: 'game/Modules',
@@ -36,7 +36,7 @@ export default [
                 name: 'Shield',
                 text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS' },
                 path: '/shield',
-                component: () => import(/* webpackChunkName: "Shield" */ '../pages/Shield.vue'),
+                component: () => import('../pages/Shield.vue'),
                 icon: {
                     name: 'Mod_Category_Shield',
                     dir: 'game/Modules',
@@ -46,7 +46,7 @@ export default [
                 name: 'Support',
                 text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT' },
                 path: '/support',
-                component: () => import(/* webpackChunkName: "Support" */ '../pages/Support.vue'),
+                component: () => import('../pages/Support.vue'),
                 icon: {
                     name: 'Mod_Category_Support',
                     dir: 'game/Modules',
@@ -56,7 +56,7 @@ export default [
                 name: 'Drone',
                 text: { locKey: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE' },
                 path: '/drone',
-                component: () => import(/* webpackChunkName: "Drone" */ '../pages/Drone.vue'),
+                component: () => import('../pages/Drone.vue'),
                 icon: {
                     name: 'Mod_Category_Drone',
                     dir: 'game/Modules',
@@ -88,7 +88,7 @@ export default [
                 name: 'Ships',
                 text: { locKey: 'TID_PRODUCTION_DLG_SHIPS' },
                 path: '/ships',
-                component: () => import(/* webpackChunkName: "Ships" */ '../pages/Ships.vue'),
+                component: () => import('../pages/Ships.vue'),
                 icon: {
                     name: 'Transport_DrkNeb_lv5',
                     dir: 'game/Ships',
@@ -98,7 +98,7 @@ export default [
                 name: 'Cerberus',
                 text: { locKey: 'CERBERUS' },
                 path: '/cerberus',
-                component: () => import(/* webpackChunkName: "Cerberus" */ '../pages/Cerberus.vue'),
+                component: () => import('../pages/Cerberus.vue'),
                 icon: {
                     name: 'Fighter_Cerberus3_DrkNeb_lv1',
                     dir: 'game/Ships',
@@ -108,7 +108,7 @@ export default [
                 name: 'SpaceBuildings',
                 text: { locKey: 'TID_PRODUCTION_DLG_STATIONS' },
                 path: '/spacebuildings',
-                component: () => import(/* webpackChunkName: "SpaceBuildings" */ '../pages/SpaceBuildings.vue'),
+                component: () => import('../pages/SpaceBuildings.vue'),
                 icon: {
                     name: 'station_trade',
                     dir: 'game/SpaceBuildings',
@@ -127,7 +127,7 @@ export default [
                 name: 'AllianceLevels',
                 text: { locKey: 'TID_CORP_LEVELS_LABEL' },
                 path: '/alliancelevels',
-                component: () => import(/* webpackChunkName: "AllianceLevels" */ '../pages/AllianceLevels.vue'),
+                component: () => import('../pages/AllianceLevels.vue'),
                 icon: {
                     name: 'corpXp',
                     dir: 'icons',
@@ -137,7 +137,7 @@ export default [
                 name: 'Achievements',
                 text: { locKey: 'TID_PLAYER_INFO_DLG_TAB_ACHIEVEMENTS' },
                 path: '/achievements',
-                component: () => import(/* webpackChunkName: "Achievements" */ '../pages/Achievements.vue'),
+                component: () => import('../pages/Achievements.vue'),
                 icon: {
                     name: 'Leaderboards',
                     dir: 'icons',
@@ -147,7 +147,7 @@ export default [
                 name: 'Distinctions',
                 text: { locKey: 'TID_PLAYER_INFO_SECTION_BADGES' },
                 path: '/distinctions',
-                component: () => import(/* webpackChunkName: "Achievements" */ '../pages/Distinctions.vue'),
+                component: () => import('../pages/Distinctions.vue'),
                 icon: {
                     name: 'Distinction_Emperor',
                     dir: 'game/Distinctions',
@@ -162,7 +162,7 @@ export default [
                 name: 'CompendiumTech',
                 text: { locKey: 'TECHNOLOGIES' },
                 path: '/compendiumTech',
-                component: () => import(/* webpackChunkName: "CompendiumTech" */ '../pages/CompendiumTech.vue'),
+                component: () => import('../pages/CompendiumTech.vue'),
                 icon: {
                     name: 'compendiumTech',
                     dir: 'icons/compendium',
@@ -172,7 +172,7 @@ export default [
                 name: 'CompendiumCorp',
                 text: { locKey: 'TID_CHAT_TAB_CORPORATION' },
                 path: '/compendiumCorp',
-                component: () => import(/* webpackChunkName: "CompendiumCorp" */ '../pages/CompendiumCorp.vue'),
+                component: () => import('../pages/CompendiumCorp.vue'),
                 icon: {
                     name: 'CompendiumCorp',
                     dir: 'icons/compendium',
@@ -187,7 +187,7 @@ export default [
                 name: 'YellowStar',
                 text: { locKey: 'TID_YELLOW_STAR' },
                 path: '/yellowstar',
-                component: () => import(/* webpackChunkName: "YellowStar" */ '../pages/YellowStar.vue'),
+                component: () => import('../pages/YellowStar.vue'),
                 icon: {
                     name: 'star_yellow',
                     dir: 'game/Stars',
@@ -197,7 +197,7 @@ export default [
                 name: 'RedStar',
                 text: { locKey: 'TID_RED_STAR' },
                 path: '/redstar',
-                component: () => import(/* webpackChunkName: "RedStar" */ '../pages/RedStar.vue'),
+                component: () => import('../pages/RedStar.vue'),
                 icon: {
                     name: 'star_red',
                     dir: 'game/Stars',
@@ -207,7 +207,7 @@ export default [
                 name: 'WhiteStar',
                 text: { locKey: 'TID_WHITE_STAR' },
                 path: '/whitestar',
-                component: () => import(/* webpackChunkName: "WhiteStar" */ '../pages/WhiteStar.vue'),
+                component: () => import('../pages/WhiteStar.vue'),
                 icon: {
                     name: 'star_white',
                     dir: 'game/Stars',
@@ -217,7 +217,7 @@ export default [
                 name: 'BlueStar',
                 text: { locKey: 'TID_BLUE_STAR' },
                 path: '/bluestar',
-                component: () => import(/* webpackChunkName: "BlueStar" */ '../pages/BlueStar.vue'),
+                component: () => import('../pages/BlueStar.vue'),
                 icon: {
                     name: 'star_blue_2',
                     dir: 'game/Stars',
@@ -232,7 +232,7 @@ export default [
                 name: 'PlanetsCalc',
                 text: { locKey: 'PLANETS_CALC' },
                 path: '/planetsCalc',
-                component: () => import(/* webpackChunkName: "PlanetsCalc" */ '../pages/PlanetsCalc.vue'),
+                component: () => import('../pages/PlanetsCalc.vue'),
                 icon: {
                     name: 'planets-calc',
                     dir: 'icons',
@@ -242,7 +242,7 @@ export default [
                 name: 'ModulesCalc',
                 text: { locKey: 'MODULES_CALC' },
                 path: '/modulesCalc',
-                component: () => import(/* webpackChunkName: "ModulesCalc" */ '../pages/ModulesCalc.vue'),
+                component: () => import('../pages/ModulesCalc.vue'),
                 icon: {
                     name: 'modules-calc',
                     dir: 'icons',
@@ -252,7 +252,7 @@ export default [
                 name: 'CrystalCalc',
                 text: { locKey: 'CRYSTAL_CALCULATOR' },
                 path: '/crystalCalc',
-                component: () => import(/* webpackChunkName: "CrystalCalc" */ '../pages/CrystalCalc.vue'),
+                component: () => import('../pages/CrystalCalc.vue'),
                 icon: {
                     name: 'crystal-calc',
                     dir: 'icons',
@@ -262,7 +262,7 @@ export default [
                 name: 'WSMatches',
                 text: { locKey: 'WSMatches' },
                 path: '/WSMatches',
-                component: () => import(/* webpackChunkName: "WSMatches" */ '../pages/WSMatches.vue'),
+                component: () => import('../pages/WSMatches.vue'),
                 icon: {
                     name: '',
                     dir: 'icons',
@@ -283,7 +283,7 @@ export default [
                 name: 'About',
                 text: { locKey: 'ABOUT' },
                 path: '/about',
-                component: () => import(/* webpackChunkName: "About" */ '../pages/About.vue'),
+                component: () => import('../pages/About.vue'),
                 icon: {
                     name: 'info',
                     dir: 'icons',

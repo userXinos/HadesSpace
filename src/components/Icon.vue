@@ -102,10 +102,10 @@ function getUrl() {
     }
 
     try {
-        return require(`@Img/${dir}/${name}.png`);
+        return new URL(`../img/${dir}/${name}.png`, import.meta.url).href;
     } catch (err) {
         console.error(`[ICON] Not found: ${name}`);
-        return require(`../img/icons/connection.png`);
+        return new URL(`../img/icons/connection.png`, import.meta.url).href;
     }
 }
 </script>

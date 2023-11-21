@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import Item from '../components/CatalogItem';
+import Item from '../components/CatalogItem.vue';
 
 export interface Props {
     sections: unknown[]

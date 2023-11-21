@@ -93,7 +93,7 @@
 import { Ref, ref } from 'vue';
 
 import Modal from '@/components/Modal.vue';
-import Changelog from '@/components/Changelog';
+import Changelog from '@/components/Changelog.vue';
 import Store from '@/store';
 import types from '@Store/modules/userSettings/types';
 

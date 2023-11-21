@@ -232,7 +232,7 @@ export default [
     [
         ['ConceptImage'],
         (v) => (createElement) => createElement('a', {
-            href: require(`@Img/game/portraits/${v}.png`),
+            href: new URL(`../img/game/portraits/${v}.png`, import.meta.url).href,
             target: '_blank',
         }, t('OPEN')),
     ],

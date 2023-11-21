@@ -8,7 +8,7 @@
 
 <script setup>
 import { Head as VHead } from '@vueuse/head';
-import Catalog from '../components/Catalog';
+import Catalog from '../components/Catalog.vue';
 
 import { getSectionsPages } from '@Utils/parsePages.ts';
 

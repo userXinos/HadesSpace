@@ -21,8 +21,6 @@ import { ref, onMounted } from 'vue';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
 import VueMarkdown from 'vue-markdown-render';
-
-
 export interface Props {
     isOpen: boolean
     titleKey?: string
@@ -36,7 +34,10 @@ const { VERSION } = process.env;
 
 defineEmits(['close']);
 onMounted(() => {
-    import('../../CHANGELOG.md').then((m) => text.value = m.default);
+    import('../../CHANGELOG.md')
+        .then((resp) => fetch(resp.default))
+        .then((resp) => resp.text())
+        .then((t) => text.value = t);
 });
 </script>
 

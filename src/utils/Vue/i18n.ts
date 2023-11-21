@@ -20,8 +20,7 @@ export async function setI18nLanguage(locale: string): Promise<void> {
 }
 
 export async function loadLocaleMessages(locale: string): Promise<void> {
-    const messages = await import(/* webpackChunkName: "locale-[request]" */ `@i18n/${locale}.json`)
-        .then((m) => m.default);
+    const messages = await import(`@i18n/${locale}.json`);
 
     i18nInstance.global.setLocaleMessage<LocaleMessages<VueMessageType>>(locale, messages);
     return nextTick();
