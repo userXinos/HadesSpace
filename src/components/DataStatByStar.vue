@@ -9,17 +9,6 @@
           <div class="cell-bg">
             <div class="cell">
               <template v-if="value == null" />
-              <template v-else-if="typeof value == 'string'">{{ $t(value) }}</template>
-              <template v-else-if="Array.isArray(value)">
-                <!--suppress RequiredAttributes -->
-                <Icon
-                  v-for="(v, j) in value"
-                  :key="j"
-                  v-bind="v"
-                  class="icon"
-                />
-              </template>
-              <!--suppress RequiredAttributes -->
               <Icon
                 v-else
                 v-bind="value"
@@ -82,18 +71,23 @@ import statsStyleName from '@Handlers/statsStyleName';
 
 import { regex as postfixRegex } from '@Regulation/postfixes.mjs';
 
-const LABEL_BY_ORDER = {
-    'base': { dir: 'icons', name: 'star_multi' },
-    '': { dir: 'icons', name: 'star_multi' },
-    'ys': { dir: 'game/Stars', name: 'star_yellow' },
-    'rs': { dir: 'game/Stars', name: 'star_red' },
-    'ws': { dir: 'game/Stars', name: 'star_white' },
-    'bs': { dir: 'game/Stars', name: 'star_blue_2' },
-    'bls': { dir: 'game/Stars', name: 'star_blue_2' },
-    'pve': { dir: 'icons', name: 'star_pve' },
-    'pvp': { dir: 'icons', name: 'star_pvp' },
+const POSTFIX_BY_STARS = {
+    'base': ['YS', 'RS', 'WS', 'BS'],
+    '': ['YS', 'RS', 'WS', 'BS'],
+    'ys': ['YS'],
+    'rs': ['RS'],
+    'ws': ['WS'],
+    'bs': ['BS'],
+    'bls': ['BS'],
+    'pve': ['YS', 'RS'],
+    'pvp': ['WS', 'BS'],
 };
-const LABEL_KEYS = Object.keys(LABEL_BY_ORDER);
+const STARS = {
+    YS: { dir: 'game/Stars', name: 'star_yellow' },
+    RS: { dir: 'game/Stars', name: 'star_red' },
+    WS: { dir: 'game/Stars', name: 'star_white' },
+    BS: { dir: 'game/Stars', name: 'star_blue_2' },
+};
 const TO_SPOILER_KEYS = ['TID_Description'];
 
 export interface Props {
@@ -102,52 +96,48 @@ export interface Props {
 }
 
 const props = defineProps<Props>();
+
 const table = computed(() => {
-    const preBody = {};
+    const preBody: Record<string, { [k: keyof typeof STARS]: unknown }> = {};
+    let usedStars: (keyof typeof STARS)[] = [];
 
     Object.entries(props.items).forEach(([k, v]) => {
         const baseKey = k.replace(postfixRegex, '');
-        const labelIndex = LABEL_KEYS.indexOf((postfixRegex.exec(k)?.[1] ?? '').toLowerCase());
+        const stars = POSTFIX_BY_STARS[(postfixRegex.exec(k)?.[1] ?? '').toLowerCase()];
 
-        if (!(baseKey in preBody)) {
-            preBody[baseKey] = Array.from({ length: LABEL_KEYS.length });
+        if (!preBody[baseKey]) {
+            preBody[baseKey] = {};
         }
-        preBody[baseKey][labelIndex] = v;
+        stars.forEach((s) => {
+            if (preBody[baseKey][s] && stars.length == Object.keys(STARS).length) {
+                return;
+            }
+            preBody[baseKey][s] = v;
+
+            if (!usedStars.includes(s)) {
+                usedStars.push(s);
+            }
+        });
     });
 
-    const head = [];
-    const bodyValuesMatrix = Object.values(preBody);
-    const bodyKeys = Object.keys(preBody);
+    usedStars = usedStars.sort((a, b) => Object.keys(STARS).indexOf(a) - Object.keys(STARS).indexOf(b));
 
-    for (let i = LABEL_KEYS.length; i >= 0; i--) {
-        const isSkipLabelKey = bodyValuesMatrix.every((row) => row[i] == undefined);
+    const head = [null, ...usedStars.map((s) => STARS[s])];
+    const body = [];
 
-        if (isSkipLabelKey) {
-            bodyValuesMatrix.forEach((row) => row.splice(i, 1));
-        } else {
-            const headLabel = LABEL_BY_ORDER[LABEL_KEYS[i]];
-            if (typeof headLabel == 'object' && head.some((e) => typeof e == 'object' && e.name == headLabel.name)) {
-                // цель состоит в том, чтобы удалить идентичные лейблы столбцов,
-                // просто перенос значений по индексу с оставлением оригинального, но уже путсного ключа preBody
-                bodyValuesMatrix.forEach((row, iRow) => {
-                    const value = row[i];
-                    if (value && !row[i + 1]) {
-                        bodyValuesMatrix[iRow][i + 1] = value;
-                        delete bodyValuesMatrix[iRow][i];
-                    }
-                });
-                bodyValuesMatrix.forEach((row) => row.splice(i, 1));
-            } else {
-                head.unshift(headLabel);
-            }
-        }
-    }
+    Object.entries(preBody).forEach(([key, byStar]) => {
+        const row = Array(usedStars.length);
 
-    return [
-        [null, ...head],
-        bodyKeys.map((k, i) => [k, ...bodyValuesMatrix[i]]),
-    ];
+        Object.entries(byStar).forEach(([star, value]) => {
+            row[usedStars.indexOf(star as keyof typeof STARS)] = value;
+        });
+        body.push([key, ...row]);
+    });
+
+    return [head, body];
 });
+
+table.value;
 </script>
 
 <style scoped lang="scss">
