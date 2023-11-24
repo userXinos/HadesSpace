@@ -1,7 +1,7 @@
 /**
  * @GeneratedBy CapitalShips.js runner
  * @OriginalFile raw/capital_ships.csv
- * @UsedFiles solar_system_gen_data.csv, stars.csv
+ * @UsedFiles solar_system_gen_data.csv, stars.csv, globals.csv
  */
 
 export default {
@@ -953,14 +953,14 @@ export default {
         FuelUsePer5000Distance: 100,
         modules: {
             Battery: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15],
-            Immolation: [0, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5],
-            Recoil: [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            FlagshipStealth: [0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
-            FlagshipDroneSwarm: [0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 10, 11, 11, 12, 13],
-            EMPRocket: [0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8, 8, 8, 8],
-            FlagshipRocketCluster: [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-            FlagshipShieldModule: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3],
-            FlagshipWeaponModule: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3],
+            Immolation: [0, 11, 11, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15],
+            Recoil: [0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+            FlagshipStealth: [0, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+            FlagshipDroneSwarm: [0, 0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, 12, 12, 13, 13, 14, 15],
+            EMPRocket: [0, 0, 0, 0, 0, 8, 9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15],
+            FlagshipRocketCluster: [0, 0, 0, 0, 0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            FlagshipShieldModule: [0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15],
+            FlagshipWeaponModule: [0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15],
         },
     },
     Hydraling2: {
@@ -1244,7 +1244,7 @@ export default {
         Speed_WS: 0,
         SpeedIncrPerTick: 40,
         IsTurret: 1,
-        modules: { FlagshipDartBarrage: [0, 1, 2] },
+        modules: { FlagshipDartBarrage: [0, 14, 15] },
     },
     FlagshipAreaShield: {
         Name: "FlagshipAreaShield",
@@ -1267,7 +1267,7 @@ export default {
         Speed_WS: 0,
         SpeedIncrPerTick: 40,
         IsTurret: 1,
-        modules: { FlagshipAreaShield: [0, 1, 2] },
+        modules: { FlagshipAreaShield: [0, 14, 15] },
     },
     LaserTurret: {
         Name: "LaserTurret",
@@ -1293,7 +1293,7 @@ export default {
         IsTurret: 1,
         TurretSetupTime: 5,
         TurretSetupTime_WS: 24,
-        modules: { LaserTurret_Laser: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] },
+        modules: { LaserTurret_Laser: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] },
     },
     CerberusCarrier: {
         Name: "CerberusCarrier",
@@ -1362,7 +1362,7 @@ export default {
         BSPenaltyPerSec: 500,
         HideModulesOnHUD: 1,
         RadialMoveRadius: 1200,
-        modules: { undefined: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] },
+        modules: { undefined: [0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] },
     },
     DroneSquadShip: {
         Name: "DroneSquadShip",

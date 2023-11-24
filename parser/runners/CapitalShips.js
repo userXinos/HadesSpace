@@ -12,7 +12,7 @@ export default class CapitalShips extends Runner {
     };
 
     async run(rawData) {
-        const [ { RedStar: { GhostSpawnSecs } }, { WhiteStar } ] = this.multiReadCsv([ 'solar_system_gen_data', 'stars' ]);
+        const [ { RedStar: { GhostSpawnSecs } }, { WhiteStar }, { MaxModuleLevel } ] = this.multiReadCsv([ 'solar_system_gen_data', 'stars', 'globals' ]);
         const path = join(CONFIG.pathRaw, 'modules.csv');
         const modules = await loadFile(path, [ Modules ]).then((e) => e.render());
 
@@ -24,8 +24,8 @@ export default class CapitalShips extends Runner {
                 }
 
                 addModulesStats(value, modules);
-                fixModulesShipsData(value);
-                fixModulesShipsData(value, 'FlagshipModules', 'FlagshipModuleLevels');
+                fixModulesShipsData(value, MaxModuleLevel.Value);
+                fixModulesShipsData(value, MaxModuleLevel.Value, 'FlagshipModules', 'FlagshipModuleLevels');
 
                 return [ key, value ];
             },
@@ -88,7 +88,7 @@ function addModulesStats(obj, modules) {
 }
 
 // из "{key:[module1!module2], key2:[1!2]}" в "{module1:[1], module2:[2]}"
-export function fixModulesShipsData(obj, moduleKey = 'InitialModule', moduleLevelsKey = 'InitialModuleLevels') {
+export function fixModulesShipsData(obj, MaxModuleLevel, moduleKey = 'InitialModule', moduleLevelsKey = 'InitialModuleLevels') {
     const res = { };
     let maxIndex = 0;
     let module = obj[moduleKey];
@@ -138,6 +138,10 @@ export function fixModulesShipsData(obj, moduleKey = 'InitialModule', moduleLeve
             if (!obj.modules) {
                 obj.modules = {};
             }
-            obj.modules[k] = v;
+            obj.modules[k] = !Array.isArray(v) ? v : v.map((v, i, arr) => {
+                const maxLocalLvl = Math.max(...arr);
+                const step = maxLocalLvl - v;
+                return v > 0 ? MaxModuleLevel - step : 0;
+            });
         });
 }
