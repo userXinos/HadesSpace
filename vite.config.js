@@ -39,10 +39,6 @@ export default defineConfig({
         pwa({
             registerType: 'autoUpdate',
             mode: process.env.NODE_ENV,
-            devOptions: {
-                enabled: isDev,
-                type: 'module',
-            },
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,png,svg,md}'],
             },
