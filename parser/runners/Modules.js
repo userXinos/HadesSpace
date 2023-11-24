@@ -1,7 +1,6 @@
 import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
 import formatValueRulesTime from '../../src/regulation/formatValueRulesTime.mjs';
-import { fixModulesShipsData } from './CapitalShips.js';
 
 const EXCLUDE_KEYS_FROM_TIME = [ 'UnlockTime' ];
 
@@ -75,7 +74,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         if (!key.endsWith('Drone') && SpawnedShip.Name in Object.fromEntries(array)) {
             const sameModuleIndex = array.findIndex(([ k ]) => k == SpawnedShip.InitialModule);
 
-            SpawnedShip = { ...array[sameModuleIndex][1], ...SpawnedShip };
+            SpawnedShip = Runner.combineObjects(array[sameModuleIndex][1], SpawnedShip);
             array[sameModuleIndex][0] = undefined; // просто чтобы потом фильром снести
 
             [ 'Speed_YS', 'Speed_RS', 'Speed_BLS', 'Speed_WS', 'InitialModule' ]
