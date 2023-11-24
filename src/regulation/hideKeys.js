@@ -98,6 +98,8 @@ export default {
         'ApplyAOEDamageOnDestroy',
         'SingleTarget',
         'ShowDurationInTopSpot',
+        'InitialModule',
+        'InitialModuleLevels',
 
         // временно ?
         'BSPenaltyPerSec',
@@ -139,6 +141,7 @@ export default {
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDroneSwarm.NewModuleSlots',
+        'FlagshipRocketCluster.MaxTargets',
         /(FlagshipDartBarrage|FlagshipAreaShield)\.(BuildCost|NewModuleSlots)/,
 
         // RedStar
@@ -235,9 +238,7 @@ export default {
         /((\w+)Drone|LaserTurret|DroneSquad)\.(BuildCost|DesignUpgradeCost|DesignUpgradeTime|NewModuleSlots)/,
         'RemoteBomb.SpeedPVE',
         'RemoteBomb.SpeedPVP',
-        'LaserTurret.InitialModule',
         'LaserTurret.Speed',
-        'LaserTurret.InitialModuleLevels',
         'LaserTurret.MaxPerRS',
         'DeltaRocket.PreventUseOnWsJumpgate',
         /^\w+\.Is\w+/,

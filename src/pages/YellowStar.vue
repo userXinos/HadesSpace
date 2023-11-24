@@ -7,8 +7,8 @@
     />
 
     <v-data v-bind="{data: sectors, tableOpts: { lvlColKey: '№' }}" />
-    <v-data v-bind="{data: { TID: 'LVLS_PLANETS', ...levels }}" />
-    <v-data v-bind="{data: planetsYS, tableOpts: { lvlColKey: '№' }}" />
+    <v-data v-bind="{data: { TID: 'LVLS_PLANETS', ...levels }, tableOpts: {mergeCells: false}}" />
+    <v-data v-bind="{data: planetsYS, tableOpts: { lvlColKey: '№', mergeCells: false }}" />
 
   </div>
 </template>

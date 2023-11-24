@@ -258,7 +258,7 @@ export default [
         ['NewModuleSlots'],
         (v) => {
             return (Array.isArray(v) ? v : [v])
-                .map((e) => t(locKeys[e] || e))
+                .map((e) => `+ ${t(locKeys[e] || e)}`)
                 .join(', ');
         },
     ],
