@@ -65,6 +65,12 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     // добавить Projectiles
     if (value.WeaponEffectType === 'projectile') {
         value.projectile = projectiles[value.WeaponFx];
+
+        if ('SpeedPVP' in value.projectile) {
+            value.projectile['Speed_WS'] = value.projectile['SpeedPVP'] * TIME_SLOWDOWN_FACTOR_WS / 100;
+            value.projectile['Speed_BS'] = value.projectile['SpeedPVP'];
+            delete value.projectile['SpeedPVP'];
+        }
     }
 
     // добавить данные дронов/турелей
