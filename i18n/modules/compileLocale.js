@@ -1,11 +1,7 @@
-import LocStrings from '../../parser/runners/LocStrings.js';
-
 import CONFIG from '../config.js';
 import loadLocale from './loadLocale.js';
-import parser from './parser.js';
 
-export default async function compileLocale(name, defaultLocale) {
-    const parsedData = await parser(`loc_strings/loc_strings_${name}.csv`, LocStrings);
+export default async function compileLocale(name, parsedData, defaultLocale) {
     const locale = await loadLocale(name);
 
     return { ...fixWords(parsedData), ...{ ...defaultLocale, ...locale } };

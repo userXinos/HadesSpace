@@ -1,0 +1,19 @@
+{
+  "overwrites": "ru",
+
+  "languages": {
+    "Name": "Украинский",
+    "Code": "ua",
+    "UnityLocale": "ukrainian",
+    "SteamLocale": "ukrainian",
+    "SteamCode": "ua",
+    "LocaleAndCountry": "uk-UA"
+  },
+  "authors": [
+    {
+      "name": "",
+      "discordID": "",
+      "GHName": ""
+    }
+  ]
+}
