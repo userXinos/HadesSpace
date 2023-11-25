@@ -1,0 +1,16 @@
+name: Bug report
+description: Create a report to help us improve
+title: "[Bug] Bug report"
+labels: ["bug, unconfirmed"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    placeholder: |
+      Currently HadesSpace page does not work...
+      
+      Incorrect numbers, formatting...
+      [Screenshots from the game for context as it should be]
+    validations:
+      required: true
