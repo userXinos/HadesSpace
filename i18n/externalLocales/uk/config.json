@@ -3,10 +3,10 @@
 
   "languages": {
     "Name": "Украинский",
-    "Code": "ua",
+    "Code": "uk",
     "UnityLocale": "ukrainian",
     "SteamLocale": "ukrainian",
-    "SteamCode": "ua",
+    "SteamCode": "uk",
     "LocaleAndCountry": "uk-UA"
   },
   "authors": [
