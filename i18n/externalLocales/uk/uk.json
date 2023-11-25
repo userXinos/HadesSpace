@@ -579,5 +579,6 @@
   "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_MINING": "ДОБУВАННЯ",
   "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS": "ЗБРОЯ",
   "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS": "ЩИТИ",
-  "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT": "БОЙОВІ"
+  "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT": "БОЙОВІ",
+  "EXTERNAL_LOCALE_NOTE": "Українська локалізація повністю перекладена і підтримується ком'юніті, якщо є проблеми або пропозиції, можете відкрити {github} або зв'язатися з мовним координатором {contact}."
 }

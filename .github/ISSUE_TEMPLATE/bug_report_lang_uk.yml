@@ -1,0 +1,12 @@
+name: Bug report [Ukrainian language]
+description: Create a report to help us improve
+title: "[Bug] Bug report (Ukrainian language)"
+labels: ["bug, unconfirmed", "i18n"]
+assignees: jony-de
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true

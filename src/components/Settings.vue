@@ -16,6 +16,33 @@
 
         <div class="select">
           <p class="name"> {{ $t('TID_SETTINGS_DLG_LANGUAGE') }} </p>
+
+          <div
+            v-if="contact"
+            class="info-banner"
+          >
+            <div>
+              <img
+                src="@Img/icons/info.png"
+                alt="info icon"
+              >
+            </div>
+            <i18n-t
+              keypath="EXTERNAL_LOCALE_NOTE"
+              tag="p"
+            >
+              <template #github>
+                <a :href="`https://github.com/userXinos/HadesSpace/issues/new?template=bug_report_lang_${languageCode}.yml`">
+                  GitHub issue
+                </a>
+              </template>
+              <template #contact>
+                <a :href="contact.link">
+                  {{ contact.name }}
+                </a>
+              </template>
+            </i18n-t>
+          </div>
           <select
             v-model="languageCode"
             @change="changeLanguage"
@@ -90,19 +117,23 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, ref } from 'vue';
+import { computed, Ref, ref } from 'vue';
 
 import Modal from '@/components/Modal.vue';
 import Changelog from '@/components/Changelog.vue';
 import Store from '@/store';
 import types from '@Store/modules/userSettings/types';
 
-import languages from '@Data/languages.js';
+import languages from '@/../i18n/dist/index.json';
 
 const isOpenModal = ref(false);
 const showChangelog = ref(false);
 const languageCode: Ref<string> = ref(Store.state.userSettings.language);
 const isDebug = process.env.NODE_ENV === 'development';
+
+const contact = computed(() => (
+    Object.values(languages).find((v) => v.Code == languageCode.value && 'contact' in v)?.contact
+));
 
 function changeLanguage() {
     Store.commit(types.SET_LANGUAGE, languageCode.value);
@@ -129,6 +160,33 @@ $mv: 1000px;
 
 .select {
   margin-bottom: 4%;
+}
+
+.info-banner {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background-color: #163c4f;
+  margin-bottom: 2%;
+  border-radius: 5px;
+
+  div:first-child {
+    background-color: #102f3f;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  p {
+    padding: 10px;
+    font-size: 90%;
+  }
 }
 
 .button {

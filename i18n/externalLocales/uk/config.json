@@ -2,18 +2,16 @@
   "overwrites": "ru",
 
   "languages": {
-    "Name": "Украинский",
+    "Name": "Український",
     "Code": "uk",
     "UnityLocale": "ukrainian",
     "SteamLocale": "ukrainian",
     "SteamCode": "uk",
-    "LocaleAndCountry": "uk-UA"
-  },
-  "authors": [
-    {
-      "name": "",
-      "discordID": "",
-      "GHName": ""
+    "LocaleAndCountry": "uk-UA",
+
+    "contact": {
+      "name": "Evgen/Johny_de",
+      "link": "https://discord.com/users/905157071354355792"
     }
-  ]
+  }
 }

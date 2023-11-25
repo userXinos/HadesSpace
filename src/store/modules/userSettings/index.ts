@@ -1,6 +1,6 @@
 import mutations from './mutations';
 import defaultSettings from './defaultSettings';
-import languages from '@Data/languages.js';
+import languages from '@/../i18n/dist/index.json';
 import { getSettings } from './storage';
 
 
