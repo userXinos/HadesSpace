@@ -7,10 +7,10 @@ body:
     id: description
     attributes:
       label: Description
-    placeholder: |
-      Currently HadesSpace page does not work...
-      
-      Incorrect numbers, formatting...
-      [Screenshots from the game for context as it should be]
+      placeholder: |
+        Currently HadesSpace page does not work...
+        
+        Incorrect numbers, formatting...
+        [Screenshots from the game for context as it should be]
     validations:
       required: true
