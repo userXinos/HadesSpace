@@ -613,5 +613,6 @@
   "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_MINING": "MINING",
   "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_WEAPONS": "WEAPON",
   "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SHIELDS": "SHIELD",
-  "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT": "COMBAT"
+  "TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT": "COMBAT",
+  "EXTERNAL_LOCALE_NOTE": "The LANG_NAME_HERE localization is completely done and supported by the community, if you have problems or suggestions, you can open {github} or contact the language coordinator {contact}"
 }
