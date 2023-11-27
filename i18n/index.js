@@ -29,7 +29,7 @@ async function handler(locale) {
 
     if (locale !== CONFIG.defaultLang && externalLocales.includes(locale)) {
         const config = await getJson(join(CONFIG.externalLocales, locale, `config.json`));
-        const preLocale = await getJson(join(CONFIG.externalLocales, locale, `${locale}.json`));
+        const preLocale = await getJson(join(CONFIG.externalLocales, locale, 'index.json'));
         const preLocale2 = await parser(`loc_strings/loc_strings_${config.overwrites}.csv`);
 
         parsedData = { ...preLocale2, ...preLocale };

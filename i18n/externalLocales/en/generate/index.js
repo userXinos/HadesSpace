@@ -10,7 +10,7 @@ const ROOT_PATH = path.join(__dirname, `../../../../`);
 const rawLocale = await import(path.join(ROOT_PATH, 'parser/dist/loc_strings/en.js')).then((m) => m.default);
 
 
-saveJson(getObjByKeys(rawLocale, await usedLocKeys()), '../en');
+saveJson(getObjByKeys(rawLocale, await usedLocKeys()), '../index');
 
 function getObjByKeys(obj, keys) {
     const res = {};
