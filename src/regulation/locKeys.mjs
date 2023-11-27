@@ -196,7 +196,6 @@ export const gameCharsLocKeys = {
     MaxShipments: 'TID_MODULE_SHIPMENTBEAM_MAX_SHIPMENTS',
     ShipmentOverride: 'TID_MODULE_SHIPMENTBEAM_MAX_SHIPMENTS',
     drone: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE',
-    turret: 'TURRET',
     XPRequired: 'TID_LEADERBOARD_SHIP_XP',
     RSLevelRequired: 'TID_XBL_STAT_4',
     RSLevelReq: 'TID_XBL_STAT_4',
@@ -329,6 +328,7 @@ export default {
     WSJumpOtherTimeCooldown: 'COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE',
     Moons: 'MOONS',
     TimeToUpgradeParallel: 'UPGRADE_TIME_IN_PARALLEL',
+    turret: 'TURRET',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,

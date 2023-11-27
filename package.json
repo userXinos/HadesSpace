@@ -42,7 +42,8 @@
     "eslint-config-google": "^0.14.0",
     "eslint-config-typescript": "^3.0.0",
     "eslint-plugin-vue": "^8.7.1",
-    "vue-eslint-parser": "^9.3.2"
+    "vue-eslint-parser": "^9.3.2",
+    "vue-i18n-extract": "^2.0.7"
   },
   "bugs": {
     "url": "https://github.com/userXinos/HadesSpace/issues"

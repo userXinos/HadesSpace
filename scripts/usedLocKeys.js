@@ -1,16 +1,28 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import VueI18NExtract from 'vue-i18n-extract';
 
 const PARSER_DIST_PATH = '../parser/dist';
 const REGULATION_LOC_PATH = '../src/regulation/locKeys.mjs';
+const RAW_EN_LOCALE_PATH = '../parser/dist/loc_strings/en.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+
+const i18nReport = await VueI18NExtract.createI18NReport({
+    vueFiles: '../src/**/*.?(js|ts|vue)',
+    languageFiles: '../i18n/dist/en.json',
+    output: false,
+});
+const keysToRemove = i18nReport.unusedKeys.map((e) => e.path);
+const enLocale = await import(RAW_EN_LOCALE_PATH).then((m) => m.default);
+const usedInCodeKeys = Object.keys(enLocale).filter((k) => !keysToRemove.includes(k));
 
 const { gameCharsLocKeys, gameSlostLocKeys } = await import(REGULATION_LOC_PATH);
 const dist = await importAllFiles(PARSER_DIST_PATH);
 
-const allKeys = [...new Set([...getUniqueStringValues(dist), ...Object.values(gameCharsLocKeys), ...Object.values(gameSlostLocKeys)])];
+const allKeys = [...new Set([...usedInCodeKeys, ...getUniqueStringValues(dist), ...Object.values(gameCharsLocKeys), ...Object.values(gameSlostLocKeys)])];
 
 saveJson(allKeys, 'usedLocKeys');
 
