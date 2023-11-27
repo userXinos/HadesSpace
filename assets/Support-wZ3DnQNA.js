@@ -1,0 +1,1 @@
+import{_ as r}from"./ModulePage.vue_vue_type_script_setup_true_lang--7J6mDfs.js";import{o as t,c as o}from"./index-Ne6z0YuQ.js";import"./Page-rEkbPIxQ.js";import"./Data-iG2n7t5E.js";import"./globals-zpsYnYkF.js";import"./sec2str-jLBfEjlW.js";const u={__name:"Support",setup(p){return(a,e)=>(t(),o(r,{type:"Support",portrait:"portrait_TurretLaser.png"}))}};export{u as default};
