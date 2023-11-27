@@ -1,6 +1,6 @@
 export default [
     {
-        text: { locKey: 'TID_SHIP_UPGRADE_DLG_TITLE' },
+        text: { locKey: 'TID_TECH_DLG_TITLE' },
         children: [
             {
                 name: 'Trade',
