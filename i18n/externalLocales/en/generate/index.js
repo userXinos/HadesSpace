@@ -1,15 +1,16 @@
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import usedLocKeys from './usedLocKeys.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT_PATH = path.join(__dirname, `../../../../`);
 
 
-import keys from './usedLocKeys.json' assert { type: 'json' };
-const rawLocale = await import('../parser/dist/loc_strings/en.js').then((m) => m.default);
+const rawLocale = await import(path.join(ROOT_PATH, 'parser/dist/loc_strings/en.js')).then((m) => m.default);
 
 
-saveJson(getObjByKeys(rawLocale, keys), 'generateLocale');
+saveJson(getObjByKeys(rawLocale, await usedLocKeys()), '../en');
 
 function getObjByKeys(obj, keys) {
     const res = {};
@@ -25,7 +26,7 @@ function getObjByKeys(obj, keys) {
 }
 function saveJson(object, fileName) {
     const data = JSON.stringify(object, null, 2);
-    const filePath = path.relative(__dirname, `${fileName}.json`);
+    const filePath = path.join(__dirname, `${fileName}.json`);
 
     fs.writeFileSync(filePath, data, 'utf-8');
     console.log(`Saved as ${filePath}`);

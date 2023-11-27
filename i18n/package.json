@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
+    "generateExternalLocale": "node ./externalLocales/en/generate/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Xinos",
@@ -13,6 +14,7 @@
   },
   "devDependencies": {
     "eslint": "^8.14.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "vue-i18n-extract": "^2.0.7"
   }
 }
