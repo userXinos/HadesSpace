@@ -1,7 +1,7 @@
 {
-  "TID_DAY_ABBREVIATION": "днів",
-  "TID_HOUR_ABBREVIATION": "Год",
-  "TID_MINUTE_ABBREVIATION": "хв",
+  "TID_DAY_ABBREVIATION": " д",
+  "TID_HOUR_ABBREVIATION": " г",
+  "TID_MINUTE_ABBREVIATION": " хв",
   "TID_SECOND_ABBREVIATION": "сек",
   "TID_OK": "Ок",
   "TID_CANCEL": "Відмінити",
