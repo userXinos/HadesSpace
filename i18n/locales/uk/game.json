@@ -77,7 +77,7 @@
   "SECTOR_ENRICH_COOLDOWN_SECONDS": "Відновлення сектора після збагачення",
   "SECTOR_GENESIS_COOLDOWN_SECONDS": "Відновлення сектора після генезису",
   "STOP_COUNTDOWN_ON_DISABLE": "Зупинити зворотний відлік після відключення",
-  "AREA_SHIELD": "Балістичний щит",
+  "AREA_SHIELD": "Щит по площі",
   "BS_ONLY": "Тільки для лінкорів",
   "DISABLE_ACTIVATION_DURING_PREP": "Вимкнути активацію під час підготовки",
   "IGNORE_BARRIER": "Ігнорує Бар’єр",
