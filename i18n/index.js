@@ -27,7 +27,7 @@ console.log('\x1b[32m[✓] \x1b[0m Done! (%s sec.)', time.final);
 async function handler(locale) {
     let parsedData;
 
-    if (externalLocales.includes(locale)) {
+    if (locale !== CONFIG.defaultLang && externalLocales.includes(locale)) {
         const config = await getJson(join(CONFIG.externalLocales, locale, `config.json`));
         const preLocale = await getJson(join(CONFIG.externalLocales, locale, `${locale}.json`));
         const preLocale2 = await parser(`loc_strings/loc_strings_${config.overwrites}.csv`);
