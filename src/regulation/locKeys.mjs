@@ -54,7 +54,6 @@ export const gameCharsLocKeys = {
     RequiresStarSector: 'TID_HUD_PLACE_LOCATION_INVALID_NO_SUN',
     CanCancelBuild: 'TID_OBJ_ACTION_CANCEL_BUILD',
     RequiresEmptySector: 'TID_HUD_PLACE_LOCATION_INVALID_MUST_BE_EMPTY_SECTOR',
-    level: 'INITIAL_MODULE_LEVELS',
     DisableTime: 'TID_MODULE_LEAP_DISABLE_STAT',
     modules: 'TID_OBJECT_ACTION_SHIP_UPGRADE',
     MiningPeriod: 'TID_MODULE_MINING_SPEED_STAT',
