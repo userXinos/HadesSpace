@@ -131,7 +131,7 @@ function getCharacteristics(d: Record<string, unknown>): GetCharacteristicsOut {
             [value, isHide(k, d.Name as string)],
         ],
         filter: ([k, [, remove]]) => (
-            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (store?.state?.userSettings?.disableFilters ? true : !remove)
         ),
     }) as GetCharacteristicsOut;
 

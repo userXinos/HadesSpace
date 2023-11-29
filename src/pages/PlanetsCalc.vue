@@ -188,8 +188,8 @@ const PLANET_MOONS = Object.values(YSSectors.NumMoons as (number|number[])[]).re
     return acc;
 }, {}) as Record<string, number>;
 
+const vuex = useStore();
 const { t } = useI18n();
-const Store = useStore();
 const planets = ref([]);
 const input: Ref<Input> = ref({ actually: {}, plan: {} });
 const openModal = ref(false);
@@ -206,7 +206,7 @@ const modalOpts = reactive({
 const planetValues = computed<OutputValue[]>(() => Object.values(planets.value));
 let calc: SetupComponent;
 
-Store.subscribe((mutation) => {
+vuex.subscribe((mutation) => {
     if (mutation.type == types.SWITCH_PLANETS_CALC_SP2 && calc) {
         setupCalculator(calc);
         calc.forceReCalc();
@@ -253,7 +253,7 @@ function calcTotal(store: ElementsStore, output: Output) {
     });
 
     return function(name: string, input: Input) {
-        const hourCredLimit = Store.state.userSettings.calcDayCreditLimit / 24;
+        const hourCredLimit = vuex.state.userSettings.calcDayCreditLimit / 24;
         let hoursUpgrade = 0;
 
         for (const k of TOTAL_KEYS) {
@@ -315,8 +315,8 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
             elements[name] = objectArrayify(filteredLevels, {
                 map: ([k, v]: [string, number[]]) => {
                     const MaxUpgradeLevel = planet.MaxUpgradeLevel as number;
-                    const sModifier = (Store.state.userSettings.planetsCalcSp2 && k == 'ShipmentsCRValuePerDay') ? SP2ShipmentsBoostPct / 100 : 0;
-                    let res = v.map((e) => e * (k in CHARS_MODIFIERS ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1 + sModifier));
+                    const sModifier = (k == 'ShipmentsCRValuePerDay' && vuex.state.userSettings.planetsCalcSp2) ? SP2ShipmentsBoostPct / 100 : 0;
+                    let res = v.map((e) => e * (k in CHARS_MODIFIERS ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1));
 
                     if (k == 'ShipmentsCRValuePerDay') {
                         res = v.map((e) => {

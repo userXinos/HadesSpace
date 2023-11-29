@@ -179,7 +179,7 @@ function getCharacteristicsLEGACY(d: Record<string, unknown>): object {
             ],
         ],
         filter: ([k, [, remove]]) => (
-            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (store?.state?.userSettings?.disableFilters ? true : !remove)
         ),
     }) as Record<string, [unknown|string, boolean]>;
 
