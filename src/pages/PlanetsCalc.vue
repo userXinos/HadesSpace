@@ -122,7 +122,7 @@
 
 <!--suppress TypeScriptCheckImport, TypeScriptUnresolvedReference -->
 <script setup lang="ts">
-import { ref, computed, Ref, reactive } from 'vue';
+import { ref, computed, Ref, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Store from '@Store/index';
 import types from '../store/modules/userSettings/types';
@@ -221,6 +221,11 @@ function calcTotal(store: ElementsStore, output: Output) {
         };
     }
 
+    // запущен процесс пересчёта
+    watch(() => output.total.result.TimeToUpgrade, () => {
+        RSLevelReq = 0;
+    });
+
     return function(name: string, input: Input) {
         const hourCredLimit = Store.state.userSettings.calcDayCreditLimit / 24;
         let hoursUpgrade = 0;
@@ -231,7 +236,7 @@ function calcTotal(store: ElementsStore, output: Output) {
             output.total.intermediate[k].sum = output.total.intermediate[k].actually + output.total.intermediate[k].plan;
         }
         if (store[name].RSLevelReq) {
-            const localeRSLevelReq = store[name].RSLevelReq[input.plan[name]] || 0;
+            const localeRSLevelReq = store[name].RSLevelReq[input.plan[name] - 1] || 0;
             RSLevelReq = output.total.result.RSLevelReq = (RSLevelReq < localeRSLevelReq) ? localeRSLevelReq : RSLevelReq;
         }
         if (store[name].TimeToUpgrade) {
