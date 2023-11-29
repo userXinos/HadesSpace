@@ -68,6 +68,7 @@ function checkAndSend(num: number) {
     background: $background-elements;
     cursor: pointer;
     border-radius: 10px;
+    overflow:hidden;
 
     padding: 10px;
 }
