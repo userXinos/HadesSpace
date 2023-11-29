@@ -118,17 +118,18 @@
 
 <script setup lang="ts">
 import { computed, Ref, ref } from 'vue';
+import { useStore } from 'vuex';
 
 import Modal from '@/components/Modal.vue';
 import Changelog from '@/components/Changelog.vue';
-import Store from '@/store';
-import types from '@Store/modules/userSettings/types';
+import types from '@/store/modules/userSettings/types';
 
 import languages from '@/../i18n/dist/index.json';
 
+const store = useStore();
 const isOpenModal = ref(false);
 const showChangelog = ref(false);
-const languageCode: Ref<string> = ref(Store.state.userSettings.language);
+const languageCode: Ref<string> = ref(store.state.userSettings.language);
 const isDebug = process.env.NODE_ENV === 'development';
 
 const contact = computed(() => (
@@ -136,13 +137,13 @@ const contact = computed(() => (
 ));
 
 function changeLanguage() {
-    Store.commit(types.SET_LANGUAGE, languageCode.value);
+    store.commit(types.SET_LANGUAGE, languageCode.value);
 }
 function switchDisableFilters() {
-    Store.commit(types.SWITCH_DISABLE_FILTERS);
+    store.commit(types.SWITCH_DISABLE_FILTERS);
 }
 function switchShowKeys() {
-    Store.commit(types.DEBUG_SWITCH_SHOW_KEYS);
+    store.commit(types.DEBUG_SWITCH_SHOW_KEYS);
 }
 </script>
 

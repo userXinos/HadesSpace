@@ -3,7 +3,7 @@
 import { Router, RouteLocationNormalized } from 'vue-router';
 import { Store } from 'vuex';
 import { vTDirective } from 'vue-i18n';
-import store from '@/store';
+import storeRoot from '../store/index';
 
 declare module '*.vue' {
     import { defineComponent } from 'vue';
@@ -12,7 +12,7 @@ declare module '*.vue' {
 }
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {
-        $store: Store<store>
+        $store: Store<storeRoot>
         $router: Router
         $route: RouteLocationNormalized
         $t: vTDirective

@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 
 import router from '@Utils/Vue/router';
 import i18n, { setI18nLanguage } from '@Utils/Vue/i18n';
-import store from '@Store/index';
+import store from './store/index';
 import App from './App.vue';
 
 import VueProgressBar from '@aacassandra/vue3-progressbar';

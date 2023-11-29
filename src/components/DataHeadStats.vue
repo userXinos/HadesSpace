@@ -105,11 +105,12 @@
 </template>
 
 <script lang="ts">
+import { useStore } from 'vuex';
+
 import objectArrayify from '@Utils/objectArrayify';
 import isHide from '@Handlers/isHide';
 import postfixes, { regex as postfixesRegex } from '@Regulation/postfixes.mjs';
 import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';
-import Store from '@/store';
 
 const EXCLUDE_KEYS_FROM_TIME = ['UnlockTime'];
 const starKeys = formatValueRulesTime
@@ -122,13 +123,15 @@ interface GetCharacteristicsOut {
 }
 
 function getCharacteristics(d: Record<string, unknown>): GetCharacteristicsOut {
+    const store = useStore();
+
     const res: GetCharacteristicsOut = objectArrayify(d, {
         map: ([k, value]) => [
             k,
             [value, isHide(k, d.Name as string)],
         ],
         filter: ([k, [, remove]]) => (
-            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (store.state.userSettings.disableFilters ? true : !remove)
         ),
     }) as GetCharacteristicsOut;
 

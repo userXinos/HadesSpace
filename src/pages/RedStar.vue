@@ -67,16 +67,17 @@
 <script setup>
 import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';
-import Store from '@/store';
+import { useStore } from 'vuex';
 
 import starsData from '@Data/stars.js';
 import globals from '@Data/globals.js';
 import objectArrayify from '@Utils/objectArrayify';
 import { getBySlotType } from '../components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_DyingPlanet.jpg';
-import types from '@Store/modules/userSettings/types';
+import types from '@/store/modules/userSettings/types';
 import byTypes from '@Regulation/byTypes';
 
+const store = useStore();
 const { MinDarkRSLevel } = globals;
 const { RedStar } = starsData;
 const { DarkRedStar } = starsData;
@@ -150,7 +151,7 @@ function modulesByLvl(modules) {
     return res;
 }
 function switchCompactMode() {
-    Store.commit(types.SWITCH_COMPACT_MODULES_BY_ART_TYPE_TABLE);
+    store.commit(types.SWITCH_COMPACT_MODULES_BY_ART_TYPE_TABLE);
 }
 </script>
 <style scoped lang="scss">

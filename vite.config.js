@@ -28,7 +28,6 @@ export default defineConfig({
             '@Regulation': path('src/regulation'),
             '@Img': path('src/img'),
             '@Utils': path('src/utils'),
-            '@Store': path('src/store'),
             '@Handlers': path('src/utils/Handlers'),
         },
     },

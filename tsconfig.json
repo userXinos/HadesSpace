@@ -22,7 +22,6 @@
       "@i18n/*": ["i18n/dist/*"],
       "@Regulation/*": ["src/regulation/*"],
       "@Utils/*": ["src/utils/*"],
-      "@Store/*": ["src/store/*"],
       "@Handlers/*": ["src/utils/Handlers/*"],
       "@/*": ["src/*"]
     },

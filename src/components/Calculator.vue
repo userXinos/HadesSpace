@@ -177,9 +177,9 @@
 
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
-import { computed, ref, nextTick } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import router from '@Utils/Vue/router';
+import { useRouter } from 'vue-router';
 
 import { Head as VHead } from '@vueuse/head';
 import Confirm from '@/components/TheConfirm.vue';
@@ -187,7 +187,7 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
-import types from '@Store/modules/userSettings/types';
+import types from '@/store/modules/userSettings/types';
 import statsStyleName from '@Handlers/statsStyleName';
 import calculator from '@/composables/calculator';
 import CalculatorConfig from '@/composables/calculatorConfig';
@@ -206,6 +206,7 @@ export interface Props {
 }
 
 const { t } = useI18n();
+const router = useRouter();
 const props = defineProps<Props>();
 const emit = defineEmits(['update:input', 'setup']);
 
@@ -355,6 +356,13 @@ function onChangeLvl(type: keyof Input, key: string, value: number|string): numb
         delete output[type][key];
     } else {
         ConfigManager.selectedConfig[type][key] = value;
+    }
+
+    const current = props.input.plan[key] || 0;
+    const min = props.input.actually[key];
+
+    if (min > current) {
+        onChangeLvl('plan', key, min);
     }
 
     updateInput();

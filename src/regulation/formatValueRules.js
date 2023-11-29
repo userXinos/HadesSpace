@@ -2,7 +2,7 @@
 
 import { RouterLink } from 'vue-router';
 import i18n from '@Utils/Vue/i18n';
-import store from '@Store/index';
+import { useStore } from 'vuex';
 import Icon from '@/components/Icon.vue';
 import sec2str from '@Utils/sec2str';
 
@@ -222,7 +222,7 @@ export default [
                 modules.map((mod) => (
                     createElement(RouterLink, { to: `/${mod.SlotType}#${mod.Name}` },
                         createElement(Icon, { name: mod.Icon, dir: 'game/Modules' }),
-                        store.state.userSettings.compactModulesByArtTypeTable ? null : createElement('p', null, t(mod.TID)),
+                        useStore().state.userSettings.compactModulesByArtTypeTable ? null : createElement('p', null, t(mod.TID)),
                     )
                 )),
             )

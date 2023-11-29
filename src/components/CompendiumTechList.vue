@@ -124,13 +124,14 @@
 
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+
 import shipsData from '@Data/capital_ships.js';
 import spaceBuildingsData from '@Data/spacebuildings.js';
 
 import { getBySlotType } from '@/components/ModulePage.vue';
 import Icon from '@/components/Icon.vue';
 import key from '@Handlers/key';
-import router from '@Utils/Vue/router';
 import value from '@Handlers/value';
 import byTypes from '@Regulation/byTypes';
 
@@ -140,6 +141,7 @@ export interface Props {
     isMuted?: (id: string) => boolean
 }
 
+const router = useRouter();
 const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
 const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
 const alliance = { Name: 'AllianceLevel', TID: 'TID_CORP_TAB_MY_CORP', Icon: 'corpXp', specialIcon: true };

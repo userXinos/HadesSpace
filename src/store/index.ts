@@ -2,7 +2,7 @@ import { createStore, MutationTree, ActionTree } from 'vuex';
 
 const isDev = (process.env.NODE_ENV === 'development');
 
-import types from '@Store/types';
+import types from './types';
 
 /* userSettingsModule */
 import userSettingsModule from './modules/userSettings/index';

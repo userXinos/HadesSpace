@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, onErrorCaptured, ref, getCurrentInstance } from 'vue';
-import router from '@Utils/Vue/router';
+import { useRouter } from 'vue-router';
 import { stop as compendiumStop } from '@Utils/compendium';
 
 import { Head as VHead } from '@vueuse/head';
@@ -70,6 +70,7 @@ import appChangelog from '@/composables/appChangelog';
 
 const MAX_WIDTH = 1000;
 
+const router = useRouter();
 const internalInstance = getCurrentInstance();
 const { $Progress } = internalInstance?.appContext.config.globalProperties; // eslint-disable-line no-unsafe-optional-chaining
 const isMinMode = ref(window.innerWidth < MAX_WIDTH);

@@ -52,16 +52,17 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-import router from '@Utils/Vue/router';
 import { getSectionsPages } from '@Utils/parsePages';
 
+const router = useRouter();
 const sections = getSectionsPages();
 const selected = ref<number|null>(null);
 
 router.afterEach(() => select(null));
 
-function select(i) {
+function select(i: number|null) {
     if (selected.value === i) {
         selected.value = null;
         return;

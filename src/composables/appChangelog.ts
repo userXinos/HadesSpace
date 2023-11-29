@@ -1,11 +1,12 @@
 import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
-import store from '@Store/index';
-import router from '@Utils/Vue/router';
-
-import types from '@Store/modules/userSettings/types';
+import types from '@/store/modules/userSettings/types';
 
 export default function appChangelog() {
+    const router = useRouter();
+    const store = useStore();
     const isOpen = ref(false);
 
     onMounted(() => init());

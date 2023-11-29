@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
+import { useStore } from 'vuex';
 
-import Store from '@/store';
 import objectArrayify from '@Utils/objectArrayify';
 import isHide from '@Handlers/isHide';
 
@@ -168,6 +168,8 @@ function isObject(o: unknown) {
 }
 
 function getCharacteristicsLEGACY(d: Record<string, unknown>): object {
+    const store = useStore();
+
     const res = objectArrayify(d, {
         map: ([k, value]) => [
             k,
@@ -177,7 +179,7 @@ function getCharacteristicsLEGACY(d: Record<string, unknown>): object {
             ],
         ],
         filter: ([k, [, remove]]) => (
-            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (Store.state.userSettings.disableFilters ? true : !remove)
+            k.startsWith('_') || isHide(k, null, { asMeta: true, asTitle: false }) ? false : (store.state.userSettings.disableFilters ? true : !remove)
         ),
     }) as Record<string, [unknown|string, boolean]>;
 

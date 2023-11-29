@@ -140,12 +140,12 @@
 <script setup lang="ts">
 import { CorpData, CorpMember, getTechIndex } from 'bot_client';
 import { onMounted, reactive, Ref, ref, watch } from 'vue';
-import Store from '@Store/index';
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 
-import { getDiscordAvatarUrl } from '../utils/getDiscordUrl';
+import { getDiscordAvatarUrl } from '@Utils/getDiscordUrl';
 import client from '../utils/compendium';
-import types from '@Store/modules/userSettings/types';
+import types from '@/store/modules/userSettings/types';
 
 import { Head as VHead } from '@vueuse/head';
 import Modal, { SIZES } from '@/components/Modal.vue';
@@ -167,14 +167,14 @@ const MAX_ITEMS_PAGE = 50;
 interface UserInfo {
   [k: string]: {
     icon: Icon.Props,
-    formatter: (user: CorpMember) => string
-      check: (user: CorpMember) => boolean
+    formatter: (user: CorpMember) => string|number
   }
 }
 
+const store = useStore();
 const { t } = useI18n();
 const title = t('HS_COMPENDIUM');
-const { hourCycles } = new Intl.Locale(navigator.language);
+const hourCycles = new Intl.Locale(navigator.language)?.hourCycles;
 const isBrowserLocale24h = hourCycles ? ['h23', 'h24'].some((hourCycle) => hourCycles.includes(hourCycle)) : true;
 
 const userInfo: UserInfo = {
@@ -202,7 +202,7 @@ const userInfo: UserInfo = {
 const isFetching = ref(false);
 const openSelectorByTech = ref(false);
 const openMemTechList = ref(false);
-const filterRoleId = ref<string>(Store.state.userSettings.compendiumCorpLastRoleId);
+const filterRoleId = ref<string>(store.state.userSettings.compendiumCorpLastRoleId);
 const filterTech = reactive<string[]>([]);
 const data: Ref<CorpData> = ref({});
 const filteredMembers: Ref<CorpMember[]> = ref([]);
@@ -221,7 +221,7 @@ client.on('disconnected', () => {
     filteredMembers.value = Array.from({ length: 10 }, (i) => ({ userId: i, name: '', avatarUrl: '' }) as CorpMember);
     filterRoleId.value = '';
     filterTech.splice(0);
-    Store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID);
+    store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID);
 });
 onMounted(() => {
     if (client.getUser()) {
@@ -231,7 +231,7 @@ onMounted(() => {
 
 watch(filterRoleId, async (value) => {
     isFetching.value = true;
-    Store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID, value);
+    store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID, value);
     filteredByRoleCache = await client.corpdata(value).then((r) => r.members);
     filteredMembers.value = filteredByRoleCache;
     isFetching.value = false;
@@ -242,7 +242,7 @@ watch(() => filterTech, filterByTech, { deep: true });
 
 async function fetchCorp() {
     isFetching.value = true;
-    const resp = await client.corpdata(Store.state.userSettings.compendiumCorpLastRoleId);
+    const resp = await client.corpdata(store.state.userSettings.compendiumCorpLastRoleId);
 
     data.value = resp;
     filteredByRoleCache = resp.members;
@@ -276,7 +276,7 @@ function filterByTech(value: string[]) {
                 return (b.tech[getTechIndex(value[0])]?.[0] || 0) - (a.tech[getTechIndex(value[0])]?.[0] || 0);
             }
             if (value[0] == 'CargoCap') {
-                return userInfo.CargoCap.formatter(b) - userInfo.CargoCap.formatter(a);
+                return (userInfo.CargoCap.formatter(b) as number) - (userInfo.CargoCap.formatter(a) as number);
             }
             return 0;
         })

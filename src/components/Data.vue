@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import router from '@Utils/Vue/router';
+import { useRouter } from 'vue-router';
 
 import VTable from './DataTable.vue';
 import VTitle from './DataHead.vue';
@@ -50,6 +50,7 @@ interface DataTitle {
     [k: string]: {[k: string]: unknown}|unknown[]
 }
 
+const router = useRouter();
 const props = withDefaults(defineProps<Props>(), {
     tableOpts: () => ({}),
     sort: true,

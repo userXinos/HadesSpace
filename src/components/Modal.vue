@@ -63,10 +63,10 @@ export const SIZES = {
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
-import router from '@Utils/Vue/router';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
-import store from '@/store';
-import types from '@Store/types';
+import types from '@/store/types';
 
 export interface Props {
     open: boolean
@@ -74,6 +74,8 @@ export interface Props {
     title?: string
 }
 
+const router = useRouter();
+const store = useStore();
 const emit = defineEmits(['update:open']);
 const props = withDefaults(defineProps<Props>(), {
     size: SIZES.MEDIUM,

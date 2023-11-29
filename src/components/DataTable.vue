@@ -118,10 +118,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, useSlots, onUpdated, onMounted, onUnmounted, h, reactive, watch } from 'vue';
+import { ref, computed, useSlots, onUpdated, onMounted, onUnmounted, h, reactive, watch, VNode as VN } from 'vue';
 import { Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import Store from '@Store/index';
+import { useStore } from 'vuex';
 import types from '../store/modules/userSettings/types';
 
 import DataStatTooltip from '@/components/DataStatTooltip.vue';
@@ -143,6 +143,7 @@ export interface Props {
 const HEIGHT_HEADER = 80;
 const TH_PADDING = 20;
 
+const store = useStore();
 const { t, te } = useI18n();
 const props = withDefaults(defineProps<Props>(), {
     mergeCells: true,
@@ -168,17 +169,17 @@ const tableMask = computed(() => {
     return tableMaskUtil({ ...filteredData }, props.mergeCells);
 });
 
-let manualScroll;
+let manualScroll: boolean;
 
-const teleportTable = ref(null) as Ref<HTMLInputElement>;
-const table = ref(null) as Ref<HTMLInputElement>;
-const th = ref(null) as Ref<HTMLInputElement>;
+const teleportTable = ref() as Ref<HTMLInputElement>;
+const table = ref() as Ref<HTMLInputElement>;
+const th = ref() as Ref<HTMLInputElement>;
 
 
 updateFiltered();
 
 
-Store.subscribe((mutation) => {
+store.subscribe((mutation) => {
     if (mutation.type == types.SWITCH_DISABLE_FILTERS) {
         updateFiltered();
     }
@@ -231,7 +232,7 @@ function updateFiltered() {
     Object.entries(props.data.head)
         .forEach(([category, keys]) => {
             keys.forEach((k, i) => {
-                if (props.isHide(k) && !Store.state.userSettings.disableFilters) {
+                if (props.isHide(k) && !store.state.userSettings.disableFilters) {
                     filteredIndexes[category].push(i);
                 }
             });
@@ -242,7 +243,7 @@ function filterMapCb([cat, values]) {
     filteredIndexes[cat].forEach((i) => delete v[i]);
     return [cat, v.filter(Boolean)];
 }
-function VNode({ render }) {
+function VNode({ render }: {render: (createElement: typeof h) => VN}) {
     return render(h);
 }
 </script>

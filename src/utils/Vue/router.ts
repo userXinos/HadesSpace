@@ -4,7 +4,7 @@ import { getRoutes } from '../parsePages';
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: getRoutes(),
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior(to, _, savedPosition) {
         if (savedPosition) {
             return savedPosition;
         }
