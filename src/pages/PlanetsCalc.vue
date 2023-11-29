@@ -292,8 +292,14 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
                     const sModifier = (Store.state.userSettings.planetsCalcSp2 && k == 'ShipmentsCRValuePerDay') ? SP2ShipmentsBoostPct / 100 : 0;
                     let res = v.map((e) => e * (k in CHARS_MODIFIERS ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1 + sModifier));
 
-                    if (k == 'ShipmentsCRValuePerDay' && planet.Name in PLANET_MOONS) {
-                        res = v.map((e) => e * (planet[CHARS_MODIFIERS['ShipmentsCRValuePerDay']] / 100 + sModifier) * (PLANET_MOONS[planet.Name] + 1));
+                    if (k == 'ShipmentsCRValuePerDay') {
+                        res = v.map((e) => {
+                            const planetModifier = planet[CHARS_MODIFIERS['ShipmentsCRValuePerDay']] / 100;
+                            const moons = (planet.Name in PLANET_MOONS) ? PLANET_MOONS[planet.Name] : 0;
+                            const num = e * planetModifier * (moons + 1);
+
+                            return num + (num * sModifier);
+                        });
                     }
                     if (res.length < MaxUpgradeLevel) {
                         res.push(...Array.from({ length: MaxUpgradeLevel - res.length }, () => res[res.length - 1]));
