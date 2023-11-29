@@ -1482,7 +1482,7 @@ export default {
                 SlotType: "Support",
                 ActivationType: "Activated",
                 ActivationPrep: 20,
-                ActivationPrepWS: 24,
+                ActivationPrepWS: 14400,
                 ActivationPrepBS: 5,
                 ClientActivationFx: "Module_ChargeUp_white",
                 ActivateFX: "Teleport_activate",

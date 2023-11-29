@@ -104,7 +104,13 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
             } else {
                 shipModules.push(modules[SpawnedShip.InitialModule]);
             }
-            value.modules = shipModules;
+            value.modules = shipModules.map((mod) => {
+                // в душе не чаю почему на этом моде эта хрень, хотя другие его WS статы в правильном формате
+                if (mod.ActivationPrepWS && mod.Name === 'DeltaDroneTeleport') {
+                    mod.ActivationPrepWS = mod.ActivationPrepWS * TIME_SLOWDOWN_FACTOR_WS;
+                }
+                return mod;
+            });
         }
 
         [ 'InitialModule', 'InitialModuleLevels', 'IsDrone', 'IsTurret' ].forEach((k) => delete SpawnedShip[k]);
