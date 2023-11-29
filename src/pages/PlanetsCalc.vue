@@ -35,8 +35,8 @@
       <!--suppress JSUnresolvedReference -->
       <!--  WS moment: Unresolved variable or type planetValues-->
       <v-data
-        :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: planetValues.map((e) => e.TID)}"
-        :table-opts="{lvlColKey: '№', mergeCells: false}"
+        :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: ['', ...planetValues.map((e) => e.TID)]}"
+        :table-opts="{lvlColKey: '№', mergeCells: false, colLvlStartAt: 0}"
       >
 
         <template #table-head>
@@ -46,32 +46,49 @@
         </template>
 
         <template #table-body="{ row }">
-          <td
-            v-for="(_, type) in input"
-            :key="type"
-          >
-            <select
-              class="select"
-              @change="calc.onChangeLvl(type, planetValues[row].Name, $event.target.value)"
+          <template v-if="row == 0">
+            <td
+              v-for="(_, type) in input"
+              :key="type"
             >
-              <option
-                v-for="(i, index) in (planetValues[row].MaxUpgradeLevel + 1)"
-                :key="type + i"
-                :selected="calc.isSelected(type, planetValues[row].Name, index as number)"
-                :disabled="calc.isDisabled(type, planetValues[row].Name, index as number)"
-              >{{ index }}
-              </option>
-            </select>
-          </td>
-          <td>
-            <div @click="() => openModuleInfo(planetValues[row])">
-              <img
-                src="../img/icons/info.png"
-                class="open-info"
-                alt="info icon"
+              <select
+                class="select"
+                @change="setAllPlanetsLevel(type, $event.target.value)"
               >
-            </div>
-          </td>
+                <option
+                  v-for="(i, index) in (planetValues[row].MaxUpgradeLevel + 1)"
+                  :key="type + i"
+                  :selected="calc.isSelected(type, planetValues[row].Name, index as number)"
+                >{{ index }}
+                </option>
+              </select>
+            </td>
+            <td />
+          </template>
+          <template v-else>
+            <td
+              v-for="(_, type) in input"
+              :key="type"
+            >
+              <div class="number-picker">
+                <NumberPicker
+                  :value="input[type]?.[planetValues[row - 1].Name] || 0"
+                  :min="(type == 'plan' ? input.actually?.[planetValues[row - 1].Name] : 0) || 0"
+                  :max="planetValues[row - 1].MaxUpgradeLevel"
+                  @update:value="(v: number) => calc.onChangeLvl(type, planetValues[row - 1].Name, v)"
+                />
+              </div>
+            </td>
+            <td>
+              <div @click="() => openModuleInfo(planetValues[row - 1])">
+                <img
+                  src="../img/icons/info.png"
+                  class="open-info"
+                  alt="info icon"
+                >
+              </div>
+            </td>
+          </template>
         </template>
 
       </v-data>
@@ -124,7 +141,7 @@
 <script setup lang="ts">
 import { ref, computed, Ref, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import Store from '@Store/index';
+import { useStore } from 'vuex';
 import types from '../store/modules/userSettings/types';
 
 import levels from '@Data/planet_levels.js';
@@ -136,6 +153,7 @@ import globals from '@Data/globals.js';
 import Calculator from '@/components/Calculator.vue';
 import VData from '@/components/Data.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
+import NumberPicker from '@/components/NumberPicker.vue';
 
 import type { SetupComponent, SetupGetElementsCB, Input, OutputValue, ElementsStore, Output } from '../typings/calculator';
 import objectArrayify from '../utils/objectArrayify';
@@ -171,6 +189,7 @@ const PLANET_MOONS = Object.values(YSSectors.NumMoons as (number|number[])[]).re
 }, {}) as Record<string, number>;
 
 const { t } = useI18n();
+const Store = useStore();
 const planets = ref([]);
 const input: Ref<Input> = ref({ actually: {}, plan: {} });
 const openModal = ref(false);
@@ -208,6 +227,13 @@ function openModuleInfo(planet: OutputValue) {
 }
 function outputClasses(type: keyof Output, charName?: string): object {
     return calc.outputClasses(type, modalOpts.data.key, charName);
+}
+function setAllPlanetsLevel(type: keyof Input, v: string): void {
+    planetValues.value.forEach(async ({ Name }) => {
+        if (!Name.startsWith('TradingStation')) {
+            calc.onChangeLvl(type, Name, parseInt(v));
+        }
+    });
 }
 function calcTotal(store: ElementsStore, output: Output) {
     let RSLevelReq = 0;
@@ -342,6 +368,10 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
 @import "../style/calculator";
 @import "../style/userInput";
 
+.number-picker {
+    width: 120px;
+    margin: 0 auto;
+}
 .wrap {
     display: flex;
     justify-content: center;
