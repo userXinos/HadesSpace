@@ -304,7 +304,7 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
         MaxUpgradeLevel?: number,
         MaxOnOwnSolarSystem: number
     }
-    let tsMaxLvl = 0;
+    const sModifier = vuex.state.userSettings.planetsCalcSp2 ? SP2ShipmentsBoostPct / 100 : 0;
     const filteredLevels = objectArrayify(levels, {
         filter: ([, v]: [string, unknown]) => Array.isArray(v),
     });
@@ -315,7 +315,6 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
             elements[name] = objectArrayify(filteredLevels, {
                 map: ([k, v]: [string, number[]]) => {
                     const MaxUpgradeLevel = planet.MaxUpgradeLevel as number;
-                    const sModifier = (k == 'ShipmentsCRValuePerDay' && vuex.state.userSettings.planetsCalcSp2) ? SP2ShipmentsBoostPct / 100 : 0;
                     let res = v.map((e) => e * (k in CHARS_MODIFIERS ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1));
 
                     if (k == 'ShipmentsCRValuePerDay') {
@@ -339,11 +338,15 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
             return [name, planet];
         },
     });
-    // noinspection TypeScriptUnresolvedReference
+
+    let tsMaxLvl = 0;
     const TradingStation = objectArrayify(spaceBuildings.TradingStation as TS, {
         map: ([k, v]: [string, unknown]) => {
             if (Array.isArray(v) && v.length > tsMaxLvl) {
                 tsMaxLvl = v.length;
+            }
+            if (k == 'TotalShipmentCRPerDay') {
+                v = (v as number[]).map((e) => e + (e * sModifier));
             }
             return [(k in KEYS_ALIASES_TS) ? KEYS_ALIASES_TS[k] : k, v];
         },
