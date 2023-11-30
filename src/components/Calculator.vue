@@ -180,6 +180,7 @@
 import { computed, nextTick, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
+import debounce from 'lodash.debounce';
 
 import { Head as VHead } from '@vueuse/head';
 import Confirm from '@/components/TheConfirm.vue';
@@ -217,6 +218,11 @@ const format = {
 
 const { provideGetterElements, output, update: updateLogicOutput } = calculator(props.stackChars, props.calcTotal);
 const ConfigManager = new CalculatorConfig(props.localStorageKey);
+const debounceUpdate = debounce((key: string) => {
+    updateInput();
+    updateOutput(key);
+    ConfigManager.save();
+}, 100);
 
 const setupArgs: SetupComponent = {
     output: output,
@@ -365,9 +371,7 @@ function onChangeLvl(type: keyof Input, key: string, value: number|string): numb
         onChangeLvl('plan', key, min);
     }
 
-    updateInput();
-    updateOutput(key);
-    ConfigManager.save();
+    debounceUpdate(key);
 
     return value;
 }
