@@ -315,17 +315,19 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
             elements[name] = objectArrayify(filteredLevels, {
                 map: ([k, v]: [string, number[]]) => {
                     const MaxUpgradeLevel = planet.MaxUpgradeLevel as number;
+                    const shipmentModifier = ((planet.Name in PLANET_MOONS) ? PLANET_MOONS[planet.Name] : 0) + 1;
                     let res = v.map((e) => e * (k in CHARS_MODIFIERS ? (planet[CHARS_MODIFIERS[k]] as number) / 100 : 1));
 
                     if (k == 'ShipmentsCRValuePerDay') {
-                        res = v.map((e) => {
-                            const planetModifier = planet[CHARS_MODIFIERS['ShipmentsCRValuePerDay']] / 100;
-                            const moons = (planet.Name in PLANET_MOONS) ? PLANET_MOONS[planet.Name] : 0;
-                            const num = e * planetModifier * (moons + 1);
-
+                        res = res.map((e) => {
+                            const num = e * shipmentModifier;
                             return num + (num * sModifier);
                         });
                     }
+                    if (k == 'MaxShipments') {
+                        res = res.map((e) => e * shipmentModifier);
+                    }
+
                     if (res.length < MaxUpgradeLevel) {
                         res.push(...Array.from({ length: MaxUpgradeLevel - res.length }, () => res[res.length - 1]));
                     }
