@@ -6,7 +6,7 @@
     @update:open="$emit('close')"
   >
     <template #body>
-      <p class="ver">{{ $t('CURRENT_VERSION') }}: {{ __APP_VERSION__ }}</p>
+      <p class="ver">{{ $t('CURRENT_VERSION') }}: {{ version }}</p>
       <vue-markdown
         :source="text"
         class="content"
@@ -21,6 +21,7 @@ import { ref, onMounted } from 'vue';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
 import VueMarkdown from 'vue-markdown-render';
+const version = __APP_VERSION__;
 export interface Props {
     isOpen: boolean
     titleKey?: string
