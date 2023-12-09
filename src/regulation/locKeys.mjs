@@ -232,6 +232,7 @@ export const gameCharsLocKeys = {
     Sentinel: 'TID_SHIP_CERB_FIGHTER',
     Guardian: 'TID_SHIP_CERB_COLOSSUS',
     Colossu: 'TID_SHIP_CERB_SECTOR_GUARDIAN',
+    TimeToResearch: 'TID_OBJ_RESEARCH_ARTIFACTS'
 };
 
 
@@ -292,7 +293,6 @@ export default {
     InfluenceAwardThreshold: 'INFLUENCE_AWARD_THRESHOLD',
     SlotsUsed: 'SLOTS_USED',
     SalvageCRReward: 'SALVAGE_CR_REWARD',
-    TimeToResearch: 'UNLOCK_TIME',
     XP: 'XP_AWARD',
     XPReward: 'XP_AWARD',
     MinRSLevel: 'MIN_RS_LEVEL',

@@ -32,7 +32,7 @@ export default defineConfig({
             '@Handlers': path('src/utils/Handlers'),
         },
     },
-    assetsInclude: ['**/*.md'],
+    assetsInclude: ['**/*.md', '**/community/tables/*.md'],
     plugins: [
         dynamicImport(),
         vue(),

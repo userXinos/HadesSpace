@@ -29,6 +29,7 @@
       />
     </h1>
 
+    <CommunityTable file-name="artifacts" />
 
     <div id="ModulesByArtType">
       <v-data :data="{TID: 'MODULES_BY_ARTIFACT_TYPE', Name: 'ModulesByArtType', ...modulesByArtType}">
@@ -65,9 +66,10 @@
 
 <!--suppress JSUnresolvedReference -->
 <script setup>
+import { useStore } from 'vuex';
 import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';
-import Store from '@/store';
+import CommunityTable from '@/components/CommunityTable.vue';
 
 import starsData from '@Data/stars.js';
 import globals from '@Data/globals.js';
@@ -77,6 +79,7 @@ import img from '@Img/game/portraits/portrait_DyingPlanet.jpg';
 import types from '@Store/modules/userSettings/types';
 import byTypes from '@Regulation/byTypes';
 
+const store = useStore();
 const { MinDarkRSLevel } = globals;
 const { RedStar } = starsData;
 const { DarkRedStar } = starsData;
@@ -150,7 +153,7 @@ function modulesByLvl(modules) {
     return res;
 }
 function switchCompactMode() {
-    Store.commit(types.SWITCH_COMPACT_MODULES_BY_ART_TYPE_TABLE);
+    store.commit(types.SWITCH_COMPACT_MODULES_BY_ART_TYPE_TABLE);
 }
 </script>
 <style scoped lang="scss">
