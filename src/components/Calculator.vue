@@ -218,9 +218,9 @@ const format = {
 
 const { provideGetterElements, output, update: updateLogicOutput } = calculator(props.stackChars, props.calcTotal);
 const ConfigManager = new CalculatorConfig(props.localStorageKey);
-const debounceUpdate = debounce((key: string) => {
+const debounceUpdate = debounce(() => {
     updateInput();
-    updateOutput(key);
+    updateOutput();
     ConfigManager.save();
 }, 100);
 
@@ -371,7 +371,7 @@ function onChangeLvl(type: keyof Input, key: string, value: number|string): numb
         onChangeLvl('plan', key, min);
     }
 
-    debounceUpdate(key);
+    debounceUpdate();
 
     return value;
 }
