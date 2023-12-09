@@ -1,3 +1,0 @@
-files:
-  - source: /i18n/externalLocales/en/*.json
-    translation: /i18n/externalLocales/%osx_locale%/%file_name%.%file_extension%
