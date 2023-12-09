@@ -76,7 +76,7 @@ import globals from '@Data/globals.js';
 import objectArrayify from '@Utils/objectArrayify';
 import { getBySlotType } from '../components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_DyingPlanet.jpg';
-import types from '@Store/modules/userSettings/types';
+import types from '@/store/modules/userSettings/types';
 import byTypes from '@Regulation/byTypes';
 
 const store = useStore();
