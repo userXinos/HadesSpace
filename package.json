@@ -21,6 +21,7 @@
     "bot_client": "github:mcgoldric/compendium-client",
     "jsoncrush": "^1.1.8",
     "lodash.debounce": "^4.0.8",
+    "parse-markdown-table": "^0.0.6",
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
     "vite": "^5.0.5",
@@ -50,7 +51,7 @@
   "eslintIgnore": [
     "public"
   ],
-  "homepage": "https://github.com/userXinos/HadesSpace#readme",
+  "homepage": "https://github.com/userXinos/HadesSpace",
   "license": "GNU AFFERO GENERAL PUBLIC LICENSE V3",
   "repository": {
     "type": "git",

@@ -158,13 +158,13 @@ export default [
     'RSLevelReq',
 
     // RED_STAR
-    'Hydrogen',
     'Credits',
     'SalvageCRReward',
     'SalvageHydroReward',
     'SlotsUsed',
     'TimeToLoad',
     'TimeToResearch',
+    'BlueprintsGranted',
     'XP',
     'PriceInCrystals',
     'RushCostModifier',
@@ -199,16 +199,6 @@ export default [
     'TeleportShipmentMaxSectors',
     'TSHydroCost',
     'SHHydroPerDay',
-
-    // PLAYER_GOALS
-    'valueX',
-    'valueY',
-    'valueZ',
-    'TimeLimitDays',
-    'CRRewardPerDay',
-    'FuelRewardPerDay',
-    'MaxRSLevel',
-    'MinRSLevel',
 
     '_',
 ];

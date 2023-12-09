@@ -29,6 +29,7 @@
       />
     </h1>
 
+    <CommunityTable file-name="artifacts" />
 
     <div id="ModulesByArtType">
       <v-data :data="{TID: 'MODULES_BY_ARTIFACT_TYPE', Name: 'ModulesByArtType', ...modulesByArtType}">
@@ -65,16 +66,17 @@
 
 <!--suppress JSUnresolvedReference -->
 <script setup>
+import { useStore } from 'vuex';
 import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';
-import { useStore } from 'vuex';
+import CommunityTable from '@/components/CommunityTable.vue';
 
 import starsData from '@Data/stars.js';
 import globals from '@Data/globals.js';
 import objectArrayify from '@Utils/objectArrayify';
 import { getBySlotType } from '../components/ModulePage.vue';
 import img from '@Img/game/portraits/portrait_DyingPlanet.jpg';
-import types from '@/store/modules/userSettings/types';
+import types from '@Store/modules/userSettings/types';
 import byTypes from '@Regulation/byTypes';
 
 const store = useStore();

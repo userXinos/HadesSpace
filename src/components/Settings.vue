@@ -32,7 +32,7 @@
               tag="p"
             >
               <template #github>
-                <a :href="`https://github.com/userXinos/HadesSpace/issues/new?template=bug_report_lang_${languageCode}.yml`">
+                <a :href="`${homepage}/issues/new?template=bug_report_lang_${languageCode}.yml`">
                   GitHub issue
                 </a>
               </template>
@@ -125,6 +125,7 @@ import Changelog from '@/components/Changelog.vue';
 import types from '@/store/modules/userSettings/types';
 
 import languages from '@/../i18n/dist/index.json';
+import { homepage } from '../../package.json';
 
 const store = useStore();
 const isOpenModal = ref(false);
