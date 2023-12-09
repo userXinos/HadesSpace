@@ -428,7 +428,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     destroyed02: {
         Name: "destroyed02",
@@ -446,7 +446,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     destroyed03: {
         Name: "destroyed03",
@@ -464,7 +464,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     destroyed04: {
         Name: "destroyed04",
@@ -482,7 +482,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     destroyed05: {
         Name: "destroyed05",
@@ -500,7 +500,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     ice_variation1: {
         Name: "ice_variation1",
@@ -552,7 +552,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     whitestar1: {
         Name: "whitestar1",
@@ -569,7 +569,7 @@ export default {
         CreditShipmentModifier: 0,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_PlanetWhiteStar",
-        ShipmentOverride: 12,
+        ShipmentOverride: 100,
         RelicHydroStages: [3, 10],
         RelicHydroAmounts: [50, 400, 1500],
     },
@@ -589,7 +589,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     whitestar2: {
         Name: "whitestar2",
@@ -606,7 +606,7 @@ export default {
         CreditShipmentModifier: 0,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_PlanetWhiteStar",
-        ShipmentOverride: 12,
+        ShipmentOverride: 100,
         RelicHydroStages: [3, 10],
         RelicHydroAmounts: [250, 500, 2000],
     },
@@ -626,7 +626,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     destroyed09: {
         Name: "destroyed09",
@@ -644,7 +644,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     destroyed10: {
         Name: "destroyed10",
@@ -662,7 +662,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     whitestar_l1: {
         Name: "whitestar_l1",
@@ -679,7 +679,7 @@ export default {
         CreditShipmentModifier: 0,
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_PlanetWhiteStar",
-        ShipmentOverride: 12,
+        ShipmentOverride: 100,
         RelicHydroStages: [3, 10],
         RelicHydroAmounts: [100, 1000, 3000],
     },
@@ -699,7 +699,7 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
     ds1: {
         Name: "ds1",
@@ -767,6 +767,6 @@ export default {
         FuelShipmentModifier: 0,
         ConceptImage: "portrait_DyingPlanet",
         MaxHealth: 1000,
-        ShipmentOverride: 12,
+        ShipmentOverride: 9999,
     },
 };
