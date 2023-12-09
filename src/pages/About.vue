@@ -20,8 +20,7 @@
 <script setup>
 import { Head as VHead } from '@vueuse/head';
 import { h } from 'vue';
-
-const gh = 'https://github.com/userXinos/HadesSpace';
+import { homepage as gh } from '../../package.json';
 
 function VLink({ text, to }) {
     return h('a', {
