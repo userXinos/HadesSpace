@@ -39,5 +39,7 @@
   "TECHNOLOGIES": "科技",
   "CRYSTAL_CALCULATOR": "水晶计算器",
   "TIME": "研究时间",
-  "UPGRADE_TIME_IN_PARALLEL": "并行升级时间"
+  "UPGRADE_TIME_IN_PARALLEL": "并行升级时间",
+  "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
+  "HERE": "here"
 }
