@@ -70,7 +70,7 @@ import TheConfirm from '@/components/TheConfirm.vue';
 import appSidebar from '@/composables/appSidebar';
 import appChangelog from '@/composables/appChangelog';
 
-const MAX_WIDTH = 1000;
+const MAX_WIDTH = 1500;
 
 const router = useRouter();
 const internalInstance = getCurrentInstance();

@@ -74,7 +74,7 @@ function select(i: number|null) {
 <style scoped lang="scss">
 @import "../style/vars";
 
-$mv: 1000px;
+$mv: 1500px;
 $selected-color: $border-color;
 
 .container {
