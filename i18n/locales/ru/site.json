@@ -39,5 +39,7 @@
   "TECHNOLOGIES": "Технологии",
   "CRYSTAL_CALCULATOR": "Калькулятор кристаллов",
   "TIME": "Время",
-  "UPGRADE_TIME_IN_PARALLEL": "Время параллельного улучшения"
+  "UPGRADE_TIME_IN_PARALLEL": "Время параллельного улучшения",
+  "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
+  "HERE": "here"
 }
