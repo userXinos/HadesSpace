@@ -39,5 +39,7 @@
   "TECHNOLOGIES": "Technologien",
   "CRYSTAL_CALCULATOR": "Kristall-Rechner",
   "TIME": "Dauer",
-  "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel"
+  "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel",
+  "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
+  "HERE": "here"
 }
