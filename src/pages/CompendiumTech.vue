@@ -46,11 +46,10 @@
 
 <!--suppress TypeScriptCheckImport, TypeScriptUnresolvedReference -->
 <script setup lang="ts">
-import { ref, reactive, h, VNode, watch, onMounted, onUnmounted } from 'vue';
+import { ref, reactive, h, VNode, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { getTechIndex, TechLevels } from 'bot_client';
-import client from '../utils/compendium';
-import debounce from 'lodash.debounce';
+import { getTechIndex } from 'bot_client';
+import compendiumTechListLogic from '@/composables/compendiumTechList';
 
 import { Head as VHead } from '@vueuse/head';
 import Icon from '@/components/Icon.vue';
@@ -64,11 +63,7 @@ import shipsData from '@Data/capital_ships.js';
 import allianceData from '@Data/alliance_levels.js';
 import spaceBuildingsData from '@Data/spacebuildings.js';
 import modulesData from '@Data/modules.js';
-import objectArrayify from '../utils/objectArrayify';
-import { getTechFromIndex } from 'bot_client/src/module_types';
 import { TechLevel } from 'bot_client/src/bot_api';
-
-declare type SetTechLevel = (techId: number, level: number) => Promise<void>;
 
 const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
 const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
@@ -87,17 +82,15 @@ const minLvl: Record<string, number> = Object.fromEntries([
     ['AllianceLevel', 0],
 ]);
 
-const setTechLevel: SetTechLevel = debounce((...args) => client.setTechLevel(...args), 500);
+const { data, levelMap, setTechLevel } = compendiumTechListLogic();
 const { t } = useI18n();
 const title = t('HS_COMPENDIUM');
 const openModal = ref(false);
-const data = ref<TechLevels>(null);
-const levelMap = ref<Record<string, number>>({});
 const modalOpts = reactive({
     size: SIZES.SMALL,
     title: t('TECHNOLOGIES'),
     data: {
-        value: {},
+        value: {} as Record<string, unknown>,
         maxLevel: 0,
         minLevel: 0,
         lastAgoUpdate: 0,
@@ -109,31 +102,11 @@ const modalOpts = reactive({
 
 const dateInterval = setInterval(updateLastAgo, 5000);
 
-onMounted(() => {
-    if (client.getUser()) {
-        data.value = client.getTechLevels();
-    }
-});
 onUnmounted(() => {
     clearTimeout(dateInterval);
 });
 
-watch(data, (value) => {
-    if (value) {
-        levelMap.value = objectArrayify(value, {
-            map: ([i, v]) => [getTechFromIndex(i as number), v.level],
-        });
-    }
-}, { deep: true });
-
-client.on('sync', (tl: TechLevels) => data.value = tl);
-client.on('connected', () => data.value = client.getTechLevels());
-client.on('disconnected', () => {
-    data.value = undefined;
-    levelMap.value = undefined;
-});
-
-function openTechInfo(value: object) {
+function openTechInfo(value: Record<string, string>) {
     if (data.value) {
         modalOpts.data.value = value;
         modalOpts.data.maxLevel = maxLvl[value.Name];
@@ -181,7 +154,7 @@ function ModalIcon(): VNode {
         return h(Icon, { name: m.Icon, dir: m.specialIcon ? 'icons' : 'game/Modules' });
     }
     if (m.Model) {
-        return h(Icon, { name: m.Model[(getDataByKey(m.Name)?.level - 1) || 5], dir: 'game/Ships' });
+        return h(Icon, { name: m.Model[(getDataByKey(m.Name as string)?.level - 1) || 5], dir: 'game/Ships' });
     }
     if (m.PrefabModel) {
         return h(Icon, { name: m.PrefabModel, dir: 'game/SpaceBuildings' });
@@ -192,7 +165,7 @@ function updateLastAgo() {
         const lastDate = getDataByKey(modalOpts.data.key)?.ts;
 
         if (lastDate) {
-            modalOpts.data.lastAgoUpdate = (new Date() - lastDate) / 1000;
+            modalOpts.data.lastAgoUpdate = (new Date().getTime() - lastDate) / 1000;
         }
     }
 }
