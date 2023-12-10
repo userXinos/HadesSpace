@@ -82,7 +82,7 @@
               :value="$store.state.userSettings.calcDayCreditLimit"
               type="number"
               min="0"
-              @input="$store.commit(types.SET_CALC_DAY_CREDIT_LIMIT, parseInt($event.target.value))"
+              @input="$store.commit(userSettingsTypes.SET_CALC_DAY_CREDIT_LIMIT, parseInt($event.target.value))"
             >
           </div>
 
@@ -145,8 +145,6 @@
 
     </modal>
 
-    <confirm @setShow="setShowConfirm" />
-
     <modal
       v-model:open="newModal"
       :title="$t('CREATE')"
@@ -178,17 +176,18 @@
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue';
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import debounce from 'lodash.debounce';
 
 import { Head as VHead } from '@vueuse/head';
-import Confirm from '@/components/TheConfirm.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
-import types from '@/store/modules/userSettings/types';
+import userSettingsTypes from '@/store/modules/userSettings/types';
+import types from '@/store/types';
 import statsStyleName from '@Handlers/statsStyleName';
 import calculator from '@/composables/calculator';
 import CalculatorConfig from '@/composables/calculatorConfig';
@@ -206,6 +205,7 @@ export interface Props {
     input: Input
 }
 
+const store = useStore();
 const { t } = useI18n();
 const router = useRouter();
 const props = defineProps<Props>();
@@ -237,7 +237,6 @@ const setupArgs: SetupComponent = {
         provideGetterElements((...args) => cb(ConfigManager.TIDs, ...args)),
 };
 
-let resetConfirm: (q: string) => Promise<void> = (() => Promise.prototype);
 const settingsModal = ref(false);
 const newModal = ref(false);
 const newConfigFromText = ref('');
@@ -258,9 +257,6 @@ fullUpdate();
 emit('setup', setupArgs);
 
 
-function setShowConfirm(func: () => Promise<void>): void {
-    resetConfirm = func;
-}
 function updateInput() {
     emit('update:input', ConfigManager.selectedConfig);
 }
@@ -273,7 +269,7 @@ function fullUpdate() {
 }
 async function onReset(event: Event): Promise<void> {
     if ((event.target as HTMLInputElement).name == 'all') {
-        await resetConfirm('Reset all ? Are you serious ?')
+        await store.dispatch(types.OPEN_CONFIRM, 'Reset all ? Are you serious ?')
             .then(() => {
                 for (const key in props.input) {
                     if (key in props.input) {
@@ -297,7 +293,7 @@ async function onReset(event: Event): Promise<void> {
 }
 async function removeConfig(): Promise<void> {
     const { name } = ConfigManager.store.configs[ConfigManager.store.selected];
-    await resetConfirm(t('REMOVE_CONFIG', [name]))
+    await store.dispatch(types.OPEN_CONFIRM, t('REMOVE_CONFIG', [name]))
         .then(() => {
             ConfigManager.removeSelected();
             fullUpdate();

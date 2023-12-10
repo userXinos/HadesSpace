@@ -26,12 +26,12 @@
         >
           <div class="avatar">
             <img
-              :src="getDiscordIconUrl(guild!.id, guild!.icon)"
+              :src="getDiscordIconUrl(guild!.id, guild!.icon).href"
               :alt="`${guild!.name} icon`"
               @error="(e) => e.target.src = memberImage"
             >
             <img
-              :src="getDiscordAvatarUrl(user.id, user.avatar)"
+              :src="getDiscordAvatarUrl(user.id, user.avatar).href"
               :alt="`${user.username} avatar`"
               @error="(e) => e.target.src = memberImage"
             >
@@ -89,28 +89,27 @@
         </div>
       </template>
     </Modal>
-
-    <Confirm @setShow="(func) => {userConfirm = func;}" />
-
   </div>
 </template>
 
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 import { Identity, User, Guild } from 'bot_client';
 
 import client, { init as clientInit } from '@Utils/compendium';
 import { getDiscordAvatarUrl, getDiscordIconUrl } from '@Utils/getDiscordUrl';
 import memberImage from '@Img/icons/member.png';
+import types from '@/store/types';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
-import Confirm from '@/components/TheConfirm.vue';
 
-
+// ex: Y3cf-Hymz-v2Qs
 const REQ_CODE_PATTERN = /[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}/;
 
+const store = useStore();
 const { t } = useI18n();
 const openCodeReqModal = ref(false);
 const reqCode = ref('');
@@ -118,8 +117,6 @@ const error = ref('');
 const isFetching = ref(false);
 const user = ref<User|null>();
 const guild = ref<Guild>();
-
-let userConfirm: (q: string) => Promise<void> = (() => Promise.prototype); // eslint-disable-line prefer-const
 
 onMounted(async () => {
     isFetching.value = true;
@@ -150,8 +147,8 @@ async function applyReqCode() {
 
     try {
         ident = await client.checkConnectCode(reqCode.value);
-    } catch (e) {
-        error.value = e.toString();
+    } catch (e: unknown) {
+        error.value = (e as Error).toString();
         console.error(e);
         isFetching.value = false;
         return;
@@ -160,7 +157,7 @@ async function applyReqCode() {
     isFetching.value = false;
     openCodeReqModal.value = false;
 
-    const drop = await userConfirm(t('CONFIRM_LOGIN', [ident.guild.name, ident.user.username]))
+    const drop = await store.dispatch(types.OPEN_CONFIRM, t('CONFIRM_LOGIN', [ident.guild.name, ident.user.username]))
         .catch(() => {
             openCodeReqModal.value = true;
             return true;
@@ -175,7 +172,7 @@ async function applyReqCode() {
     }
 }
 function userProfileClick() {
-    userConfirm(t('TID_SETTINGS_DLG_SIGN_OUT'))
+    store.dispatch(types.OPEN_CONFIRM, t('TID_SETTINGS_DLG_SIGN_OUT'))
         .then(() => {
             client.logout();
             user.value = undefined;

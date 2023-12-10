@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-head><title>Hades Space</title></v-head>
+    <VHead><title>Hades Space</title></VHead>
 
     <!--suppress HtmlUnknownTag -->
     <vue-progress-bar />
@@ -10,13 +10,13 @@
     >
       <div>
 
-        <the-header
+        <TheHeader
           :is-min-mode="isMinMode"
           :open-sidebar="() => setShowSidebar(true)"
         >
 
           <div class="target-wrap"><div id="table-head-target" /></div>
-          <router-view />
+          <RouterView />
 
           <div
             v-if="renderError"
@@ -33,7 +33,7 @@
             </div>
           </div>
 
-        </the-header>
+        </TheHeader>
 
         <Sidebar
           v-if="isMinMode"
@@ -44,9 +44,10 @@
       </div>
     </div>
 
-    <the-footer />
-    <go-top />
-    <changelog
+    <TheFooter />
+    <GoTop />
+    <TheConfirm />
+    <Changelog
       :is-open="changelogIsOpen"
       @close="changelogOnClose"
     />
@@ -64,6 +65,7 @@ import TheHeader from '@/components/TheHeader.vue';
 import TheFooter from '@/components/TheFooter.vue';
 import Sidebar from '@/components/TheSidebar.vue';
 import Changelog from '@/components/Changelog.vue';
+import TheConfirm from '@/components/TheConfirm.vue';
 
 import appSidebar from '@/composables/appSidebar';
 import appChangelog from '@/composables/appChangelog';

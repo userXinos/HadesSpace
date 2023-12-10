@@ -29,16 +29,18 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 import Modal from '@/components/Modal.vue';
 
+import types from '@/store/types';
+
+const store = useStore();
 const text = ref('');
 const show = ref(false);
-let confirm;
-let defeat;
+let confirm: (value?: unknown) => void;
+let defeat: (reason?: unknown) => void;
 
-const emit = defineEmits(['setShow']);
-
-emit('setShow', open);
+store.dispatch(types.REGISTER_CONFIRM, open);
 
 function modalUpdate() {
     close(defeat);

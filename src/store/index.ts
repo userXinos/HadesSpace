@@ -12,20 +12,28 @@ import userSettingsPlugin from './modules/userSettings/plugin';
 interface RootState {
     userSettings: Settings;
     modals: number[]
+    openConfirm: (str: string) => Promise<void>;
 }
 
 const state = {
     modals: [] as RootState['modals'],
+    openConfirm: (() => Promise.prototype) as RootState['openConfirm'],
 } as RootState;
 const mutations = <MutationTree<RootState>> {
-    [types.MODAL_OPEN](state, key) {
+    [types.MODAL_OPEN](state, key: number) {
         state.modals.push(key);
     },
-    [types.MODAL_CLOSE](state, key) {
+    [types.MODAL_CLOSE](state, key: number) {
         const i = state.modals.indexOf(key);
         if (i != -1) {
             state.modals.splice(i, 1);
         }
+    },
+    [types.REGISTER_CONFIRM](state, openFunc: RootState['openConfirm']) {
+        state.openConfirm = openFunc;
+    },
+    [types.OPEN_CONFIRM](state, str: string) {
+        return state.openConfirm(str);
     },
 };
 const actions = <ActionTree<RootState, unknown>> {
@@ -36,6 +44,12 @@ const actions = <ActionTree<RootState, unknown>> {
     },
     [types.MODAL_CLOSE]({ commit }, key) {
         commit(types.MODAL_CLOSE, key);
+    },
+    [types.REGISTER_CONFIRM]({ commit }, openFunc: RootState['openConfirm']) {
+        commit(types.REGISTER_CONFIRM, openFunc);
+    },
+    [types.OPEN_CONFIRM](_, str: string) {
+        return state.openConfirm(str);
     },
 };
 
