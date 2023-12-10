@@ -3,7 +3,7 @@
   <div>
     <div class="container">
 
-      <calculator
+      <Calculator
         v-model:input="input"
         :stack-chars="STACK_CHARS"
         :calc-total="calcTotal"
@@ -11,6 +11,14 @@
         title-key="MODULES_CALC"
         @setup="setupCalculator"
       />
+
+      <div class="comp-btn">
+        <button
+          v-if="compData"
+          class="button accent"
+          @click="openCompModal = true"
+        >{{ $t('HS_COMPENDIUM') }}</button>
+      </div>
 
       <div class="sections-input">
         <section
@@ -48,7 +56,7 @@
       </div>
     </div>
 
-    <modal
+    <Modal
       v-model:open="openModal"
       v-bind="modalOpts"
     >
@@ -88,7 +96,7 @@
               :key="type"
               class="input"
             >
-              <span v-t="inputLocKeys[type]" />
+              <span v-t="INPUT_LOC_KEYS[type]" />
               <select
                 class="select-lvl"
                 @change="onChangeLvl(type, $event.target.value)"
@@ -151,34 +159,72 @@
           </ul>
         </div>
       </template>
-    </modal>
+    </Modal>
+
+    <Modal
+      v-model:open="openCompModal"
+      :size="SIZES.SMALL"
+      :title="$t('HS_COMPENDIUM')"
+    >
+      <template #body>
+        <div class="select">
+          <p
+            v-t="'SYNC'"
+            class="name"
+          />
+          <select
+            :value="$store.state.userSettings.compendiumTechSyncConfigIndex"
+            @change="$store.commit(userSettingsTypes.SET_COMPENDIUM_TECH_SYNC_CONFIG_INDEX, parseInt($event.target.value))"
+          >
+            <option
+              v-for="(v, index) in calc.Config.configs"
+              :key="index"
+              :value="index"
+            >
+              {{ v.name }}
+            </option>
+          </select>
+        </div>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
-import { ref, Ref, reactive } from 'vue';
+import { ref, Ref, reactive, onMounted, watch } from 'vue';
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 import Calculator from '@/components/Calculator.vue';
 
+import { init as compInit } from '@Utils/compendium';
+import compendiumTechList from '@/composables/compendiumTechList';
+
 import type { SetupComponent, SetupGetElementsCB, Input, Output, OutputValue, OutputMap, ElementsStore } from '@/typings/calculator';
 import { getBySlotType } from '../components/ModulePage.vue';
 import statsStyleName from '../utils/Handlers/statsStyleName';
 import byTypes from '@Regulation/byTypes.js';
+import userSettingsTypes from '@/store/modules/userSettings/types';
+import { getTechIndex } from 'bot_client';
+
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
-
-const { t } = useI18n();
-const inputLocKeys = {
+const INPUT_LOC_KEYS = {
     actually: 'CURRENT_LVL',
     plan: 'PLAN_LVL',
 };
+
+const store = useStore();
+const { t } = useI18n();
+const { data: compData, levelMap: compLevelMap, setTechLevel: compSetTechLevel } = compendiumTechList();
+
 const modules: Ref<{[k: string]: unknown}> = ref({});
 const input: Ref<Input> = ref({ actually: {}, plan: {} });
 const openModal = ref(false);
+const openCompModal = ref(false);
 const modalOpts = reactive({
     size: SIZES.SMALL,
     title: t('TID_TECH_DLG_TITLE'),
@@ -192,6 +238,16 @@ const modalOpts = reactive({
 });
 let calc: SetupComponent;
 
+onMounted(async () => {
+    await compInit();
+});
+watch([compLevelMap, () => store.state.userSettings.compendiumTechSyncConfigIndex], ([value]) => {
+    if (store.state.userSettings.compendiumTechSyncConfigIndex == calc.Config.selected) {
+        input.value.actually = { ...value };
+        input.value.plan = { ...value, ...input.value.plan };
+    }
+});
+
 function setupCalculator(v: SetupComponent) {
     calc = v;
     for (const type of byTypes.artifact) {
@@ -199,6 +255,10 @@ function setupCalculator(v: SetupComponent) {
     }
 }
 function onChangeLvl(type: keyof Input, value: number|string) {
+    if (store.state.userSettings.compendiumTechSyncConfigIndex == calc.Config.selected && type == 'actually') {
+        const i = getTechIndex(modalOpts.data.key);
+        compSetTechLevel(i, value);
+    }
     return calc.onChangeLvl(type, modalOpts.data.key, value);
 }
 function isSelected(type: keyof Input, value: number): boolean {
@@ -272,6 +332,12 @@ $plan-color: #ded45a;
 
     @media screen and (max-width: 960px){
         margin: 0 4%;
+    }
+
+    .comp-btn {
+        margin: 10px 0;
+        display: flex;
+        justify-content: end;
     }
 }
 

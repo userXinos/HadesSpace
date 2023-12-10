@@ -32,6 +32,10 @@ export default <MutationTree<Settings>>{
         state.compendiumCorpLastRoleId = id;
         return state.compendiumCorpLastRoleId;
     },
+    [types.SET_COMPENDIUM_TECH_SYNC_CONFIG_INDEX](state, index?: number) {
+        state.compendiumTechSyncConfigIndex = index;
+        return state.compendiumTechSyncConfigIndex;
+    },
     [types.SET_CALC_DAY_CREDIT_LIMIT](state, value) {
         state.calcDayCreditLimit = value;
         return state.calcDayCreditLimit;

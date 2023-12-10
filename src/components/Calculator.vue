@@ -232,6 +232,7 @@ const setupArgs: SetupComponent = {
     outputClasses: outputClasses,
     forceReCalc: fullUpdate,
     format: format,
+    Config: ConfigManager.store,
 
     provideGetterElements: (cb: SetupGetElementsCB) =>
         provideGetterElements((...args) => cb(ConfigManager.TIDs, ...args)),

@@ -6,5 +6,6 @@ declare interface Settings {
     showKeys: boolean,
     lastVersionChangelog: string,
     compendiumCorpLastRoleId: string
+    compendiumTechSyncConfigIndex: number
     calcDayCreditLimit: number
 }

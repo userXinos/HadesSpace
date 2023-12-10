@@ -56,6 +56,7 @@ export interface SetupComponent {
     outputClasses: (type: keyof Output, key: string, charName?: string) => object,
     format: { value: (k: string, v: unknown) => unknown, key: (k: string) => string }
     forceReCalc: () => void
+    Config: Config
     provideGetterElements: (cb: SetupGetElementsCB) => unknown,
 }
 

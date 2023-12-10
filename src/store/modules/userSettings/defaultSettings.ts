@@ -6,5 +6,6 @@ export default Object.freeze({
     showKeys: false,
     lastVersionChangelog: '0.0.0',
     compendiumCorpLastRoleId: '',
+    compendiumTechSyncConfigIndex: undefined,
     calcDayCreditLimit: 8000000,
 });
