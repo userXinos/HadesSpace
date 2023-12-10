@@ -39,5 +39,7 @@
   "TECHNOLOGIES": "Technologies",
   "CRYSTAL_CALCULATOR": "Calculateur de cristal",
   "TIME": "Temps",
-  "UPGRADE_TIME_IN_PARALLEL": "Mise à niveau en parallèle"
+  "UPGRADE_TIME_IN_PARALLEL": "Mise à niveau en parallèle",
+  "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
+  "HERE": "here"
 }
