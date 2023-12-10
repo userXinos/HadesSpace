@@ -39,5 +39,7 @@
   "TECHNOLOGIES": "テクノロジー",
   "CRYSTAL_CALCULATOR": "クリスタル計算機",
   "TIME": "時間",
-  "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel"
+  "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel",
+  "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
+  "HERE": "here"
 }
