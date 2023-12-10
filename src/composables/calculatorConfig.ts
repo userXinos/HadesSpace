@@ -5,7 +5,7 @@ import JSONCrush from 'jsoncrush';
 
 import type { Input, InputValue, Config } from '@/typings/calculator';
 
-const NAME_ZERO = 'new entry';
+const NAME_ZERO = 'default entry';
 const STRING_FORMAT_LOCALE = 'en';
 
 export default class CalculatorConfig {
