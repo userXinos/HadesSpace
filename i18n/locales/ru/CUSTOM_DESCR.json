@@ -1,3 +1,3 @@
 {
-  "TID_YS_SECTORS": "Примичание: № (номер) сектора имеет рандомный характер в рамках своего \"Кластера\", но кластеры не привязаны к сканеру малого действия. Исключение первые 6 секторов - в этих секторах нету рандома"
+  "TID_YS_SECTORS": "Note: The Sector № (number) are random within their \"Cluster\", but the clusters are not tied to the Short range scanner. Exclusion of the first 6 sectors - there is no randomness in these sectors"
 }
