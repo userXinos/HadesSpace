@@ -26,6 +26,11 @@ export default async function() {
 
     return [ ...new Set([
         ...usedInCodeKeys,
+        ...Array.from({ length: 10 }, ((_, index) => (
+            i18nReport.maybeDynamicKeys.map(({ path }) => interpolateString(path, { v: index }))
+        )))
+            .flat()
+            .filter((s) => !s.endsWith('undefined')),
         ...getUniqueStringValues(dist),
         ...Object.values(gameCharsLocKeys),
         ...Object.values(gameSlostLocKeys),
@@ -61,4 +66,9 @@ function getUniqueStringValues(obj) {
     obj.forEach((item) => traverse(item));
 
     return result;
+}
+function interpolateString(str, params) {
+    const names = Object.keys(params);
+    const values = Object.values(params);
+    return new Function(...names, `return \`${str}\`;`)(...values);
 }
