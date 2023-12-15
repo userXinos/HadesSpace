@@ -22,6 +22,8 @@
   "MAX_PER_STAR_SYSTEM": "Maximum quantity per system",
   "MAX_PER_SECTOR": "Maximum quantity per sector",
   "CERBERUS": "Cerberus",
+  "DARK_CERBERUS": "Dark cerberus",
+  "CERBERUS_STATIONS": "Cerberus stations",
   "SECTIONS": "Sections",
   "FLAGSHIP_MODULES": "Flagship modules",
   "COST": "Cost",
@@ -99,5 +101,6 @@
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Cooldown after jumping with a battleship",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Cooldown after jumping to another ship type",
   "MOONS": "Moons",
-  "TURRET": "Turret"
+  "TURRET": "Turret",
+  "BLUEPRINTS_GRANTED": "Blueprints granted"
 }
