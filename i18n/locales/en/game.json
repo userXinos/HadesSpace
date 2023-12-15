@@ -22,6 +22,8 @@
   "MAX_PER_STAR_SYSTEM": "Maximum quantity per system",
   "MAX_PER_SECTOR": "Maximum quantity per sector",
   "CERBERUS": "Cerberus",
+  "DARK_CERBERUS": "Dark cerberus",
+  "CERBERUS_STATIONS": "Cerberus stations",
   "SECTIONS": "Sections",
   "FLAGSHIP_MODULES": "Flagship modules",
   "COST": "Cost",

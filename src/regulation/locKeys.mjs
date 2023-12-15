@@ -230,7 +230,8 @@ export const gameCharsLocKeys = {
     Sentinel: 'TID_SHIP_CERB_FIGHTER',
     Guardian: 'TID_SHIP_CERB_COLOSSUS',
     Colossu: 'TID_SHIP_CERB_SECTOR_GUARDIAN',
-    TimeToResearch: 'TID_OBJ_RESEARCH_ARTIFACTS'
+    TimeToResearch: 'TID_OBJ_RESEARCH_ARTIFACTS',
+    ShipmentsCRValuePerDay: 'TID_PLANET_UPG_SHIPMENT_YIELD',
 };
 
 
@@ -262,7 +263,6 @@ export default {
     CerbGroup: 'CERBERUS',
     Cost: 'COST',
     XPAward: 'XP_AWARD',
-    ShipmentsCRValuePerDay: 'TID_PLANET_UPG_SHIPMENT_YIELD',
     TimeToUpgrade: 'TIME_TO_UPGRADE',
     MaxUpgradeLevel: 'MAX_UPGRADE_LEVEL',
     CreditShipmentModifier: 'CREDIT_SHIPMENT_MODIFIER',

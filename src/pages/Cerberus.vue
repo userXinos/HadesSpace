@@ -5,14 +5,17 @@
       :content-args="{data: ships, iconDir: 'game/Ships'}"
       :portrait="{src: cerberusPortrait, alt: 'cerberus'}"
     >
-      <div class="container">
-        <h2>{{ 'Categories' }}</h2>
-        <div class="list">
-          <ol>
-            <li><a href="#DarkCerberus">Dark cerberus</a></li>
-            <li><a href="#CerberusStations">Cerberus stations</a></li>
-          </ol>
-        </div>
+      <div class="categories">
+        <ol>
+          <li><a
+            v-t="'DARK_CERBERUS'"
+            href="#DarkCerberus"
+          /></li>
+          <li><a
+            v-t="'CERBERUS_STATIONS'"
+            href="#CerberusStations"
+          /></li>
+        </ol>
       </div>
     </Page>
 
@@ -137,28 +140,24 @@ function getShipLocName(key) {
 
 <style scoped lang="scss">
 @import "../style/page";
+@import "../style/vars";
 
 .portrait-container {
     padding-top: 5%;
 }
 
-.container {
-    h2 {
-        text-align: center;
-        margin: 30px;
+.categories {
+    margin: 0 3%;
+
+    ol {
+        padding: 2%;
+        border: solid $border-color 4px;
+        border-radius: 10px;
+        list-style-type: none;
+        font-size: 150%;
     }
-
-    .list {
-        margin: 0 3%;
-
-        ol {
-            border: 5px solid #586066;
-            list-style-type: none;
-            font-size: 150%;
-        }
-        li {
-            text-align: center;
-        }
+    li {
+        text-align: center;
     }
 }
 </style>

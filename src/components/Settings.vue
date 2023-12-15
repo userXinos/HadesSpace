@@ -59,8 +59,14 @@
 
         <div class="switch">
           <div>
-            <p class="name"> Disable filters </p>
-            <p class="description">Disable all characteristic filters used to hide unimportant information</p>
+            <p
+              v-t="'DISABLE_FILTERS'"
+              class="name"
+            />
+            <p
+              v-t="'DISABLE_FILTERS_NOTE'"
+              class="description"
+            />
           </div>
           <input
             id="disable-filters"
