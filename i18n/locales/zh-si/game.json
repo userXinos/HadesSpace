@@ -22,6 +22,8 @@
   "MAX_PER_STAR_SYSTEM": "每个恒星系统最大容纳量",
   "MAX_PER_SECTOR": "每个星区能建造的最大数量",
   "CERBERUS": "冥犬",
+  "DARK_CERBERUS": "Dark cerberus",
+  "CERBERUS_STATIONS": "Cerberus stations",
   "SECTIONS": "部分",
   "FLAGSHIP_MODULES": "旗舰模组",
   "COST": "花费",
@@ -99,5 +101,6 @@
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "战斗舰跃迁冷却",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "其他舰船跃迁冷却",
   "MOONS": "卫星数目",
-  "TURRET": "炮塔"
+  "TURRET": "炮塔",
+  "BLUEPRINTS_GRANTED": "Blueprints granted"
 }
