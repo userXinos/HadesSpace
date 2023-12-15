@@ -41,5 +41,8 @@
   "TIME": "時間",
   "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel",
   "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
-  "HERE": "here"
+  "HERE": "here",
+  "SYNC": "Synchronize",
+  "DISABLE_FILTERS": "Disable filters",
+  "DISABLE_FILTERS_NOTE": "Disable all characteristic filters used to hide unimportant information"
 }
