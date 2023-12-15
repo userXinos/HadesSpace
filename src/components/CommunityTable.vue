@@ -18,7 +18,7 @@
         <a
           :href="`${homepage}/tree/master/community/tables/${props.fileName}.md`"
           target="_blank"
-        >{{ $t('here') }}</a>
+        >{{ $t('HERE') }}</a>
       </i18n-t>
     </div>
   </VData>
