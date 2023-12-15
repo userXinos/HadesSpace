@@ -12,7 +12,7 @@
             href="#DarkCerberus"
           /></li>
           <li><a
-            v-t="'CERBERUS_STATIONS'"
+            v-t="'TID_CERB_STATION_HOME2'"
             href="#CerberusStations"
           /></li>
         </ol>
@@ -31,9 +31,10 @@
           class="topic"
         >
           <a
+            v-t="'DARK_CERBERUS'"
             href="#DarkCerberus"
             class="link-topic"
-          > {{ 'Dark ' + $t('CERBERUS') }} </a>
+          />
         </h1>
       </div>
 
