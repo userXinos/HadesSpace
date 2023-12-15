@@ -328,6 +328,7 @@ export default {
     Moons: 'MOONS',
     TimeToUpgradeParallel: 'UPGRADE_TIME_IN_PARALLEL',
     turret: 'TURRET',
+    BlueprintsGranted: 'BLUEPRINTS_GRANTED',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,
