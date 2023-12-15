@@ -41,5 +41,8 @@
   "TIME": "研究时间",
   "UPGRADE_TIME_IN_PARALLEL": "并行升级时间",
   "COMMUNITY_CONTENT": "此内容由社区提供。点击 {0} 可以编辑。",
-  "HERE": "这里"
+  "HERE": "这里",
+  "SYNC": "Synchronize",
+  "DISABLE_FILTERS": "Disable filters",
+  "DISABLE_FILTERS_NOTE": "Disable all characteristic filters used to hide unimportant information"
 }
