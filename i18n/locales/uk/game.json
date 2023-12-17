@@ -22,6 +22,7 @@
   "MAX_PER_STAR_SYSTEM": "Максимальна кількість в системі",
   "MAX_PER_SECTOR": "Максимальна кількість в секторі",
   "CERBERUS": "Цербери",
+  "DARK_CERBERUS": "Dark cerberus",
   "SECTIONS": "Розділи",
   "FLAGSHIP_MODULES": "Модулі флагмана",
   "COST": "Вартість",
@@ -99,5 +100,6 @@
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Перезарядка лінкора після стрибка",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка після стрибка інший типом корабля",
   "MOONS": "Супутники",
-  "TURRET": "Турель"
+  "TURRET": "Турель",
+  "BLUEPRINTS_GRANTED": "Blueprints granted"
 }

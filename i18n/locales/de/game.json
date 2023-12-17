@@ -22,6 +22,7 @@
   "MAX_PER_STAR_SYSTEM": "Maximale Menge pro System",
   "MAX_PER_SECTOR": "Maximale Menge pro Sektor",
   "CERBERUS": "Cerberus",
+  "DARK_CERBERUS": "Dark cerberus",
   "SECTIONS": "Abschnitte",
   "FLAGSHIP_MODULES": "Flaggschiff-Module",
   "COST": "Kosten",
@@ -99,5 +100,6 @@
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Abklingzeit nach einem Sprung mit einem Schlachtschiff",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Abklingzeit nach dem Springen zu einem anderen Schiffstyp",
   "MOONS": "Monde",
-  "TURRET": "Turret"
+  "TURRET": "Turret",
+  "BLUEPRINTS_GRANTED": "Blueprints granted"
 }

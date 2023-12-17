@@ -22,6 +22,7 @@
   "MAX_PER_STAR_SYSTEM": "Cantidad máxima por sistema",
   "MAX_PER_SECTOR": "Cantidad máxima por sector",
   "CERBERUS": "Cerberos",
+  "DARK_CERBERUS": "Dark cerberus",
   "SECTIONS": "Secciones",
   "FLAGSHIP_MODULES": "Módulos de Nave Insignia",
   "COST": "Coste",
@@ -99,5 +100,6 @@
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "Tiempo de enfriamiento después de hacer saltar una Nave de Combate",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Enfriamiento después de saltar a otro tipo de nave",
   "MOONS": "Lunas",
-  "TURRET": "Torreta"
+  "TURRET": "Torreta",
+  "BLUEPRINTS_GRANTED": "Blueprints granted"
 }

@@ -41,5 +41,8 @@
   "TIME": "Dauer",
   "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel",
   "COMMUNITY_CONTENT": "Dieser Inhalt wird von der Community unterstützt und kann bearbeitet werden {0}",
-  "HERE": "hier"
+  "HERE": "hier",
+  "SYNC": "Synchronize",
+  "DISABLE_FILTERS": "Disable filters",
+  "DISABLE_FILTERS_NOTE": "Disable all characteristic filters used to hide unimportant information"
 }

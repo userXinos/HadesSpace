@@ -22,6 +22,7 @@
   "MAX_PER_STAR_SYSTEM": "星系内最大値",
   "MAX_PER_SECTOR": "セクター内最大値",
   "CERBERUS": "ケルベロス",
+  "DARK_CERBERUS": "Dark cerberus",
   "SECTIONS": "セクション",
   "FLAGSHIP_MODULES": "フラグシップモジュール",
   "COST": "費用",
@@ -99,5 +100,6 @@
   "COOLDOWN_AFTER_JUMPING_WITH_A_BATTLESHIP": "戦艦をジャンプ後のクールダウン",
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "戦艦以外のジャンプ後のクールダウン",
   "MOONS": "衛星",
-  "TURRET": "Turret"
+  "TURRET": "Turret",
+  "BLUEPRINTS_GRANTED": "Blueprints granted"
 }
