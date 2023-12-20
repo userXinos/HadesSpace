@@ -40,9 +40,9 @@
   "CRYSTAL_CALCULATOR": "Калькулятор кристалів",
   "TIME": "Час",
   "UPGRADE_TIME_IN_PARALLEL": "Час паралельного оновлення",
-  "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
-  "HERE": "here",
-  "SYNC": "Synchronize",
-  "DISABLE_FILTERS": "Disable filters",
-  "DISABLE_FILTERS_NOTE": "Disable all characteristic filters used to hide unimportant information"
+  "COMMUNITY_CONTENT": "Цей переклад підтримується спільнотою та може бути відредагований {0}",
+  "HERE": "тут",
+  "SYNC": "Синхронізовано",
+  "DISABLE_FILTERS": "Вимкнути фільтри",
+  "DISABLE_FILTERS_NOTE": "Вимкнути всі фільтри, що використовуються для приховування неважливої інформації"
 }
