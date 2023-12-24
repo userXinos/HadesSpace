@@ -72,17 +72,14 @@
               class="input"
             >
               <span v-t="INPUT_LOC_KEYS[type]" />
-              <select
-                class="select-lvl"
-                @change="onChangeLvl(type, $event.target.value)"
-              >
-                <option
-                  v-for="(lvl, index) in modalOpts.data.maxLevel + 1"
-                  :key="lvl"
-                  :selected="isSelected(type, index)"
-                  :disabled="isDisabled(type, index)"
-                > {{ index }} </option>
-              </select>
+              <div class="level-picker">
+                <NumberPicker
+                  :value="input[type][modalOpts.data.key] || 0"
+                  :min="modalOpts.data.minLevel"
+                  :max="modalOpts.data.maxLevel"
+                  @update:value="(v: number) => onChangeLvl(type, v)"
+                />
+              </div>
             </li>
 
             <li><br></li>
@@ -177,6 +174,7 @@ import Calculator from '@/components/Calculator.vue';
 
 import { init as compInit } from '@Utils/compendium';
 import TechList from '@/components/TechList.vue';
+import NumberPicker from '@/components/NumberPicker.vue';
 import compendiumTechList from '@/composables/compendiumTechList';
 
 import type { SetupComponent, SetupGetElementsCB, Input, Output, OutputValue, OutputMap, ElementsStore } from '@/typings/calculator';
@@ -242,18 +240,12 @@ function setupCalculator(v: SetupComponent) {
         modules.value[type] = v.provideGetterElements((...p) => getModulesBySlotType.apply(null, [type, ...p]));
     }
 }
-function onChangeLvl(type: keyof Input, value: number|string) {
+function onChangeLvl(type: keyof Input, value: number) {
     if (store.state.userSettings.compendiumTechSyncConfigIndex == calc.Config.selected && type == 'actually') {
         const i = getTechIndex(modalOpts.data.key);
         compSetTechLevel(i, value);
     }
     return calc.onChangeLvl(type, modalOpts.data.key, value);
-}
-function isSelected(type: keyof Input, value: number): boolean {
-    return calc.isSelected(type, modalOpts.data.key, value);
-}
-function isDisabled(type: keyof Input, value: number): boolean {
-    return calc.isDisabled(type, modalOpts.data.key, value);
 }
 async function onReset(event: Event): Promise<void> {
     if (openModal.value) {
@@ -383,6 +375,19 @@ $plan-color: #ded45a;
         justify-content: space-between;
         margin-bottom: 2%;
 
+        &.input {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding-bottom: 5%;
+            font-size: 120%;
+
+            .level-picker {
+                width:60%;
+                padding-top: 2%;
+                margin: 0 auto;
+            }
+        }
         &.output {
             font-size: 100%;
 
@@ -410,16 +415,6 @@ $plan-color: #ded45a;
                 > span:last-child {
                     display: block;
                 }
-            }
-        }
-
-        .select-lvl {
-            font-size: 110%;
-            background-color: map.get($table, "background");
-            border-color: map.get($table, "background");
-
-            option:disabled {
-                color: #0e1315;
             }
         }
     }
