@@ -25,7 +25,7 @@
           :on-click="openModuleInfo"
           :level-map="input.actually"
           :level-map-alt="input.plan"
-          :is-muted="(k: string) => !input.actually[k]"
+          :is-muted="(k: string) => !input.plan[k]"
         />
       </div>
 

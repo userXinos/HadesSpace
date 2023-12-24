@@ -28,7 +28,7 @@
                 {{ levelMap[building.Name] }}
               </span>
               <span
-                v-if="levelMapAlt?.[building.Name]"
+                v-if="levelMapAlt?.[building.Name] > (levelMap?.[building.Name] || 0)"
                 class="level alt-level"
               >
                 {{ levelMapAlt[building.Name] }}
@@ -63,7 +63,7 @@
                 {{ levelMap[ship.Name] }}
               </span>
               <span
-                v-if="levelMapAlt?.[ship.Name]"
+                v-if="levelMapAlt?.[ship.Name] > (levelMap?.[ship.Name] || 0)"
                 class="level alt-level"
               >
                 {{ levelMapAlt[ship.Name] }}
@@ -94,7 +94,7 @@
                 {{ levelMap['AllianceLevel'] }}
               </span>
               <span
-                v-if="levelMapAlt?.['AllianceLevel']"
+                v-if="levelMapAlt?.['AllianceLevel'] > (levelMap?.['AllianceLevel'] || 0)"
                 class="level alt-level"
               >
                 {{ levelMapAlt['AllianceLevel'] }}
@@ -133,7 +133,7 @@
                 {{ levelMap[module.Name] }}
               </span>
               <span
-                v-if="levelMapAlt?.[module.Name]"
+                v-if="levelMapAlt?.[module.Name] > (levelMap?.[module.Name] || 0)"
                 class="level alt-level"
               >
                 {{ levelMapAlt[module.Name] }}
