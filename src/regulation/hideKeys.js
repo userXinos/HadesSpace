@@ -207,6 +207,7 @@ export default {
         'ShipmentDrone.HP',
         'RelicDrone.MaxShipments',
         'RelicDrone.RelicLoadTicks',
+        'RelicDrone.TurretSetupTime_WS', // там какое-то легаси, а новое значение не вижу откуда
         'Dispatch.APTPIOTTPYS',
         'Dispatch.APTPIOTTPWS',
 
