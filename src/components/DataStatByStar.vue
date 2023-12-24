@@ -162,7 +162,7 @@ $bg-color: #29373d;
             height: 100%;
         }
         .cell-bg {
-            margin: -1px 5px;
+            margin: -1px 0.1vw;
             height: 100%;
 
             .cell {

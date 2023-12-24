@@ -53,7 +53,6 @@ export default [
             'MaxArtifactYieldBonus',
             'DroneDeliveryBonus',
             'HydroDeliveryBonus',
-            'MotionShieldPct',
             'SolitudeDPSBoost',
             'FortifyDamageAmpFactor',
             'HydroCostModifierPct',
@@ -141,7 +140,7 @@ export default [
         (v) => `x${v}`,
     ],
     [
-        ['MovementSlowdown', 'DamageReduceFactor'],
+        ['MovementSlowdown', 'DamageReduceFactor', 'MotionShieldPct'],
         (v) => `${100 - v}%`,
     ],
     [

@@ -1,8 +1,7 @@
 name: Bug report [Ukrainian language]
 description: Create a report to help us improve
-title: "[Bug] Bug report (Ukrainian language)"
+title: "[Bug] Bug report (Turkish language)"
 labels: ["bug", "i18n"]
-assignees: jony-de
 body:
   - type: textarea
     id: description

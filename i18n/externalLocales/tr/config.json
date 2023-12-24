@@ -1,0 +1,17 @@
+{
+  "overwrites": "en",
+
+  "languages": {
+    "Name": "Türkçe",
+    "Code": "tr",
+    "UnityLocale": "turkish",
+    "SteamLocale": "turkish",
+    "SteamCode": "tr",
+    "LocaleAndCountry": "tr_TR",
+
+    "contact": {
+      "name": "Astroalgebra",
+      "link": "https://discord.com/users/456798865966891008"
+    }
+  }
+}

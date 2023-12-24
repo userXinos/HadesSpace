@@ -55,7 +55,7 @@ import { Head as VHead } from '@vueuse/head';
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
 import CompendiumPage from '../components/CompendiumPage.vue';
-import CompendiumTechList from '../components/CompendiumTechList.vue';
+import CompendiumTechList from '../components/TechList.vue';
 import NumberPicker from '../components/NumberPicker.vue';
 
 import globals from '@Data/globals.js';
