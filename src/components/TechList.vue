@@ -27,6 +27,12 @@
               >
                 {{ levelMap[building.Name] }}
               </span>
+              <span
+                v-if="levelMapAlt?.[building.Name]"
+                class="level alt-level"
+              >
+                {{ levelMapAlt[building.Name] }}
+              </span>
             </div>
           </li>
         </ul>
@@ -56,6 +62,12 @@
               >
                 {{ levelMap[ship.Name] }}
               </span>
+              <span
+                v-if="levelMapAlt?.[ship.Name]"
+                class="level alt-level"
+              >
+                {{ levelMapAlt[ship.Name] }}
+              </span>
             </div>
           </li>
         </ul>
@@ -80,6 +92,12 @@
                 class="level"
               >
                 {{ levelMap['AllianceLevel'] }}
+              </span>
+              <span
+                v-if="levelMapAlt?.['AllianceLevel']"
+                class="level alt-level"
+              >
+                {{ levelMapAlt['AllianceLevel'] }}
               </span>
             </div>
           </li>
@@ -114,6 +132,12 @@
               >
                 {{ levelMap[module.Name] }}
               </span>
+              <span
+                v-if="levelMapAlt?.[module.Name]"
+                class="level alt-level"
+              >
+                {{ levelMapAlt[module.Name] }}
+              </span>
             </div>
           </li>
         </ul>
@@ -137,6 +161,7 @@ import byTypes from '@Regulation/byTypes';
 
 export interface Props {
     levelMap?: Record<string, number>
+    levelMapAlt?: Record<string, number>
     onClick?: (item: object) => void
     isMuted?: (id: string) => boolean
 }
@@ -154,9 +179,10 @@ const format = {
 
 withDefaults(defineProps<Props>(), {
     levelMap: () => ({}),
+    levelMapAlt: () => ({}),
     onClick: () => undefined,
     isMuted: () => false,
 });
 </script>
 
-<style scoped lang="scss" src="../style/CompendiumTechList.scss" />
+<style scoped lang="scss" src="../style/techList.scss" />

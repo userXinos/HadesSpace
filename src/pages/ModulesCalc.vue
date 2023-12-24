@@ -20,40 +20,15 @@
         >{{ $t('HS_COMPENDIUM') }}</button>
       </div>
 
-      <div class="sections-input">
-        <section
-          v-for="(type, typeName) of modules"
-          :key="typeName"
-          class="type"
-        >
-          <h3> {{ calc.format.key(typeName) }} </h3>
-          <ul>
-            <li
-              v-for="([module, maxLevel]) of type"
-              :key="module.Name"
-              class="module"
-            >
-              <div
-                :class="{'mute': !input.plan[module.Name]}"
-                @click="() => openModuleInfo(module, maxLevel)"
-              >
-                <Icon
-                  :name="module.Icon"
-                  dir="game/Modules"
-                />
-                <div class="levels">
-                  <span>
-                    {{ input.actually[module.Name] ? input.actually[module.Name] : '' }}
-                  </span>
-                  <span>
-                    {{ (input.plan[module.Name] && input.plan[module.Name] != input.actually[module.Name])? input.plan[module.Name] : '' }}
-                  </span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
+      <div class="tech-list-wrap">
+        <TechList
+          :on-click="openModuleInfo"
+          :level-map="input.actually"
+          :level-map-alt="input.plan"
+          :is-muted="(k: string) => !input.actually[k]"
+        />
       </div>
+
     </div>
 
     <Modal
@@ -201,15 +176,19 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 import Calculator from '@/components/Calculator.vue';
 
 import { init as compInit } from '@Utils/compendium';
+import TechList from '@/components/TechList.vue';
 import compendiumTechList from '@/composables/compendiumTechList';
 
 import type { SetupComponent, SetupGetElementsCB, Input, Output, OutputValue, OutputMap, ElementsStore } from '@/typings/calculator';
 import { getBySlotType } from '../components/ModulePage.vue';
 import statsStyleName from '../utils/Handlers/statsStyleName';
 import byTypes from '@Regulation/byTypes.js';
+import objectArrayify from '@Utils/objectArrayify';
 import userSettingsTypes from '@/store/modules/userSettings/types';
 import { getTechIndex } from 'bot_client';
 
+import globals from '@Data/globals.js';
+import modulesData from '@Data/modules.js';
 
 const STACK_CHARS = ['UnlockPrice', 'UnlockTime'];
 const INPUT_LOC_KEYS = {
@@ -221,6 +200,14 @@ const store = useStore();
 const { t } = useI18n();
 const { data: compData, levelMap: compLevelMap, setTechLevel: compSetTechLevel } = compendiumTechList();
 
+const { MaxModuleLevel } = globals;
+const maxLvl: Record<string, number> = objectArrayify(modulesData, {
+    map: ([k]) => [k, MaxModuleLevel],
+});
+const minLvl: Record<string, number> = objectArrayify(modulesData, {
+    map: (([k, v]) => [k, getModulesMinLvl(v as object)]),
+});
+
 const modules: Ref<{[k: string]: unknown}> = ref({});
 const input: Ref<Input> = ref({ actually: {}, plan: {} });
 const openModal = ref(false);
@@ -230,6 +217,7 @@ const modalOpts = reactive({
     title: t('TID_TECH_DLG_TITLE'),
     data: {
         module: {},
+        minLevel: 0,
         maxLevel: 0,
         get key() {
             return this.module.Name;
@@ -280,9 +268,10 @@ async function onReset(event: Event): Promise<void> {
 function outputClasses(type: keyof Output, charName?: string): object {
     return calc.outputClasses(type, modalOpts.data.key, charName);
 }
-function openModuleInfo(module: OutputValue, maxLevel: number) {
-    modalOpts.data.module = module;
-    modalOpts.data.maxLevel = maxLevel;
+function openModuleInfo(value: Record<string, string>) {
+    modalOpts.data.module = value;
+    modalOpts.data.maxLevel = maxLvl[value.Name];
+    modalOpts.data.minLevel = minLvl[value.Name];
     openModal.value = true;
 }
 function calcTotal(store: ElementsStore, output: Output) {
@@ -314,6 +303,16 @@ function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Param
         return [module, maxLevel];
     });
 }
+function getModulesMinLvl(module: object): number {
+    let maxLength = 1;
+
+    for (const [, value] of Object.entries(module)) {
+        if (Array.isArray(value) && value.length > maxLength) {
+            maxLength = value.length;
+        }
+    }
+    return MaxModuleLevel - maxLength + 1;
+}
 </script>
 
 <style scoped lang="scss">
@@ -338,6 +337,12 @@ $plan-color: #ded45a;
         margin: 10px 0;
         display: flex;
         justify-content: end;
+    }
+
+    .tech-list-wrap {
+        :deep(.other) {
+            display: none;
+        }
     }
 }
 
@@ -415,89 +420,6 @@ $plan-color: #ded45a;
 
             option:disabled {
                 color: #0e1315;
-            }
-        }
-    }
-}
-.sections-input {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: space-between;
-    margin-top: 4%;
-    margin-right: auto;
-    margin-left: auto;
-
-    max-height: 850px;
-    max-width: 1500px;
-    --module-size: 90px;
-
-    @media screen and (max-width: 1800px){
-        --module-size: 80px;
-    }
-    @media screen and (max-width: 1600px){
-        --module-size: 75px;
-    }
-    @media screen and (max-width: 1500px){
-        --module-size: 70px;
-        max-height: 1000px;
-        max-width: 920px;
-    }
-    @media screen and (max-width: 1024px){
-        max-height: none;
-        max-width: 420px;
-    }
-    @media screen and (max-width: 960px){
-        --module-size: 80px;
-        max-width: 290px;
-    }
-    @media screen and (max-width: 600px){
-        --module-size: 60px;
-        max-width: 290px;
-    }
-
-
-    .type {
-        width: calc((var(--module-size) + 24px)  * 4);
-        margin-bottom: 3%;
-
-        h3 {
-            margin-bottom: 4%;
-        }
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-
-            .module {
-                list-style: none;
-                width: var(--module-size);
-                margin: 12px;
-                cursor: pointer;
-                position: relative;
-
-                @media screen and (max-width: 960px){
-                    margin: 6px;
-                }
-
-                .mute {
-                    opacity: .6;
-                }
-
-                .levels {
-                    position: absolute;
-                    top: 75%;
-                    display: flex;
-                    justify-content: space-between;
-                    width: var(--module-size);
-                    font-size: 120%;
-
-                    :first-child {
-                        color: $actually-color
-                    }
-                    :last-child {
-                        color: $plan-color;
-                    }
-                }
             }
         }
     }

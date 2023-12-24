@@ -150,7 +150,7 @@ import types from '@/store/modules/userSettings/types';
 import { Head as VHead } from '@vueuse/head';
 import Modal, { SIZES } from '@/components/Modal.vue';
 import Icon from '@/components/Icon.vue';
-import TechList from '@/components/CompendiumTechList.vue';
+import TechList from '@/components/TechList.vue';
 import CompendiumPage from '../components/CompendiumPage.vue';
 
 import memberImage from '@Img/icons/member.png';
@@ -326,7 +326,7 @@ function getTechForDisplay(member: CorpMember): Record<string, {level: number|st
 <style scoped lang="scss">
 @import "../style/vars";
 @import "../style/userInput";
-@import "../style/CompendiumTechList";
+@import "../style/techList";
 @import "../style/page";
 
 .container {
