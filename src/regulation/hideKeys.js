@@ -246,5 +246,6 @@ export default {
 
         // Drone
         'DecoyDrone.HasTaunt',
+        'DeltaDrones.NewModuleSlots',
     ],
 };
