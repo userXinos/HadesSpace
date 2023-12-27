@@ -109,6 +109,7 @@
         v-for="(type, typeName) of modules"
         :key="typeName"
         class="type"
+        :class="typeName"
         name="modules"
       >
         <h3> {{ format.key(typeName) }} </h3>
