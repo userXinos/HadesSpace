@@ -190,10 +190,11 @@ import userSettingsTypes from '@/store/modules/userSettings/types';
 import types from '@/store/types';
 import statsStyleName from '@Handlers/statsStyleName';
 import calculator from '@/composables/calculator';
-import CalculatorConfig from '@/composables/calculatorConfig';
+import MultiConfig from '@Utils/MultiConfig';
 
 import type { Input, Output, SetupComponent, SetupGetElementsCB } from '@/typings/calculator';
 
+const CalculatorConfig = MultiConfig<Input>;
 type calculatorArgs = Parameters<typeof calculator>
 type configArgs = ConstructorParameters<typeof CalculatorConfig>
 
@@ -217,7 +218,7 @@ const format = {
 };
 
 const { provideGetterElements, output, update: updateLogicOutput } = calculator(props.stackChars, props.calcTotal);
-const ConfigManager = new CalculatorConfig(props.localStorageKey);
+const ConfigManager = new CalculatorConfig(props.localStorageKey, { actually: {}, plan: {} });
 const debounceUpdate = debounce(() => {
     updateInput();
     updateOutput();
@@ -248,7 +249,7 @@ const currentUrl = computed(() => `${location.origin}${location.pathname}`);
 
 
 if (router.currentRoute.value.query.d) {
-    const parsed = ConfigManager.parseUrl(router.currentRoute.value.query.d as string);
+    const parsed = MultiConfig.parseUrl(router.currentRoute.value.query.d as string);
     const data = { actually: { ...parsed }, plan: { ...parsed } };
 
     ConfigManager.add(data, { temporary: true });
@@ -318,7 +319,7 @@ async function createConfig(): Promise<void> {
     fullUpdate();
 }
 function copyConfig(): void {
-    const d = ConfigManager.stringifyUrl();
+    const d = MultiConfig.stringifyUrl(ConfigManager.selectedConfig.actually);
 
     navigator.clipboard.writeText(`${currentUrl.value}?d=${d}`)
         .then(() => {

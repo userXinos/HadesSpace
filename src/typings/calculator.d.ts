@@ -1,4 +1,4 @@
-import CalculatorConfig from '@/composables/calculatorConfig';
+import MultiConfig from '@Utils/MultiConfig';
 import { Callback as mapFn } from '@Utils/objectArrayify';
 
 // Core
@@ -47,7 +47,7 @@ export interface Config {
 
 // Component
 type keyInput = keyof Input;
-export type SetupGetElementsCB = (TIDs: CalculatorConfig['TIDs'], ...args: Parameters<getElementsCB>) => unknown
+export type SetupGetElementsCB = (TIDs: MultiConfig['TIDs'], ...args: Parameters<getElementsCB>) => unknown
 export interface SetupComponent {
     output: Output,
     isSelected: (type: keyInput, key: string, value: number) => boolean,
