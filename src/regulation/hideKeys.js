@@ -109,6 +109,9 @@ export default {
         'GenWSMods',
     ],
     byPath: [
+        // исключения
+        'Suspend.EffectDurationx10BS',
+        'DamageAmplifier.EffectDurationx10BS',
 
         // SpaceBuildings
         'Shipyard.MaxPerSector',
