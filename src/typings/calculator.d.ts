@@ -53,7 +53,7 @@ export interface SetupComponent {
     isSelected: (type: keyInput, key: string, value: number) => boolean,
     isDisabled: (type: keyInput, key: string, value: number) => boolean,
     onChangeLvl: (type: keyInput, key: string, value: (number | string)) => number,
-    outputClasses: (type: keyof Output, key: string, charName?: string) => object,
+    outputClasses: (type: keyof Output, key: string, charName?: string) => {[k: string]: boolean},
     format: { value: (k: string, v: unknown) => unknown, key: (k: string) => string }
     forceReCalc: () => void
     Config: Config

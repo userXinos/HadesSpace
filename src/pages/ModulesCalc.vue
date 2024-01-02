@@ -91,7 +91,7 @@
               <b>{{ calc.format.key(key) }}</b>
               <div>
                 <span
-                  v-for="type of (Object.keys(input) as Array<keyof typeof Input>)"
+                  v-for="type of (Object.keys(input) as Array<keyof Input>)"
                   :key="type"
                   :class="{
                     ...outputClasses(type, key),
@@ -214,7 +214,7 @@ const modalOpts = reactive({
     size: SIZES.SMALL,
     title: t('TID_TECH_DLG_TITLE'),
     data: {
-        module: {},
+        module: {} as {[k: string]: unknown, TID: string},
         minLevel: 0,
         maxLevel: 0,
         get key() {
@@ -257,11 +257,11 @@ async function onReset(event: Event): Promise<void> {
         }
     }
 }
-function outputClasses(type: keyof Output, charName?: string): object {
+function outputClasses(type: keyof Output, charName?: string): SetupComponent['outputClasses'] {
     return calc.outputClasses(type, modalOpts.data.key, charName);
 }
 function openModuleInfo(value: Record<string, string>) {
-    modalOpts.data.module = value;
+    modalOpts.data.module = value as { [x: string]: unknown; TID: string; };
     modalOpts.data.maxLevel = maxLvl[value.Name];
     modalOpts.data.minLevel = minLvl[value.Name];
     openModal.value = true;
@@ -280,19 +280,17 @@ function calcTotal(store: ElementsStore, output: Output) {
 function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB>) {
     const modules = getBySlotType(type) as OutputMap;
 
-    return Object.entries(modules).map(([name, module]) => {
-        let maxLevel = 1;
-
+    return Object.entries(modules).map(([name, module]: [string, OutputMap]) => {
         for (const [, value] of Object.entries(module)) {
-            if (Array.isArray(value) && value.length > maxLevel) {
-                maxLevel = value.length;
+            if (Array.isArray(value) && value.length < MaxModuleLevel) {
+                value.unshift(...Array(MaxModuleLevel - value.length));
             }
         }
 
-        elements[name] = getChars((modules as {[k: string]: object})[name] as OutputValue, maxLevel);
+        elements[name] = getChars((modules as {[k: string]: object})[name] as OutputValue, MaxModuleLevel);
         TIDs[name] = module.TID;
 
-        return [module, maxLevel];
+        return [module, MaxModuleLevel];
     });
 }
 function getModulesMinLvl(module: object): number {
