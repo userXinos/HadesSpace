@@ -76,6 +76,7 @@ type Table = [
     [string, ...unknown[]][]
 ]
 
+const BS_REGEX = /_?(BS|BLS)$/;
 const STARS = {
     YS: { dir: 'game/Stars', name: 'star_yellow' },
     RS: { dir: 'game/Stars', name: 'star_red' },
@@ -125,6 +126,9 @@ const table = computed<Table>(() => {
         });
     });
 
+    if (!Object.keys(props.items).some((k) => BS_REGEX.test(k))) {
+        usedStars.splice(usedStars.indexOf('BS'), 1);
+    }
     usedStars = usedStars.sort((a, b) => Object.keys(STARS).indexOf(a) - Object.keys(STARS).indexOf(b));
 
     const head: Table[0] = [null, ...usedStars.map((s) => STARS[s])];
