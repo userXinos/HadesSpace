@@ -35,8 +35,8 @@
 
               <template v-if="i == 0">
                 <DataStatTooltip
-                  :k="value"
-                >{{ format.key(value) }}
+                  :k="row[0]"
+                >{{ format.key(row[0]) }}
                 </DataStatTooltip>
                 <template v-if="$store.state.userSettings.showKeys"> ({{ value }})</template>
               </template>
@@ -47,7 +47,7 @@
                 class="stats-style"
               ><template v-if="value && TO_SPOILER_KEYS.includes(row[0])">
                  <DataStatTooltip
-                   :k="value"
+                   :k="value as string"
                    :is-loc-key="true"
                  > {{ $t('TID_OBJ_ACTION_EXPLORE_SECTOR') }}
                  </DataStatTooltip>
@@ -71,7 +71,18 @@ import statsStyleName from '@Handlers/statsStyleName';
 
 import { regex as postfixRegex } from '@Regulation/postfixes.mjs';
 
-const POSTFIX_BY_STARS = {
+type Table = [
+    ({dir: string, name: string} | null)[],
+    [string, ...unknown[]][]
+]
+
+const STARS = {
+    YS: { dir: 'game/Stars', name: 'star_yellow' },
+    RS: { dir: 'game/Stars', name: 'star_red' },
+    WS: { dir: 'game/Stars', name: 'star_white' },
+    BS: { dir: 'game/Stars', name: 'star_blue_2' },
+};
+const POSTFIX_BY_STARS: Record<string, (keyof typeof STARS)[]> = {
     'base': ['YS', 'RS', 'WS', 'BS'],
     '': ['YS', 'RS', 'WS', 'BS'],
     'ys': ['YS'],
@@ -82,12 +93,6 @@ const POSTFIX_BY_STARS = {
     'pve': ['YS', 'RS'],
     'pvp': ['WS', 'BS'],
 };
-const STARS = {
-    YS: { dir: 'game/Stars', name: 'star_yellow' },
-    RS: { dir: 'game/Stars', name: 'star_red' },
-    WS: { dir: 'game/Stars', name: 'star_white' },
-    BS: { dir: 'game/Stars', name: 'star_blue_2' },
-};
 const TO_SPOILER_KEYS = ['TID_Description'];
 
 export interface Props {
@@ -97,8 +102,8 @@ export interface Props {
 
 const props = defineProps<Props>();
 
-const table = computed(() => {
-    const preBody: Record<string, { [k: keyof typeof STARS]: unknown }> = {};
+const table = computed<Table>(() => {
+    const preBody: Record<string, { [k in keyof typeof STARS]?: unknown }> = {};
     let usedStars: (keyof typeof STARS)[] = [];
 
     Object.entries(props.items).forEach(([k, v]) => {
@@ -122,8 +127,8 @@ const table = computed(() => {
 
     usedStars = usedStars.sort((a, b) => Object.keys(STARS).indexOf(a) - Object.keys(STARS).indexOf(b));
 
-    const head = [null, ...usedStars.map((s) => STARS[s])];
-    const body = [];
+    const head: Table[0] = [null, ...usedStars.map((s) => STARS[s])];
+    const body: Table[1] = [];
 
     Object.entries(preBody).forEach(([key, byStar]) => {
         const row = Array(usedStars.length);
@@ -136,8 +141,6 @@ const table = computed(() => {
 
     return [head, body];
 });
-
-table.value;
 </script>
 
 <style scoped lang="scss">
