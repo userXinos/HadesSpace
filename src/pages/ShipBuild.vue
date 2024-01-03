@@ -3,22 +3,22 @@
     <Head><title>{{ title }}</title></Head>
     <h1 class="topic"> {{ title }} </h1>
 
-    <button
-      v-t="'TID_PC_NEW_SHIP'"
-      class="button accent"
-      @click="openNewShip = true"
-    />
-
-    <button
-      v-t="'TID_MODULE_LEVEL_HINT_TITLE'"
-      class="button accent"
-      @click="openModuleLevels = true"
-    />
-
-    <button
-      class="settings-btn"
-      @click="openConfigManager = true"
-    />
+    <div class="buttons">
+      <button
+        class="settings-btn"
+        @click="openConfigManager = true"
+      />
+      <button
+        v-t="'TID_PC_NEW_SHIP'"
+        class="button accent"
+        @click="openNewShip = true"
+      />
+      <button
+        v-t="'TID_MODULE_LEVEL_HINT_TITLE'"
+        class="button accent"
+        @click="openModuleLevels = true"
+      />
+    </div>
 
     <ul class="ship-list">
       <li
@@ -414,17 +414,23 @@ $byArtifactType: ('Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone');
 .container {
     margin: 0 2%;
 }
-.settings-btn {
-    cursor: pointer;
-    width: 38px;
-    height: 38px;
-    background: url("../img/icons/settings.svg") no-repeat;
-    border: none;
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
 
-    &:hover {
-        opacity: .9;
-        transition-duration: 800ms;
-        transform: rotate(180deg);
+    .settings-btn {
+        cursor: pointer;
+        width: 38px;
+        height: 38px;
+        background: url("../img/icons/settings.svg") no-repeat;
+        border: none;
+
+        &:hover {
+            opacity: .9;
+            transition-duration: 800ms;
+            transform: rotate(180deg);
+        }
     }
 }
 .ship-list {
