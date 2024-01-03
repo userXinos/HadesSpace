@@ -8,4 +8,5 @@ export default Object.freeze({
     SET_COMPENDIUM_CORP_LAST_ROLE_ID: 'SetCompendiumCorpLastRoleId',
     SET_COMPENDIUM_TECH_SYNC_CONFIG_INDEX: 'SetCompendiumTechSyncConfigIndex',
     SET_CALC_DAY_CREDIT_LIMIT: 'SetCalcDayCreditLimit',
+    SET_SHIP_BUILD_SYNC: 'SetShipBuildSync',
 });

@@ -259,6 +259,16 @@ export default [
                 },
             },
             {
+                name: 'ShipBuild',
+                text: { locKey: 'ShipBuild' },
+                path: '/shipBuild',
+                component: () => import('../pages/ShipBuild.vue'),
+                icon: {
+                    name: '',
+                    dir: 'icons',
+                },
+            },
+            {
                 name: 'WSMatches',
                 text: { locKey: 'WSMatches' },
                 path: '/WSMatches',

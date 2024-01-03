@@ -40,4 +40,8 @@ export default <MutationTree<Settings>>{
         state.calcDayCreditLimit = value;
         return state.calcDayCreditLimit;
     },
+    [types.SET_SHIP_BUILD_SYNC](state, value: Settings['shipBuildSync']) {
+        state.shipBuildSync = value;
+        return state.shipBuildSync;
+    },
 };

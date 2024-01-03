@@ -9,13 +9,13 @@
         :key="k"
       >
         <td
-          :class="statsStyleName(k)"
+          :class="statsStyleName(k as string)"
           class="stats-style"
-        >{{ format.key(k) }}</td>
+        >{{ format.key(k as string) }}</td>
         <td
           v-for="(item, itemKey) of v"
           :key="k + itemKey"
-          :class="totalTableClasses(itemKey, k)"
+          :class="totalTableClasses(itemKey, k as string)"
         >
           {{ item.toLocaleString('ru-RU') }}
         </td>
@@ -26,14 +26,14 @@
         class="result"
       >
         <td
-          :class="statsStyleName(k)"
+          :class="statsStyleName(k as string)"
           class="stats-style"
-        >{{ format.key(k) }}</td>
+        >{{ format.key(k as string) }}</td>
         <td
           v-if="v > 0"
           colspan="3"
         >
-          <b>{{ format.value(k, v) }}</b>
+          <b>{{ format.value(k as string, v) }}</b>
         </td>
       </tr>
     </table>
@@ -82,63 +82,15 @@
               :value="$store.state.userSettings.calcDayCreditLimit"
               type="number"
               min="0"
-              @input="$store.commit(userSettingsTypes.SET_CALC_DAY_CREDIT_LIMIT, parseInt($event.target.value))"
+              @input="$store.commit(userSettingsTypes.SET_CALC_DAY_CREDIT_LIMIT, parseInt(($event.target as HTMLInputElement).value))"
             >
           </div>
 
-          <div class="config-category">
-            <p v-t="'CONFIG'" />
-
-            <div class="flex-end">
-              <button
-                :class="`button ${buttonCopy.color}`"
-                @click="copyConfig"
-              > {{ buttonCopy.text }} </button>
-              <button
-                v-t="'CREATE'"
-                class="button green"
-                @click="newModal = true"
-              />
-            </div>
-          </div>
-
-          <div class="select">
-            <p
-              v-t="'LIST'"
-              class="name"
-            />
-            <select
-              v-model="ConfigManager.store.selected"
-              @change="fullUpdate()"
-            >
-              <option
-                v-for="(v, index) in ConfigManager.store.configs"
-                :key="index"
-                :value="index"
-              >
-                {{ v.name }}
-              </option>
-            </select>
-          </div>
-
-          <div class="input">
-            <p
-              v-t="'TID_CHANGE_NAME_TITLE'"
-              class="name"
-            />
-            <input
-              v-model="ConfigManager.store.configs[ConfigManager.store.selected].name"
-              :placeholder="$t('TID_CORP_NAME_LABEL')"
-            >
-          </div>
-
-          <div class="flex-end margin-bottom">
-            <button
-              v-t="'TID_SOCIAL_DELETE_MESSAGE'"
-              class="button red"
-              @click="removeConfig"
-            />
-          </div>
+          <MultiConfigGUI
+            :on-create-new="() => openNewModal = true"
+            :instance="ConfigManager"
+            :data-to-string="ConfigManager.selectedConfig.actually"
+          />
 
         </div>
       </template>
@@ -146,7 +98,7 @@
     </modal>
 
     <modal
-      v-model:open="newModal"
+      v-model:open="openNewModal"
       :title="$t('CREATE')"
       :size="SIZES.SMALL"
     >
@@ -175,7 +127,7 @@
 
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
-import { computed, nextTick, ref } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
@@ -183,6 +135,7 @@ import debounce from 'lodash.debounce';
 
 import { Head as VHead } from '@vueuse/head';
 import Modal, { SIZES } from '@/components/Modal.vue';
+import MultiConfigGUI from '@/components/MultiConfigGUI.vue';
 
 import value from '@Handlers/value';
 import key from '@Handlers/key';
@@ -190,10 +143,11 @@ import userSettingsTypes from '@/store/modules/userSettings/types';
 import types from '@/store/types';
 import statsStyleName from '@Handlers/statsStyleName';
 import calculator from '@/composables/calculator';
-import CalculatorConfig from '@/composables/calculatorConfig';
+import MultiConfig from '@Utils/MultiConfig';
 
 import type { Input, Output, SetupComponent, SetupGetElementsCB } from '@/typings/calculator';
 
+const CalculatorConfig = MultiConfig<Input>;
 type calculatorArgs = Parameters<typeof calculator>
 type configArgs = ConstructorParameters<typeof CalculatorConfig>
 
@@ -217,7 +171,7 @@ const format = {
 };
 
 const { provideGetterElements, output, update: updateLogicOutput } = calculator(props.stackChars, props.calcTotal);
-const ConfigManager = new CalculatorConfig(props.localStorageKey);
+const ConfigManager = new CalculatorConfig(props.localStorageKey, { actually: {}, plan: {} });
 const debounceUpdate = debounce(() => {
     updateInput();
     updateOutput();
@@ -239,16 +193,14 @@ const setupArgs: SetupComponent = {
 };
 
 const settingsModal = ref(false);
-const newModal = ref(false);
+const openNewModal = ref(false);
 const newConfigFromText = ref('');
-const buttonCopy = ref({ text: t('COPY'), color: 'yellow' });
 const title = computed(() => t(props.titleKey));
 const totalResultKeys = computed(() => Object.keys(output.total.result));
-const currentUrl = computed(() => `${location.origin}${location.pathname}`);
 
 
 if (router.currentRoute.value.query.d) {
-    const parsed = ConfigManager.parseUrl(router.currentRoute.value.query.d as string);
+    const parsed = MultiConfig.parseUrl(router.currentRoute.value.query.d as string);
     const data = { actually: { ...parsed }, plan: { ...parsed } };
 
     ConfigManager.add(data, { temporary: true });
@@ -257,6 +209,9 @@ if (router.currentRoute.value.query.d) {
 fullUpdate();
 emit('setup', setupArgs);
 
+watch(() => ConfigManager.store.selected, () => {
+    fullUpdate();
+});
 
 function updateInput() {
     emit('update:input', ConfigManager.selectedConfig);
@@ -292,15 +247,6 @@ async function onReset(event: Event): Promise<void> {
     updateOutput();
     ConfigManager.save();
 }
-async function removeConfig(): Promise<void> {
-    const { name } = ConfigManager.store.configs[ConfigManager.store.selected];
-    await store.dispatch(types.OPEN_CONFIRM, t('REMOVE_CONFIG', [name]))
-        .then(() => {
-            ConfigManager.removeSelected();
-            fullUpdate();
-        })
-        .catch(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
-}
 async function createConfig(): Promise<void> {
     let parsed = {};
 
@@ -314,22 +260,8 @@ async function createConfig(): Promise<void> {
     }
     ConfigManager.add({ actually: { ...parsed }, plan: { ...parsed } });
     newConfigFromText.value = '';
-    newModal.value = false;
+    openNewModal.value = false;
     fullUpdate();
-}
-function copyConfig(): void {
-    const d = ConfigManager.stringifyUrl();
-
-    navigator.clipboard.writeText(`${currentUrl.value}?d=${d}`)
-        .then(() => {
-            buttonCopy.value = { text: t('COPIED'), color: 'green' };
-            setTimeout(() => buttonCopy.value = { text: t('COPY'), color: 'yellow' }, 2000);
-        })
-        .catch((err) => {
-            buttonCopy.value = { text: t('Error'), color: 'red' };
-            alert(err.message);
-            console.error(err);
-        });
 }
 function totalTableClasses(type: string, key: string): object {
     const val = output.total.intermediate[key];
@@ -509,27 +441,5 @@ function outputClasses(type: keyof Output, key: string, charName?: string): obje
       border-radius: 10px;
     }
   }
-
-  .select {
-    margin-bottom: 4%;
-  }
-    .config-category {
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: 5%;
-
-        @media screen and (max-width: 500px){
-            flex-direction: column;
-        }
-
-        p {
-            font-size: 140%;
-
-            @media screen and (max-width: 500px){
-                padding-bottom: 20px;
-            }
-
-        }
-    }
 }
 </style>

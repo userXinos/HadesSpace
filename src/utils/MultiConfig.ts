@@ -3,19 +3,21 @@ import i18n from '@Utils/Vue/i18n';
 import { loadLocaleMessages } from '@Utils/Vue/i18n';
 import JSONCrush from 'jsoncrush';
 
-import type { Input, InputValue, Config } from '@/typings/calculator';
-
 const NAME_ZERO = 'default entry';
 const STRING_FORMAT_LOCALE = 'en';
 
-export default class CalculatorConfig {
-    public readonly store: Config;
+interface Store<Value> {
+    configs: { name: string, temporary?: boolean, value: Value }[],
+    selected: number
+}
+
+export default class MultiConfig<ConfigValue> {
+    public readonly store: Store<ConfigValue>;
 
     public readonly TIDs: Record<string, string> = {};
 
-
-    constructor(private readonly localStoreKey: string) {
-        this.store = reactive({ configs: [], selected: 0 }) as Config;
+    constructor(private readonly localStoreKey: string, private readonly zeroConfig: ConfigValue) {
+        this.store = reactive({ configs: [], selected: 0 }) as Store<ConfigValue>;
         this.load();
     }
 
@@ -26,15 +28,14 @@ export default class CalculatorConfig {
     public load() {
         const data = JSON.parse(localStorage.getItem(this.localStoreKey) || '{}');
 
-        if (data.configs) {
-            Object.assign(this.store, data);
-            return;
+        if (data) {
+            if (data.configs) {
+                Object.assign(this.store, data);
+                return;
+            }
+            localStorage.removeItem(this.localStoreKey);
         }
-        if (Object.keys(data).length && (data.actually && data.plan)) {
-            this.add(data);
-            return;
-        }
-        this.add();
+        this.add(this.zeroConfig);
     }
 
     public save() {
@@ -45,29 +46,25 @@ export default class CalculatorConfig {
         this.store.configs.splice(this.store.selected, 1);
 
         if (this.store.configs.length == 0) {
-            this.add();
+            this.add(this.zeroConfig);
             return;
         }
 
         this.store.selected = this.store.configs.length - 1;
     }
 
-    public add(data?: Input, { temporary } = { temporary: false }) {
-        const val = this.store;
+    public add(data: ConfigValue, { temporary } = { temporary: false }) {
         let i = 0;
         let newName: string;
 
         do {
             newName = i ? `${NAME_ZERO} #${i}` : NAME_ZERO;
             i++;
-        } while (val.configs.length && val.configs.some((e) => e.name == newName));
+        } while (this.store.configs.length && this.store.configs.some((e) => e.name == newName));
 
 
-        val.configs = [
-            ...val.configs,
-            { name: newName, value: data || { actually: {}, plan: {} } },
-        ];
-        val.selected = val.configs.length - 1;
+        this.store.configs = [...this.store.configs, { name: newName, value: data }];
+        this.store.selected = this.store.configs.length - 1;
 
 
         if (temporary) { // мб какая-нить логика на основе этого
@@ -94,12 +91,12 @@ export default class CalculatorConfig {
         return Object.fromEntries(entries.filter(([, l]) => l));
     }
 
-    public stringifyUrl() {
-        const json = JSON.stringify(this.selectedConfig.actually);
+    public static stringifyUrl(obj: object): string {
+        const json = JSON.stringify(obj);
         return JSONCrush.crush(json);
     }
 
-    public parseUrl(text: string) {
-        return JSON.parse(JSONCrush.uncrush(text)) as InputValue;
+    public static parseUrl(text: string): object {
+        return JSON.parse(JSONCrush.uncrush(text));
     }
 }
