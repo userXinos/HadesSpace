@@ -274,7 +274,7 @@ const router = useRouter();
 const { t } = useI18n();
 const { data: compData, levelMap: compLevelMap } = compendiumTechList();
 
-const title = t('ShipBuild');
+const title = t('SHIP_BUILD');
 const shipNames = Object.keys(ships);
 
 const openNewShip = ref(false);

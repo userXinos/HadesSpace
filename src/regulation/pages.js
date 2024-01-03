@@ -260,11 +260,11 @@ export default [
             },
             {
                 name: 'ShipBuild',
-                text: { locKey: 'ShipBuild' },
+                text: { locKey: 'SHIP_BUILD' },
                 path: '/shipBuild',
                 component: () => import('../pages/ShipBuild.vue'),
                 icon: {
-                    name: '',
+                    name: 'ship-build',
                     dir: 'icons',
                 },
             },
