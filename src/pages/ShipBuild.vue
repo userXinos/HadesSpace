@@ -223,6 +223,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
 import { Head } from '@vueuse/head';
@@ -269,6 +270,7 @@ interface Input {
     ships: Ship[]
 }
 const store = useStore();
+const router = useRouter();
 const { t } = useI18n();
 const { data: compData, levelMap: compLevelMap } = compendiumTechList();
 
@@ -294,7 +296,15 @@ const modalOpts = reactive({
 const ConfigManager = new MultiConfig<Input>(LOCAL_STORAGE_KEY, zeroConfig);
 const ConfigManagerModules = new MultiConfig<InputCalculator>(LS_KEY_MODULES_CALC, {});
 
+
 loadModulesLevels();
+
+if (router.currentRoute.value.query.d) {
+    const parsed = MultiConfig.parseUrl(router.currentRoute.value.query.d as string);
+    const data = { ...parsed };
+
+    ConfigManager.add(data, { temporary: true });
+}
 
 onMounted(async () => {
     await compInit();
