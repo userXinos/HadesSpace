@@ -6,6 +6,10 @@ declare interface Settings {
     showKeys: boolean,
     lastVersionChangelog: string,
     compendiumCorpLastRoleId: string
-    compendiumTechSyncConfigIndex: number
+    compendiumTechSyncConfigIndex: number | undefined
     calcDayCreditLimit: number
+    shipBuildSync: {
+        provider: undefined | 'Edit' | 'ModulesCalc' | 'HSCompendium',
+        index?: number
+    }
 }

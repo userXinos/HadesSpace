@@ -8,4 +8,5 @@ export default Object.freeze({
     compendiumCorpLastRoleId: '',
     compendiumTechSyncConfigIndex: undefined,
     calcDayCreditLimit: 8000000,
+    shipBuildSync: { provider: undefined },
 });
