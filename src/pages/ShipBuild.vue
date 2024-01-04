@@ -412,6 +412,7 @@ $byArtifactType: ('Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone');
     margin: 0 2%;
 }
 .buttons {
+    margin-top: 2%;
     display: flex;
     gap: 10px;
     justify-content: end;
@@ -478,10 +479,10 @@ $byArtifactType: ('Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone');
                         padding-top: 1px;
 
                         @media screen and (max-width: 960px){
-                            font-size: 100%;
-                            width: 20px;
-                            height: 20px;
-                            top: 50%;
+                            right: -10%;
+                            width: 15px;
+                            height: 13px;
+                            top: 60%;
                         }
                     }
                 }
@@ -489,6 +490,7 @@ $byArtifactType: ('Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone');
         }
         .icon {
             flex: 1;
+            padding: 5px;
             transform: rotate(-45deg);
         }
     }
