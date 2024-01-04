@@ -378,7 +378,10 @@ function loadModulesLevels() {
 
     if (provider == 'ModulesCalc') {
         ConfigManager.selectedConfig.levels = {
-            ...ConfigManager.selectedConfig.levels, // ships levels
+            Transport: ConfigManager.selectedConfig.levels.Transport,
+            Miner: ConfigManager.selectedConfig.levels.Miner,
+            Battleship: ConfigManager.selectedConfig.levels.Battleship,
+
             ...ConfigManagerModules.store.configs[index].value.actually,
         };
     }
