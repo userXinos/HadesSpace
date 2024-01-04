@@ -84,7 +84,10 @@
               class="select"
               :class="{'disable': $store.state.userSettings.shipBuildSync.provider == 'HSCompendium' }"
             >
-              <select v-model="ConfigManager.selectedConfig.levels[ship.Name]">
+              <select
+                v-model="ConfigManager.selectedConfig.levels[ship.Name]"
+                @change="ConfigManager.save"
+              >
                 <option
                   v-for="v in ship.BuildCost.length"
                   :key="v"
@@ -274,6 +277,8 @@ const store = useStore();
 const router = useRouter();
 const { t } = useI18n();
 const { data: compData, levelMap: compLevelMap } = compendiumTechList();
+const ConfigManager = new MultiConfig<Input>(LOCAL_STORAGE_KEY, zeroConfig);
+const ConfigManagerModules = new MultiConfig<InputCalculator>(LS_KEY_MODULES_CALC, {});
 
 const title = t('SHIP_BUILD');
 const shipNames = Object.keys(ships);
@@ -294,8 +299,6 @@ const modalOpts = reactive({
         updateModule: (() => undefined) as (v: number) => void,
     },
 });
-const ConfigManager = new MultiConfig<Input>(LOCAL_STORAGE_KEY, zeroConfig);
-const ConfigManagerModules = new MultiConfig<InputCalculator>(LS_KEY_MODULES_CALC, {});
 
 
 loadModulesLevels();
@@ -388,7 +391,7 @@ function loadModulesLevels() {
     if (provider == 'HSCompendium') {
         ConfigManager.selectedConfig.levels = { ...compLevelMap };
     }
-    if (provider == null) {
+    if (provider == null && Object.keys(ConfigManager.selectedConfig.levels).length != Object.keys(zeroConfig.levels).length) {
         ConfigManager.selectedConfig.levels = { ...zeroConfig.levels };
     }
     store.commit(types.SET_SHIP_BUILD_SYNC, syncModuleLevels.value);
