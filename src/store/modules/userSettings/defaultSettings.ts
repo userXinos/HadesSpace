@@ -1,4 +1,4 @@
-export default Object.freeze({
+export default Object.freeze(<Settings>{
     language: 'en',
     disableFilters: false,
     compactModulesByArtTypeTable: true,
@@ -8,5 +8,5 @@ export default Object.freeze({
     compendiumCorpLastRoleId: '',
     compendiumTechSyncConfigIndex: undefined,
     calcDayCreditLimit: 8000000,
-    shipBuildSync: { provider: undefined },
+    shipBuildSync: { provider: null },
 });

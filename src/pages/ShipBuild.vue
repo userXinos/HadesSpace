@@ -171,7 +171,7 @@
               v-model="syncModuleLevels"
               @change="loadModulesLevels"
             >
-              <option :value="{provider: undefined}">{{ $t('TID_PLAYER_INFO_CORP_NONE') }}</option>
+              <option :value="{provider: null}">{{ $t('TID_PLAYER_INFO_CORP_NONE') }}</option>
               <option :value="{provider: 'Edit'}">{{ $t('TID_CORP_DIALOG_EDIT') }}</option>
 
               <option disabled>--- {{ $t('MODULES_CALC') }} ---</option>
@@ -388,7 +388,7 @@ function loadModulesLevels() {
     if (provider == 'HSCompendium') {
         ConfigManager.selectedConfig.levels = { ...compLevelMap };
     }
-    if (provider == undefined) {
+    if (provider == null) {
         ConfigManager.selectedConfig.levels = { ...zeroConfig.levels };
     }
     store.commit(types.SET_SHIP_BUILD_SYNC, syncModuleLevels.value);

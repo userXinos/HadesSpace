@@ -9,7 +9,7 @@ declare interface Settings {
     compendiumTechSyncConfigIndex: number | undefined
     calcDayCreditLimit: number
     shipBuildSync: {
-        provider: undefined | 'Edit' | 'ModulesCalc' | 'HSCompendium',
+        provider: null | 'Edit' | 'ModulesCalc' | 'HSCompendium',
         index?: number
     }
 }
