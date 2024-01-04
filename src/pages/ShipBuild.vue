@@ -228,6 +228,7 @@ import { useI18n } from 'vue-i18n';
 
 import { Head } from '@vueuse/head';
 import Modal, { SIZES } from '@/components/Modal.vue';
+import { getModulesMinLvl } from '@/components/ModulePage.vue';
 import Icon from '@/components/Icon.vue';
 import MultiConfigGUI from '@/components/MultiConfigGUI.vue';
 
@@ -389,16 +390,6 @@ function loadModulesLevels() {
     }
     store.commit(types.SET_SHIP_BUILD_SYNC, syncModuleLevels.value);
     ConfigManager.save();
-}
-function getModulesMinLvl(module: object): number {
-    let maxLength = 1;
-
-    for (const [, value] of Object.entries(module)) {
-        if (Array.isArray(value) && value.length > maxLength) {
-            maxLength = value.length;
-        }
-    }
-    return MaxModuleLevel - maxLength + 1;
 }
 </script>
 

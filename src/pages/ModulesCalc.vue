@@ -170,6 +170,7 @@ import { useI18n } from 'vue-i18n';
 
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
+import { getModulesMinLvl } from '@/components/ModulePage.vue';
 import Calculator from '@/components/Calculator.vue';
 
 import { init as compInit } from '@Utils/compendium';
@@ -292,16 +293,6 @@ function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Param
 
         return [module, MaxModuleLevel];
     });
-}
-function getModulesMinLvl(module: object): number {
-    let maxLength = 1;
-
-    for (const [, value] of Object.entries(module)) {
-        if (Array.isArray(value) && value.length > maxLength) {
-            maxLength = value.length;
-        }
-    }
-    return MaxModuleLevel - maxLength + 1;
 }
 </script>
 

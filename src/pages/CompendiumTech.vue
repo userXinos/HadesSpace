@@ -54,6 +54,7 @@ import compendiumTechListLogic from '@/composables/compendiumTechList';
 import { Head as VHead } from '@vueuse/head';
 import Icon from '@/components/Icon.vue';
 import Modal, { SIZES } from '@/components/Modal.vue';
+import { getModulesMinLvl } from '@/components/ModulePage.vue';
 import CompendiumPage from '../components/CompendiumPage.vue';
 import CompendiumTechList from '../components/TechList.vue';
 import NumberPicker from '../components/NumberPicker.vue';
@@ -133,16 +134,6 @@ function onChangeLvl(value: number): number {
         updateLastAgo();
     }
     return value;
-}
-function getModulesMinLvl(module: object): number {
-    let maxLength = 1;
-
-    for (const [, value] of Object.entries(module)) {
-        if (Array.isArray(value) && value.length > maxLength) {
-            maxLength = value.length;
-        }
-    }
-    return MaxModuleLevel - maxLength + 1;
 }
 function getDataByKey(key: string): TechLevel|null {
     return data.value?.[getTechIndex(key)] || null;

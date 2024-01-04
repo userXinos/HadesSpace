@@ -49,9 +49,20 @@ function tableOptsGetter() {
         },
     } as Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
+function getModulesMinLvl(module: object): number {
+    let maxLength = 1;
+
+    for (const [, value] of Object.entries(module)) {
+        if (Array.isArray(value) && value.length > maxLength) {
+            maxLength = value.length;
+        }
+    }
+    return MaxModuleLevel - maxLength + 1;
+}
 export default { name: 'ModulePage' };
 export {
     getBySlotType,
+    getModulesMinLvl,
     tableOptsGetter as tableOpts,
 };
 </script>
