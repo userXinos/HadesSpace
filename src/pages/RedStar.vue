@@ -67,6 +67,7 @@
 <!--suppress JSUnresolvedReference -->
 <script setup>
 import { useStore } from 'vuex';
+import { useI18n } from 'vue-i18n';
 import VData from '../components/Data.vue';
 import Page from '@/components/Page.vue';
 import CommunityTable from '@/components/CommunityTable.vue';
@@ -80,6 +81,7 @@ import types from '@/store/modules/userSettings/types';
 import byTypes from '@Regulation/byTypes';
 
 const store = useStore();
+const { t } = useI18n();
 const { MinDarkRSLevel } = globals;
 const { RedStar } = starsData;
 const { DarkRedStar } = starsData;
@@ -101,6 +103,7 @@ USELESS_STATS.forEach((k) => {
     delete DarkRedStar[k];
 });
 
+t('TID_DARK_RED_STAR_LABEL'); // for vue-i18n-extract
 DarkRedStar.TID = 'TID_DARK_RED_STAR_LABEL';
 DarkRedStar.TID_Description = 'TID_JOIN_DARK_RED_STAR_INFO';
 
