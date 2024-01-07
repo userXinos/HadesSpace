@@ -30,6 +30,7 @@
   "TID_MODULE_TYPE_PASSIVE": "Пасивний",
   "TID_MODULE_TYPE_ACTIVATED": "Активний",
   "TID_MODULE_RUSH_SPEED_INCR_VAL_PER_SHIPMENT_WS": "+{0}% / Реліквію",
+  "TID_DARK_RED_STAR_LABEL": "DARK RED STAR",
   "TID_PLANET_LEVEL_DESCR": "РІВЕНЬ ПЛАНЕТ",
   "TID_BUILDING_LEVEL_DESCR": "РІВЕНЬ СТАНЦІЇ",
   "TID_DISBAND_SHIP_BUTTON": "Розібрати",
