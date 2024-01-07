@@ -96,6 +96,7 @@ router.beforeEach(async (to, from, next) => {
     if (to.path !== from.path) {
         $Progress.start();
         $Progress.set(30);
+        renderError.value = undefined;
     }
     next();
 });
