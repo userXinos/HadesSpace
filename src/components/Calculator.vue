@@ -11,7 +11,9 @@
         <td
           :class="statsStyleName(k as string)"
           class="stats-style"
-        >{{ format.key(k as string) }}</td>
+        >
+          {{ format.key(k as string) }}
+        </td>
         <td
           v-for="(item, itemKey) of v"
           :key="k + itemKey"
@@ -28,7 +30,9 @@
         <td
           :class="statsStyleName(k as string)"
           class="stats-style"
-        >{{ format.key(k as string) }}</td>
+        >
+          {{ format.key(k as string) }}
+        </td>
         <td
           v-if="v > 0"
           colspan="3"
@@ -322,10 +326,10 @@ function isDisabled(type: keyof Input, key: string, value: number): boolean {
     }
     return (value < props.input.actually[key]);
 }
-function outputClasses(type: keyof Output, key: string, charName?: string): object {
+function outputClasses(type: keyof Output, key: string, charName?: string): {[k: string]: boolean} {
     if (type == 'actually') {
         return {
-            'none': charName && totalResultKeys.value.includes(charName),
+            'none': !!charName && totalResultKeys.value.includes(charName),
             'actually': true,
         };
     }
@@ -334,7 +338,7 @@ function outputClasses(type: keyof Output, key: string, charName?: string): obje
 
         return {
             'yellow-color': (props.input.actually[key] ? props.input.plan[key] > props.input.actually[key] : true) && (typeof char !== 'object'),
-            'plus': !charName || (charName && !totalResultKeys.value.includes(charName)),
+            'plus': !charName || (!!charName && !totalResultKeys.value.includes(charName)),
             'none': props.input.plan[key] == props.input.actually[key],
             'plan': true,
         };
