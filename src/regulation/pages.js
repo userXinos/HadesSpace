@@ -290,6 +290,16 @@ export default [
                 },
             },
             {
+                name: 'InstallPWA',
+                text: { locKey: 'TID_SHIP_UPGRADE_DLG_MODULE_INSTALL_BTN' },
+                path: '/install',
+                component: () => import('../pages/InstallPWA.vue'),
+                icon: {
+                    name: 'download',
+                    dir: 'icons',
+                },
+            },
+            {
                 name: 'About',
                 text: { locKey: 'ABOUT' },
                 path: '/about',

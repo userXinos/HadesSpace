@@ -10,7 +10,6 @@
   "SHIP_BUILD": "Build ships",
   "CALCULATOR_SETTINGS": "Calculator settings",
   "OTHER": "Other",
-  "SWITCH_ACCS": "Account switcher {0} [{1}]",
   "OPEN": "Open",
   "YES": "Yes",
   "NO": "No",
@@ -47,5 +46,7 @@
   "HERE": "here",
   "SYNC": "Synchronize",
   "DISABLE_FILTERS": "Disable filters",
-  "DISABLE_FILTERS_NOTE": "Disable all characteristic filters used to hide unimportant information"
+  "DISABLE_FILTERS_NOTE": "Disable all characteristic filters used to hide unimportant information",
+  "INSTALL_PWA_NOTE": "Install a progressive web application. Powered by your favorite browser, icon on desktop/launcher, work offline",
+  "INSTALL_PWA_ERR_NOT_PROVIDE": "Browser did not provide installation function"
 }
