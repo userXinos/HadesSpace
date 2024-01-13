@@ -5,7 +5,7 @@ import { regex as postfixRegex } from '@Regulation/postfixes.mjs';
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
 const memorized: Map<(typeof rules)[0][1], (typeof rules)[0][1]> = new Map();
 
-export default function(key: string, value:unknown, dataName?:string):unknown {
+export default function(key: string, value: unknown, dataName?: string):unknown {
     if (value === undefined || value === null) {
         return;
     }

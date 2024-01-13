@@ -157,7 +157,7 @@ export default [
     ],
     [
         ['MiningPeriod'],
-        (v) => `${(60 * (100 / v)).toFixed(1)}/${t('TID_MINUTE_ABBREVIATION')}`,
+        (v) => (60 * (100 / v)).toFixed(1),
     ],
     [
         ['OnBoardHydroMax'],
