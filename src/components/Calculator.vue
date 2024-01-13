@@ -32,6 +32,11 @@
           class="stats-style"
         >
           {{ format.key(k as string) }}
+          <span
+            v-if="k == 'TimeToUpgradeParallel'"
+            class="show-info"
+            @click="openInfo = true"
+          />
         </td>
         <td
           v-if="v > 0"
@@ -66,7 +71,7 @@
       </div>
     </div>
 
-    <modal
+    <Modal
       v-model:open="settingsModal"
       :title="$t('CALCULATOR_SETTINGS')"
       :size="SIZES.MEDIUM"
@@ -78,7 +83,7 @@
 
           <div class="input-wrap">
             <p
-              v-t="'TID_PLANET_UPG_CREDIT_YIELD'"
+              v-t="'DAILY_INVESTMENT'"
               class="stats-style"
               :class="statsStyleName('CreditStorage')"
             />
@@ -99,9 +104,9 @@
         </div>
       </template>
 
-    </modal>
+    </Modal>
 
-    <modal
+    <Modal
       v-model:open="openNewModal"
       :title="$t('CREATE')"
       :size="SIZES.SMALL"
@@ -124,7 +129,19 @@
           />
         </div>
       </template>
-    </modal>
+    </Modal>
+
+    <Modal
+      v-model:open="openInfo"
+      :title="$t('TID_MORE_INFO_BTN')"
+      :size="SIZES.MEDIUM"
+    >
+      <template #body>
+        <div class="info">
+          <p v-t="'UPGRADE_TIME_IN_PARALLEL_INFO'" />
+        </div>
+      </template>
+    </Modal>
 
   </div>
 </template>
@@ -198,6 +215,7 @@ const setupArgs: SetupComponent = {
 
 const settingsModal = ref(false);
 const openNewModal = ref(false);
+const openInfo = ref(false);
 const newConfigFromText = ref('');
 const title = computed(() => t(props.titleKey));
 const totalResultKeys = computed(() => Object.keys(output.total.result));
@@ -387,6 +405,14 @@ function outputClasses(type: keyof Output, key: string, charName?: string): {[k:
         &[colspan="3"] {
             font-size: 100%;
         }
+
+        .show-info {
+            &:after {
+                padding: 2px;
+                content: 'ⓘ';
+                cursor: pointer;
+            }
+        }
     }
 
     .result {
@@ -445,5 +471,10 @@ function outputClasses(type: keyof Output, key: string, charName?: string): {[k:
       border-radius: 10px;
     }
   }
+}
+.info {
+    p {
+        white-space: pre-line;
+    }
 }
 </style>

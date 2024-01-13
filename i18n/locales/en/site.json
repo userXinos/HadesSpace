@@ -41,6 +41,8 @@
   "CRYSTAL_CALCULATOR": "Crystal calculator",
   "TIME": "Time",
   "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel",
+  "UPGRADE_TIME_IN_PARALLEL_INFO": "The cost of all planets/modules of the plan is divided by the upgrade time and recalculated into hours - we get the number of credits that need to be invested for continuous improvement per hour.\n\n Then the value from the settings is converted to hours too. The cycle calculates whether the number from the settings can cover the consumption per hour, if not, how many times (this means that our income is not enough to improve all our planets/modules continuously).\n\n As a result, we get the actual parallel upgrade time, which takes into account the daily investment and their upgrade time",
+  "DAILY_INVESTMENT": "Daily investment",
   "COMMUNITY_CONTENT": "This content is community supported and can be edited {0}",
   "HERE": "here",
   "SYNC": "Synchronize",
