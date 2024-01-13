@@ -77,6 +77,11 @@
           <input v-model="reqCode">
         </div>
 
+        <a
+          href="https://hs-compendium.com/"
+          target="_blank"
+        >HS Compendium</a>
+
         <div
           class="code-req-btn-wrap"
           :class="{'disable': isFetching}"
@@ -298,7 +303,7 @@ function userProfileClick() {
   justify-content: end;
 }
 .error-msg {
-  font-size: 70%;
+  font-size: 65%;
   color: red;
   margin-left: 10px;
   font-style: italic;
