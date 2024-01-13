@@ -102,6 +102,7 @@ export default [
             'MinEffectRadius',
             'BlastDroneDamageRange',
             'BlastDroneTriggerDist',
+            'OnDeathHealRange',
         ],
         (v) => t('TID_DISTANCE', [v / 10]),
     ],
