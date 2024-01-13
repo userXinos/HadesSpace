@@ -3,71 +3,72 @@
     <v-head><title>{{ title }}</title></v-head>
     <h1 class="topic"> {{ title }} </h1>
 
-    <table class="total-table">
-      <tr
-        v-for="(v, k) of output.total.intermediate"
-        :key="k"
-      >
-        <td
-          :class="statsStyleName(k as string)"
-          class="stats-style"
+    <div class="table-and-buttons">
+      <table class="total-table">
+        <tr
+          v-for="(v, k) of output.total.intermediate"
+          :key="k"
         >
-          {{ format.key(k as string) }}
-        </td>
-        <td
-          v-for="(item, itemKey) of v"
-          :key="k + itemKey"
-          :class="totalTableClasses(itemKey, k as string)"
+          <td
+            :class="statsStyleName(k as string)"
+            class="stats-style"
+          >
+            {{ format.key(k as string) }}
+          </td>
+          <td
+            v-for="(item, itemKey) of v"
+            :key="k + itemKey"
+            :class="totalTableClasses(itemKey, k as string)"
+          >
+            {{ item.toLocaleString('ru-RU') }}
+          </td>
+        </tr>
+        <tr
+          v-for="(v, k) of output.total.result"
+          :key="k"
+          class="result"
         >
-          {{ item.toLocaleString('ru-RU') }}
-        </td>
-      </tr>
-      <tr
-        v-for="(v, k) of output.total.result"
-        :key="k"
-        class="result"
-      >
-        <td
-          :class="statsStyleName(k as string)"
-          class="stats-style"
-        >
-          {{ format.key(k as string) }}
-          <span
-            v-if="k == 'TimeToUpgradeParallel'"
-            class="show-info"
-            @click="openInfo = true"
-          />
-        </td>
-        <td
-          v-if="v > 0"
-          colspan="3"
-        >
-          <b>{{ format.value(k as string, v) }}</b>
-        </td>
-      </tr>
-    </table>
+          <td
+            :class="statsStyleName(k as string)"
+            class="stats-style"
+          >
+            {{ format.key(k as string) }}
+            <span
+              v-if="k == 'TimeToUpgradeParallel'"
+              class="show-info"
+              @click="openInfo = true"
+            />
+          </td>
+          <td
+            v-if="v > 0"
+            colspan="3"
+          >
+            <b>{{ format.value(k as string, v) }}</b>
+          </td>
+        </tr>
+      </table>
 
-    <div class="buttons">
-      <button
-        class="settings"
-        @click="settingsModal = true"
-      />
-
-      <div class="reset-buttons">
+      <div class="buttons">
+        <div class="reset-buttons">
+          <button
+            class="button yellow"
+            name="plan"
+            @click="onReset"
+          >
+            {{ $t('RESET_PLAN') }}
+          </button>
+          <button
+            class="button red"
+            name="all"
+            @click="onReset"
+          >
+            {{ $t('RESET_ALL') }}
+          </button>
+        </div>
         <button
-          class="button yellow"
-          name="plan"
-          @click="onReset"
-        >
-          {{ $t('RESET_PLAN') }}
-        </button>
-        <button
-          class="button red"
-          name="all"
-          @click="onReset"
-        >
-          {{ $t('RESET_ALL') }}
-        </button>
+          class="settings"
+          @click="settingsModal = true"
+        />
       </div>
     </div>
 
@@ -370,15 +371,24 @@ function outputClasses(type: keyof Output, key: string, charName?: string): {[k:
 @import "../style/calculator";
 @import "../style/userInput";
 
+.table-and-buttons {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    gap: 10px;
+
+    @media screen and (max-width: 1000px){
+        flex-direction: column;
+        margin-bottom: 25px;
+    }
+}
 .total-table {
+    flex: 4;
     border: 2px solid #424547;
     border-spacing: 0;
     color: #aab2b6;
     width: 100%;
-    max-width: 600px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 25px;
     border-collapse: collapse;
 
     td {
@@ -424,8 +434,23 @@ function outputClasses(type: keyof Output, key: string, charName?: string): {[k:
 }
 
 .buttons {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
+    align-items: end;
+    flex-direction: column;
+    gap: 10px;
+
+    .reset-buttons {
+        flex-direction: column;
+
+        @media screen and (max-width: 1000px){
+            flex-direction: row;
+        }
+    }
+
+    @media screen and (max-width: 1000px){
+        flex-direction: row;
+    }
 
     .settings {
         cursor: pointer;
