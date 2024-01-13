@@ -18,3 +18,7 @@ declare module '@Regulation/statsStyle.js' {
     const rules: Record<string, string[]>;
     export default rules;
 }
+declare module '@Regulation/thirdPartyTools.js' {
+    const items: { name: string, href: string, authors: string[], tags: 'Android'|'Discord' }[];
+    export default items;
+}

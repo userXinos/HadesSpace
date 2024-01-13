@@ -279,11 +279,10 @@ export default [
                 },
             },
             {
-                text: {
-                    locKey: 'SWITCH_ACCS',
-                    params: ['by Raerten', 'up to Android 10'],
-                },
-                path: { externalLink: 'https://github.com/Raerten/HSAccs' },
+                name: 'ThirdPartyTools',
+                text: { locKey: 'THIRD_PARTY_TOOLS' },
+                path: '/thirdPartyTools',
+                component: () => import('../pages/ThirdPartyTools.vue'),
                 icon: {
                     name: 'github_logo',
                     dir: 'icons',
