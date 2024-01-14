@@ -97,7 +97,7 @@
           </div>
 
           <MultiConfigGUI
-            :on-create-new="() => openNewModal = true"
+            :on-create-new="createConfig"
             :instance="ConfigManager"
             :data-to-string="ConfigManager.selectedConfig.actually"
           />
@@ -105,31 +105,6 @@
         </div>
       </template>
 
-    </Modal>
-
-    <Modal
-      v-model:open="openNewModal"
-      :title="$t('CREATE')"
-      :size="SIZES.SMALL"
-    >
-      <template #body>
-        <div class="input">
-          <p
-            v-t="'FROM_TEXT_FORMAT'"
-            class="name"
-          />
-          <p class="name">Example: Fortify 8 Bond 5</p>
-          <input v-model="newConfigFromText">
-        </div>
-
-        <div class="flex-end margin-bottom">
-          <button
-            v-t="'TID_OK'"
-            class="button green"
-            @click="createConfig"
-          />
-        </div>
-      </template>
     </Modal>
 
     <Modal
@@ -210,14 +185,11 @@ const setupArgs: SetupComponent = {
     format: format,
     Config: ConfigManager.store,
 
-    provideGetterElements: (cb: SetupGetElementsCB) =>
-        provideGetterElements((...args) => cb(ConfigManager.TIDs, ...args)),
+    provideGetterElements: (cb: SetupGetElementsCB) => provideGetterElements(cb),
 };
 
 const settingsModal = ref(false);
-const openNewModal = ref(false);
 const openInfo = ref(false);
-const newConfigFromText = ref('');
 const title = computed(() => t(props.titleKey));
 const totalResultKeys = computed(() => Object.keys(output.total.result));
 
@@ -271,19 +243,7 @@ async function onReset(event: Event): Promise<void> {
     ConfigManager.save();
 }
 async function createConfig(): Promise<void> {
-    let parsed = {};
-
-    if (newConfigFromText.value) {
-        await ConfigManager.parseString(newConfigFromText.value)
-            .then((data) => parsed = data)
-            .catch((err) => {
-                alert(err.message);
-                console.error(err);
-            });
-    }
-    ConfigManager.add({ actually: { ...parsed }, plan: { ...parsed } });
-    newConfigFromText.value = '';
-    openNewModal.value = false;
+    ConfigManager.add({ actually: { }, plan: { } });
     fullUpdate();
 }
 function totalTableClasses(type: string, key: string): object {

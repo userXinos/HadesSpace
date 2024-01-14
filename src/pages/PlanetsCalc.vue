@@ -298,7 +298,7 @@ function calcTotal(store: ElementsStore, output: Output) {
         }
     };
 }
-function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB>): unknown[] {
+function getPlanets(...[getChars, elements]: Parameters<SetupGetElementsCB>): unknown[] {
     type TS = {
         Name: string,
         MaxUpgradeLevel?: number,
@@ -334,8 +334,6 @@ function getPlanets(...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB
                     return [k, res];
                 },
             });
-
-            TIDs[name] = planet.TID;
 
             return [name, planet];
         },

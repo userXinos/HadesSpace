@@ -278,7 +278,7 @@ function calcTotal(store: ElementsStore, output: Output) {
         val.result.ReqBank = (UnlockPrice > val.result.ReqBank) ? UnlockPrice : val.result.ReqBank;
     };
 }
-function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Parameters<SetupGetElementsCB>) {
+function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<SetupGetElementsCB>) {
     const modules = getBySlotType(type) as OutputMap;
 
     return Object.entries(modules).map(([name, module]: [string, OutputMap]) => {
@@ -289,7 +289,6 @@ function getModulesBySlotType(type: string, ...[TIDs, getChars, elements]: Param
         }
 
         elements[name] = getChars((modules as {[k: string]: object})[name] as OutputValue, MaxModuleLevel);
-        TIDs[name] = module.TID;
 
         return [module, MaxModuleLevel];
     });

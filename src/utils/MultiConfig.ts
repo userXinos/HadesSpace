@@ -1,10 +1,7 @@
 import { reactive } from 'vue';
-import i18n from '@Utils/Vue/i18n';
-import { loadLocaleMessages } from '@Utils/Vue/i18n';
 import JSONCrush from 'jsoncrush';
 
 const NAME_ZERO = 'default entry';
-const STRING_FORMAT_LOCALE = 'en';
 
 interface Store<Value> {
     configs: { name: string, temporary?: boolean, value: Value }[],
@@ -13,8 +10,6 @@ interface Store<Value> {
 
 export default class MultiConfig<ConfigValue> {
     public readonly store: Store<ConfigValue>;
-
-    public readonly TIDs: Record<string, string> = {};
 
     constructor(private readonly localStoreKey: string, private readonly zeroConfig: ConfigValue) {
         this.store = reactive({ configs: [], selected: 0 }) as Store<ConfigValue>;
@@ -72,23 +67,6 @@ export default class MultiConfig<ConfigValue> {
         } else {
             this.save();
         }
-    }
-
-    public async parseString(text: string) {
-        const entries: [string, number][] = [];
-
-        if (!(i18n.global.availableLocales as string[]).includes(STRING_FORMAT_LOCALE)) {
-            await loadLocaleMessages(STRING_FORMAT_LOCALE);
-        }
-
-        for (const [key, TID] of Object.entries(this.TIDs)) {
-            const name = i18n.global.t(TID, STRING_FORMAT_LOCALE);
-            const regex = new RegExp(`${name}\\s+?(\\d+)\\s?`, 'mi'); // EMP       99
-            const [, lvl] = text.match(regex) || [undefined, '0'];
-
-            entries.push([key, parseInt(lvl as string)]);
-        }
-        return Object.fromEntries(entries.filter(([, l]) => l));
     }
 
     public static stringifyUrl(obj: object): string {
