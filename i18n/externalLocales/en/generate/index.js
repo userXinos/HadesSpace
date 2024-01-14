@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 
-import usedLocKeys from './usedLocKeys.js';
+import usedLocKeys from '../../../modules/usedLocKeys.js';
 import serviceLines from './serviceLines.json' assert {type: 'json'};
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -10,8 +10,9 @@ const ROOT_PATH = path.join(__dirname, `../../../../`);
 
 
 const rawLocale = await import(path.join(ROOT_PATH, 'parser/dist/loc_strings/en.js')).then((m) => m.default);
+const languageFilePath = path.join(ROOT_PATH, '/i18n/dist/en.json');
 const data = {
-    ...getObjByKeys(rawLocale, await usedLocKeys()),
+    ...getObjByKeys(rawLocale, await usedLocKeys(languageFilePath)),
     ...serviceLines,
 };
 

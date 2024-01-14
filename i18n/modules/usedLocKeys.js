@@ -4,17 +4,17 @@ import { fileURLToPath } from 'url';
 import VueI18NExtract from 'vue-i18n-extract';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT_PATH = path.join(__dirname, `../../../../`);
+const ROOT_PATH = path.join(__dirname, `../../`);
 
 const PARSER_DIST_PATH = path.join(ROOT_PATH, '/parser/dist');
 const REGULATION_LOC_PATH = path.join(ROOT_PATH, '/src/regulation/locKeys.mjs');
 const RAW_EN_LOCALE_PATH = path.join(ROOT_PATH, '/parser/dist/loc_strings/en.js');
 
 
-export default async function() {
+export default async function(languageFilePath) {
     const i18nReport = await VueI18NExtract.createI18NReport({
         vueFiles: path.join(ROOT_PATH, `/src/**/*.?(js|ts|vue)`),
-        languageFiles: path.join(__dirname, `../../../dist/en.json`),
+        languageFiles: languageFilePath,
         output: false,
     });
     const keysToRemove = i18nReport.unusedKeys.map((e) => e.path);

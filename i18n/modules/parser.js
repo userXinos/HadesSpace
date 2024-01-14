@@ -9,7 +9,6 @@ import runner from '../../parser/runners/LocStrings.js';
 /**
  * Загрузить и распарсить через ранер файл
  * @param {String} file путь до файла относительно папки с сырыми данными
- * @param {Function<Runner>} runner
  * @return {Promise<Object>}
  */
 export default async function(file) {

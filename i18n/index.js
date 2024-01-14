@@ -9,6 +9,7 @@ import program from './modules/program.js';
 import loadLocale from './modules/loadLocale.js';
 import compileLocale from './modules/compileLocale.js';
 import parser from './modules/parser.js';
+import usedLocKeys from './modules/usedLocKeys.js';
 
 program.parse();
 
@@ -16,6 +17,7 @@ const time = new Timer();
 const defaultLocale = await loadLocale(CONFIG.defaultLang);
 const externalLocales = readdirSync(CONFIG.externalLocales);
 const languagesMap = await parser(`languages.csv`);
+const usedKeys = await generateUsedKeys();
 const files = readdirSync(CONFIG.additionalContent).map(handler);
 
 
@@ -36,6 +38,12 @@ async function handler(locale) {
         languagesMap[config.languages.Name] = { ...config.languages };
     } else {
         parsedData = await parser(`loc_strings/loc_strings_${locale}.csv`);
+
+        Object.keys(parsedData).forEach((k) => {
+            if (!usedKeys.includes(k)) {
+                delete parsedData[k];
+            }
+        });
     }
     const data = await compileLocale(locale, parsedData, defaultLocale);
     const path = join(CONFIG.savePath, `${locale}.json`);
@@ -50,4 +58,11 @@ async function handler(locale) {
     function getJson(path) {
         return readFile(path, 'utf-8').then((f) => JSON.parse(f));
     }
+}
+async function generateUsedKeys() {
+    const path = join(CONFIG.savePath, `tmp.json`);
+    const data = await parser(`/loc_strings/loc_strings_en.csv`);
+    await writeFile(path, JSON.stringify(data)); // vue-i18n-extract требует это виде файла
+
+    return usedLocKeys(path);
 }
