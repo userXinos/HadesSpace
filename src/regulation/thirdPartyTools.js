@@ -1,6 +1,6 @@
 export default [
     {
-        name: 'Account switcher (up to Android 10)',
+        name: 'HS Accounts (up to Android 10)',
         authors: ['Raerten'],
         href: 'https://github.com/Raerten/HSAccs',
         tags: ['Android'],
@@ -12,9 +12,9 @@ export default [
         tags: ['Discord'],
     },
     {
-        name: 'Hades-StarTool Account switcher (Chinese localization only)',
+        name: 'Hades-StarTool',
         authors: ['靈凛'],
-        href: 'https://github.com/lin-lin-miao/Hades-StarTool',
+        href: 'https://github.com/lin-lin-miao/HST-More-Language',
         tags: ['Android'],
     },
 ];
