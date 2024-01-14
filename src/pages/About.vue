@@ -129,7 +129,7 @@ function Link({ text, to }) {
     margin: 5% auto;
 
     .text {
-        font-size: 130%;
+        font-size: 110%;
         margin: 0 6%;
         white-space: pre-line;
     }

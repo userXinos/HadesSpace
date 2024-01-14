@@ -49,6 +49,7 @@ const title = t('THIRD_PARTY_TOOLS');
     margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 5%;
 }
 
 .list {
