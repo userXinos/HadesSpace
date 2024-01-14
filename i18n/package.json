@@ -10,11 +10,11 @@
   },
   "author": "Xinos",
   "dependencies": {
-    "commander": "^9.2.0"
+    "commander": "^9.2.0",
+    "vue-i18n-extract": "^2.0.7"
   },
   "devDependencies": {
     "eslint": "^8.14.0",
-    "eslint-config-google": "^0.14.0",
-    "vue-i18n-extract": "^2.0.7"
+    "eslint-config-google": "^0.14.0"
   }
 }
