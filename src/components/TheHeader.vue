@@ -20,8 +20,11 @@
         </template>
 
         <template v-else>
-          <navigation />
-          <settings />
+          <Navigation />
+          <div>
+            <Settings />
+            <InstallPWA v-bind="pwaOpts" />
+          </div>
         </template>
 
       </div>
@@ -39,10 +42,15 @@
 <script setup lang="ts">
 import Navigation from './TheNavigation.vue';
 import Settings from '@/components/Settings.vue';
+import InstallPWA from '@/components/InstallPWA.vue';
 
 export interface Props {
     isMinMode: boolean,
     openSidebar: () => void
+    pwaOpts: {
+        error: string,
+        install: () => void
+    }
 }
 defineProps<Props>();
 </script>
@@ -105,6 +113,11 @@ $mw: 1000px;
             align-items: center;
             height: 100%;
             padding: 0 1%;
+
+            div:last-child {
+                display: flex;
+                align-items: center;
+            }
 
             .sidebar {
                 background: url("../img/icons/menu.svg") round center;

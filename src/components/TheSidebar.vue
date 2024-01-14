@@ -6,8 +6,9 @@
         v-touch:swipe="swipeHandler"
         class="sidebar"
       >
-        <navigation />
-        <settings />
+        <Navigation />
+        <Settings />
+        <InstallPWA v-bind="pwaOpts" />
       </div>
     </transition>
   </modal>
@@ -19,10 +20,15 @@ import { computed } from 'vue';
 import Navigation from './TheNavigation.vue';
 import Modal from '@/components/Modal.vue';
 import Settings from '@/components/Settings.vue';
+import InstallPWA from '@/components/InstallPWA.vue';
 
 export interface Props {
     open: boolean
     swipeHandler?: (direction: string, event: TouchEvent) => void
+    pwaOpts: {
+        error: string,
+        install: () => void
+    }
 }
 
 const props = withDefaults(defineProps<Props>(), {

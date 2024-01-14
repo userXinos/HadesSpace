@@ -13,6 +13,7 @@
         <TheHeader
           :is-min-mode="isMinMode"
           :open-sidebar="() => setShowSidebar(true)"
+          :pwa-opts="{error: errorPWA, install: installPWA}"
         >
 
           <div class="target-wrap"><div id="table-head-target" /></div>
@@ -39,6 +40,7 @@
           v-if="isMinMode"
           v-model:open="sidebarIsOpen"
           :swipe-handler="swipeHandler"
+          :pwa-opts="{error: errorPWA, install: installPWA}"
         />
 
       </div>
@@ -69,6 +71,7 @@ import TheConfirm from '@/components/TheConfirm.vue';
 
 import appSidebar from '@/composables/appSidebar';
 import appChangelog from '@/composables/appChangelog';
+import appPWA from '@/composables/appPWA';
 
 const MAX_WIDTH = 1500;
 
@@ -80,6 +83,7 @@ const renderError = ref<Error>();
 
 const { setShow: setShowSidebar, swipeHandler, isOpen: sidebarIsOpen } = appSidebar(isMinMode);
 const { isOpen: changelogIsOpen, onClose: changelogOnClose } = appChangelog();
+const { error: errorPWA, install: installPWA } = appPWA();
 
 $Progress.start();
 

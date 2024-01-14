@@ -10,7 +10,7 @@
 
     <Modal
       v-model:open="isOpenModal"
-      :title="$te('TID_SETTINGS_DLG_LANGUAGE') ? $t('TID_SETTINGS_DLG_TITLE') : ''"
+      :title="$t('TID_SETTINGS_DLG_TITLE')"
     >
       <template #body>
 

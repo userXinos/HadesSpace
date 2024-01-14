@@ -1,76 +1,110 @@
 <template>
-  <div class="container">
-    <Head><title>{{ title }}</title></Head>
-
-    <p v-t="'INSTALL_PWA_NOTE'" />
-    <p
-      v-if="deferredPrompt != null"
-      class="animated-button"
-      @click="go"
+  <div>
+    <div
+      class="button"
+      @click="isOpenModal = true"
     >
-      <span />
-      <span />
-      <span />
-      <span />
-      {{ $t('TID_SHIP_UPGRADE_DLG_MODULE_INSTALL_BTN') }}
-    </p>
-    <p v-if="deferredPrompt == null">
-      <span v-if="err == 'INSTALLED'">
-        {{ $t('TID_ADD_MODULE_DLG_ALREADY_INSTALLED') }}
-      </span>
-      <span v-if="err == undefined">
-        {{ $t('INSTALL_PWA_ERR_NOT_PROVIDE') }}
-      </span>
-    </p>
+      <div class="icon" />
+      <span
+        v-t="'TID_SHIP_UPGRADE_DLG_MODULE_INSTALL_BTN'"
+        class="name"
+      />
+    </div>
+
+    <Modal
+      v-model:open="isOpenModal"
+      title="PWA"
+      :size="SIZES.SMALL"
+    >
+      <template #body>
+        <div class="modal">
+          <p v-t="'INSTALL_PWA_NOTE'" />
+          <p
+            v-if="!error"
+            class="animated-button"
+            @click="install"
+          >
+            <span />
+            <span />
+            <span />
+            <span />
+            {{ $t('TID_SHIP_UPGRADE_DLG_MODULE_INSTALL_BTN') }}
+          </p>
+
+          <p>
+            <span v-if="error == 'NOT_PROVIDED'">
+              {{ $t('INSTALL_PWA_ERR_NOT_PROVIDE') }}
+            </span>
+            <span v-if="error == 'NOT_SUPPORTED'">
+              {{ $t('INSTALL_PWA_ERR_NOT_SUPPORTED') }}
+            </span>
+            <span v-if="error == 'INSTALLED'">
+              {{ $t('TID_ADD_MODULE_DLG_ALREADY_INSTALLED') }}
+            </span>
+          </p>
+        </div>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Head } from '@vueuse/head';
-import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
+import Modal, { SIZES } from '@/components/Modal.vue';
 
-interface BeforeInstallPromptEvent extends Event {
-    readonly platforms: string[];
-    readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string; }>;
-    prompt(): Promise<void>;
+export interface Props {
+    error: string|null,
+    install: () => void
 }
-declare global {
-    interface WindowEventMap {
-        beforeinstallprompt: BeforeInstallPromptEvent;
-    }
-}
-const { t } = useI18n();
-const title = t('TID_SHIP_UPGRADE_DLG_MODULE_INSTALL_BTN');
-let deferredPrompt: BeforeInstallPromptEvent = null;
-let err: string;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-});
-window.addEventListener('appinstalled', () => {
-    deferredPrompt = null;
-    err = 'INSTALLED';
-});
-function go() {
-    deferredPrompt.prompt();
-}
+defineProps<Props>();
+const isOpenModal = ref(false);
 </script>
 
 <style scoped lang="scss">
 @use "../style/vars";
-@import "../style/page.scss";
+@import "../style/userInput";
 
-.container {
-    max-width: 680px;
-    display: flex;
+$mv: 1000px;
+
+.button {
+    cursor: pointer;
+    justify-content: left;
     align-items: center;
-    flex-direction: column;
-    margin: 5% auto 20%;
+    display: none;
 
-    p:first-child {
-        margin-bottom: 50px;
+    @media (display-mode: browser) {
+        display: flex;
     }
+
+    .icon {
+        background: url("../img/icons/download.svg") no-repeat;
+        width: 30px;
+        height: 30px;
+
+        @media screen and (max-width: $mv) {
+            width: 28px;
+            height: 28px;
+            padding-bottom: 2%;
+            margin-left: 3%;
+        }
+    }
+    .name {
+        display: none;
+        font-size: 140%;
+        padding-left: 15px;
+
+        @media screen and (max-width: $mv) {
+            display: block;
+        }
+    }
+
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 /*
@@ -82,7 +116,6 @@ function go() {
 .animated-button {
     background: linear-gradient(-30deg, vars.$background-elements 50%, vars.$background 50%);
     padding: 20px 40px;
-    margin: 12px;
     display: inline-block;
     transform: translate(0%, 0%);
     overflow: hidden;
