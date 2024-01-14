@@ -83,7 +83,7 @@ function copyConfig(): void {
             setTimeout(() => buttonCopy.value = { text: t('COPY'), color: 'yellow' }, 2000);
         })
         .catch((err) => {
-            buttonCopy.value = { text: t('Error'), color: 'red' };
+            buttonCopy.value = { text: t('TID_DLG_TITLE_ERROR'), color: 'red' };
             alert(err.message);
             console.error(err);
         });

@@ -18,7 +18,7 @@
       </template>
 
       <template #data>
-        <Link :text="$t('data')" :to="`${homepage}/tree/master/parser/raw`" />
+        <Link :text="$t('DATA')" :to="`${homepage}/tree/master/parser/raw`" />
       </template>
 
       <template #game_developer>
