@@ -35,7 +35,7 @@
       <!--suppress JSUnresolvedReference -->
       <!--  WS moment: Unresolved variable or type planetValues-->
       <v-data
-        :data="{TID: 'INPUT_VALUES', Name: 'Input', TID2: ['', ...planetValues.map((e) => e.TID)]}"
+        :data="{TID: '', Name: 'Input', TID2: ['', ...planetValues.map((e) => e.TID)]}"
         :table-opts="{lvlColKey: '№', mergeCells: false, colLvlStartAt: 0}"
       >
 
