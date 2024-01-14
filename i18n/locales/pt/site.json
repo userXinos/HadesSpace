@@ -27,7 +27,6 @@
   "COPIED": "Copied",
   "CREATE": "Create",
   "LIST": "List",
-  "FROM_TEXT_FORMAT": "From text format (optional)",
   "REMOVE_CONFIG": "Delete \"{0}\" configuration ?",
   "UPDATED": "Updated",
   "CURRENT_VERSION": "Current version",
