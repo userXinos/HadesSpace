@@ -27,7 +27,6 @@
   "COPIED": "コピー済み",
   "CREATE": "作成する",
   "LIST": "一覧",
-  "FROM_TEXT_FORMAT": "テキスト形式から (オプション)",
   "REMOVE_CONFIG": "Delete \"{0}\" configuration ?",
   "UPDATED": "更新",
   "CURRENT_VERSION": "最新バージョン",
