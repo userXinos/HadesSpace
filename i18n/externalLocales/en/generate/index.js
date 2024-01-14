@@ -2,34 +2,24 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 
-import usedLocKeys from '../../../modules/usedLocKeys.js';
 import serviceLines from './serviceLines.json' assert {type: 'json'};
+import enLocale from '../../../dist/en.json' assert {type: 'json'};
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_PATH = path.join(__dirname, `../../../../`);
 
-
 const rawLocale = await import(path.join(ROOT_PATH, 'parser/dist/loc_strings/en.js')).then((m) => m.default);
-const languageFilePath = path.join(ROOT_PATH, '/i18n/dist/en.json');
-const data = {
-    ...getObjByKeys(rawLocale, await usedLocKeys(languageFilePath)),
-    ...serviceLines,
-};
+const allowedKeys = Object.keys(enLocale);
 
-saveJson(data, '../index');
+Object.keys(rawLocale).forEach((k) => {
+    if (!allowedKeys.includes(k)) {
+        delete rawLocale[k];
+    }
+});
 
-function getObjByKeys(obj, keys) {
-    const res = {};
 
-    keys.forEach((k) => {
-        if (k in obj) {
-            res[k] = obj[k];
-        } else {
-            console.log(k);
-        }
-    });
-    return res;
-}
+saveJson({ ...rawLocale, ...serviceLines }, '../index');
+
 function saveJson(object, fileName) {
     const data = JSON.stringify(object, null, 2);
     const filePath = path.join(__dirname, `${fileName}.json`);

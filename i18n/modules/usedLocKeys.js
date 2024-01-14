@@ -8,6 +8,7 @@ const ROOT_PATH = path.join(__dirname, `../../`);
 
 const PARSER_DIST_PATH = path.join(ROOT_PATH, '/parser/dist');
 const REGULATION_LOC_PATH = path.join(ROOT_PATH, '/src/regulation/locKeys.mjs');
+const PAGES_MAP_PATH = path.join(ROOT_PATH, '/src/regulation/pages.js');
 const RAW_EN_LOCALE_PATH = path.join(ROOT_PATH, '/parser/dist/loc_strings/en.js');
 
 
@@ -23,6 +24,7 @@ export default async function(languageFilePath) {
 
     const { gameCharsLocKeys, gameSlostLocKeys } = await import(REGULATION_LOC_PATH);
     const dist = await importAllFiles(PARSER_DIST_PATH);
+    const pagesMap = await import(PAGES_MAP_PATH).then((m) => m.default);
 
     return [ ...new Set([
         ...usedInCodeKeys,
@@ -32,6 +34,7 @@ export default async function(languageFilePath) {
             .flat()
             .filter((s) => !s.endsWith('undefined')),
         ...getUniqueStringValues(dist),
+        ...getUniqueStringValues(pagesMap),
         ...Object.values(gameCharsLocKeys),
         ...Object.values(gameSlostLocKeys),
     ]) ];
