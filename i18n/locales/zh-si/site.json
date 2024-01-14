@@ -55,7 +55,6 @@
   "DISABLE_FILTERS_NOTE": "禁用所有特性过滤器以显示不重要信息",
   "INSTALL_PWA_NOTE": "安装一个渐进式网页应用程序（PWA）。由你最喜欢的浏览器提供支持，在桌面上创建图标，支持离线运行。",
   "INSTALL_PWA_ERR_NOT_PROVIDE": "你的浏览器未提供安装PWA功能",
-  "INSTALL_PWA_ERR_NOT_SUPPORTED": "Your browser does not support this feature",
   "THIRD_PARTY_TOOLS": "第三方工具",
   "THIRD_PARTY_TOOLS_NOTE": "此工具列表仅供参考。我们不对其中的任何工具作出有关安全性，准确性以及正确性的保证。使用它们即代表自愿承担风险！"
 }
