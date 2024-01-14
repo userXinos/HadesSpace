@@ -48,7 +48,7 @@ export default defineConfig({
                 short_name: 'HadesSpace',
                 description: 'Current information about the game Hades\' star',
                 theme_color: '#161b1d',
-                background_color: '#101415',
+                background_color: '#000000',
                 icons: [
                     { 'src': 'favicon/32x32.png', 'sizes': '32x32', 'type': 'image/png' },
                     { 'src': 'favicon/16x16.png', 'sizes': '16x16', 'type': 'image/png' },
