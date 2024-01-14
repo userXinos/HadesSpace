@@ -28,20 +28,9 @@
               :style="{'--i': i + 1}"
             >
 
-              <template v-if="child.link.type == 'router'">
-                <router-link :to="child.link.path">
-                  <h2 class="name">{{ $t(child.text.locKey, [child.text.params]) }}</h2>
-                </router-link>
-              </template>
-              <template v-if="child.link.type == 'external'">
-                <a
-                  :href="child.link.path"
-                  target="_blank"
-                >
-                  <h2 class="name">{{ $t(child.text.locKey, [child.text.params]) }}</h2>
-                </a>
-              </template>
-
+              <router-link :to="child.path">
+                <h2 class="name">{{ $t(child.text.locKey, [child.text.params]) }}</h2>
+              </router-link>
             </li>
           </TransitionGroup>
         </div>

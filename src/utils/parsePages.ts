@@ -34,10 +34,7 @@ interface SectionsPage {
     text :string
     icon: object,
     children?: SectionsPage[]
-    link: {
-        path: string,
-        type: 'external'|'router'
-    }
+    path: string
 }
 export function getSectionsPages(): SectionsPage[] {
     return pages
@@ -48,11 +45,8 @@ export function getSectionsPages(): SectionsPage[] {
         return {
             text,
             icon,
+            path,
             children: (children) ? children.map(mapFn) : undefined,
-            link: {
-                path: typeof path == 'string' ? path : path?.externalLink,
-                type: typeof path == 'string' ? 'router' : 'external',
-            },
         };
     }
 }

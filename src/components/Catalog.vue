@@ -16,29 +16,15 @@
             :key="itemIndex"
             class="item"
           >
-            <template v-if="item.link.type == 'router'">
-              <router-link
-                class="link"
-                :to="item.link.path"
-              >
-                <item
-                  :text="item.text"
-                  :icon="item.icon"
-                />
-              </router-link>
-            </template>
-            <template v-else-if="item.link.type == 'external'">
-              <a
-                class="link blank"
-                :href="item.link.path"
-                target="_blank"
-              >
-                <item
-                  :text="item.text"
-                  :icon="item.icon"
-                />
-              </a>
-            </template>
+            <router-link
+              class="link"
+              :to="item.path"
+            >
+              <item
+                :text="item.text"
+                :icon="item.icon"
+              />
+            </router-link>
           </div>
         </div>
 
