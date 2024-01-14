@@ -41,11 +41,14 @@ export default defineConfig({
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,png,svg,md}'],
             },
+            // devOptions: { enabled: true },
             includeAssets: ['favicon.svg'],
             manifest: {
                 name: 'Hades Space',
                 short_name: 'HadesSpace',
-                themeColor: '#161b1d',
+                description: 'Current information about the game Hades\' star',
+                theme_color: '#161b1d',
+                background_color: '#101415',
                 icons: [
                     { 'src': 'favicon/32x32.png', 'sizes': '32x32', 'type': 'image/png' },
                     { 'src': 'favicon/16x16.png', 'sizes': '16x16', 'type': 'image/png' },
