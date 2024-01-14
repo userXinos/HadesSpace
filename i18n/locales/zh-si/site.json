@@ -27,7 +27,6 @@
   "COPIED": "已复制",
   "CREATE": "创建",
   "LIST": "列表",
-  "FROM_TEXT_FORMAT": "文本格式(可选)",
   "REMOVE_CONFIG": "删除 \"{0}\" 配置 ?",
   "UPDATED": "已更新",
   "CURRENT_VERSION": "当前版本",
