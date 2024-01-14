@@ -55,6 +55,7 @@
   "DISABLE_FILTERS_NOTE": "Önemsiz bilgileri gizlemek için kullanılan tüm karakteristik filtreleri devre dışı bırakın",
   "INSTALL_PWA_NOTE": "Install a progressive web application. Powered by your favorite browser, icon on desktop/launcher, work offline",
   "INSTALL_PWA_ERR_NOT_PROVIDE": "Browser did not provide installation function",
+  "INSTALL_PWA_ERR_NOT_SUPPORTED": "Your browser does not support this feature",
   "THIRD_PARTY_TOOLS": "Third Party Tools",
   "THIRD_PARTY_TOOLS_NOTE": "This list of tools is provided for informational purposes only. We are not responsible for the accuracy, results, or safety of using these tools. Their use is at your own risk"
 }
