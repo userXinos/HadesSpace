@@ -62,6 +62,10 @@ async function handler(locale) {
 async function generateUsedKeys() {
     const path = join(CONFIG.savePath, `tmp.json`);
     const data = await parser(`/loc_strings/loc_strings_en.csv`);
+
+    if (!existsSync(dirname(path))) {
+        mkdirSync(dirname(path));
+    }
     await writeFile(path, JSON.stringify(data)); // vue-i18n-extract требует это виде файла
 
     return usedLocKeys(path);
