@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="error != 'NOT_SUPPORTED'">
     <div
       class="button"
       @click="isOpenModal = true"
@@ -34,9 +34,6 @@
           <p>
             <span v-if="error == 'NOT_PROVIDED'">
               {{ $t('INSTALL_PWA_ERR_NOT_PROVIDE') }}
-            </span>
-            <span v-if="error == 'NOT_SUPPORTED'">
-              {{ $t('INSTALL_PWA_ERR_NOT_SUPPORTED') }}
             </span>
             <span v-if="error == 'INSTALLED'">
               {{ $t('TID_ADD_MODULE_DLG_ALREADY_INSTALLED') }}

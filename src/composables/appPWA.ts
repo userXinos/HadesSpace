@@ -23,8 +23,10 @@ export default function appPWA() {
     }
 
     onMounted(() => {
-        window.addEventListener('beforeinstallprompt', onBeforeinstallprompt);
-        window.addEventListener('appinstalled', onAppinstalled);
+        if (error.value == 'NOT_PROVIDED') {
+            window.addEventListener('beforeinstallprompt', onBeforeinstallprompt);
+            window.addEventListener('appinstalled', onAppinstalled);
+        }
     });
     onUnmounted(() => {
         window.removeEventListener('beforeinstallprompt', onBeforeinstallprompt);
@@ -45,14 +47,14 @@ export default function appPWA() {
         error.value = 'INSTALLED';
         deferredPrompt.value = undefined;
     }
-    async function install(): BeforeInstallPromptEvent['userChoice'] {
+    async function install(): Promise<BeforeInstallPromptEvent['userChoice']|undefined> {
         if (deferredPrompt.value) {
             deferredPrompt.value.prompt();
 
-            const { outcome } = await deferredPrompt.value.userChoice;
+            const userChoice = await deferredPrompt.value.userChoice;
             deferredPrompt.value = undefined;
 
-            return outcome;
+            return userChoice;
         }
     }
 }
