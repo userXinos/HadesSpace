@@ -178,6 +178,7 @@ const format = {
     value: (k: string, v: unknown) => value(k, v, router.currentRoute.value.name as string),
 };
 
+t('TID_CORP_TAB_MY_CORP'); // for vue-i18n-extract
 withDefaults(defineProps<Props>(), {
     levelMap: () => ({}),
     levelMapAlt: () => ({}),
