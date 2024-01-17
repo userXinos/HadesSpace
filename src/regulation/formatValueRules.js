@@ -74,6 +74,7 @@ export default [
             'IgnoreBarrier',
             'LeapBreaksBond',
             'BondBreaksBond',
+            'TeleportBreaksBond',
             'RequiresEmptySector',
             'CanCancelBuild',
             'AllowMoveInSameSectorOnly',
