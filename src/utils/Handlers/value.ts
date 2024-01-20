@@ -15,7 +15,8 @@ export default function(key: string, value: unknown, dataName?: string):unknown 
     for (const [keys, func, dataNames = []] of rules) {
         if (
             (dataName && dataNames.includes(dataName) && ((keys[0] === '*' ) ? true : keys.includes(fixedKey))) ||
-            (!dataNames.length && keys.includes(fixedKey))
+            (!dataNames.length && keys.includes(fixedKey)) ||
+            keys.includes(key)
         ) {
             if (!memorized.has(func)) {
                 memorized.set(func, memoize(func));
