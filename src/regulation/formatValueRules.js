@@ -9,10 +9,12 @@ import sec2str from '@Utils/sec2str';
 import locKeys from '@Regulation/locKeys.mjs';
 import formatValueRulesTime from '@Regulation/formatValueRulesTime.mjs';
 import globals from '@Data/globals.js';
+import stars from '@Data/stars.js';
 import planets from '@Data/planets.js';
 
 const { t } = i18n.global;
 const numberFormat = new Intl.NumberFormat('ru-RU').format;
+const WSFactror = stars.WhiteStar.TimeSlowdownFactor / 100;
 
 export default [
 
@@ -106,6 +108,10 @@ export default [
             'OnDeathHealRange',
         ],
         (v) => t('TID_DISTANCE', [v / 10]),
+    ],
+    [
+        ['DPS_WS', 'AddDPSPerTarget_WS', 'RampDPS_WS0', 'RampDPS_WS1', 'RampDPS_WS2'],
+        (v) => numberFormat(v * WSFactror),
     ],
     [
         ['BlueStar_HydroPctPerPos'],

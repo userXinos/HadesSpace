@@ -117,33 +117,12 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         delete value.SpawnedShip;
     }
 
-    // DPS -> DPH для БЗ
-    if (Object.keys(value).some((k) => k.includes('DPS_WS') || k == 'AddDPSPerTarget_WS')) {
-        const fak = TIME_SLOWDOWN_FACTOR_WS / 100;
-
-        Object.keys(value).forEach((k) => {
-            if (k.includes('DPS_WS')) {
-                const newK = k.replace('DPS', 'DPH');
-
-                if (Array.isArray(value[k])) {
-                    value[newK] = value[k].map((e) => e * fak);
-                } else {
-                    value[newK] = value[k] * fak;
-                }
-                delete value[k];
-            }
-            if (k == 'AddDPSPerTarget_WS') {
-                value[k] = value[k].map((e) => e * fak);
-            }
-        });
-    }
-
     // посчитать саппорт урон для Луча
     if (key === 'ChainRay') {
         const LinkDPSBoostPct = (value.LinkDPSBoostPct + 100) / 100;
 
         value.LinkDPSBoost = value.DPS.map((e) => e * LinkDPSBoostPct);
-        value.LinkDPSBoostWS = value.DPH_WS.map((e) => Math.floor(e * LinkDPSBoostPct));
+        value.LinkDPSBoostWS = value.DPS_WS.map((e) => Math.floor(e * LinkDPSBoostPct));
     }
 
     // пупупу

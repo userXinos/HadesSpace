@@ -80,7 +80,7 @@ export default [
     'OnBoardHydroMax',
     'RSLESecPer500HydroRS',
     'DPS',
-    'DPH_WS',
+    'DPS_WS',
     'DPS_BS',
     'MaxTargets',
     'AdditionalDPSPerTargetInRange',
