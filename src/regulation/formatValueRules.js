@@ -164,6 +164,10 @@ export default [
         (v) => v ? `${v.NumBases} ${t(v.TID)}` : '',
     ],
     [
+        ['MiningPeriod_WS'],
+        (v) => (60 * (100 / (v * 10))).toFixed(1),
+    ],
+    [
         ['MiningPeriod'],
         (v) => (60 * (100 / v)).toFixed(1),
     ],
@@ -186,6 +190,10 @@ export default [
     [
         ['HealRate'],
         (v) => v / 200,
+    ],
+    [
+        ['Speed_WS'],
+        (v) => `${Math.round(v * WSFactror / 10)} ${t('AU')}`,
     ],
     [
         ['Speed'],

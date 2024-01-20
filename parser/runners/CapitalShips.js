@@ -18,17 +18,6 @@ export default class CapitalShips extends Runner {
 
         const data = Runner.objectArrayify(rawData, {
             map: ([ key, value ]) => {
-                // исправить скорости для форматера
-                if ('Speed_WS' in value) {
-                    value['Speed_WS'] = value['Speed_WS'] * WhiteStar.TimeSlowdownFactor / 100;
-                }
-
-                if ('MiningPeriod_WS' in value) {
-                    value['MiningPeriod_WS'] = Array.isArray(value['MiningPeriod_WS']) ?
-                        value.MiningPeriod_WS.map((e) => e * 10) :
-                        value.MiningPeriod_WS * 10;
-                }
-
                 addModulesStats(value, modules);
                 fixModulesShipsData(value, MaxModuleLevel.Value);
                 fixModulesShipsData(value, MaxModuleLevel.Value, 'FlagshipModules', 'FlagshipModuleLevels');
