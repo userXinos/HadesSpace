@@ -28,9 +28,9 @@ export function fixRampLasers(obj) {
                         }
 
                         mod[key] = {
-                            '■': [...mod[`${key}0`]],
-                            '■■': [...mod[`${key}1`]],
-                            '■■■': [...mod[`${key}2`]],
+                            [`_${key}0`]: [...mod[`${key}0`]],
+                            [`_${key}1`]: [...mod[`${key}1`]],
+                            [`_${key}2`]: [...mod[`${key}2`]],
                         };
                         delete mod[`${key}0`];
                         delete mod[`${key}1`];
