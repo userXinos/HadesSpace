@@ -11,7 +11,7 @@
               <template v-if="value == null" />
               <Icon
                 v-else
-                v-bind="value"
+                v-bind="STARS[value]"
                 class="icon"
               />
             </div>
@@ -52,7 +52,7 @@
                  > {{ $t('TID_OBJ_ACTION_EXPLORE_SECTOR') }}
                  </DataStatTooltip>
                </template>
-                <template v-else>{{ format.value(row[0], value) }}</template>
+                <template v-else>{{ format.value(`${row[0]}_${table[0][i]}`, value) }}</template>
               </span>
 
             </div>
@@ -72,7 +72,7 @@ import statsStyleName from '@Handlers/statsStyleName';
 import { regex as postfixRegex } from '@Regulation/postfixes.mjs';
 
 type Table = [
-    ({dir: string, name: string} | null)[],
+    (keyof typeof STARS | null)[],
     [string, ...unknown[]][]
 ]
 
@@ -131,7 +131,7 @@ const table = computed<Table>(() => {
     }
     usedStars = usedStars.sort((a, b) => Object.keys(STARS).indexOf(a) - Object.keys(STARS).indexOf(b));
 
-    const head: Table[0] = [null, ...usedStars.map((s) => STARS[s])];
+    const head: Table[0] = [null, ...usedStars];
     const body: Table[1] = [];
 
     Object.entries(preBody).forEach(([key, byStar]) => {
