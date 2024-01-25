@@ -110,7 +110,7 @@ export default [
         (v) => t('TID_DISTANCE', [v / 10]),
     ],
     [
-        ['DPS_WS', 'AddDPSPerTarget_WS', 'RampDPS_WS0', 'RampDPS_WS1', 'RampDPS_WS2', '_RampDPS_WS0', '_RampDPS_WS1', '_RampDPS_WS2'],
+        ['DPS_WS', 'AddDPSPerTarget_WS', 'LinkDPSBoostWS', 'RampDPS_WS0', 'RampDPS_WS1', 'RampDPS_WS2', '_RampDPS_WS0', '_RampDPS_WS1', '_RampDPS_WS2'],
         (v) => numberFormat(v * WSFactror),
     ],
     [
