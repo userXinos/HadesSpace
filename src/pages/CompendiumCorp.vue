@@ -77,7 +77,7 @@
     <!--suppress TypeScriptUnresolvedReference -->
     <Modal
       v-model:open="openSelectorByTech"
-      :title="'Code'"
+      :title="$t('FILTER')"
       :size="SIZES.LARGE"
     >
       <template #body>
@@ -189,13 +189,19 @@ const userInfo: UserInfo = {
     CargoCap: {
         icon: { name: 'cargo', dir: 'icons/compendium' },
         formatter: ({ tech }) => {
+            let result = 0;
+
             const [t] = tech[getTechIndex('Transport')] || [];
             const [cap] = tech[getTechIndex('TransportCapacity')] || [];
+            const [drone] = tech[getTechIndex('RelicDrone')] || [];
 
             if (t && cap) {
-                return shipsData.Transport.JobCapacity[t] + modulesData.TransportCapacity.ExtraTradeSlots[cap];
+                result += shipsData.Transport.JobCapacity[t - 1] + modulesData.TransportCapacity.ExtraTradeSlots[cap - 1];
             }
-            return 0;
+            if (drone) {
+                result += modulesData.RelicDrone.drone.JobCapacity[drone - 1];
+            }
+            return result;
         },
     },
 } as UserInfo;
