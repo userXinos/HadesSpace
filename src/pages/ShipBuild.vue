@@ -174,28 +174,28 @@
               v-model="syncModuleLevels"
               @change="loadModulesLevels"
             >
-              <option :value="{provider: null}">{{ $t('TID_PLAYER_INFO_CORP_NONE') }}</option>
-              <option :value="{provider: 'Edit'}">{{ $t('TID_CORP_DIALOG_EDIT') }}</option>
+              <option :value="{provider: PROVIDERS.NONE}">{{ $t('TID_PLAYER_INFO_CORP_NONE') }}</option>
+              <option :value="{provider: PROVIDERS.EDIT}">{{ $t('TID_CORP_DIALOG_EDIT') }}</option>
 
               <option disabled>--- {{ $t('MODULES_CALC') }} ---</option>
               <option
                 v-for="(v, index) in ConfigManagerModules.store.configs"
                 :key="index"
-                :value="{provider:'ModulesCalc', index}"
+                :value="{provider: PROVIDERS.MODULES_CALC, index}"
               >
                 {{ v.name }}
               </option>
 
               <template v-if="compData">
                 <option disabled>--- {{ $t('HS_COMPENDIUM') }} ---</option>
-                <option :value="{provider:'HSCompendium', index: 0}"> 0 </option>
+                <option :value="{provider: PROVIDERS.HS_COMPENDIUM, index: 0}"> 0 </option>
               </template>
             </select>
           </div>
 
           <div
             class="tech-list"
-            :class="{'disable': $store.state.userSettings.shipBuildSync.provider != 'Edit'}"
+            :class="{'disable': $store.state.userSettings.shipBuildSync.provider != PROVIDERS.EDIT}"
           >
             <TechList
               :level-map="ConfigManager.selectedConfig.levels"
@@ -223,6 +223,16 @@
   </div>
 </template>
 
+<script lang="ts">
+export default { name: 'ShipBuild' };
+export enum PROVIDERS {
+    NONE = null,
+    EDIT = 'Edit',
+    MODULES_CALC ='ModulesCalc',
+    HS_COMPENDIUM = 'HSCompendium',
+}
+</script>
+
 <script setup lang="ts">
 import { reactive, ref, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
@@ -240,6 +250,7 @@ import { init as compInit } from '@Utils/compendium';
 import compendiumTechList from '@/composables/compendiumTechList';
 import type { Input as InputCalculator } from '@/typings/calculator';
 import types from '@/store/modules/userSettings/types';
+import type UserSettings from '@/store/modules/userSettings';
 
 import byTypes from '@Regulation/byTypes';
 import globals from '@Data/globals.js';
@@ -248,6 +259,7 @@ import modulesData from '@Data/modules.js';
 import TechList from '@/components/TechList.vue';
 import NumberPicker from '@/components/NumberPicker.vue';
 import objectArrayify from '@Utils/objectArrayify';
+import '@/pages/ShipBuild.vue';
 
 const LOCAL_STORAGE_KEY = 'shipBuild';
 const LS_KEY_MODULES_CALC = 'modulesCalc';
@@ -288,7 +300,7 @@ const openModuleLevels = ref(false);
 const openEditShip = ref(false);
 const openEditModule = ref(false);
 const openConfigManager = ref(false);
-const syncModuleLevels = ref(store.state.userSettings.shipBuildSync);
+const syncModuleLevels = ref(store.state.userSettings.shipBuildSync as UserSettings['state']['shipBuildSync']);
 const modalOpts = reactive({
     data: {
         hideModulesTypes: [] as string[],
@@ -314,7 +326,7 @@ onMounted(async () => {
     await compInit();
 });
 watch(compLevelMap, (value) => {
-    if (syncModuleLevels.value.provider == 'HSCompendium') {
+    if (syncModuleLevels.value.provider == PROVIDERS.HS_COMPENDIUM) {
         ConfigManager.selectedConfig.levels = { ...value };
     }
 });
@@ -379,7 +391,7 @@ function onClickLevelModule(module: {Name: '', Icon: string, TID: string}) {
 function loadModulesLevels() {
     const { provider, index } = syncModuleLevels.value;
 
-    if (provider == 'ModulesCalc') {
+    if (provider == PROVIDERS.MODULES_CALC) {
         ConfigManager.selectedConfig.levels = {
             Transport: ConfigManager?.selectedConfig?.levels?.Transport ?? zeroConfig.levels.Transport,
             Miner: ConfigManager?.selectedConfig?.levels?.Miner ?? zeroConfig.levels.Miner,
@@ -388,7 +400,7 @@ function loadModulesLevels() {
             ...ConfigManagerModules.store.configs[index].value.actually,
         };
     }
-    if (provider == 'HSCompendium') {
+    if (provider == PROVIDERS.HS_COMPENDIUM) {
         ConfigManager.selectedConfig.levels = { ...compLevelMap };
     }
     if (provider == null && Object.keys(ConfigManager.selectedConfig.levels).length != Object.keys(zeroConfig.levels).length) {

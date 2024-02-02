@@ -1,3 +1,4 @@
+import { PROVIDERS } from '@/pages/ShipBuild.vue';
 declare interface Settings {
     language: string
     disableFilters: boolean,
@@ -9,7 +10,7 @@ declare interface Settings {
     compendiumTechSyncConfigIndex: number | undefined
     calcDayCreditLimit: number
     shipBuildSync: {
-        provider: null | 'Edit' | 'ModulesCalc' | 'HSCompendium',
+        provider: PROVIDERS,
         index?: number
     }
 }
