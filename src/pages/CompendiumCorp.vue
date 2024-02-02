@@ -336,155 +336,162 @@ function getTechForDisplay(member: CorpMember): Record<string, {level: number|st
 @import "../style/page";
 
 .container {
-  max-width: 680px;
-  margin: 2% auto 0;
+    max-width: 680px;
+    margin: 2% auto 0;
 }
 
 .modal-filter-tech {
-  .button {
-    margin-bottom: 1%;
+    .button {
+        margin-bottom: 1%;
 
-    @media screen and (max-width: 600px){
-      font-size: 70%;
+        @media screen and (max-width: 600px){
+            font-size: 70%;
+        }
     }
-  }
-  :deep(.other) {
-    section[name="alliance"] {
-      display: none;
+    :deep(.other) {
+        section[name="alliance"] {
+            display: none;
+        }
     }
-  }
-  :deep(.item .mute) {
-    border: solid 2px #a8ddfd;
-    padding: 2px;
-    border-radius: 10px;
-  }
+    :deep(.item .mute) {
+        border: solid 2px #a8ddfd;
+        padding: 2px;
+        border-radius: 10px;
+    }
 }
 
 .filter {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 2%;
-  gap: 5%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2%;
+    gap: 5%;
 
 
-  .btn-tech-filter {
-    font-size: 130%;
-    background-color: $background-elements;
-    border-color: $border-color;
-    border-style: solid;
-    border-radius: 5px;
-    padding: 5px;
-    cursor: pointer;
+    .btn-tech-filter {
+        font-size: 130%;
+        background-color: $background-elements;
+        border-color: $border-color;
+        border-style: solid;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
 
-    &:hover {
-      background-color: #32474d;
+        &:hover {
+            background-color: #32474d;
+        }
     }
-  }
 }
 
 .members-list {
-  margin-top: 2%;
-  padding: 0 2%;
+    margin-top: 2%;
+    padding: 0 2%;
 
-  .member {
-    list-style: none;
-    background-color: $background-elements;
-    margin: 1% 0;
-    padding: 2%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #27353a;
-    }
-
-    .meta {
-      display: flex;
-      align-items: center;
-      flex: 2;
-
-      p {
-        margin-left: 15px;
-      }
-
-      .avatar {
-        width: 40px;
-        height: 40px;
-
-        img {
-          width: 100%;
-
-          &:before  {
-            width: 100%;
-            height: 100%;
-            content: "";
-            background: url("@Img/icons/member.png") center 100% no-repeat;
-          }
-        }
-      }
-    }
-
-    .sort-tech ul {
-      flex: 3;
-      display: flex;
-      justify-content: center;
-
-      li {
+    .member {
         list-style: none;
-        width: 50px;
-        margin: 0 5px;
+        background-color: $background-elements;
+        margin: 1% 0;
+        padding: 2%;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
         cursor: pointer;
-        position: relative;
 
-        @media screen and (max-width: 960px){
-          width: 30px;
-        }
-        @media screen and (max-width: 350px){
-          width: 25px;
+        &:hover {
+            background-color: #27353a;
         }
 
-        .level {
-          position: absolute;
-          top: 60%;
-          right: 0;
-          font-size: 80%;
-          width: 15px;
-          height: 15px;
-          background-color: $border-color;
-          color: $background;
-          text-align: center;
-          border-radius: 5px;
-          padding-top: 2px;
-          white-space: nowrap;
+        .meta {
+            display: flex;
+            align-items: center;
+            flex: 2;
+
+            p {
+                margin-left: 15px;
+            }
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+
+                img {
+                    width: 100%;
+
+                    &:before  {
+                        width: 100%;
+                        height: 100%;
+                        content: "";
+                        background: url("@Img/icons/member.png") center 100% no-repeat;
+                    }
+                }
+            }
         }
 
-        & [k="LocalTime"] {
-          width: 50px;
-          right: -8px;
+        .sort-tech ul {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+
+            li {
+                list-style: none;
+                width: 50px;
+                margin: 0 5px;
+                cursor: pointer;
+                position: relative;
+
+                @media screen and (max-width: 960px){
+                    width: 30px;
+                }
+                @media screen and (max-width: 350px){
+                    width: 25px;
+                }
+
+                .level {
+                    position: absolute;
+                    top: 60%;
+                    right: 0;
+                    font-size: 80%;
+                    width: 15px;
+                    height: 15px;
+                    background-color: $border-color;
+                    color: $background;
+                    text-align: center;
+                    border-radius: 5px;
+                    padding-top: 2px;
+                    white-space: nowrap;
+                }
+
+                & [k="LocalTime"], & [k="AfkFor"] {
+                    width: 50px;
+                    right: -8px;
+
+                    @media screen and (max-width: 960px){
+                        width: 40px;
+                        font-size: 65%;
+                    }
+                }
+                & [k="AfkFor"] {
+                    font-size: 60%;
+
+                    @media screen and (max-width: 960px){
+                        font-size: 50%;
+                    }
+                }
+            }
         }
-        & [k="AfkFor"] {
-            width: 50px;
-            right: -8px;
-            font-size: 60%;
-        }
-      }
     }
-  }
 }
 
 .animated-fetch {
-  .member {
-    background: linear-gradient(to left, $background, $background-elements 18%, $background);
-    background-size: 50vw;
-    animation: bg-pos-move 10s infinite forwards linear;
-    opacity: .8;
-    pointer-events: none;
-  }
+    .member {
+        background: linear-gradient(to left, $background, $background-elements 18%, $background);
+        background-size: 50vw;
+        animation: bg-pos-move 10s infinite forwards linear;
+        opacity: .8;
+        pointer-events: none;
+    }
 }
 
 @keyframes bg-pos-move {
-  to { background-position: 1000% 0; }
+    to { background-position: 1000% 0; }
 }
 </style>
