@@ -3,12 +3,18 @@ export type Raw = {
     head: Record<string, string[]>,
     body: Record<string, unknown[][]>
 }
+
+type Raw2HeadItem<T> = {[k: string]: Raw2HeadItem<T>} | T;
+export type Raw2 = {
+    head: Raw2HeadItem<string[]>,
+    body: Record<string, unknown[][]>
+}
 export type Out = {
     head: {value: string, rowspan?: number, colspan?: number}[][],
     body: {key: string, value: unknown, rowspan?: number, colspan?: number, hide: boolean}[][]
 }
 
-export default function({ head, body }: Raw, mergeCells: boolean) {
+export default function({ head, body }: Raw | Raw2, mergeCells: boolean) {
     const newHead: Out['head'] = [[]];
     const newBody: Out['body'] = [];
 
