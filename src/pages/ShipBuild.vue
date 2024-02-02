@@ -20,7 +20,10 @@
       />
     </div>
 
-    <ul class="ship-list">
+    <ul
+      v-if="Object.keys(ConfigManager.selectedConfig?.levels).length"
+      class="ship-list"
+    >
       <li
         v-for="({meta: {type: Name}, slots}, i) in ConfigManager.selectedConfig.ships"
         :key="`${Name}${i}`"
@@ -313,7 +316,9 @@ const modalOpts = reactive({
 });
 
 
-loadModulesLevels();
+if (syncModuleLevels.value.provider != PROVIDERS.HS_COMPENDIUM) {
+    loadModulesLevels();
+}
 
 if (router.currentRoute.value.query.d) {
     const parsed = MultiConfig.parseUrl(router.currentRoute.value.query.d as string);
@@ -324,6 +329,7 @@ if (router.currentRoute.value.query.d) {
 
 onMounted(async () => {
     await compInit();
+    loadModulesLevels();
 });
 watch(compLevelMap, (value) => {
     if (syncModuleLevels.value.provider == PROVIDERS.HS_COMPENDIUM) {
@@ -401,7 +407,7 @@ function loadModulesLevels() {
         };
     }
     if (provider == PROVIDERS.HS_COMPENDIUM) {
-        ConfigManager.selectedConfig.levels = { ...compLevelMap };
+        ConfigManager.selectedConfig.levels = { ...compLevelMap.value };
     }
     if (provider == null && Object.keys(ConfigManager.selectedConfig.levels).length != Object.keys(zeroConfig.levels).length) {
         ConfigManager.selectedConfig.levels = { ...zeroConfig.levels };
