@@ -457,11 +457,17 @@ function getTechForDisplay(member: CorpMember): Record<string, {level: number|st
           text-align: center;
           border-radius: 5px;
           padding-top: 2px;
+          white-space: nowrap;
         }
 
         & [k="LocalTime"] {
-          width: 36px;
+          width: 50px;
           right: -8px;
+        }
+        & [k="AfkFor"] {
+            width: 50px;
+            right: -8px;
+            font-size: 60%;
         }
       }
     }
