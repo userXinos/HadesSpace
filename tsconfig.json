@@ -15,7 +15,8 @@
     "baseUrl": ".",
     "isolatedModules": true,
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "@types/jest"
     ],
     "paths": {
       "@Data/*": ["parser/dist/*"],
