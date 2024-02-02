@@ -21,7 +21,7 @@
     </div>
 
     <ul
-      v-if="Object.keys(ConfigManager.selectedConfig?.levels).length"
+      v-if="'levels' in ConfigManager.selectedConfig && Object.keys(ConfigManager.selectedConfig.levels).length"
       class="ship-list"
     >
       <li
