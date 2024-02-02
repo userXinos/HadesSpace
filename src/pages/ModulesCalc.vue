@@ -284,7 +284,7 @@ function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<
     return Object.entries(modules).map(([name, module]: [string, OutputMap]) => {
         for (const [, value] of Object.entries(module)) {
             if (Array.isArray(value) && value.length < MaxModuleLevel) {
-                value.unshift(...Array(MaxModuleLevel - value.length));
+                value.unshift(...Array(MaxModuleLevel - value.length).fill(0));
             }
         }
 
