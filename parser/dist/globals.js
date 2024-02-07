@@ -101,7 +101,7 @@ export default {
     MaxSendInboxMessageLength: 300,
     LargeSystemTravelTimeModifier: 360,
     LargeSystemCombatTurnModifier: 60,
-    ReplayVersion: 33,
+    ReplayVersion: 34,
     CorporationScoreIntervals: [10, 20, 100],
     CorporationScoreDividers: [2, 4, 10],
     PlaceIncomingStargateInMiddleOfSector: 1,
@@ -275,4 +275,7 @@ export default {
     SubCrAmt: 500,
     RSEnrichMod: 8,
     GPPreorderReward: 500,
+    BarrierPreventsTeleport: 0,
+    PCH_CapPct: 40,
+    PCH_Duration: 14,
 };
