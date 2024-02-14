@@ -232,6 +232,7 @@ export const gameCharsLocKeys = {
     Colossu: 'TID_SHIP_CERB_SECTOR_GUARDIAN',
     TimeToResearch: 'TID_OBJ_RESEARCH_ARTIFACTS',
     ShipmentsCRValuePerDay: 'TID_PLANET_UPG_SHIPMENT_YIELD',
+    TINDMG: 'TID_MODULE_STAT_TELEPORT_DAMAGE',
 };
 
 

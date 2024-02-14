@@ -100,6 +100,7 @@ export default {
         'ShowDurationInTopSpot',
         'InitialModule',
         'InitialModuleLevels',
+        'BarrierPreventsTeleport',
 
         // временно ?
         'BSPenaltyPerSec',

@@ -91,5 +91,6 @@ export default {
         'BlastDroneDamageAmount',
         'MirrorDamageAsAOE',
         'WSDispatchAOEAmt',
+        'TINDMG',
     ],
 };
