@@ -15,7 +15,7 @@
   "NO": "否",
   "VALUE": "值 {0}",
   "ABOUT": "关于",
-  "ABOUT_BODY": "        本网页程序系一个基于解析 {hades_star} 所获得的{data}运行的{open_source}项目，由 {game_developer} 所有。\n\n        部分游戏概念图由{artist_name}制作，可以在{his_website}上查看。\n\n        特别感谢以下人员对本应用程序的本地化做出的贡献！\n如下：{list_of_people} \n        你也可以通过{platforms}向我捐赠。\n\n        如果你有任何问题或建议，欢迎通过Discord联系我，我的id是 {discord_username}。无论是通过{hso}或私信亦或是在{github}上{open_an_issue}来与我取得联系都是可行的。",
+  "ABOUT_BODY": "本网页程序系一个基于解析 {hades_star} 所获得的{data}运行的{open_source}项目，由 {game_developer} 所有。\n\n部分游戏概念图由{artist_name}制作，可以在{his_website}上查看。\n\n特别感谢以下人员对本应用程序的本地化做出的贡献！\n如下：{list_of_people} \n你也可以通过{platforms}向我捐赠。\n\n如果你有任何问题或建议，欢迎通过Discord联系我，我的id是 {discord_username}。无论是通过{hso}或私信亦或是在{github}上{open_an_issue}来与我取得联系都是可行的。",
   "ABOUT_BODY_MADE_WITH": "基于{github}用爱发电{emoji}",
   "OPEN_SOURCE": "开源",
   "DATA": "数据",
