@@ -102,7 +102,7 @@
   "MOONS": "卫星数目",
   "TURRET": "炮塔",
   "BLUEPRINTS_GRANTED": "蓝图获取",
-  "MINIMUM_RANGE": "Minimum range",
-  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
-  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
+  "MINIMUM_RANGE": "最小射程",
+  "HYDRO_COST_MODIFIER": "氢气花费修正",
+  "ARTIFACT_DRS_POINTS": "暗红神器积分"
 }
