@@ -102,7 +102,7 @@
   "MOONS": "Луны",
   "TURRET": "Турель",
   "BLUEPRINTS_GRANTED": "Полученные чертежи",
-  "MINIMUM_RANGE": "Minimum range",
-  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
-  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
+  "MINIMUM_RANGE": "Минимальная дальность",
+  "HYDRO_COST_MODIFIER": "Модификатор водорода",
+  "ARTIFACT_DRS_POINTS": "Очки за ДКЗ артефакт"
 }
