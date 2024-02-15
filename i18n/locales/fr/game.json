@@ -101,5 +101,8 @@
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Temps de recharge après le saut avec un autre type de vaisseau",
   "MOONS": "Lune",
   "TURRET": "Tourelle",
-  "BLUEPRINTS_GRANTED": "Blueprints granted"
+  "BLUEPRINTS_GRANTED": "Blueprints granted",
+  "MINIMUM_RANGE": "Minimum range",
+  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
+  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
 }
