@@ -101,5 +101,8 @@
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "其他舰船跃迁冷却",
   "MOONS": "卫星数目",
   "TURRET": "炮塔",
-  "BLUEPRINTS_GRANTED": "蓝图获取"
+  "BLUEPRINTS_GRANTED": "蓝图获取",
+  "MINIMUM_RANGE": "Minimum range",
+  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
+  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
 }
