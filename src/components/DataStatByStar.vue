@@ -126,7 +126,7 @@ const table = computed<Table>(() => {
         });
     });
 
-    if (!Object.keys(props.items).some((k) => BS_REGEX.test(k))) {
+    if (!Object.keys(props.items).some((k) => BS_REGEX.test(k)) && usedStars.includes('BS')) {
         usedStars.splice(usedStars.indexOf('BS'), 1);
     }
     usedStars = usedStars.sort((a, b) => Object.keys(STARS).indexOf(a) - Object.keys(STARS).indexOf(b));

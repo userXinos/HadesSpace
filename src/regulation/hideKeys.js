@@ -101,6 +101,9 @@ export default {
         'InitialModule',
         'InitialModuleLevels',
         'BarrierPreventsTeleport',
+        'SeparateBuildingPerLevel',
+        'PrefabModel_WithStarHarvester',
+        'StarScannerType',
 
         // временно ?
         'BSPenaltyPerSec',
@@ -141,7 +144,7 @@ export default {
 
         // Ships.FlagmanModules
         /(Recoil|Immolation|EMPRocket|FlagshipWeaponModule|FlagshipDartBarrage|FlagshipShieldModule|FlagshipAreaShield|FlagshipDroneSwarm|FlagshipRocketCluster)\.RSLevel/,
-        /(Recoil|Immolation|EMPRocket|FlagshipWeaponModule|FlagshipDartBarrage|FlagshipShieldModule|FlagshipAreaShield|FlagshipDroneSwarm|FlagshipRocketCluster)\.UnlockBlueprints/,
+        /(Recoil|Immolation|EMPRocket|FlagshipWeaponModule|FlagshipDartBarrage|FlagshipShieldModule|FlagshipAreaShield|FlagshipDroneSwarm|FlagshipRocketCluster|FlagshipStealth)\.UnlockBlueprints/,
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDartBarrage.SingleTarget',
         'FlagshipDroneSwarm.NewModuleSlots',
@@ -224,7 +227,7 @@ export default {
         'HydroStorageCapacity.FuelUseIncrease',
 
         // Weapons
-        /(WeakBattery|GuardianBattery|InterceptorMBattery|ColossusLaser|DestroyerVengeance|BomberLauncher|PhoenixShield|DartBarrage)\.(UnlockPrice|UnlockBlueprints|UnlockTime|ShowWSInfo|Install|BCCost)/, // В небуле не неужно модулям церберов
+        /(WeakBattery|GuardianBattery|InterceptorMBattery|ColossusLaser|DestroyerVengeance|BomberLauncher|PhoenixShield|DartBarrage|ColossusSalvage|StormDarts|HydraBarrage)\.(UnlockPrice|UnlockBlueprints|UnlockTime|ShowWSInfo|Install|BCCost|RSLevel)/,
         'PlayerRocketLauncher.MinEffectRadius',
         'ChainRay.MaxIncomingLinks', // хз что это
 
@@ -240,16 +243,19 @@ export default {
         'Bond.BondMinPullVector',
         'Bond.BondMaxPullListSize',
         'Bond.BondWorksOnLoadingTransport',
-        /((\w+)Drone|LaserTurret|DroneSquad)\.(BuildCost|DesignUpgradeCost|DesignUpgradeTime|NewModuleSlots)/,
+        /((\w+)Drone|LaserTurret|DroneSquadShip)\.(BuildCost|DesignUpgradeCost|DesignUpgradeTime|NewModuleSlots)/,
         'RemoteBomb.SpeedPVE',
-        'RemoteBomb.SpeedPVP',
+        'RemoteBomb.Speed_WS',
+        'RemoteBomb.Speed_BS',
         'LaserTurret.Speed',
-        'LaserTurret.MaxPerRS',
         'DeltaRocket.PreventUseOnWsJumpgate',
         /^\w+\.Is\w+/,
 
         // Drone
         'DecoyDrone.HasTaunt',
         'DeltaDrones.NewModuleSlots',
+        /(DroneRocketLauncher|ChainRayForDrone)\.UnlockBlueprints/,
+        'LaserTurret.MaxPerRS',
+        /(LaserTurret|DeltaDroneBattery|DeltaDroneTeleport|DroneSquadBattery)\.(RSLevel|UnlockBlueprints)/,
     ],
 };
