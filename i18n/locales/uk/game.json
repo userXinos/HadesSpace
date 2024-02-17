@@ -101,5 +101,8 @@
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка після стрибка інший типом корабля",
   "MOONS": "Супутники",
   "TURRET": "Турель",
-  "BLUEPRINTS_GRANTED": "Отримано креслень"
+  "BLUEPRINTS_GRANTED": "Отримано креслень",
+  "MINIMUM_RANGE": "Minimum range",
+  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
+  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
 }

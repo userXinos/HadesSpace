@@ -101,5 +101,8 @@
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Diğer tür gemiyle atlama soğuma süresi",
   "MOONS": "Aylar",
   "TURRET": "Taret",
-  "BLUEPRINTS_GRANTED": "Onaylı bluprintler"
+  "BLUEPRINTS_GRANTED": "Onaylı bluprintler",
+  "MINIMUM_RANGE": "Minimum range",
+  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
+  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
 }

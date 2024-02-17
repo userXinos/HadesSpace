@@ -101,5 +101,8 @@
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "戦艦以外のジャンプ後のクールダウン",
   "MOONS": "衛星",
   "TURRET": "Turret",
-  "BLUEPRINTS_GRANTED": "Blueprints granted"
+  "BLUEPRINTS_GRANTED": "Blueprints granted",
+  "MINIMUM_RANGE": "Minimum range",
+  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
+  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
 }

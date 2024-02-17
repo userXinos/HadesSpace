@@ -101,5 +101,8 @@
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Перезарядка после прыжка к другим типом корабля",
   "MOONS": "Луны",
   "TURRET": "Турель",
-  "BLUEPRINTS_GRANTED": "Полученные чертежи"
+  "BLUEPRINTS_GRANTED": "Полученные чертежи",
+  "MINIMUM_RANGE": "Минимальная дальность",
+  "HYDRO_COST_MODIFIER": "Модификатор водорода",
+  "ARTIFACT_DRS_POINTS": "Очки за ДКЗ артефакт"
 }

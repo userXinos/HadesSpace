@@ -101,5 +101,8 @@
   "COOLDOWN_AFTER_JUMPING_TO_ANOTHER_SHIP_TYPE": "Enfriamiento después de saltar a otro tipo de nave",
   "MOONS": "Lunas",
   "TURRET": "Torreta",
-  "BLUEPRINTS_GRANTED": "Planos otorgados"
+  "BLUEPRINTS_GRANTED": "Planos otorgados",
+  "MINIMUM_RANGE": "Alcance mínimo",
+  "HYDRO_COST_MODIFIER": "Modificador del consumo de Hidrógeno",
+  "ARTIFACT_DRS_POINTS": "Puntos del Artefacto de Estrella Roja Oscura"
 }
