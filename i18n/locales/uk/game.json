@@ -102,7 +102,7 @@
   "MOONS": "Супутники",
   "TURRET": "Турель",
   "BLUEPRINTS_GRANTED": "Отримано креслень",
-  "MINIMUM_RANGE": "Minimum range",
-  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
-  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
+  "MINIMUM_RANGE": "Мінімальна дальність",
+  "HYDRO_COST_MODIFIER": "Модифікатор вартості водню",
+  "ARTIFACT_DRS_POINTS": "Бали за артефакт ТЧЗ"
 }
