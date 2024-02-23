@@ -7,9 +7,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_PATH = path.join(__dirname, `../../`);
 
 const PARSER_DIST_PATH = path.join(ROOT_PATH, '/parser/dist');
-const REGULATION_LOC_PATH = path.join(ROOT_PATH, '/src/regulation/locKeys.mjs');
-const PAGES_MAP_PATH = path.join(ROOT_PATH, '/src/regulation/pages.js');
-const RAW_EN_LOCALE_PATH = path.join(ROOT_PATH, '/parser/dist/loc_strings/en.js');
+const REGULATION_LOC_PATH = path.join('file://', ROOT_PATH, '/src/regulation/locKeys.mjs');
+const PAGES_MAP_PATH = path.join('file://', ROOT_PATH, '/src/regulation/pages.js');
+const RAW_EN_LOCALE_PATH = path.join('file://', ROOT_PATH, '/parser/dist/loc_strings/en.js');
 
 
 export default async function(languageFilePath) {
@@ -41,7 +41,7 @@ export default async function(languageFilePath) {
 }
 async function importAllFiles(dir) {
     const files = fs.readdirSync(dir).map(async (file) => {
-        const filePath = path.join(dir, file);
+        const filePath = path.join('file://', dir, file);
 
         if (path.extname(file) === '.js') {
             return await import(filePath).then((m) => m.default);
