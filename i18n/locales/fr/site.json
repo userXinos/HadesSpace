@@ -15,7 +15,7 @@
   "NO": "Non",
   "VALUE": "Valeur {0}",
   "ABOUT": "A propos du projet",
-  "ABOUT_BODY": "Cette application web est un projet {open_source} qui fonctionne avec les {data} analysées provenant de {hades_star} appartenant à {game_developer} \n\nCertains concepts de jeu réalisés par {artist_name} provenant de {his_website} \n\nMerci à ces personnes qui travaillent à la localisation de cette application : {list_of_people} \nVous pouvez également me faire un don via {platforms} \n\nSi vous avez des problèmes ou des suggestions, vous pouvez me contacter sur la discord {discord_username} à la fois sur l' {hso} et via des messages directs. ainsi que {open_an_issue} sur {github}",
+  "ABOUT_BODY": "Cette application web est un projet {open_source} qui fonctionne avec les {data} analysées provenant de {hades_star} appartenant à {game_developer} \n\nCertains concepts de jeu réalisés par {artist_name} provenant de {his_website} \n\nMerci à ces personnes qui travaillent à la localisation de cette application : {list_of_people} \nVous pouvez également me faire un don via {platforms} \n\nSi vous avez des problèmes ou des suggestions, vous pouvez me contacter sur Discord {discord_username} à la fois sur l' {hso} et via des messages directs. ainsi que {open_an_issue} sur {github}",
   "ABOUT_BODY_MADE_WITH": "fait avec {emoji} sur {github}",
   "OPEN_SOURCE": "code source libre",
   "DATA": "données",
