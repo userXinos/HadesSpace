@@ -103,6 +103,6 @@
   "TURRET": "Tourelle",
   "BLUEPRINTS_GRANTED": "Plans accordés",
   "MINIMUM_RANGE": "Portée minimale",
-  "HYDRO_COST_MODIFIER": "Modificateur de coût Hydro",
+  "HYDRO_COST_MODIFIER": "Modificateur du coût de l'hydro",
   "ARTIFACT_DRS_POINTS": "Points pour artefact DRS"
 }
