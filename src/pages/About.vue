@@ -88,7 +88,8 @@ const funding = ref<{host: string, href: string}[]>([]);
 const translationMembers = { // @TODO https://developer.crowdin.com/api/v2/#operation/api.projects.members.getMany
     'de': ['Knalli'],
     'es': ['MiniPoli Gloti', 'uke_waza'],
-    'fr': ['Gabriel', 'MiniPoli Gloti', 'Etoile de Feu', 'Lkn Empire', 'fr3d On Bass'],
+    // note: Gabriel == Xiphoid
+    'fr': ['Xiphoid', 'MiniPoli Gloti', 'Etoile de Feu', 'Lkn Empire', 'fr3d On Bass'],
     // 'it': [],
     'jp': ['しゅーじろー'],
     // 'ko': [],
