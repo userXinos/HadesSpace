@@ -149,7 +149,7 @@ export default [
     ],
     [
         ['MovementSlowdown', 'DamageReduceFactor', 'MotionShieldPct'],
-        (v) => `${100 - v}%`,
+        (v) => `${(v > 0) ? (100 - v) : v}%`,
     ],
     [
         ['MiningSpeedModifierPct', 'DamageAmplifyFactor'],
