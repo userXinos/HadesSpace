@@ -101,6 +101,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { Identity, User, Guild } from 'bot_client';
 
@@ -115,6 +116,7 @@ import Modal, { SIZES } from '@/components/Modal.vue';
 const REQ_CODE_PATTERN = /[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}/;
 
 const store = useStore();
+const router = useRouter();
 const { t } = useI18n();
 const openCodeReqModal = ref(false);
 const reqCode = ref('');
@@ -131,6 +133,12 @@ onMounted(async () => {
 
     if (!u) {
         openCodeReqModal.value = true;
+
+        if ('c' in router.currentRoute.value.query) {
+            reqCode.value = router.currentRoute.value.query.c as string;
+            // noinspection ES6MissingAwait
+            applyReqCode();
+        }
     } else {
         user.value = u;
         guild.value = client.getGuild();
