@@ -215,7 +215,7 @@ function addInfoByStarType(value, TIME_SLOWDOWN_FACTOR_WS, ast = value.AllowedSt
     function addStarInfo(obj, star) {
         const coefficient = (v) => {
             if (star === 'WS') return v * TIME_SLOWDOWN_FACTOR_WS;
-            if (star === 'BS') return v * 2;
+            if (star === 'BS') return v;
             return v;
         };
         const getKeyPostfix = (k) => new RegExp(`${k}_?${star == 'BS' ? '(BS|BLS)' : star}$`);
