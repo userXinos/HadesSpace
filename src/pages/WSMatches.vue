@@ -59,7 +59,7 @@ import { computed, ref, watch } from 'vue';
 import sec2str, { sec2biggestTime } from '@Utils/sec2str';
 import Pagination from '@/components/Pagination.vue';
 
-const API_ENDPOINT = new URL('https://cors.apn.monster/https://mentalisit.sytes.net:8443/wsmatches');
+const API_ENDPOINT = new URL('https://mentalisit.sytes.net:8443/wsmatches');
 API_ENDPOINT.searchParams.set('limit', '50');
 
 interface Response {
