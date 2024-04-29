@@ -1,1 +1,0 @@
-import{b as f}from"./byTypes-1BYQ2hUk.js";function l(c,{filterByType:{path:n}}){const e={},s=n?n.split(".").reduce((i,r)=>i[r],f):null;return Object.entries(c).filter(([i])=>s?s.includes(i):!0).sort(([i],[r])=>s?s.indexOf(i)-s.indexOf(r):0).forEach(([,i])=>{Object.entries(i).forEach(([r,t])=>{r in e?Array.isArray(e[r])?e[r].push(t):e[r]=[e[r],t]:e[r]=t})}),e}export{l as c};
