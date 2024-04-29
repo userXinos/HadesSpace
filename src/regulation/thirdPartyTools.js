@@ -17,4 +17,10 @@ export default [
         href: 'https://github.com/lin-lin-miao/HST-More-Language',
         tags: ['Android'],
     },
+    {
+        name: 'WSMatches',
+        authors: ['mentalisit'],
+        href: 'https://mentalisit.sytes.net:8443/wsmatches',
+        tags: ['Rest API'],
+    },
 ];
