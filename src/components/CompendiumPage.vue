@@ -36,7 +36,10 @@
               @error="(e) => e.target.src = memberImage"
             >
           </div>
-          <p>{{ user.username }}</p>
+          <div>
+            <p>{{ guild.name }}</p>
+            <p>{{ user.username }}</p>
+          </div>
         </div>
         <div
           v-if="!isFetching && !user"
