@@ -279,7 +279,7 @@ function calcTotal(store: ElementsStore, output: Output) {
     };
 }
 function getModulesBySlotType(type: string, ...[getChars, elements]: Parameters<SetupGetElementsCB>) {
-    const modules = getBySlotType(type) as OutputMap;
+    const modules = structuredClone(getBySlotType(type)) as OutputMap;
 
     return Object.entries(modules).map(([name, module]: [string, OutputMap]) => {
         for (const [, value] of Object.entries(module)) {

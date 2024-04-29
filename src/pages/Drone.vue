@@ -9,7 +9,6 @@
 <!--suppress JSUnresolvedReference -->
 <script setup>
 import ModulePage from '@/components/ModulePage.vue';
-import { fixRampLasers } from './Weapon.vue';
 import modules from '@Data/modules.js';
 import stars from '@Data/stars.js';
 
