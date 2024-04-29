@@ -533,6 +533,8 @@ export default {
                 MaxIncomingLinks: 2,
                 TargetSwitchTicks: 60,
                 RSMoveCrossSectorCerbsAway: 1,
+                LinkDPSBoost: 190,
+                LinkDPSBoostWS: 150,
                 TargetSwitchTicksWS: 36000,
             },
         ],

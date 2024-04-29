@@ -1427,6 +1427,8 @@ export default {
                 MaxIncomingLinks: 2,
                 TargetSwitchTicks: 60,
                 RSMoveCrossSectorCerbsAway: 1,
+                LinkDPSBoost: [190, 200, 210, 220, 230, 242, 254, 266, 280, 294, 310, 324, 340, 360, 380],
+                LinkDPSBoostWS: [150, 160, 170, 180, 204, 234, 270, 314, 360, 414, 474, 550, 630, 700, 800],
                 TargetSwitchTicksWS: 36000,
             },
         ],
@@ -2862,6 +2864,8 @@ export default {
         MaxIncomingLinks: 2,
         TargetSwitchTicks: 60,
         RSMoveCrossSectorCerbsAway: 1,
+        LinkDPSBoost: [190, 200, 210, 220, 230, 242, 254, 266, 280, 294, 310, 324, 340, 360, 380],
+        LinkDPSBoostWS: [150, 160, 170, 180, 204, 234, 270, 314, 360, 414, 474, 550, 630, 700, 800],
         TargetSwitchTicksWS: 36000,
     },
     OmegaDroneDarts: {

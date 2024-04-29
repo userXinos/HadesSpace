@@ -118,8 +118,8 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // посчитать саппорт урон для Луча
-    if (key === 'ChainRay') {
-        const LinkDPSBoostPct = (value.LinkDPSBoostPct + 100) / 100;
+    if (key === 'ChainRay' || key === 'ChainRayForDrone') {
+        const LinkDPSBoostPct = value.LinkDPSBoostPct ? ((value.LinkDPSBoostPct + 100) / 100) : 1;
 
         value.LinkDPSBoost = value.DPS.map((e) => e * LinkDPSBoostPct);
         value.LinkDPSBoostWS = value.DPS_WS.map((e) => Math.floor(e * LinkDPSBoostPct));
