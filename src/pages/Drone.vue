@@ -12,7 +12,8 @@ import ModulePage from '@/components/ModulePage.vue';
 import modules from '@Data/modules.js';
 import stars from '@Data/stars.js';
 
-function postFilter(data) {
+function postFilter(dataRO) {
+    const data = structuredClone(dataRO);
     const Repair = { ...data.Repair };
 
     for (const [k, module] of Object.entries(data)) {
