@@ -50,6 +50,7 @@ import { ref, reactive, h, VNode, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getTechIndex } from 'bot_client';
 import compendiumTechListLogic from '@/composables/compendiumTechList';
+import { sec2biggestTime } from '@/utils/sec2str';
 
 import { Head as VHead } from '@vueuse/head';
 import Icon from '@/components/Icon.vue';
@@ -159,20 +160,6 @@ function updateLastAgo() {
             modalOpts.data.lastAgoUpdate = (new Date().getTime() - lastDate) / 1000;
         }
     }
-}
-function sec2biggestTime(sec: number): string {
-    const result = [];
-    const days = Math.trunc(sec / 86400);
-    const hours = Math.trunc((sec % 86400) / 3600);
-    const minutes = Math.trunc((sec % 3600) / 60);
-    const seconds = Math.trunc(sec % 60);
-
-    if (days != 0) result.push(`${days}${t('TID_DAY_ABBREVIATION')}`);
-    if (hours != 0) result.push(`${hours}${t('TID_HOUR_ABBREVIATION')}`);
-    if (minutes != 0) result.push(`${minutes}${t('TID_MINUTE_ABBREVIATION')}`);
-    if (seconds != 0) result.push(`${seconds}${t('TID_SECOND_ABBREVIATION')}`);
-
-    return result.slice(0, 2).join(' ');
 }
 </script>
 

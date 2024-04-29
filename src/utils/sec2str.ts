@@ -2,7 +2,15 @@ import i18n from '@Utils/Vue/i18n';
 
 const { t } = i18n.global;
 
-export default function(sec: number) {
+export default function sec2str(sec: number) {
+    return splitTime(sec).join(' ');
+}
+
+export function sec2biggestTime(sec: number): string {
+    return splitTime(sec).slice(0, 2).join(' ');
+}
+
+export function splitTime(sec: number): string[] {
     const result = [];
     const days = Math.trunc(sec / 86400);
     const hours = Math.trunc((sec % 86400) / 3600);
@@ -15,5 +23,6 @@ export default function(sec: number) {
     if (seconds != 0) result.push(`${seconds}${t('TID_SECOND_ABBREVIATION')}`);
     if (!result.length && sec) result.push(`${sec}${t('TID_SECOND_ABBREVIATION')}`);
 
-    return result.join(' ');
+    return result;
 }
+

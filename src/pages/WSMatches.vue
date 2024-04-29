@@ -1,107 +1,98 @@
 <template>
   <div>
+    <Pagination
+      v-model="page"
+      :max-page="response?.MaxPage || 1"
+    />
+
     <ul class="list">
       <li
-        v-for="({key}) of items"
-        :key="key"
+        v-for="match of matches"
+        :key="genKey(match)"
       >
-        <div v-if="key in matches">
+        <div>
           <p class="corp-names">
-            <span>{{ matches[key].Corporation1Name }}</span>
+            <span>{{ match.Corp1Name }}</span>
             <span class="vs-icon" />
-            <span>{{ matches[key].Corporation2Name }}</span>
+            <span>{{ match.Corp2Name }}</span>
           </p>
           <p class="score">
-            <span>{{ matches[key].Corporation1Score }}</span>
+            <span>{{ match.Corp1Score }}</span>
             <span> - </span>
-            <span>{{ matches[key].Corporation2Score }}</span>
+            <span>{{ match.Corp2Score }}</span>
           </p>
-          <p v-if="(matches[key].DateEnded - nowDate) > 0">
+          <p v-if="(match.DateEnded - nowDate) > 0">
             <!--suppress TypeScriptValidateTypes -->
-            <span>{{ $t('TID_WS_PREPARATION_ENDS_IN', [sec2str((matches[key].DateEnded - nowDate) / 1000)]) }}</span>
+            <span>{{ $t('TID_WS_PREPARATION_ENDS_IN', [sec2str((match.DateEnded - nowDate) / 1000)]) }}</span>
           </p>
-          <p
-            v-else
-            v-t="'TID_WS_ENDED'"
-          />
-        </div>
-        <div
-          v-else
-          class="match-fetching"
-        >
-          <p class="corp-names">
-            <span />
-            <span class="vs-icon" />
-            <span />
+          <p v-else>
+            <!--suppress TypeScriptValidateTypes -->
+            <span>
+              {{ $t('TID_WS_ENDED') }}
+              {{ `(${$t('TID_SOCIAL_TIMESTAMP', [sec2biggestTime((nowDate - match.DateEnded) / 1000)])})` }}
+            </span>
           </p>
-          <p><span /></p>
-          <p><span /></p>
         </div>
       </li>
     </ul>
+
+    <Pagination
+      v-model="page"
+      :max-page="response?.MaxPage || 1"
+    />
+
+    <div class="footer">
+      <div class="content">
+        <p>Powered by <a
+          href="https://mentalisit.sytes.net:8443/wsmatches"
+          target="_blank"
+        >mentalisit.sytes.net:8443</a>
+          API
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue';
-import sec2str from '@Utils/sec2str';
+import { computed, ref, watch } from 'vue';
+import sec2str, { sec2biggestTime } from '@Utils/sec2str';
+import Pagination from '@/components/Pagination.vue';
 
-const API_ENDPOINT = 'https://add-cors-to-requests.userxinos.workers.dev/https://storage.googleapis.com/hades-star-public-xq8f-d4rg-v0d9/';
-interface Item {
-    key: string
-    generation: string
-    metaGeneration: string
-    lastModified: Date
-    etag: string
-    size: number
+const API_ENDPOINT = new URL('https://cors.apn.monster/https://mentalisit.sytes.net:8443/wsmatches');
+API_ENDPOINT.searchParams.set('limit', '50');
+
+interface Response {
+    MaxPage: number,
+    matches: Match[]
 }
 interface Match {
-    Corporation1Name: string
-    Corporation1Id: string
-    Corporation2Name: string
-    Corporation2Id: string
-    Corporation1Score: string
-    Corporation2Score: string
-    DateEnded: string
+    Corp1Name: string
+    Corp2Name: string
+    Corp1Score: string
+    Corp2Score: string
+    DateEnded: Date
 }
 
 const nowDate = new Date();
-const items = reactive<Item[]>([]);
-const matches = reactive<Record<Item['key'], Match>>({});
+const response = ref<Response>();
+const matches = computed<Match[]>(() =>
+    (response.value?.matches || []).map((e) => ({ ...e, DateEnded: new Date(e.DateEnded) })),
+);
+const page = ref(1);
 
-onMounted(async () => {
-    const resp = await fetch(API_ENDPOINT).then((response) => response.text());
-    const parsed = new DOMParser().parseFromString(resp, 'text/xml');
+watch(page, () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateData();
+}, { immediate: true });
 
-    for (const child of parsed.firstElementChild.children) {
-        if (child.localName == 'Contents') {
-            items.push({
-                key: child.children[0].textContent,
-                generation: child.children[1].textContent,
-                metaGeneration: child.children[2].textContent,
-                lastModified: new Date(child.children[3].textContent),
-                etag: child.children[4].textContent,
-                size: parseInt(child.children[5].textContent),
-            });
-        }
-    }
-    // items.splice(10);
-    fetchMatch(0);
-});
-
-function fetchMatch(startIndex: number): void {
-    items.slice(startIndex).forEach(({ key }) => {
-        fetch(new URL(key, API_ENDPOINT)).then(async (resp) => {
-            const json = await resp.json();
-
-            matches[key] = {
-                ...json,
-                Corporation1Score: parseInt(json.Corporation1Score),
-                Corporation2Score: parseInt(json.Corporation2Score),
-                DateEnded: new Date(json.DateEnded),
-            };
-        });
-    });
+function genKey(match: Match) {
+    return `${match.Corp1Name}${match.Corp2Name}${match.DateEnded.toString()}`;
+}
+async function updateData() {
+    API_ENDPOINT.searchParams.set('page', page.value.toString());
+    response.value = await fetch(API_ENDPOINT)
+        .then((r) => r.json());
 }
 </script>
 
@@ -158,6 +149,18 @@ function fetchMatch(startIndex: number): void {
       }
     }
   }
+}
+
+.footer {
+    .content {
+        max-width: max-content;
+        margin: 0 auto;
+
+        p {
+            padding: 10px;
+            text-align: center;
+        }
+    }
 }
 
 .match-fetching {

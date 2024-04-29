@@ -270,11 +270,11 @@ export default [
             },
             {
                 name: 'WSMatches',
-                text: { locKey: 'WSMatches' },
+                text: { locKey: 'TID_WS_ONGOING_TITLE' },
                 path: '/WSMatches',
                 component: () => import('../pages/WSMatches.vue'),
                 icon: {
-                    name: '',
+                    name: 'whiteStarMatch',
                     dir: 'icons',
                 },
             },
