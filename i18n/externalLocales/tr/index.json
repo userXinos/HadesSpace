@@ -419,6 +419,7 @@
   "TID_PLAYER_INFO_SECTION_BADGES": "DISTINCTIONS",
   "TID_MODULE_CARRIER_LASER": "Çok hedefli̇ lazer",
   "TID_MODULE_CARRIER_LASER_DESCR": "Menzildeki birden fazla düşman gemisini hedef alabilir. Her lazer ışını, diğer ışınlardan bağımsız olarak zamanla hasarı artırır.",
+  "TID_OTHER_PLAYER_INFO_PAGE_CORP_SECTION": "CORPORATION",
   "TID_PRODUCTION_DLG_SHIPS": "Gemi̇ler",
   "TID_PRODUCTION_DLG_STATIONS": "Uzay İstasyonları",
   "TID_UPGRADE_TRANSPORT_DESIGN": "Permanently upgrade transports to\nlevel {0}?",
