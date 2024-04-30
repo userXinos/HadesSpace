@@ -20,7 +20,7 @@ export default [
     {
         name: 'WSMatches',
         authors: ['mentalisit'],
-        href: 'https://mentalisit.sytes.net:8443/wsmatches',
+        href: 'https://compendium.mentalisit.myds.me/ws/matches',
         tags: ['Rest API'],
     },
 ];

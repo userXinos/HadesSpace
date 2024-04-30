@@ -1,5 +1,20 @@
 <template>
   <div>
+
+    <div class="filters">
+      <div>
+        <p
+          v-t="'TID_OTHER_PLAYER_INFO_PAGE_CORP_SECTION'"
+          class="label"
+        />
+        <MultiSelect
+          v-model="filterCorp"
+          :options="corps"
+          display-field="Name"
+        />
+      </div>
+    </div>
+
     <Pagination
       v-model="page"
       :max-page="response?.MaxPage || 1"
@@ -8,18 +23,18 @@
     <ul class="list">
       <li
         v-for="match of matches"
-        :key="genKey(match)"
+        :key="match.MatchId"
       >
         <div>
           <p class="corp-names">
-            <span>{{ match.Corp1Name }}</span>
+            <span>{{ match.Corporation1Name }}</span>
             <span class="vs-icon" />
-            <span>{{ match.Corp2Name }}</span>
+            <span>{{ match.Corporation2Name }}</span>
           </p>
           <p class="score">
-            <span>{{ match.Corp1Score }}</span>
+            <span>{{ match.Corporation1Score }}</span>
             <span> - </span>
-            <span>{{ match.Corp2Score }}</span>
+            <span>{{ match.Corporation2Score }}</span>
           </p>
           <p v-if="(match.DateEnded - nowDate) > 0">
             <!--suppress TypeScriptValidateTypes -->
@@ -44,9 +59,9 @@
     <div class="footer">
       <div class="content">
         <p>Powered by <a
-          href="https://mentalisit.sytes.net:8443/wsmatches"
+          href="https://compendium.mentalisit.myds.me/ws/"
           target="_blank"
-        >mentalisit.sytes.net:8443</a>
+        >compendium.mentalisit.myds.me</a>
           API
         </p>
       </div>
@@ -55,43 +70,67 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import sec2str, { sec2biggestTime } from '@Utils/sec2str';
 import Pagination from '@/components/Pagination.vue';
+import MultiSelect from '@/components/MultiSelect.vue';
 
-const API_ENDPOINT = new URL('https://mentalisit.sytes.net:8443/wsmatches');
-API_ENDPOINT.searchParams.set('limit', '50');
-
-interface Response {
-    MaxPage: number,
-    matches: Match[]
+interface Response<T> {
+    MaxPage: number
+    matches: T[]
 }
 interface Match {
-    Corp1Name: string
-    Corp2Name: string
-    Corp1Score: string
-    Corp2Score: string
+    Corporation1Name: string
+    Corporation2Name: string
+    Corporation1Score: number
+    Corporation2Score: number
     DateEnded: Date
+    MatchId: string
+}
+interface Corp {
+    Name: string
+    Id: string
 }
 
+const API_ENDPOINT = 'https://compendium.mentalisit.myds.me/ws/';
+const matchesUrl = new URL('matches', API_ENDPOINT);
+const corpUrl = new URL('corps', API_ENDPOINT);
+
 const nowDate = new Date();
-const response = ref<Response>();
+const response = ref<Response<Match>>();
+const corps = ref<Corp[]>([]);
 const matches = computed<Match[]>(() =>
     (response.value?.matches || []).map((e) => ({ ...e, DateEnded: new Date(e.DateEnded) })),
 );
 const page = ref(1);
+const filterCorp = ref([]);
+
+matchesUrl.searchParams.set('limit', '50');
 
 watch(page, () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    updateData();
+    matchesUrl.searchParams.set('page', page.value.toString());
+    fetchData();
 }, { immediate: true });
 
-function genKey(match: Match) {
-    return `${match.Corp1Name}${match.Corp2Name}${match.DateEnded.toString()}`;
-}
-async function updateData() {
-    API_ENDPOINT.searchParams.set('page', page.value.toString());
-    response.value = await fetch(API_ENDPOINT)
+watch(filterCorp, () => {
+    if (filterCorp.value.length == 0) {
+        matchesUrl.searchParams.delete('filter');
+    } else {
+        matchesUrl.searchParams.set('filter', JSON.stringify({ corp: filterCorp.value }));
+    }
+    page.value = 1;
+    fetchData();
+}, { deep: true });
+
+onMounted(async () => {
+    corps.value = await fetch(corpUrl)
+        .then((r) => r.json())
+        .then((j) => j.matches);
+});
+
+async function fetchData() {
+    response.value = await fetch(matchesUrl)
         .then((r) => r.json());
 }
 </script>
@@ -99,6 +138,26 @@ async function updateData() {
 <style scoped lang="scss">
 @import "../style/vars";
 
+.filters {
+    padding: 20px 0;
+   display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .label {
+        padding: 10px 0;
+    }
+
+    .multiselect {
+        width: 300px;
+        background: $background-elements;
+
+        :deep(.multiselect_btn) {
+            border: 2px solid $border-color;
+            border-radius: 5px;
+        }
+    }
+}
 .list {
   margin: 2% auto;
   max-width: 400px;

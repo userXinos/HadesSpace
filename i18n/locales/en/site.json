@@ -55,6 +55,7 @@
   "INSTALL_PWA_NOTE": "Install a progressive web application. Powered by your favorite browser, icon on desktop/launcher, work offline",
   "INSTALL_PWA_ERR_NOT_PROVIDE": "Browser did not provide installation function",
   "THIRD_PARTY_TOOLS": "Third Party Tools",
-  "THIRD_PARTY_TOOLS_NOTE": "This list of tools is provided for informational purposes only. We are not responsible for the accuracy, results, or safety of using these tools. Their use is at your own risk"
-
+  "THIRD_PARTY_TOOLS_NOTE": "This list of tools is provided for informational purposes only. We are not responsible for the accuracy, results, or safety of using these tools. Their use is at your own risk",
+  "SELECT": "Select",
+  "SELECTED": "{0} selected"
 }
