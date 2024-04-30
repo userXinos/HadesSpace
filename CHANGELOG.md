@@ -2,6 +2,24 @@
 
 This changelog starts with the v3.0 the third rewrite of the parser module and the entire web app
 
+## 4.3.0
+
+### Added
+- [Third Party Tools Page](https://userxinos.github.io/HadesSpace/thirdPartyTools)
+- [WSMatches Page](https://userxinos.github.io/HadesSpace/WSMatches)
+- Install PWA modal
+
+### Changed
+- Support localization for About page
+- Update favicons
+- Update PWA manifest (if you are using PWA mode, it is recommended to reinstall the app) 
+
+### Fixes
+- Bugs on the drones page
+- Some styles for mobile
+- Many minor format bugs
+
+
 ## 4.2.0
 
 ### Added
