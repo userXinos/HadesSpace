@@ -59,7 +59,7 @@
     <div class="footer">
       <div class="content">
         <p>Powered by <a
-          href="https://compendium.mentalisit.myds.me/ws/"
+          href="https://compendium.mentalisit.myds.me/ws/docs"
           target="_blank"
         >compendium.mentalisit.myds.me</a>
           API
