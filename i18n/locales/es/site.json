@@ -56,6 +56,6 @@
   "INSTALL_PWA_ERR_NOT_PROVIDE": "El navegador no ha proporcionado la función de instalación",
   "THIRD_PARTY_TOOLS": "Herramientas de terceros",
   "THIRD_PARTY_TOOLS_NOTE": "Esta lista de herramientas se proporciona únicamente con fines informativos. No nos hacemos responsables de la exactitud, los resultados o la seguridad del uso de las mismas. Su uso queda bajo su propia responsabilidad",
-  "SELECT": "Select",
-  "SELECTED": "{0} selected"
+  "SELECT": "Elegir",
+  "SELECTED": "Se ha/n seleccionado {0}"
 }
