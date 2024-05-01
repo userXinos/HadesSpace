@@ -22,13 +22,13 @@
         <!--suppress TypeScriptUnresolvedReference -->
         <!--        <div v-if="user.alts" class="select">-->
         <div class="select">
-          <select>
-            <option>{{ user.username }}</option>
+          <select @change="(e) => console.log(e.target.value)">
+            <option>{{ user?.username }}</option>
             <option
-              v-for="(alt, i) in user.alts"
+              v-for="(alt, i) in user?.alts"
               :key="i"
             >
-              {{ alt.name }}
+              {{ alt }}
             </option>
           </select>
         </div>
