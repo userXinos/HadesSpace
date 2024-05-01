@@ -19,6 +19,19 @@
           </div>
           <p />
         </div>
+        <!--suppress TypeScriptUnresolvedReference -->
+        <!--        <div v-if="user.alts" class="select">-->
+        <div class="select">
+          <select>
+            <option>{{ user.username }}</option>
+            <option
+              v-for="(alt, i) in user.alts"
+              :key="i"
+            >
+              {{ alt.name }}
+            </option>
+          </select>
+        </div>
         <div
           v-if="user"
           class="logged"
@@ -212,7 +225,7 @@ function userProfileClick() {
   .content {
     margin: 0 5%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
 
     @media screen and (max-width: 1000px){
       margin: 0 1%;
