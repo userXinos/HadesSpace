@@ -15,7 +15,7 @@
   "NO": "否",
   "VALUE": "值 {0}",
   "ABOUT": "关于",
-  "ABOUT_BODY": "本网页程序系一个基于解析 {hades_star} 所获得的{data}运行的{open_source}项目，由 {game_developer} 所有。\n\n部分游戏概念图由{artist_name}制作，可以在{his_website}上查看。\n\n特别感谢以下人员对本应用程序的本地化做出的贡献！\n如下：{list_of_people} \n你也可以通过{platforms}向我捐赠。\n\n如果你有任何问题或建议，欢迎通过Discord联系我，我的id是 {discord_username}。无论是通过{hso}或私信亦或是在{github}上{open_an_issue}来与我取得联系都是可行的。",
+  "ABOUT_BODY": "本网页应用程序为{open_source}项目，基于 {hades_star}解析后的{data}运行，由{game_developer}所有\n\n部分游戏概念图由{artist_name}制作，选取自{his_website}\n\n特别感谢以下人员对本应用程序的本地化做出的贡献！\n如下：{list_of_people}\n\n你可以通过 {platforms}向我捐赠\n\n如果你有任何疑问或建议，欢迎通过 Discord {discord_username}联系我，无论是通过 {hso}还是直接私信我，亦或是在 {github} 上{open_an_issue}都是可行的",
   "ABOUT_BODY_MADE_WITH": "基于{github}用{emoji}发电",
   "OPEN_SOURCE": "开源",
   "DATA": "数据",
@@ -55,5 +55,7 @@
   "INSTALL_PWA_NOTE": "安装一个渐进式网页应用程序（PWA）。由你最喜欢的浏览器提供支持，在桌面上创建图标，支持离线运行。",
   "INSTALL_PWA_ERR_NOT_PROVIDE": "你的浏览器未提供安装PWA功能",
   "THIRD_PARTY_TOOLS": "第三方工具",
-  "THIRD_PARTY_TOOLS_NOTE": "此工具列表仅供参考。我们不对其中的任何工具作出有关安全性，准确性以及正确性的保证。使用它们即代表自愿承担风险！"
+  "THIRD_PARTY_TOOLS_NOTE": "此工具列表仅供参考。我们不对其中的任何工具作出有关安全性，准确性以及正确性的保证。使用它们即代表自愿承担风险！",
+  "SELECT": "筛选",
+  "SELECTED": "已选中{0}项"
 }

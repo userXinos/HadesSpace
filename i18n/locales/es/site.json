@@ -55,5 +55,7 @@
   "INSTALL_PWA_NOTE": "Agregar a su pantalla de inicio una aplicación web progresiva. Compatible con su navegador favorito, con acceso directo en el escritorio o launcher y capacidad para funcionar sin conexión",
   "INSTALL_PWA_ERR_NOT_PROVIDE": "El navegador no ha proporcionado la función de instalación",
   "THIRD_PARTY_TOOLS": "Herramientas de terceros",
-  "THIRD_PARTY_TOOLS_NOTE": "Esta lista de herramientas se proporciona únicamente con fines informativos. No nos hacemos responsables de la exactitud, los resultados o la seguridad del uso de las mismas. Su uso queda bajo su propia responsabilidad"
+  "THIRD_PARTY_TOOLS_NOTE": "Esta lista de herramientas se proporciona únicamente con fines informativos. No nos hacemos responsables de la exactitud, los resultados o la seguridad del uso de las mismas. Su uso queda bajo su propia responsabilidad",
+  "SELECT": "Elegir",
+  "SELECTED": "Se ha/n seleccionado {0}"
 }
