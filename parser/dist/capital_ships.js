@@ -1589,7 +1589,7 @@ export default {
                 IsTeleport: 1,
                 PreventUseOnWsJumpgate: 1,
                 IsRecoil: 1,
-                ActivationPrepWS: 28800,
+                ActivationPrepWS: 36000,
                 ActivationDelayWS: 86400,
             },
         ],
