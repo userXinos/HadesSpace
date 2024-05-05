@@ -14,6 +14,7 @@ export default [
     'UnlockPrice',
     'UnlockTime',
     // ----------------
+    'GenWSMods',
     'Moons',
     'ColonizeCost',
     'ConceptImage',
