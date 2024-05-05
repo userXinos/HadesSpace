@@ -12,7 +12,7 @@
         />
       </div>
 
-      <modal
+      <Modal
         v-model:open="openModal"
         v-bind="modalOpts"
       >
@@ -23,6 +23,11 @@
                 <!--suppress TypeScriptUnresolvedReference -->
                 <h2>{{ $t(modalOpts.data.value.TID) }}</h2>
                 <p>{{ t('TID_SOCIAL_TIMESTAMP', [sec2biggestTime(modalOpts.data.lastAgoUpdate)]) }}</p>
+                <button
+                  v-t="'TID_MORE_INFO_BTN'"
+                  class="button accent"
+                  @click="openModalInfo = true"
+                />
                 <div />
               </div>
               <ModalIcon />
@@ -38,7 +43,16 @@
             </div>
           </div>
         </template>
-      </modal>
+      </Modal>
+
+      <Modal
+        v-model:open="openModalInfo"
+        v-bind="modalOptsInfo"
+      >
+        <template #body>
+          <VData v-bind="modalOptsInfo.data" />
+        </template>
+      </Modal>
 
     </div>
   </CompendiumPage>
@@ -46,7 +60,7 @@
 
 <!--suppress TypeScriptCheckImport, TypeScriptUnresolvedReference -->
 <script setup lang="ts">
-import { ref, reactive, h, VNode, onUnmounted } from 'vue';
+import { ref, reactive, h, VNode, onUnmounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getTechIndex } from 'bot_client';
 import compendiumTechListLogic from '@/composables/compendiumTechList';
@@ -59,6 +73,7 @@ import { getModulesMinLvl } from '@/components/ModulePage.vue';
 import CompendiumPage from '../components/CompendiumPage.vue';
 import CompendiumTechList from '../components/TechList.vue';
 import NumberPicker from '../components/NumberPicker.vue';
+import VData from '@/components/Data.vue';
 
 import globals from '@Data/globals.js';
 import shipsData from '@Data/capital_ships.js';
@@ -66,6 +81,7 @@ import allianceData from '@Data/alliance_levels.js';
 import spaceBuildingsData from '@Data/spacebuildings.js';
 import modulesData from '@Data/modules.js';
 import { TechLevel } from 'bot_client/src/bot_api';
+import { tableOpts } from '@/components/ModulePage.vue';
 
 const spaceBuildings = { RedStarScanner: spaceBuildingsData.RedStarScanner, ShipmentRelay: spaceBuildingsData.ShipmentRelay };
 const ships = { Transport: shipsData.Transport, Miner: shipsData.Miner, Battleship: shipsData.Battleship };
@@ -88,6 +104,7 @@ const { data, levelMap, setTechLevel } = compendiumTechListLogic();
 const { t } = useI18n();
 const title = t('HS_COMPENDIUM');
 const openModal = ref(false);
+const openModalInfo = ref(false);
 const modalOpts = reactive({
     size: SIZES.SMALL,
     title: t('TECHNOLOGIES'),
@@ -99,6 +116,15 @@ const modalOpts = reactive({
         get key() {
             return this.value.Name;
         },
+    },
+});
+const modalOptsInfo = reactive({
+    size: SIZES.LARGE,
+    title: t('TECHNOLOGIES'),
+    data: {
+        data: computed(() => modalOpts.data.value),
+        iconDir: computed(() => getIconDir(modalOpts.data.value)),
+        tableOpts: computed(tableOpts),
     },
 });
 
@@ -141,15 +167,27 @@ function getDataByKey(key: string): TechLevel|null {
 }
 function ModalIcon(): VNode {
     const m = modalOpts.data.value;
+    const dir = getIconDir(m);
 
     if (m.Icon) {
-        return h(Icon, { name: m.Icon, dir: m.specialIcon ? 'icons' : 'game/Modules' });
+        return h(Icon, { name: m.Icon, dir });
     }
     if (m.Model) {
-        return h(Icon, { name: m.Model[(getDataByKey(m.Name as string)?.level - 1) || 5], dir: 'game/Ships' });
+        return h(Icon, { name: m.Model[(getDataByKey(m.Name as string)?.level - 1) || 5], dir });
     }
     if (m.PrefabModel) {
-        return h(Icon, { name: m.PrefabModel, dir: 'game/SpaceBuildings' });
+        return h(Icon, { name: m.PrefabModel, dir });
+    }
+}
+function getIconDir(value: Record<string, unknown>): string {
+    if (value.Icon) {
+        return value.specialIcon ? 'icons' : 'game/Modules';
+    }
+    if (value.Model) {
+        return 'game/Ships';
+    }
+    if (value.PrefabModel) {
+        return 'game/SpaceBuildings';
     }
 }
 function updateLastAgo() {
@@ -190,6 +228,10 @@ $plan-color: #ded45a;
     h2 {
       margin-bottom: 2%;
     }
+
+      p {
+          padding-bottom: 10px;
+      }
 
     > div:first-child {
       flex: 3;
