@@ -63,6 +63,7 @@ function checkAndSend(num: number) {
 }
 
 .minus, .plus {
+    user-select: none;
     height: 100%;
     width: 100%;
     background: $background-elements;
