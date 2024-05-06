@@ -59,9 +59,9 @@
     <div class="footer">
       <div class="content">
         <p>Powered by <a
-          href="https://compendium.mentalisit.myds.me/ws/docs"
+          href="https://ws.mentalisit.myds.me"
           target="_blank"
-        >compendium.mentalisit.myds.me</a>
+        >ws.mentalisit.myds.me</a>
           API
         </p>
       </div>
@@ -92,7 +92,7 @@ interface Corp {
     Id: string
 }
 
-const API_ENDPOINT = 'https://compendium.mentalisit.myds.me/ws/';
+const API_ENDPOINT = 'https://ws.mentalisit.myds.me/';
 const matchesUrl = new URL('matches', API_ENDPOINT);
 const corpUrl = new URL('corps', API_ENDPOINT);
 
