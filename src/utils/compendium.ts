@@ -19,7 +19,6 @@ export default new Proxy(client, {
 
 export async function init() {
     if (!initialized) {
-        console.log(client);
         await client.initialize();
         initialized = true;
     }
