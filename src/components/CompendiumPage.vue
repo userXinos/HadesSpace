@@ -239,8 +239,7 @@ function ReadCurrentAlt():string {
 }
 function selectClient(value: number) {
     isFetching.value = true;
-    switchInstance(value);
-    clientInit().then(() => {
+    switchInstance(value).then(() => {
         isFetching.value = false;
     });
 }

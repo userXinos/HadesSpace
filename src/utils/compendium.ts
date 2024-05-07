@@ -12,7 +12,7 @@ if (compendiumClient) {
 }
 
 export default new Proxy(client, {
-    get: function(target: Client1 | Client2, p: string | symbol, receiver: ProxyHandler<Client1 | Client2>): unknown {
+    get(target: Client1 | Client2, p: string | symbol, receiver: ProxyHandler<Client1 | Client2>): unknown {
         return Reflect.get(target, p, receiver);
     },
 });
@@ -29,8 +29,9 @@ export function stop() {
     initialized = false;
 }
 
-export function switchInstance(clientNum: number) {
+export async function switchInstance(clientNum: number) {
     stop();
     client = new clients[clientNum]();
     localStorage.setItem('compendium_client', String(clientNum));
+    await init();
 }
