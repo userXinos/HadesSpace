@@ -19,6 +19,27 @@
           </div>
           <p />
         </div>
+        <!--suppress TypeScriptUnresolvedReference -->
+        <!--        <div v-if="user.alts" class="select">-->
+        <div
+            v-if="user?.alts && user?.alts?.length!==0"
+            class="select"
+        >
+          <select @change="(e) => selectUserAlts(e.target.value)">
+            <option
+                :value="user?.username"
+                :selected="ReadCurrentAlt() === user?.username"
+            >{{ user?.username }}</option>
+            <option
+                v-for="(alt, index) in user?.alts"
+                :key="index"
+                :value="alt"
+                :selected="ReadCurrentAlt() === alt"
+            >
+              {{ alt }}
+            </option>
+          </select>
+        </div>
         <div
           v-if="user"
           class="logged"
@@ -187,6 +208,18 @@ async function applyReqCode() {
         isFetching.value = false;
     }
 }
+function selectUserAlts(name: string) {
+  const u = client.getUser();
+  if (u?.username === name) {
+    localStorage.setItem('currentAlt', '' );
+  } else {
+    localStorage.setItem('currentAlt', name);
+  }
+  window.location.reload();
+}
+function ReadCurrentAlt():string {
+  return localStorage.getItem('currentAlt') || '';
+}
 function userProfileClick() {
     store.dispatch(types.OPEN_CONFIRM, t('TID_SETTINGS_DLG_SIGN_OUT'))
         .then(() => {
@@ -212,7 +245,8 @@ function userProfileClick() {
   .content {
     margin: 0 5%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: center;
 
     @media screen and (max-width: 1000px){
       margin: 0 1%;
