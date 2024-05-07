@@ -12,8 +12,8 @@ if (compendiumClient) {
 }
 
 export default new Proxy(client, {
-    get(target: Client1 | Client2, p: string | symbol): unknown {
-        return client[p];
+    get: function(target: Client1 | Client2, p: string | symbol, receiver: ProxyHandler<Client1 | Client2>): unknown {
+        return Reflect.get(target, p, receiver);
     },
 });
 
