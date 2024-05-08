@@ -160,7 +160,7 @@ const error = ref('');
 const isFetching = ref(false);
 const user = ref<User|User2|null>();
 const guild = ref<Guild|Guild2>();
-const defaultSwitchClient = ref(0);
+const defaultSwitchClient = readSelectClient(); // ref(0);
 
 onMounted(async () => {
     isFetching.value = true;
@@ -239,6 +239,13 @@ function selectClient(value: number) {
     switchInstance(value).then(() => {
         isFetching.value = false;
     });
+}
+function readSelectClient(): number {
+    const compendiumClient = localStorage.getItem('compendium_client');
+    if (compendiumClient) {
+        return parseInt(compendiumClient) || 0;
+    }
+    return 0;
 }
 function userProfileClick() {
     store.dispatch(types.OPEN_CONFIRM, t('TID_SETTINGS_DLG_SIGN_OUT'))
