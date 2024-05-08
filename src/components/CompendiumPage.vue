@@ -177,8 +177,9 @@ onMounted(async () => {
             applyReqCode();
         }
         if ('c2' in router.currentRoute.value.query) {
-            defaultSwitchClient.value = 1;
+            // defaultSwitchClient.value = 1;
             reqCode.value = router.currentRoute.value.query.c2 as string;
+            selectClient(1);
             // noinspection ES6MissingAwait
             applyReqCode();
         }
