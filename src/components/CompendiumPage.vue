@@ -3,6 +3,28 @@
 
     <div class="header">
       <div class="content">
+        <div>
+          <div
+            v-if="user?.alts?.length"
+            class="select alt-switch"
+          >
+            <select @change="(e) => selectUserAlts(e.target.value)">
+              <option
+                :value="user?.username"
+                :selected="ReadCurrentAlt() === user?.username"
+              >{{ user?.username }}
+              </option>
+              <option
+                v-for="(alt, index) in user?.alts"
+                :key="index"
+                :value="alt"
+                :selected="ReadCurrentAlt() === alt"
+              >
+                {{ alt }}
+              </option>
+            </select>
+          </div>
+        </div>
         <div
           v-if="isFetching && !user"
           class="logged fetching"
@@ -18,27 +40,6 @@
             >
           </div>
           <p />
-        </div>
-        <!--suppress TypeScriptUnresolvedReference -->
-        <!--        <div v-if="user.alts" class="select">-->
-        <div
-            v-if="user?.alts && user?.alts?.length!==0"
-            class="select"
-        >
-          <select @change="(e) => selectUserAlts(e.target.value)">
-            <option
-                :value="user?.username"
-                :selected="ReadCurrentAlt() === user?.username"
-            >{{ user?.username }}</option>
-            <option
-                v-for="(alt, index) in user?.alts"
-                :key="index"
-                :value="alt"
-                :selected="ReadCurrentAlt() === alt"
-            >
-              {{ alt }}
-            </option>
-          </select>
         </div>
         <div
           v-if="user"
@@ -106,6 +107,17 @@
           target="_blank"
         >HS Compendium</a>
 
+        <div class="select switch-client">
+          <select
+            v-model="defaultSwitchClient"
+            @change="selectClient($event.target.value)"
+          >
+            <option :value="0">Default client</option>
+            <option :value="1">Client from Mentalisit</option>
+          </select>
+        </div>
+
+
         <div
           class="code-req-btn-wrap"
           :class="{'disable': isFetching}"
@@ -127,9 +139,9 @@ import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import { Identity, User, Guild } from 'bot_client';
+import { Guild as Guild2, Identity as Identity2, User as User2 } from 'bot_client2';
 
-import client, { init as clientInit } from '@Utils/compendium';
+import client, { init as clientInit, switchInstance } from '@Utils/compendium';
 import { getDiscordAvatarUrl, getDiscordIconUrl } from '@Utils/getDiscordUrl';
 import memberImage from '@Img/icons/member.png';
 import types from '@/store/types';
@@ -146,8 +158,9 @@ const openCodeReqModal = ref(false);
 const reqCode = ref('');
 const error = ref('');
 const isFetching = ref(false);
-const user = ref<User|null>();
-const guild = ref<Guild>();
+const user = ref<User|User2|null>();
+const guild = ref<Guild|Guild2>();
+const defaultSwitchClient = ref(0);
 
 onMounted(async () => {
     isFetching.value = true;
@@ -163,6 +176,12 @@ onMounted(async () => {
             // noinspection ES6MissingAwait
             applyReqCode();
         }
+        if ('c2' in router.currentRoute.value.query) {
+            defaultSwitchClient.value = 1;
+            reqCode.value = router.currentRoute.value.query.c2 as string;
+            // noinspection ES6MissingAwait
+            applyReqCode();
+        }
     } else {
         user.value = u;
         guild.value = client.getGuild();
@@ -170,7 +189,7 @@ onMounted(async () => {
 });
 
 async function applyReqCode() {
-    let ident: Identity;
+    let ident: Identity|Identity2;
 
     if (!reqCode.value) {
         error.value = t('CANNOT_BE_EMPTY');
@@ -209,16 +228,17 @@ async function applyReqCode() {
     }
 }
 function selectUserAlts(name: string) {
-  const u = client.getUser();
-  if (u?.username === name) {
-    localStorage.setItem('currentAlt', '' );
-  } else {
-    localStorage.setItem('currentAlt', name);
-  }
-  window.location.reload();
+    localStorage.setItem('selectUserAlts', name);
+    window.location.reload();
 }
 function ReadCurrentAlt():string {
-  return localStorage.getItem('currentAlt') || '';
+    return localStorage.getItem('selectUserAlts') || '';
+}
+function selectClient(value: number) {
+    isFetching.value = true;
+    switchInstance(value).then(() => {
+        isFetching.value = false;
+    });
 }
 function userProfileClick() {
     store.dispatch(types.OPEN_CONFIRM, t('TID_SETTINGS_DLG_SIGN_OUT'))
@@ -247,6 +267,11 @@ function userProfileClick() {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .alt-switch {
+      width: 110%;
+    }
+
 
     @media screen and (max-width: 1000px){
       margin: 0 1%;
@@ -352,6 +377,10 @@ function userProfileClick() {
   color: red;
   margin-left: 10px;
   font-style: italic;
+}
+.switch-client {
+  padding-top: 4%;
+  font-size: 80%;
 }
 
 @keyframes bg-pos-move {
