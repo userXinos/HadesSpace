@@ -25,7 +25,6 @@
             </select>
           </div>
         </div>
-
         <div
           v-if="isFetching && !user"
           class="logged fetching"
@@ -42,7 +41,6 @@
           </div>
           <p />
         </div>
-
         <div
           v-if="user"
           class="logged"
@@ -119,6 +117,7 @@
           </select>
         </div>
 
+
         <div
           class="code-req-btn-wrap"
           :class="{'disable': isFetching}"
@@ -140,8 +139,7 @@ import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import { Identity, User, Guild } from 'bot_client';
-import { Identity as Identity2, User as User2, Guild as Guild2 } from 'bot_client2';
+import { Guild as Guild2, Identity as Identity2, User as User2 } from 'bot_client2';
 
 import client, { init as clientInit, switchInstance } from '@Utils/compendium';
 import { getDiscordAvatarUrl, getDiscordIconUrl } from '@Utils/getDiscordUrl';
@@ -178,8 +176,11 @@ onMounted(async () => {
             // noinspection ES6MissingAwait
             applyReqCode();
         }
-        if ('client' in router.currentRoute.value.query) {
-            defaultSwitchClient.value = Number(router.currentRoute.value.query.client);
+        if ('c2' in router.currentRoute.value.query) {
+            defaultSwitchClient.value = 1;
+            reqCode.value = router.currentRoute.value.query.c2 as string;
+            // noinspection ES6MissingAwait
+            applyReqCode();
         }
     } else {
         user.value = u;
@@ -227,15 +228,11 @@ async function applyReqCode() {
     }
 }
 function selectUserAlts(name: string) {
-    const u = client.getUser();
-    if (u?.username === name) {
-        localStorage.setItem('currentAlt', '' );
-    } else {
-        localStorage.setItem('currentAlt', name);
-    }
+    localStorage.setItem('selectUserAlts', name);
+    window.location.reload();
 }
 function ReadCurrentAlt():string {
-    return localStorage.getItem('currentAlt') || '';
+    return localStorage.getItem('selectUserAlts') || '';
 }
 function selectClient(value: number) {
     isFetching.value = true;
@@ -271,9 +268,10 @@ function userProfileClick() {
     justify-content: space-between;
     align-items: center;
 
-      .alt-switch {
-          width: 110%;
-      }
+    .alt-switch {
+      width: 110%;
+    }
+
 
     @media screen and (max-width: 1000px){
       margin: 0 1%;
@@ -381,8 +379,8 @@ function userProfileClick() {
   font-style: italic;
 }
 .switch-client {
-    padding-top: 4%;
-    font-size: 80%;
+  padding-top: 4%;
+  font-size: 80%;
 }
 
 @keyframes bg-pos-move {
