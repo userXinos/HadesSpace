@@ -43,7 +43,7 @@
   "TID_BUILDING_TRADINGSTATION_DESCR": "太空交易站會產生貨物，也可以接收來自星球的貨物。交易站須放置在一個空星區的中央，但不能與其他交易站放在相鄰的兩個星區",
   "TID_BUILDING_DIPLOMACY_CENTER": "太空外交站",
   "TID_BUILDING_DIPLOMACY_CENTER_DESCR": "創造一個傳送門，連接您與其他玩家的星系，使彼此的船隻可以互通。可以共同對抗冥犬勢力，或是交易神器",
-  "TID_BUILDING_DIPLOMACY_CENTER_INFO": "The Diplomacy Station can create a two way jump gate with another player's home system. Once linked, both players can send ships to the other side.",
+  "TID_BUILDING_DIPLOMACY_CENTER_INFO": "太空外交站可以讓您與其他玩家之間建立一個暫時的傳送門，雙方可以互相派遣船隻",
   "TID_BUILDING_WARPLANE_HUB": "WARP LANE HUB",
   "TID_BUILDING_WARPLANE_HUB_DESCR": "Two hubs that can connect to create a temporary Warp Lane in your system. An active Warp Lane allows ships to travel instantly and without consuming Hydrogen.",
   "TID_BUILDING_WARPLANE_HUB_INFO": "This Warp Lane Hub can be connected to another Hub for one day, for a fixed Hydrogen cost. Once connected, ships can travel between the two end points instantly and without consuming Hydrogen.",
