@@ -145,6 +145,7 @@ import client, { init as clientInit, switchInstance } from '@Utils/compendium';
 import { getDiscordAvatarUrl, getDiscordIconUrl } from '@Utils/getDiscordUrl';
 import memberImage from '@Img/icons/member.png';
 import types from '@/store/types';
+import types2 from '@/store/modules/userSettings/types';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
 
@@ -167,7 +168,9 @@ onMounted(async () => {
     await clientInit();
     const u = client.getUser();
     isFetching.value = false;
-
+    if ('lang' in router.currentRoute.value.query) {
+        store.commit(types2.SET_LANGUAGE, router.currentRoute.value.query.lang as string);
+    }
     if (!u) {
         openCodeReqModal.value = true;
 
