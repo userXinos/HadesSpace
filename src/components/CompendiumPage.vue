@@ -165,6 +165,9 @@ const defaultSwitchClient = readSelectClient(); // ref(0);
 
 onMounted(async () => {
     isFetching.value = true;
+    if ('c2' in router.currentRoute.value.query) {
+        selectClient(1);
+    }
     await clientInit();
     const u = client.getUser();
     isFetching.value = false;
@@ -182,7 +185,7 @@ onMounted(async () => {
         if ('c2' in router.currentRoute.value.query) {
             // defaultSwitchClient.value = 1;
             reqCode.value = router.currentRoute.value.query.c2 as string;
-            selectClient(1);
+            // selectClient(1);
             // noinspection ES6MissingAwait
             applyReqCode();
         }
