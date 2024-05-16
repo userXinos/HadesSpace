@@ -173,14 +173,9 @@ onMounted(async () => {
 
         if ('c' in router.currentRoute.value.query) {
             reqCode.value = router.currentRoute.value.query.c as string;
-            // noinspection ES6MissingAwait
-            applyReqCode();
         }
-        if ('c2' in router.currentRoute.value.query) {
-            defaultSwitchClient.value = 1;
-            reqCode.value = router.currentRoute.value.query.c2 as string;
-            // noinspection ES6MissingAwait
-            applyReqCode();
+        if ('client' in router.currentRoute.value.query) {
+            defaultSwitchClient.value = parseInt(router.currentRoute.value.query.client as string, 10);
         }
     } else {
         user.value = u;
