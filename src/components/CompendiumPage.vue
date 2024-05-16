@@ -175,7 +175,7 @@ onMounted(async () => {
             reqCode.value = router.currentRoute.value.query.c as string;
         }
         if ('client' in router.currentRoute.value.query) {
-            defaultSwitchclient.value.value = parseInt(router.currentRoute.value.query.client as string, 10);
+            defaultSwitchClient.value = parseInt(router.currentRoute.value.query.client as string, 10);
         }
     } else {
         user.value = u;
