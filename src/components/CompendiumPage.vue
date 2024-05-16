@@ -163,22 +163,23 @@ const defaultSwitchClient = ref(0);
 
 onMounted(async () => {
     isFetching.value = true;
-    await clientInit();
-    const u = client.value.getUser();
-    isFetching.value = false;
+    if ('client' in router.currentRoute.value.query) {
+        defaultSwitchClient.value = parseInt(router.currentRoute.value.query.client as string, 10);
+        selectClient(parseInt(router.currentRoute.value.query.client as string, 10));
+    }
     if ('lang' in router.currentRoute.value.query) {
         store.commit(types2.SET_LANGUAGE, router.currentRoute.value.query.lang as string);
     }
-    console.log(client.value, u);
+    await clientInit();
+    const u = client.value.getUser();
+    isFetching.value = false;
 
     if (!u) {
         openCodeReqModal.value = true;
 
         if ('c' in router.currentRoute.value.query) {
             reqCode.value = router.currentRoute.value.query.c as string;
-        }
-        if ('client' in router.currentRoute.value.query) {
-            selectClient(parseInt(router.currentRoute.value.query.client as string, 10));
+            applyReqCode();
         }
     } else {
         user.value = u;
