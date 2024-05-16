@@ -179,7 +179,7 @@ onMounted(async () => {
 
         if ('c' in router.currentRoute.value.query) {
             reqCode.value = router.currentRoute.value.query.c as string;
-            applyReqCode();
+            await applyReqCode();
         }
     } else {
         user.value = u;
