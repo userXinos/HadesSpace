@@ -8,17 +8,15 @@
             v-if="user?.alts?.length"
             class="select alt-switch"
           >
-            <select @change="(e) => selectUserAlts(e.target.value)">
-              <option
-                :value="user?.username"
-                :selected="ReadCurrentAlt() === user?.username"
-              >{{ user?.username }}
-              </option>
+            <select
+              :value="client.selectedAlt"
+              @change="selectUserAlt($event.target.value)"
+            >
+              <option value="default">{{ user?.username }}</option>
               <option
                 v-for="(alt, index) in user?.alts"
                 :key="index"
                 :value="alt"
-                :selected="ReadCurrentAlt() === alt"
               >
                 {{ alt }}
               </option>
@@ -140,7 +138,8 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { Guild, Identity, User } from 'bot_client';
-import { Guild as Guild2, Identity as Identity2, User as User2 } from 'bot_client2';
+import { Guild as Guild2, Identity as Identity2, User as User2, Compendium as Client2 } from 'bot_client2';
+
 
 import client, { init as clientInit, switchInstance } from '@Utils/compendium';
 import memberImage from '@Img/icons/member.png';
@@ -222,13 +221,10 @@ async function applyReqCode() {
         isFetching.value = false;
     }
 }
-function selectUserAlts(name: string) {
-    localStorage.setItem('selectUserAlts', name);
-    window.location.reload();
+function selectUserAlt(value: string) {
+    (client as Client2).switchAlt(value);
 }
-function ReadCurrentAlt():string {
-    return localStorage.getItem('selectUserAlts') || '';
-}
+
 function selectClient(value: number) {
     isFetching.value = true;
     switchInstance(value).then(() => {
