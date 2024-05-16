@@ -143,6 +143,7 @@ import { Guild as Guild2, Identity as Identity2, User as User2, Compendium as Cl
 import client, { init as clientInit, switchInstance } from '@Utils/compendium';
 import memberImage from '@Img/icons/member.png';
 import types from '@/store/types';
+import types2 from '@/store/modules/userSettings/types';
 
 import Modal, { SIZES } from '@/components/Modal.vue';
 
@@ -165,7 +166,9 @@ onMounted(async () => {
     await clientInit();
     const u = client.value.getUser();
     isFetching.value = false;
-
+    if ('lang' in router.currentRoute.value.query) {
+        store.commit(types2.SET_LANGUAGE, router.currentRoute.value.query.lang as string);
+    }
     console.log(client.value, u);
 
     if (!u) {
@@ -175,7 +178,7 @@ onMounted(async () => {
             reqCode.value = router.currentRoute.value.query.c as string;
         }
         if ('client' in router.currentRoute.value.query) {
-            defaultSwitchClient.value = parseInt(router.currentRoute.value.query.client as string, 10);
+            selectClient(parseInt(router.currentRoute.value.query.client as string, 10));
         }
     } else {
         user.value = u;
