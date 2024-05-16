@@ -9,7 +9,7 @@
             class="select alt-switch"
           >
             <select
-              :value="client.value.selectedAlt"
+              :value="client.selectedAlt"
               @change="selectUserAlt($event.target.value)"
             >
               <option value="default">{{ user?.username }}</option>
@@ -166,6 +166,8 @@ onMounted(async () => {
     const u = client.value.getUser();
     isFetching.value = false;
 
+    console.log(client.value, u);
+
     if (!u) {
         openCodeReqModal.value = true;
 
@@ -221,7 +223,7 @@ async function applyReqCode() {
     }
 }
 function selectUserAlt(value: string) {
-    (client as Client2).switchAlt(value);
+    (client.value as Client2).switchAlt(value);
 }
 
 function selectClient(value: number) {
