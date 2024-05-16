@@ -1,5 +1,5 @@
 import { Compendium as Client1 } from 'bot_client';
-import { Compendium as Client2 } from '../bot_client2';
+import { Compendium as Client2 } from 'bot_client2';
 
 const clients = [Client1, Client2];
 
