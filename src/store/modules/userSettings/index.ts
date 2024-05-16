@@ -14,7 +14,7 @@ export default {
     strict: isDev,
     state: {
         ...settings,
-        language: settings.language || ((browserLang in supportLocales) ? browserLang : defaultSettings.language),
+        language: settings.language || (supportLocales.includes(browserLang) ? browserLang : defaultSettings.language),
     },
     mutations: mutations,
 };
