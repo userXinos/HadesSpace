@@ -42,7 +42,7 @@
             <div class="meta">
               <div class="avatar">
                 <img
-                  :src="getAvatarUrl(mem.avatarUrl)"
+                  :src="mem.avatarUrl"
                   :alt="`${mem.name} avatar`"
                   @error="(e) => e.target.src = memberImage"
                 ></div>
@@ -143,7 +143,6 @@ import { onMounted, reactive, Ref, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 
-import { getAvatarUrl } from '@Utils/getDiscordUrl';
 import client from '../utils/compendium';
 import types from '@/store/modules/userSettings/types';
 

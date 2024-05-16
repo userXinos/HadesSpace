@@ -48,12 +48,12 @@
         >
           <div class="avatar">
             <img
-              :src="getDiscordIconUrl(guild!.id, guild!.icon).href"
+              :src="guild!.url"
               :alt="`${guild!.name} icon`"
               @error="(e) => e.target.src = memberImage"
             >
             <img
-              :src="getDiscordAvatarUrl(user.id, user.avatar).href"
+              :src="user.avatarUrl"
               :alt="`${user.username} avatar`"
               @error="(e) => e.target.src = memberImage"
             >
@@ -139,10 +139,10 @@ import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import { Guild, Identity, User } from 'bot_client';
 import { Guild as Guild2, Identity as Identity2, User as User2 } from 'bot_client2';
 
 import client, { init as clientInit, switchInstance } from '@Utils/compendium';
-import { getDiscordAvatarUrl, getDiscordIconUrl } from '@Utils/getDiscordUrl';
 import memberImage from '@Img/icons/member.png';
 import types from '@/store/types';
 
