@@ -3,6 +3,26 @@
 
     <div class="header">
       <div class="content">
+        <div>
+          <div
+            v-if="user?.alts?.length"
+            class="select alt-switch"
+          >
+            <select
+              :value="client.selectedAlt"
+              @change="selectUserAlt($event.target.value)"
+            >
+              <option value="default">{{ user?.username }}</option>
+              <option
+                v-for="(alt, index) in user?.alts"
+                :key="index"
+                :value="alt"
+              >
+                {{ alt }}
+              </option>
+            </select>
+          </div>
+        </div>
         <div
           v-if="isFetching && !user"
           class="logged fetching"
@@ -26,12 +46,12 @@
         >
           <div class="avatar">
             <img
-              :src="getDiscordIconUrl(guild!.id, guild!.icon).href"
+              :src="guild!.url"
               :alt="`${guild!.name} icon`"
               @error="(e) => e.target.src = memberImage"
             >
             <img
-              :src="getDiscordAvatarUrl(user.id, user.avatar).href"
+              :src="user.avatarUrl"
               :alt="`${user.username} avatar`"
               @error="(e) => e.target.src = memberImage"
             >
@@ -85,6 +105,17 @@
           target="_blank"
         >HS Compendium</a>
 
+        <div class="select switch-client">
+          <select
+            v-model="defaultSwitchClient"
+            @change="selectClient($event.target.value)"
+          >
+            <option :value="0">Default client</option>
+            <option :value="1">Client from Mentalisit</option>
+          </select>
+        </div>
+
+
         <div
           class="code-req-btn-wrap"
           :class="{'disable': isFetching}"
@@ -106,10 +137,10 @@ import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import { Identity, User, Guild } from 'bot_client';
+import { Guild, Identity, User } from 'bot_client';
+import { Guild as Guild2, Identity as Identity2, User as User2, Compendium as Client2 } from 'bot_client2';
 
-import client, { init as clientInit } from '@Utils/compendium';
-import { getDiscordAvatarUrl, getDiscordIconUrl } from '@Utils/getDiscordUrl';
+import client, { init as clientInit, switchInstance } from '@Utils/compendium';
 import memberImage from '@Img/icons/member.png';
 import types from '@/store/types';
 
@@ -125,31 +156,35 @@ const openCodeReqModal = ref(false);
 const reqCode = ref('');
 const error = ref('');
 const isFetching = ref(false);
-const user = ref<User|null>();
-const guild = ref<Guild>();
+const user = ref<User|User2|null>();
+const guild = ref<Guild|Guild2>();
+const defaultSwitchClient = ref(0);
 
 onMounted(async () => {
     isFetching.value = true;
     await clientInit();
-    const u = client.getUser();
+    const u = client.value.getUser();
     isFetching.value = false;
+
+    console.log(client.value, u);
 
     if (!u) {
         openCodeReqModal.value = true;
 
         if ('c' in router.currentRoute.value.query) {
             reqCode.value = router.currentRoute.value.query.c as string;
-            // noinspection ES6MissingAwait
-            applyReqCode();
+        }
+        if ('client' in router.currentRoute.value.query) {
+            defaultSwitchclient.value.value = parseInt(router.currentRoute.value.query.client as string, 10);
         }
     } else {
         user.value = u;
-        guild.value = client.getGuild();
+        guild.value = client.value.getGuild();
     }
 });
 
 async function applyReqCode() {
-    let ident: Identity;
+    let ident: Identity|Identity2;
 
     if (!reqCode.value) {
         error.value = t('CANNOT_BE_EMPTY');
@@ -162,7 +197,7 @@ async function applyReqCode() {
     isFetching.value = true;
 
     try {
-        ident = await client.checkConnectCode(reqCode.value);
+        ident = await client.value.checkConnectCode(reqCode.value);
     } catch (e: unknown) {
         error.value = (e as Error).toString();
         console.error(e);
@@ -181,16 +216,26 @@ async function applyReqCode() {
 
     if (!drop) {
         isFetching.value = true;
-        await client.connect(ident);
-        user.value = client.getUser();
-        guild.value = client.getGuild();
+        await client.value.connect(ident);
+        user.value = client.value.getUser();
+        guild.value = client.value.getGuild();
         isFetching.value = false;
     }
+}
+function selectUserAlt(value: string) {
+    (client.value as Client2).switchAlt(value);
+}
+
+function selectClient(value: number) {
+    isFetching.value = true;
+    switchInstance(value).then(() => {
+        isFetching.value = false;
+    });
 }
 function userProfileClick() {
     store.dispatch(types.OPEN_CONFIRM, t('TID_SETTINGS_DLG_SIGN_OUT'))
         .then(() => {
-            client.logout();
+            client.value.logout();
             user.value = undefined;
             guild.value = undefined;
         })
@@ -212,7 +257,13 @@ function userProfileClick() {
   .content {
     margin: 0 5%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: center;
+
+    .alt-switch {
+      width: 110%;
+    }
+
 
     @media screen and (max-width: 1000px){
       margin: 0 1%;
@@ -318,6 +369,10 @@ function userProfileClick() {
   color: red;
   margin-left: 10px;
   font-style: italic;
+}
+.switch-client {
+  padding-top: 4%;
+  font-size: 80%;
 }
 
 @keyframes bg-pos-move {

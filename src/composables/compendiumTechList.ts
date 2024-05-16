@@ -13,13 +13,13 @@ export default function compendiumTechList() {
     const levelMap = ref<Record<string, number>>({});
 
     const setTechLevel = debounce(
-        (tId: number, l: number) => client.setTechLevel(tId, l),
+        (tId: number, l: number) => client.value.setTechLevel(tId, l),
         500,
     ) as SetTechLevel;
 
     onMounted(() => {
-        if (client.getUser()) {
-            data.value = client.getTechLevels();
+        if (client.value.getUser()) {
+            data.value = client.value.getTechLevels();
         }
     });
     watch(data, (value) => {
@@ -30,9 +30,9 @@ export default function compendiumTechList() {
         }
     }, { deep: true });
 
-    client.on('sync', (tl: TechLevels) => data.value = tl);
-    client.on('connected', () => data.value = client.getTechLevels());
-    client.on('disconnected', () => {
+    client.value.on('sync', (tl: TechLevels) => data.value = tl);
+    client.value.on('connected', () => data.value = client.value.getTechLevels());
+    client.value.on('disconnected', () => {
         data.value = undefined;
         levelMap.value = undefined;
     });

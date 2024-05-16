@@ -42,7 +42,7 @@
             <div class="meta">
               <div class="avatar">
                 <img
-                  :src="getDiscordAvatarUrl(mem.userId, mem.avatar)"
+                  :src="mem.avatarUrl"
                   :alt="`${mem.name} avatar`"
                   @error="(e) => e.target.src = memberImage"
                 ></div>
@@ -143,7 +143,6 @@ import { onMounted, reactive, Ref, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 
-import { getDiscordAvatarUrl } from '@Utils/getDiscordUrl';
 import client from '../utils/compendium';
 import types from '@/store/modules/userSettings/types';
 
@@ -221,8 +220,8 @@ let filteredByRoleCache: CorpMember[] = [];
 
 filteredMembers.value = Array.from({ length: 10 }, (i) => ({ userId: i, name: '', avatarUrl: '' }) as CorpMember);
 
-client.on('connected', () => fetchCorp());
-client.on('disconnected', () => {
+client.value.on('connected', () => fetchCorp());
+client.value.on('disconnected', () => {
     filteredByRoleCache = [];
     filteredMembers.value = Array.from({ length: 10 }, (i) => ({ userId: i, name: '', avatarUrl: '' }) as CorpMember);
     filterRoleId.value = '';
@@ -230,7 +229,7 @@ client.on('disconnected', () => {
     store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID);
 });
 onMounted(() => {
-    if (client.getUser()) {
+    if (client.value.getUser()) {
         fetchCorp();
     }
 });
@@ -238,7 +237,7 @@ onMounted(() => {
 watch(filterRoleId, async (value) => {
     isFetching.value = true;
     store.commit(types.SET_COMPENDIUM_CORP_LAST_ROLE_ID, value);
-    filteredByRoleCache = await client.corpdata(value).then((r) => r.members);
+    filteredByRoleCache = await client.value.corpdata(value).then((r) => r.members);
     filteredMembers.value = filteredByRoleCache;
     isFetching.value = false;
     filterByTech(filterTech);
@@ -248,7 +247,7 @@ watch(() => filterTech, filterByTech, { deep: true });
 
 async function fetchCorp() {
     isFetching.value = true;
-    const resp = await client.corpdata(store.state.userSettings.compendiumCorpLastRoleId);
+    const resp = await client.value.corpdata(store.state.userSettings.compendiumCorpLastRoleId);
 
     data.value = resp;
     filteredByRoleCache = resp.members;

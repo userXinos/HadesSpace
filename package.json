@@ -19,6 +19,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@vueuse/head": "^2.0.0",
     "bot_client": "github:mcgoldric/compendium-client",
+    "bot_client2": "github:mentalisit/compendium-client-new",
     "jsoncrush": "^1.1.8",
     "lodash.debounce": "^4.0.8",
     "parse-markdown-table": "^0.0.6",
