@@ -32,9 +32,11 @@
             <span>{{ match.Corporation2Name }}</span>
           </p>
           <p class="score">
+            <span class="corp-info">{{ getCorpStat(match.Corporation1Id) }}</span>
             <span>{{ match.Corporation1Score }}</span>
             <span> - </span>
             <span>{{ match.Corporation2Score }}</span>
+            <span class="corp-info">{{ getCorpStat(match.Corporation2Id) }}</span>
           </p>
           <p v-if="(match.DateEnded - nowDate) > 0">
             <!--suppress TypeScriptValidateTypes -->
@@ -133,6 +135,16 @@ async function fetchData() {
     response.value = await fetch(matchesUrl)
         .then((r) => r.json());
 }
+function getCorpStat(id: string) {
+    const corp = corps.value.find((e) => e.Id == id);
+
+    if (corp) {
+        const [w, l, d, e] = Object.entries(corp)
+            .filter(([k]) => !['Name', 'Id'].includes(k))
+            .map(([, v]) => v);
+        return `[W:${w}/L:${l}/D:${d}/E:${e}]`;
+    }
+}
 </script>
 
 <style scoped lang="scss">
@@ -178,11 +190,19 @@ async function fetchData() {
       }
 
       .score {
-        font-size: 150%;
+          display: flex;
+          align-items: start;
+          justify-content: center;
+          gap: 8px;
 
-         span {
-           color: $border-color;
+         span:not(.corp-info) {
+             font-size: 150%;
+             color: $border-color;
          }
+          span.corp-info {
+              font-size: 90%;
+
+          }
       }
 
       .corp-names {
