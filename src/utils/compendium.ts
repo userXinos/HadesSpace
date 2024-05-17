@@ -1,6 +1,6 @@
 import { Compendium as Client1 } from 'bot_client';
 import { Compendium as Client2 } from 'bot_client2';
-import { ref } from 'vue';
+import { ref, toRaw } from 'vue';
 
 const clients = [Client1, Client2];
 
@@ -28,7 +28,9 @@ export function stop() {
 
 export async function switchInstance(clientNum: number) {
     stop();
+    const events = { ...toRaw(client.value._events) };
     client.value = new clients[clientNum]();
+    client.value._events = events;
     localStorage.setItem('compendium_client', String(clientNum));
     await init();
 }
