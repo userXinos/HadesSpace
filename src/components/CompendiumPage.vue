@@ -176,13 +176,13 @@ onMounted(async () => {
     if (!u) {
         openCodeReqModal.value = true;
 
-        if ('c' in router.currentRoute.value.query) {
-            reqCode.value = router.currentRoute.value.query.c as string;
-            await applyReqCode();
-        }
         if ('client' in router.currentRoute.value.query) {
             defaultSwitchClient.value = parseInt(router.currentRoute.value.query.client as string, 10);
             selectClient(parseInt(router.currentRoute.value.query.client as string, 10));
+        }
+        if ('c' in router.currentRoute.value.query) {
+            reqCode.value = router.currentRoute.value.query.c as string;
+            await applyReqCode();
         }
     } else {
         user.value = u;
