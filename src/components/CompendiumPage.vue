@@ -160,7 +160,7 @@ const user = ref<User|User2|null>();
 const guild = ref<Guild|Guild2>();
 const defaultSwitchClient = ref(localStorage.getItem('compendium_client') ? parseInt(localStorage.getItem('compendium_client'), 10) : 0);
 const linkUrl = computed(() => 
-    defaultSwitchClient.value === 0 ? 'https://hs-compendium.com/' : 'https://compendiumnew.mentalisit.myds.me/links';
+    defaultSwitchClient.value === 0 ? 'https://hs-compendium.com/' : 'https://compendiumnew.mentalisit.myds.me/links'
 );
 const linkText = computed(() => defaultSwitchClient.value === 0 ? 'HS Compendium' : 'invite');
 
