@@ -80,7 +80,7 @@
     <div class="footer">
       <div class="content">
         <p>Powered by <a
-          href="https://hs-compendium.com/"
+          :href="linkUrl"
           target="_blank"
         >HS Compendium</a></p>
       </div>
@@ -101,9 +101,9 @@
         </div>
 
         <a
-          href="https://hs-compendium.com/"
+          :href="linkUrl"
           target="_blank"
-        >HS Compendium</a>
+        >{{ linkText }}</a>
 
         <div class="select switch-client">
           <select
@@ -133,7 +133,7 @@
 
 <!--suppress TypeScriptCheckImport -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
@@ -159,6 +159,13 @@ const isFetching = ref(false);
 const user = ref<User|User2|null>();
 const guild = ref<Guild|Guild2>();
 const defaultSwitchClient = ref(parseInt(localStorage.getItem('compendium_client')) ?? 0);
+const linkUrl = computed(() => {
+    return defaultSwitchClient.value === 0 ? 'https://hs-compendium.com/' : 'https://compendiumnew.mentalisit.myds.me/links';
+});
+
+const linkText = computed(() => {
+    return defaultSwitchClient.value === 0 ? 'HS Compendium' : 'invite';
+});
 
 onMounted(async () => {
     isFetching.value = true;
@@ -166,16 +173,16 @@ onMounted(async () => {
     const u = client.value.getUser();
     isFetching.value = false;
 
-    console.log(client.value, u);
-
     if (!u) {
         openCodeReqModal.value = true;
 
+        if ('client' in router.currentRoute.value.query) {
+            defaultSwitchClient.value = parseInt(router.currentRoute.value.query.client as string, 10);
+            selectClient(parseInt(router.currentRoute.value.query.client as string, 10));
+        }
         if ('c' in router.currentRoute.value.query) {
             reqCode.value = router.currentRoute.value.query.c as string;
-        }
-        if ('client' in router.currentRoute.value.query) {
-            defaultSwitchclient.value.value = parseInt(router.currentRoute.value.query.client as string, 10);
+            await applyReqCode();
         }
     } else {
         user.value = u;
