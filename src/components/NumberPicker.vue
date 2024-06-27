@@ -6,6 +6,7 @@
     />
     <div class="input-wrap">
       <input
+        ref="inputRef"
         type="text"
         :value="value"
         @change="checkAndSend(parseInt($event.target.value))"
@@ -19,6 +20,8 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+
 export interface Props {
     value: number,
     min: number,
@@ -26,6 +29,12 @@ export interface Props {
 }
 const props = defineProps<Props>();
 const emit = defineEmits(['update:value']);
+const inputRef = ref<HTMLInputElement>();
+
+onMounted(() => {
+    inputRef.value.focus();
+    inputRef.value.select();
+});
 
 function checkAndSend(num: number) {
     if (num < props.min) {
