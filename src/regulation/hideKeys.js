@@ -256,6 +256,6 @@ export default {
         'DeltaDrones.NewModuleSlots',
         /(DroneRocketLauncher|ChainRayForDrone)\.UnlockBlueprints/,
         'LaserTurret.MaxPerRS',
-        /(LaserTurret|DeltaDroneBattery|DeltaDroneTeleport|DroneSquadBattery)\.(UnlockBlueprints)/,
+        /(DeltaDroneBattery|DeltaDroneTeleport|DroneSquadBattery)\.(UnlockBlueprints)/,
     ],
 };
