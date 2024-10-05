@@ -11,8 +11,8 @@ const isDev = process.env.NODE_ENV === 'development';
 const currentDate = new Date();
 
 export default defineConfig({
-    //base: (isDev ? '/' : `/HadesSpace/`),
-    base: './',
+    base: (isDev ? '/' : `/HadesSpace/`),
+    //base: './',
     server: {
         port: 8080,
     },
