@@ -12,7 +12,6 @@ const currentDate = new Date();
 
 export default defineConfig({
     base: (isDev ? '/' : `/HadesSpace/`),
-    //base: './',
     server: {
         port: 8080,
     },
