@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: pull code
-        run: git pull origin main --rebase
+        run: git pull origin master --rebase
