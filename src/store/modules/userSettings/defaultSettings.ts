@@ -1,5 +1,5 @@
 export default Object.freeze(<Settings>{
-    language: 'en',
+    language: 'zh-si',
     disableFilters: false,
     compactModulesByArtTypeTable: true,
     planetsCalcSp2: false,
