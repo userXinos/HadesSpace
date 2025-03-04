@@ -298,7 +298,7 @@ export default {
         Cost: [1500, 5000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 100000],
         MaxOnOwnSolarSystem: 1,
         MaxPerSector: 1,
-        RelayBonusPct: [0, 5, 10, 20, 60, 110, 150, 180, 240, 330, 1100],
+        RelayBonusPct: [0, 5, 10, 20, 65, 120, 160, 190, 260, 350, 1200],
         HydroCostPerShipment: [5, 10, 20, 40, 60, 80, 100, 120, 140, 160, 200],
         BuildNotifMode: [0, 1],
         ShowInStarLinks: 1,

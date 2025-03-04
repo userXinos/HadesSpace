@@ -244,7 +244,7 @@ export default {
     CustomizePlanetPremiumPC: 2000,
     CustomizeStarRegularPC: 800,
     CustomizeStarPremiumPC: 3000,
-    SP2ShipmentsBoostPct: 25,
+    SP2ShipmentsBoostPct: 35,
     SP2BlueprintBoostPct: 40,
     AllianceInactivityChatAlertDays: 7,
     SecondResearchSlotPrice: 100000,
@@ -276,6 +276,6 @@ export default {
     RSEnrichMod: 8,
     GPPreorderReward: 500,
     BarrierPreventsTeleport: 0,
-    PCH_CapPct: 40,
+    PCH_CapPct: 50,
     PCH_Duration: 14,
 };
