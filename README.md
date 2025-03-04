@@ -24,7 +24,7 @@ npm run dev # deploy local server
 ```
 
 ### Requirements
-- 17 version of [NodeJS](https://nodejs.org)
+- 20+ version of [NodeJS](https://nodejs.org)
 
 
 ### Modules
