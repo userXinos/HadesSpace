@@ -16,6 +16,8 @@
 </template>
 
 <script setup lang="ts">
+import noImage from '../img/icons/connection.png';
+const iconsDict = import.meta.glob(`../img/**/*.png`, { eager: true, query: '?url', import: 'default' });
 
 export interface Props {
     name: string
@@ -101,11 +103,13 @@ function getUrl() {
         }
     }
 
-    try {
-        return new URL(`../img/${dir}/${name}.png`, import.meta.url).href;
-    } catch (err) {
-        console.error(`[ICON] Not found: ${name}`);
-        return new URL(`../img/icons/connection.png`, import.meta.url).href;
+    const iconKey = `../img/${dir}/${name}.png`;
+
+    if (iconKey in iconsDict) {
+        return iconsDict[iconKey];
+    } else {
+        console.error(`[ICON] Not found: ${iconKey}`);
+        return noImage;
     }
 }
 </script>
