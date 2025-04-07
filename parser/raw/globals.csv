@@ -100,7 +100,7 @@ ShipDockOffsetY,200
 MaxSendInboxMessageLength,300
 LargeSystemTravelTimeModifier,360
 LargeSystemCombatTurnModifier,60
-ReplayVersion,34
+ReplayVersion,35
 CorporationScoreIntervals,10!20!100
 CorporationScoreDividers,2!4!10
 PlaceIncomingStargateInMiddleOfSector,1
@@ -224,7 +224,7 @@ MaxRebuildShipDesignsPerType,3
 RefreshWeaponFxOnSelect,0
 InfluenceDecayPct,3000
 InfluenceDecayPeriod,259200
-NewsletterURL,http://eepurl.com/cal8yD
+NewsletterURL,
 FlagshipContribAmounts,10000!100000!1000000!8000000
 CRAsteroidMineTicks,1200
 RSJoinInProgressWindowSec,180
@@ -271,9 +271,18 @@ CorpBonusCooldown,0
 SP1ShipUpgradeDiscountPct,10
 SP1ShipBuildDiscountPct,80
 BldMoveToSectorEdge,1
-SubCrAmt,500
+PSNPlusSubscriptionMonthlyCrystalsAmount,0
+HadesStarPlatinumWeeklyCrystalAmount,500
 RSEnrichMod,8
 GPPreorderReward,500
 BarrierPreventsTeleport,0
 PCH_CapPct,50
 PCH_Duration,14
+RMMTAfterHydroOnBoard,1
+AndroidManageSubLink,https://play.google.com/store/account/subscriptions
+MailListOfferCrystals,100
+AllowModuleRefit,1
+AllowCustomDesigns,1
+CJBJH,1
+EventImgUrl,https://hadesstar.com/event_images/event-{0}.jpg
+PlatinumStars,Home_Star_21_Platinum!Home_Star_22_Platinum
