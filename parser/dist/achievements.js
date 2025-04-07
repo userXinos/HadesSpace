@@ -42,6 +42,7 @@ export default {
         SortOrder: 40,
         PID1: [31, 32, 33, 34, 35],
         PSNID: 11,
+        PSNIPC: 10,
     },
     FleetSize: {
         Name: "FleetSize",
@@ -54,6 +55,7 @@ export default {
         GoogleID: "CgkItJiH6OEGEAIQBQ",
         SortOrder: 50,
         PID1: [11, 12, 13, 14, 15],
+        PSNIPC: 8,
         PSNID: 5,
     },
     CommonHydro: {
@@ -94,6 +96,7 @@ export default {
         SortOrder: 80,
         PID1: [26, 27, 28, 29, 30],
         PSNID: [8, 9, 10],
+        PSNIPC: 12,
     },
     Tax: {
         Name: "Tax",
@@ -119,6 +122,7 @@ export default {
         SortOrder: 100,
         PID1: [36, 37, 38, 39, 40],
         PSNID: 12,
+        PSNIPC: -1,
     },
     CerberusFleetsDestroyed: {
         Name: "CerberusFleetsDestroyed",
@@ -244,6 +248,7 @@ export default {
         SortOrder: 20,
         PID1: [76, 77, 78, 79, 80],
         PSNID: [23, 24, 25],
+        PSNIPC: 9,
     },
     CollectDailyRewards: {
         Name: "CollectDailyRewards",
