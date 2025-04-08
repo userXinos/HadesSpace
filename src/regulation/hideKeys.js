@@ -87,6 +87,7 @@ export default {
         'LinkDPSBoostPct', // перевёл в урон на парсере
         'SortOrder',
         'PSNID',
+        'PSNIPC', // May be added to solve achievement issue on PS, dont know indeed meaning
         'SpeedIncrPerTick',
         'IndependentLaserRampUp',
         'RSMoveCrossSectorCerbsAway',
