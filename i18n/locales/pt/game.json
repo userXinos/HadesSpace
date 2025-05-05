@@ -22,7 +22,7 @@
   "MAX_PER_STAR_SYSTEM": "Maximum quantity per system",
   "MAX_PER_SECTOR": "Maximum quantity per sector",
   "CERBERUS": "Cerberus",
-  "DARK_CERBERUS": "Dark cerberus",
+  "DARK_CERBERUS": "Cerberus obscuro",
   "SECTIONS": "Sections",
   "FLAGSHIP_MODULES": "Flagship modules",
   "COST": "Cost",
@@ -103,6 +103,6 @@
   "TURRET": "Turret",
   "BLUEPRINTS_GRANTED": "Planos Concedidos",
   "MINIMUM_RANGE": "Alcance Mínimo",
-  "HYDRO_COST_MODIFIER": "Hydro cost modifier",
-  "ARTIFACT_DRS_POINTS": "Points for DRS artifact"
+  "HYDRO_COST_MODIFIER": "Modificador de custo de hidrogénio",
+  "ARTIFACT_DRS_POINTS": "Pontos de artefactos de estrela vermelha sombria"
 }
