@@ -47,15 +47,15 @@
   "UPGRADE_TIME_IN_PARALLEL": "Upgrade time in parallel",
   "UPGRADE_TIME_IN_PARALLEL_INFO": "O custo de todos os planetas/módulos do plano é dividido pelo tempo de atualização e recalculado em horas - obtemos o número de créditos que precisam ser investidos para melhoria contínua por hora.\n\nEntão o valor das configurações também é convertido em horas. O ciclo calcula se o número das configurações pode cobrir o consumo por hora, se não, quantas vezes (isso significa que nossa renda não é suficiente para melhorar todos os nossos planetas/módulos continuamente).\n\nComo resultado, obtemos o tempo real de atualização paralela, que leva em consideração o investimento diário e seu tempo de atualização",
   "DAILY_INVESTMENT": "Investimento diário",
-  "COMMUNITY_CONTENT": "Este conteúdo é apoiado pela comunidade e pode ser editado{0}",
+  "COMMUNITY_CONTENT": "Esse conteúdo é apoiado pela comunidade e pode ser editado{0}",
   "HERE": "aqui",
   "SYNC": "Sincronizar",
   "DISABLE_FILTERS": "Desabilitar filtros",
   "DISABLE_FILTERS_NOTE": "Desabilite todos os filtros característicos usados para ocultar informações sem importância",
-  "INSTALL_PWA_NOTE": "Install a progressive web application. Powered by your favorite browser, icon on desktop/launcher, work offline",
-  "INSTALL_PWA_ERR_NOT_PROVIDE": "Browser did not provide installation function",
+  "INSTALL_PWA_NOTE": "Instale um aplicativo web progressivo. Desenvolvido pelo seu navegador favorito, ícone na área de trabalho/inicializador, trabalhe offline",
+  "INSTALL_PWA_ERR_NOT_PROVIDE": "O navegador não forneceu a função de instalação",
   "THIRD_PARTY_TOOLS": "Ferramentas de terceiros",
-  "THIRD_PARTY_TOOLS_NOTE": "This list of tools is provided for informational purposes only. We are not responsible for the accuracy, results, or safety of using these tools. Their use is at your own risk",
-  "SELECT": "Select",
-  "SELECTED": "{0} selected"
+  "THIRD_PARTY_TOOLS_NOTE": "Esta lista de ferramentas é fornecida apenas a título informativo. Não somos responsáveis pela precisão, resultados ou segurança do uso dessas ferramentas. O uso deles é por sua conta e risco",
+  "SELECT": "Selecione",
+  "SELECTED": "{0} selecionado"
 }
