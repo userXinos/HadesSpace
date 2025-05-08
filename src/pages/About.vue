@@ -93,7 +93,7 @@ const translationMembers = { // @TODO https://developer.crowdin.com/api/v2/#oper
     // 'it': [],
     'jp': ['しゅーじろー'],
     // 'ko': [],
-    // 'pt': [],
+    'pt': ['Ricardo360'],
     // 'ru': ['Xinos'],
     'tr': ['Astro Algebra'],
     'uk': ['Євген'],
