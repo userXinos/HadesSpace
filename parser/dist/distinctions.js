@@ -239,4 +239,10 @@ export default {
         TID_Description: "TID_DISTINCTION_DN_PIONEER_DESCR",
         Icon: "AlphaBadge01_DN",
     },
+    Completist_2025: {
+        Name: "Completist_2025",
+        TID: "TID_DISTINCTION_COMPLETIST_25",
+        TID_Description: "TID_DISTINCTION_COMPLETIST_25_DESCR",
+        Icon: "completist_badge",
+    },
 };

@@ -514,4 +514,13 @@ export default {
             [1080, 6500],
         ],
     },
+    HUB: {
+        Name: "HUB",
+        TID: "TID_HUB_STAR",
+        TID_Description: "TID_HUB_STAR",
+        ConceptImage: "portrait_EmptySpace",
+        AppearanceModels: "Hub_Star",
+        SecurityRating: 0,
+        Icon: "star_dark",
+    },
 };
