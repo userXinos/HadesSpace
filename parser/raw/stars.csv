@@ -8,3 +8,4 @@ OrangeStar,TID_TODO,TID_TODO,portrait_YellowStar,Orange_Star,,0,star_yellow,,,,
 RedStarLarge,TID_RED_STAR,TID_RED_STAR_INFO,portrait_RedStar,Red_StarLarge,,0,star_red,,,,
 QuantumStar,TID_QUANTUM_STAR,TID_QUANTUM_STAR_INFO,portrait_EmptySpace,Quantum_Star_1,,,star_dark,,,,
 DarkRedStar,TID_RED_STAR,TID_RED_STAR_INFO,portrait_RedStar,Red_Star!Red_Star_1!Red_Star_2!DRed_Star_3!DRed_Star_4!DRed_Star_5!DRed_Star_6!DRed_Star_7!DRed_Star_8!DRed_Star_9!DRed_Star_10!DRed_Star_11,,0,star_red_dark,,,RedStarExplode_FX,3
+HUB,TID_HUB_STAR,TID_HUB_STAR,portrait_EmptySpace,Hub_Star,,0,star_dark,,,,

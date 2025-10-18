@@ -24,11 +24,11 @@ ice_variation2,TID_PLANET_ICE,TID_PLANET_ICE_DESCR,275,ice09!ice10!ice11!ice12!i
 destroyed06,TID_PLANET_DESTROYED,TID_PLANET_DESTROYED_DESCR,150,destroyed14,,6,0,0,0,0,0,0,0,portrait_DyingPlanet,,1000,9999,,
 whitestar1,TID_PLANET_DESTROYED,TID_WHITE_STAR_PLANET_DESCR,100,destroyed20!destroyed21!destroyed22!destroyed23,,10,0,0,0,0,0,0,0,portrait_PlanetWhiteStar,,,100,3!10,50!400!1500
 destroyed07,TID_PLANET_DESTROYED,TID_PLANET_DESTROYED_DESCR,150,destroyed15,,7,0,0,0,0,0,0,0,portrait_DyingPlanet,,1000,9999,,
-whitestar2,TID_PLANET_DESTROYED,TID_WHITE_STAR_PLANET_DESCR,100,destroyed16!destroyed17!destroyed18!destroyed19,,5,0,0,0,0,0,0,0,portrait_PlanetWhiteStar,,,100,3!10,250!500!2000
+whitestar2,TID_PLANET_DESTROYED,TID_WHITE_STAR_PLANET_DESCR,100,destroyed16!destroyed17!destroyed18!destroyed19,,5,0,0,0,0,0,0,0,portrait_PlanetWhiteStar,,,100,3!10,250!5000!50000
 destroyed08,TID_PLANET_DESTROYED,TID_PLANET_DESTROYED_DESCR,150,destroyed08,,8,0,0,0,0,0,0,0,portrait_DyingPlanet,,1000,9999,,
 destroyed09,TID_PLANET_DESTROYED,TID_PLANET_DESTROYED_DESCR,150,destroyed09,,9,0,0,0,0,0,0,0,portrait_DyingPlanet,,1000,9999,,
 destroyed10,TID_PLANET_DESTROYED,TID_PLANET_DESTROYED_DESCR,150,destroyed10,,10,0,0,0,0,0,0,0,portrait_DyingPlanet,,1000,9999,,
-whitestar_l1,TID_PLANET_DESTROYED,TID_WHITE_STAR_PLANET_DESCR,100,desert05!desert06!desert07!desert08,,1,0,0,0,0,0,0,0,portrait_PlanetWhiteStar,,,100,3!10,100!1000!3000
+whitestar_l1,TID_PLANET_DESTROYED,TID_WHITE_STAR_PLANET_DESCR,100,desert05!desert06!desert07!desert08,,1,0,0,0,0,0,0,0,portrait_PlanetWhiteStar,,,100,3!10,100!20000!100000
 destroyed11,TID_PLANET_DESTROYED,TID_PLANET_DESTROYED_DESCR,150,destroyed24,,11,0,0,0,0,0,0,0,portrait_DyingPlanet,,1000,9999,,
 ds1,TID_PLANET_DS,TID_PLANET_DS,100,destroyed14!fire!ice01,,,,,,,,,,portrait_DyingPlanet,,1000,100,,
 ds2,TID_PLANET_DS,TID_PLANET_DS,100,destroyed20!fire04!ice02,,,,,,,,,,portrait_DyingPlanet,,1000,100,,

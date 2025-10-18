@@ -32,7 +32,7 @@ StartingPlayerFuelAmount,100
 MaxPlayerNameLength,16
 ColonizePlanetXP,0
 MaxRecentPlayerNotifications,30
-MaxPlayerNameChangesAllowed,2
+MaxFreePlayerNameChangesAllowed,2
 MinAllianceNameLength,3
 MaxAllianceNameLength,15
 MaxAllianceDescriptionLength,800
@@ -100,7 +100,7 @@ ShipDockOffsetY,200
 MaxSendInboxMessageLength,300
 LargeSystemTravelTimeModifier,360
 LargeSystemCombatTurnModifier,60
-ReplayVersion,35
+ReplayVersion,36
 CorporationScoreIntervals,10!20!100
 CorporationScoreDividers,2!4!10
 PlaceIncomingStargateInMiddleOfSector,1
@@ -285,4 +285,5 @@ AllowModuleRefit,1
 AllowCustomDesigns,1
 CJBJH,1
 EventImgUrl,https://hadesstar.com/event_images/event-{0}.jpg
-PlatinumStars,Home_Star_21_Platinum!Home_Star_22_Platinum
+PlatinumStars,Home_Star_21_Platinum!Home_Star_22_Platinum!Home_Star_23_Platinum
+NumCrystalsForNameChange,1000

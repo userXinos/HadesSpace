@@ -608,7 +608,7 @@ export default {
         ConceptImage: "portrait_PlanetWhiteStar",
         ShipmentOverride: 100,
         RelicHydroStages: [3, 10],
-        RelicHydroAmounts: [250, 500, 2000],
+        RelicHydroAmounts: [250, 5000, 50000],
     },
     destroyed08: {
         Name: "destroyed08",
@@ -681,7 +681,7 @@ export default {
         ConceptImage: "portrait_PlanetWhiteStar",
         ShipmentOverride: 100,
         RelicHydroStages: [3, 10],
-        RelicHydroAmounts: [100, 1000, 3000],
+        RelicHydroAmounts: [100, 20000, 100000],
     },
     destroyed11: {
         Name: "destroyed11",
