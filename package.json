@@ -25,7 +25,7 @@
     "parse-markdown-table": "^0.0.6",
     "sass": "^1.85.1",
     "typescript": "^5.8.2",
-    "vite": "^6.3.6",
+    "vite": "^6.4.1",
     "vite-plugin-dynamic-import": "^1.6.0",
     "vite-plugin-pwa": "^0.21.1",
     "vue": "^3.4.26",
