@@ -61,9 +61,9 @@
     <div class="footer">
       <div class="content">
         <p>Powered by <a
-          href="https://ws.mentalisit.myds.me"
+          href="https://mentalisit.myds.me/ws"
           target="_blank"
-        >ws.mentalisit.myds.me</a>
+        >mentalisit.myds.me/ws</a>
           API
         </p>
       </div>
@@ -94,9 +94,86 @@ interface Corp {
     Id: string
 }
 
-const API_ENDPOINT = 'https://ws.mentalisit.myds.me/';
-const matchesUrl = new URL('matches', API_ENDPOINT);
-const corpUrl = new URL('corps', API_ENDPOINT);
+interface Server {
+    url: string;
+    priority: number;
+}
+
+interface ServerConfig {
+    servers: Server[];
+}
+
+class ApiClient {
+    private activeUrl: string = '';
+
+    private servers: Server[] = [];
+
+    private isInitialized: boolean = false;
+
+    constructor(
+        private configUrl: string = 'https://raw.githubusercontent.com/mentalisit/bot_kz/refs/heads/master/servers.json',
+    ) {}
+
+    public async getUrl(): Promise<string> {
+        if (!this.isInitialized) {
+            await this.initialize();
+        }
+        return this.activeUrl;
+    }
+
+    private async initialize(): Promise<void> {
+        try {
+            // Загружаем конфигурацию серверов
+            const response = await fetch(this.configUrl);
+            const config: ServerConfig = await response.json();
+
+            // Сортируем серверы по приоритету
+            this.servers = config.servers.sort((a, b) => a.priority - b.priority);
+
+            // Проверяем каждый сервер на работоспособность
+            for (const server of this.servers) {
+                if (await this.checkServerHealth(server.url)) {
+                    this.activeUrl = server.url;
+                    this.isInitialized = true;
+                    console.log(`Selected server: ${server.url}`);
+                    return;
+                }
+            }
+
+            throw new Error('No available servers found');
+        } catch (error) {
+            console.error('Failed to initialize API client:', error);
+            // Если все серверы недоступны
+            this.activeUrl = '';
+            this.isInitialized = true;
+        }
+    }
+
+    private async checkServerHealth(baseUrl: string): Promise<boolean> {
+        try {
+            const healthUrl = `${baseUrl}/ws/health`;
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 секунд таймаут
+
+            const response = await fetch(healthUrl, {
+                method: 'GET',
+                signal: controller.signal,
+            });
+
+            clearTimeout(timeoutId);
+
+            return response.ok;
+        } catch (error) {
+            console.warn(`Server ${baseUrl} health check failed:`, error);
+            return false;
+        }
+    }
+}
+
+const apiClient = new ApiClient();
+let API_ENDPOINT = '';
+let matchesUrl: URL;
+let corpUrl: URL;
 
 const nowDate = new Date();
 const response = ref<Response<Match>>();
@@ -107,13 +184,11 @@ const matches = computed<Match[]>(() =>
 const page = ref(1);
 const filterCorp = ref([]);
 
-matchesUrl.searchParams.set('limit', '50');
-
 watch(page, () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     matchesUrl.searchParams.set('page', page.value.toString());
     fetchData();
-}, { immediate: true });
+});
 
 watch(filterCorp, () => {
     if (filterCorp.value.length == 0) {
@@ -126,9 +201,33 @@ watch(filterCorp, () => {
 }, { deep: true });
 
 onMounted(async () => {
-    corps.value = await fetch(corpUrl)
-        .then((r) => r.json())
-        .then((j) => j.matches);
+    try {
+        // Инициализируем API клиент и получаем рабочий сервер
+        API_ENDPOINT = await apiClient.getUrl();
+        
+        if (!API_ENDPOINT) {
+            throw new Error('No available servers');
+        }
+        
+        // Создаем URL'ы только после получения API_ENDPOINT
+        matchesUrl = new URL('matches', `${API_ENDPOINT}/ws/`);
+        corpUrl = new URL('corps', `${API_ENDPOINT}/ws/`);
+        
+        // Устанавливаем параметры для matchesUrl
+        matchesUrl.searchParams.set('limit', '50');
+        
+        // Загружаем данные корпораций
+        corps.value = await fetch(corpUrl)
+            .then((r) => r.json())
+            .then((j) => j.matches);
+            
+        // Загружаем первые данные матчей
+        await fetchData();
+    } catch (error) {
+        console.error('Failed to initialize:', error);
+        // Показываем ошибку пользователю
+        response.value = { MaxPage: 1, matches: [] };
+    }
 });
 
 async function fetchData() {
