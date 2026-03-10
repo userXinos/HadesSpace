@@ -61,9 +61,9 @@
     <div class="footer">
       <div class="content">
         <p>Powered by <a
-          href="https://ws.mentalisit.myds.me"
+          href="https://mentalisit.myds.me/ws"
           target="_blank"
-        >ws.mentalisit.myds.me</a>
+        >mentalisit.myds.me/ws</a>
           API
         </p>
       </div>
@@ -76,6 +76,7 @@ import { computed, onMounted, ref, watch } from 'vue';
 import sec2str, { sec2biggestTime } from '@Utils/sec2str';
 import Pagination from '@/components/Pagination.vue';
 import MultiSelect from '@/components/MultiSelect.vue';
+import { apiClient } from '@/utils/apiClient';
 
 interface Response<T> {
     MaxPage: number
@@ -94,9 +95,10 @@ interface Corp {
     Id: string
 }
 
-const API_ENDPOINT = 'https://ws.mentalisit.myds.me/';
-const matchesUrl = new URL('matches', API_ENDPOINT);
-const corpUrl = new URL('corps', API_ENDPOINT);
+const apiClientInstance = apiClient;
+let API_ENDPOINT = '';
+let matchesUrl: URL;
+let corpUrl: URL;
 
 const nowDate = new Date();
 const response = ref<Response<Match>>();
@@ -107,13 +109,11 @@ const matches = computed<Match[]>(() =>
 const page = ref(1);
 const filterCorp = ref([]);
 
-matchesUrl.searchParams.set('limit', '50');
-
 watch(page, () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     matchesUrl.searchParams.set('page', page.value.toString());
     fetchData();
-}, { immediate: true });
+});
 
 watch(filterCorp, () => {
     if (filterCorp.value.length == 0) {
@@ -126,9 +126,27 @@ watch(filterCorp, () => {
 }, { deep: true });
 
 onMounted(async () => {
-    corps.value = await fetch(corpUrl)
-        .then((r) => r.json())
-        .then((j) => j.matches);
+    try {
+        API_ENDPOINT = await apiClientInstance.getUrl();
+
+        if (!API_ENDPOINT) {
+            throw new Error('No available servers');
+        }
+
+        matchesUrl = new URL('matches', `${API_ENDPOINT}/ws/`);
+        corpUrl = new URL('corps', `${API_ENDPOINT}/ws/`);
+
+        matchesUrl.searchParams.set('limit', '50');
+
+        corps.value = await fetch(corpUrl)
+            .then((r) => r.json())
+            .then((j) => j.matches);
+
+        await fetchData();
+    } catch (error) {
+        console.error('Failed to initialize:', error);
+        response.value = { MaxPage: 1, matches: [] };
+    }
 });
 
 async function fetchData() {
