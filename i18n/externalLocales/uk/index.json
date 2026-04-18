@@ -399,7 +399,7 @@
   "TID_OBJECT_ACTION_MOVE": "ПЕРЕМІСТИТИ",
   "TID_OBJECT_ACTION_ADD_WAYPOINT": "ДОДАТИ ПУНКТ ПРИЗНАЧЕНЯ",
   "TID_OBJECT_ACTION_PLAYER_INFO": "ІНФОРМАЦІЯ ПРО ГРАВЦЯ",
-  "TID_OBJECT_ACTION_ARTIFACTS": "АРТИФАКТИ",
+  "TID_OBJECT_ACTION_ARTIFACTS": "АРТЕФАКТИ",
   "TID_OBJECT_ACTION_SHIP_UPGRADE": "МОДУЛІ",
   "TID_CERBERUS_STATION_SPAWNING_IN": "Поява нових винищувачів через {0}",
   "TID_SETTINGS_DLG_TITLE": "НАЛАШТУВАННЯ",
