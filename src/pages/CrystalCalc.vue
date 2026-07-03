@@ -108,10 +108,11 @@ function crystalChange(v) {
     hydrogen.value = roundToTwo(CrystalConverter.crystals2hydrogen(v));
 }
 function timeChange() {
-    let sec = 0;
-    sec += timeD.value * 86400;
-    sec += timeH.value * 3600;
-    sec += timeM.value * 60;
+    const sec =
+        (timeD.value ?? 0) * 86400 +
+        (timeH.value ?? 0) * 3600 +
+        (timeM.value ?? 0) * 60;
+
     crystals.value = Math.round(CrystalConverter.sec2crystals(sec));
     credits.value = undefined;
     hydrogen.value = undefined;
