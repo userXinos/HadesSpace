@@ -19,3 +19,19 @@ export function getSettings(): Settings {
 export function setSettings(data: object): void {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 }
+
+export function hasStoredLanguage(): boolean {
+    const rawSettings = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (!rawSettings) {
+        return false;
+    }
+
+    try {
+        const settings = JSON.parse(rawSettings);
+
+        return Object.prototype.hasOwnProperty.call(settings, 'language');
+    } catch (e) {
+        return false;
+    }
+}
