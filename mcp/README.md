@@ -1,7 +1,7 @@
 # mcp
 
 MCP-server over the Hades' Star dataset: 27 collections, 334 entities, 3839 fields. All tools are
-read-only — it serves the ready-made `dist/dataset.json` and changes nothing.
+read-only.
 
 Tools: `list_collections`, `search_entities`, `list_entities`, `describe_entity`, `get_entity`,
 `convert_crystals`.
@@ -9,10 +9,6 @@ Tools: `list_collections`, `search_entities`, `list_entities`, `describe_entity`
 ## Quick start
 
 ```bash
-npm run mcp
-npm run mcp:rag
-
-# from mcp/
 npm run build:dataset   # dist/dataset.json
 npm run build:md        # dist/dataset.md
 npm start               # start server
@@ -24,7 +20,7 @@ npm test
 
 ```jsonc
 // opencode.json — stdio
-{ "mcp": { "hades-data": { "type": "local", "command": ["node", "…/mcp/index.js", "serve"] } } }
+{ "mcp": { "hades-data": { "type": "local", "command": ["node", "path/to/HadesSpace/mcp/index.js", "serve"] } } }
 ```
 
 `npm start` uses stdio (waits for a client on `stdin`). Add `--interface`/`--port` for Streamable
@@ -52,6 +48,6 @@ schema, in the same file.
 
 - `icon`/`icons` are base64 images — 65% of the dataset. Hidden by default; request via `fields`,
   still capped by `maxFieldBytes`.
-- Data is English — search `Ship`, `Flagship`, `Hydrogen`, not Russian.
+- Data is English — search `Ship`, `Flagship`, `Hydrogen`
 - Large fields: `xp_levels` is truncated in json, `globals` has 280 fields. Use `describe_entity`
   first, then `get_entity` with `fields`.
