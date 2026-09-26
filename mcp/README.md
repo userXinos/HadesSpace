@@ -49,5 +49,3 @@ schema, in the same file.
 - `icon`/`icons` are base64 images — 65% of the dataset. Hidden by default; request via `fields`,
   still capped by `maxFieldBytes`.
 - Data is English — search `Ship`, `Flagship`, `Hydrogen`
-- Large fields: `xp_levels` is truncated in json, `globals` has 280 fields. Use `describe_entity`
-  first, then `get_entity` with `fields`.
