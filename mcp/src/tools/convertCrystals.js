@@ -37,11 +37,12 @@ export function registerConvertCrystals(server, CrystalConverter) {
         {
             title: 'Convert crystals, time, credits and hydrogen',
             description:
-                'Convert a premium currency amount in the game: crystals to time, credits or hydrogen, and any of those back to crystals. ' +
-                'Same numbers as the crystal calculator on the site. ' +
-                'Always call this tool instead of working the conversion out yourself: the price curve is not linear, so interpolating or ' +
-                'extrapolating between values you already know gives a wrong answer, and rounding a ratio of two known points is not a price either. ' +
-                'Amounts outside the range the game prices come back as the nearest limit rather than a real price.',
+            'REQUIRED for every crystal/time/credit/hydrogen conversion. ' +
+            'Do NOT compute, estimate, interpolate, extrapolate, or round ratios yourself — the curve is piecewise and non-linear, ' +
+            'so any value you derive from known points is WRONG by construction. ' +
+            'If you need a value, call this tool with the exact amount. ' +
+            'Calling it multiple times with different amounts is correct; guessing is not. ' +
+            'Amounts outside the priced range are clamped to the nearest limit and are not real prices.',
             annotations: READ_ONLY,
             inputSchema: {
                 amount: z.number().finite().describe('the value to convert, non-negative'),

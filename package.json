@@ -4,7 +4,7 @@
   "version": "4.3.0",
   "type": "module",
   "scripts": {
-    "build": "npm run parser && npm run i18n:full && npm run mcp:rag && vite build",
+    "build": "npm run parser && npm run i18n:full && vite build && npm run mcp:rag",
     "dev": "vite",
     "i18n": "cd i18n && npm run start",
     "i18n:full": "cd i18n && npm run start -- --full",

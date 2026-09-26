@@ -8,7 +8,6 @@ import { SERVER } from '../config.js';
 import { loadStore } from './store.js';
 import {
     registerConvertCrystals,
-    registerDescribeEntity,
     registerGetEntity,
     registerListCollections,
     registerListEntities,
@@ -68,7 +67,7 @@ export function createServer(store, extras = {}) {
     registerListCollections(server, store);
     registerSearchEntities(server, store);
     registerListEntities(server, store);
-    registerDescribeEntity(server, store);
+  //  registerDescribeEntity(server, store);
     registerGetEntity(server, store);
 
     if (extras.crystalConverter) {
@@ -121,8 +120,6 @@ export async function startHttpServer(args = {}) {
     const path = args.path ?? defaults.path;
     const store = args.store ?? loadStore(args.dataset ?? config.dataset, config);
 
-    // Конвертер грузим один раз на процесс, а не на каждый запрос: в stateless
-    // режиме сервер пересоздаётся на запрос, и импорт .ts на каждом не нужен.
     const extras = { crystalConverter: await loadCrystalConverter() };
 
     const isAllowedHost = (header) => {
