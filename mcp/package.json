@@ -1,0 +1,24 @@
+{
+  "name": "mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP data module for Hades' Star (HadesSpace)",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "build:dataset": "node index.js dataset build",
+    "build:md": "node index.js dataset md",
+    "serve": "node index.js serve",
+    "start": "node index.js serve",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "commander": "^12.1.0",
+    "sharp": "^0.35.4",
+    "vitest": "^5.0.2",
+    "zod": "^4.6.5"
+  }
+}
