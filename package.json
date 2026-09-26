@@ -4,14 +4,14 @@
   "version": "4.3.0",
   "type": "module",
   "scripts": {
-    "build": "npm run parser && npm run i18n:full && npm mcp:rag && vite build",
+    "build": "npm run parser && npm run i18n:full && npm run mcp:rag && vite build",
     "dev": "vite",
     "i18n": "cd i18n && npm run start",
     "i18n:full": "cd i18n && npm run start -- --full",
     "parser": "cd parser && npm run start",
     "mcp": "cd mcp && npm run build:dataset && npm start",
     "mcp:rag": "cd mcp && npm run build:dataset && npm run build:md -- --out ../dist/dataset.md",
-    "postinstall": "(cd parser && npm install && cd ..) && (cd i18n && npm install && cd ..)",
+    "postinstall": "(cd parser && npm install && cd ..) && (cd i18n && npm install && cd ..)  && (cd mcp && npm install && cd ..)",
     "test": "jest"
   },
   "web-types": "./web-types.json",
