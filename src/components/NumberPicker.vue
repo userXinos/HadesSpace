@@ -2,6 +2,7 @@
   <div class="container">
     <div
       class="minus"
+      @mousedown.prevent
       @click="checkAndSend(props.value - 1)"
     />
     <div class="input-wrap">
@@ -16,6 +17,7 @@
     </div>
     <div
       class="plus"
+      @mousedown.prevent
       @click="checkAndSend(props.value + 1)"
     />
   </div>
