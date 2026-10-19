@@ -37,6 +37,11 @@ onMounted(() => {
 });
 
 function checkAndSend(num: number) {
+    if (Number.isNaN(num)) {
+        // value prop is unchanged, so Vue won't re-render; restore the input manually
+        inputRef.value.value = String(props.value);
+        return;
+    }
     if (num < props.min) {
         num = props.min;
     }
