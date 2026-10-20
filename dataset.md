@@ -41,7 +41,7 @@ etc; See #yellow_star_sectors
 - Once a ship has departed, you cannot change its course and must wait until it reaches its destination.
 - The Red Star Scanner can detect nearby stars that are going Supernova. Those stars usually have old planets with valuable artifacts, but are also guarded by Cerberus forces.<br>Other players can use their Red Star Scanners to gain access to the same stars.
 
-Collections: 28, entities: 611, fields: 4765.
+Collections: 28, entities: 611, fields: 4809.
 
 ## Content
 
@@ -1092,7 +1092,7 @@ ___
 | Effect duration | 30m |
 | Shield strength (PvE) | 20 000 |
 | Shield strength (PvP) | 20 000 |
-| ShieldStrengthQS | 30 000 |
+| Shield strength (QS) | 30 000 |
 | Cooldown (WS) | 2d 2h |
 | Effect duration (WS) | 12d 12h |
 
@@ -2122,7 +2122,7 @@ ___
 | Effect duration | 30m |
 | Shield strength (PvE) | 25 000 |
 | Shield strength (PvP) | 25 000 |
-| ShieldStrengthQS | 30 000 |
+| Shield strength (QS) | 30 000 |
 | Cooldown (WS) | 2d 2h |
 | Effect duration (WS) | 12d 12h |
 
@@ -2832,7 +2832,7 @@ ___
 | Effect duration | 30m |
 | Shield strength (PvE) | 25 000 |
 | Shield strength (PvP) | 25 000 |
-| ShieldStrengthQS | 30 000 |
+| Shield strength (QS) | 30 000 |
 | Cooldown (WS) | 2d 2h |
 | Effect duration (WS) | 12d 12h |
 
@@ -3457,6 +3457,7 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Teleport |
+| Teleport breaks the Bond | Yes |
 
 ### DamageAmplifier
 
@@ -3510,6 +3511,7 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | MassMining |
+| Single collection speed | 25% |
 
 ### Solitude
 
@@ -3561,6 +3563,8 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | MirrorShield |
+| Activation delay | 2s |
+| Activation delay (WS) | 20m |
 
 ### HydrogenUpload
 
@@ -3597,6 +3601,8 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Barrier |
+| Bond ignores the Barrier | Yes |
+| Drones ignores the Barrier | Yes |
 
 ### Impulse
 
@@ -3609,6 +3615,9 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Barrage |
+| Max. enemies for additional damage (Base) | 8 |
+| Max. enemies for additional damage (BS) | 2 |
+| Max. enemies for additional damage (WS) | 4 |
 
 ### TradeBurst
 
@@ -3626,6 +3635,7 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Leap |
+| Leap breaks the Bond | Yes |
 
 ### Vengeance
 
@@ -3674,18 +3684,26 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Enrich |
+| Sector cooldown after enrich (RS) | 5m |
+| Sector cooldown after enrich (WS) | `0` |
 
 ### Rush
 
 | Field | Value |
 | --- | --- |
 | Name | Rush |
+| DNRushCostsPerHr | 27 778, 55 556, 83 333 |
+| DNRushCostsStagesDurationHr | 72 |
 
 ### Genesis
 
 | Field | Value |
 | --- | --- |
 | Name | Genesis |
+| Sector cooldown after genesis (WS) | `0` |
+| Sector cooldown after genesis (RS) | 5m |
+| Sector cooldown after genesis (YS) | 23h |
+| Maximum quantity per system | 1 |
 
 ### Entrust
 
@@ -3722,6 +3740,10 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Bond |
+| Bond ignores the Barrier | Yes |
+| Leap breaks the Bond | Yes |
+| Teleport breaks the Bond | Yes |
+| Bond breaks the Bond | Yes |
 
 ### Delta rocket
 
@@ -4701,10 +4723,10 @@ ___
 | QuantumArtifactBPReqs | 150, 600, 2 000, 6 000, 15 000 |
 | QuantumUpgradeCosts | 100 000, 500 000, 2 000 000, 8 000 000, 20 000 000 |
 | MaxQuantumLevel | 5 |
-| MaxStarSystemLogEntries_QS | 400 |
+| MaxStarSystemLogEntries (QS) | 400 |
 | QuantumUpgradeBaseLevels | 5, 9, 11, 12, 13 |
-| MinActiveMembersForQS | 10 |
-| RecActiveMembersForQS | 20 |
+| MinActiveMembersFor (QS) | 10 |
+| RecActiveMembersFor (QS) | 20 |
 | QSHydroBonusPct | 15 |
 | QSHydroBonusReq | 600 000 000 |
 | QSShipmentIncreaseReq | 10 |
@@ -5089,6 +5111,7 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Teleport |
+| Teleport breaks the Bond | Yes |
 
 ### DamageAmplifier
 
@@ -5145,6 +5168,7 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | MassMining |
+| Single collection speed | 25% |
 
 ### Solitude
 
@@ -5196,6 +5220,8 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | MirrorShield |
+| Activation delay | 2s |
+| Activation delay (WS) | 20m |
 
 ### HydrogenUpload
 
@@ -5232,6 +5258,8 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Barrier |
+| Bond ignores the Barrier | Yes |
+| Drones ignores the Barrier | Yes |
 
 ### Impulse
 
@@ -5244,6 +5272,9 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Barrage |
+| Max. enemies for additional damage (Base) | 8 |
+| Max. enemies for additional damage (BS) | 2 |
+| Max. enemies for additional damage (WS) | 4 |
 
 ### TradeBurst
 
@@ -5260,6 +5291,7 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Leap |
+| Leap breaks the Bond | Yes |
 
 ### Vengeance
 
@@ -5308,18 +5340,26 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Enrich |
+| Sector cooldown after enrich (RS) | 5m |
+| Sector cooldown after enrich (WS) | `0` |
 
 ### Rush
 
 | Field | Value |
 | --- | --- |
 | Name | Rush |
+| DNRushCostsPerHr | 27 778, 55 556, 83 333 |
+| DNRushCostsStagesDurationHr | 72 |
 
 ### Genesis
 
 | Field | Value |
 | --- | --- |
 | Name | Genesis |
+| Sector cooldown after genesis (WS) | `0` |
+| Sector cooldown after genesis (RS) | 5m |
+| Sector cooldown after genesis (YS) | 23h |
+| Maximum quantity per system | 1 |
 
 ### Entrust
 
@@ -5356,6 +5396,10 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Bond |
+| Bond ignores the Barrier | Yes |
+| Leap breaks the Bond | Yes |
+| Teleport breaks the Bond | Yes |
+| Bond breaks the Bond | Yes |
 
 ### Delta rocket
 
@@ -5800,7 +5844,7 @@ ___
 | Description | Instantly repairs the hull of the target Battleship, up to the maximum Heal Amount. To activate, the Transport ship must be carrying at least one Artifact originating in the current Red Star system. The lowest level eligible Artifact is consumed on activation. |
 | Description (RS) | Instantly repairs the hull of the target Battleship, up to the maximum Heal Amount. To activate, the Transport ship must be carrying at least one Artifact originating in the current Red Star system. The lowest level eligible Artifact is consumed on activation. |
 | Description (WS) | Instantly repairs the hull of the target Battleship, up to the maximum Heal Amount. To activate, the Transport ship must be carrying at least one Relic. The Relic is consumed on activation.  |
-| TID_Description_QS | Instantly repairs the hull of the target Battleship, up to the maximum Heal Amount. To activate, the Transport ship must be carrying at least one Artifact with a level equal to the player's Red Star level. The lowest level eligible Artifact is consumed on activation. |
+| Description (QS) | Instantly repairs the hull of the target Battleship, up to the maximum Heal Amount. To activate, the Transport ship must be carrying at least one Artifact with a level equal to the player's Red Star level. The lowest level eligible Artifact is consumed on activation. |
 | Red Star Level | 3 |
 | Type | Activated |
 | Cooldown (WS) | 10h |
@@ -5924,7 +5968,7 @@ ___
 | --- | --- |
 | Name | Alpha shield |
 | Description | During the limited time Alpha Shield is active, the Battleship does not take any damage from any source. |
-| TID_Description_QS | During the limited time Alpha Shield is active, the Battleship receives reduced damage from all sources. |
+| Description (QS) | During the limited time Alpha Shield is active, the Battleship receives reduced damage from all sources. |
 | Red Star Level | 2 |
 | Type | Activated |
 | Cooldown | 4m |
@@ -5971,7 +6015,7 @@ ___
 | Upgrade time | 1m | 10m | 1h | 4h | 1d | 2d | 4d | 6d | 8d | 10d | 12d | 14d | 16d | 18d | 20d |
 | Impulse damage (RS) | 100 | 140 | 180 | 220 | 260 | 300 | 350 | 420 | 500 | 600 | 800 | 1 000 | 1 200 | 1 500 | 2 000 |
 | Impulse damage (PvP) | 100 | 150 | 220 | 300 | 450 | 600 | 800 | 1 000 | 1 200 | 1 400 | 1 600 | 1 800 | 2 000 | 2 200 | 2 400 |
-| ImpulseDPS_QS | 500 | 750 | 1 000 | 1 500 | 2 000 | 2 500 | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 6 000 | 7 000 | 8 000 | 10 000 |
+| Impulse damage (QS) | 500 | 750 | 1 000 | 1 500 | 2 000 | 2 500 | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 6 000 | 7 000 | 8 000 | 10 000 |
 | Shield strength (PvE) | 1 400 | 1 600 | 1 900 | 2 200 | 2 500 | 2 900 | 3 300 | 3 800 | 4 400 | 5 000 | 5 800 | 6 600 | 7 600 | 8 800 | 10 100 |
 | Shield strength (PvP) | 800 | 928 | 1 076 | 1 249 | 1 449 | 1 680 | 1 949 | 2 261 | 2 623 | 3 042 | 3 529 | 4 094 | 4 749 | 5 509 | 6 390 |
 
@@ -6051,7 +6095,7 @@ ___
 | Upgrade time | 1m | 10m | 1h | 4h | 1d | 2d | 4d | 6d | 8d | 10d | 12d | 14d | 16d | 18d | 20d |
 | Damage amplification (PvE) | x1.2 | x1.3 | x1.4 | x1.6 | x1.8 | x2 | x2.2 | x2.4 | x2.6 | x2.8 | x3 | x3.2 | x3.4 | x3.7 | x4 |
 | Damage amplification (PvP) | x1.2 | x1.3 | x1.4 | x1.6 | x1.8 | x2 | x2.2 | x2.4 | x2.6 | x2.8 | x3 | x3.2 | x3.4 | x3.7 | x4 |
-| DamageAmplifyFactor_QS | 103 | 106 | 109 | 112 | 115 | 120 | 125 | 130 | 135 | 140 | 145 | 150 | 155 | 160 | 180 |
+| Damage amplification (QS) | x1.03 | x1.06 | x1.09 | x1.12 | x1.15 | x1.2 | x1.25 | x1.3 | x1.35 | x1.4 | x1.45 | x1.5 | x1.55 | x1.6 | x1.8 |
 
 ### Red star life extender
 
@@ -6220,7 +6264,7 @@ ___
 | Upgrade time | 1m | 10m | 1h | 4h | 1d | 2d | 4d | 6d | 8d | 10d | 12d | 14d | 16d | 18d | 20d |
 | Damage increase (RS) | 20% | 40% | 60% | 80% | 100% | 125% | 150% | 175% | 200% | 230% | 260% | 290% | 330% | 380% | 450% |
 | Damage increase (PvP) | 20% | 25% | 30% | 35% | 40% | 45% | 50% | 55% | 60% | 66% | 72% | 79% | 86% | 94% | 103% |
-| SolitudeDPSBoost_QS | 2 | 4 | 6 | 8 | 10 | 13 | 16 | 20 | 24 | 28 | 32 | 36 | 40 | 45 | 50 |
+| Damage increase (QS) | 2% | 4% | 6% | 8% | 10% | 13% | 16% | 20% | 24% | 28% | 32% | 36% | 40% | 45% | 50% |
 
 ### Fortify
 
@@ -6258,10 +6302,10 @@ ___
 | Cooldown | 2m |
 | Cooldown (BS) | 1m |
 | Cooldown (WS) | 1d 12h |
-| SpawnedShip_QS | 61 |
+| SpawnedShip (QS) | 61 |
 | Lifetime | 40s |
 | Lifetime (WS) | 6h 40m |
-| SpawnLifetime_QS | 120 |
+| Lifetime (QS) | 2m |
 | For battleship only | Yes |
 | Upgrade to DARK NEBULA | • salvage -> decoy drone |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAYFBMVEX/sgb/oCD/oiL/piX/qSb/qCb/qCVMaXH/qTT/oy3/pSX/oCX/oiT/oyT/piX/piX/pCT/piX/pib/piX/pST/oyX/pCX/pyb/pSX/pCX/oyP/rij/rCf/tCn/pib/uyqjVCZYAAAAG3RSTlMBEBe3/vfiAAQDmQYlRrHbZs7GqFQ2XO+RfS7LJZ23AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACt0lEQVRIx51WiZarIAyNyuqudWuDzv//5STqVFz63ow5PaUFbsjNJQBo3yxonbRlruREJlVetonWYHeTYA+AdqjkOI7IEKQfshpa2IM2iLUamkiOX6Kv4pwwmMdVL75GGTXAoycI9WW1GLEYmtDqVz9N/UvbsBkKHEWdeRh4t0FMgKoLuMvq3LmcGu7vKgLFgTd1WUO/CsSiJLKGKFndONdQA9ZQQkoee2nrQ6wO1ezJLuuTb6VWv9zFEahwxcBPWLXqliTPZnQc09fqlqZ2qg7ek9cmDDcA/09TL5sEonE40Ae9F+xglmcckrxTy1ozfw4b46z+GW0vhy9isDrNysejzFJt7W8gViexlG4cnZRxcsEQzoiwRofY90hNHZ4xBwgY3Sp0qizbtiyVQ9VqA/+CEPFOCqxnTUibGoXsjkmAfVDmKQQSA8NJNsQKhXiafXC7EtNBzlPeWSb37CIP9HWJ0ZZKKxR95gVP1LJeYJW+99tO/WW0SPdRkEbF0c+m35OIR6Hvb1k7jCgJz03VnxKDZEDhBnOWgXIyOIFDAscSY1fl5QahvnIJYCsx1q/ASWUn1TaapGqxqgpzTyfE1Kc6+VQtRgeREKKbMVRZYJ5uQpSP4FOVzWEIJ9zTAB8hOmH9hghHSv9lgcxkUEZEKE94Slo7RzSC2CGl315VA6UM+44JOd5+TIxaQ7oI56d/Xw3E3fI2Je9Aqz1YDZraKMRjURENOhRdzhLTcg+SAojT4nkZ5PQnxjPd9M7Fi8S8RZwArgerN0Gdemn/lF/CXZW3XE/QePpR9oZprOPHZrlAX2IKhW4O2FdlSTeMb5x6f1PA6VKjvZHnUb4a/YiPAtuLE+bjQfj5HDN7g1+clv8z+LQ+HJydj/G/XxZ/v5JuXHw3rtcbl/idp8KdB8mdZ8+dx9Wvn3DfSXlcTjU9d+EAAAAASUVORK5CYII=) |
@@ -6380,7 +6424,7 @@ ___
 | Area damage amount | 1 000 | 2 000 | 3 000 | 4 000 | 5 000 | 6 000 | 7 000 | 8 000 | 9 200 | 10 600 | 12 100 | 14 000 | 16 100 | 18 500 | 21 200 |
 | Area damage amount (WS) | 1 000 | 2 000 | 3 000 | 4 000 | 5 000 | 6 000 | 7 000 | 7 800 | 8 600 | 9 400 | 10 350 | 11 500 | 12 500 | 13 800 | 15 200 |
 | Area damage amount (BS) | 1 000 | 2 000 | 3 000 | 4 000 | 5 000 | 6 000 | 7 000 | 7 800 | 8 600 | 9 400 | 10 350 | 11 500 | 12 500 | 13 800 | 15 200 |
-| AOEDamage_QS | 2 000 | 4 000 | 6 000 | 8 000 | 10 000 | 12 000 | 14 000 | 18 000 | 24 000 | 28 000 | 32 000 | 40 000 | 50 000 | 60 000 | 80 000 |
+| Area damage amount (QS) | 2 000 | 4 000 | 6 000 | 8 000 | 10 000 | 12 000 | 14 000 | 18 000 | 24 000 | 28 000 | 32 000 | 40 000 | 50 000 | 60 000 | 80 000 |
 
 ### Regenerating shield
 
@@ -6391,7 +6435,7 @@ ___
 | Red Star Level | 4 |
 | Type | Passive |
 | Regeneration delay | 6s |
-| ShieldRegenDelay_QS | 1 200 |
+| Regeneration delay (QS) | 20m |
 | Full regeneration time | 48s |
 | Regeneration delay (WS) | 1h |
 | Full regeneration time (WS) | 8h |
@@ -6433,7 +6477,7 @@ ___
 | Upgrade time | 1d | 2d | 3d | 4d | 5d | 6d | 7d | 7d | 7d | 7d | 10d | 12d | 14d | 16d | 20d |
 | Shield strength (PvE) | 800 | 900 | 1 000 | 1 100 | 1 300 | 1 500 | 1 700 | 2 000 | 2 300 | 2 600 | 3 000 | 3 500 | 4 000 | 4 600 | 5 300 |
 | Shield strength (PvP) | 500 | 600 | 700 | 800 | 900 | 1 000 | 1 200 | 1 400 | 1 600 | 2 000 | 2 500 | 3 000 | 3 500 | 4 000 | 5 000 |
-| ShieldStrengthQS | 800 | 1 000 | 1 200 | 1 500 | 2 000 | 2 500 | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 6 000 | 7 500 | 10 000 | 15 000 |
+| Shield strength (QS) | 800 | 1 000 | 1 200 | 1 500 | 2 000 | 2 500 | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 6 000 | 7 500 | 10 000 | 15 000 |
 | Damage mirrored | 60% | 80% | 100% | 120% | 140% | 160% | 190% | 220% | 260% | 300% | 340% | 380% | 420% | 500% | 600% |
 
 ### Hydrogen upload
@@ -6442,7 +6486,7 @@ ___
 | --- | --- |
 | Name | Hydrogen upload |
 | Description | Instantly uploads a percentage of collected Hydrogen to the closest planet, anywhere in the White Star. |
-| TID_Description_QS | Instantly uploads a percentage of collected Hydrogen directly to your Empire's reserves. After the upload, the Miner's collected Hydrogen is cleared. |
+| Description (QS) | Instantly uploads a percentage of collected Hydrogen directly to your Empire's reserves. After the upload, the Miner's collected Hydrogen is cleared. |
 | Red Star Level | 7 |
 | Type | Activated |
 | Cooldown (WS) | 16h |
@@ -6455,7 +6499,7 @@ ___
 | Upgrade Cost | 1 000 | 2 000 | 3 000 | 5 000 | 10 000 | 20 000 | 40 000 | 60 000 | 100 000 | 250 000 | 500 000 | 1 000 000 | 2 000 000 | 10 000 000 | 25 000 000 |
 | Upgrade time | 12h | 1d | 2d | 3d | 4d | 5d | 6d | 7d | 7d | 7d | 10d | 12d | 14d | 16d | 20d |
 | Percent uploaded | 10% | 15% | 20% | 25% | 30% | 35% | 40% | 46% | 52% | 58% | 64% | 70% | 76% | 82% | 90% |
-| HydroUploadPct_QS | 5 | 10 | 15 | 20 | 25 | 30 | 35 | 40 | 45 | 50 | 55 | 60 | 70 | 80 | 90 |
+| Percent uploaded (QS) | 5% | 10% | 15% | 20% | 25% | 30% | 35% | 40% | 45% | 50% | 55% | 60% | 70% | 80% | 90% |
 
 ### Artifact boost
 
@@ -6571,7 +6615,7 @@ ___
 | Teleport damage | 1 000 | 2 000 | 3 000 | 4 000 | 5 000 | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 11 000 | 12 000 | 13 000 | 14 000 | 15 000 |
 | Teleport damage (WS) | 500 | 1 000 | 1 500 | 2 000 | 2 500 | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 5 800 | 7 000 | 8 500 | 10 500 | 14 000 |
 | Teleport damage (BS) | 500 | 1 000 | 1 500 | 2 000 | 2 500 | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 5 800 | 7 000 | 8 500 | 10 500 | 14 000 |
-| TINDMG_QS | 1 000 | 2 500 | 5 000 | 7 500 | 10 000 | 12 500 | 15 000 | 17 500 | 20 000 | 25 000 | 30 000 | 40 000 | 50 000 | 75 000 | 100 000 |
+| Teleport damage (QS) | 1 000 | 2 500 | 5 000 | 7 500 | 10 000 | 12 500 | 15 000 | 17 500 | 20 000 | 25 000 | 30 000 | 40 000 | 50 000 | 75 000 | 100 000 |
 
 ### Impulse
 
@@ -6758,7 +6802,7 @@ ___
 | Crunch (YS) | 300 | 350 | 400 | 450 | 500 | 600 | 700 | 800 | 900 | 1 000 | 1 200 | 1 400 | 1 600 | 1 800 | 2 000 |
 | Crunch (RS) | 40 | 60 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1 000 | 1 200 | 1 400 | 1 600 | 1 800 |
 | Crunch (WS) | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 500 | 600 | 700 | 800 | 1 000 | 1 400 | 1 600 | 2 000 |
-| CrunchQS | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 2 000 |
+| Crunch (QS) | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 1 600 | 2 000 |
 
 ### Recall
 
@@ -6791,7 +6835,7 @@ ___
 | Cooldown (WS) | 2d |
 | Lifetime | 48s |
 | Lifetime (WS) | 8h |
-| SpawnLifetime_QS | 120 |
+| Lifetime (QS) | 2m |
 | Upgrade to DARK NEBULA | • alpha rocket -> rocket drone |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAvCAMAAACWqWnGAAAAUVBMVEVMaXH/piX/pyb/pSb/myj/pib/pib/pw3/igT/pib/pCX/pCT/pSX/oiT/piX/nB7/oiT/oyT/pib/pSX/pCX/pSX/pif/qSj/syn/ryn/rCjso1SrAAAAFnRSTlMAO+y0BfunAgHfgktdF8AMLiPPkm6c2X924gAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAydJREFUSMd9VlmiwyAIxIWo2bdq9P4HfaBNk7TJS3+qOIIwgwLcfrqbusnA42e+bRY65WbXgHlYaeDbZKANiFtvCHydLyvJXn87GVRYWul/3NRtgTW41RebpSk3wmurLtMG6g15Fw3VFtw5AnJSxcXCiCjOGAsu0C6aIfEbIqTjxa/tdZ13Id5CLOhXpLUUcZDjyc1/ECElhUwz6nLIfyBmiZW1OTHJTQfmEULHljkvHGF/dvMPpI5qyGOqWHTdx/QEsTDN2JatKdvztn7cPEPW1A/voYE1zvvgCcJOwmdjoqeL7TG6hVD4aT7CZ470+j28h9C2fTolycAkw07OJ0gbXKm4NbsbBcV6C2FCvp1QLUuex48GHiCZ9VkSXVloDw3cQQrr+a+1popNwQrEd6i3ECKkKAuXGOiv5smKNPAAIU4tzHo+eR0RC/WzBqbCuStEH6znoif0HjOPLZi3BvQOmR1bHVk17V1pbjxt8PwhV9VkDXQAkysrZ0iJ7WkTAKPLrDdCBiyYvEXRAIgt0VRICRCLkY6dWQ/d6vzxqZG8Zw2IWFYi7PuJwnorqoDKvSPr3eZa1kBcd4hHSAVLgRHru2Gdg6u7F5uRuCNUwmWEdZspsLIyUQGyk37o5liJClEJlknOGAlHrzK6tZGkgT67oVpDTe03KQrY48wuOHVNyBDKKGW+T6l3sdeaPGKoudA9Fbpj1qMnF5nDk8s5I61RjrtFUmGJnJ0Msc91U1TKgZ0EWefa0S8H8Wk0zRwoEBiolGqHyGFQG6pGM+kLxdCflNPVMqXGyiukXoqLXc6In7ZhaVq8lnZ4Q3QOTBtt9UfAxHg+/XLqR7yyBEZs1H3y8n2G4+Lj86+nhmxyH/CJmgeMfeCwm3KKHWIV7fN1uzTECQz9CJJL6UM8XwvcJaI/9dbcBGJmUZQQDlpe7lcflL5AdloG8P4WMsrSBX4g3t9DmLypvW5yQPAuMG4SUtxCSC8py5zJ/3VhO319JRD5M1cTtI44F2WtLy8JOr+6TBDTamZndC0JdyHKTT9Pj3H9edhMrLcuv2RE+/OK4bfSz+sIoKXwzR+YDEJHfIQD/AAAAABJRU5ErkJggg==) |
 
@@ -6989,7 +7033,7 @@ ___
 | Effect range (WS) | 140au | 150au | 160au | 170au | 180au | 190au | 200au | 220au | 240au | 260au | 280au | 300au | 300au | 300au | 300au |
 | Shield strength (PvE) | 2 600 | 2 800 | 3 000 | 3 200 | 3 500 | 3 800 | 4 200 | 4 500 | 4 800 | 5 100 | 5 500 | 6 000 | 7 000 | 8 000 | 9 000 |
 | Shield strength (PvP) | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 5 500 | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 12 000 | 14 000 | 16 500 | 20 000 |
-| ShieldStrengthQS | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 12 500 | 15 000 | 20 000 | 30 000 | 40 000 |
+| Shield strength (QS) | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 12 500 | 15 000 | 20 000 | 30 000 | 40 000 |
 
 ### Ally shield
 
@@ -7001,7 +7045,7 @@ ___
 | Cooldown | 5m |
 | Effect range | 140au |
 | Effect duration | 30m |
-| ShieldStrengthQS | 30 000 |
+| Shield strength (QS) | 30 000 |
 | Cooldown (WS) | 2d 2h |
 | Effect duration (WS) | 12d 12h |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAuCAMAAABd9bpjAAAAY1BMVEX5zOH2rcH7tcb7tsf7tsf/o777tshMaXH3rbn6tsf7tcb6tMb8t8j7tsf6tcb6ssb8tsn6tcb7tcf8tsf3tMb7tsf7tsf7tsj5s8X6tcb6tcb6tcX/v9H/w9X/usz8t8j/ydua9DRkAAAAHHRSTlMBEIbo/AWrAAP3Kzjtc00b1rlmzCDhxqBefJxrJtijRwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAkVJREFUSMedVtmSrCAMDQICKu7LdHcA//8rb3CZXpx+uFBlCSEHcpKYCOocoBXUXejopZ5CpUlU0wteZOdEqqLzbu3gHQLd6nxXKAmfEA3SGsT2wV4RcZ89WkRjJVnxBtGK5YjV7QNwgG4VYs6UfoVo1QyIc0GErhASFTPi0BwY+EX4u/wlCVrSeK6UvPtfDOxXz+gzBceVz5tAHweDyjzO7FCPzxIRu+bGcqx7a/t63PxySAmznBCtLMbVbiOoxs5VcOvqQjXbZj8j7i6INppGQVJFhYM8WbGMu9UZPk3c0IRn7GQgB6wKFSMNKnem3OVala1zJu9LpjUr+9w41z73jMsjQKs6YHZKfwSGpXh6uFgCip9zN8NQk+mgOjc1m1mE8MhrsnvzL3madmuOfscQy8l1kVUp8LaJdJy2xaeTixZFeSjc4pQc7qoxXkLRaZFT/r0Hn7KVY8t2jbFyFD45rPlxRubIVPmZMJLIuuxQyddBQmnIVBmXI3fLmXqvQ6vF8THuSCJrSniQT5stPNaZ4prI0Z7COLsFpCGvP+CO5G0Z/TCv+V+IiMnXOWpIiiDeYfZCbHEhav2Vyc6mjy6KcRHCzzARxFf0mdb+zIErGSJM4ZJV1J3AhCA8l5pO4uybYYyTBVpyL0IwEE6IXac/79jumVZ7QkIKJMGwBPoJTk4IZULCJKRlQvInfGIJH3JCubgUJfFelMS1KH0rfQBfS19KgU0o4ynNIqUlXRuf3huf/tr4UtprShNP+VVI+SH5j9+ef0ThWyt0G1AFAAAAAElFTkSuQmCC) |
@@ -7084,7 +7128,7 @@ ___
 | Cooldown | 6m |
 | Cooldown (BS) | 1m |
 | Cooldown (WS) | 2d |
-| EffectRadiusQS | 2 000 |
+| Effect range (QS) | 200au |
 | Effect duration (WS) | 8h |
 | Deactivate on jump | Yes |
 | Bond ignores the Barrier | Yes |
@@ -7103,7 +7147,7 @@ ___
 | Effect range (BS) | 120au | 125au | 130au | 140au | 150au | 160au | 170au | 180au | 190au | 200au | 210au | 220au | 240au | 260au | 280au |
 | Effect duration | 15s | 18s | 22s | 26s | 31s | 37s | 44s | 53s | 1m 4s | 1m 15s | 1m 25s | 1m 35s | 1m 35s | 1m 35s | 1m 35s |
 | Effect duration (BS) | 2s | 3s | 4s | 5s | 6s | 7s | 8s | 10s | 12s | 14s | 16s | 18s | 20s | 23s | 26s |
-| EffectDurationx10QS | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 20 | 25 | 30 | 35 | 40 | 70 | 100 |
+| Effect duration (QS) | 0.2s | 0.4s | 0.6s | 0.8s | 1s | 1s | 1s | 1s | 2s | 2s | 3s | 3s | 4s | 7s | 10s |
 
 ### Delta rocket
 
@@ -7135,7 +7179,7 @@ ___
 | Hull strength (PvP) | 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 320, 320, 320 |
 | Explosion damage (PvE) | 500, 1 000, 1 500, 2 000, 2 500, 3 000, 3 500, 4 000, 4 500, 5 000, 5 500, 6 000, 7 000, 8 000, 10 000 |
 | Explosion damage (PvP) | 500, 1 000, 1 500, 2 000, 2 500, 3 000, 3 500, 4 000, 4 500, 5 000, 5 500, 6 000, 7 000, 8 000, 10 000 |
-| DamageQS | 1 000, 2 000, 3 000, 4 000, 5 000, 6 000, 7 000, 8 000, 9 000, 10 000, 11 000, 12 000, 14 000, 16 000, 20 000 |
+| Explosion damage (QS) | 1 000, 2 000, 3 000, 4 000, 5 000, 6 000, 7 000, 8 000, 9 000, 10 000, 11 000, 12 000, 14 000, 16 000, 20 000 |
 | Explosion range | 90au |
 | Model | projectiles/DeltaRocket_DrkNeb |
 | Ignore the barrier | Yes |
@@ -7154,7 +7198,7 @@ ___
 | Cooldown (BS) | 1m |
 | Cooldown (WS) | 20h |
 | Effect range | 180au |
-| EffectRadiusQS | 3 600 |
+| Effect range (QS) | 360au |
 | Effect duration | 5m |
 | Effect duration (WS) | 16h |
 | Effect duration (BS) | 45s |
@@ -7167,7 +7211,7 @@ ___
 | Upgrade time | 1d | 2d | 3d | 4d | 5d | 6d | 7d | 8d | 9d | 10d | 10d | 12d | 14d | 16d | 20d |
 | Shield strength (PvE) | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 5 500 | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 12 000 | 14 000 | 16 500 | 20 000 |
 | Shield strength (PvP) | 3 000 | 3 500 | 4 000 | 4 500 | 5 000 | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 11 000 | 12 000 | 14 000 | 16 500 | 20 000 |
-| ShieldStrengthQS | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 12 000 | 14 000 | 16 000 | 18 000 | 20 000 | 22 000 | 24 000 | 28 000 | 33 000 | 40 000 |
+| Shield strength (QS) | 6 000 | 7 000 | 8 000 | 9 000 | 10 000 | 12 000 | 14 000 | 16 000 | 18 000 | 20 000 | 22 000 | 24 000 | 28 000 | 33 000 | 40 000 |
 
 ### Omega rocket
 
@@ -7202,8 +7246,8 @@ ___
 | Neutralized damage (PvE) | 250, 500, 750, 1 000, 1 250, 1 500, 1 750, 2 000, 2 250, 2 500, 2 750, 3 000, 3 500, 4 000, 6 000 |
 | Explosion damage (PvP) | 1 000, 1 250, 1 550, 1 950, 2 450, 3 000, 3 800, 4 800, 6 000, 7 500, 9 000, 11 500, 14 500, 18 000, 22 000 |
 | Neutralized damage (PvP) | 250, 500, 750, 1 000, 1 250, 1 500, 1 750, 2 000, 2 250, 2 500, 2 750, 3 000, 3 500, 4 000, 6 000 |
-| DamageQS | 2 000, 2 500, 3 100, 3 900, 4 900, 6 000, 7 600, 9 600, 12 000, 15 000, 18 000, 23 000, 29 000, 36 000, 44 000 |
-| DamageWhenNeutralizedQS | 500, 1 000, 1 500, 2 000, 2 500, 3 000, 3 500, 4 000, 4 500, 5 000, 5 500, 6 000, 7 000, 8 000, 12 000 |
+| Explosion damage (QS) | 2 000, 2 500, 3 100, 3 900, 4 900, 6 000, 7 600, 9 600, 12 000, 15 000, 18 000, 23 000, 29 000, 36 000, 44 000 |
+| Neutralized damage (QS) | 500, 1 000, 1 500, 2 000, 2 500, 3 000, 3 500, 4 000, 4 500, 5 000, 5 500, 6 000, 7 000, 8 000, 12 000 |
 | Explosion range | 120au |
 | Neutralized damage range | 60au |
 | Model | projectiles/OmegaRocket_DrkNeb |
@@ -7488,7 +7532,7 @@ ___
 | Cooldown (BS) | 1m |
 | Cooldown (WS) | 1d 12h |
 | Effect range | 240au |
-| EffectRadiusQS | 3 200 |
+| Effect range (QS) | 320au |
 | Effect duration | 45s |
 | Effect duration (WS) | 8h |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAVFBMVEVMaXG0/5y3/565/5+4/5+4/6C4/5/F/6Ct/5+6/6G3/562/563/524/5+2/5y3/521/563/563/564/5+3/5+4/5+2/523/563/57E/6nA/6bJ/60m/LW0AAAAGXRSTlMAHIrk8jWnAQP9fZgmzhNACte9xmBrZkyz1NW7lwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAuhJREFUSMeNVgm2gyAMjMoSXOquJdz/nj+guLf9vNdWCyHJZCYAcByo+SPHos+EEQno9W+t4cNgAy3TVjge1lgJ+A+L+m2sI9GqPDUUTTQ0+GigEUplLAk1lfwsKZpoKNs3wt0TOx+EpSxP/Do2N1RGE+Wy191EAxZEJuUpxDBb12u4MBvK4RYaQtIRVZIN9HWvprLV3YmGpLKkXoD7ZrjlntF8c8JRdRyUR+ABFijlUyKcRwr4Ef5bSREmIoUfC7ZFiwfPgh4SfChD84omypoaEH6OuRdhHUJtbPrTgkFlbrgVu7fNdtI+gbOM3tl2Xt7kqbg3FLSOtBFpTDi1B2VE0RzIGkfzim9YORUtWC95f2CNf5B9rsO83vaSgsZNS5CQE0WyloK/k0I4WoPYnI9OlIe4pszaLG98TghN7t+mKyCFa/HEqMJY2wfm1721pihvIPacSgySpeLVXJE1qgwarWqf0E4Z9GrK3FE/PIuAI8cjBMc0IiDe6CpsWspmcT7kyaLKV8EGolg1mqTDuriUUiZgjCHbLXBZ2w7NskwqJZenZmit9aB5ahHZ7GjC8ufo5yW6JXINM2dGBUYTXn4KTM8h8yW6JaaAwRyzKUvmyjF9phf6uoh8ja7JPQYTbnJEyF12AhlC5rxvO3hZDC37LF470fhBuf5aSn6WHUffyfXnTFNsXXEljDcK23NdgrMTr1nzbjzRcmsPIQmfEp5nYCQhT+SHnfOJCsBdJjiVCh8ktinr3mwTLslNyAey6XvnzsnIe7v42mQy+4Z/N6WwMl0b3n9bX9hbrW3gXw2WeVFRLOGvNh7bmSKa9sby47AIqKdExX5sfDuSIl35VO/w2IdvB5/We6D870uRrU6leDheN4vQMiuiLjmjejnEWV1d56W6NA8OatHy16uCtOsdBpM8YykMDzeZxwuJLiclQiN8xvNy7TFprlpBfGd61x/BPF+u2JiHaFOpv8B/usIZkfXFKBGuBn8OGzDFuaLMrQAAAABJRU5ErkJggg==) |
@@ -7741,7 +7785,7 @@ ___
 | Cooldown (WS) | 2d |
 | Lifetime | 30s |
 | Lifetime (WS) | 18h |
-| SpawnLifetime_QS | 60 |
+| Lifetime (QS) | 1m |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAVFBMVEX/oQD/oiL/piX/piX/oyX/oyP/pSVMaXH/pBr/piX/pSX/pCT/pSX/oSH/pST/piX/pCX/piX/pSX/pCT/piX/pCT/pSX/pSX/rCf/pyb/tCn/sCi80o00AAAAGHRSTlMBD+jzHCvcAAP8hVOyB0fMbb+XPtRfpHj5x2ayAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADVElEQVRIx4VWh3ruIAjFbabZcbz/e140S9O016/9kygHQQ4gqGIA4E/HicInKMJJ/NYvmRKAYvOwmZFHMB/luDfkVPQFAa00H1pmg2ez0loJGmyoTC1wAb4g+CZqiTJ0q+cuzuh5mAzzQdYi3+h+04qsiw20bUSmsuP9JoOVA3k8ghvBpyqwLeoHfS6np55rGapW3MbBhRCjc23ToQWF3QklWhaWRhUQrebFsp2jXlCvEVFkZ5atp21wIHppKW7xE3Bq7BrpaHNgjlAJE+LEN+A4/34Jck7iR5Rbe6m4FWtdfquehkVEIYhftav27hXVKFbOrCxskLZA1ys7dVDEV/f73mtVztXWRVtQUo+B8tIsmKz3dnpRi4x+ITEKqnF2KBBoqa9w+Po1jZJ7NLcb/Vg4gkSgrnL4V26O9mxhQY6rnrn1pU1YRCDGitdCX6EsqPpAFrskhHOsdDF6EzYFfAlTmWn43h6+tK8URCcDFdBX1SuKKMYXb61/7Z6oyFwDg5XitZIywZiJ/8x61FXD5Ef9k1MfheEYrd8A/z+WtH6T7I6YAVMGDBMsE43pliO1GoIEGfYMogs+gn7Zh9y0FCFDXgnIsE0XH5EZQ9vWWTyRMy8InojxIYTpzD7SxrOm8y2AuwQKS2YYXDFMWi52BqOfqhJ9Gf10QZBcLPHRjikruiVxrbLzIxFPbIu0uGkXDnbRmBaK0PRRhZseoFAcai/JU5pOtUuXKuoYUg6w5wA0xgR6V813gepMeHILN7U2fuWWU9sAz44MhVjAMzL8LFYNxbK+dbn3lB/WPaQS22Lqx1LeNw9pU1ZEejWs7fJZlbUgKGoTkmdiMStB8JxFuqhfb3ISAerXmvr7gKQUPoj+kRCQiAp5K/5bee4gxnkV6j/7YExWclX+xBzJ/8bgecszGc+QVdb8iUGEsWcpgivZUvPQvzmuxBLs+nSxxIQq9bGvRhaPs6GhGpQuOzI2nGoiCt6gOEFif1+fDLgLYbwSrN0RcjjVR6luxTuHnLPcfW4Xk/PWDPwSP558MNa76eN2kUgwj9YHNu49J5FqhPf7yIK343zVp1cNRSt0j/cI7x2VizGLpM6jihaLlNa/3MeiLQIVO2dtwFzDDjPuQuVbKKX+ATP9V7vOi7x5AAAAAElFTkSuQmCC) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -8365,7 +8409,7 @@ ___
 | Description | The Transport ship launches a powerful Rocket, anywhere in the star system.<br>To activate, the Transport ship must carry at least one cargo item (shipment or Artifact). The item is consumed on activation. |
 | Description (RS) | The Transport ship launches a powerful Rocket, anywhere in the star system.<br>To activate, the Transport ship must carry at least one cargo item (shipment or Artifact). The item is consumed on activation. |
 | Description (WS) | The Transport ship launches a powerful Rocket, anywhere in the star system.<br>To activate, the Transport ship must carry at least one Relic. The Relic is consumed on activation. |
-| TID_Description_QS | The Transport ship launches a powerful Rocket, anywhere in the star system.<br>To activate, the Transport ship must be carrying at least one Artifact with a level equal to the player's Red Star level. The lowest level eligible Artifact is consumed on activation. |
+| Description (QS) | The Transport ship launches a powerful Rocket, anywhere in the star system.<br>To activate, the Transport ship must be carrying at least one Artifact with a level equal to the player's Red Star level. The lowest level eligible Artifact is consumed on activation. |
 | Red Star Level | 9 |
 | Type | Activated |
 | Cooldown | 1m |
