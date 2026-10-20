@@ -9,7 +9,8 @@ const postfixes = [
     'PVP',
     'PVE',
     'PvE',
-    'PvP'
+    'PvP',
+    'QS',
 ];
 
 export const regex = new RegExp(`_?(${postfixes.join('|')})$`);
