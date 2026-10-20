@@ -1,1 +1,0 @@
-import{_ as r}from"./ModulePage.vue_vue_type_script_setup_true_lang-CYApnl20.js";import{c as t,o}from"./index-DAUpdZVY.js";import"./Page-BVQ8H82-.js";import"./Data-CnOH4lsC.js";import"./globals-lG8ehvYT.js";import"./sec2str-CRrxT7_Y.js";const f={__name:"Shield",setup(e){return(p,i)=>(o(),t(r,{type:"Shield",portrait:"portrait_CerberusPhoenix.jpg"}))}};export{f as default};
