@@ -10,6 +10,7 @@ export default {
         yellowstar: ['desert_lv1', 'lava_lv1', 'water_lv1', 'terran_lv1', 'gas_lv1', 'terran_lv2', 'lava_lv2', 'water_lv2', 'gas_lv2', 'desert_lv2', 'lava_lv3', 'desert_lv3', 'water_lv3', 'terran_lv3', 'ice_variation1', 'ice_variation2'],
         redstar: ['destroyed01', 'destroyed02', 'destroyed03', 'destroyed04', 'destroyed05', 'destroyed06', 'destroyed07', 'destroyed08', 'destroyed09', 'destroyed10'],
         whitestar: ['whitestar1', 'whitestar2', 'whitestar_l1'],
+        quantumstar: ['qs1', 'qs2'],
     },
     artifact: ['Trade', 'Mining', 'Weapon', 'Shield', 'Support', 'Drone'],
 };

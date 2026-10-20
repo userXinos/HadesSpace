@@ -223,6 +223,16 @@ export default [
                     dir: 'game/Stars',
                 },
             },
+            {
+                name: 'QuantumStar',
+                text: { locKey: 'TID_CORP_STAR' },
+                path: '/quantumstar',
+                component: () => import('../pages/QuantumStar.vue'),
+                icon: {
+                    name: 'star_quantum',
+                    dir: 'game/Stars',
+                },
+            },
         ],
     },
     {
