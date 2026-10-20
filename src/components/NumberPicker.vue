@@ -2,18 +2,22 @@
   <div class="container">
     <div
       class="minus"
+      @mousedown.prevent
       @click="checkAndSend(props.value - 1)"
     />
     <div class="input-wrap">
       <input
         ref="inputRef"
         type="text"
+        inputmode="numeric"
+        pattern="[0-9]*"
         :value="value"
         @change="checkAndSend(parseInt($event.target.value))"
       >
     </div>
     <div
       class="plus"
+      @mousedown.prevent
       @click="checkAndSend(props.value + 1)"
     />
   </div>
