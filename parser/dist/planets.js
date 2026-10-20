@@ -769,4 +769,22 @@ export default {
         MaxHealth: 1000,
         ShipmentOverride: 9999,
     },
+    qs1: {
+        Name: "qs1",
+        CorpStar: 1,
+        TID: "TID_QS_PLANET_FIRE",
+        TID_Description: "TID_QS_PLANET_FIRE_DESCR",
+        PlanetSize: 300,
+        AppearanceModels: "qs1",
+        ConceptImage: "portrait_qsfire",
+    },
+    qs2: {
+        Name: "qs2",
+        CorpStar: 1,
+        TID: "TID_QS_PLANET_ICE",
+        TID_Description: "TID_QS_PLANET_ICE_DESCR",
+        PlanetSize: 300,
+        AppearanceModels: "qs2",
+        ConceptImage: "portrait_qsice",
+    },
 };

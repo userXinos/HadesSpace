@@ -27,7 +27,7 @@ export default class Modules extends Runner {
     };
 
     static config = {
-        file: 'modules',
+        file: [ 'modules', 'light_modules', 'dark_modules' ],
         ignoreFiles: [ 'projectiles' ],
         runner: CONFIG,
     };
@@ -118,7 +118,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // посчитать саппорт урон для Луча
-    if (key === 'ChainRay' || key === 'ChainRayForDrone') {
+    if ((key === 'ChainRay' || key === 'ChainRayForDrone') && Array.isArray(value.DPS)) {
         const LinkDPSBoostPct = value.LinkDPSBoostPct ? ((value.LinkDPSBoostPct + 100) / 100) : 1;
 
         value.LinkDPSBoost = value.DPS.map((e) => e * LinkDPSBoostPct);
@@ -136,7 +136,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         });
     }
 
-    if (key === 'Genesis') {
+    if (key === 'Genesis' && Array.isArray(value.HydroPerNewAsteroid_YS)) {
         value.MaxNewHydro_YS = value.HydroPerNewAsteroid_YS.map(((e) => e * value.MaxNewAsteroids_PvE));
         value.MaxNewHydro_RS = value.HydroPerNewAsteroid_RS.map(((e) => e * value.MaxNewAsteroids_PvE));
         value.MaxNewHydro_WS = value.HydroPerNewAsteroid_WS.map(((e) => e * value.MaxNewAsteroids_PvP));
@@ -144,7 +144,7 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
         [ 'HydroPerNewAsteroid_YS', 'HydroPerNewAsteroid_RS', 'HydroPerNewAsteroid_WS' ].forEach((k) => delete value[k]);
     }
 
-    if (key === 'Enrich') {
+    if (key === 'Enrich' && Array.isArray(value.IncreaseSectorHydroPct)) {
         value.IncreaseSectorHydroPct_RS = value.IncreaseSectorHydroPct.map((e) => e * value.RSEnrichMod);
         delete value['RSEnrichMod'];
     }

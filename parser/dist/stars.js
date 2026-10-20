@@ -145,6 +145,9 @@ export default {
         CroidMinDist: [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2],
         CroidMaxDist: 3,
         MaxSectorDistanceToMaxPlanet: [3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        QSJumpCosts_T: 1000,
+        QSJumpCosts_M: 1200,
+        QSJumpCosts_B: [null, 1000, 1000, 1000, 1600, 3000, 5500, 7200, 9600, 14000, 16800, 25600, 36000],
         NumMaxPlanets: [null, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3],
         SharedMinPlanet: 1,
         LowerPlanetsMinLevel: [null, 1, 1, 1, 2, 3, 3, 4, 4, 5, 6, 6, 7],
@@ -359,7 +362,7 @@ export default {
     },
     DarkRedStar: {
         Name: "DarkRedStar",
-        TID: "TID_RED_STAR",
+        TID: "TID_DARK_RED_STAR_LABEL",
         TID_Description: "TID_RED_STAR_INFO",
         ConceptImage: "portrait_RedStar",
         AppearanceModels: [
@@ -522,5 +525,16 @@ export default {
         AppearanceModels: "Hub_Star",
         SecurityRating: 0,
         Icon: "star_dark",
+    },
+    Corp: {
+        Name: "Corp",
+        TID: "TID_CORP_STAR",
+        TID_Description: "TID_CORP_STAR_DESCR",
+        ConceptImage: "portrait_QuantumStar",
+        AppearanceModels: "Corp_Star_01",
+        SecurityRating: 0,
+        Icon: "star_corpbase",
+        SupernovaFX: "QuantumStarFlareup_FX",
+        SupernovaFXSpawnTimeSec: 4,
     },
 };
