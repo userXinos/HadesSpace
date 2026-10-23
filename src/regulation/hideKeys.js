@@ -105,6 +105,7 @@ export default {
         'SeparateBuildingPerLevel',
         'PrefabModel_WithStarHarvester',
         'StarScannerType',
+        'LaserGraceTimesPerST',
 
         // временно ?
         'BSPenaltyPerSec',
