@@ -107,6 +107,9 @@ export default {
         'StarScannerType',
         'LaserGraceTimesPerST',
 
+        'DNRushCostsPerHr',
+        'DNRushCostsStagesDurationHr', // Both for QS flare-up rush cost
+
         // временно ?
         'BSPenaltyPerSec',
         'BSPenaltyPerSecOnSector',
