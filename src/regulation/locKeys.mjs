@@ -299,6 +299,8 @@ export default {
     WSMaxBSPerPlayer: 'WS_MAX_BS_PER_PLAYER',
     WSMaxOtherPerPlayer: 'WS_MAX_OTHER_PER_PLAYER',
     RedStarDisplayLevel: 'LVL',
+    DisplayLevel: 'LVL',
+    level: 'LVL',
     WSBucketSizes: 'MODE',
     MaxWaypoints: 'MAX_WAYPOINTS',
     StarSectorNavpoints: 'STAR_SECTOR_NAVPOINTS',
@@ -338,7 +340,6 @@ export default {
     ArtifactDRSPoints: 'ARTIFACT_DRS_POINTS',
     PeriodSpawnType: 'CERBERUS_PERIOD_SPAWN_TYPE',
     NumCustomWeapons: 'NUM_WEAPONS_EQUIPPED',
-    DisplayLevel: 'DISPLAY_LEVEL',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,
