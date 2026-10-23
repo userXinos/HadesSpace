@@ -126,13 +126,15 @@ export default {
         'ShortRangeScanner.CanScanSectors',
 
         // Cerberus
-        /(Cerberus(\w+)|Dark(\w+)|(Dark)?Hydraling(\d))\.BuildCost/,
-        /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+))\.NewModuleSlots/,
-        /(Cerberus|Dark)Destroyer\.ApplyModuleOnDockedObjectDestroy/,
-        /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+))\.OnDestroySpawnMinRadius/,
-        /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+))\.OnDestroySpawnMaxRadius/,
-        /Dark(\w+)\.BaseCerbShipDataIdx/,
+        /(Cerberus(\w+)|Dark(\w+)|Quantum(\w+)|(Dark)?Hydraling(\d))\.BuildCost/,
+        /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+)|Quantum(\w+))\.NewModuleSlots/,
+        /(Cerberus|Dark|Quantum)Destroyer\.ApplyModuleOnDockedObjectDestroy/,
+        /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+)|Quantum(\w+))\.OnDestroySpawnMinRadius/,
+        /(Cerberus(\w+)|Hydraling(\d+)|Dark(\w+)|Quantum(\w+))\.OnDestroySpawnMaxRadius/,
+        /(Dark|Quantum)(\w+)\.BaseCerbShipDataIdx/,
+        /Dark(\w+)\.Dark/,
         /HomeSystem(\d)\.ShipLevel/,
+        'QuantumSentinel.StealthCoverShip',
 
         // Ships
         /(Transport|Miner)\.HP/,

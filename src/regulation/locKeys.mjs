@@ -233,6 +233,7 @@ export const gameCharsLocKeys = {
     TimeToResearch: 'TID_OBJ_RESEARCH_ARTIFACTS',
     ShipmentsCRValuePerDay: 'TID_PLANET_UPG_SHIPMENT_YIELD',
     TINDMG: 'TID_MODULE_STAT_TELEPORT_DAMAGE',
+    QSDirectInfluence: 'TID_QUANTUM_CERBERUS_INFLUENCE_STAT',
 };
 
 
@@ -309,6 +310,7 @@ export default {
     BlueStar_CreditPctPerPos: 'BLS_CREDIT_REWARD',
     ConceptImage: 'PORTRAIT',
     AIUpdateIntervalSeconds: 'AI_UPDATE_INTERVAL',
+    AITeleportDelay: 'AI_TELEPORT_DELAY',
     ReqBank: 'REQ_BANK',
     DronesIgnoreBarrier: 'DRONES_IGNORE_BARRIER',
     RushCostModifier: 'RUSH_COST_MODIFIER',
@@ -321,6 +323,7 @@ export default {
     BlastDroneTriggerDist: 'TRIGGER_DIST',
     LinkWeaponRange: 'TRIGGER_DIST',
     NumProjectilesPerSOInSector: 'NUM_PROJECTILES',
+    NumProjectiles: 'NUM_PROJECTILES',
     AllowAdditionalBuildingsAtMaxLevel: 'ALLOW_BUILDING_AT_MAX_LEVEL',
     WSLostShipTimeCooldown: 'LOST_SHIP_COOLDOWN',
     WSDisbandCooldown: 'SHIP_DISBAND_COOLDOWN',
@@ -333,6 +336,9 @@ export default {
     MinEffectRadius: 'MINIMUM_RANGE',
     HydroCostModifierPct: 'HYDRO_COST_MODIFIER',
     ArtifactDRSPoints: 'ARTIFACT_DRS_POINTS',
+    PeriodSpawnType: 'CERBERUS_PERIOD_SPAWN_TYPE',
+    NumCustomWeapons: 'NUM_WEAPONS_EQUIPPED',
+    DisplayLevel: 'DISPLAY_LEVEL',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,

@@ -12,6 +12,10 @@
             href="#DarkCerberus"
           /></li>
           <li><a
+            v-t="'QUANTUM_CERBERUS'"
+            href="#QuantumCerberus"
+          /></li>
+          <li><a
             v-t="'TID_CERB_STATION_HOME2'"
             href="#CerberusStations"
           /></li>
@@ -39,6 +43,28 @@
       </div>
 
       <v-content :args="{data: darkShips, iconDir: 'game/Ships'}" />
+    </div>
+
+    <div>
+      <div class="portrait-container">
+        <img
+          class="portrait"
+          :src="quantumCerberusPortrait"
+          alt="quantum cerberus"
+        >
+        <h1
+          id="QuantumCerberus"
+          class="topic"
+        >
+          <a
+            v-t="'QUANTUM_CERBERUS'"
+            href="#QuantumCerberus"
+            class="link-topic"
+          />
+        </h1>
+      </div>
+
+      <v-content :args="{data: quantumShips, iconDir: 'game/Ships'}" />
     </div>
 
     <div>
@@ -80,6 +106,7 @@ import stationsData from '@Data/cerberus_stations.js';
 import cerberusPortrait from '@Img/game/portraits/portrait_CerberusDestroyer.jpg';
 import stationPortrait from '@Img/game/portraits/portrait_CerberusStation.jpg';
 import darkCerberusPortrait from '@Img/game/portraits/portrait_Interceptor.jpg';
+import quantumCerberusPortrait from '@Img/game/portraits/portrait_CerberusCarrier.png';
 
 if (shipsData.CerberusGhosts.GhostSpawnSecs) {
     // eslint-disable-next-line prefer-destructuring
@@ -104,6 +131,7 @@ const UNNECESSARY_MODULE_STATS = [
 
 const ships = getShips('capital_ships.cerberus');
 const darkShips = getShips('capital_ships.darkCerberus');
+const quantumShips = getShips('capital_ships.quantumCerberus');
 const stations = objectArrayify(stationsData, {
     map: ([k, v]) => {
         if (v.ShipToSpawn) {
@@ -128,6 +156,9 @@ function getShips(path) {
 
                 v.OnDestroySpawn = `${n}x ${getShipLocName(k)}`;
                 delete v.OnDestroySpawnCount;
+            }
+            if (v.PeriodSpawnType) {
+                v.PeriodSpawnType = getShipLocName(v.PeriodSpawnType);
             }
             return [k, v];
         },
