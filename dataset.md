@@ -41,7 +41,7 @@ etc; See #yellow_star_sectors
 - Once a ship has departed, you cannot change its course and must wait until it reaches its destination.
 - The Red Star Scanner can detect nearby stars that are going Supernova. Those stars usually have old planets with valuable artifacts, but are also guarded by Cerberus forces.<br>Other players can use their Red Star Scanners to gain access to the same stars.
 
-Collections: 28, entities: 611, fields: 4809.
+Collections: 28, entities: 611, fields: 4807.
 
 ## Content
 
@@ -6159,7 +6159,6 @@ ___
 | Red Star Level | 2 |
 | Type | Passive |
 | Effect range | 120au |
-| LaserGraceTimesPerST | 0, 0, 0, 0, 1 |
 | Stage {0} charge duration | 8s, 20s |
 | Stage {0} charge duration (BS) | 6s, 10s |
 | Stage {0} charge duration (WS) | 1h, 1h 40m |
@@ -6553,7 +6552,6 @@ ___
 | Red Star Level | 5 |
 | Type | Passive |
 | Effect range | 120au |
-| LaserGraceTimesPerST | 0, 0, 0, 0, 5 |
 | Stage {0} charge duration | 8s, 20s |
 | Stage {0} charge duration (BS) | 3s, 6s |
 | Stage {0} charge duration (WS) | 30m, 1h |
