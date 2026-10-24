@@ -538,7 +538,6 @@ export default {
         EffectRadius: [2400, 2600, 2800, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 8000, 10000],
         EffectRadiusWS: [2400, 2600, 2800, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 8000, 10000],
         EffectRadiusBS: [2400, 2600, 2800, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 8000, 10000],
-        SpawnedShip_QS: 61,
         SpawnLifetime: 40,
         SpawnLifetime_WS: 24000,
         SpawnLifetime_QS: 120,
@@ -585,6 +584,7 @@ export default {
             SpeedIncrPerTick: 40,
             BSPenaltyPerSec: 500,
             HasTaunt: 1,
+            HP_QS: [4000, 5000, 6250, 7800, 9800, 12200, 15000, 19000, 24000, 30000, 37000, 46000, 58000, 70000, 90000],
         },
     },
     D_Supress: {
@@ -1248,8 +1248,6 @@ export default {
         MaxRelicSpeedIncrease: 200,
         AllowForWSEarlyAccess: 1,
         GoalRushCostMultiplier: 100,
-        DNRushCostsPerHr: [27778, 55556, 83333],
-        DNRushCostsStagesDurationHr: 72,
     },
     Genesis: {
         Name: "Genesis",
