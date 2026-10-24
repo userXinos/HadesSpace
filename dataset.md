@@ -41,7 +41,7 @@ etc; See #yellow_star_sectors
 - Once a ship has departed, you cannot change its course and must wait until it reaches its destination.
 - The Red Star Scanner can detect nearby stars that are going Supernova. Those stars usually have old planets with valuable artifacts, but are also guarded by Cerberus forces.<br>Other players can use their Red Star Scanners to gain access to the same stars.
 
-Collections: 28, entities: 611, fields: 4807.
+Collections: 28, entities: 611, fields: 4748.
 
 ## Content
 
@@ -1236,7 +1236,7 @@ ___
 | Description | Launches one Bomber Rocket towards each enemy player that has ships in the Bomber's sector or any adjacent sectors. Each Rocket travels towards the enemy player's closest ship. |
 | Icon | Mod_BomberRocket_Icon |
 | Type | Activated |
-| NumProjectiles | 1 |
+| Number of projectiles | 1 |
 | Cooldown | 24s |
 | Cooldown (WS) | 1m 36s |
 | Effect range | 400au |
@@ -1321,7 +1321,7 @@ ___
 | Description | Regularly fires a fast Dart missile against all enemy ships in range. |
 | Icon | Mod_DartBarrage_Icon |
 | Type | Passive |
-| NumProjectiles | 1 |
+| Number of projectiles | 1 |
 | Cooldown | 5s |
 | Effect range | 200au |
 | Max targets | 16 |
@@ -1465,7 +1465,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Hydra barrage |
 | Description | A strong battery that does additional damage to its single target when there are more enemy ships in the sector. |
 | Icon | Mod_Barrage_Icon |
@@ -1499,7 +1499,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 3 |
+| lvl | 3 |
 | Name | Hydra barrage |
 | Description | A strong battery that does additional damage to its single target when there are more enemy ships in the sector. |
 | Icon | Mod_Barrage_Icon |
@@ -1535,7 +1535,7 @@ ___
 | Description | Regularly fires a fast Dart missile against all enemy ships in range. |
 | Icon | Mod_DartBarrage_Icon |
 | Type | Passive |
-| NumProjectiles | 1 |
+| Number of projectiles | 1 |
 | Cooldown | 5s |
 | Effect range | 200au |
 | Max targets | 16 |
@@ -1656,9 +1656,9 @@ ___
 | Bot update interval | 5s |
 | Empire power | 150 |
 | Ships spawned | 3 |
-| PeriodSpawnType | CerberusSentinel |
+| CERBERUS_PERIOD_SPAWN_TYPE | CerberusSentinel |
 | Move radius | 160au |
-| AITeleportDelay | 8 |
+| AI_TELEPORT_DELAY | 8 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABZVBMVEVMaXH///8ODg4CAQIGBgYCAgIMCw4AAAAICAgODw+SkpMEBAQREREXFxdfX2ALCwsDBAQBAQEJCAkAAABQUVLX1ddDREQ5OToDAwMAAAAAAAABAQEBAQEICAkEBAQAAAAkJSUPDxADAwMBAQEBAgIODg4lJSVAP0EAAAACAQIfHyAQERAvMDBIR0j09f/z9P/////y9P34+P/8/f/2+P/6+v/x8vz+/v/7/P/29v/4+v/9+//r6vLg4Oi3trvCwMa/wMTz8/Xw7/nu7u6vrrHy8/r19P3Fxsrp6fDu7fVsbW6qqq319/7T0ta5ubzEw8iNjZDIyM3e3uKdnaCxsrbMzNG7vL/a2uFxcXSjo6a+vsXQz9O/v7+mpqm9vMHZ2d1+foCZmZuhoaTLys3m5un08PyVlZhmZmeEhIa1s7daWluKiYzj4ubp6eswMTH6+/z49vq5uMF4eHrU1dzm5u2rrLFJSkrKHvS4AAAAbnRSTlMA/RWuJjgPAwcK/jIby/4hK6K7if3+/f4/W21iU9Gqd+7hxJxH9tzvf5P7z+/w/////////////////////////////////////////////////////////////////////////////////////uJtN/gAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAukSURBVFjDfZgHV+JcEIY3gDRdEEVQsLdV1yU3DRI6IdTQOyK9F5W1/f7vhr64+93j8WjgydyZuTPzJt++zZZCcnizC9fJoVr+bbGkmwbh4q5hQyT7trZkIuP1a6/2WijcH4oWV+XqXV2tUOslBsebinVEsS3mkRcE/rzubi1uqNg8jwtXkZcfxi9mpJfXjgjLsiGkeCyRf71a2FWvIyKDFsciJO5H3OfLPYgOfrVxBifNSGZnfWdyyUUC8fuC9iD7dH0pXThoUIGg3W73463rQ+maK/vnScRXjlVcXPPXwdx/2dbuMPtRqWTKuG1g2FrdmUy+ZbwPIckP4LdUmyqDaGH7uNEMWnCqkUKUmk2pXLYMsOTyoobQDQdupvJviV2JQiaTy2Uy6f5ONhlkzESSR95+GjfUUtmc2Nd8P2sipbIFQ+l8syY2bqvVW1tq9cbJkdttx1GTr+4gVEffdzel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) |
 
 #### Modules
@@ -1750,7 +1750,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 0,01 |
+| lvl | 0,01 |
 | Name | Drone battery |
 | Description | A single-target weapon that does constant damage to its target. |
 | Red Star Level | 1 |
@@ -1761,7 +1761,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 1,01 |
+| lvl | 1,01 |
 | Name | Teleport |
 | Description | After the Activation Delay, the ship teleports to the designated target, which must be within teleportation radius. |
 | Red Star Level | 1 |
@@ -1793,7 +1793,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2,01 |
+| lvl | 2,01 |
 | Name | Battery |
 | Description | A single-target weapon that does constant damage to its target. |
 | Red Star Level | 4 |
@@ -1806,7 +1806,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 3,01 |
+| lvl | 3,01 |
 | Name | Recoil |
 | Description | The Flagship enters a Teleport countdown, heading anywhere in the star system. After the countdown ends, the Flagship will jump to the destination and will immediately enter a second Teleport countdown, heading back to its original position. |
 | Icon | Mod_Recoil_Icon |
@@ -1830,7 +1830,6 @@ ___
 | Maximum speed (WS) | 39 AU |
 | Bot update interval | 14s |
 | Empire power | 10 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAABlVBMVEVMaXFZX2YAAAB4enoCAgIKDAoqLSoAAAAtLi4FBQYAAAD///8AAAAZGRloaGoAAABxcHMWFRYAAAAiJCIMDQwmJycAAACZmZoCAgIKCgoWFhZTUFUDAwMqKivY2dsCAgIAAAAEBARgYGQ3ODhLTE0AAAAICAgEAwQLCAtMTE4nJicBAQE3OTcAAAASExMcHBwAAAD29veTlZcgHx9AQkECAwMkIiMLCwsYGBgsLiwAAABYXFsODg5nZmtzdHQODg7////09f/7/P/+/v/x8vz4+v/09f7z9P2BgYR4d3lbXF2Li45lZWaJiYv7+v/o6Ot6enzZ29/19/7k5OU6OTrx8vZeXV+OjY+vrrCRkJOFhIfNztTw8Pp0dXbz9Prj4+knJyerqatHR0fFxchUVVW3trpta26qq69+fX6Xl5ejpKhZWFrS0dOfn6HKzM7t7fTIyM26ubz59/6op6i9vcHd3uKxsLQ8PT3q6fEtLCyioaO0sribnJ8zNDO/wsTg4eNBQkHU1ddQUVHu7O9OTE739fo1NjdrAeErAAAAfXRSTlMAAyX4GaoFAQkeMf14Df5z/sR8wcXwav4iurT+KfD+Yz6S/Njhls2uE/vQRvY6xcSI/v7+9lH2tf3zivDm8/eh///////////////////////////////////////////////////////+/////////////////////v///ncPkEoAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAQ2SURBVEjHndXnV+pYEADwgD56szzABQEp9mdvr4+EGGooSu9FenvSRFTsf/cmlg+7S4Czc/jAPSe/M3dyZ24Q5B/BkYtXdQtchE0t2Ah3QbcqlnOQIcFRGrRxr473sebpvHGtQTnEMLgLIuBjeg3jfa3RY3zQLnAZtEQo7t46w6h+7YOs6dHw5fWRWEgD2Mjkkr2+IoGf6vdHhOqfIFFc33yafCtuEPkkOf88Ab053msaBm/uHCY++8+GEsuf+Qk4WZGyEDYbYUl9ABNfg6MImeVSIeZQhCPOGmFi3j8Gifk+iAvGJIRd8EYE5nEIVf7F/yCiaSGLwWYJp0MoSWxjEMxuUK8JhRq14TXLaPILqjc/jg4nl3/v/uiU4de844WWIAh3ydE/KDw+JVayU0zuYfZh98m7c9DMLHHpWoz1ZbaKtb2SrkvlnJFz/3K3bF1fvFfLzX5h0XQ+b8lmPIFQIgD801fCR5s3Lnh2ipZ4AxuT7CjbtheaiSTE3gkRgWoiB62c9b3r/lU7R2Dvq5xEyQ8xzzsx4hEIpjy3tusSdVL/3dd03l2thVNOwoNRRE4R/OI51aybZfbpQZPJmXa1yhB0AY5hH7XgxybwO7x+mZWG5Pv3YG6DB7vg92eYFDkhSTMKlQINEYROVZCvkoTgP67uazZbJMGNKguaLFgFgwhLYO6rIFSniJFILW58rWGeY5zouyBQKAkGZ3E476HQJInxgjCLLJIYThK0boMrGU0W9V5TheYKcIIRKDym006UIDcGuSQhC66rB54/d2s9jQaeyCzQqqMAEHYTOA72wKV/b4tLc/F923Oe39UhArmHuAf3aovk3/LNeXr9G93lx+BtlK+iRScGPbPZS1zne4B7G/ZgcJbHoLv6mJtlWTZs3oa2I1Ss5B1twIK39qhjk0k7YsqpasVqjGYv/wTz3cSO7ZzIRr0Zi39KSTtizI10xYeVfQpJ4DmdJgKi1IM7knH5p5i017h8LiDzXYQlrlISjEZIZqzR01pGkj+U05Jl8bpPa+ydFQsNiEQg6Q+epWPWpwPx8rDvy66PcNjLgQaYTNCoOBKOWCkx7PtCTv+iNuIKVVJJiiTv7J1orbRIN/lvoZz1RVwWkSNAkUDo4cZ1WSLf17Bgzlpjjrte9IoiV9HckTmSGfK+3sm2pGi5i2M4jsU7LpmlNgaJB4tnLcCPySZ2d/y2+CiiJLOYX64hckxGBCq7oUfr0FrY5GGe7bwk7lGcIjh6n+jYOuRBsocg4f5it6EIwxuBsKLSXdwXDt0YItTMOEVtMFHEBG1RfEYzQpBXgNTc8AFuwskf+BpmKWeUIOds070SAhTDUAituDd5jJEEEUq/n6ZE4VotnE2dfpcKRwuEMbklcloUdrtC4sxuTY6RhOxNrlQXvO330zadlMtCxgrW8pphVa9fNawtDxJ/A+pSIYxy014kAAAAAElFTkSuQmCC) |
 
 #### Modules
@@ -1839,7 +1838,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Battery |
 | Description | A single-target weapon that does constant damage to its target. |
 | Icon | Mod_Battery_Icon |
@@ -1864,7 +1863,6 @@ ___
 | Maximum speed (WS) | 43 AU |
 | Bot update interval | 8s |
 | Empire power | 20 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -1873,7 +1871,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Weak battery |
 | Description | Carried by all newly constructed Battleships, this battery is the weakest weapon available. Replace as soon as possible with another stronger weapon. |
 | Icon | Mod_Battery_Icon |
@@ -1895,7 +1893,6 @@ ___
 | Maximum speed (WS) | 47 AU |
 | Bot update interval | 10s |
 | Empire power | 100 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABvFBMVEVMaXEFBQULCwsBAAEAAAD///8AAAAHBwcmJCYXFxcCAgICAgInKicDAwMAAAAKCQkdHB0AAAANDQ5RUVIDBAMJCAkYFhgPDw8BAQFUVFUDAwQBAAFBQUI4ODkJCQkCAQIMDAwBAQEfHyBNT007OzsCAgIBAQEGBgYCAgIHBwcpKCkBAQEUFRUCAgIUExQCAQIGBQYiISIAAAATFBMrKiwEBAQyMzMbHBz09f/////z9P7z8/329/9LS0zz8/uTkpPg4edISUj5+v9PT0/w8fr4+P+Kio39/f9YWFn7/P/Jys3LzNDj4+rn5+9ERESdnaCjo6eEhIaqq660s7fv7/b29f/7+v+OjY7d3N2+vsFcXF1gYWHp6vDR0tfY2OBAQECxsbSampzv7/Dc3OKurrL29f319fyQkJH9+/+6ub+WlpplZmenp6uOj5TAwsXDw8fs7PRqa2uHh4l2dnfo6enj4+T4+PzV1dj49v+AgIIxMTHZ2dqUlJY9PTzFxsm4t7pwcHLm5efy8fX3+Pj09PbR0NHX193f4eTOztWgoKTt7O96eny1uLrq6+v1+P7f3uYFBQV8fIAfHx/Z3OArb+mlAAAAe3RSTlMAGvDKWv5dBQP3LDf0sX4T6KUN/ePcCNRt/UBI9P7LdOu/3/3wuk7TZCL8VPyV6Zz3/Ivv6cXzy/////////////////////////////////////////////////////////////////////////////////////////5oQQypAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAMeklEQVRYw4XYZ0MaSxcA4Cu4wWBAEFCsYO8lmuRlWFhhadKrdKR3kCYiiIoFVDSW+IffXbDG5N754gd59uyZOTvtn3/et645DnF9abCTurZGXRhcWh/lzHX986+tj7y0OCBmEr84a7nNL0Sm93Bxidz3b6K3m7Lo0rt+VS/2FLG9C+OikCFepHT3/l10LBB/OW35aj0WkfL5UkHYkBwQT3wlLnT8BZDmOMyK5DplKFlhfqttIfrEtXeiwuTMkf6cxhrhUFxTl44QHp/XajCq2dAYxOJDwtqfEurtpi+KdTURODrYfxI8Ph9cxYEnqRMv0j8m1LPw/ZdQZ8zGpJldAfxEeLAik5KhWaNO+Ov7Qs/7NDrYzHmh2BAT8CxHWd5L46OXBityGzOIhfNMdgfp7fhRuYdiSQYgsMziQd6QfdHOPo+PgIxEfMilvhnVrmmCV5dsxMI83lb4N6KSYZmFY42kzkuYfiWkT18ZD25gDVoEfFnpAn3Ohc9T1BsoLLAErcD9wPj6ifSGfN50K8MhlQz7lVTl3nrqMr5MpMaDyFShiMK9+fk3ooX0JrT1LtlL9LmX99QRGf5XadID7QeSdZsA3O4lg7o9MnyeL9HS/AgwubMfiEVz85QD4stIsVHkw2jJb5a2x0d5o7F8JHdxRZtIb440AlggQ5QO084TUcTvPhJpY+eZOMwqELFoERDXv5CdhvQj8byQHYMjUx6oPWSO/ZkX4vkDOWoopM8klHj0Ox4TpucoUkXj6CNBMvow4MEtkkp5LGl5tmRoEzgCIvod5GMnIxuFG1QBw3iU1GWIyfRdYsTCg2GFIl6wST92sjtcVMnzamCFLY6QXH1DJB7XjakdC2yFLm3GTFHwcfTdsmzzvJTPb4PzI/0mdIwRiOE/OgcNefn4oJhF/1AwAv7+6dnZTl4fPC6poSqRWIXUpeOg3ugInJyEeVu/F8yi6wwvDSRwdh7PxyGFKTk6mjQpoLjx5vwsgH0OfGXgPZnmfk1iVc6L8E5xpL4MYbnc+C7VjtPzgIUXgWHUk/zKnX7zWXZMs1c228MSRsKThFrTTCSamzXC8Hkg0h6YTTpn+u101tXXO/h9B5K2ylc6SWeq4kRiXMWkD+MFigloZ3Swp+/t7NwzxOZQRiL4f3FCnTI7iESHeYo6KcXnND4/ckjhsIfezDG9nTTxxMSqHmBhsCnyA5EC/erwcIXV+TqXddBz53sK7zz26bfIEsuDj4uHtdQifIFl3ntq923SX5MhE6MBy9YwIYh1Gn/LMkwRAhORaAJCyrAFIzAaJAw3S8c1Ivkl+aHl1Kllf5hwhxNkb3JqoE0Gpib3kCeyexC6Xh567uW+2S+O5qkAI1ZsaKA0a8wF4QRyjbHSUAQjd4ThnwcG+fzs82TeSz1U7Z5jRGS9vd2rsaaWQ1fzS0vzV6HlKVZtD26T0lW6Qu19yd5ZwglXpIhANtbYD/kwZZZMnqVM5n+MseQQgt5xsShXVclz/l3d/df1n+fKYYJWCfmYY5Plcc5cX1dX3xxn/HpyjBmCBBrC8OlBquqa6W6PJqlzOV8PRG49G7uKPe8UrTCz0Nv6T1fvwkyBNjUB8TTp+umFb6Ow3kl6SmUkoQ4gCHBoIAeLWJucfRnlntlvNeKMAxI5QKDoi5Z/PSWDpZIqNSMwenwCNqe+Fehzr3UxRy98m9oEmhvradFns1XayXR1jxZMB80wXxlv7n1bmRRS35RSD1U4ufIN0d7EcBIVtpMhTdPyJnsTga3Hgeb4ykCCOPRSSn1DRP/AyviJ+wY9LZrlG07uAqmdSjVlb0YQxXHgZHyFAcoU8lOVd5Ep14CxMl5038QsJ8fyjVw7mR7swWYsiuxcf64ZpzNAk9b5NMikBVoTMOjjGkRviZzE5Ru1+VYy5LFcwmEPhPfNpnB4kv7NAuXWOvr6SKS+vo61HGT5Rp8MW0KZME4KlTGsMkmDrLJfbQ9Yg5m6BrgoWJde9n+a5ZDJnNlP/ZeQY4biAo9qx8luJl016liDJCz4l3TCcXC6fxfU/ITM2A+gmJz5Y4TNHvnBlMcg7CE+6M7dOPmpShuvhetY/l2dXzaictXZlsguaiqVYgorBUF5Ro7DSUryEGRiUcSoQKRtnOzWH8QTws+dr4QnshebKGQmUllGyOwUUqnCTTNkZFGJZojXIuoHseQ90QRFbiVUHx2cXUbMtRE6vVIzI8uzg6NqnGxrfqqufyNbbaIeJQ+OI8e5yvx8JXeMjA+SR1Vtgr/Ye7L/lphsJZ/vwGZ6Rzx/JOgTCdmAUglsvjZRtknJqPvtxUSvZK8sBxEEyB/2WkTRIiel/Htyi/WYyC3DSPfCt3wuqJQJ0KDL+G2h+zn94kH0DdmQq1Ge6LFFZqhTFWEAhGUCHhQ4nJ+izqjanVy0V98TK060AkjNpD2IrwAiwBoCrhjXNCYW5e4Dab/Yoyh7C9Sr4pTLA4UxwYPBZdnkXVUBgUa7LSra/W+j2NS3sm21qAErLxadlrIHtLY9MFBX9xiLRYXU41ZdnHwg6GUweKwBoXkPyMdBa+eHgGMj0P8ygaBZ6znYtevfvpitfsaz7IsuRCqdUAVCBSDFNtewFNRSwKDzlu5E2nDzfZSovH7G5+1faIMbm5JLBeLSA6VMpgT6TSkIiSUJrUYrO8VzeVPJNvsZtiu8yDbkzoEiqrAPlC8tlsuCxK64zQiFBbdGux8oHujfkKpRL4NxkjUkfzmANBaIOnM5ZzSgxKJ8FT5YcHJhr3lfXyyRu8cWPZlIi+4kVytZGYwCq9ttBSgsc1dWxRuoSLv/MxC9H3kh0erAzHIJrySBKkfgepRhq+VIrT6yoNhyz+WKE9jD9s/rtJkK45lU/SMrFOG58k4r8FwTuJcoAlSGg8foEUCgOpcg8WMfcqwppKz8YgjX28QW/cJeGTDKgtqtRpmLLQ5SEC8BcGQCGq2Jyd28EtxprHnJCntdKMajkKaZ9/fMWXo5l2lkI9vy9SmdQQRMIoXyzgTuritj605DWNuIJ8v0WfyX2KYEW5BqRt3Y2EPhAkWQxwSNSpzXWE1ZK5pNWbWHRCo3mZKGrRgZG5vfFPfj83h3f33X7lo15rAcpBd62sLselAakvG2ZCZpcHl2gZlLSRHU7DSuetNX8v5ufIKdCR3YD+7LuboVQS4MtKHu/kbWrOTzraHsdn/30HLNgCAxkzN/n09UC/340t+zVqnbVYvGnFoJw0UTTrazZiufj5ra5NqAhDEivy8n5F/X8MWHRKYPFOOr8pxKCfNPfK9E9kQeDIhAaXLZ7o36ETq5tViSuscK6nt57gjbW2jMzwTmwSlpAyM0IxZFoXfa7uWMsW7S81rVX160JTMY2Y2/EsSA4GQ8j5Oq07a6OTP0clTs6ewnpJMOnDho04P9DYsZOxtl/ZFG/+A0zZhCEGXVGSX0d76uol09g2N+Vxx78u4OjbNE2LZgnSwLGKUNwhKHlg+FEWvaGR0b7Hm77eugGFzHODmiff9ccQD5hRVVlYFj5PN3Wt7HQ6w2Z5Xy/qTcQdG7fNix66fq66rYKwf+RMxdSwO5Trj6OX/MC8vyA/oPxOBMKfm83fpIheF1xXYkpfjIUcylY4zM5+NhOGwcuPorSSTFQu/2rTi1Ib591AnFE0Z5XABHypsfScqpRxHebilVnpBUzMBpsDmB41AiHNiI7tyGketNw2+kZ004UEWlfGw7aHMJD02AYbtmgJBXInZuRI8isKXAEK+9P1f3DbFG/EAROyldRV1Cna/p94X8bh9OojYHGju/HmEN/XZNQB6t5D2qur2e2HAJvWaPA4C4x3coEQ9Eo6bHS1WtMkr+/bxPJYy4kgn7UTrqxIhKLUPVKjOWiyQf1V8lXSMEas+H+xc2S7+3Z3ek5QMYuXlElcEbLIpQWE4n7Iiexf54H9PVwR7/US365DaM+EJamUwbwtKXiAtR/8OPcXbHH25wujq6l8RFf9oolOgM+EEXMRvaJFFZGuz4850P6dNkyLaBk6udCHYk39HjJBm1ffn0twufrmlaemMD20PghM8PZ66wSVjIiKZp03+9V+pmueT+HE6OsDuJsKNFhLUkq/vvF0TsqfWkCyPVm2bA8jOUwNYgxiFhit3xV9LVS+ZwDyU6pynxeNA48PuwSvZyOeTef7vv6uphcw8n/P70ZSbjqRqiE4dcds9/XJD908MmeI2ugtxolBeSRi+B3fPPf7aO2Smu0xa12WzRJGFqtuO/BZbQHOf7/1ptlPqnNP4P/6gztZNGU00AAAAASUVORK5CYII=) |
 
 #### Modules
@@ -1904,7 +1901,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Laser |
 | Description | A single-target weapon that fires a laser beam against the enemy. The beam starts out weak, but will move to higher stages of damage the longer it stays locked to the same target. Damage will reset to the first stage when the weapon switches targets. |
 | Icon | Mod_Laser_Icon |
@@ -1945,7 +1942,6 @@ ___
 | Maximum speed (WS) | 125 AU |
 | Bot update interval | 15s |
 | Empire power | 40 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -1954,7 +1950,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Mass battery |
 | Description | A versatile weapon that will deal constant damage to multiple enemy targets in range. |
 | Icon | Mod_MassBattery_Icon |
@@ -1978,7 +1974,6 @@ ___
 | Destroying planet | 55 550 |
 | Bot update interval | 20s |
 | Empire power | 60 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2001,7 +1996,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Destroyer vengeance |
 | Description | When the Destroyer is defeated or a planet destroyed, Area damage will be applied to all nearby player ships. |
 | Icon | Mod_Vengeance_Icon |
@@ -2023,7 +2018,6 @@ ___
 | Maximum speed (WS) | 47 AU |
 | Bot update interval | 2s |
 | Empire power | 120 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2032,12 +2026,12 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Bomber rocket |
 | Description | Launches one Bomber Rocket towards each enemy player that has ships in the Bomber's sector or any adjacent sectors. Each Rocket travels towards the enemy player's closest ship. |
 | Icon | Mod_BomberRocket_Icon |
 | Type | Activated |
-| NumProjectiles | 2 |
+| Number of projectiles | 2 |
 | Cooldown | 20s |
 | Cooldown (WS) | 1m 36s |
 | Effect range | 400au |
@@ -2079,7 +2073,6 @@ ___
 | Empire power | 120 |
 | Ship spawn | DarkSentinel |
 | A number of spawn ships after destroy | 5 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABQCAMAAABs3dbSAAABklBMVEVMaXEBAQEJCQkEAwMLCwsFBgYKCwv///8TExP//v8DAgMPDw8EBQQKDw8EBAQAAAABAAECAgICAQIPDw8EBAQNDQ0FBQVWVVcCAgIKCQoGBgZhYWMgICACAwLy8/QGBgYgICAYGBhaWVoAAAACAgIEBAQODQ4FBQUCAQI3ODgiIiIFBAUEBAQBAQEDBAMMCwsEBAQEBAQZGBkDAwQAAAAMDgwqKipMTE4CAgIREREuMDD19v/////z8/34+f/7+//09f7y8/3w8fu7ubz8/v/9/P/39//6+v/39v5AQkGLi476+v319Pt+foBxcXMtLi3ExMmQkJNSUlNdXV5LS0ysrbGDg4W1tbk+Pj/29vru7vW4ubspKSmgn6I6Ozypqa5paWqioqdEREUyMTLl5elHR0iTlZhtbW83OTjr7PJ6eXv39/0lJSXX2d3Awcng4OeYmJwSEhLz8/ju7u50dXelpqmys7fS0tabnJ9kZWXHyczNzdDc2uHAwMM1NTbp6PDe4ODn6O28vMDz8vyHh4mwr7Uia/OBAAAAO3RSTlMAjAj9DSQa/gH+vhI2Az8FlMaQ8fXdYf6aKmv+/mX+MOL+/eHdstBOgvH1eui21v5HovGpVufm+ev69005BXwAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAl+SURBVEjHjZfnQxpPE8dFygkiAtIEFEHB3luMy3F33tF7l947UgIKAiqW//s5SPIEo0l+3zf3gv0ws7szOzNTU59oZpo2S4o2PTP13zQzNbvOHWt9duo/QfMMtlRjq+dyOZtGymbM/5uYXqSsBOvQWHXTCmVx+p826BJTvwxhI6GErhqU0Of/RfD375kYhoyFYcxeg/8Phra9b8N/AGMIL11s0/5GzNHV8jpAfyEoqMvV9Lm/EIsbXyqe0OUv5DLkqXzZWJz7M8GnuqLpe/z/ZlD8Ph117XP/xMzRKVQXVC0kf3mGMpMPVci1T/mDb7NSQR7C/Y3OpJWO8hWHWgLp7Kd3yNkrFFEg209OICC53wVoMbjH+eRG5xiS/TCwEqnGCEFRLYqSHzzZSOms4LkhYXx0bVoksOMYMAsqbVyLAALX6fCyFk/KBWaAQXaBaPrjae1GMggUEPIicVx7HQjf398GrhE8LucJA9DlY2T3w6nRpAIzhF1vcnnygAHcvoV8vuLbLcB9ch538xqFzAIp7XcjrPQjArlYhxeFHujlcOvVVZmZuwO9oPKQ5YKQxzTrNzM0kSAHIZkVirDg6pfNGbh5ddWEa+Zy3xUTUlZIl3MC0TszMwy1I6OHzMciobf9+OYEKGnFioLB22PbKxQdmyE44zhmTKbo/MFOHtIaN0UHwmwyFFi+REYIcrkcCCWzwgPRphXRJXYOJrOAttF4hqFnnoItzLab4dBPJBRutrNCtoI3wOFBY4M28T4wDh2ZF8hOmeUITfHyLfYTwW7LcZOQM0uxQy+Z9CFj4vWgszwQYd08oR0IgwFDAP2BIGgADgSFB7STTSsBqVj0CcfYa55k9E7DYUuojitLGDHqr78jYeTWIeCy2Zq7ZNKzxp44MAWLSvVGd9fV1LzPR/gsxksSub40Wnw6n89OVa+ro14qlaWYODIaRy2X2SRLC97r8C3w1XF4hMCWqA/chpvZhSWJTRZRc2bfvY/8SNfGXVoQI3EnAG85ywix5G4BuIlbxAtLXJusQHmfMzR+xN6iLC24y50eIIPdfB0OX7sG4AX0ohb3whKlZX/g035DKiX7Bok0O1VgtAKnK5msO8ELSlSj1ySyYS99RCKlPEW04Db426BsKIO7q/s7YL3EQPtV514QUfKfIXn7yDGi5AdW2GBhMgm8rCcRvw0aO5Z/oNDelQcaJSIr8ZdGVuwA0ethC2w06i/J5Lf7cRLhl2QjZDIuZ/mO7hjRmd1WuGw0Ggyw3ohoL1/cZlw8QhKF91ZmOSyq+/VYuvAw7MSeiDIMG5svIyuGfqxTjC1Ij1/dDfJeZn75peBFVO17zcmhoOB2DMBTrdbv96u1Wg0MHO604PBE02t7HCzFuxhrQUTxbJ2+veNIRxH/crlMwC/a0CszmnbsbNPXz4oE1JqMsSn6bjCEAY+UxtYEY66ACuAWcisGwnPnigU1bJpUxXwJpXbp/98/GS8UZV8PuSQMtqYQlHUTBGEx6I16IMvnYzENmyFxQfq+nDJZbaelVB+BD3jsk6NCsFAoAYvOQJ403ioEY4WjEzbvhiDe9qWTr98cZzUBYcQ55Zia9aRjtjECl3FbMO3JUo83zg0Ybl89mHyVZuhqx9AI2jsXsuuwI0UiBAGTYWMzOQJNmXInCazDBzV95n2NpMYB7hSke+AqTSLXlnK53GSSSBj00gInDnz7v9XMsWf4jeDBOUJegQWQsoDXEeJMCwY4lF89eF+ZZxgSZQ2vKSv3IODwel3m7/J6HQHgrCj7RE0uYfzWnMyvr0ahWjp2B/sr+ezq3lirqW7Fb+zFHDUoubo+aWRmZlSRKOe+hK8Ywu0V+0CskiXyXZUqnKjkDaEi+YObP6pJM+8MzR0Ib3RMvRV0Ku4MIEZ7IUDfG+kA7JJpCQjf7WR+lj7S+tqr8cVYBs5I6vUtPpbv1RS5wcka2CytnYwXzc5/b1u2WSPxFkxxwgjjyw8l087aKqm1nVgiUtQjCOEKLvDGi7ZHDc30Ijd1M5Kz103cGRAEdP3Or5tjfU22ZDiCElexRM85XpTiks2W4tA7ZI4EfRN3BwYUA7YWWNZlqtUMgYUSfhzDQC7mKULjRUPvoWJqQ2XVYy9k9wXfZT03MIIxS3nDdTs6GESTIaPMRpB/0jGd38HkkhdMb1VtTHHtzHEz9QLCJvezAcEIWwn2B8giDtp2q2eM1E2pMHgZN1tMO3eKK48DlISM8QKJ6FBU52+5/OSjh2qB3fzTSjbSMYxaOvAm507xHeJnGCBY86tAZfKTVnRmsawKtAiiBVWP16/DEJ3NJL742sQQUH4WO/hT20qTNxFoguLWVjzrrhkwOGfyOP06BNH5nZ6UC8YMNXe2vbVVBM1A3ptSbk8puKeRYFAcz2wdDW0FH8BgV7gVD9YM+low7r8yGzDgK9iejrYycXEwlT7lKsi2eP14IWYquC+Oik9ZO4LCLmfJb6vCcNXmbzldMIrYs9XM0YW7YAoeHa+PG+dpupQnD2YvtjJQ1FQ1wLY7Z6RV1eurrci9swQbqqYO/rR1kU3JeVL6j/Sfoyk29irKraGuqaoD2NvLBFt9vb5vzxYHWRh0VKHm05bSIdxQ0OYmIpMjWdsa6onnrpEw5aMl2a1FF5Dl6wkTYe0+l5efttYknNn3aTnNWFoZGlC45AQF85vck7gKJ7rytj8GnK3yt+WnlSXG9O/TxAyHRDBwFwUpr2bN5UwmB7k1TTYFonfwCOHMfJwyRgh5GbcZ766Il4MsFqjOE+16i7eWbz+QD+KcPZKpcVkMnS+xWTlyUMDrLPaSavjYJJHMGeeTDpa90reQretlc1Mk/UIiKFTfkYo2i8vfSKS3wv4EYfC9y0YUhcK87dOKk4xP3FkRbvPCTJL4ZuIzPptDFg9VhFZLnHPVjcD3sLxVqrnnum8huHu4+OlEMq1Q2yH944pkJwGNkwOF7DuSlSEM5dWKP8xK0xyemVk84+37oHHWYZCvwTsLMc08zh+nK9r6XpSpWlOGfyIB5Zpn+Lq3/pehhyY6ika/UHM/ETP1SzR3KvrbmEQ+s5X6lqAw1GFaLaYrxgRHrgqFMffX8W1xN3hObYhDgMkEIXGDeh7bVfxj5KOd7Ig9EfFD5/6+U/A8eDynJ7R/TbsMScPmCecbYnEj7+y2lB/KyieusXkVs92cXW6mXK/mCIv9HyZemminIA96M0OvSf7w99P6FWwb1D3N6dnZqWaNuvFJaP0PB6SzSfqNPDkAAAAASUVORK5CYII=) |
 
 #### Modules
@@ -2088,7 +2081,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Dual laser |
 | Description | Fires a laser beam against up to two enemies within range. The damage the two beams apply will ramp up to higher stages in lockstep, while both beams stay locked to an active target. Damage will reset to the first stage when there are less than two enemy targets in range. |
 | Icon | Mod_DualLaser_Icon |
@@ -2112,7 +2105,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Ally shield |
 | Description | Absorbs hull damage taken by any Cerberus ship in the effect area. |
 | Icon | Mod_AreaShieldRed_Icon |
@@ -2262,10 +2255,9 @@ ___
 | Bot update interval | 5s |
 | Empire power | 150 |
 | Ships spawned | 6 |
-| PeriodSpawnType | CerberusSentinel |
+| CERBERUS_PERIOD_SPAWN_TYPE | CerberusSentinel |
 | Move radius | 160au |
-| AITeleportDelay | 8 |
-| Dark (RS) | 1 |
+| AI_TELEPORT_DELAY | 8 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABZVBMVEVMaXH///8ODg4CAQIGBgYCAgIMCw4AAAAICAgODw+SkpMEBAQREREXFxdfX2ALCwsDBAQBAQEJCAkAAABQUVLX1ddDREQ5OToDAwMAAAAAAAABAQEBAQEICAkEBAQAAAAkJSUPDxADAwMBAQEBAgIODg4lJSVAP0EAAAACAQIfHyAQERAvMDBIR0j09f/z9P/////y9P34+P/8/f/2+P/6+v/x8vz+/v/7/P/29v/4+v/9+//r6vLg4Oi3trvCwMa/wMTz8/Xw7/nu7u6vrrHy8/r19P3Fxsrp6fDu7fVsbW6qqq319/7T0ta5ubzEw8iNjZDIyM3e3uKdnaCxsrbMzNG7vL/a2uFxcXSjo6a+vsXQz9O/v7+mpqm9vMHZ2d1+foCZmZuhoaTLys3m5un08PyVlZhmZmeEhIa1s7daWluKiYzj4ubp6eswMTH6+/z49vq5uMF4eHrU1dzm5u2rrLFJSkrKHvS4AAAAbnRSTlMA/RWuJjgPAwcK/jIby/4hK6K7if3+/f4/W21iU9Gqd+7hxJxH9tzvf5P7z+/w/////////////////////////////////////////////////////////////////////////////////////uJtN/gAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAukSURBVFjDfZgHV+JcEIY3gDRdEEVQsLdV1yU3DRI6IdTQOyK9F5W1/f7vhr64+93j8WjgydyZuTPzJt++zZZCcnizC9fJoVr+bbGkmwbh4q5hQyT7trZkIuP1a6/2WijcH4oWV+XqXV2tUOslBsebinVEsS3mkRcE/rzubi1uqNg8jwtXkZcfxi9mpJfXjgjLsiGkeCyRf71a2FWvIyKDFsciJO5H3OfLPYgOfrVxBifNSGZnfWdyyUUC8fuC9iD7dH0pXThoUIGg3W73463rQ+maK/vnScRXjlVcXPPXwdx/2dbuMPtRqWTKuG1g2FrdmUy+ZbwPIckP4LdUmyqDaGH7uNEMWnCqkUKUmk2pXLYMsOTyoobQDQdupvJviV2JQiaTy2Uy6f5ONhlkzESSR95+GjfUUtmc2Nd8P2sipbIFQ+l8syY2bqvVW1tq9cbJkdttx1GTr+4gVEffdzel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) |
 
 #### Modules
@@ -2299,7 +2291,6 @@ ___
 | Maximum speed (WS) | 101 AU |
 | Bot update interval | 6s |
 | Empire power | 1 |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAACT1BMVEVMaXEAAAAIBwcAAAAAAAAAAAAHBgcAAAAAAAAAAAACAgIAAAAGBQUHBgcGBQYCAwMDAwMBAQEGBQYCAgIAAAAEBAQBAQEAAAAAAQABAQEHBgcFBAUBAQEAAAAAAQAFBgWQj5ACAgMAAAADAwQBAQE3ODwBAQFlZGcDAwMEBASGh4wBAQJ3d3lSUVMpKSn49/sAAAB0c3YLCwwEBQQGBgYZGBj4+/8lJSZEREhXWFg4NzikpqlWVVcbHR4aGhoODQ0NDQ2rrbF/fH8dHR0sLSwxMTLFxcUVFRU1NTnNzc0BAgIpKCkfHyNoaGx8fX9HSEkFBAYEBANKSkwTEhIDAwN3dnhubHG4tbgzMTYhICN0dHdoaGksLC03Nzc3NjZRUVJNTE6Ojo9BQUKbn6FKSUqfn6VgX2KamJpWVVeTk5QaGBiTk5dEREdFRUWIiIwQDhAbGSBaXFpfX2EsLS34+P////9eXV/7+//S09Xw8viSlZmOkJbj5OeXlZicnKCKiYuKjJCfn6KSkZTa293r6/Foamx7fH7u7/SIiIj++/7Cw8f08/Tz9fjIycv29v6ztbiBf4SnpqvX19m6ur3y8fKBhIjw7vjQztCgoqXk4eS/vcDz9/vo5urExcvu7u+vsLVZV1q6vcL18/2GhIfg4eWura6zsbT9/f/d3eTg3uFvb3DNztT29/aLjZPT09rm5ufm6O2NjI1EQ0jKy9GYmJu5ubq1t7xlZWfS0Nnr7/PBwsJ9f4HW2N5tbnRiYGLr6uv6+P3Cv8Pz8/ujoaOTlZIONnJmAAAAv3RSTlMAAj0VCwMyBAEIGw8oOUERhBhFSF8tS3ZVKh4lXGhQNf5wbCJ9xljnIJb+eP7g9P5j/qylkJ3+5cnkzfvPxa2kuf3quty3/o/+/pzCpvb13rzIyoGM8On+8t/g1s6s2+v+8tHv1PTU9+33iOzruOTG9+T15/////////////////////////////////////////////////////////////////////////////////////////7///7//////mC3TyoAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAa0SURBVEjHfZb1VxtZFMcnM5OxjMTdE9yhUKB4ga0rFeq27mcj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) |
 
 #### Modules
@@ -2308,7 +2299,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Battery |
 | Description | A single-target weapon that does constant damage to its target. |
 | Icon | Mod_Battery_Icon |
@@ -2334,7 +2325,6 @@ ___
 | Bot update interval | 20s |
 | Empire power | 50 |
 | EMP resistance | 90% |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2368,7 +2358,6 @@ ___
 | Ship spawn | Hydraling2 |
 | A number of spawn ships after destroy | 2 |
 | EMP resistance | 90% |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2377,7 +2366,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Hydra barrage |
 | Description | A strong battery that does additional damage to its single target when there are more enemy ships in the sector. |
 | Icon | Mod_Barrage_Icon |
@@ -2403,7 +2392,6 @@ ___
 | Ship spawn | Hydraling1 |
 | A number of spawn ships after destroy | 2 |
 | EMP resistance | 90% |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2412,7 +2400,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 3 |
+| lvl | 3 |
 | Name | Hydra barrage |
 | Description | A strong battery that does additional damage to its single target when there are more enemy ships in the sector. |
 | Icon | Mod_Barrage_Icon |
@@ -2435,7 +2423,6 @@ ___
 | Maximum speed (WS) | 4 AU |
 | Empire power | 100 |
 | Move radius | 160au |
-| Dark (RS) | 1 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAACtVBMVEVMaXEBAQEKCwoAAAD///8GBgYCAAIZHRkEBwT4+PgAAACwr7HV09wRERH29/wCAgICAgIFBATg4OEAAADv8fUAAAAAAAD3+f8HBgcBAAM+Pz4AAADr6/HY2N0BAQAtLS4iIiMEAwMHBwcRERDf3+fZ3OGbm6AAAADo6PCqq6wCAgICAQIBAQHz8voAAAA+QD8fIR8AAQANDA0BAQEAAQAVFRU2NzcJCQlWVleNjI/n5uzw8fFbW1wAAAAZGBkMDAwmJibn5+ckJCVUVFZycnUCAgJPUFCFh4j///8UFBTZ2t4AAABCQUMCAgIbGxsvLTA0NjQLDAr6//8YGhgrKy8hICLNz849Pj8oKCmUkpYXGBgBAQEtLS4fIR/Dwsh5eXw1NDckJCUvMTBERUU/P0EgICAcHBwiJCRAP0GhoqFeXV9jZGV+gYIeHx0LDAw8Pj99fH8gISBNT09nZ2cvLS4gISE3NzYtLS5zdXlubW+Hio0dGxtjYmRgYGROT1F4eH1RUlQhICEaGhr19v/4+P/z9P7///+BgIL5+v/7+//6+P/y8/z39f/9/v/w8fjMzdRvbnCztbbr6/T29ffZ2dqKiIzz9fr39//V192Qj5TR0djKzNClpqlhZGPx8fLU1NXV1dnHxsy7vMLv7fbGyc3Y1+CdnqE2Nza/v8RKS03d3uPi5Onh4Obz8/Pe3t65urnCw8WCg4eGhorR0NX19f2sq7HAwse3tbegoKRDREPHxsezt7nr6uulo6Z3dnjj4+XDxcrt6/SnqK3u7vJfYGLy8vbMytFlZWe+vMGTk5W2trvR09bAwMCWl5qzsrOVlZt6e3y5ur+6uLujo6bQztDq7fHExMOMjJCZmJzKyc29vb3X19ju6+7S1Nppamt9fn7f3+isrq4vLi+DhIVsam1HRkj4/PqkPYx9AAAA1HRSTlMARZ1A/QMJAQIBBv78vv9jUIb+L/4rXP5uFv0j/v4785+LDdb9/v4d/v4RsSn8ephrj8lLccrGa+b7/v38NrOm7f6W/v6Vw/D6kv1W4DS7tvez/uP87f3B5PTwgafa/ejr99j38+brfdL00sn437+w28Xx++jSoN/J7diD6rSq8suqav/////////////////////+/////v/////+///////////////////+//////////////////////////////////7//////////////////jw4z2YAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAaKSURBVEjHfdb3X1pXGwDwg1y8F3ExNG7i3raODHd2TEwzm73TdLzt292+e30+916GKENFZkAh4sYBjhhX3Bo1jsYYoxlN0r/jPUCGFOz9ics5X57zPJwFwMYHA+wDX33vB9C378ztf/s2+N2r64OhdLDHXDTh8aYPCjwz5EXTQQDDMPcChUECrvJSR98TLx9+Ee/LJPjJXSAUBZl+tH+OpyZAQn9PKkSdgUlBH7kxcEx+f74a8Z1Fqb7lRKqVkn9T2ndSXQ0Kxcl/7H/xXOjtRNpjhI3n089rj7gYKA7qu/51ZF0kcib8GNxY/9e8uJnfx4G1ORCumcxeaRK4EJJonJ2o13dvffPtBvIY6dffF+NWZ9IRU0qErScyENlfXMj2h4i2epCwOgiKYhhqI7OssdTSJg0DsbhG2V6+RSMmqqylNoLZW+l0T58pVgsrQRj2C7LullSLcBK/570vHdCxqJTQKBqgfaNSP8wxEuVKROKOKJRinFSMPTrHTkkr+GLnzi8Kg4L9ubMckRU3eiNqF0I7K7aOi0iyYv4bysVr7cMSIlW9JL3hlxm9gohwowSp3OpcZBqg7Bp6aCkRIe3J+UcHFmI43qIEb0744sT+/OglRFRaU9UTHQCwjXOe8mndS20zgfRkRGyTe98jBLWl5bXC0oQr8x7UCwvCshqTtG7bBgNjfPq6p+xKD1J7mlLYMV6lECmUkChEhFHyKiuwzlj6QN/HD3lvoDj9msGzCqdjpGn+eyVGBYkTtYry2hJSRORMXvuoUHV4qKJvMPvONrbDwFF91iDjWUl8pO0c++hSUwmJ40S4neAiQWN7JLXBYtT1VZuz70SzbTWA4kLInLCvisTHtAX5P4xzcIUCPxmuCIsVkjhpDbt7I+XyHEc3aGEsD4TAGthWYmRIYgUrV2FVpPKZgdJGklRsEY5Y8IrH8FdwUlSdRy1YqcplVcep4vbVwVVtIwO728w6cZMgVZqWNZUDR0UI6nukA51DAhgGZ0n9PeSKNb25s6PjwR0HSeebZ/pa1iQC6760i7NhhEJQNmJouH5BWiNWkCTePBDo8WhL34y5VSXvtxOAJb/85Yyu5Z5EOPaMmcXPsRHd5FGq/xGJmCBJUezT4oIp37XVyjMrHYyGdBuJPyW3PNG1lGuEqaZCv4lq6xYBL3fxQwA+uG2F4xJrfsj8+YU4t1tf2d8u27stChaZev2RhgVJjXDMdJlyrZdDCMo4dx1EQZbkdH6feVxWtdZ9v5LR3n3rVDwkmb/K29oqfBOGysKXQjI9VIeFvu8ILLI3rMlThlI3d9/MGJiT7gqAxP9X/sj91pF7XbyFH03MfK6hWVgy4iAiEREu+zq0YO7HrjFG5eN+k/aVg3zM393S2DVUz2N8knCTysy70sR7E8WXCJ9+HRj4dP3mui6xdbVN9WB0VwoklI+fsXZXiW/HQIL0+sQXjhoON8nsxKi+25DG/okzeFPz2/Lq7hlV+x2ujVC5s4uDa75lcc2LME1Tckp6iGmo10aaDarjWfk/j4eZji/3LjU96ZavyL+2pR/wWX2XvqXCGKdevP5qnrFwLKk4Y+++HQDsefmJT0TAkUltxwRXY1BV6vv5luEMW5GDo4cTWlvGyjuVDO4TJHHqQRBI8o/Mh0lepEaBS8PZ07xubr3apB+fknPmT9gn/4lHSOe0Yai+cfWnq1rfHPlRr7cbAx3E3+ixNsftvKmOnZbdVRlOTqQ7puUtZNVQExte9ORQaOaxx7wDXoCGwWWBYjQQ/x1vySMi5duyolhvvUz5cK+fnRQ3CAyTmpiu2//NB3TPS+avPN/uJRgIPbjMhMGK47oktepOZSWXbSeh5563TdbkfLmD4oXSQOilz2nv96qkPXui4EpP8k87+FyTaE6E2dtONDR5eGhBXfO5PYNNTlI6+I/kjPbMPNO++DHgNxpbwzvIBjTHcYY6HW72Vxg9sOe31t6QCDtBQfDl2wmWQ+gfnNWwKers4OFhHy9HJwxclIb3H3Lecl2I57EXbQ3FbzYyFMRHzyHnKYD2RyRIVsFP3lDLwIYw3/8FA2zTSwSI+LtumRvxrgcK6MkdRZqtXptlA9M9Wxk7ytzQDm8Vp2aKug95ujfw7zm2nDuV4XSZgYWuY/GyI9wPDbYm5spOU51bUbA/D/kT1T1BwY7W6rqs3zXCIiY/24xgYIc2j4m6Xi+iTtRRNiV1kW7mEgaC97Pdp48B/8gN1fw/NA13yyMKICMAAAAASUVORK5CYII=) |
 
 #### Modules
@@ -2444,12 +2431,12 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Dart barrage |
 | Description | Regularly fires a fast Dart missile against all enemy ships in range. |
 | Icon | Mod_DartBarrage_Icon |
 | Type | Passive |
-| NumProjectiles | 2 |
+| Number of projectiles | 2 |
 | Cooldown | 5s |
 | Effect range | 250au |
 | Max targets | 16 |
@@ -2510,16 +2497,13 @@ ___
 | Name | Quantum interceptor |
 | Description | A fast, strong Cerberus ship that can simultaneously fire against multiple player ships. Lethal against non-combat ships, which must be kept at a safe distance from Interceptors.<br>Interceptors randomly patrol strategic locations in the star system and can move between multiple sectors. |
 | Portrait | portrait_Interceptor |
-| Type of additional new slot | + Weapon |
-| Production cost | 0 |
 | Hull strength | 12 000 |
 | Maximum speed (YS) | 40 AU |
 | Maximum speed (RS) | 40 AU |
 | Maximum speed (BS) | 40 AU |
 | Maximum speed (WS) | 240 AU |
 | Bot update interval | 2s |
-| BaseCerbShipDataIdx | 6 |
-| QSDirectInfluence | 1 |
+| Awarded empire power | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2543,8 +2527,6 @@ ___
 | Name | Quantum guardian |
 | Description | A strong ship that Cerberus often use to provide cover for Sentinels. Quantum Sentinels are invulnerable to all damage while there are any Quantum Guardians in their sector. |
 | Portrait | portrait_Guardian |
-| Type of additional new slot | + Weapon |
-| Production cost | 0 |
 | Hull strength | 25 000 |
 | Maximum speed (YS) | 17 AU |
 | Maximum speed (RS) | 14 AU |
@@ -2552,8 +2534,7 @@ ___
 | Maximum speed (WS) | 43 AU |
 | Bot update interval | 8s |
 | Empire power | 20 |
-| BaseCerbShipDataIdx | 4 |
-| QSDirectInfluence | 1 |
+| Awarded empire power | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2562,7 +2543,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Weak battery |
 | Description | Carried by all newly constructed Battleships, this battery is the weakest weapon available. Replace as soon as possible with another stronger weapon. |
 | Icon | Mod_Battery_Icon |
@@ -2577,8 +2558,6 @@ ___
 | Name | Quantum sentinel |
 | Description | Quantum Sentinels have weak hulls but are equipped with a very powerful Battery. They are invulnerable to all damage while there are any Quantum Guardians in their sector. |
 | Portrait | portrait_Sentinel |
-| Type of additional new slot | + Weapon |
-| Production cost | 0 |
 | Hull strength | 2 500 |
 | Maximum speed (YS) | 15 AU |
 | Maximum speed (RS) | 13 AU |
@@ -2586,9 +2565,7 @@ ___
 | Maximum speed (WS) | 39 AU |
 | Bot update interval | 14s |
 | Empire power | 10 |
-| BaseCerbShipDataIdx | 3 |
-| StealthCoverShip | QuantumGuardian |
-| QSDirectInfluence | 1 |
+| Awarded empire power | 1 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAABlVBMVEVMaXFZX2YAAAB4enoCAgIKDAoqLSoAAAAtLi4FBQYAAAD///8AAAAZGRloaGoAAABxcHMWFRYAAAAiJCIMDQwmJycAAACZmZoCAgIKCgoWFhZTUFUDAwMqKivY2dsCAgIAAAAEBARgYGQ3ODhLTE0AAAAICAgEAwQLCAtMTE4nJicBAQE3OTcAAAASExMcHBwAAAD29veTlZcgHx9AQkECAwMkIiMLCwsYGBgsLiwAAABYXFsODg5nZmtzdHQODg7////09f/7/P/+/v/x8vz4+v/09f7z9P2BgYR4d3lbXF2Li45lZWaJiYv7+v/o6Ot6enzZ29/19/7k5OU6OTrx8vZeXV+OjY+vrrCRkJOFhIfNztTw8Pp0dXbz9Prj4+knJyerqatHR0fFxchUVVW3trpta26qq69+fX6Xl5ejpKhZWFrS0dOfn6HKzM7t7fTIyM26ubz59/6op6i9vcHd3uKxsLQ8PT3q6fEtLCyioaO0sribnJ8zNDO/wsTg4eNBQkHU1ddQUVHu7O9OTE739fo1NjdrAeErAAAAfXRSTlMAAyX4GaoFAQkeMf14Df5z/sR8wcXwav4iurT+KfD+Yz6S/Njhls2uE/vQRvY6xcSI/v7+9lH2tf3zivDm8/eh///////////////////////////////////////////////////////+/////////////////////v///ncPkEoAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAQ2SURBVEjHndXnV+pYEADwgD56szzABQEp9mdvr4+EGGooSu9FenvSRFTsf/cmlg+7S4Czc/jAPSe/M3dyZ24Q5B/BkYtXdQtchE0t2Ah3QbcqlnOQIcFRGrRxr473sebpvHGtQTnEMLgLIuBjeg3jfa3RY3zQLnAZtEQo7t46w6h+7YOs6dHw5fWRWEgD2Mjkkr2+IoGf6vdHhOqfIFFc33yafCtuEPkkOf88Ab053msaBm/uHCY++8+GEsuf+Qk4WZGyEDYbYUl9ABNfg6MImeVSIeZQhCPOGmFi3j8Gifk+iAvGJIRd8EYE5nEIVf7F/yCiaSGLwWYJp0MoSWxjEMxuUK8JhRq14TXLaPILqjc/jg4nl3/v/uiU4de844WWIAh3ydE/KDw+JVayU0zuYfZh98m7c9DMLHHpWoz1ZbaKtb2SrkvlnJFz/3K3bF1fvFfLzX5h0XQ+b8lmPIFQIgD801fCR5s3Lnh2ipZ4AxuT7CjbtheaiSTE3gkRgWoiB62c9b3r/lU7R2Dvq5xEyQ8xzzsx4hEIpjy3tusSdVL/3dd03l2thVNOwoNRRE4R/OI51aybZfbpQZPJmXa1yhB0AY5hH7XgxybwO7x+mZWG5Pv3YG6DB7vg92eYFDkhSTMKlQINEYROVZCvkoTgP67uazZbJMGNKguaLFgFgwhLYO6rIFSniJFILW58rWGeY5zouyBQKAkGZ3E476HQJInxgjCLLJIYThK0boMrGU0W9V5TheYKcIIRKDym006UIDcGuSQhC66rB54/d2s9jQaeyCzQqqMAEHYTOA72wKV/b4tLc/F923Oe39UhArmHuAf3aovk3/LNeXr9G93lx+BtlK+iRScGPbPZS1zne4B7G/ZgcJbHoLv6mJtlWTZs3oa2I1Ss5B1twIK39qhjk0k7YsqpasVqjGYv/wTz3cSO7ZzIRr0Zi39KSTtizI10xYeVfQpJ4DmdJgKi1IM7knH5p5i017h8LiDzXYQlrlISjEZIZqzR01pGkj+U05Jl8bpPa+ydFQsNiEQg6Q+epWPWpwPx8rDvy66PcNjLgQaYTNCoOBKOWCkx7PtCTv+iNuIKVVJJiiTv7J1orbRIN/lvoZz1RVwWkSNAkUDo4cZ1WSLf17Bgzlpjjrte9IoiV9HckTmSGfK+3sm2pGi5i2M4jsU7LpmlNgaJB4tnLcCPySZ2d/y2+CiiJLOYX64hckxGBCq7oUfr0FrY5GGe7bwk7lGcIjh6n+jYOuRBsocg4f5it6EIwxuBsKLSXdwXDt0YItTMOEVtMFHEBG1RfEYzQpBXgNTc8AFuwskf+BpmKWeUIOds070SAhTDUAituDd5jJEEEUq/n6ZE4VotnE2dfpcKRwuEMbklcloUdrtC4sxuTY6RhOxNrlQXvO330zadlMtCxgrW8pphVa9fNawtDxJ/A+pSIYxy014kAAAAAElFTkSuQmCC) |
 
 #### Modules
@@ -2597,7 +2574,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 3 |
+| lvl | 3 |
 | Name | Battery |
 | Description | A single-target weapon that does constant damage to its target. |
 | Icon | Mod_Battery_Icon |
@@ -2615,8 +2592,6 @@ ___
 | Name | Quantum colossus |
 | Description | A massive Cerberus ship that requires a lot of firepower and coordination to bring down.<br>This ship will always stay within its assigned sector. |
 | Portrait | portrait_CerberusColossus |
-| Type of additional new slot | + Weapon, + Combat |
-| Production cost | 0 |
 | Hull strength | 30 000 |
 | Maximum speed (YS) | 18 AU |
 | Maximum speed (RS) | 15 AU |
@@ -2624,8 +2599,7 @@ ___
 | Maximum speed (WS) | 47 AU |
 | Bot update interval | 10s |
 | Empire power | 100 |
-| BaseCerbShipDataIdx | 5 |
-| QSDirectInfluence | 2 |
+| Awarded empire power | 2 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABvFBMVEVMaXEFBQULCwsBAAEAAAD///8AAAAHBwcmJCYXFxcCAgICAgInKicDAwMAAAAKCQkdHB0AAAANDQ5RUVIDBAMJCAkYFhgPDw8BAQFUVFUDAwQBAAFBQUI4ODkJCQkCAQIMDAwBAQEfHyBNT007OzsCAgIBAQEGBgYCAgIHBwcpKCkBAQEUFRUCAgIUExQCAQIGBQYiISIAAAATFBMrKiwEBAQyMzMbHBz09f/////z9P7z8/329/9LS0zz8/uTkpPg4edISUj5+v9PT0/w8fr4+P+Kio39/f9YWFn7/P/Jys3LzNDj4+rn5+9ERESdnaCjo6eEhIaqq660s7fv7/b29f/7+v+OjY7d3N2+vsFcXF1gYWHp6vDR0tfY2OBAQECxsbSampzv7/Dc3OKurrL29f319fyQkJH9+/+6ub+WlpplZmenp6uOj5TAwsXDw8fs7PRqa2uHh4l2dnfo6enj4+T4+PzV1dj49v+AgIIxMTHZ2dqUlJY9PTzFxsm4t7pwcHLm5efy8fX3+Pj09PbR0NHX193f4eTOztWgoKTt7O96eny1uLrq6+v1+P7f3uYFBQV8fIAfHx/Z3OArb+mlAAAAe3RSTlMAGvDKWv5dBQP3LDf0sX4T6KUN/ePcCNRt/UBI9P7LdOu/3/3wuk7TZCL8VPyV6Zz3/Ivv6cXzy/////////////////////////////////////////////////////////////////////////////////////////5oQQypAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAMeklEQVRYw4XYZ0MaSxcA4Cu4wWBAEFCsYO8lmuRlWFhhadKrdKR3kCYiiIoFVDSW+IffXbDG5N754gd59uyZOTvtn3/et645DnF9abCTurZGXRhcWh/lzHX986+tj7y0OCBmEr84a7nNL0Sm93Bxidz3b6K3m7Lo0rt+VS/2FLG9C+OikCFepHT3/l10LBB/OW35aj0WkfL5UkHYkBwQT3wlLnT8BZDmOMyK5DplKFlhfqttIfrEtXeiwuTMkf6cxhrhUFxTl44QHp/XajCq2dAYxOJDwtqfEurtpi+KdTURODrYfxI8Ph9cxYEnqRMv0j8m1LPw/ZdQZ8zG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) |
 
 #### Modules
@@ -2634,7 +2608,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Laser |
 | Description | A single-target weapon that fires a laser beam against the enemy. The beam starts out weak, but will move to higher stages of damage the longer it stays locked to the same target. Damage will reset to the first stage when the weapon switches targets. |
 | Icon | Mod_Laser_Icon |
@@ -2668,19 +2642,15 @@ ___
 | Name | Quantum destroyer |
 | Description | These mysterious Cerberus ships are known to jump in Red Stars and destroy entire planets with their powerful beams. When the Destroyer is defeated or a planet destroyed, Area damage will be applied to all nearby player ships. |
 | Portrait | portrait_CerberusDestroyer |
-| Type of additional new slot | + Weapon, + Combat |
-| Production cost | 0 |
 | Hull strength | 11 000 |
 | Maximum speed (YS) | 14 AU |
 | Maximum speed (RS) | 11 AU |
 | Maximum speed (BS) | 9 AU |
 | Maximum speed (WS) | 35 AU |
 | Destroying planet | 55 550 |
-| APPLY_MODULE_ON_DOCKED_OBJECT_DESTROY | Yes |
 | Bot update interval | 20s |
 | Empire power | 60 |
-| BaseCerbShipDataIdx | 7 |
-| QSDirectInfluence | 2 |
+| Awarded empire power | 2 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2703,7 +2673,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Destroyer vengeance |
 | Description | When the Destroyer is defeated or a planet destroyed, Area damage will be applied to all nearby player ships. |
 | Icon | Mod_Vengeance_Icon |
@@ -2718,8 +2688,6 @@ ___
 | Name | Quantum bomber |
 | Description | A strong ship that regularly fires one rocket towards each participating player that has ships in the bomber's sector or any adjacent sectors. <br>This ship will always stay within its assigned sector, but the Rockets can be fired on approaching ships in adjacent sectors. |
 | Portrait | portrait_CerberusBomber |
-| Type of additional new slot | + Weapon |
-| Production cost | 0 |
 | Hull strength | 60 000 |
 | Maximum speed (YS) | 18 AU |
 | Maximum speed (RS) | 15 AU |
@@ -2727,8 +2695,7 @@ ___
 | Maximum speed (WS) | 47 AU |
 | Bot update interval | 2s |
 | Empire power | 120 |
-| BaseCerbShipDataIdx | 13 |
-| QSDirectInfluence | 3 |
+| Awarded empire power | 3 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2737,12 +2704,12 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 3 |
+| lvl | 3 |
 | Name | Bomber rocket |
 | Description | Launches one Bomber Rocket towards each enemy player that has ships in the Bomber's sector or any adjacent sectors. Each Rocket travels towards the enemy player's closest ship. |
 | Icon | Mod_BomberRocket_Icon |
 | Type | Activated |
-| NumProjectiles | 3 |
+| Number of projectiles | 3 |
 | Cooldown | 24s |
 | Cooldown (WS) | 1m 36s |
 | Effect range | 400au |
@@ -2775,8 +2742,6 @@ ___
 | Name | Quantum phoenix |
 | Description | The Phoenix protects nearby Cerberus ships with its Ally Shield. Once destroyed, it will spawn a small number of Sentinels.<br>This ship will always stay within its assigned sector. |
 | Portrait | portrait_CerberusPhoenix |
-| Type of additional new slot | + Weapon, + Shield |
-| Production cost | 0 |
 | Hull strength | 50 000 |
 | Maximum speed (YS) | 14 AU |
 | Maximum speed (RS) | 11 AU |
@@ -2786,10 +2751,7 @@ ___
 | Empire power | 120 |
 | Ship spawn | QuantumSentinel |
 | A number of spawn ships after destroy | 5 |
-| OnDestroySpawnMinRadius | 300 |
-| OnDestroySpawnMaxRadius | 600 |
-| BaseCerbShipDataIdx | 8 |
-| QSDirectInfluence | 4 |
+| Awarded empire power | 4 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2798,7 +2760,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Dual laser |
 | Description | Fires a laser beam against up to two enemies within range. The damage the two beams apply will ramp up to higher stages in lockstep, while both beams stay locked to an active target. Damage will reset to the first stage when there are less than two enemy targets in range. |
 | Icon | Mod_DualLaser_Icon |
@@ -2822,7 +2784,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Ally shield |
 | Description | Absorbs hull damage taken by any Cerberus ship in the effect area. |
 | Icon | Mod_AreaShieldRed_Icon |
@@ -2851,8 +2813,7 @@ ___
 | Bot update interval | 20s |
 | Empire power | 50 |
 | EMP resistance | 90% |
-| BaseCerbShipDataIdx | 18 |
-| QSDirectInfluence | 1 |
+| Awarded empire power | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2886,8 +2847,7 @@ ___
 | Ship spawn | QuantumHydraling2 |
 | A number of spawn ships after destroy | 2 |
 | EMP resistance | 90% |
-| BaseCerbShipDataIdx | 19 |
-| QSDirectInfluence | 1 |
+| Awarded empire power | 1 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2896,7 +2856,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 2 |
+| lvl | 2 |
 | Name | Hydra barrage |
 | Description | A strong battery that does additional damage to its single target when there are more enemy ships in the sector. |
 | Icon | Mod_Barrage_Icon |
@@ -2912,8 +2872,6 @@ ___
 | Name | Quantum hydra |
 | Description | A massive, strong ship, equipped with a powerful Barrage that does significantly more damage when there are more player ships in its sector. When it runs out of hitpoints, it will split into two smaller, weaker Hydras. The smaller versions will themselves turn into two tiny Hydras when destroyed. |
 | Portrait | portrait_CerberusHydra |
-| Type of additional new slot | + Weapon |
-| Production cost | 0 |
 | Hull strength | 66 000 |
 | Maximum speed (YS) | 24 AU |
 | Maximum speed (RS) | 20 AU |
@@ -2923,11 +2881,8 @@ ___
 | Empire power | 100 |
 | Ship spawn | QuantumHydraling1 |
 | A number of spawn ships after destroy | 2 |
-| OnDestroySpawnMinRadius | 300 |
-| OnDestroySpawnMaxRadius | 600 |
 | EMP resistance | 90% |
-| BaseCerbShipDataIdx | 20 |
-| QSDirectInfluence | 2 |
+| Awarded empire power | 2 |
 | icons | ![icon](data:image/png;base64,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) |
 
 #### Modules
@@ -2936,7 +2891,7 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 3 |
+| lvl | 3 |
 | Name | Hydra barrage |
 | Description | A strong battery that does additional damage to its single target when there are more enemy ships in the sector. |
 | Icon | Mod_Barrage_Icon |
@@ -2952,8 +2907,6 @@ ___
 | Name | Quantum storm |
 | Description | This ship always follows a circular path within its sector. It is equipped with a powerful long range weapon that regularly launches fast Dart missiles against all enemy ships in range. |
 | Portrait | portrait_CerberusStorm |
-| Type of additional new slot | + Weapon |
-| Production cost | 0 |
 | Hull strength | 33 000 |
 | Maximum speed (YS) | 1 AU |
 | Maximum speed (RS) | 1 AU |
@@ -2961,8 +2914,7 @@ ___
 | Maximum speed (WS) | 4 AU |
 | Empire power | 100 |
 | Move radius | 240au |
-| BaseCerbShipDataIdx | 15 |
-| QSDirectInfluence | 1 |
+| Awarded empire power | 1 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAACtVBMVEVMaXEBAQEKCwoAAAD///8GBgYCAAIZHRkEBwT4+PgAAACwr7HV09wRERH29/wCAgICAgIFBATg4OEAAADv8fUAAAAAAAD3+f8HBgcBAAM+Pz4AAADr6/HY2N0BAQAtLS4iIiMEAwMHBwcRERDf3+fZ3OGbm6AAAADo6PCqq6wCAgICAQIBAQHz8voAAAA+QD8fIR8AAQANDA0BAQEAAQAVFRU2NzcJCQlWVleNjI/n5uzw8fFbW1wAAAAZGBkMDAwmJibn5+ckJCVUVFZycnUCAgJPUFCFh4j///8UFBTZ2t4AAABCQUMCAgIbGxsvLTA0NjQLDAr6//8YGhgrKy8hICLNz849Pj8oKCmUkpYXGBgBAQEtLS4fIR/Dwsh5eXw1NDckJCUvMTBERUU/P0EgICAcHBwiJCRAP0GhoqFeXV9jZGV+gYIeHx0LDAw8Pj99fH8gISBNT09nZ2cvLS4gISE3NzYtLS5zdXlubW+Hio0dGxtjYmRgYGROT1F4eH1RUlQhICEaGhr19v/4+P/z9P7///+BgIL5+v/7+//6+P/y8/z39f/9/v/w8fjMzdRvbnCztbbr6/T29ffZ2dqKiIzz9fr39//V192Qj5TR0djKzNClpqlhZGPx8fLU1NXV1dnHxsy7vMLv7fbGyc3Y1+CdnqE2Nza/v8RKS03d3uPi5Onh4Obz8/Pe3t65urnCw8WCg4eGhorR0NX19f2sq7HAwse3tbegoKRDREPHxsezt7nr6uulo6Z3dnjj4+XDxcrt6/SnqK3u7vJfYGLy8vbMytFlZWe+vMGTk5W2trvR09bAwMCWl5qzsrOVlZt6e3y5ur+6uLujo6bQztDq7fHExMOMjJCZmJzKyc29vb3X19ju6+7S1Nppamt9fn7f3+isrq4vLi+DhIVsam1HRkj4/PqkPYx9AAAA1HRSTlMARZ1A/QMJAQIBBv78vv9jUIb+L/4rXP5uFv0j/v4785+LDdb9/v4d/v4RsSn8ephrj8lLccrGa+b7/v38NrOm7f6W/v6Vw/D6kv1W4DS7tvez/uP87f3B5PTwgafa/ejr99j38+brfdL00sn437+w28Xx++jSoN/J7diD6rSq8suqav/////////////////////+/////v/////+///////////////////+//////////////////////////////////7//////////////////jw4z2YAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAaKSURBVEjHfdb3X1pXGwDwg1y8F3ExNG7i3raODHd2TEwzm73TdLzt292+e30+916GKENFZkAh4sYBjhhX3Bo1jsYYoxlN0r/jPUCGFOz9ics5X57zPJwFwMYHA+wDX33vB9C378ztf/s2+N2r64OhdLDHXDTh8aYPCjwz5EXTQQDDMPcChUECrvJSR98TLx9+Ee/LJPjJXSAUBZl+tH+OpyZAQn9PKkSdgUlBH7kxcEx+f74a8Z1Fqb7lRKqVkn9T2ndSXQ0Kxcl/7H/xXOjtRNpjhI3n089rj7gYKA7qu/51ZF0kcib8GNxY/9e8uJnfx4G1ORCumcxeaRK4EJJonJ2o13dvffPtBvIY6dffF+NWZ9IRU0qErScyENlfXMj2h4i2epCwOgiKYhhqI7OssdTSJg0DsbhG2V6+RSMmqqylNoLZW+l0T58pVgsrQRj2C7LullSLcBK/570vHdCxqJTQKBqgfaNSP8wxEuVKROKOKJRinFSMPTrHTkkr+GLnzi8Kg4L9ubMckRU3eiNqF0I7K7aOi0iyYv4bysVr7cMSIlW9JL3hlxm9gohwowSp3OpcZBqg7Bp6aCkRIe3J+UcHFmI43qIEb0744sT+/OglRFRaU9UTHQCwjXOe8mndS20zgfRkRGyTe98jBLWl5bXC0oQr8x7UCwvCshqTtG7bBgNjfPq6p+xKD1J7mlLYMV6lECmUkChEhFHyKiuwzlj6QN/HD3lvoDj9msGzCqdjpGn+eyVGBYkTtYry2hJSRORMXvuoUHV4qKJvMPvONrbDwFF91iDjWUl8pO0c++hSUwmJ40S4neAiQWN7JLXBYtT1VZuz70SzbTWA4kLInLCvisTHtAX5P4xzcIUCPxmuCIsVkjhpDbt7I+XyHEc3aGEsD4TAGthWYmRIYgUrV2FVpPKZgdJGklRsEY5Y8IrH8FdwUlSdRy1YqcplVcep4vbVwVVtIwO728w6cZMgVZqWNZUDR0UI6nukA51DAhgGZ0n9PeSKNb25s6PjwR0HSeebZ/pa1iQC6760i7NhhEJQNmJouH5BWiNWkCTePBDo8WhL34y5VSXvtxOAJb/85Yyu5Z5EOPaMmcXPsRHd5FGq/xGJmCBJUezT4oIp37XVyjMrHYyGdBuJPyW3PNG1lGuEqaZCv4lq6xYBL3fxQwA+uG2F4xJrfsj8+YU4t1tf2d8u27stChaZev2RhgVJjXDMdJlyrZdDCMo4dx1EQZbkdH6feVxWtdZ9v5LR3n3rVDwkmb/K29oqfBOGysKXQjI9VIeFvu8ILLI3rMlThlI3d9/MGJiT7gqAxP9X/sj91pF7XbyFH03MfK6hWVgy4iAiEREu+zq0YO7HrjFG5eN+k/aVg3zM393S2DVUz2N8knCTysy70sR7E8WXCJ9+HRj4dP3mui6xdbVN9WB0VwoklI+fsXZXiW/HQIL0+sQXjhoON8nsxKi+25DG/okzeFPz2/Lq7hlV+x2ujVC5s4uDa75lcc2LME1Tckp6iGmo10aaDarjWfk/j4eZji/3LjU96ZavyL+2pR/wWX2XvqXCGKdevP5qnrFwLKk4Y+++HQDsefmJT0TAkUltxwRXY1BV6vv5luEMW5GDo4cTWlvGyjuVDO4TJHHqQRBI8o/Mh0lepEaBS8PZ07xubr3apB+fknPmT9gn/4lHSOe0Yai+cfWnq1rfHPlRr7cbAx3E3+ixNsftvKmOnZbdVRlOTqQ7puUtZNVQExte9ORQaOaxx7wDXoCGwWWBYjQQ/x1vySMi5duyolhvvUz5cK+fnRQ3CAyTmpiu2//NB3TPS+avPN/uJRgIPbjMhMGK47oktepOZSWXbSeh5563TdbkfLmD4oXSQOilz2nv96qkPXui4EpP8k87+FyTaE6E2dtONDR5eGhBXfO5PYNNTlI6+I/kjPbMPNO++DHgNxpbwzvIBjTHcYY6HW72Vxg9sOe31t6QCDtBQfDl2wmWQ+gfnNWwKers4OFhHy9HJwxclIb3H3Lecl2I57EXbQ3FbzYyFMRHzyHnKYD2RyRIVsFP3lDLwIYw3/8FA2zTSwSI+LtumRvxrgcK6MkdRZqtXptlA9M9Wxk7ytzQDm8Vp2aKug95ujfw7zm2nDuV4XSZgYWuY/GyI9wPDbYm5spOU51bUbA/D/kT1T1BwY7W6rqs3zXCIiY/24xgYIc2j4m6Xi+iTtRRNiV1kW7mEgaC97Pdp48B/8gN1fw/NA13yyMKICMAAAAASUVORK5CYII=) |
 
 #### Modules
@@ -2971,12 +2923,12 @@ ___
 
 | Field | Value |
 | --- | --- |
-| level | 3 |
+| lvl | 3 |
 | Name | Dart barrage |
 | Description | Regularly fires a fast Dart missile against all enemy ships in range. |
 | Icon | Mod_DartBarrage_Icon |
 | Type | Passive |
-| NumProjectiles | 1 |
+| Number of projectiles | 1 |
 | Cooldown | 5s |
 | Effect range | 325au |
 | Max targets | 16 |
@@ -3006,8 +2958,6 @@ ___
 | Name | Quantum carrier |
 | Description | The Carrier constantly spawns Sentinels while there are hostile ships in its sector. It can strategically Teleport to stay in the heat of combat. |
 | Portrait | portrait_CerberusCarrier |
-| Type of additional new slot | + Weapon, + Combat |
-| Production cost | 0 |
 | Hull strength | 100 000 |
 | Maximum speed (YS) | 15 AU |
 | Maximum speed (RS) | 13 AU |
@@ -3016,10 +2966,9 @@ ___
 | Bot update interval | 5s |
 | Empire power | 150 |
 | Ships spawned | 1 |
-| PeriodSpawnType | QuantumSentinel |
-| AITeleportDelay | 8 |
-| BaseCerbShipDataIdx | 26 |
-| QSDirectInfluence | 5 |
+| CERBERUS_PERIOD_SPAWN_TYPE | QuantumSentinel |
+| AI_TELEPORT_DELAY | 8 |
+| Awarded empire power | 5 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABZVBMVEVMaXH///8ODg4CAQIGBgYCAgIMCw4AAAAICAgODw+SkpMEBAQREREXFxdfX2ALCwsDBAQBAQEJCAkAAABQUVLX1ddDREQ5OToDAwMAAAAAAAABAQEBAQEICAkEBAQAAAAkJSUPDxADAwMBAQEBAgIODg4lJSVAP0EAAAACAQIfHyAQERAvMDBIR0j09f/z9P/////y9P34+P/8/f/2+P/6+v/x8vz+/v/7/P/29v/4+v/9+//r6vLg4Oi3trvCwMa/wMTz8/Xw7/nu7u6vrrHy8/r19P3Fxsrp6fDu7fVsbW6qqq319/7T0ta5ubzEw8iNjZDIyM3e3uKdnaCxsrbMzNG7vL/a2uFxcXSjo6a+vsXQz9O/v7+mpqm9vMHZ2d1+foCZmZuhoaTLys3m5un08PyVlZhmZmeEhIa1s7daWluKiYzj4ubp6eswMTH6+/z49vq5uMF4eHrU1dzm5u2rrLFJSkrKHvS4AAAAbnRSTlMA/RWuJjgPAwcK/jIby/4hK6K7if3+/f4/W21iU9Gqd+7hxJxH9tzvf5P7z+/w/////////////////////////////////////////////////////////////////////////////////////uJtN/gAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAukSURBVFjDfZgHV+JcEIY3gDRdEEVQsLdV1yU3DRI6IdTQOyK9F5W1/f7vhr64+93j8WjgydyZuTPzJt++zZZCcnizC9fJoVr+bbGkmwbh4q5hQyT7trZkIuP1a6/2WijcH4oWV+XqXV2tUOslBsebinVEsS3mkRcE/rzubi1uqNg8jwtXkZcfxi9mpJfXjgjLsiGkeCyRf71a2FWvIyKDFsciJO5H3OfLPYgOfrVxBifNSGZnfWdyyUUC8fuC9iD7dH0pXThoUIGg3W73463rQ+maK/vnScRXjlVcXPPXwdx/2dbuMPtRqWTKuG1g2FrdmUy+ZbwPIckP4LdUmyqDaGH7uNEMWnCqkUKUmk2pXLYMsOTyoobQDQdupvJviV2JQiaTy2Uy6f5ONhlkzESSR95+GjfUUtmc2Nd8P2sipbIFQ+l8syY2bqvVW1tq9cbJkdttx1GTr+4gVEffdzel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) |
 
 #### Modules
@@ -3142,12 +3091,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 1 |
+| lvl | 1 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NumCustomWeapons | 1 |
+| NUM_WEAPONS_EQUIPPED | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3159,12 +3108,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 2 |
+| lvl | 2 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NumCustomWeapons | 1 |
+| NUM_WEAPONS_EQUIPPED | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3176,12 +3125,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 3 |
+| lvl | 3 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NumCustomWeapons | 1 |
+| NUM_WEAPONS_EQUIPPED | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3193,12 +3142,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 4 |
+| lvl | 4 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NumCustomWeapons | 1 |
+| NUM_WEAPONS_EQUIPPED | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3210,12 +3159,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 5 |
+| lvl | 5 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NumCustomWeapons | 1 |
+| NUM_WEAPONS_EQUIPPED | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3227,12 +3176,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 6 |
+| lvl | 6 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NumCustomWeapons | 1 |
+| NUM_WEAPONS_EQUIPPED | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3244,12 +3193,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 7 |
+| lvl | 7 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 50 000 |
 | Shield strength | 50 000 |
-| NumCustomWeapons | 2 |
+| NUM_WEAPONS_EQUIPPED | 2 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3261,12 +3210,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 8 |
+| lvl | 8 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 75 000 |
 | Shield strength | 75 000 |
-| NumCustomWeapons | 2 |
+| NUM_WEAPONS_EQUIPPED | 2 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3278,12 +3227,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 9 |
+| lvl | 9 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 100 000 |
 | Shield strength | 100 000 |
-| NumCustomWeapons | 3 |
+| NUM_WEAPONS_EQUIPPED | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3295,12 +3244,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 10 |
+| lvl | 10 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 125 000 |
 | Shield strength | 125 000 |
-| NumCustomWeapons | 3 |
+| NUM_WEAPONS_EQUIPPED | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3312,12 +3261,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 11 |
+| lvl | 11 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 150 000 |
 | Shield strength | 150 000 |
-| NumCustomWeapons | 3 |
+| NUM_WEAPONS_EQUIPPED | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3329,12 +3278,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 12 |
+| lvl | 12 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NumCustomWeapons | 3 |
+| NUM_WEAPONS_EQUIPPED | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3346,12 +3295,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 13 |
+| lvl | 13 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NumCustomWeapons | 3 |
+| NUM_WEAPONS_EQUIPPED | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3363,12 +3312,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 14 |
+| lvl | 14 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NumCustomWeapons | 3 |
+| NUM_WEAPONS_EQUIPPED | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3380,12 +3329,12 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Quantum base |
-| DisplayLevel | 15 |
+| lvl | 15 |
 | Description | A Cerberus Fortress, equipped with strong weapons and shields. This station is only vulnerable to a specific player, and can only be targeted by that player's Battleship. Coordinate with your Corporation members to make an attack plan. |
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NumCustomWeapons | 3 |
+| NUM_WEAPONS_EQUIPPED | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3692,8 +3641,6 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Rush |
-| DNRushCostsPerHr | 27 778, 55 556, 83 333 |
-| DNRushCostsStagesDurationHr | 72 |
 
 ### Genesis
 
@@ -4717,8 +4664,6 @@ ___
 | NumCrystalsForNameChange | 1 000 |
 | CorpBaseScanCost | 0 |
 | DNExpeditionTime | 86 400 |
-| DNRushCostsPerHr | 27 778, 55 556, 83 333 |
-| DNRushCostsStagesDurationHr | 72 |
 | NumArtifactsOnQSGate | 8 |
 | QuantumArtifactBPReqs | 150, 600, 2 000, 6 000, 15 000 |
 | QuantumUpgradeCosts | 100 000, 500 000, 2 000 000, 8 000 000, 20 000 000 |
@@ -5348,8 +5293,6 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Rush |
-| DNRushCostsPerHr | 27 778, 55 556, 83 333 |
-| DNRushCostsStagesDurationHr | 72 |
 
 ### Genesis
 
@@ -6929,8 +6872,6 @@ ___
 | Red Star Level | 3 |
 | Type | Passive |
 | Max speedup | 200% |
-| DNRushCostsPerHr | 27 778, 55 556, 83 333 |
-| DNRushCostsStagesDurationHr | 72 |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAP1BMVEVMaXH/86D/8Zz/8Z7/7Jr//7z/8Z7/6JH/8Z///ZL/8Z7/86D/8Zz/8p7/8Z//85///6r//6v/+6b/8Z//9aGXbrdnAAAAEXRSTlMA0mmFHgRfAfsDmjEnPPnKDP/+5bQAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAF0SURBVEjH7ZbdkoMgDIVTlWLSH5vA+z/rgpaKGLbo3c7smelFZb4eaOIhAEkIw+Seqtw0hOWdAnERYVUiF4WZCU9XVeQVZvHooaJ+75MINKpwz3wI+3lkcfOlZDTCLp8KoxGARAg1RvVAYias+KiEJR5HJlthKoRzNUY/RyRmRj3PJH5DhKU3sfjkC4HxMoEXAqN5aD4GSDw8+Qom+6XM5G2TGRm48rNEovKNbVcMdDzukbkon+Nb24BA6ML0J4c+bXGZD7SUEiy0bazrMBYzFhK77juCcBe+AWLfI8KN5Z6/JTXEyWOubajcQ1wT4iMCQ2zAh/hmJLRebMBDyI3DiQ4i3h9GRP6RP4+4HCk7OcZFEUoBYV4R5hx5h1IRfRYM0SshLyKzvs0p+nYBu3jNyPZ2rIdyiG6bEJvl+EqgwkSX2PwICqFfMMrGvl5jQds4argsyyxsuZJDkv1GnBkVzgwk69jTKdLHnjPDVRrhRkXFCPcDd1ExoigGUe4AAAAASUVORK5CYII=) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -7328,7 +7269,7 @@ ___
 
 | lvl | 1 | 2 | 3 |
 | --- | --- | --- | --- |
-| NumProjectiles | 1 | 2 | 3 |
+| Number of projectiles | 1 | 2 | 3 |
 | Cooldown | 24s | 20s | 24s |
 
 #### Projectile
@@ -7448,7 +7389,7 @@ ___
 
 | lvl | 1 | 2 | 3 |
 | --- | --- | --- | --- |
-| NumProjectiles | 1 | 2 | 1 |
+| Number of projectiles | 1 | 2 | 1 |
 | Effect range | 200au | 250au | 325au |
 
 #### Projectile
