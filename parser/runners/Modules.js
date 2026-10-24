@@ -62,6 +62,12 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     const glob = getGlobalsBy(key);
     Runner.combineObjects(value, glob);
 
+    // del wrong key for correct display
+    if (key === 'Rush') {
+        delete value.DNRushCostsPerHr;
+        delete value.DNRushCostsStagesDurationHr;
+    }
+
     // добавить Projectiles
     if (value.WeaponEffectType === 'projectile') {
         value.projectile = projectiles[value.WeaponFx];
@@ -74,47 +80,79 @@ function dataMapCallback([ key, value ], index, array, [ capitalShips, projectil
     }
 
     // добавить данные дронов/турелей
-    if (value.SpawnedShip) {
-        let SpawnedShip = Object.values(capitalShips)[value.SpawnedShip];
+    if (value.SpawnedShip || value.SpawnedShip_QS) {
+        if (value.SpawnedShip) {
+            let SpawnedShip = Object.values(capitalShips)[value.SpawnedShip];
 
-        if (!key.endsWith('Drone') && SpawnedShip.Name in Object.fromEntries(array)) {
-            const sameModuleIndex = array.findIndex(([ k ]) => k == SpawnedShip.InitialModule);
+            if (!key.endsWith('Drone') && SpawnedShip.Name in Object.fromEntries(array)) {
+                const sameModuleIndex = array.findIndex(([ k ]) => k == SpawnedShip.InitialModule);
 
-            SpawnedShip = Runner.combineObjects(array[sameModuleIndex][1], SpawnedShip);
-            array[sameModuleIndex][0] = undefined; // просто чтобы потом фильром снести
+                SpawnedShip = Runner.combineObjects(array[sameModuleIndex][1], SpawnedShip);
+                array[sameModuleIndex][0] = undefined; // просто чтобы потом фильром снести
 
-            [ 'Speed_YS', 'Speed_RS', 'Speed_BLS', 'Speed_WS', 'InitialModule' ]
-                .forEach((k) => delete SpawnedShip[k]);
-            if (SpawnedShip.SpawnLifetime_WS) {
-                SpawnedShip.SpawnLifetime_WS = SpawnedShip.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
-            }
-            value.turret = SpawnedShip;
-        } else {
-            value.drone = SpawnedShip;
-        }
-
-        if ('InitialModule' in SpawnedShip) {
-            const modules = Object.fromEntries(array);
-            const shipModules = [];
-
-            if (Array.isArray(SpawnedShip.InitialModule)) {
-                SpawnedShip.InitialModule.forEach((name) => {
-                    shipModules.push(modules[name]);
-                });
-            } else {
-                shipModules.push(modules[SpawnedShip.InitialModule]);
-            }
-            value.modules = shipModules.map((mod) => {
-                // в душе не чаю почему на этом моде эта хрень, хотя другие его WS статы в правильном формате
-                if (mod.ActivationPrepWS && mod.Name === 'DeltaDroneTeleport') {
-                    mod.ActivationPrepWS = mod.ActivationPrepWS * TIME_SLOWDOWN_FACTOR_WS;
+                [ 'Speed_YS', 'Speed_RS', 'Speed_BLS', 'Speed_WS', 'InitialModule' ]
+                    .forEach((k) => delete SpawnedShip[k]);
+                if (SpawnedShip.SpawnLifetime_WS) {
+                    SpawnedShip.SpawnLifetime_WS = SpawnedShip.SpawnLifetime_WS * TIME_SLOWDOWN_FACTOR_WS;
                 }
-                return mod;
-            });
+                value.turret = SpawnedShip;
+            } else {
+                value.drone = SpawnedShip;
+            }
+
+            if ('InitialModule' in SpawnedShip) {
+                const modules = Object.fromEntries(array);
+                const shipModules = [];
+
+                if (Array.isArray(SpawnedShip.InitialModule)) {
+                    SpawnedShip.InitialModule.forEach((name) => {
+                        shipModules.push(modules[name]);
+                    });
+                } else {
+                    shipModules.push(modules[SpawnedShip.InitialModule]);
+                }
+                value.modules = shipModules.map((mod) => {
+                    // в душе не чаю почему на этом моде эта хрень, хотя другие его WS статы в правильном формате
+                    if (mod.ActivationPrepWS && mod.Name === 'DeltaDroneTeleport') {
+                        mod.ActivationPrepWS = mod.ActivationPrepWS * TIME_SLOWDOWN_FACTOR_WS;
+                    }
+                    return mod;
+                });
+            }
+
+            [ 'InitialModule', 'InitialModuleLevels', 'IsDrone', 'IsTurret' ].forEach((k) => delete SpawnedShip[k]);
+            delete value.SpawnedShip;
         }
 
-        [ 'InitialModule', 'InitialModuleLevels', 'IsDrone', 'IsTurret' ].forEach((k) => delete SpawnedShip[k]);
-        delete value.SpawnedShip;
+        if (value.SpawnedShip_QS) {
+            const SpawnedShipQS = Object.values(capitalShips)[value.SpawnedShip_QS];
+            const metaKeys = [
+                'Name', 'TID', 'TID_Description', 'TID_INFO_SCREEN', 'ConceptImage',
+                'Model', 'ModelScale', 'SortLayer', 'PivotYOffset', 'IsCombatShip',
+                'IsDrone', 'CanBeBuilt', 'DesignUpgradeCost', 'DesignUpgradeTime',
+                'RequiredPlanetLevel', 'BSPenaltyPerSec', 'HasTaunt', 'SpeedIncrPerTick',
+                'InitialModule', 'InitialModuleLevels', 'IsTurret',
+            ];
+
+            if (SpawnedShipQS) {
+                const spawned = value.drone || value.turret;
+
+                if (spawned) {
+                    Object.entries(SpawnedShipQS)
+                        .filter(([ key, val ]) => (
+                            !metaKeys.includes(key) &&
+                            JSON.stringify(spawned[key]) !== JSON.stringify(val)
+                        ))
+                        .forEach(([ key, val ]) => {
+                            spawned[`${key}_QS`] = val;
+                        });
+                } else {
+                    value[key.endsWith('Drone') ? 'drone_QS' : 'turret_QS'] = SpawnedShipQS;
+                }
+            }
+
+            delete value.SpawnedShip_QS;
+        }
     }
 
     // посчитать саппорт урон для Луча

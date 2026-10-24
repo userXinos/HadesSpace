@@ -51,6 +51,7 @@
       :data="value"
       :table-opts="args.tableOpts"
       :icon-dir="args.iconDir"
+      :variants="args.variants?.[value.Name] ?? null"
     />
 
   </div>
@@ -61,12 +62,14 @@ import { ref } from 'vue';
 
 import VData from './Data.vue';
 import Icon from '@/components/Icon.vue';
+import type { ModuleVariant } from '@Utils/moduleVariants';
 
 export interface Props {
     args: {
         data: Record<string, object>,
         tableOpts?: object,
-        iconDir: string
+        iconDir: string,
+        variants?: Record<string, ModuleVariant[]>
     }
 }
 defineProps<Props>();
