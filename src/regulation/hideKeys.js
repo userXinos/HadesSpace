@@ -106,9 +106,7 @@ export default {
         'PrefabModel_WithStarHarvester',
         'StarScannerType',
         'LaserGraceTimesPerST',
-
-        'DNRushCostsPerHr',
-        'DNRushCostsStagesDurationHr', // Both for QS flare-up rush cost
+        'BSOnly',
 
         // временно ?
         'BSPenaltyPerSec',
@@ -264,5 +262,6 @@ export default {
         /(DroneRocketLauncher|ChainRayForDrone)\.UnlockBlueprints/,
         'LaserTurret.MaxPerRS',
         /(DeltaDroneBattery|DeltaDroneTeleport|DroneSquadBattery)\.(UnlockBlueprints)/,
+        'CerbDrone.ForceCerbDrone',
     ],
 };

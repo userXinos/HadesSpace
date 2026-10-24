@@ -2,7 +2,14 @@ import Runner from '../modules/Runner.js';
 import Globals from './Globals.js';
 import formatValueRulesTime from '../../src/regulation/formatValueRulesTime.mjs';
 
-const EXCLUDE_KEYS_FROM_TIME = [ 'UnlockTime' ];
+const EXCLUDE_KEYS_FROM_TIME = [
+    'UnlockTime',
+    // global/QS fields, not per-star time characteristics
+    'GCD',
+    'Gdur',
+    'QEffectDurationF',
+    'LaserGraceTimesPerST',
+];
 
 // noinspection SpellCheckingInspection
 /* eslint-disable prefer-destructuring */
