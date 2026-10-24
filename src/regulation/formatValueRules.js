@@ -72,6 +72,7 @@ export default [
             'DeltaDamageIncr',
             'CROIDBoostPct',
             'SectorHydroBlastYieldPct',
+            'WeaponHealRate',
         ],
         (v) => `${v}%`,
     ],
