@@ -100,15 +100,22 @@
                   :class="{filtered}"
                   class="line variant-characteristic"
                 >
-                  <b>
-                    <DataStatTooltip :k="key">
-                      {{ format.key(key) }}
-                    </DataStatTooltip>
-                  </b><template v-if="$store.state.userSettings.showKeys"> ({{ key }})</template>:
-                  <span
-                    :class="statsStyleName(key)"
-                    class="value stats-style"
-                  >{{ format.value(key, value) }}</span>
+                  <template v-if="key !== '_statsByStar'">
+                    <b>
+                      <DataStatTooltip :k="key">
+                        {{ format.key(key) }}
+                      </DataStatTooltip>
+                    </b><template v-if="$store.state.userSettings.showKeys"> ({{ key }})</template>:
+                    <span
+                      :class="statsStyleName(key)"
+                      class="value stats-style"
+                    >{{ format.value(key, value) }}</span>
+                  </template>
+                  <DataStatByStar
+                    v-else
+                    :items="value"
+                    :format="format"
+                  />
                 </li>
               </template>
 
