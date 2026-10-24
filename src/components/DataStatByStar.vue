@@ -82,6 +82,7 @@ const STARS = {
     RS: { dir: 'game/Stars', name: 'star_red' },
     WS: { dir: 'game/Stars', name: 'star_white' },
     BS: { dir: 'game/Stars', name: 'star_blue_2' },
+    QS: { dir: 'game/Stars', name: 'star_quantum' },
 };
 const POSTFIX_BY_STARS: Record<string, (keyof typeof STARS)[]> = {
     'base': ['YS', 'RS', 'WS', 'BS'],
@@ -91,7 +92,8 @@ const POSTFIX_BY_STARS: Record<string, (keyof typeof STARS)[]> = {
     'ws': ['WS'],
     'bs': ['BS'],
     'bls': ['BS'],
-    'pve': ['YS', 'RS'],
+    'qs': ['QS'],
+    'pve': ['YS', 'RS', 'QS'],
     'pvp': ['WS', 'BS'],
 };
 const TO_SPOILER_KEYS = ['TID_Description'];
