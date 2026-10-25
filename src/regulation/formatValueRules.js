@@ -179,8 +179,8 @@ export default [
     [
         ['ExtraProjectileStrengths'],
         (v) => Array.isArray(v) ?
-            v.map((e) => Array.isArray(e) ? e.join(' / ') : e).join(' / ') :
-            v,
+            v.map((e) => Array.isArray(e) ? e.map((n) => `${n}%`).join(' / ') : `${e}%`).join(' / ') :
+            `${v}%`,
     ],
     [
         ['BaseType'],
