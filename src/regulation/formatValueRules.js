@@ -215,6 +215,10 @@ export default [
         (v) => v / 200,
     ],
     [
+        ['QSHydroBonusReq'],
+        (v) => numberFormat(v / 1_000),
+    ],
+    [
         ['Speed_WS'],
         (v) => `${Math.round(v * WSFactror / 10)} ${t('AU')}`,
     ],
