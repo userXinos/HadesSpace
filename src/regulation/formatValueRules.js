@@ -73,6 +73,8 @@ export default [
             'CROIDBoostPct',
             'SectorHydroBlastYieldPct',
             'WeaponHealRate',
+            'QSHydroBonusPct',
+            'QSShipmentBonusPct',
         ],
         (v) => `${v}%`,
     ],

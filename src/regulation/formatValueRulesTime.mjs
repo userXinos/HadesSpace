@@ -39,6 +39,7 @@ export default [
             'GCD',
             'Gdur',
             'QEffectDurationF',
+            'DNExpeditionTime',
         ],
         (v) => v,
     ],
@@ -52,10 +53,10 @@ export default [
     ],
     [
         ['TargetSwitchTicks', 'MirrorShieldTickPeriod', 'DispatchActivTicks', 'RelicLoadTicks', 'PeriodSpawnTicks', 'DisableShieldTicks'],
-        (v, {TicksPerSecond}) => v / TicksPerSecond,
+        (v, { TicksPerSecond }) => v / TicksPerSecond,
     ],
     [
         ['LaserGraceTimesPerST'],
         (v) => Array.isArray(v) ? v.map((e) => e).join(', ') : v,
     ],
-]
+];

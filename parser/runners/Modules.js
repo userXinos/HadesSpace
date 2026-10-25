@@ -9,6 +9,7 @@ const EXCLUDE_KEYS_FROM_TIME = [
     'Gdur',
     'QEffectDurationF',
     'LaserGraceTimesPerST',
+    'DNExpeditionTime',
 ];
 
 // noinspection SpellCheckingInspection
