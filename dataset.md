@@ -41,7 +41,7 @@ etc; See #yellow_star_sectors
 - Once a ship has departed, you cannot change its course and must wait until it reaches its destination.
 - The Red Star Scanner can detect nearby stars that are going Supernova. Those stars usually have old planets with valuable artifacts, but are also guarded by Cerberus forces.<br>Other players can use their Red Star Scanners to gain access to the same stars.
 
-Collections: 28, entities: 611, fields: 4748.
+Collections: 28, entities: 611, fields: 4745.
 
 ## Content
 
@@ -3398,8 +3398,8 @@ ___
 | Name | OmegaShield |
 | EnableQuantum | 1 |
 | Description | For a limited time after activation, reduces the shield effectiveness for all enemy ships in the sector. Reduced effectiveness shields only cover part of the incoming damage, the rest of the damage is applied directly to the hull of the ship. The effect does not stack, each enemy ship will only be affected by the strongest Dark Omega Shield. No effect vs ALLY SHIELD. |
-| QEffectDurationF | 10 |
-| EnemyShieldReductionPct | 6, 15, 25, 40, 75 |
+| Dark effect duration | 10s |
+| Damage covered | 94%, 85%, 75%, 60%, 25% |
 
 ### Teleport
 
@@ -3439,9 +3439,14 @@ ___
 | Name | Laser |
 | EnableQuantum | 1 |
 | Description | While activated, the Laser beam duplicates at its current charge state, doing 3x the damage to its single target. |
-| ActiveDuration | 3, 6, 10, 20, 32 |
-| Cooldown | 60 |
-| WeaponDamageMod | 300 |
+| Cooldown | 1m |
+| Damage amount | x3 |
+| Cooldown (WS) | 10h |
+
+| lvl | 1 | 2 | 3 | 4 | 5 |
+| --- | --- | --- | --- | --- | --- |
+| Effect duration | 3s | 6s | 10s | 20s | 32s |
+| Effect duration (WS) | 30m | 1h | 1h 40m | 3h 20m | 5h 20m |
 
 ### Stealth
 
@@ -3475,7 +3480,7 @@ ___
 | Name | Fortify |
 | EnableQuantum | 1 |
 | Description | While active, the Battleship's equipped weapon has increased range. For CHAIN RAY, only the base range is increased. |
-| ActiveWRangeIncrPct | 10, 20, 35, 60, 100 |
+| Range increase | 10%, 20%, 35%, 60%, 100% |
 
 ### DecoyDrone
 
@@ -3575,9 +3580,9 @@ ___
 | Name | TradeBurst |
 | EnableQuantum | 1 |
 | Description | The first module activation after each Global Cooldown Period increases the Credit Yield of any shipment delivered by any means in the star system. |
-| GCD | 5 184 000 |
-| Gdur | 86 400 |
-| ShipYieldImprovementPct | 20, 40, 80, 130, 200 |
+| Global cooldown period | 60d |
+| Effect duration | 1d |
+| Credit yield improvement | 20%, 40%, 80%, 130%, 200% |
 
 ### Leap
 
@@ -3611,7 +3616,7 @@ ___
 | Name | Crunch |
 | EnableQuantum | 1 |
 | Description | When activated, Crunch additionally does damage directly to the hull of all enemy combat ships in the sector, bypassing any Shields. The damage is proportional to each target's maximum HP, and to the amount of Hydrogen collected. Maximum damage will be dealt when the maximum possible amount of Hydrogen was collected. |
-| MaxSectorHullDmgPct | 8, 16, 25, 35, 50 |
+| Max hull damage | 8%, 16%, 25%, 35%, 50% |
 
 ### Recall
 
@@ -3626,7 +3631,11 @@ ___
 | Name | RocketDrone |
 | EnableQuantum | 1 |
 | Description | Upon impact, the drone's rocket also disables the target enemy ship's shields for a small period of time. |
-| DisableShieldTicks | 40, 80, 140, 240, 500 |
+
+| lvl | 1 | 2 | 3 | 4 | 5 |
+| --- | --- | --- | --- | --- | --- |
+| Disable shield duration | 2s | 4s | 7s | 12s | 25s |
+| Disable shield duration (WS) | 20m | 40m | 1h 10m | 2h | 4h 10m |
 
 ### Enrich
 
@@ -3702,8 +3711,8 @@ ___
 
 | lvl | 1 | 2 | 3 | 4 | 5 |
 | --- | --- | --- | --- | --- | --- |
-| DeltaSpeedIncr | 70 | 150 | 300 | 500 | 700 |
-| DeltaDamageIncr | 50 | 100 | 200 | 300 | 450 |
+| Speed increase | 70% | 150% | 300% | 500% | 700% |
+| Damage increase | 50% | 100% | 200% | 300% | 450% |
 
 ### BlastShield
 
@@ -3766,8 +3775,8 @@ ___
 | Name | HydroRocket |
 | EnableQuantum | 1 |
 | Description | The first rocket blast after each Global Cooldown Period in the player's Yellow Star will increase the Hydrogen amount on all asteroids in the blast sector. |
-| GCD | 604 800 |
-| SectorHydroBlastYieldPct | 30, 60, 120, 200, 400 |
+| Global cooldown period | 7d |
+| Hydrogen increase | 30%, 60%, 120%, 200%, 400% |
 | VFX | Enrich_activate |
 
 ### InterceptorMBattery
@@ -3873,7 +3882,7 @@ ___
 | Name | PlayerRocketLauncher |
 | EnableQuantum | 1 |
 | Description | The Rocket Launcher launches additional rockets, at reduced strength. |
-| ExtraProjectileStrengths | 25, 50, 100, 100, 50, 100, 100 |
+| Additional rockets | 25, 50, 100, 100 / 50, 100 / 100 |
 
 ### Pulse
 
@@ -4664,12 +4673,14 @@ ___
 | NumCrystalsForNameChange | 1 000 |
 | CorpBaseScanCost | 0 |
 | DNExpeditionTime | 86 400 |
+| DNRushCostsPerHr | 27 778, 55 556, 83 333 |
+| DNRushCostsStagesDurationHr | 72 |
 | NumArtifactsOnQSGate | 8 |
-| QuantumArtifactBPReqs | 150, 600, 2 000, 6 000, 15 000 |
-| QuantumUpgradeCosts | 100 000, 500 000, 2 000 000, 8 000 000, 20 000 000 |
+| Unlock blueprints | 150, 600, 2 000, 6 000, 15 000 |
+| Upgrade Cost | 100 000, 500 000, 2 000 000, 8 000 000, 20 000 000 |
 | MaxQuantumLevel | 5 |
 | MaxStarSystemLogEntries (QS) | 400 |
-| QuantumUpgradeBaseLevels | 5, 9, 11, 12, 13 |
+| BASE_LEVEL | 5, 9, 11, 12, 13 |
 | MinActiveMembersFor (QS) | 10 |
 | RecActiveMembersFor (QS) | 20 |
 | QSHydroBonusPct | 15 |
@@ -5049,7 +5060,7 @@ ___
 | Name | OmegaShield |
 | EnableQuantum | 1 |
 | Description | Permanently increases the HP of the owner ship while installed. |
-| EquipHPBoostPct | 10, 20, 40, 75, 150 |
+| Additional hp | 10%, 20%, 40%, 75%, 150% |
 
 ### Teleport
 
@@ -5089,12 +5100,14 @@ ___
 | Name | Laser |
 | EnableQuantum | 1 |
 | Description | While activated, the Laser beam gets an additional healing effect for the owner ship. The healing amount is proportional to the Laser's actual damage output. |
-| Cooldown | 60 |
+| Cooldown | 1m |
+| Cooldown (WS) | 10h |
 
 | lvl | 1 | 2 | 3 | 4 | 5 |
 | --- | --- | --- | --- | --- | --- |
-| ActiveDuration | 5 | 10 | 18 | 28 | 40 |
-| WeaponHealRate | 80 | 100 | 120 | 150 | 200 |
+| Effect duration | 5s | 10s | 18s | 28s | 40s |
+| Healing amount | 80% | 100% | 120% | 150% | 200% |
+| Effect duration (WS) | 50m | 1h 40m | 3h | 4h 40m | 6h 40m |
 
 ### Stealth
 
@@ -5128,7 +5141,7 @@ ___
 | Name | Fortify |
 | EnableQuantum | 1 |
 | Description | While active, every friendly ship and drone in the sector gets additional damage multiplier. |
-| UnityPct | 50, 100, 180, 300, 600 |
+| Damage multiplier | 50%, 100%, 180%, 300%, 600% |
 
 ### DecoyDrone
 
@@ -5228,8 +5241,8 @@ ___
 | Name | TradeBurst |
 | EnableQuantum | 1 |
 | Description | The first module activation after each Global Cooldown Period allows cloning a source outpost's Credit shipments to the empty target outpost the Transport ship is currently docked at. The Credit yields of the cloned shipments increases with the module's level. Each shipment can only be cloned once. |
-| GCD | 1 296 000 |
-| ShipmentCloneVal | 50, 100, 150, 200, 300 |
+| Global cooldown period | 15d |
+| Cloned shipment yield | 50%, 100%, 150%, 200%, 300% |
 
 ### Leap
 
@@ -5263,7 +5276,7 @@ ___
 | Name | Crunch |
 | EnableQuantum | 1 |
 | Description | When activated, Crunch additionally heals all friendly combat ships in the sector. The healing amount is proportional to each ships's maximum HP, and to the amount of Hydrogen collected. Maximum heal will be applied when the maximum possible amount of Hydrogen was collected. |
-| MaxSectorHullHealPct | 8, 16, 25, 35, 50 |
+| Max healing | 8%, 16%, 25%, 35%, 50% |
 
 ### Recall
 
@@ -5278,7 +5291,7 @@ ___
 | Name | RocketDrone |
 | EnableQuantum | 1 |
 | Description | While the module is installed, all rockets launched from the owner ship (including ones launched by Rocket Drone) gain additional HP. |
-| RocketHPBoostPct | 10, 25, 50, 100, 200 |
+| Additional rocket hp | 10%, 25%, 50%, 100%, 200% |
 
 ### Enrich
 
@@ -5351,7 +5364,7 @@ ___
 | Name | Delta rocket |
 | EnableQuantum | 1 |
 | Description | While the module is installed, all projectiles launched from the owner ship (including Delta rocket) are sped up. |
-| ProjectileSpeedIncrPct | 20, 40, 80, 140, 200 |
+| Speed increase | 20%, 40%, 80%, 140%, 200% |
 
 ### BlastShield
 
@@ -5414,8 +5427,8 @@ ___
 | Name | HydroRocket |
 | EnableQuantum | 1 |
 | Description | The first rocket blast after each Global Cooldown Period within range of a Rich Asteroid Field belonging to the owner player will increase the Credit yield of the asteroid field. |
-| GCD | 604 800 |
-| CROIDBoostPct | 15, 30, 60, 100, 160 |
+| Global cooldown period | 7d |
+| Credit increase | 15%, 30%, 60%, 100%, 160% |
 | VFX | Enrich_activate |
 
 ### InterceptorMBattery
@@ -5521,7 +5534,7 @@ ___
 | Name | PlayerRocketLauncher |
 | EnableQuantum | 1 |
 | Description | Every time a launched rocket deals any amount of damage on regular impact, the blast also applies healing to all friendly ships and drones in range. The total amount of HP healed cannot exceed MAX HEAL AMOUNT. No healing is applied if the rocket is destroyed early. |
-| ProjOwnerAreaHealAmt | 250, 500, 800, 1 200, 2 000 |
+| Max heal amount | 250, 500, 800, 1 200, 2 000 |
 
 ### Pulse
 
@@ -5819,7 +5832,7 @@ ___
 | Cooldown (WS) | 12h |
 | Effect duration | 10m |
 | Effect duration (WS) | 2h |
-| QSMultiUse | 1 |
+| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA6CAMAAADFsvruAAAATlBMVEVMaXHFsf/Ktf/Fsf/Gsv/Drf/Bsf/dxf+/tP/Fsf/EsP/FsP/Dr//Gsv/FsP/Hs//GsP/Fsf/Fsv/Gsv/EsP/Fsf/Svf/WwP/Puv/Mt/+LnGt5AAAAFnRSTlMAuvra+goUAQNpl0Me5n/vVssrNqdhEkPFvQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAjpJREFUSMftVtt2hCAMjDdAxPVWQf7/RxuQW13QPftcX2pXhsyEMAnA+0MZhaFpBvvy0YPrBG+1brlA0AcAXNS9JinHUcrp1cFjIATQuTlkzYXgtTyamd6DDPe10lJXg/l3sK/rnSQMQXiLW++oYEAU2zFgy0kxEIWutwIIwPrTtj8rALGy+g5oAVFJWYeFAVxLWeUxFEh9LIbObOlYirOhuBw1KYUZ9g5gs6K35KXbBygnwByi2zyEE9f1lOb1c55Xj+tTBLIO+pUK6o3CPxuTRL7Sy8BOQtN0EmTDolUin3RQjRswn2TDwcuO6vvRJ5nBNlZQqx58uXYIiPqDevv7WeTQqxraCDFF3LsCputKXUn3sZwNpP0Dgdnqx32x1kxtgbDqZ8hDsMo5sjfnb2Idh90fs4g/cua1XCDiUA2ePz1zfWYX2e2NOkQWgs/+EvEk0lPaoaDFnk1QzGIthHPMyGfuElubsLZRnxkvZMxf4s3fXPNn85c5nzEyqYs/OPdQEylkrFvGlxWRmprxqHHp8hnDMDmvM5JInpj/njOeYsaKdho2ykV5sut/yD/kG8h+uSI3CAY7QrRxro/GCDt0LFqD64/PgXDF2Tej89yD8GvSn5zX0xsQc0PH2QWj82wlSe9LKEsaKStNTq6n0dR5orFeOYWmk34z4YS375QdZd7OxRvt85u2CY/szOSU2wmubY84EEsbAS3m3g9XjJqshOGKPY9wm5kitucR7ptB8atx9Kuh93m0/gXR1TSI3/Kq8AAAAABJRU5ErkJggg==) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -5926,7 +5939,7 @@ ___
 | Upgrade time | 1m | 10m | 1h | 4h | 1d | 2d | 4d | 6d | 8d | 10d | 12d | 14d | 16d | 18d | 20d |
 | Effect duration | 10s | 12s | 14s | 16s | 18s | 20s | 22s | 24s | 26s | 28s | 30s | 32s | 34s | 36s | 38s |
 | Effect duration (BS) | 2s | 3s | 3s | 4s | 4s | 5s | 6s | 7s | 8s | 9s | 10s | 11s | 13s | 16s | 20s |
-| QSAlphaShieldPct | 95 | 95 | 95 | 95 | 95 | 90 | 85 | 80 | 75 | 70 | 65 | 60 | 50 | 40 | 25 |
+| Damage absorbed | 5% | 5% | 5% | 5% | 5% | 10% | 15% | 20% | 25% | 30% | 35% | 40% | 50% | 60% | 75% |
 | Effect duration (WS) | 1h 40m | 2h | 2h 20m | 2h 40m | 3h | 3h 20m | 3h 40m | 4h | 4h 20m | 4h 40m | 5h | 5h 20m | 5h 40m | 6h | 6h 20m |
 
 ### Impulse shield
@@ -6174,7 +6187,7 @@ ___
 | Cooldown (WS) | 12h |
 | Effect duration | 10m |
 | Effect duration (WS) | 4h |
-| QSMultiUse | 1 |
+| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
 | Single collection speed | 25% |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA6CAMAAADFsvruAAAAWlBMVEVMaXHFsf/Cr//Gsv/Fsf/Is//Gsf/Bqf/Gsv/Hqv/Ktf/Hsv/Gsf/Fsf/Fsv/Gsv/Fsf/Fsf/FsP/EsP/Gsv/EsP/Esf/Gsv/Fsf/Xwf/Tvf/Ru//NuP/lzv+ng5yAAAAAGXRSTlMAnAtqiRXQAvoF/uwqwE3fd7I9HlhnYMWOMRz1KgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAuNJREFUSMeNltvCqiAQhSfTOKSpWJnA//6vuUcOMqDW9qIM+BhYs4YAyB8Gousb/HLvTd8J/376MCaglfoRkYeWLQj2A0LEJMQgwr4Ob17tHmlfzQnGMP7wN+6R8W9wncfIRc97ZNaXE6SqAC5L5xGxtgiPdMvF95aPGPs2ILZ2MXHe2gak7UdRLgoauTwdMnErO7U2qU5aPjnkucgG8sUhwrVDcDU3o/llmi5cmxuu0SGaU9lweK1w8ohANdy17nut7wPuICITqDraYtV2JlGwYY2wRlrfU5TZqe2j1PomEuIUVeOovLQbIm66dlGqCYVZKMJcZOHCAaPIglJOFcxcFUhMbNhtjig+g1yuGcJ8GqOiGCtDrosEriniREr649sqH0U0B06jvK2xmIqoC34+btj0plEKBNRstRxbv3OsnVFqOyv4gggQ797oe+3c0dR3bfo3Nn5D3EC+DmRshbmDvyIue245XReXyL5GYdumjXae9EKwM2R5ppSgtERujLIcR3nhXlL9pPrAvbwOo0gZhIopSa8onZQ7pILBC0Uh/+WlG6DaIUEoRU8TVwZBugNEQCzhtAlfbE46cYCw4EETpfK/TXAqO0Jc+zZrTI+Pip2HiB+3rT3uLaazQOYKNoWCM6Mno3RQzQT5mHsSKjjT2uDJJN3dfDZkWCwRyjvT2uDJJJ1dhg3JhAr5ezxoVjfpPILW2oRiR4Zhm3RotoiwvISJYbJyZgRxQr1SCWd/CU66lx9DEN/5yZ2ZPPkJE0XkmiorOTM0qC5brkjbT3smHincA9tepKRtxJnUk2RGKWE0hkQmc1NPpnUbM+6Eis7knHiykG4nlHcm/vURT1LpCqHIlIUnM+nWKZ55CaeTn5bzM2Us+i5zphDsrK8UCkrDQCkd7SudWXiSHdyUSsELTx7fyKLgwhtGZJ48vcVt5woQYb/eFdcSzq49DH7cRkmh58fBT2g9Tuih81+Q6nt1AvwDeL5VY8N28X4AAAAASUVORK5CYII=) |
 
@@ -6195,7 +6208,6 @@ ___
 | Description (BS) | Greatly increases damage output for the owner's ship weapon when there is only one enemy Battleship in the sector (Cerberus ships do not count). |
 | Red Star Level | 3 |
 | Type | Passive |
-| For battleship only | Yes |
 | Upgrade to DARK NEBULA | • unity -> solitude |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA4CAMAAACIelvlAAAARVBMVEVMaXG5/5+5/5+5/5+1/5u4/5+0/5u4/5+5/5Ku/6Gv/5e5/6C2/566/6C4/5+3/564/5+1/523/564/564/5+9/6PB/6e+cSphAAAAFHRSTlMA8r3pHuEs/QEDD9FGpXtWjThnmdL55c8AAAAJcEhZcwAADsQAAA7EAZUrDhsAAAJOSURBVEjHlZbbtqMgDEADXgLWtscK/P+nTrioCEGdvLSr7TYQdkgBmFCwSES50JuHoWFGa9DiTG8fhYJ+sGgc2qF/mEfDn//5R6D7e5ZGwyJoVcNEoFieMAqUdOgXNQ3WSfVgaRq+tJGwjx+t73ufRsH02hAtrX1Nt2k0fByaiFCt0X3u0lCBae8J0bA6I+4KreHtk2xI3xn3vk7jz93siAqrvHZA0Y5DkoSEWlipL5amfV3NgcSKu187TZIrQyjP25kL1YJcJkeCPReqUZck4EDiY7DRObQIuSU5kLBYJ/23LblKJJaEVy3JVSEULdWSXDWiW6rRmjvLIvRCqnV1oVWSi0VIVVJNMXIZHgFWtUMuDmFVO+TiEE61TC4WgVq1TC4eqVTTMMbGaiJJtXFncrkaiF+6sXL76CRXAzmrdparhaj8VjvL1UL8YZukGu29sw+QWOjOV6CQ6woZ6VZb/aezqQkOSTuYoZTrAtlV+3EEi+yq1QVuIv7MqdBg2OARUo3WBOK/ENqGYEu8DQsfZ9HC8BjFTZHPPWLECFWrJKSb+9FHn/XIgr5pAKahrBmG6FIsx00jHf0dYNqewh6BNPqV2k/F/oJjqjh/K7LArUnS2as4QubzLuSYBZ3dMMWfRcN0dVHSJbBAsWPfJDp4/N6rmHUMkt46izD6qUm2blHVpU/FLa+JNPpnm1//WfdXUyE8ztIWXuchs98xWM2eWKhhXm0xylIFkJlw8Ticw2Jc+JuNGEs6ME1CZlHdSrWJWYV5fdn5rr8vI9ad+AdLH1IL6kRAxQAAAABJRU5ErkJggg==) |
 
@@ -6222,7 +6234,6 @@ ___
 | Effect duration | 20s |
 | Effect duration (WS) | 6h |
 | Effect duration (BS) | 12s |
-| For battleship only | Yes |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAASFBMVEW2/525/5+3/565/5+2/564/5+z/5lMaXG4/5+y/5S4/5+n/5K1/564/563/524/5+4/5+2/525/6C5/5+4/5/D/6i//6W8/6J1lqf+AAAAFHRSTlMBHpLpX9oTAPsEpAwya1HMfEC1vveyRQ4AAAAJcEhZcwAADsQAAA7EAZUrDhsAAAJqSURBVEjHnVaLkoMgDIwKQqzVtifh///0AvIWb+aambuOgTXJGjaAigagUMwKVGOgZoFuNTsSQG07DT3IQPumMij+ohoWa+4gxi4Dbykh/AYxGSPFBeBXhTRmEjGO/w+oRmP1WFaCWFYzamtGhRAhXPdi9LEFV3xV8YBqO7RZMGx3f4zQJFK27Hk8n48MQiVIMyZCgLPSx0Ey73EuTiQ/PiQdHGc896N6cgzneMYwoFbnWCPGb2HHuYVZGCZrieOSDOWz78NvMZ/AEZcv3TpZO/FXAF+IEJJsei0Xaw82u51hfVBLUghfDjAXnCKXK7UIQdRjJ5cH7Y/oEVoyHVwh8wq4G06I6Z3XlPnLZe6qe6Xq1tlRPUuzIwjy7PJzypyLO7z51GMHIniuScA8DBiaBkKQ8QxystosDsMMStWdiOodAB70zt83NQtA04rwMQnDRLerl/0+3aOwso2a85KbVlKZWPq+t5BEcE7t1YaB9gRGgqMlom8hSx3EhVn+gjDBR8c6RBf2Q7oFaPq5r8WfvWsQ3RAN9wTfEQ1/EHxDdKkpa0twJnpV0IUs/SAt0VDokLwJwmEK9anA6Zywlpx25HPTTyw3CwXrNk2XMS2D6S5jUMyNoCxmxNkb+lSz0uT9ecZsVIlESJW2arZUcsEqSaeKgrdTe+mTc/FyUYoSOlk0OQ2XqnEiipUoVdLHDNip6HU+DZN1tVfSVwssqPdat+D69mOxFNirjMNFuBoZb4cFtnqCl2HRG0nqIm7VSOoOvovY1YOvN15VR0PL8dod4m09zRDvXhVq1W2vCt9cSL659nx1ufrHFe4XI3tchVJ+s+UAAAAASUVORK5CYII=) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -6244,11 +6255,9 @@ ___
 | Cooldown | 2m |
 | Cooldown (BS) | 1m |
 | Cooldown (WS) | 1d 12h |
-| SpawnedShip (QS) | 61 |
 | Lifetime | 40s |
 | Lifetime (WS) | 6h 40m |
 | Lifetime (QS) | 2m |
-| For battleship only | Yes |
 | Upgrade to DARK NEBULA | • salvage -> decoy drone |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAYFBMVEX/sgb/oCD/oiL/piX/qSb/qCb/qCVMaXH/qTT/oy3/pSX/oCX/oiT/oyT/piX/piX/pCT/piX/pib/piX/pST/oyX/pCX/pyb/pSX/pCX/oyP/rij/rCf/tCn/pib/uyqjVCZYAAAAG3RSTlMBEBe3/vfiAAQDmQYlRrHbZs7GqFQ2XO+RfS7LJZ23AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACt0lEQVRIx51WiZarIAyNyuqudWuDzv//5STqVFz63ow5PaUFbsjNJQBo3yxonbRlruREJlVetonWYHeTYA+AdqjkOI7IEKQfshpa2IM2iLUamkiOX6Kv4pwwmMdVL75GGTXAoycI9WW1GLEYmtDqVz9N/UvbsBkKHEWdeRh4t0FMgKoLuMvq3LmcGu7vKgLFgTd1WUO/CsSiJLKGKFndONdQA9ZQQkoee2nrQ6wO1ezJLuuTb6VWv9zFEahwxcBPWLXqliTPZnQc09fqlqZ2qg7ek9cmDDcA/09TL5sEonE40Ae9F+xglmcckrxTy1ozfw4b46z+GW0vhy9isDrNysejzFJt7W8gViexlG4cnZRxcsEQzoiwRofY90hNHZ4xBwgY3Sp0qizbtiyVQ9VqA/+CEPFOCqxnTUibGoXsjkmAfVDmKQQSA8NJNsQKhXiafXC7EtNBzlPeWSb37CIP9HWJ0ZZKKxR95gVP1LJeYJW+99tO/WW0SPdRkEbF0c+m35OIR6Hvb1k7jCgJz03VnxKDZEDhBnOWgXIyOIFDAscSY1fl5QahvnIJYCsx1q/ASWUn1TaapGqxqgpzTyfE1Kc6+VQtRgeREKKbMVRZYJ5uQpSP4FOVzWEIJ9zTAB8hOmH9hghHSv9lgcxkUEZEKE94Slo7RzSC2CGl315VA6UM+44JOd5+TIxaQ7oI56d/Xw3E3fI2Je9Aqz1YDZraKMRjURENOhRdzhLTcg+SAojT4nkZ5PQnxjPd9M7Fi8S8RZwArgerN0Gdemn/lF/CXZW3XE/QePpR9oZprOPHZrlAX2IKhW4O2FdlSTeMb5x6f1PA6VKjvZHnUb4a/YiPAtuLE+bjQfj5HDN7g1+clv8z+LQ+HJydj/G/XxZ/v5JuXHw3rtcbl/idp8KdB8mdZ8+dx9Wvn3DfSXlcTjU9d+EAAAAASUVORK5CYII=) |
 
@@ -6277,6 +6286,7 @@ ___
 | Maximum speed (BS) | 20 AU |
 | Maximum speed (WS) | 78 AU |
 | HasTaunt | 1 |
+| Hull strength (QS) | 4 000, 5 000, 6 250, 7 800, 9 800, 12 200, 15 000, 19 000, 24 000, 30 000, 37 000, 46 000, 58 000, 70 000, 90 000 |
 
 ### Suppress
 
@@ -6432,7 +6442,7 @@ ___
 | Red Star Level | 7 |
 | Type | Activated |
 | Cooldown (WS) | 16h |
-| QSMultiUse | 1 |
+| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA/CAMAAACVf2tdAAAASFBMVEVMaXHEr//Hsv/Cr//Gsv/Dsf/Is/+2rP/Cvf/Esf/FsP/Jtf/EsP/ErP/Bs//Esf/Esf/Esf/Gsf/Fsf/Ouf/Xwf/SvP/Ltv8p0PyOAAAAFHRSTlMAJuku+jrbAgRodfygGg65Q8lXiltKFNEAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAG9SURBVEjH7ZbbkoMgDIbjiaCotW0K7/+mm0C1rQsUZzp7s+XGCHwk/IkIQKwhNHXd8KO4CUF0hNHQKGpbUg2bpT4UGW7CYClh29GYsbVljI/K9Q1R07ui2EJUA3REHQwlsSFUTPQQEOiZqfKMFsL1/PSIBomtysXmfbgBcEUQBpf1sxKaLY8gm1lm84EPBLN+EOZAePuOiCnMHGUQJkND2OoTIrGRmVKhdYtEskO4Z+myeYE9Atm8IEIMefSvoxhz9oLspmNcihQi88dzRPQUwqk7j2Bu/e8aSiFcdDcDrT2G2Bbao16+yOcQ5/7AS2VMdQjhtizRcy6HJI7GHBL9jj7u5Yv8G6TweoMBMe40xWswVqnTyRlQluphLoB4xjzUZBVMfLux6gJvIBm9KMv3Ifltdidn3anJMjzW+Gn3P7v2+DW9JdnE1QejwxwJ8lpbW/c6CsmivYxfn7bMRjUaS2c+IvaCs7CwnMmasXpZUOyt/yWx+mm1/Y855v1dzI89ruttwiaVkd5NSfTvq/7pBMi16qIo5At9lkldMJ/lUBUc/KB1eL6vJdwE34TFkru1CM7NC1v4WXjBU8UAP7SkJO/CD0kuAAAAAElFTkSuQmCC) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -6675,7 +6685,6 @@ ___
 | Effect range (WS) | 220au |
 | Hull strength threshold | 2 000 |
 | Deactivate on jump | Yes |
-| For battleship only | Yes |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAATlBMVEWt/5y1/5u4/5+2/5y7/6G2/466/6FMaXH//962/5y5/6Cw/5m5/6C6/6G3/527/6G6/6G3/5+4/5+0/563/564/5+4/p6//6XJ/63C/6hO4QA8AAAAF3RSTlMCFH0p9AQxAAFL5Qul7UDO/VOKHb7bZbnQtaYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAIBSURBVEjHnVbZssMgCCUag9mXJo3+/48Wcam2T5GZO+lFzkEWUTjnHgF/ROO4riN9kP+SAPbzCbNtM4ySo1/qrO1YrWWTYIRo7Qx9exNGBZUwhzMkyH07CBndpwoYhWwMmGEAD9tKtgwQjae5/A4jAiH9YIhsrcgg9J1JoeKumByw8IOTWYkzQhTtdJZM96WG7z/KMS3X4b1sG3tZLlEg2CgnIBmVz5gxPmNjuSv0kFyhQzEaITi5+p8UEEuV/qsq/oQbiljQ+AXIa54hkg18MaAygWIpQjwf+1m4ej8bo7RFHxp0DN+HuB8cfbf3SfaOVcfOqYHgZexl4HMcgM1gMhka5xi0990sjYO8zTwtHq6dr8m2Q5LWTpFf40tc5uTYNmusLzF3CnUZNEGUsK3vTu4/Y4iB4FqK6xYp59RkY0yBO2lmigXstnnqR/QMzZJSvt8bhaqDUEq2e4/plRK9v6xogVV9U6wKr2Qakxyyx6cy9Hoqm5yNCBqIHxYd1+1RDg93UCOLDsbF8mSGV1l+Su0QMxDNXp2Tl2+Mzb7zSHw0b7v5RgqmNJRukt7VUa3m/BtpxHqaVbl4e2dJQ6kCUrGxivArk/ywlDUNU9GWFc1fccQqDnLFuKgYSnWj7/GArRvjzy+L51fS84vv+fX6/BKveSo8f5BUPHsqHlfPn3Af5TtPEcjMGXEAAAAASUVORK5CYII=) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -7417,7 +7426,7 @@ ___
 | Red Star Level | 8 |
 | Type | Activated |
 | Cooldown | 10s |
-| QSMultiUse | 1 |
+| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
 | Cooldown (WS) | 1h 40m |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA6CAMAAADFsvruAAAAY1BMVEVMaXHGsv/Hs//Gsv/Fsf/Crv/Gsv/ayv/Bsv/Gsv/Fsv/Gsv/FsP/Fr//Iqv/Gsv/Dr//Gs//CsP/Fsf/JtP/Fsf/Esf/Fsf/Gsv/Tvf/Gsv/WwP/Ktv/Tvf/RvP/Nuf/dx/8vdCegAAAAGnRSTlMA8tHgaBTrAQP6uJ9FUwiqDTkhd16JLpTD8QMT/lkAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAOBSURBVEjH3ZbJlqMwDEWFCR6Yx0CMB/7/K1uySSppXKeqt+0Ngeha0pMsAEgtCZMxE15+v4Rg3jMhfk9ImHel9vkf3EhYrFJ2+T0ioH9oXI8exK+RghutDS/+BckIyf4XRKlvkUSJCdHe6ySC9iItsts2lxYZq1akkMfRNMcjhRQ9lPx+7Yu2sfNsm/baSXdegjluV0TAMgzL1YeE22FA2SQC4whJxCpQ+xUR0OTG5M2FQWRPIhIalBhlbq7/JBEpoWdeaa0860GKHxGslBwqfa6p/yx1ChES6lLvJgDK+Hxq3zdMIALaRe+OcUOBmSzb3fZetiuCvVA6l99kbZzWzjT30lhefzEXBH2UzncF3tdMK1bjk1vmsuHFXBAJq/MrXgXmXGCDCVSv5i5/9drfCP5tXBdkFbAOw0qGWCNlq69NPxBUt7Tnhu2N2vLWx5nm1PDa9QNBJ9qHAfnR/HiT79UZ2QWpdnYOu557xjzvz5Fun4ftE0G52L4+f3I6yLyN2Qza189t3xE8PVnsQzTrvFZK+w5CZD3blzQyeH0PJtDtscX2kymPKo3UVo+kG8yHiog6SA4J3dF9g7iAgMzNs5NNLqlTy++QQZugv6Sxr3DR8JfkdzvWFCJgzO30RJTbd6cCImHk7pZERPQvCFG2rKrSqog0UZdUKSeX0eGQXFO5BZZWB6TbWZtEMDIeGlByJGTbUjtw9ForN6V7LL5UsZjyUcV2RuaBs2Ozr+5/IjO0p5uC2fwOxSLjXMHjsvRQef98m8uW3u5gDJ2+YIOlUT4fyFREQkJbebfCuQMGyYwBPOy6Gml6hU8E5bKJciVzvAzMu04GBB+MlXauxNOUO8unIkAoKLee3Uaa+aKoO2X9GvtZQjFxi7OEbsdVWcca2pn6uTS7y7au6src7zafwzRERw1zVq3UUhThUBpnSkpC0H9l5vYDlzWMvIu/TOKElE3unFqLmLkc57Ury2oaeho3+KRYFc63Rn6NaJrcFCjHQKV8n9yS5lJ745RuHzV6jWJMqVPOo+DB7FwiCuud6sYzpncIoN68Nd09/H46gXtnrN/CTtf3sIyCZ0txQpTEkkVhZfo7g7QPJrMMOoGczy3kt99yFC3WxfltoGoMm0dh75ckLtFhzbxV1ThWWPpQ4Z++fUQQHEUl0af+Z+DMGj14j57exPvJERYjz+tvkvgDCiVLsAJuECAAAAAASUVORK5CYII=) |
 
@@ -7908,7 +7917,6 @@ ___
 | Cooldown | 5m |
 | Lifetime | 3m |
 | Lifetime (WS) | 3m 36s |
-| For battleship only | Yes |
 | Cooldown (WS) | 2d 2h |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA9CAMAAADYt8pWAAAAUVBMVEVMaXH/pSb/pCX/pSX/pSb/oiL/nSH/tQz/pSb/mxj/pSX/pSX/pCX/pSb/oyT/oiP/pSb/oSL/pSX/pCT/pSX/pSX/pCT/pSX/pif/qif/rShxJRlHAAAAGHRSTlMA3FrO8SANAfoGhrh25TYswxiVP2eqS59igUjgAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADCUlEQVRIx5VWCbaDIAxEQUJAFPfg/Q/6A3bR301pX59FhwnJTFCItwMBQYA4PUBgY+3YlxdQoPtozOqH0xAQTRGVMutymgawJrXUDGtOQphEkmxETbE/uxVdR2VRdMXqq5M0baAi7bxeyZ6BcIZHZXrki6pYi1M0WLlMAiD6leoTEGASmrRI+W38KrufGBCdi0WZnwOxRCp/Q2BmEoRbttUa9E+Saor+sTJMJ2hwNsZ1jwVmEwP8EuQS1QgPiHarmr/TwFBQeNYCRGnW6as4AXtSu1IwTVjVVw8wSZTt7gkQ4w8PaEvqICsuk/zugVYmkmPW6xg/ipMDH0n1x9u/xFnJTfWnaQBGQ71+gXyhwW4i/1K35IEY33uASZRZ9Mu9LM73HoBuWv07DX72AJQ+CfIdZPjgARak/yB0nNZXGm4SgzJOfyjYTNHhSyp1FuQtEY9xM/Q7D6TWEF0W5L/iw90Dy/9bSZB1fgK7pmurqqnalr8t5MlXD+Q2HNpUN+xqGYpJSucd/4QSM2ak5IGj6mNWPeph8jFGIuKf9FG2Sit1fA60B1uw6guewcrK1Xi6D6MMkRsgN+i9ODnU2qg+nXeLj8rxyXKHLLaIsRgxi3N/DiCr3g/Q1YGo6BvNlduGKnF2FNUyoLA7D/DqtaHQzJNiilKDsKvJiBysZtIobVX6pweY1EUTrDPGM0Wqwg1CElMOB8eXoZYUxzsESkWmUKRCWeVDolG3rUyQDVP1iqL3JokT7m04rVrYXLc0Ibf9m/pmMhwD5am7OOcEUHLMBcgiWbbI1EO+2PYp3zFg/tstK8fVN7jrEBvEN4/YBZaO58y2SFuQD6PGXSeet808u3PSdGW9Sedbirwu61lvQd0grc+R79tNAs225OhTnCiOr0WsBpYNGc4pHhsKR4JPTx37UK4/uwrFq3uOV8/950K2rzfg44k5pP1P+sL7WLIH7/7Ke59Ax+YaL0G4D9OFl76tpUQqqmsQFrPDK2ElMRsL1yA4mVmIaxhrKnGRppT6KqSxlyHd8Clhf1zRNDEX2T6LAAAAAElFTkSuQmCC) |
 
@@ -7950,7 +7958,6 @@ ___
 | Cooldown (WS) | 2d |
 | Lifetime | 3m |
 | Lifetime (WS) | 1d 12h |
-| For battleship only | Yes |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAqCAMAAADGZPh1AAAAS1BMVEX/ngD/piX/piX/qCb/oyT/pSX/piVMaXH/pib/pBn/pyX/pCT/piX/pCT/pST/pST/oiP/pCT/pSX/pSX/pCT/piX/syn/qSb/ric/AU4dAAAAFnRSTlMB7a3nKQv3AP4DpVjYRpaJF2t4yja5DJCWHQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAnZJREFUSMeVlImW6yAIhtG4xuyL+v5POqDG2Gl679TT9BjlF4GPgP56QJ0ANMtWCLHoZqXZLTOwZAd1cdmZ4reVtflpJVZbic9loV3chzheC2gk5X18cbsOaliLd9ByV2KMZ9m1WnDGuCgnQP6bfQzRz/mVnPRan/FIRqjofAi+KxpIa0cwNEKyQSenOrQefV8kvVfGqPJaJJsnhfJblozohG5n6FycsHRiYDKZv0tAAzcjJcj56bOkvZjVo+KpEHJIbp4u9hI+LvTR0abVK67Yx/BzkllOMmjB9nQDLGjHCIGnJLelBD3FNW9SjCUh76W8gcET2bBc9RFqSA6fgKlYYliXE9JM3pUA4J3kCmR3hZncmN2+27wMzFKcK54pv+5+fZKgk4GJVnIgnG9GFMXdKC5O7amgua89UCyhzUai/mgliII/ayWyJbQ5z9TjElg8D3NOad/DUaueLKGtLNiTgLwTn+G8eqBYQsMPUm84mbppmtOP9HYvtF6WwCuleDhHIGGZVSxDzZLgnEh58cxBZew7SRk1GOq4+5OnZlB88KfAHkA4rZZd7hD1IsG6yZmpaRlDaimx9LHb7JrgvCX3xRBINZ9+cIQjbgdEUrvO77PqFt1crAl/jiqoiWZyIAknwMUZFYtbG/6dZNGFSC6AQo3GEGw4lWsX4yCbJJcCYb42z9AF5BZGicntjKa98mvKaCllBWbcnMx1REwCRV/qq63bRnsD84rl9YVdGEZv65fhF5Y3tdbW7pZ7CP3DzkOLVYCnGNbfvfUfyRrV+KXkMG13/kFCX438OfpCovf+w96nZYx/+3CvzxI3finBYJYvL/av8QOTAkLQmx6DmAAAAABJRU5ErkJggg==) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 |
@@ -8023,7 +8030,6 @@ ___
 | Cooldown (BS) | 1m |
 | Lifetime | 3m |
 | Lifetime (WS) | 1d 12h |
-| For battleship only | Yes |
 | Cooldown (WS) | 2d 2h |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA2CAMAAACycDqVAAAAYFBMVEVMaXH/pyb/oB7/pib/nSj/AAD/pib/oQb//wD/pib/pSX/pSX/oiP/pCX/pSb/pCT/oyT/pSb/pSX/oyX/pSb/pSb/pib/pSX/oyT/pCX/pCb/pSX/sSn/rSj/qif/tioig5jEAAAAHHRSTlMA9w3kBQHtAgH9VWEXcaFJIrmtM8Xa0H8sPpWLnwdIEwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA2dJREFUSMeVVouyqyAMDIICoiL4VsD//8sbsO2pPT2tN+O0HZuY7LILArwNzhhn8B8hoLONXTP8cb1kctI7Bfx6m3aUq/V9BvnlJnXoq5aG8mobAVUfaoBtN+JiGwFKji3AXAR9rU1+NOEcmt1e4yw2GeZYskjSXWuTGTfFpwtss14pEVASmh7OQV9qIyCzbr0TZfbtSslSFMuRx6H0tP1ak7PGN/wgSgDr9+lbSWxCHqvBQfmh+lbDN2cf0kJgo6u/lcxUPimLQ72Pn8UpYPN99bPkKLfhswdQK2M4ZXCY9v6T1Q7VPydwaKn/4AERm7yg5egBC3n+WfXiXPLZA5kJvygVnzyAgpR0ToLEEOlDwCcP5MCM3/DrZTAB9i8P5KCT6nNoy0dU0Wo6FPO7mhxV71eeC7FYSQheMQzmCvaHB+6qryYaCnkPTxVLHngrTrZG1XcNCbY+asJY946s1R8eyKErZFnVNAxTlY0+lVjsWbheQe2G6pXoHPLN06mR0iwMOXJpqgkYLL2Xtqa/PYA0DaEoAp3QuAym1EUqQCDVShyl/o0HpphjdFyHuLXEudJGw4Gp0QcZXjwgsImXdGuF4EmeNET0aX68065F8D07oUGTy8JovCkOHSAARM/SLFjD9CjJ2QPIl9Zz/PMuRcT/I1FUQFsuyztd5j+Wj5Q9aZ6/MwzK9mlOHdE/CwuFnX85lGgI5n+OV8RmfGguHRR59BUe+RxWL+OxFH//MZLgMe+Z9EBOjsfqJ7C5eGRnbadLVSOdHcE9n+lalbprs0fd0TDlZ3NZr2agBZHe7wZwl0T02bijVEhBR7PWustu2Xi1yo7E7TFczCgwG8wa3xgoLWS4/UUGq9pU0DWF33cvi77ZaqWXrq0yfNYW0WdVOy9a1VvTUxmziqYDPBmdI/2q5oydVkYvJ45ZNqu1j7klUHTWzO60sdvuheji5ELcWD/IYvOE6UDCkPQmUnbMF0/LgBuOOO6zVLUMgeBrlAvDVs7stKAsBuen0eZyG4LDdwKuBsTlitFsyCNCZyeZsAwp6DSuwJhYGlQ0alY2iY7d+UDo0BtjmyOsNf04UBJ85NnLoSkzLMgjtKxTqx2pDN579xJ4K0g62lV1LFKUjHogQ7XMi5oa26MI0t4Xl703zaT0fNNMSv0HhRc89HD6wmUAAAAASUVORK5CYII=) |
 
@@ -8519,9 +8525,7 @@ ___
 | Cooldown (BS) | 1m |
 | Cooldown (WS) | 1d 12h |
 | Lifetime (WS) | 20h |
-| For battleship only | Yes |
 | Upgrade to DARK NEBULA | • salvage -> decoy drone |
-| ForceCerbDrone | 1 |
 | Lifetime (BS) | 2m |
 | icon | ![icon](data:image/png;base64,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) |
 
