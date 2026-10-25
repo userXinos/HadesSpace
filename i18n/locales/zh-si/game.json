@@ -13,6 +13,7 @@
   "BLS": "蓝星",
   "RS": "红星",
   "YS": "黄星",
+  "QS": "量子星",
   "PVP": "PvP",
   "PVE": "PVE",
   "UPGRADE_COST": "升级费用",
@@ -104,5 +105,18 @@
   "BLUEPRINTS_GRANTED": "蓝图获取",
   "MINIMUM_RANGE": "最小射程",
   "HYDRO_COST_MODIFIER": "氢气花费修正",
-  "ARTIFACT_DRS_POINTS": "暗红神器积分"
+  "ARTIFACT_DRS_POINTS": "暗红神器积分",
+  "BASE_LEVEL": "要求的基础模组等级",
+  "CAN_USE_MULTIPLE_TIMES_IN_QS": "可在量子星中重复使用",
+  "SHIPS_MOVEMENT_MODIFIER": "船只移动速度修正",
+  "SHIPMENT_VALUE_SPAWN_ON_QS_FIRE_PLANET": "火行星货物价值",
+  "QS_GATE_ARTS_STORAGE": "神器存储槽位",
+  "QS_EXPEDITION_TIME": "探索时间",
+  "MIN_ARTIFACT_LEVEL_FOR_QUANTIZATION": "可量子化的最低神器等级",
+  "QS_HYDRO_COLLECTION_REQUIRED_FOR_BONUS": "氢气加成所需收集量",
+  "QS_HYDRO_BONUS_INCREASE_PCT": "氢气行星带加成",
+  "QS_SHIPMENT_COLLECTION_REQUIRED_FOR_BONUS": "货物加成所需收集量",
+  "QS_SHIPMENT_BONUS_INCREASE_PCT": "量子火行星货物加成",
+  "QS_BASES_CLEAN_REQUIRED_FOR_ICE_PLANET_SPAWN": "生成量子冰行星所需基地摧毁数量",
+  "QS_SCAN_REQUIRED_MIN_ACTIVE_MEMBERS": "开始扫描所需的最少活跃成员数"
 }
