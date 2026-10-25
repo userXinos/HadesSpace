@@ -8,7 +8,7 @@ export const gameSlostLocKeys = {
     Combat: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT',
     Support: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_SUPPORT',
     Drone: 'TID_MODULE_BLUEPRINTS_LIST_CATEGORY_DRONE',
-}
+};
 
 export const gameCharsLocKeys = {
     BlueStar_Fragments: 'TID_BS_FRAGMENTS_REWARD_TITLE',
@@ -186,6 +186,7 @@ export const gameCharsLocKeys = {
     RSLESec: 'TID_MODULE_RED_STAR_EXTENSION_STAT',
     BlastDroneDamageAmount: 'TID_MODULE_IMMOLATION_DAMAGE_AMT',
     MotionShieldPct: 'TID_MOTION_SHIELD_PCT',
+    QSAlphaShieldPct: 'TID_MOTION_SHIELD_PCT',
     MovementSlowdown: 'TID_MODULE_SPEED_SLOWDOWN_STAT',
     LeapAOERange: 'TID_DESTROYER_AREADAMAGERANGE',
     ColonizeCost: 'TID_OBJECT_ACTION_COLONIZE',
@@ -234,6 +235,33 @@ export const gameCharsLocKeys = {
     ShipmentsCRValuePerDay: 'TID_PLANET_UPG_SHIPMENT_YIELD',
     TINDMG: 'TID_MODULE_STAT_TELEPORT_DAMAGE',
     QSDirectInfluence: 'TID_QUANTUM_CERBERUS_INFLUENCE_STAT',
+    EquipHPBoostPct: 'TID_LIGHT_OMEGA_SHIELD_HP_STAT',
+    EnemyShieldReductionPct: 'TID_DARK_OMEGA_SHIELD_REDUCE_STAT',
+    QEffectDurationF: 'TID_DARK_EFFECT_DURATION',
+    WeaponHealRate: 'TID_LIGHT_LASER_STAT',
+    WeaponDamageMod: 'TID_DARK_LASER_STAT',
+    UnityPct: 'TID_LIGHT_FORTIFY_STAT',
+    ActiveWRangeIncrPct: 'TID_DARK_FORTIFY_STAT',
+    GCD: 'TID_GCD',
+    Gdur: 'TID_MODULE_EFFECT_DURATION_DESCR',
+    ShipmentCloneVal: 'TID_SHIPMENT_CLONE_VALUE_PCT',
+    ShipYieldImprovementPct: 'TID_SHIPMENT_IMPROVEMENT_YIELD_PCT',
+    MaxSectorHullHealPct: 'TID_LIGHT_CRUNCH_MAX_HEAL_STAT',
+    MaxSectorHullDmgPct: 'TID_DARK_CRUNCH_MAX_DMG_STAT',
+    RocketHPBoostPct: 'TID_LIGHT_ROCKET_HP_STAT',
+    DisableShieldTicks: 'TID_DARK_ROCKET_DRONE_STAT',
+    ProjectileSpeedIncrPct: 'TID_MODULE_SPEED_INCR_ACTIVATION',
+    DeltaSpeedIncr: 'TID_MODULE_SPEED_INCR_ACTIVATION',
+    DeltaDamageIncr: 'TID_MODULE_STAT_DAMAGE_INCR',
+    CROIDBoostPct: 'TID_LIGHT_HYDRO_ROCKET_STAT',
+    SectorHydroBlastYieldPct: 'TID_DARK_HYDRO_ROCKET_STAT',
+    ProjOwnerAreaHealAmt: 'TID_MAX_HEAL_AMT',
+    ExtraProjectileStrengths: 'TID_DARK_RL_EXTRA_ROCKETS_STAT',
+    ActiveDuration: 'TID_MODULE_EFFECT_DURATION_DESCR',
+    Cooldown: 'TID_MODULE_COOLDOWN_STAT',
+    LaserGraceTimesPerST: 'TID_GRACE_PERIOD',
+    light: 'TID_LIGHT_MODULE',
+    dark: 'TID_DARK_MODULE',
 };
 
 
@@ -340,6 +368,10 @@ export default {
     ArtifactDRSPoints: 'ARTIFACT_DRS_POINTS',
     PeriodSpawnType: 'CERBERUS_PERIOD_SPAWN_TYPE',
     NumCustomWeapons: 'NUM_WEAPONS_EQUIPPED',
+    QSMultiUse: 'CAN_USE_MULTIPLE_TIMES_IN_QS',
+    QuantumUpgradeBaseLevels: 'BASE_LEVEL',
+    QuantumArtifactBPReqs: 'UNLOCK_BLUEPRINTS',
+    QuantumUpgradeCosts: 'UPGRADE_COST',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,

@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import { setGraceDescriptions } from '@Utils/graceDescriptions';
+
+const STAR_TYPES = ['YS', 'RS', 'WS', 'BS', 'QS'];
 
 export function fixRampLasers(obj) {
     Object.keys(obj).forEach((k) => {
@@ -43,11 +46,37 @@ export function fixRampLasers(obj) {
     });
     return obj;
 }
+
+function fixLaserGraceDescriptions(obj) {
+    Object.keys(obj).forEach((k) => {
+        const mod = obj[k];
+
+        if (!mod || !Array.isArray(mod.LaserGraceTimesPerST) || !mod.TID_Description_LG) {
+            return;
+        }
+
+        const entries = mod.LaserGraceTimesPerST
+            .map((time, index) => ({
+                star: STAR_TYPES[index],
+                descriptionKey: mod.TID_Description_LG,
+                time: Number(time),
+            }))
+            .filter(({ star, time }) => star && Number.isFinite(time) && time !== 0);
+
+        setGraceDescriptions(k, entries);
+
+        const cleaned = { ...mod };
+        delete cleaned.LaserGraceTimesPerST;
+        delete cleaned.TID_Description_LG;
+        obj[k] = cleaned;
+    });
+    return obj;
+}
 </script>
 <script setup>
 import ModulePage from '@/components/ModulePage.vue';
 
 function postFilter(data) {
-    return fixRampLasers(data);
+    return fixLaserGraceDescriptions(fixRampLasers(data));
 }
 </script>

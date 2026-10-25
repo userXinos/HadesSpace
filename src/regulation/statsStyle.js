@@ -14,6 +14,7 @@ export default {
         'BLSDailyCRReward',
         'CreditsPerHour',
         'ShipmentsCRValuePerDay',
+        'QuantumUpgradeCosts',
     ],
     fuel: [
         'FuelUseIncrease',

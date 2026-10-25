@@ -3,8 +3,12 @@
     <div class="general">
       <stats
         :items="data.default"
+        :source="source"
         :format="format"
         :icon-dir="iconDir"
+        :variants="variants"
+        :active-variant-id="activeVariantId"
+        @toggle-variant="emit('toggle-variant', $event)"
       />
     </div>
 
@@ -27,19 +31,37 @@
 import { computed } from 'vue';
 
 import Stats from '@/components/DataHeadStats.vue';
+import type { ModuleVariant } from '@Utils/moduleVariants';
 
 export interface Props {
     data: {[k: string]: unknown, default: unknown},
     format: {value: (k: string, v: unknown) => unknown, key: (k: string) => string}
     iconDir: string
+    source?: Record<string, unknown> | null
+    variants?: ModuleVariant[] | null
+    activeVariantId?: string | null
 }
 
 const props = defineProps<Props>();
+const emit = defineEmits<{(e: 'toggle-variant', id: string): void}>();
+const activeVariant = computed(
+    () => props.variants?.find((variant) => variant.id === props.activeVariantId) ?? null,
+);
 const other = computed(() => {
     const res = { ...props.data };
+    const extraModules = activeVariant.value?.extraModules ?? [];
+
     delete res.default;
+
+    if (extraModules.length) {
+        res.modules = Array.isArray(res.modules) ?
+            [...res.modules, ...extraModules] :
+            extraModules;
+    }
+
     return res;
 });
+
 </script>
 
 <style scoped lang="scss">

@@ -1,7 +1,7 @@
 <template>
   <Page
     :title-loc-key="locKey"
-    :content-args="{data, iconDir: 'game/Modules', tableOpts}"
+    :content-args="{data, iconDir: 'game/Modules', tableOpts, variants}"
     :portrait="{src: img, alt: `${type} modules portrait`}"
   />
 </template>
@@ -72,6 +72,7 @@ export {
 import { computed } from 'vue';
 
 import Page from '@/components/Page.vue';
+import getModuleVariants from '@Utils/moduleVariants';
 
 export interface Props {
     type: string
@@ -86,4 +87,5 @@ const data = props.postFilter(getBySlotType(props.type));
 const img = new URL(`../img/game/portraits/${props.portrait}`, import.meta.url).href;
 const locKey = `TYPE_MOD_${(props.type == 'Support' ? 'COMBAT' : props.type).toUpperCase()}`;
 const tableOpts = computed(tableOptsGetter);
+const variants = getModuleVariants();
 </script>

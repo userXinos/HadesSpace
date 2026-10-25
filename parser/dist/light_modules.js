@@ -26,6 +26,8 @@ export default {
         ActiveDuration: [5, 10, 18, 28, 40],
         Cooldown: 60,
         WeaponHealRate: [80, 100, 120, 150, 200],
+        ActiveDurationWS: [3000, 6000, 10800, 16800, 24000],
+        CooldownWS: 36000,
     },
     Stealth: { Name: "Stealth" },
     HydroReplicator: { Name: "HydroReplicator" },
@@ -61,7 +63,7 @@ export default {
     Recall: { Name: "Recall" },
     RocketDrone: { Name: "RocketDrone", EnableQuantum: 1, TID_Description: "TID_LIGHT_ROCKET_DRONE_DESCR", RocketHPBoostPct: [10, 25, 50, 100, 200] },
     Enrich: { Name: "Enrich", SectorEnrichCooldownSecondsRS: 300, SectorEnrichCooldownSecondsWS: 0, RSEnrichMod: 8 },
-    Rush: { Name: "Rush", GoalRushCostMultiplier: 100, DNRushCostsPerHr: [27778, 55556, 83333], DNRushCostsStagesDurationHr: 72 },
+    Rush: { Name: "Rush", GoalRushCostMultiplier: 100 },
     Genesis: {
         Name: "Genesis",
         SectorGenesisCooldownSecondsWS: 0,

@@ -185,7 +185,17 @@ store.subscribe((mutation) => {
     }
 });
 
-watch(props.data.head, () => {
+// The table data is replaced when a module switches between base/light/dark,
+// so the category cache and the hidden-column indexes must be rebuilt too.
+watch(() => props.data, () => {
+    const nextCategories = Object.keys(props.data.head);
+
+    categories.splice(0, categories.length, ...nextCategories);
+    nextCategories.forEach((category) => {
+        if (!(category in filteredIndexes)) {
+            filteredIndexes[category] = [];
+        }
+    });
     updateFiltered();
 });
 

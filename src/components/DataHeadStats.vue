@@ -18,11 +18,17 @@
                   class="title"
                 >
                   <a :href="parentId ? `#${parentId}-${name}` : `#${item.Name}`">
-                    {{ format.key(item.TID || name) }}
+                    {{ activeVariant ? t(activeVariant.titleLocKey, [format.key(item.TID || name)]) : format.key(item.TID || name) }}
                   </a>
                 </div>
                 <p
-                  v-if="item.TID_Description && (parent?.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
+                  v-if="activeVariant"
+                  class="description"
+                >
+                  {{ formatDescr(activeVariant.descriptionKey) }}
+                </p>
+                <p
+                  v-else-if="item.TID_Description && (parent?.TID_Description ? parent.TID_Description !== item.TID_Description : true) && $te(item.TID_Description)"
                   class="description"
                 >
                   {{ formatDescr(item.TID_Description) }}
@@ -36,6 +42,27 @@
                   :name="item.PrefabModel || item.Icon || item.Model"
                   :dir="iconDir || ICON_DIR_LIST[name] || ICON_DIR_LIST.default"
                 />
+                <div
+                  v-if="variants && variants.length"
+                  class="variant-switch"
+                >
+                  <button
+                    v-for="variantOption in variants"
+                    :key="variantOption.id"
+                    type="button"
+                    class="variant-btn"
+                    :class="[variantOption.id, {active: activeVariantId === variantOption.id}]"
+                    :title="t(variantOption.titleLocKey, [format.key(item.TID || name)])"
+                    :aria-label="t(variantOption.titleLocKey, [format.key(item.TID || name)])"
+                    :aria-pressed="activeVariantId === variantOption.id"
+                    @click.stop="emit('toggle-variant', variantOption.id)"
+                  >
+                    <icon
+                      :name="item.PrefabModel || item.Icon || item.Model"
+                      :dir="iconDir || ICON_DIR_LIST[name] || ICON_DIR_LIST.default"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -47,27 +74,70 @@
               class="characteristics"
             >
               <li
-                v-for="([value, filtered], key) in getCharacteristics(item)"
+                v-for="([value, filtered], key) in scalarCharacteristics(item)"
                 :key="key"
                 :class="{filtered}"
                 class="line"
               >
                 <!--suppress HtmlUnknownTag -->
                 <DataHeadStats
-                  v-if="key != '_statsByStar'"
                   :item-key="key"
                   :items="value"
                   :format="format"
                   :parent-id="`${parentId}-${name}`"
                   :parent="item"
                 />
+              </li>
+
+              <template v-if="activeVariant && variantCharacteristics.length">
+                <li
+                  class="variant-separator"
+                  aria-hidden="true"
+                />
+                <li
+                  v-for="{ key, value, filtered } in variantCharacteristics"
+                  :key="`variant-${key}`"
+                  :class="{filtered}"
+                  class="line variant-characteristic"
+                >
+                  <template v-if="key !== '_statsByStar'">
+                    <b>
+                      <DataStatTooltip :k="key">
+                        {{ format.key(key) }}
+                      </DataStatTooltip>
+                    </b><template v-if="$store.state.userSettings.showKeys"> ({{ key }})</template>:
+                    <span
+                      :class="statsStyleName(key)"
+                      class="value stats-style"
+                    >{{ format.value(key, value) }}</span>
+                  </template>
+                  <DataStatByStar
+                    v-else
+                    :items="value"
+                    :format="format"
+                  />
+                </li>
+              </template>
+
+              <li
+                v-for="([value, filtered], key) in tableCharacteristics(item)"
+                :key="key"
+                :class="{filtered}"
+                class="line"
+              >
                 <DataStatByStar
-                  v-else
                   :items="value"
                   :format="format"
                 />
               </li>
             </ul>
+
+            <DataStatByStar
+              v-if="getGraceStats(source)"
+              class="grace-stats"
+              :items="getGraceStats(source)"
+              :format="format"
+            />
           </div>
         </div>
 
@@ -178,6 +248,9 @@ import DataStatByStar from '@/components/DataStatByStar.vue';
 import { useI18n } from 'vue-i18n';
 
 import statsStyleName from '@Handlers/statsStyleName';
+import type { ModuleVariant } from '@Utils/moduleVariants';
+import { getEffectDurationByStar } from '@Utils/moduleVariants';
+import { getGraceDescriptions } from '@Utils/graceDescriptions';
 
 export interface Props {
     items: unknown[] | unknown | { [k:string]: object|unknown[] },
@@ -186,6 +259,9 @@ export interface Props {
     parentId?: string|null
     parent?: {[k: string]: unknown, TID?: string, TID_Description?: string}
     iconDir?: string
+    source?: Record<string, unknown>|null
+    variants?: ModuleVariant[]|null
+    activeVariantId?: string|null
 }
 
 const ICON_DIR_LIST = {
@@ -200,7 +276,76 @@ const props = withDefaults(defineProps<Props>(), {
     parentId: null,
     parent: () => ({ ID_Description: null }),
     iconDir: '',
+    source: null,
+    variants: null,
+    activeVariantId: null,
 });
+const emit = defineEmits<{(e: 'toggle-variant', id: string): void}>();
+const activeVariant = computed(
+    () => props.variants?.find((variant) => variant.id === props.activeVariantId) ?? null,
+);
+const variantCharacteristics = computed(() => {
+    const variant = activeVariant.value;
+    if (!variant) {
+        return [];
+    }
+
+    const scalars: Record<string, unknown> = { Name: variant.data.Name };
+
+    variant.fields.forEach((key) => {
+        if (key !== 'QEffectDurationF' && key !== 'DroneExtraModule' && !Array.isArray(variant.data[key])) {
+            scalars[key] = variant.data[key];
+        }
+    });
+
+    return Object.entries(getCharacteristics(scalars))
+        .map(([key, [value, filtered]]) => ({ key, value, filtered }));
+});
+
+function getItemCharacteristics(item: Record<string, unknown>) {
+    const percent = Number(activeVariant.value?.data.QEffectDurationF);
+
+    if (!Number.isFinite(percent)) {
+        return getCharacteristics(item);
+    }
+
+    return getCharacteristics({
+        ...item,
+        ...getEffectDurationByStar(item, percent),
+    });
+}
+
+function scalarCharacteristics(item: Record<string, unknown>) {
+    return Object.fromEntries(
+        Object.entries(getItemCharacteristics(item))
+            .filter(([key]) => key !== '_statsByStar'),
+    );
+}
+
+function tableCharacteristics(item: Record<string, unknown>) {
+    return Object.fromEntries(
+        Object.entries(getItemCharacteristics(item))
+            .filter(([key]) => key === '_statsByStar'),
+    );
+}
+
+function getGraceStats(source?: Record<string, unknown> | null) {
+    const moduleName = source?.Name;
+    const entries = typeof moduleName === 'string' ? getGraceDescriptions(moduleName) : [];
+
+    if (!entries.length) {
+        return null;
+    }
+
+    const stats: Record<string, unknown> = {};
+
+    entries.forEach(({ star, descriptionKey, time }) => {
+        stats[`TID_Description_${star}`] = descriptionKey;
+        stats[`LaserGraceTimesPerST_${star}`] = time;
+    });
+
+    return stats;
+}
 const itemsToArray = computed(() => {
     if (Array.isArray(props.items)) {
         return props.items;
@@ -294,10 +439,86 @@ $mw: 900px;
                     @media screen and (max-width: $mw) {
                         max-width: none;
                     }
+
+                    .variant-switch {
+                        display: flex;
+                        justify-content: center;
+                        gap: 6px;
+                        margin-top: 8px;
+
+                        .variant-btn {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            box-sizing: border-box;
+                            width: 30%;
+                            aspect-ratio: 1;
+                            padding: 0;
+                            overflow: hidden;
+                            border: 1px solid #ccd7de;
+                            border-radius: 7px;
+                            cursor: pointer;
+                            transition: transform 0.15s, box-shadow 0.15s;
+                            will-change: transform;
+
+                            :deep(.main) {
+                                position: absolute;
+                                inset: 0;
+                                display: block;
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            :deep(.container) {
+                                height: 100%;
+                                padding-top: 0;
+                            }
+
+                            :deep(.icon-background) {
+                                background: none !important;
+                                opacity: 1;
+                            }
+
+                            :deep(.icon) {
+                                width: 82%;
+                                height: 82%;
+                            }
+
+                            &.light {
+                                background: #fff;
+
+                                :deep(.icon) {
+                                    filter: brightness(0);
+                                }
+                            }
+
+                            &.dark {
+                                background: #000;
+                            }
+
+                            &:hover,
+                            &.active {
+                                transform: scale(1.08);
+                            }
+
+                            &:hover {
+                                box-shadow: 0 0 0 2px rgba(76, 120, 133, 0.55);
+                            }
+
+                            &.active {
+                                box-shadow: 0 0 0 2px #4c7885;
+                            }
+                        }
+                    }
                 }
             }
             .characteristics {
                 list-style-type: none;
+
+                .variant-separator {
+                    height: 0.8em;
+                }
 
                 .line {
                     font-size: 100%;
@@ -310,6 +531,10 @@ $mw: 900px;
                         background-color: rgba(220,20,60, 0.2);
                     }
 
+                    &.variant-characteristic b {
+                        color: #9fb4be;
+                    }
+
                     span.value.stats-style {
                         display: inline-flex;
                     }
@@ -318,6 +543,9 @@ $mw: 900px;
 
         }
     }
+}
+.grace-stats {
+    margin-top: 1.5em;
 }
 // sub-item
 .line {

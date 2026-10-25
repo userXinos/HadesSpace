@@ -34,6 +34,11 @@ export default [
             'ImpulseDuration',
             'FleetDepartTimeInSeconds',
             'TimeToUpgradeParallel',
+            'ActiveDuration',
+            'Cooldown',
+            'GCD',
+            'Gdur',
+            'QEffectDurationF',
         ],
         (v) => v,
     ],
@@ -46,7 +51,11 @@ export default [
         (v) => v / 10,
     ],
     [
-        ['TargetSwitchTicks', 'MirrorShieldTickPeriod', 'DispatchActivTicks', 'RelicLoadTicks', 'PeriodSpawnTicks'],
+        ['TargetSwitchTicks', 'MirrorShieldTickPeriod', 'DispatchActivTicks', 'RelicLoadTicks', 'PeriodSpawnTicks', 'DisableShieldTicks'],
         (v, {TicksPerSecond}) => v / TicksPerSecond,
+    ],
+    [
+        ['LaserGraceTimesPerST'],
+        (v) => Array.isArray(v) ? v.map((e) => e).join(', ') : v,
     ],
 ]

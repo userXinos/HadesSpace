@@ -4,15 +4,26 @@
 
       <v-title
         :data="title"
+        :source="data"
         :format="format"
         :icon-dir="iconDir"
+        :variants="variants"
+        :active-variant-id="activeVariant?.id ?? null"
+        @toggle-variant="toggleVariant"
       />
 
       <slot />
 
       <v-table
+        v-if="variantTable"
+        key="variant"
+        v-bind="variantTableProps"
+      />
+
+      <v-table
         v-if="Object.keys(table.head).length > 0"
-        v-bind="Object.assign(tableOpts, {data: table, format, isHide: (k) => isHide(k, data.Name)})"
+        key="base"
+        v-bind="baseTableProps"
       >
         <!--         eslint-disable vue/max-attributes-per-line         -->
         <template v-if="$slots['table-head']" #head="p"><slot name="table-head" v-bind="p" /></template>
@@ -35,12 +46,16 @@ import value from '@Handlers/value';
 import isHide from '@Handlers/isHide';
 
 import headersOrder from '@Regulation/headersOrder.js';
+import globals from '@Data/globals.js';
+import type { ModuleVariant } from '@Utils/moduleVariants';
+import type { Raw } from '@Utils/tableMask';
 
 export interface Props {
     data: object
     tableOpts?: object
     sort?: boolean
     iconDir: string
+    variants?: ModuleVariant[] | null
 }
 interface DataTable {
     head: Record<string, unknown[]>
@@ -55,9 +70,11 @@ const props = withDefaults(defineProps<Props>(), {
     tableOpts: () => ({}),
     sort: true,
     iconDir: '',
+    variants: null,
 });
 const table = ref<DataTable>({ head: {}, body: {} });
 const title = ref<DataTitle>({ });
+const activeVariantId = ref<string | null>(null);
 
 const dataName = computed(() => {
     const { value: t } = title;
@@ -68,11 +85,83 @@ const format = {
     value: (k: string, v: unknown) => value(k, v, dataName.value),
 };
 
+// Light/Dark variants replace the whole card content: heading, stats and table.
+const activeVariant = computed<ModuleVariant | null>(
+    () => props.variants?.find((variant) => variant.id === activeVariantId.value) ?? null,
+);
+const variantTable = computed<Raw | null>(() => {
+    const variant = activeVariant.value;
+    if (!variant) {
+        return null;
+    }
+
+    const keys = variant.fields.filter((field) => Array.isArray(variant.data[field]));
+    if (!keys.length) {
+        return null;
+    }
+
+    const maxQuantumLevel = Number((globals as { MaxQuantumLevel?: number }).MaxQuantumLevel) || 0;
+    const levelCount = Math.max(
+        maxQuantumLevel,
+        ...keys.map((key) => (variant.data[key] as unknown[]).length),
+        1,
+    );
+    const normalize = (values: unknown[]) => Array.from(
+        { length: levelCount },
+        (_, index) => values[index] ?? '',
+    );
+
+    return {
+        head: { default: keys },
+        body: { default: keys.map((key) => normalize(variant.data[key] as unknown[])) },
+    };
+});
+const variantTableProps = computed(() => {
+    const hide = (k: string) => isHide(k, dataName.value ?? null);
+
+    return Object.assign({ lvlColKey: 'LVL', colLvlStartAt: 1 }, {
+        data: variantTable.value,
+        format,
+        isHide: hide,
+    });
+});
+const baseTableProps = computed(() => {
+    const hide = (k: string) => isHide(k, dataName.value ?? null);
+    const opts: Record<string, unknown> = {
+        ...props.tableOpts,
+        data: table.value,
+        format,
+        isHide: hide,
+    };
+    // tableOpts may define colLvlStartAt as a getter that reads its own data.
+    // Re-bind that getter to this per-card object instead of mutating the
+    // shared options object (all module cards receive the same one).
+    const levelStart = Object.getOwnPropertyDescriptor(props.tableOpts, 'colLvlStartAt');
+
+    if (levelStart?.get) {
+        Object.defineProperty(opts, 'colLvlStartAt', {
+            enumerable: true,
+            configurable: true,
+            get: () => levelStart.get?.call(opts),
+        });
+    }
+
+    return opts;
+});
+
+function toggleVariant(id: string) {
+    activeVariantId.value = (activeVariantId.value === id) ? null : id;
+}
+
 watch(() => props.data, () => {
+    activeVariantId.value = null;
     table.value = { head: {}, body: {} };
     title.value = {};
 
     packagingData(props.data);
+});
+watch(() => props.variants, () => {
+    activeVariantId.value = null;
 });
 
 packagingData(props.data);

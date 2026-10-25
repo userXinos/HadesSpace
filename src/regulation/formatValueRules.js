@@ -59,6 +59,20 @@ export default [
             'FortifyDamageAmpFactor',
             'HydroCostModifierPct',
             'EMPResist',
+            'EquipHPBoostPct',
+            'UnityPct',
+            'ActiveWRangeIncrPct',
+            'ShipmentCloneVal',
+            'ShipYieldImprovementPct',
+            'MaxSectorHullHealPct',
+            'MaxSectorHullDmgPct',
+            'RocketHPBoostPct',
+            'ProjectileSpeedIncrPct',
+            'DeltaSpeedIncr',
+            'DeltaDamageIncr',
+            'CROIDBoostPct',
+            'SectorHydroBlastYieldPct',
+            'WeaponHealRate',
         ],
         (v) => `${v}%`,
     ],
@@ -87,6 +101,7 @@ export default [
             'ApplyModuleOnDockedObjectDestroy',
             'CenterPlacement',
             'RequiresSectorDistance',
+            'QSMultiUse',
         ],
         (v) => v ? t('YES') : t('NO'),
     ],
@@ -148,16 +163,22 @@ export default [
         (v) => `x${v}`,
     ],
     [
-        ['MovementSlowdown', 'DamageReduceFactor', 'MotionShieldPct'],
+        ['MovementSlowdown', 'DamageReduceFactor', 'MotionShieldPct', 'QSAlphaShieldPct', 'EnemyShieldReductionPct'],
         (v) => `${(v > 0) ? (100 - v) : v}%`,
     ],
     [
-        ['MiningSpeedModifierPct', 'DamageAmplifyFactor'],
+        ['MiningSpeedModifierPct', 'DamageAmplifyFactor', 'WeaponDamageMod'],
         (v) => `x${v / 100}`,
     ],
     [
         ['TID', 'TID2', 'TID_Description', 'DNDiff'],
         (v) => !Array.isArray(v) ? t(v) : undefined,
+    ],
+    [
+        ['ExtraProjectileStrengths'],
+        (v) => Array.isArray(v) ?
+            v.map((e) => Array.isArray(e) ? e.join(' / ') : e).join(' / ') :
+            v,
     ],
     [
         ['BaseType'],
