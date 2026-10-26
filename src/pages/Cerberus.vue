@@ -86,7 +86,7 @@
         </h1>
       </div>
 
-      <v-content :args="{data: stations, iconDir: 'game/SpaceBuildings'}" />
+      <v-content :args="{data: stations, iconDir: 'game/SpaceBuildings', tableOpts: { lvlColKey: '№' }}" />
     </div>
 
   </div>
@@ -102,6 +102,7 @@ import getFilterByType from '@Utils/getFilterByType';
 import objectArrayify from '@Utils/objectArrayify';
 import shipsData from '@Data/capital_ships.js';
 import stationsData from '@Data/cerberus_stations.js';
+import modules from '@Data/modules.js';
 
 import cerberusPortrait from '@Img/game/portraits/portrait_CerberusDestroyer.jpg';
 import stationPortrait from '@Img/game/portraits/portrait_CerberusStation.jpg';
@@ -140,6 +141,47 @@ const stations = objectArrayify(stationsData, {
         return [k, v];
     },
 });
+const quantumBaseWeapons = objectArrayify(modules, {
+    filter: ([k]) => k.startsWith('QB'),
+});
+const quantumBases = {};
+const dnStations = Object.entries(stations)
+    .filter(([k, v]) => k.startsWith('DN_Lv') && v && 'DisplayLevel' in v)
+    .sort((a, b) => a[1].DisplayLevel - b[1].DisplayLevel);
+
+if (dnStations.length) {
+    const [[firstKey, firstStation]] = dnStations;
+    const metaKeys = ['Name', 'DisplayLevel', 'TID', 'TID_Description', 'ConceptImage', 'Model', 'WeaponFx'];
+    const statKeys = [...new Set(dnStations.flatMap(([, station]) => Object.keys(station)))]
+        .filter((key) => !metaKeys.includes(key));
+
+    quantumBases.Name = firstKey;
+    quantumBases.QBLevel = dnStations.map(([, station]) => station.DisplayLevel);
+    quantumBases.modules = Object.values(quantumBaseWeapons).map((module) => {
+        if (module.Name !== 'QBLaser') {
+            return module;
+        }
+
+        const { DPSRampTimesWS, ...laser } = module;
+
+        return { ...laser, DPSRampTimes_WS: DPSRampTimesWS };
+    });
+    metaKeys.filter((key) => key in firstStation).forEach((key) => {
+        if (key !== 'Name' && key !== 'DisplayLevel') {
+            quantumBases[key] = firstStation[key];
+        }
+    });
+    statKeys.forEach((key) => {
+        const values = dnStations.map(([, station]) => station[key]);
+        const [firstValue] = values;
+        const isConstant = values.every((value) => JSON.stringify(value) === JSON.stringify(firstValue));
+
+        quantumBases[key] = isConstant ? firstValue : values;
+    });
+
+    stations[firstKey] = quantumBases;
+    dnStations.slice(1).forEach(([key]) => delete stations[key]);
+}
 
 function getShips(path) {
     return objectArrayify(shipsData, {

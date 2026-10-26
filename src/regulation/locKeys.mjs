@@ -383,6 +383,7 @@ export default {
     QSShipmentBonusPct: 'QS_SHIPMENT_BONUS_INCREASE_PCT',
     QSIcePlanetBasesReq: 'QS_BASES_CLEAN_REQUIRED_FOR_ICE_PLANET_SPAWN',
     QSMinActiveMembersFor: 'QS_SCAN_REQUIRED_MIN_ACTIVE_MEMBERS',
+    QBLevel: 'QUANTUM_BASE_LEVEL',
 
     ...gameCharsLocKeys,
     ...gameSlostLocKeys,

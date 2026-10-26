@@ -177,6 +177,9 @@ function packagingData(obj: Record<string, unknown>, category = 'default', isSub
         }
         Object.entries(obj).forEach(([key, value]) => {
             if (Array.isArray(value)) {
+                if (isHide(key, null, { asMeta: false, asTitle: true })) {
+                    return;
+                }
                 preTable.push([key, value]);
                 delete obj[key];
             }
