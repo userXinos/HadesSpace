@@ -41,7 +41,7 @@ etc; See #yellow_star_sectors
 - Once a ship has departed, you cannot change its course and must wait until it reaches its destination.
 - The Red Star Scanner can detect nearby stars that are going Supernova. Those stars usually have old planets with valuable artifacts, but are also guarded by Cerberus forces.<br>Other players can use their Red Star Scanners to gain access to the same stars.
 
-Collections: 28, entities: 611, fields: 4745.
+Collections: 28, entities: 611, fields: 4742.
 
 ## Content
 
@@ -3882,7 +3882,7 @@ ___
 | Name | PlayerRocketLauncher |
 | EnableQuantum | 1 |
 | Description | The Rocket Launcher launches additional rockets, at reduced strength. |
-| Additional rockets | 25, 50, 100, 100 / 50, 100 / 100 |
+| Additional rockets | 25%, 50%, 100%, 100% / 50%, 100% / 100% |
 
 ### Pulse
 
@@ -4672,26 +4672,26 @@ ___
 | PlatinumStars | Home_Star_21_Platinum, Home_Star_22_Platinum, Home_Star_23_Platinum |
 | NumCrystalsForNameChange | 1 000 |
 | CorpBaseScanCost | 0 |
-| DNExpeditionTime | 86 400 |
+| Expedition time | 1d |
 | DNRushCostsPerHr | 27 778, 55 556, 83 333 |
 | DNRushCostsStagesDurationHr | 72 |
-| NumArtifactsOnQSGate | 8 |
+| Artifact Storage Slots | 8 |
 | Unlock blueprints | 150, 600, 2 000, 6 000, 15 000 |
 | Upgrade Cost | 100 000, 500 000, 2 000 000, 8 000 000, 20 000 000 |
 | MaxQuantumLevel | 5 |
 | MaxStarSystemLogEntries (QS) | 400 |
-| BASE_LEVEL | 5, 9, 11, 12, 13 |
+| Required base module level | 5, 9, 11, 12, 13 |
 | MinActiveMembersFor (QS) | 10 |
 | RecActiveMembersFor (QS) | 20 |
-| QSHydroBonusPct | 15 |
-| QSHydroBonusReq | 600 000 000 |
-| QSShipmentIncreaseReq | 10 |
-| QSShipmentBonusPct | 5 |
-| QSIcePlanetBasesReq | 65 |
+| Hydro belt bonus increase | 15% |
+| Hydro collection required for bonus | 600 000 |
+| Shipment collection required for bonus | 10 |
+| Quantum Fire Planet shipment bonus increase | 5% |
+| Number of bases destroyed required to reveal Quantum Ice Planet | 65 |
 | QuantumShipmentLoadTicks | 100 |
 | QSReplayMaxDuration | 600 |
 | QuantumArtifactBPCurrentRate | 100 000 |
-| MinArtifactLevelForQuantum | 5 |
+| Quantizable minimum artifact level | 5 |
 | NoCompToAllyShield | 1 |
 
 ## iap
@@ -5832,7 +5832,7 @@ ___
 | Cooldown (WS) | 12h |
 | Effect duration | 10m |
 | Effect duration (WS) | 2h |
-| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
+| Reusable in QS | Yes |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA6CAMAAADFsvruAAAATlBMVEVMaXHFsf/Ktf/Fsf/Gsv/Drf/Bsf/dxf+/tP/Fsf/EsP/FsP/Dr//Gsv/FsP/Hs//GsP/Fsf/Fsv/Gsv/EsP/Fsf/Svf/WwP/Puv/Mt/+LnGt5AAAAFnRSTlMAuvra+goUAQNpl0Me5n/vVssrNqdhEkPFvQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAjpJREFUSMftVtt2hCAMjDdAxPVWQf7/RxuQW13QPftcX2pXhsyEMAnA+0MZhaFpBvvy0YPrBG+1brlA0AcAXNS9JinHUcrp1cFjIATQuTlkzYXgtTyamd6DDPe10lJXg/l3sK/rnSQMQXiLW++oYEAU2zFgy0kxEIWutwIIwPrTtj8rALGy+g5oAVFJWYeFAVxLWeUxFEh9LIbObOlYirOhuBw1KYUZ9g5gs6K35KXbBygnwByi2zyEE9f1lOb1c55Xj+tTBLIO+pUK6o3CPxuTRL7Sy8BOQtN0EmTDolUin3RQjRswn2TDwcuO6vvRJ5nBNlZQqx58uXYIiPqDevv7WeTQqxraCDFF3LsCputKXUn3sZwNpP0Dgdnqx32x1kxtgbDqZ8hDsMo5sjfnb2Idh90fs4g/cua1XCDiUA2ePz1zfWYX2e2NOkQWgs/+EvEk0lPaoaDFnk1QzGIthHPMyGfuElubsLZRnxkvZMxf4s3fXPNn85c5nzEyqYs/OPdQEylkrFvGlxWRmprxqHHp8hnDMDmvM5JInpj/njOeYsaKdho2ykV5sut/yD/kG8h+uSI3CAY7QrRxro/GCDt0LFqD64/PgXDF2Tej89yD8GvSn5zX0xsQc0PH2QWj82wlSe9LKEsaKStNTq6n0dR5orFeOYWmk34z4YS375QdZd7OxRvt85u2CY/szOSU2wmubY84EEsbAS3m3g9XjJqshOGKPY9wm5kitucR7ptB8atx9Kuh93m0/gXR1TSI3/Kq8AAAAABJRU5ErkJggg==) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -6187,7 +6187,7 @@ ___
 | Cooldown (WS) | 12h |
 | Effect duration | 10m |
 | Effect duration (WS) | 4h |
-| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
+| Reusable in QS | Yes |
 | Single collection speed | 25% |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA6CAMAAADFsvruAAAAWlBMVEVMaXHFsf/Cr//Gsv/Fsf/Is//Gsf/Bqf/Gsv/Hqv/Ktf/Hsv/Gsf/Fsf/Fsv/Gsv/Fsf/Fsf/FsP/EsP/Gsv/EsP/Esf/Gsv/Fsf/Xwf/Tvf/Ru//NuP/lzv+ng5yAAAAAGXRSTlMAnAtqiRXQAvoF/uwqwE3fd7I9HlhnYMWOMRz1KgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAuNJREFUSMeNltvCqiAQhSfTOKSpWJnA//6vuUcOMqDW9qIM+BhYs4YAyB8Gousb/HLvTd8J/376MCaglfoRkYeWLQj2A0LEJMQgwr4Ob17tHmlfzQnGMP7wN+6R8W9wncfIRc97ZNaXE6SqAC5L5xGxtgiPdMvF95aPGPs2ILZ2MXHe2gak7UdRLgoauTwdMnErO7U2qU5aPjnkucgG8sUhwrVDcDU3o/llmi5cmxuu0SGaU9lweK1w8ohANdy17nut7wPuICITqDraYtV2JlGwYY2wRlrfU5TZqe2j1PomEuIUVeOovLQbIm66dlGqCYVZKMJcZOHCAaPIglJOFcxcFUhMbNhtjig+g1yuGcJ8GqOiGCtDrosEriniREr649sqH0U0B06jvK2xmIqoC34+btj0plEKBNRstRxbv3OsnVFqOyv4gggQ797oe+3c0dR3bfo3Nn5D3EC+DmRshbmDvyIue245XReXyL5GYdumjXae9EKwM2R5ppSgtERujLIcR3nhXlL9pPrAvbwOo0gZhIopSa8onZQ7pILBC0Uh/+WlG6DaIUEoRU8TVwZBugNEQCzhtAlfbE46cYCw4EETpfK/TXAqO0Jc+zZrTI+Pip2HiB+3rT3uLaazQOYKNoWCM6Mno3RQzQT5mHsSKjjT2uDJJN3dfDZkWCwRyjvT2uDJJJ1dhg3JhAr5ezxoVjfpPILW2oRiR4Zhm3RotoiwvISJYbJyZgRxQr1SCWd/CU66lx9DEN/5yZ2ZPPkJE0XkmiorOTM0qC5brkjbT3smHincA9tepKRtxJnUk2RGKWE0hkQmc1NPpnUbM+6Eis7knHiykG4nlHcm/vURT1LpCqHIlIUnM+nWKZ55CaeTn5bzM2Us+i5zphDsrK8UCkrDQCkd7SudWXiSHdyUSsELTx7fyKLgwhtGZJ48vcVt5woQYb/eFdcSzq49DH7cRkmh58fBT2g9Tuih81+Q6nt1AvwDeL5VY8N28X4AAAAASUVORK5CYII=) |
 
@@ -6442,7 +6442,7 @@ ___
 | Red Star Level | 7 |
 | Type | Activated |
 | Cooldown (WS) | 16h |
-| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
+| Reusable in QS | Yes |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA/CAMAAACVf2tdAAAASFBMVEVMaXHEr//Hsv/Cr//Gsv/Dsf/Is/+2rP/Cvf/Esf/FsP/Jtf/EsP/ErP/Bs//Esf/Esf/Esf/Gsf/Fsf/Ouf/Xwf/SvP/Ltv8p0PyOAAAAFHRSTlMAJuku+jrbAgRodfygGg65Q8lXiltKFNEAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAG9SURBVEjH7ZbbkoMgDIbjiaCotW0K7/+mm0C1rQsUZzp7s+XGCHwk/IkIQKwhNHXd8KO4CUF0hNHQKGpbUg2bpT4UGW7CYClh29GYsbVljI/K9Q1R07ui2EJUA3REHQwlsSFUTPQQEOiZqfKMFsL1/PSIBomtysXmfbgBcEUQBpf1sxKaLY8gm1lm84EPBLN+EOZAePuOiCnMHGUQJkND2OoTIrGRmVKhdYtEskO4Z+myeYE9Atm8IEIMefSvoxhz9oLspmNcihQi88dzRPQUwqk7j2Bu/e8aSiFcdDcDrT2G2Bbao16+yOcQ5/7AS2VMdQjhtizRcy6HJI7GHBL9jj7u5Yv8G6TweoMBMe40xWswVqnTyRlQluphLoB4xjzUZBVMfLux6gJvIBm9KMv3Ifltdidn3anJMjzW+Gn3P7v2+DW9JdnE1QejwxwJ8lpbW/c6CsmivYxfn7bMRjUaS2c+IvaCs7CwnMmasXpZUOyt/yWx+mm1/Y855v1dzI89ruttwiaVkd5NSfTvq/7pBMi16qIo5At9lkldMJ/lUBUc/KB1eL6vJdwE34TFkru1CM7NC1v4WXjBU8UAP7SkJO/CD0kuAAAAAElFTkSuQmCC) |
 
 | lvl | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
@@ -7426,7 +7426,7 @@ ___
 | Red Star Level | 8 |
 | Type | Activated |
 | Cooldown | 10s |
-| CAN_USE_MULTIPLE_TIMES_IN_QS | Yes |
+| Reusable in QS | Yes |
 | Cooldown (WS) | 1h 40m |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA6CAMAAADFsvruAAAAY1BMVEVMaXHGsv/Hs//Gsv/Fsf/Crv/Gsv/ayv/Bsv/Gsv/Fsv/Gsv/FsP/Fr//Iqv/Gsv/Dr//Gs//CsP/Fsf/JtP/Fsf/Esf/Fsf/Gsv/Tvf/Gsv/WwP/Ktv/Tvf/RvP/Nuf/dx/8vdCegAAAAGnRSTlMA8tHgaBTrAQP6uJ9FUwiqDTkhd16JLpTD8QMT/lkAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAOBSURBVEjH3ZbJlqMwDEWFCR6Yx0CMB/7/K1uySSppXKeqt+0Ngeha0pMsAEgtCZMxE15+v4Rg3jMhfk9ImHel9vkf3EhYrFJ2+T0ioH9oXI8exK+RghutDS/+BckIyf4XRKlvkUSJCdHe6ySC9iItsts2lxYZq1akkMfRNMcjhRQ9lPx+7Yu2sfNsm/baSXdegjluV0TAMgzL1YeE22FA2SQC4whJxCpQ+xUR0OTG5M2FQWRPIhIalBhlbq7/JBEpoWdeaa0860GKHxGslBwqfa6p/yx1ChES6lLvJgDK+Hxq3zdMIALaRe+OcUOBmSzb3fZetiuCvVA6l99kbZzWzjT30lhefzEXBH2UzncF3tdMK1bjk1vmsuHFXBAJq/MrXgXmXGCDCVSv5i5/9drfCP5tXBdkFbAOw0qGWCNlq69NPxBUt7Tnhu2N2vLWx5nm1PDa9QNBJ9qHAfnR/HiT79UZ2QWpdnYOu557xjzvz5Fun4ftE0G52L4+f3I6yLyN2Qza189t3xE8PVnsQzTrvFZK+w5CZD3blzQyeH0PJtDtscX2kymPKo3UVo+kG8yHiog6SA4J3dF9g7iAgMzNs5NNLqlTy++QQZugv6Sxr3DR8JfkdzvWFCJgzO30RJTbd6cCImHk7pZERPQvCFG2rKrSqog0UZdUKSeX0eGQXFO5BZZWB6TbWZtEMDIeGlByJGTbUjtw9ForN6V7LL5UsZjyUcV2RuaBs2Ozr+5/IjO0p5uC2fwOxSLjXMHjsvRQef98m8uW3u5gDJ2+YIOlUT4fyFREQkJbebfCuQMGyYwBPOy6Gml6hU8E5bKJciVzvAzMu04GBB+MlXauxNOUO8unIkAoKLee3Uaa+aKoO2X9GvtZQjFxi7OEbsdVWcca2pn6uTS7y7au6src7zafwzRERw1zVq3UUhThUBpnSkpC0H9l5vYDlzWMvIu/TOKElE3unFqLmLkc57Ury2oaeho3+KRYFc63Rn6NaJrcFCjHQKV8n9yS5lJ745RuHzV6jWJMqVPOo+DB7FwiCuud6sYzpncIoN68Nd09/H46gXtnrN/CTtf3sIyCZ0txQpTEkkVhZfo7g7QPJrMMOoGczy3kt99yFC3WxfltoGoMm0dh75ckLtFhzbxV1ThWWPpQ4Z++fUQQHEUl0af+Z+DMGj14j57exPvJERYjz+tvkvgDCiVLsAJuECAAAAAASUVORK5CYII=) |
 
@@ -9902,7 +9902,7 @@ ___
 | Field | Value |
 | --- | --- |
 | Name | Yellow star |
-| SpeedModifierPct | 300% |
+| Ships movement modifier | 300% |
 | Description | Yellow Stars contain numerous habitable planets and are great for building base infrastructure. Each Empire is assigned its own Yellow Star to establish its base of operations.<br>Yellow Stars are combat safe. There is no combat between player forces. Ships lost to combat against Cerberus will safely return to a colonized planet. |
 | Portrait | portrait_YellowStar |
 | Customize | 9 |
@@ -9917,13 +9917,11 @@ ___
 | Description | Red Stars are very unstable. They contain uninhabitable planets with valuable Artifacts<br>There is no combat between player ships in Red Stars. Ships lost to Cerberus will jump home safely. Ships lost to Supernova will be lost permanently. |
 | Portrait | portrait_RedStar |
 | Security rating | Secure |
-| SpeedModifierPct | 250% |
+| Ships movement modifier | 250% |
 | Supernova in {0} | 10m |
 | JumpCosts_T | 10, 5, 5, 20, 10, 10, 10, 10, 20, 20, 20, 20, 20, 80, 80, 120, 40, 40, 40, 40, 100, 100, 200, 100, 100, 100, 100, 300, 300, 600, 200, 200, 200, 200, 400, 800, 1 200, 500, 500, 800, 800, 1 500, 1 500, 2 000, 750, 750, 1 000, 1 000, 1 200, 1 200, 1 600, 1 000, 1 000, 2 000, 2 000, 5 000, 2 000, 2 000, 2 000, 2 000, 8 000, 2 500, 2 500, 2 500, 2 500, 10 000, 5 000, 5 000, 10 000, 10 000, 40 000 |
 | JumpCosts_M | 10, 15, 60, 20, 80, 25, 50, 100, 30, 60, 200, 100, 100, 600, 200, 200, 800, 250, 250, 1 000, 500, 500, 2 000, 750, 1 000, 5 000, 1 000, 2 000, 8 000, 1 500, 3 000, 10 000, 2 000, 6 000, 20 000 |
 | JumpCosts_B | 10, 5, 20, 10, 10, 40, 20, 20, 60, 60, 120, 50, 50, 160, 160, 250, 50, 50, 50, 350, 350, 600, 1 000, 100, 100, 100, 600, 1 200, 1 800, 100, 100, 100, 800, 1 500, 1 700, 2 500, 100, 100, 100, 1 000, 2 000, 2 000, 5 000, 100, 100, 100, 5 000, 15 000, 100, 100, 100, 6 000, 16 000, 250, 250, 250, 7 000, 18 000, 1 000, 1 000, 1 000, 10 000, 20 000 |
-| QSJumpCosts_T | 1 000 |
-| QSJumpCosts_M | 1 200 |
 | Sector cooldown after enrich (RS) | 5m |
 | Sector cooldown after genesis (RS) | 5m |
 | RS Public minimum star level | 5 |
@@ -9936,7 +9934,6 @@ ___
 | Scan price | 0 | 50 | 75 | 150 | 250 | 400 | 900 | 1 400 | 1 800 | 2 500 | 3 500 | 5 000 | 10 000 |
 | Hydro cost modifier | 50% | 50% | 50% | 120% | 150% | 200% | 250% | 250% | 250% | 250% | 250% | 250% | 500% |
 | Rich Asteroid Field | 0 | 0 | 4 000 | 10 000 | 20 000 | 50 000 | 75 000 | 100 000 | 150 000 | 225 000 | 300 000 | 400 000 | 500 000 |
-| QSJumpCosts_B | `null` | 1 000 | 1 000 | 1 000 | 1 600 | 3 000 | 5 500 | 7 200 | 9 600 | 14 000 | 16 800 | 25 600 | 36 000 |
 | The number of max. planets | `null` | 2 | 2 | 2 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
 | LowerPlanetsMinLevel | `null` | 1 | 1 | 1 | 2 | 3 | 3 | 4 | 4 | 5 | 6 | 6 | 7 |
 | Max. influence loss | `null` | 5 | 10 | 15 | 15 | 20 | 20 | 25 | 25 | 30 | 30 | 30 | 30 |
@@ -9955,7 +9952,7 @@ ___
 | Description | This dangerous system has a very limited lifetime and collapses from the outside toward the star.<br>The Star will do direct damage to any ship in its sector. |
 | Portrait | portrait_BlueStar |
 | Security rating | Not Secure |
-| SpeedModifierPct | 200% |
+| Ships movement modifier | 200% |
 | Supernova in {0} | 3m 40s |
 | Number of players | 5 |
 | Star damage | 150 |
@@ -9992,6 +9989,7 @@ ___
 | Security rating | Partially Secure |
 | Time slowdown | x600 |
 | Preparation period | 12 h |
+| Ships movement modifier | 130% |
 | Supernova in {0} | 12m |
 | Max waypoints (WS) | 5 |
 | Sector cooldown after enrich (WS) | `0` |
@@ -10054,7 +10052,6 @@ ___
 | Portrait | portrait_EmptySpace |
 | Supernova in {0} | `0` |
 | Number of players | 0 |
-| Star | QuantumStar |
 | NumBuildingDestroyers | 2, 3 |
 | BuildingDestroyersTimes | 60, 120 |
 | icon | ![icon](data:image/png;base64,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) |
@@ -10072,7 +10069,7 @@ ___
 | Description | Red Stars are very unstable. They contain uninhabitable planets with valuable Artifacts<br>There is no combat between player ships in Red Stars. Ships lost to Cerberus will jump home safely. Ships lost to Supernova will be lost permanently. |
 | Portrait | portrait_RedStar |
 | Security rating | Secure |
-| SpeedModifierPct | 250% |
+| Ships movement modifier | 250% |
 | Supernova in {0} | 10m |
 | Number of players | 3 |
 | JumpCosts_T | 0, 0, 0, 0, 0, 0, 0, 500, 500, 800, 800, 1 500, 1 500, 2 000, 750, 750, 1 000, 1 000, 1 200, 1 200, 1 600, 1 000, 1 000, 2 000, 2 000, 5 000, 2 000, 2 000, 2 000, 2 000, 8 000, 2 500, 2 500, 2 500, 2 500, 10 000, 5 000, 5 000, 10 000, 10 000, 40 000 |
