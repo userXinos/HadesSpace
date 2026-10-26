@@ -73,6 +73,8 @@ export default [
             'CROIDBoostPct',
             'SectorHydroBlastYieldPct',
             'WeaponHealRate',
+            'QSHydroBonusPct',
+            'QSShipmentBonusPct',
         ],
         (v) => `${v}%`,
     ],
@@ -177,8 +179,8 @@ export default [
     [
         ['ExtraProjectileStrengths'],
         (v) => Array.isArray(v) ?
-            v.map((e) => Array.isArray(e) ? e.join(' / ') : e).join(' / ') :
-            v,
+            v.map((e) => Array.isArray(e) ? e.map((n) => `${n}%`).join(' / ') : `${e}%`).join(' / ') :
+            `${v}%`,
     ],
     [
         ['BaseType'],
@@ -211,6 +213,10 @@ export default [
     [
         ['HealRate'],
         (v) => v / 200,
+    ],
+    [
+        ['QSHydroBonusReq'],
+        (v) => numberFormat(v / 1_000),
     ],
     [
         ['Speed_WS'],

@@ -176,6 +176,9 @@ export default {
         /(Dark)?RedStar\.MaxShipsInRSSector/,
         'RedStar.RSJoinInProgressWindowSec',
         'RedStar.DRSArtifactBonus',
+        'RedStar.QSJumpCosts_T',
+        'RedStar.QSJumpCosts_M',
+        'RedStar.QSJumpCosts_B',
 
         // YellowStar
         'yellow_star_sectors.AsteroidsMin',
@@ -210,9 +213,14 @@ export default {
         'WhiteStar.WSShipXPEventVersion',
         'WhiteStar.WSShipEventTopBrackets',
         'WhiteStar.WSShipEventCRRewards',
-        'WhiteStar.SpeedModifierPct', // времено ?
         'WhiteStar.BarrageMaxAdditionalEnemies_WS',
         'WhiteStar.HAsteroidsClose',
+
+        // QuantumStar
+        'QuantumStar.Star',
+        'QuantumStar.QuantumArtifactBPCurrentRate',
+        'QuantumStar.MaxStarSystemLogEntries_QS',
+        'QuantumStar.RecActiveMembersForQS',
 
         // Trade
         'ShipmentDrone.MiningPeriod',

@@ -15,6 +15,7 @@ export default {
         'CreditsPerHour',
         'ShipmentsCRValuePerDay',
         'QuantumUpgradeCosts',
+        'FirePlanetShipmentVal',
     ],
     fuel: [
         'FuelUseIncrease',
@@ -36,6 +37,7 @@ export default {
         'JumpCostTransport',
         'JumpCostMiner',
         'JumpCostBattleship',
+        'QSHydroBonusReq',
     ],
     crystal: [
         'PriceInCrystals',
@@ -48,6 +50,7 @@ export default {
         'ConstructionTime',
         'TimeToResearch',
         'TimeToUpgradeParallel',
+        'DNExpeditionTime',
     ],
     flt: [
         'ShipyardCapacity',
