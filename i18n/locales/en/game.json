@@ -114,19 +114,13 @@
   "QS_GATE_ARTS_STORAGE": "Artifact Storage Slots",
   "QS_EXPEDITION_TIME": "Expedition time",
   "MIN_ARTIFACT_LEVEL_FOR_QUANTIZATION": "Quantizable minimum artifact level",
-  "MIN_ARTIFACT_LEVEL_FOR_QUANTIZATION_HINT": "When any Quantum Base is destroyed, the first artifact on each Link Gate with a level not lower than this value and not yet quantized will be quantized",
   "QS_HYDRO_COLLECTION_REQUIRED_FOR_BONUS": "Hydro collection required for bonus",
-  "QS_HYDRO_COLLECTION_REQUIRED_FOR_BONUS_HINT": "When the total amount of hydro collected by all players exceeds this value, the next hydro belt will contain more hydro",
   "QS_HYDRO_BONUS_INCREASE_PCT": "Hydro belt bonus increase",
   "QS_SHIPMENT_COLLECTION_REQUIRED_FOR_BONUS": "Shipment collection required for bonus",
-  "QS_SHIPMENT_COLLECTION_REQUIRED_FOR_BONUS_HINT": "When the total number of successful shipments by all players exceeds this value, the next flare's shipment value will increase, and this bonus is exponential",
   "QS_SHIPMENT_BONUS_INCREASE_PCT": "Quantum Fire Planet shipment bonus increase",
   "QS_BASES_CLEAN_REQUIRED_FOR_ICE_PLANET_SPAWN": "Number of bases destroyed required to reveal Quantum Ice Planet",
-  "QS_BASES_CLEAN_REQUIRED_FOR_ICE_PLANET_SPAWN_HINT": "When the total number of bases destroyed exceeds this value, the Quantum Ice Planet will be revealed after the next flare",
   "QS_SCAN_REQUIRED_MIN_ACTIVE_MEMBERS": "Minimum number of active members required to start scanning",
   "NUM_WEAPONS_EQUIPPED": "Number of weapons equipped",
   "CERBERUS_PERIOD_SPAWN_TYPE": "Type of periodically spawned ship",
-  "AI_TELEPORT_DELAY": "AI teleport delay",
-  "QUANTUM_BASE_LEVEL": "Quantum Base level",
-  "QUANTUM_BASE_LEVEL_HINT": "Quantum Base's level is related to its corresponding vulnerable player; it equals that player's Red Star Scanner level plus the current Quantum Star level (initially 1)"
+  "AI_TELEPORT_DELAY": "AI teleport delay"
 }

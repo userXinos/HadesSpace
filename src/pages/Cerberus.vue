@@ -86,7 +86,7 @@
         </h1>
       </div>
 
-      <v-content :args="{data: stations, iconDir: 'game/SpaceBuildings', tableOpts: { lvlColKey: '№' }}" />
+      <v-content :args="{data: stations, iconDir: 'game/SpaceBuildings', tableOpts: { lvlColKey: 'LVL' }}" />
     </div>
 
   </div>
@@ -156,7 +156,6 @@ if (dnStations.length) {
         .filter((key) => !metaKeys.includes(key));
 
     quantumBases.Name = firstKey;
-    quantumBases.QBLevel = dnStations.map(([, station]) => station.DisplayLevel);
     quantumBases.modules = Object.values(quantumBaseWeapons).map((module) => {
         if (module.Name !== 'QBLaser') {
             return module;

@@ -114,19 +114,13 @@
   "QS_GATE_ARTS_STORAGE": "神器存储槽位",
   "QS_EXPEDITION_TIME": "探索时间",
   "MIN_ARTIFACT_LEVEL_FOR_QUANTIZATION": "可量子化的最低神器等级",
-  "MIN_ARTIFACT_LEVEL_FOR_QUANTIZATION_HINT": "当量子基地被摧毁时，每个链接星门上第一个等级不低于该值的且未被量子化的神器将被量子化",
   "QS_HYDRO_COLLECTION_REQUIRED_FOR_BONUS": "氢气加成所需收集量",
-  "QS_HYDRO_COLLECTION_REQUIRED_FOR_BONUS_HINT": "当所有人采集的氢气总数超过该值时，下次耀斑生成的小行星带将会包含更多的氢气",
   "QS_HYDRO_BONUS_INCREASE_PCT": "氢气行星带加成",
   "QS_SHIPMENT_COLLECTION_REQUIRED_FOR_BONUS": "货物加成所需收集量",
-  "QS_SHIPMENT_COLLECTION_REQUIRED_FOR_BONUS_HINT": "当全体成功运送次数超过该值时，下次耀斑的货物价值将会增加，该加成是指数增长的",
   "QS_SHIPMENT_BONUS_INCREASE_PCT": "量子火行星货物加成",
   "QS_BASES_CLEAN_REQUIRED_FOR_ICE_PLANET_SPAWN": "生成量子冰行星所需基地摧毁数量",
-  "QS_BASES_CLEAN_REQUIRED_FOR_ICE_PLANET_SPAWN_HINT": "当摧毁的基地总数超过该值时，量子冰行星将在下次耀斑后被揭示",
   "QS_SCAN_REQUIRED_MIN_ACTIVE_MEMBERS": "开始扫描所需的最少活跃成员数",
   "NUM_WEAPONS_EQUIPPED": "装备的武器数量",
   "CERBERUS_PERIOD_SPAWN_TYPE": "周期性生成的舰队类型",
-  "AI_TELEPORT_DELAY": "AI传送延迟",
-  "QUANTUM_BASE_LEVEL": "基地等级",
-  "QUANTUM_BASE_LEVEL_HINT": "基地的等级与其对应的弱点玩家有关，为该玩家的红星扫描仪等级加上当前量子星的等级（初始为1）"
+  "AI_TELEPORT_DELAY": "AI传送延迟"
 }
