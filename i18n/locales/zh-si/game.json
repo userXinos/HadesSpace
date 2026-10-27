@@ -24,6 +24,7 @@
   "MAX_PER_SECTOR": "每个星区能建造的最大数量",
   "CERBERUS": "冥犬",
   "DARK_CERBERUS": "暗冥犬",
+  "QUANTUM_CERBERUS": "量子冥犬",
   "SECTIONS": "部分",
   "FLAGSHIP_MODULES": "旗舰模组",
   "COST": "花费",
@@ -112,11 +113,14 @@
   "SHIPMENT_VALUE_SPAWN_ON_QS_FIRE_PLANET": "火行星货物价值",
   "QS_GATE_ARTS_STORAGE": "神器存储槽位",
   "QS_EXPEDITION_TIME": "探索时间",
-  "MIN_ARTIFACT_LEVEL_FOR_QUANTIZATION": "可量子化的最低神器等级",
+  "TID_QSTAR_INFO_DLG_ARTIFACTS": "可量子化的最低神器等级",
   "QS_HYDRO_COLLECTION_REQUIRED_FOR_BONUS": "氢气加成所需收集量",
-  "QS_HYDRO_BONUS_INCREASE_PCT": "氢气行星带加成",
-  "QS_SHIPMENT_COLLECTION_REQUIRED_FOR_BONUS": "货物加成所需收集量",
+  "TID_QSTAR_INFO_DLG_HYDRO_INCOME": "氢气行星带加成",
+  "TID_QSTAR_INFO_DLG_FIRE_PLANET": "货物加成所需收集量",
   "QS_SHIPMENT_BONUS_INCREASE_PCT": "量子火行星货物加成",
-  "QS_BASES_CLEAN_REQUIRED_FOR_ICE_PLANET_SPAWN": "生成量子冰行星所需基地摧毁数量",
-  "QS_SCAN_REQUIRED_MIN_ACTIVE_MEMBERS": "开始扫描所需的最少活跃成员数"
+  "TID_QSTAR_INFO_DLG_ICE_PLANET": "生成量子冰行星所需基地摧毁数量",
+  "QS_SCAN_REQUIRED_MIN_ACTIVE_MEMBERS": "开始扫描所需的最少活跃成员数",
+  "NUM_WEAPONS_EQUIPPED": "装备的武器数量",
+  "CERBERUS_PERIOD_SPAWN_TYPE": "周期性生成的舰队类型",
+  "AI_TELEPORT_DELAY": "AI传送延迟"
 }
