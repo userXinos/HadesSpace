@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import VueI18NExtract from 'vue-i18n-extract';
+import keepKeys from '../configKeys/keepKeys.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_PATH = path.join(__dirname, `../../`);
@@ -37,6 +38,7 @@ export default async function(languageFilePath) {
         ...getUniqueStringValues(pagesMap),
         ...Object.values(gameCharsLocKeys),
         ...Object.values(gameSlostLocKeys),
+        ...keepKeys,
     ]) ];
 }
 async function importAllFiles(dir) {
