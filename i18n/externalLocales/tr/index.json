@@ -145,7 +145,7 @@
   "TID_MODULE_SHIELD_DESCR": "Gelen hasarı, tükenene veya aktivasyon süresi bitene kadar emer.",
   "TID_IMPULSE_SHIELD_DESCR": "Etkinleştirmeden hemen sonra ve kısa bir süre için Savaş Gemisi, daha hızlı hareket etmesine ve etrafındaki küçük bir alandaki tüm düşman nesnelerine sabit alan hasarı vermesine olanak tanıyan bir İtki etkisi kazanır. Darbe etkisi, Darbe Süresi sona erdiğinde veya gemi hedefine ulaştığında sona erer. İmpuls Kalkanı aktifken, gövde puanı tükenene veya zamanlayıcısı bitene kadar gele hasarı emecektir.\nBu Kalkan yalnızca Savaş Gemisi hareket halindeyken etkinleştirilebilir.",
   "TID_MODULE_TELEPORT": "Teleport",
-  "TID_MODULE_TELEPORT_DESCR": "Aktivasyon süresinin ardından, gemi teleport yarıçapı içinde olan belirlenen hedefe ışınlanır.",
+  "TID_MODULE_TELEPORT_DESCR": "Aktivasyon süresinin ardından, gemi ışınlanma yarıçapı içinde olan belirlenen hedefe ışınlanır.",
   "TID_MODULE_DAMAGE_AMPLIFIER": "Si̇lah ampli̇fi̇katörü",
   "TID_MODULE_DAMAGE_AMPLIFIER_DESCR": "Düşman gemileri de dahil olmak üzere menzildeki tüm gemi ve dronların silahlarının sasar miktarını artırır. Roketli silahlar için amplifikatör, menzil içindeki tüm hedef gemiler için, roket fırlatıldığı anda uygulanacaktır.\nBirden fazla silah amplifikatörü menzilindeki bir nesne, yalnızca en yüksek seviye olanından etkilenir.",
   "TID_MODULE_BATTERY": "Batarya",
