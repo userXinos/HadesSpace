@@ -1656,9 +1656,9 @@ ___
 | Bot update interval | 5s |
 | Empire power | 150 |
 | Ships spawned | 3 |
-| CERBERUS_PERIOD_SPAWN_TYPE | CerberusSentinel |
+| Type of periodically spawned ship | CerberusSentinel |
 | Move radius | 160au |
-| AI_TELEPORT_DELAY | 8 |
+| AI teleport delay | 8 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABZVBMVEVMaXH///8ODg4CAQIGBgYCAgIMCw4AAAAICAgODw+SkpMEBAQREREXFxdfX2ALCwsDBAQBAQEJCAkAAABQUVLX1ddDREQ5OToDAwMAAAAAAAABAQEBAQEICAkEBAQAAAAkJSUPDxADAwMBAQEBAgIODg4lJSVAP0EAAAACAQIfHyAQERAvMDBIR0j09f/z9P/////y9P34+P/8/f/2+P/6+v/x8vz+/v/7/P/29v/4+v/9+//r6vLg4Oi3trvCwMa/wMTz8/Xw7/nu7u6vrrHy8/r19P3Fxsrp6fDu7fVsbW6qqq319/7T0ta5ubzEw8iNjZDIyM3e3uKdnaCxsrbMzNG7vL/a2uFxcXSjo6a+vsXQz9O/v7+mpqm9vMHZ2d1+foCZmZuhoaTLys3m5un08PyVlZhmZmeEhIa1s7daWluKiYzj4ubp6eswMTH6+/z49vq5uMF4eHrU1dzm5u2rrLFJSkrKHvS4AAAAbnRSTlMA/RWuJjgPAwcK/jIby/4hK6K7if3+/f4/W21iU9Gqd+7hxJxH9tzvf5P7z+/w/////////////////////////////////////////////////////////////////////////////////////uJtN/gAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAukSURBVFjDfZgHV+JcEIY3gDRdEEVQsLdV1yU3DRI6IdTQOyK9F5W1/f7vhr64+93j8WjgydyZuTPzJt++zZZCcnizC9fJoVr+bbGkmwbh4q5hQyT7trZkIuP1a6/2WijcH4oWV+XqXV2tUOslBsebinVEsS3mkRcE/rzubi1uqNg8jwtXkZcfxi9mpJfXjgjLsiGkeCyRf71a2FWvIyKDFsciJO5H3OfLPYgOfrVxBifNSGZnfWdyyUUC8fuC9iD7dH0pXThoUIGg3W73463rQ+maK/vnScRXjlVcXPPXwdx/2dbuMPtRqWTKuG1g2FrdmUy+ZbwPIckP4LdUmyqDaGH7uNEMWnCqkUKUmk2pXLYMsOTyoobQDQdupvJviV2JQiaTy2Uy6f5ONhlkzESSR95+GjfUUtmc2Nd8P2sipbIFQ+l8syY2bqvVW1tq9cbJkdttx1GTr+4gVEffdzel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) |
 
 #### Modules
@@ -2255,9 +2255,9 @@ ___
 | Bot update interval | 5s |
 | Empire power | 150 |
 | Ships spawned | 6 |
-| CERBERUS_PERIOD_SPAWN_TYPE | CerberusSentinel |
+| Type of periodically spawned ship | CerberusSentinel |
 | Move radius | 160au |
-| AI_TELEPORT_DELAY | 8 |
+| AI teleport delay | 8 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABZVBMVEVMaXH///8ODg4CAQIGBgYCAgIMCw4AAAAICAgODw+SkpMEBAQREREXFxdfX2ALCwsDBAQBAQEJCAkAAABQUVLX1ddDREQ5OToDAwMAAAAAAAABAQEBAQEICAkEBAQAAAAkJSUPDxADAwMBAQEBAgIODg4lJSVAP0EAAAACAQIfHyAQERAvMDBIR0j09f/z9P/////y9P34+P/8/f/2+P/6+v/x8vz+/v/7/P/29v/4+v/9+//r6vLg4Oi3trvCwMa/wMTz8/Xw7/nu7u6vrrHy8/r19P3Fxsrp6fDu7fVsbW6qqq319/7T0ta5ubzEw8iNjZDIyM3e3uKdnaCxsrbMzNG7vL/a2uFxcXSjo6a+vsXQz9O/v7+mpqm9vMHZ2d1+foCZmZuhoaTLys3m5un08PyVlZhmZmeEhIa1s7daWluKiYzj4ubp6eswMTH6+/z49vq5uMF4eHrU1dzm5u2rrLFJSkrKHvS4AAAAbnRSTlMA/RWuJjgPAwcK/jIby/4hK6K7if3+/f4/W21iU9Gqd+7hxJxH9tzvf5P7z+/w/////////////////////////////////////////////////////////////////////////////////////uJtN/gAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAukSURBVFjDfZgHV+JcEIY3gDRdEEVQsLdV1yU3DRI6IdTQOyK9F5W1/f7vhr64+93j8WjgydyZuTPzJt++zZZCcnizC9fJoVr+bbGkmwbh4q5hQyT7trZkIuP1a6/2WijcH4oWV+XqXV2tUOslBsebinVEsS3mkRcE/rzubi1uqNg8jwtXkZcfxi9mpJfXjgjLsiGkeCyRf71a2FWvIyKDFsciJO5H3OfLPYgOfrVxBifNSGZnfWdyyUUC8fuC9iD7dH0pXThoUIGg3W73463rQ+maK/vnScRXjlVcXPPXwdx/2dbuMPtRqWTKuG1g2FrdmUy+ZbwPIckP4LdUmyqDaGH7uNEMWnCqkUKUmk2pXLYMsOTyoobQDQdupvJviV2JQiaTy2Uy6f5ONhlkzESSR95+GjfUUtmc2Nd8P2sipbIFQ+l8syY2bqvVW1tq9cbJkdttx1GTr+4gVEffdzel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) |
 
 #### Modules
@@ -2966,8 +2966,8 @@ ___
 | Bot update interval | 5s |
 | Empire power | 150 |
 | Ships spawned | 1 |
-| CERBERUS_PERIOD_SPAWN_TYPE | QuantumSentinel |
-| AI_TELEPORT_DELAY | 8 |
+| Type of periodically spawned ship | QuantumSentinel |
+| AI teleport delay | 8 |
 | Awarded empire power | 5 |
 | icons | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAABZVBMVEVMaXH///8ODg4CAQIGBgYCAgIMCw4AAAAICAgODw+SkpMEBAQREREXFxdfX2ALCwsDBAQBAQEJCAkAAABQUVLX1ddDREQ5OToDAwMAAAAAAAABAQEBAQEICAkEBAQAAAAkJSUPDxADAwMBAQEBAgIODg4lJSVAP0EAAAACAQIfHyAQERAvMDBIR0j09f/z9P/////y9P34+P/8/f/2+P/6+v/x8vz+/v/7/P/29v/4+v/9+//r6vLg4Oi3trvCwMa/wMTz8/Xw7/nu7u6vrrHy8/r19P3Fxsrp6fDu7fVsbW6qqq319/7T0ta5ubzEw8iNjZDIyM3e3uKdnaCxsrbMzNG7vL/a2uFxcXSjo6a+vsXQz9O/v7+mpqm9vMHZ2d1+foCZmZuhoaTLys3m5un08PyVlZhmZmeEhIa1s7daWluKiYzj4ubp6eswMTH6+/z49vq5uMF4eHrU1dzm5u2rrLFJSkrKHvS4AAAAbnRSTlMA/RWuJjgPAwcK/jIby/4hK6K7if3+/f4/W21iU9Gqd+7hxJxH9tzvf5P7z+/w/////////////////////////////////////////////////////////////////////////////////////uJtN/gAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAukSURBVFjDfZgHV+JcEIY3gDRdEEVQsLdV1yU3DRI6IdTQOyK9F5W1/f7vhr64+93j8WjgydyZuTPzJt++zZZCcnizC9fJoVr+bbGkmwbh4q5hQyT7trZkIuP1a6/2WijcH4oWV+XqXV2tUOslBsebinVEsS3mkRcE/rzubi1uqNg8jwtXkZcfxi9mpJfXjgjLsiGkeCyRf71a2FWvIyKDFsciJO5H3OfLPYgOfrVxBifNSGZnfWdyyUUC8fuC9iD7dH0pXThoUIGg3W73463rQ+maK/vnScRXjlVcXPPXwdx/2dbuMPtRqWTKuG1g2FrdmUy+ZbwPIckP4LdUmyqDaGH7uNEMWnCqkUKUmk2pXLYMsOTyoobQDQdupvJviV2JQiaTy2Uy6f5ONhlkzESSR95+GjfUUtmc2Nd8P2sipbIFQ+l8syY2bqvVW1tq9cbJkdttx1GTr+4gVEffdzel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) |
 
@@ -3096,7 +3096,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NUM_WEAPONS_EQUIPPED | 1 |
+| Number of weapons equipped | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3113,7 +3113,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NUM_WEAPONS_EQUIPPED | 1 |
+| Number of weapons equipped | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3130,7 +3130,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NUM_WEAPONS_EQUIPPED | 1 |
+| Number of weapons equipped | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3147,7 +3147,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NUM_WEAPONS_EQUIPPED | 1 |
+| Number of weapons equipped | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3164,7 +3164,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NUM_WEAPONS_EQUIPPED | 1 |
+| Number of weapons equipped | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3181,7 +3181,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 40 000 |
 | Shield strength | 40 000 |
-| NUM_WEAPONS_EQUIPPED | 1 |
+| Number of weapons equipped | 1 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3198,7 +3198,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 50 000 |
 | Shield strength | 50 000 |
-| NUM_WEAPONS_EQUIPPED | 2 |
+| Number of weapons equipped | 2 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3215,7 +3215,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 75 000 |
 | Shield strength | 75 000 |
-| NUM_WEAPONS_EQUIPPED | 2 |
+| Number of weapons equipped | 2 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3232,7 +3232,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 100 000 |
 | Shield strength | 100 000 |
-| NUM_WEAPONS_EQUIPPED | 3 |
+| Number of weapons equipped | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3249,7 +3249,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 125 000 |
 | Shield strength | 125 000 |
-| NUM_WEAPONS_EQUIPPED | 3 |
+| Number of weapons equipped | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3266,7 +3266,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 150 000 |
 | Shield strength | 150 000 |
-| NUM_WEAPONS_EQUIPPED | 3 |
+| Number of weapons equipped | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3283,7 +3283,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NUM_WEAPONS_EQUIPPED | 3 |
+| Number of weapons equipped | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3300,7 +3300,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NUM_WEAPONS_EQUIPPED | 3 |
+| Number of weapons equipped | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3317,7 +3317,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NUM_WEAPONS_EQUIPPED | 3 |
+| Number of weapons equipped | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -3334,7 +3334,7 @@ ___
 | Portrait | portrait_CerberusStation |
 | Max hull strength | 200 000 |
 | Shield strength | 200 000 |
-| NUM_WEAPONS_EQUIPPED | 3 |
+| Number of weapons equipped | 3 |
 | Damage per second | 200 |
 | Attack range | 300au |
 | Model | CerberusStation_DNExpedition |
@@ -8709,7 +8709,7 @@ ___
 | Name | Laser |
 | Description | A single-target weapon that fires a laser beam against the enemy. The beam starts out weak, but will move to higher stages of damage the longer it stays locked to the same target. Damage will reset to the first stage when the weapon switches targets. |
 | Type | Passive |
-| Effect range | 120au |
+| Effect range | 150au |
 | RampDPS0 | 80 |
 | RampDPS1 | 250 |
 | RampDPS2 | 600 |
@@ -8733,7 +8733,7 @@ ___
 | Name | Battery |
 | Description | A single-target weapon that does constant damage to its target. |
 | Type | Passive |
-| Effect range | 120au |
+| Effect range | 150au |
 | Damage per second | 200 |
 | Target switch delay | 2s |
 | Target switch delay (WS) | 20m |
@@ -8746,7 +8746,7 @@ ___
 | Name | Mass battery |
 | Description | A versatile weapon that will deal constant damage to multiple enemy targets in range. |
 | Type | Passive |
-| Effect range | 120au |
+| Effect range | 150au |
 | Damage per second | 120 |
 | Max targets | 8 |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAtCAMAAADbYcjNAAAAZlBMVEX+s8P8t8j7tsf7tsj7tsb8tsj7tsdMaXH7tsf7tsj7tsf7tcf7tsf6tsf7tsj9tsb7tsf7tsb7tcf7tcf8s8f7tcj7tsf7t8j8t8j6tMj/wtT/0eT/zeD+uMr/xNf/vtD/x9r/3vLRupY6AAAAGnRSTlMDXuU6g1RqAPxHusbfr+8ymCUc1BIrj6R4T4v0g5YAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAJrSURBVEjH7ZbLlqMgEIYJmJSKoki8hECg3/8lp7go9GI23bs58y9yzqf5oYoqQEKAtUW2A+js37llQAiB+6fVWe3nAXCr+QbwqPmeLF6xLopxEyyGFw6Wwspni+FAAEVgfEdLf3IfLe/xZG5+bvkMTdKhfLB4lblRPli8OjIPZy5v77V5v432Ps5Sc5yl4mABWOZZOb5tvRvmeQWQ8zy4PrMEWDNzp+Z5gRhkzuFechjD6LeSQ485XDn9zEIm2ZtNysPzdUrMfSNl47lMvHJ/SLmZPjGBTjtnndb448IK3T+FcYVwBQvrLi+yoEmDSA1zMhWpYcRwcVXKqKqUiUspE/+m+v8t/4wFeyhL+NRjF8ce8xUnS4MNm+XcDLDVvAHMNTeh94n6NCuLWg9Nn2TQR+GBPGnh5qPQAMwKeca6UN0xJ5aLhWOdphdLYfGEhebqdZxyN1tjxsKjaTazF+5NiEzhtoqDhGFujlJ9q1hT6ip+YGSE2VaWR09h7RlXigz5WVi2lpEQF5y7DiNzLlTh4tG5vTCEyAjVWIoHHcLOb7Ao1iEfIvKBb5zF0jSRafinpsRaPCBnE24PzBuW1uKBuCfekW2LPCbGoq3WktbKcFRFPQGe0ZKZREt4erG0bbTk7IKi5WKSLYV/YQE2R3VnYJnZGVh38WXZv96or/60jInH09In3ivLmi4pFixhhabEU1jBYGGJ19PC6tjX1k41T7Zda8ZmIcKpKv+FO6eWku+inONLlb1ygjDq1as7xb1AvrBTngrPL3whM5yaOn3JCTaJbzyxb0yneCXV3zB4Bb0qbl94RdXfMB2QPy/mZQtqfS65AAAAAElFTkSuQmCC) |
@@ -8758,7 +8758,7 @@ ___
 | Name | Barrage |
 | Description | This weapon does additional damage to its single target when there are other enemy ships in the sector. It becomes very powerful on sectors busy with enemies, and very weak when the sector is almost clear of enemy ships. |
 | Type | Passive |
-| Effect range | 120au |
+| Effect range | 150au |
 | Damage per second | 60 |
 | Additional damage | 200 |
 | icon | ![icon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABICAMAAACDWFYkAAAASFBMVEVMaXH6s8X7tsf+tsj7tsf7tsf7tcf8vMT7tsf7vMj7tcf6tMX7tsf7tcb7tsf7tsb6tcb4s8X8tsf/vtD/ydv/usv/wtT/xthe3xeqAAAAEnRSTlMAOm4X9rXGBvsDVXzgl9KsiyrpfciFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADIElEQVRIx+1XXZejIAxFpBoELQWj//+fbkKogp05pz17Zvdl7sOMDVzzRUJUSlnl4ptwtJkxqtsOYOCEAdlxEcJ+o82FsgHuFdYklLTWUoStpuDy6E48wk56YA+NcMGGkobyQwR6NTGaVTfCIb1Q7BM1pRJ+QTlRUSrhF5QPDUMf5hNhSOx+Ghqhb92HWIdzT5KK1AhjE+Q1pUipQgbvxZQhzyI0MaX1SbFqWrz3CNEz2AtfcDxHQPq7TOXAiKZpNdi3Xp5x6dGsUxULVvSkHOGXVJSEPSm25nyu5R9QrNKGQIed/3GtgCk4nsuirkosIi/lLERTFRZtzpniRYyXElszNnrdvlbYSbDJ47XEvHYEfU+AwVUICOkua/6rErMchNTXcekTO26/KTGuCaFURSKU7+vlYy2/lF/KT1N+/iSjnzRhmqmkna7gqHxnWbt2/s9qX410ncDRhc6WdBHQ5TEcjd8gdZwCuI4Hh4A2GWn9owpbNJ3loHTJbG5s4DaTOg6Z7UzcgkSpHxIuYqJLBrvqDqHHDk1y8mPBNNDlwHYBDyfZqSXi0MSYojxgXMQFGnVgyhQeJR5ZRm/cnWpuEZqJdtbMePDAwcvVawI15O5KIRcwtEaQy09jfUy3/krpbyn6w9XECikkWOwysLnLxUM/3QamWIYUULLrqc2qGTHbZc8Q22wZ4px1Zx/6nAotJnAQLzrK4aAkZHN1TtJMN04nwc5+Eudx3hWPnGqKigS3oztrVgbYZV65bxIvO5ynchDL4nbPPlIowKhYUsEU0T9SxgpiHMVioeQkRQVlhmJKWvK79HmQdda/JKHkqQtUfKVc3W8p8T9SjhnU/qCWyR+Y3qOMBg+Y8T3Kco6gyxsUdrg7J91Ozuvfu08NVJVjiT7XZFMvXJe+nDGlqAFHhTTPBi4rmpaBi81ewIUFPCHTJpqbIqqZJ/WQm6bnmf219nma97lNBp7rySZNNZYCf9NoICuH7oKBbAHNHz/EAMwV7Mi2PN1z22+/sOR7ipu/fAlEdKW5yaAPuWHDC04pojRGcjCc7R5eOn91F0Dg3X8AUDNuM7NyBBIAAAAASUVORK5CYII=) |
