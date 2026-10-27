@@ -104,5 +104,9 @@
   "BLUEPRINTS_GRANTED": "Полученные чертежи",
   "MINIMUM_RANGE": "Минимальная дальность",
   "HYDRO_COST_MODIFIER": "Модификатор водорода",
-  "ARTIFACT_DRS_POINTS": "Очки за ДКЗ артефакт"
+  "ARTIFACT_DRS_POINTS": "Очки за ДКЗ артефакт",
+  "TID_QSTAR_INFO_DLG_ARTIFACTS": "Минимальный уровень квантилизации артефакта",
+  "TID_QSTAR_INFO_DLG_HYDRO_INCOME": "Увеличение бонуса за водород",
+  "TID_QSTAR_INFO_DLG_FIRE_PLANET": "Для получения бонуса необходимо выполнить доставку грузов",
+  "TID_QSTAR_INFO_DLG_ICE_PLANET": "Количество уничтоженных баз, необходимое для обнаружения Квантовой Ледяной Планеты"
 }
