@@ -637,5 +637,4 @@
   "TID_DNC_CRD": "• ALPHA DRONE -> CHAIN RAY DRONE",
   "TID_DNC_BLAST_DRONE": "• MINING DRONE -> BLAST DRONE",
   "TID_XBL_STAT_4": "Red Star Level",
-  "EXTERNAL_LOCALE_NOTE": "The english localization is completely done and supported by the community, if you have problems or suggestions, you can open {github} or contact the language coordinator {contact}"
-}
+  "EXTERNAL_LOCALE_NOTE": "繁體中文本地化已完全由社群完成並提供支援，如果您遇到問題或有任何建議，可以開啟 {github} 或聯絡語言協調員 {contact}"}
