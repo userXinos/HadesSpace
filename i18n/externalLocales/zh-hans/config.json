@@ -1,0 +1,17 @@
+{
+  "overwrites": "zh-si",
+
+  "languages": {
+    "Name": "繁體中文",
+    "Code": "zh-tw",
+    "UnityLocale": "chinese",
+    "SteamLocale": "tchinese",
+    "SteamCode": "zh-TW",
+    "LocaleAndCountry": "zh-TW",
+
+    "contact": {
+      "name": "cat._.orang",
+      "link": "https://discord.com/users/1562815474947850260"
+    }
+  }
+}
