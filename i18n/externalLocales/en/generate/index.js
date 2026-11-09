@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 
-import serviceLines from './serviceLines.json' assert {type: 'json'};
-import enLocale from '../../../dist/en.json' assert {type: 'json'};
+import serviceLines from './serviceLines.json' with {type: 'json'};
+import enLocale from '../../../dist/en.json' with {type: 'json'};
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_PATH = path.join(__dirname, `../../../../`);
