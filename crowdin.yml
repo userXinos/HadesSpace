@@ -4,5 +4,5 @@ files:
     languages_mapping:
       osx_locale:
         ja: jp
-        zh-Hant: zh-si
-        zh-Hans: zh-hans
+        zh-Hant: zh-hans
+        zh-Hans: zh-si
