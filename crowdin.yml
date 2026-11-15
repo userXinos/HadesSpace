@@ -1,3 +1,7 @@
 files:
   - source: /i18n/locales/en/*.json
     translation: /i18n/locales/%osx_locale%/%file_name%.%file_extension%
+    languages_mapping:
+      osx_locale:
+        ja: jp
+        zh-Hans: zh-hans
