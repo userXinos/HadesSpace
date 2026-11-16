@@ -98,6 +98,7 @@ const translationMembers = { // @TODO https://developer.crowdin.com/api/v2/#oper
     'tr': ['Astro Algebra'],
     'uk': ['Євген'],
     'zh-si': ['233dada'],
+    'zh-hans': ['貓界大帥貓'],
 };
 
 onMounted(() => {
