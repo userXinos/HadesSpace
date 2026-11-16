@@ -2,6 +2,14 @@
 
 This changelog starts with the v3.0 the third rewrite of the parser module and the entire web app
 
+## 4.4.0
+
+### Added
+- Quantum Start module variations by [233dada](https://github.com/233dada); 233dada also actively sends up-to-date game data!
+- Support for Traditional Chinese localization by (貓界大帥貓)[https://discord.com/users/1562815474947850260]
+- MCP support - [see /repo/mcp](https://github.com/userXinos/HadesSpace/tree/master/mcp)
+
+
 ## 4.3.0
 
 ### Added
@@ -24,7 +32,7 @@ This changelog starts with the v3.0 the third rewrite of the parser module and t
 
 ### Added
 - Ship builder tool
-- Support for language locales that are not in the game (the first supported locales: Turkish and Ukrainian)
+- Support for language locales that are not in the game (the first supported locales: Turkish by Astro Algebra and Ukrainian by Євген)
 - You can now support development through [donation](https://boosty.to/xinos/donate)
 
 ### Changed
