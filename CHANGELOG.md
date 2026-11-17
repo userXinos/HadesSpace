@@ -6,7 +6,7 @@ This changelog starts with the v3.0 the third rewrite of the parser module and t
 
 ### Added
 - Quantum Start module variations by [233dada](https://github.com/233dada); 233dada also actively sends up-to-date game data!
-- Support for Traditional Chinese localization by (貓界大帥貓)[https://discord.com/users/1562815474947850260]
+- Support for Traditional Chinese localization by 貓也橘子貓醬
 - MCP support - [see /repo/mcp](https://github.com/userXinos/HadesSpace/tree/master/mcp)
 
 
